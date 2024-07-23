@@ -117,7 +117,7 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="how_to_develop_a_julia_package"><a href="#how_to_develop_a_julia_package">How to develop a Julia package</a></h1>
+<div class="container main"><h1 id="how_to_develop_a_julia_package"><a href="#how_to_develop_a_julia_package" class="header-anchor">How to develop a Julia package</a></h1>
 <p>A package contains modules, tests, and documentation. It extends core Julia functionality. You can share your code with the community by developing a package. In this tutorial, you’ll learn how to develop a Julia package and register it to the <a href="https://github.com/JuliaRegistries/General">Julia General Registry</a>.  </p>
 <p>You can create a Julia package using the built-in package manager <a href="https://github.com/JuliaLang/PkgDev.jl">PkgDev.jl</a> or the package <a href="https://juliaci.github.io/PkgTemplates.jl/stable/">PkgTemplates.jl</a>. This example uses <code>PkgTemplates.jl</code> and is inspired in the video below:</p>
 
@@ -125,7 +125,7 @@
 
 <p>In the video, Chris Rackauckas uses Travis as a Continuous Integration &#40;CI&#41; tool. For this tutorial, we use <a href="https://github.com/features/actions">GitHub Actions</a> instead which is the current preferred method.</p>
 <p>Moreover, this is a summary of the video above. If you want to see more details, we suggest that you watch the full video. To find further information on developing packages and contributing to existing ones, see the timestamps in the description of the video.</p>
-<h2 id="prerequisites"><a href="#prerequisites">Prerequisites</a></h2>
+<h2 id="prerequisites"><a href="#prerequisites" class="header-anchor">Prerequisites</a></h2>
 <p>Before you begin developing a package, make sure you perform the following steps:</p>
 <ol>
 <li><p><a href="https://julialang.org/downloads/">Install Julia</a> on your local machine.</p>
@@ -138,27 +138,27 @@
 </li>
 </ol>
 <p><strong>Note:</strong> In case of any issues, remember you can <a href="/contribute/#get_help">get help</a> from the community.</p>
-<h2 id="step_1_create_your_package"><a href="#step_1_create_your_package">Step 1: Create your package</a></h2>
+<h2 id="step_1_create_your_package"><a href="#step_1_create_your_package" class="header-anchor">Step 1: Create your package</a></h2>
 <p>As we mentioned above, a package contains modules, tests, and documentation. We use PkgTemplates.jl that helps us create all of these files and the configuration for a package.</p>
 <p>Before creating your package, you need to define a template that contains the initial configuration. First, you need to install <code>PkgTemplates.jl</code>.</p>
 <p>In the Julia REPL, run the following commands:</p>
-<pre><code class="language-julia">using Pkg
-Pkg.add&#40;&quot;PkgTemplates&quot;&#41;</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Pkg
+Pkg.add(<span class="hljs-string">&quot;PkgTemplates&quot;</span>)</code></pre>
 <p>Now, create your package template by executing the following commands in the Julia REPL:</p>
-<pre><code class="language-julia">using PkgTemplates
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> PkgTemplates
 
-t &#61; Template&#40;;
-           user&#61;&quot;your-GitHub-username&quot;,
-           authors&#61;&#91;&quot;your-name&quot;&#93;,
-           plugins&#61;&#91;
-               License&#40;name&#61;&quot;MIT&quot;&#41;,
-               Git&#40;&#41;,
-               GitHubActions&#40;&#41;,
-           &#93;,
-       &#41;</code></pre>
+t = Template(;
+           user=<span class="hljs-string">&quot;your-GitHub-username&quot;</span>,
+           authors=[<span class="hljs-string">&quot;your-name&quot;</span>],
+           plugins=[
+               License(name=<span class="hljs-string">&quot;MIT&quot;</span>),
+               Git(),
+               GitHubActions(),
+           ],
+       )</code></pre>
 <p>Make sure to replace <code>your-GitHub-username</code> with your actual GitHub username and <code>your-name</code> with your name. For more information on all of the options available, see the <a href="https://juliaci.github.io/PkgTemplates.jl/stable/user/">PkgTemplates User Guide</a>.</p>
 <p>Now, to create the package, in the Julia REPL execute the following command: </p>
-<pre><code class="language-julia">t&#40;&quot;YourPackageName&quot;&#41;</code></pre>
+<pre><code class="julia hljs">t(<span class="hljs-string">&quot;YourPackageName&quot;</span>)</code></pre>
 <p>Replace <code>YourPackageName</code> with the actual name of your package. Note that packages in Julia start with a capital letter. For more information on how to properly name your package, see <a href="https://pkgdocs.julialang.org/v1/creating-packages/#Package-naming-guidelines">Package naming guidelines</a>.</p>
 <p>After <code>PkgTemplates.jl</code> creates your new package, it stores the source files at <code>~/.julia/dev</code> on Linux, and at <code>&#37;USERNAME&#37;/.julia/dev</code> on Windows. If this is not where you want to be working from, then move the source files to your preferred location. Your package directory contains the following:</p>
 <ul>
@@ -177,7 +177,7 @@ t &#61; Template&#40;;
 <li><p><code>.github</code>: It contains <code>yaml</code> files for <a href="https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration">Continuous Integration using GitHub Actions</a>.</p>
 </li>
 </ul>
-<h2 id="step_2_create_a_github_repository_for_your_package"><a href="#step_2_create_a_github_repository_for_your_package">Step 2: Create a GitHub repository for your package</a></h2>
+<h2 id="step_2_create_a_github_repository_for_your_package"><a href="#step_2_create_a_github_repository_for_your_package" class="header-anchor">Step 2: Create a GitHub repository for your package</a></h2>
 <p>You need to create a GitHub repository to store and share your package. For more information on how to create a new GitHub repository, see <a href="https://docs.github.com/en/get-started/quickstart/create-a-repo#create-a-repository">Create a repository</a>. In particular, make sure that you consider the following when creating the repository:</p>
 <ul>
 <li><p>Name the repository as your package name.</p>
@@ -187,7 +187,7 @@ t &#61; Template&#40;;
 <li><p>Keep the options of <strong>Initialize this repository with</strong> unselected.</p>
 </li>
 </ul>
-<h2 id="step_3_write_code"><a href="#step_3_write_code">Step 3: Write code</a></h2>
+<h2 id="step_3_write_code"><a href="#step_3_write_code" class="header-anchor">Step 3: Write code</a></h2>
 <p>Now, you can start writing code. You can find a file with the same name as your package &#40;<code>YourPackageName.jl</code>&#41; in the subfolder <code>src/</code>. You can add your code to the file <code>YourPackageName.jl</code>. However, If your package contains many functions, then it is best to divide it into several files. Then, you can call these functions from the main file  &#40;<code>YourPackageName.jl</code>&#41;  using the <a href="https://docs.julialang.org/en/v1/manual/code-loading/">include</a> command.</p>
 <p>To include a function from a different file in <code>YourPackageName.jl</code>:</p>
 <ol>
@@ -196,37 +196,37 @@ t &#61; Template&#40;;
 <li><p>Add the following text to the file <code>functions.jl</code>:</p>
 </li>
 </ol>
-<pre><code class="language-julia">function greet_your_package_name&#40;&#41;
-    return &quot;Hello YourPackageName&#33;&quot;
-end</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> greet_your_package_name()
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello YourPackageName!&quot;</span>
+<span class="hljs-keyword">end</span></code></pre>
 <ol start="3">
 <li><p>Export the function <code>greet_your_package_name&#40;&#41;</code> so that is available to users as follows:</p>
 </li>
 </ol>
-<pre><code class="language-julia">export greet_your_package_name</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">export</span> greet_your_package_name</code></pre>
 <ol start="4">
 <li><p>In the main file <code>YourPackageName.jl</code>, include the <code>functions.jl</code> file with the following command:</p>
 </li>
 </ol>
-<pre><code class="language-julia">include&#40;&quot;functions.jl&quot;&#41;</code></pre>
+<pre><code class="julia hljs">include(<span class="hljs-string">&quot;functions.jl&quot;</span>)</code></pre>
 <p>Finally, the full content of the main file &#40;YourPackageName.jl&#41;  is the following:</p>
-<pre><code class="language-julia">module YourPackageName
+<pre><code class="julia hljs"><span class="hljs-keyword">module</span> YourPackageName
 
-export greet_your_package_name
-include&#40;&quot;functions.jl&quot;&#41;
+<span class="hljs-keyword">export</span> greet_your_package_name
+include(<span class="hljs-string">&quot;functions.jl&quot;</span>)
 
-end</code></pre>
+<span class="hljs-keyword">end</span></code></pre>
 <p>You can include as many functions and files as you need following the process described above. </p>
-<h2 id="step_4_test_your_package"><a href="#step_4_test_your_package">Step 4: Test your package</a></h2>
+<h2 id="step_4_test_your_package"><a href="#step_4_test_your_package" class="header-anchor">Step 4: Test your package</a></h2>
 <p>Tests are necessary to make sure that your package is working correctly. When you create a new package, <code>PkgTemplates.jl</code> creates a starter code &#40;<code>test/runtests.jl</code>&#41; for your tests. Then, you can add tests for each new function that you write. </p>
 <p>For example, the following code tests the function <code>greet_your_package_name&#40;&#41;</code>:</p>
-<pre><code class="language-julia">using YourPackageName
-using Test
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> YourPackageName
+<span class="hljs-keyword">using</span> Test
 
-@testset &quot;YourPackageName.jl&quot; begin
-    @test YourPackageName.greet_your_package_name&#40;&#41; &#61;&#61; &quot;Hello YourPackageName&#33;&quot;
-    @test YourPackageName.greet_your_package_name&#40;&#41; &#33;&#61; &quot;Hello world&#33;&quot;
-end</code></pre>
+<span class="hljs-meta">@testset</span> <span class="hljs-string">&quot;YourPackageName.jl&quot;</span> <span class="hljs-keyword">begin</span>
+    <span class="hljs-meta">@test</span> YourPackageName.greet_your_package_name() == <span class="hljs-string">&quot;Hello YourPackageName!&quot;</span>
+    <span class="hljs-meta">@test</span> YourPackageName.greet_your_package_name() != <span class="hljs-string">&quot;Hello world!&quot;</span>
+<span class="hljs-keyword">end</span></code></pre>
 <p>To run the test defined above:</p>
 <ol>
 <li><p>In your terminal, go to your package directory.</p>
@@ -240,11 +240,11 @@ end</code></pre>
 <li><p>In the package mode, run the command <code>test</code>.</p>
 </li>
 </ol>
-<pre><code class="language-julia">julia&gt; &#93; # Go to the package mode
-&#40;v1.8&#41; pkg&gt; activate .
-&#40;YourPackageName&#41; pkg&gt; test</code></pre>
+<pre><code class="julia hljs">julia&gt; ] <span class="hljs-comment"># Go to the package mode</span>
+(v1<span class="hljs-number">.8</span>) pkg&gt; activate .
+(YourPackageName) pkg&gt; test</code></pre>
 <p>The Test summary provides the number of passed tests out of the total of existing tests.</p>
-<h2 id="step_5_register_your_package"><a href="#step_5_register_your_package">Step 5: Register your package</a></h2>
+<h2 id="step_5_register_your_package"><a href="#step_5_register_your_package" class="header-anchor">Step 5: Register your package</a></h2>
 <p>When you are ready to share your package, you need to register it in the <a href="https://github.com/JuliaRegistries/General">Julia General Registry</a>. After registering your package, other users can install it using <code>Pkg.add&#40;“PackageName”&#41;</code>.  </p>
 <p>To register your package:</p>
 <ol>
@@ -257,12 +257,12 @@ end</code></pre>
 <li><p>In the <strong>Leave a comment</strong> text field, add the following text:</p>
 </li>
 </ol>
-<pre><code class="language-julia">@JuliaRegistrator register&#40;&#41;</code></pre>
+<pre><code class="julia hljs"><span class="hljs-meta">@JuliaRegistrator</span> register()</code></pre>
 <p>The Julia Registrator application creates a new pull request to the Julia General Registry automatically. The community will review your package and might make comments or suggest changes. After the Julia General Registry maintainers approve the pull request, your package is added to the list of packages available.</p>
-<h2 id="further_steps"><a href="#further_steps">Further steps</a></h2>
+<h2 id="further_steps"><a href="#further_steps" class="header-anchor">Further steps</a></h2>
 <p>You might need to add new features or fix bugs as you continue developing your package,  Also, you might decide that you need to add dependencies to the project &#40;other packages&#41;. As a result, you need to update the <code>Project.toml</code> file so that it reflects the updates to your package.</p>
 <p>In this section, we go through the steps for versioning your package and adding new dependencies. </p>
-<h3 id="versioning"><a href="#versioning">Versioning</a></h3>
+<h3 id="versioning"><a href="#versioning" class="header-anchor">Versioning</a></h3>
 <p>While you continue to develop your package, you need to update its version. It enables you to keep track of the different changes to your package. A <a href="https://pkgdocs.julialang.org/v1/toml-files/#The-version-field">package version</a> is a number that contains three digits &#40;<code>X.X.X</code>&#41;. The digits in the version indicate the following:</p>
 <ul>
 <li><p>First digit: Major version</p>
@@ -282,7 +282,7 @@ end</code></pre>
 </li>
 </ul>
 <p>To update the version of your package, open the <code>Project.toml</code> file and modify the <code>version</code> variable.</p>
-<h3 id="adding_new_dependencies"><a href="#adding_new_dependencies">Adding new dependencies</a></h3>
+<h3 id="adding_new_dependencies"><a href="#adding_new_dependencies" class="header-anchor">Adding new dependencies</a></h3>
 <p>Instead of reinventing the wheel and creating everything from scratch, you can load packages that the community has already created. You just need to add the new dependency to the project and <a href="https://docs.julialang.org/en/v1/manual/modules/#Standalone-using-and-import">call the functions</a> as you usually do in Julia.</p>
 <p>To add a new dependency to your package:</p>
 <ol>
@@ -297,9 +297,9 @@ end</code></pre>
 <li><p>Add the new package by running the command <code>add PackageName</code>.</p>
 </li>
 </ol>
-<pre><code class="language-julia">julia&gt; &#93; # Go to the package mode
-&#40;v1.8&#41; pkg&gt; activate YourPackageName # Your package name
-&#40;YourPackageName&#41; pkg&gt; add PackageName</code></pre>
+<pre><code class="julia hljs">julia&gt; ] <span class="hljs-comment"># Go to the package mode</span>
+(v1<span class="hljs-number">.8</span>) pkg&gt; activate YourPackageName <span class="hljs-comment"># Your package name</span>
+(YourPackageName) pkg&gt; add PackageName</code></pre>
 <p><strong>Note:</strong> You can add more than one package by leaving white spaces between the names of the packages.</p>
 <p>The Julia package manager <a href="https://pkgdocs.julialang.org/v1/">Pkg.jl</a> adds the new dependency to the file <code>Project.toml</code> and other resulting dependencies to the file <code>Manifest.toml</code>.</p>
 <p><strong>Congratulations&#33;</strong> You have created your <strong>first Julia package</strong> and <strong>registered it to the Julia General Registry</strong>. Now, you can continue your open source contribution journey and create your own packages or <a href="/contribute/opportunities">propose changes to others</a>.</p>
@@ -309,7 +309,7 @@ end</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -422,7 +422,7 @@ end</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -438,7 +438,7 @@ end</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

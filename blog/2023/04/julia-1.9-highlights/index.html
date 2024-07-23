@@ -152,7 +152,7 @@
 <p>After 3 betas and 3 release candidates, Julia version 1.9 has finally&#40;&#33;&#41; been released. We would like to thank all the contributors to this release and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.</p>
 <p>The full list of changes can be found in the <a href="https://github.com/JuliaLang/julia/blob/release-1.9/NEWS.md">NEWS file</a>, but here we&#39;ll give a more in-depth overview of some of the release highlights.</p>
 <div class="franklin-toc"><ol><li><a href="#caching_of_native_code">Caching of native code</a></li><li><a href="#package_extensions">Package extensions</a></li><li><a href="#heap_snapshot">Heap snapshot</a></li><li><a href="#memory_usage_hint_for_the_gc_with_--heap-size-hint">Memory usage hint for the GC with <code>--heap-size-hint</code></a></li><li><a href="#sorting_performance">Sorting performance</a></li><li><a href="#tasks_and_the_interactive_thread_pool">Tasks and the interactive thread pool</a></li><li><a href="#repl">REPL</a><ol><li><a href="#contextual_module_repl">Contextual module REPL</a></li><li><a href="#numbered_prompt">Numbered prompt</a></li></ol></li><li><a href="#delimitedfiles_first_stdlib_to_be_upgradable">DelimitedFiles – first stdlib to be upgradable</a></li><li><a href="#--math-modefast_disabled"><code>--math-mode&#61;fast</code> disabled</a></li><li><a href="#pkg">Pkg</a><ol><li><a href="#pkg_up_foo_will_now_try_to_only_update_foo"><code>pkg&gt; up Foo</code> will now try to only update <code>Foo</code></a></li><li><a href="#pkg_add_will_only_auto_update_the_registry_once_per_day"><code>pkg&gt; add</code> will only auto update the registry once per day</a></li><li><a href="#pkg_add_can_now_try_to_only_add_already_installed_packages"><code>pkg&gt; add</code> can now try to only add already installed packages</a></li><li><a href="#pkg_why_to_tell_you_why_a_package_is_in_the_manifest"><code>pkg&gt; why</code> to tell you why a package is in the manifest</a></li><li><a href="#pkg_test_--coverage_the_default_for_ci_is_now_faster"><code>pkg&gt; test --coverage</code> &#40;the default for CI&#41; is now faster</a></li><li><a href="#better_support_for_sub-packages_in_monorepos_via_the_manifest_field_in_projecttoml">Better support for sub-packages in monorepos via the <code>manifest</code> field in <code>Project.toml</code></a></li></ol></li><li><a href="#apple_silicon_achieves_tier_1_status">Apple Silicon Achieves Tier 1 Status</a></li><li><a href="#llvm_update_to_v14">LLVM Update to v14</a></li><li><a href="#native_half-precision_floating-point_arithmetic">Native half-precision floating-point arithmetic</a></li></ol></div>
-<h2 id="caching_of_native_code"><a href="#caching_of_native_code">Caching of native code</a></h2>
+<h2 id="caching_of_native_code"><a href="#caching_of_native_code" class="header-anchor">Caching of native code</a></h2>
 <p><em>Tim Holy, Jameson Nash, and Valentin Churavy</em></p>
 <p>In Julia, <em>precompilation</em> involves compiling package code and saving the compiled output to disk as a &quot;cache file&quot; for each package. This process significantly reduces the time needed for compilation when using the package, as you only need to build it once and can reuse it multiple times.</p>
 <p>However, prior to Julia 1.9, only a portion of the compiled code could be saved: types, variables, and methods were saved, as well as the outputs of any type-inference for the argument types specifically <code>precompile</code>d by the package developers. Notably absent from cache files was the <em>native code</em>—the code that actually runs on your CPU. Although caching helped reduce time-to-first-execution &#40;TTFX&#41; latency, the need to regenerate native code in each session meant that many packages still suffered from long TTFX latencies.</p>
@@ -167,93 +167,93 @@
 <table><tr><th align="left">Task</th><th align="right">Julia 1.9 &#43; PrecompileTools</th><th align="right">PackageCompiler</th></tr><tr><td align="left">Developers can reduce out-of-box TTFX for their users</td><td align="right">✔️</td><td align="right">❌</td></tr><tr><td align="left">Users can reduce TTFX for custom tasks</td><td align="right">✔️</td><td align="right">✔️</td></tr><tr><td align="left">Packages can be updated without rebuilding system image</td><td align="right">✔️</td><td align="right">❌</td></tr><tr><td align="left">Reduces TTL</td><td align="right">❌</td><td align="right">✔️</td></tr></table>
 <p>The difference in TTL arises because the system image can safely skip all the code-validation checks that are necessary when loading packages.</p>
 <p>At the time of Julia 1.9&#39;s release, only a small fraction of the package ecosystem has adopted PrecompileTools. As these new tools become leveraged more widely, users can probably expect ongoing improvements in TTFX.</p>
-<h4 id="methodology"><a href="#methodology">Methodology</a></h4>
+<h4 id="methodology"><a href="#methodology" class="header-anchor">Methodology</a></h4>
 <p>A demonstration workload was designed for each package. That workload was placed in a <a href="https://julialang.github.io/PrecompileTools.jl/stable/#Tutorial:-local-&#37;22Startup&#37;22-packages">Startup package</a> and precompiled; for benchmarking, we load the Startup package and run the same workload. Full details can be found in <a href="https://github.com/timholy/JuliaCon2022_Precompilation/tree/teh/jan_2023/analysis/cache_external">this repository</a>.</p>
 <hr />
-<h2 id="package_extensions"><a href="#package_extensions">Package extensions</a></h2>
+<h2 id="package_extensions"><a href="#package_extensions" class="header-anchor">Package extensions</a></h2>
 <p><em>Kristoffer Carlsson</em></p>
 <p>In Julia, the power of multiple dispatch makes it simple to extend functionality across a wide range of types. For instance, a plotting package may want to provide functionality to plot a large variety of Julia objects, many of which are defined in separate packages within the Julia ecosystem. Moreover, it&#39;s possible to add optimized versions of generic functions for specific types, such as the <a href="https://github.com/JuliaArrays/StaticArrays.jl">StaticArray</a>, where the array size is known at compile time, leading to significant performance improvements.</p>
 <p>To extend a method to a type, you would typically import the package containing the type, load the package to access the type, and then define the extended method. Taking the use case of the plotting package, this could look something like:</p>
-<pre><code class="language-julia">import Contours
+<pre><code class="julia hljs"><span class="hljs-keyword">import</span> Contours
 
-function plot&#40;contour::Countours.Contour&#41;
+<span class="hljs-keyword">function</span> plot(contour::Countours.Contour)
     ...
-end</code></pre>
+<span class="hljs-keyword">end</span></code></pre>
 <p>However, adding package dependencies can have costs, such as increased load times or require installation of large artifacts &#40;e.g., CUDA.jl&#41;. This can be burdensome for package authors who must constantly balance dependency costs against the benefits of new method extensions for an &quot;average&quot; package user.</p>
 <p>Julia 1.9 introduces &quot;package extensions&quot;, a feature that, in a loose sense, automatically loads a module when a set of packages are loaded. The module, contained within a file in the <code>ext</code> directory of the parent package, loads the &quot;weak dependency&quot; and extend methods. The goal is that one should not have to pay for features that one does not use. Package extensions provide functionality similar to that which <a href="https://github.com/JuliaPackaging/Requires.jl">Requires.jl</a> already offers but with key advantages, such as allowing precompilation of conditional code and adding compatibility constraints on weak dependencies. Since the package extension functionality is now &quot;first class&quot;, package authors should be less reluctant to start using it compared to Requires.jl. Package extensions can be introduced in a fully backwards compatible manner where one can either chose to use Requires.jl or make the weak dependency into a normal dependency on earlier Julia versions.</p>
 <p>As a concrete example where package extensions are used for good effect, the <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a> package provides optimized routines for automatic differentiation when the input is a <code>StaticArray</code>. In Julia 1.8, it unconditionally loaded the <code>StaticArrays</code> package, while in 1.9, it uses a package extension. This results in a significant improvement in load time:</p>
-<pre><code class="language-julia"># 1.8 &#40;StaticArrays unconditionally loaded&#41;
-julia&gt; @time using ForwardDiff
-  0.590685 seconds &#40;2.76 M allocations: 201.567 MiB&#41;
+<pre><code class="julia hljs"><span class="hljs-comment"># 1.8 (StaticArrays unconditionally loaded)</span>
+julia&gt; <span class="hljs-meta">@time</span> <span class="hljs-keyword">using</span> ForwardDiff
+  <span class="hljs-number">0.590685</span> seconds (<span class="hljs-number">2.76</span> M allocations: <span class="hljs-number">201.567</span> MiB)
 
-# 1.9 &#40;StaticArrays not loaded&#41;
-julia&gt;  @time using ForwardDiff
-  0.247568 seconds &#40;220.93 k allocations: 13.793 MiB&#41;</code></pre>
+<span class="hljs-comment"># 1.9 (StaticArrays not loaded)</span>
+julia&gt;  <span class="hljs-meta">@time</span> <span class="hljs-keyword">using</span> ForwardDiff
+  <span class="hljs-number">0.247568</span> seconds (<span class="hljs-number">220.93</span> k allocations: <span class="hljs-number">13.793</span> MiB)</code></pre>
 <p>For a comprehensive guide on using package extensions, please refer to the <a href="https://pkgdocs.julialang.org/v1.9/creating-packages/#Conditional-loading-of-code-in-packages-&#40;Extensions&#41;">documentation</a>.</p>
-<h2 id="heap_snapshot"><a href="#heap_snapshot">Heap snapshot</a></h2>
+<h2 id="heap_snapshot"><a href="#heap_snapshot" class="header-anchor">Heap snapshot</a></h2>
 <p><em>Apaz-Cli, Pete Vilter, Nathan Daly, Valentin Churavy, Gabriel Baraldi, and Ian Butterworth</em></p>
 <p>Are you curious about how your memory is being utilized in your Julia programs? With the introduction of Julia 1.9, you can now generate heap snapshots that can be examined using Chrome DevTools.</p>
 <p>To create a heap snapshot, simply utilize the <code>Profile</code> package and call the <code>take_heap_snapshot</code> function, as demonstrated below:</p>
-<pre><code class="language-julia">using Profile
-Profile.take_heap_snapshot&#40;&quot;Snapshot.heapsnapshot&quot;&#41;</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Profile
+Profile.take_heap_snapshot(<span class="hljs-string">&quot;Snapshot.heapsnapshot&quot;</span>)</code></pre>
 <p>If you are more interested in the number of objects rather than their sizes, you can use the <code>all_one&#61;true</code> argument. This will report every object&#39;s size as one, making it easier to identify the total count of objects retained.</p>
-<pre><code class="language-julia">Profile.take_heap_snapshot&#40;&quot;Snapshot.heapsnapshot&quot;, all_one&#61;true&#41;</code></pre>
+<pre><code class="julia hljs">Profile.take_heap_snapshot(<span class="hljs-string">&quot;Snapshot.heapsnapshot&quot;</span>, all_one=<span class="hljs-literal">true</span>)</code></pre>
 <p>To analyze your heap snapshot, open a Chromium browser and follow these steps: <code>right click -&gt; inspect -&gt; memory -&gt; load</code>. Upload your <code>.heapsnapshot</code> file, and a new tab will appear on the left side to display your snapshot&#39;s details.</p>
 <p><img src="/assets/blog/2023-1.9-highlights/snapshot.png" alt="A heap snapshot in chrome devtools" /></p>
-<h2 id="memory_usage_hint_for_the_gc_with_--heap-size-hint"><a href="#memory_usage_hint_for_the_gc_with_--heap-size-hint">Memory usage hint for the GC with <code>--heap-size-hint</code></a></h2>
+<h2 id="memory_usage_hint_for_the_gc_with_--heap-size-hint"><a href="#memory_usage_hint_for_the_gc_with_--heap-size-hint" class="header-anchor">Memory usage hint for the GC with <code>--heap-size-hint</code></a></h2>
 <p><em>Roman Samarev</em></p>
 <p>Julia 1.9 introduces a new command flag, <code>--heap-size-hint&#61;&lt;size&gt;</code>, that enables users to set a limit on memory usage, after which the garbage collector &#40;GC&#41; will work more aggressively to clean up unused memory.</p>
 <p>By specifying a memory limit, users can ensure that the garbage collector more proactively manages memory resources, reducing the risk of running out of memory.</p>
 <p>To use this new feature, simply run Julia with the <code>--heap-size-hint</code> flag followed by the desired memory limit:</p>
-<pre><code class="language-julia">julia --heap-size-hint&#61;&lt;size&gt;</code></pre>
+<pre><code class="julia hljs">julia --heap-size-hint=&lt;size&gt;</code></pre>
 <p>Replace <code>&lt;size&gt;</code> with the appropriate value &#40;e.g., <code>1G</code> for 1 gigabyte or <code>512M</code> for 512 megabytes&#41;.</p>
 <p>This enhancement in Julia 1.9 makes it easier than ever to manage memory resources effectively, providing users with greater control and flexibility when working with memory-intensive applications.</p>
 <p>This feature was introduced in <a href=" https://github.com/JuliaLang/julia/pull/45369">#45369</a>.</p>
-<h2 id="sorting_performance"><a href="#sorting_performance">Sorting performance</a></h2>
+<h2 id="sorting_performance"><a href="#sorting_performance" class="header-anchor">Sorting performance</a></h2>
 <p><em>Lilith Hafner</em></p>
 <p>The default sorting algorithm has been upgraded to a more adaptive sorting algorithm that is always stable and often has state of the art performance. For simple types and orders—<code>BitInteger</code>, <code>IEEEFloat</code>, and <code>Char</code> sorted in default or reverse order—we use a radix sort that has linear runtime with respect to input size. This effect is especially pronounced for <code>Float16</code>s which received a 3x-50x speedup over 1.8.</p>
 <p>For other types, the default sorting algorithm has been changed to the internal <code>ScratchQuickSort</code> in most cases, which is stable and generally faster than <code>QuickSort</code>, although it does allocate memory. For situations where memory efficiency is crucial, you can override these new defaults by specifying <code>alg&#61;QuickSort</code>.</p>
 <p>To learn more about the these changes, you can watch the JuliaCon 2022 talk, <a href="https://www.youtube.com/watch?v&#61;9SGuHFgJvSE">Julia&#39;s latest in high performance sorting</a> and it&#39;s forthcoming sequel in JuliaCon 2023.</p>
-<h2 id="tasks_and_the_interactive_thread_pool"><a href="#tasks_and_the_interactive_thread_pool">Tasks and the interactive thread pool</a></h2>
+<h2 id="tasks_and_the_interactive_thread_pool"><a href="#tasks_and_the_interactive_thread_pool" class="header-anchor">Tasks and the interactive thread pool</a></h2>
 <p><em>Jeff Bezanson, Kiran Pamnany, Jameson Nash</em></p>
 <p>Before version 1.9, Julia treated all tasks equally, running them on all available threads without any distinction in priority. However, there are situations where you may want certain tasks to be prioritized, such as when running a <a href="https://en.wikipedia.org/wiki/Heartbeat_&#40;computing&#41;">heartbeat</a>, providing an interactive interface, or displaying progress updates.</p>
 <p>To address this need, you can now designate a task as interactive when you <a href="https://docs.julialang.org/en/v1/base/multi-threading/#Base.Threads.@spawn"><code>Threads.@spawn</code></a>  it:</p>
-<pre><code class="language-julia">using Base.Threads
-@spawn :interactive f&#40;&#41;</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Base.Threads
+<span class="hljs-meta">@spawn</span> :interactive f()</code></pre>
 <p>You can set the number of interactive threads available using the following command:</p>
-<pre><code class="language-julia">julia --threads 3,1</code></pre>
+<pre><code class="julia hljs">julia --threads <span class="hljs-number">3</span>,<span class="hljs-number">1</span></code></pre>
 <p>This command starts Julia with 3 &quot;normal&quot; threads and one interactive thread &#40;in the interactive thread pool&#41;.</p>
 <p>For more information, refer to the <a href="https://docs.julialang.org/en/v1.9/manual/multi-threading/#man-threadpools">manual section on multi-threading</a>. This feature was introduced in <a href="https://github.com/JuliaLang/julia/pull/42302">#42302</a> .</p>
-<h2 id="repl"><a href="#repl">REPL</a></h2>
-<h3 id="contextual_module_repl"><a href="#contextual_module_repl">Contextual module REPL</a></h3>
+<h2 id="repl"><a href="#repl" class="header-anchor">REPL</a></h2>
+<h3 id="contextual_module_repl"><a href="#contextual_module_repl" class="header-anchor">Contextual module REPL</a></h3>
 <p><em>Rafael Fourquet</em></p>
 <p>In Julia, the REPL evaluates expressions within the <code>Main</code> module by default. Starting with version 1.9, you can now change this to any other module. Many introspection methods, such as <code>varinfo</code>, which previously defaulted to examining the <code>Main</code> module, will now default to the REPL&#39;s current contextual module.</p>
 <p>This feature can be particularly useful when developing a package, as you can set the package as the current contextual module. To change the module, simply enter the module name in the REPL and execute Meta&#43;M &#40;often Alt&#43;M&#41;, or use the <code>REPL.activate</code> command.</p>
-<pre><code class="language-julia">julia&gt; @__MODULE__ # Shows module where macro is expanded
+<pre><code class="julia hljs">julia&gt; <span class="hljs-meta">@__MODULE__</span> <span class="hljs-comment"># Shows module where macro is expanded</span>
 Main
 
-# Typing Base.Math and pressing Meta-m changes the context module
-&#40;Base.Math&#41; julia&gt; @__MODULE__
+<span class="hljs-comment"># Typing Base.Math and pressing Meta-m changes the context module</span>
+(Base.Math) julia&gt; <span class="hljs-meta">@__MODULE__</span>
 Base.Math
 
-&#40;Base.Math&#41; julia&gt; varinfo&#40;&#41;
+(Base.Math) julia&gt; varinfo()
   name           size summary
   ––––––––––– ––––––– –––––––––––––––––––––––––––––––––––––––––––––
-  @evalpoly   0 bytes @evalpoly &#40;macro with 1 method&#41;
-  Math                Module
-  ^           0 bytes ^ &#40;generic function with 68 methods&#41;
-  acos        0 bytes acos &#40;generic function with 12 methods&#41;
-  acosd       0 bytes acosd &#40;generic function with 1 method&#41;
-  acosh       0 bytes acosh &#40;generic function with 12 methods&#41;
-  acot        0 bytes acot &#40;generic function with 4 methods&#41;
+  <span class="hljs-meta">@evalpoly</span>   <span class="hljs-number">0</span> bytes <span class="hljs-meta">@evalpoly</span> (<span class="hljs-keyword">macro</span> with <span class="hljs-number">1</span> method)
+  Math                <span class="hljs-built_in">Module</span>
+  ^           <span class="hljs-number">0</span> bytes ^ (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">68</span> methods)
+  acos        <span class="hljs-number">0</span> bytes acos (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">12</span> methods)
+  acosd       <span class="hljs-number">0</span> bytes acosd (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
+  acosh       <span class="hljs-number">0</span> bytes acosh (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">12</span> methods)
+  acot        <span class="hljs-number">0</span> bytes acot (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">4</span> methods)
 ...</code></pre>
-<h3 id="numbered_prompt"><a href="#numbered_prompt">Numbered prompt</a></h3>
+<h3 id="numbered_prompt"><a href="#numbered_prompt" class="header-anchor">Numbered prompt</a></h3>
 <p><em>Kristoffer Carlsson</em></p>
 <p>Drawing heavily on inspiration from the IPython shell &#40;and other notebook-based systems like Mathematica&#41;, the Julia REPL can enable a &quot;numbered prompt&quot; that stores evaluated objects in the REPL for later use and keeps track of the number of expressions that have been evaluated.</p>
 <p>Being able to refer to an earlier evaluated object can be useful if, for example, one forgets to store the result of a long computation to a variable and then executes something else &#40;so that <code>ans</code> gets overwritten&#41;.</p>
 <table><tr><th align="center"><img src="/assets/blog/2023-1.9-highlights/julia_numbered.png" alt="" /></th><th align="center"><img src="/assets/blog/2023-1.9-highlights/ipython.png" alt="" /></th></tr><tr><td align="center">Julia REPL with &quot;numbered prompt&quot;</td><td align="center">IPython REPL</td></tr></table>
 <p>For instructions how to enable this, see the <a href="https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt">documentation</a>.</p>
-<h2 id="delimitedfiles_first_stdlib_to_be_upgradable"><a href="#delimitedfiles_first_stdlib_to_be_upgradable">DelimitedFiles – first stdlib to be upgradable</a></h2>
+<h2 id="delimitedfiles_first_stdlib_to_be_upgradable"><a href="#delimitedfiles_first_stdlib_to_be_upgradable" class="header-anchor">DelimitedFiles – first stdlib to be upgradable</a></h2>
 <p><em>Kristoffer Carlsson</em></p>
 <p>Julia comes with a set of standard libraries &#40;&quot;stdlibs&quot;&#41; which are similar to normal packages except that they can be loaded without having to explicitly install them. Most of these stdlibs also comes &quot;prebaked&quot; in the sysimage that Julia ships which means that they technically get loaded every time Julia is started.</p>
 <p>However, this approach has some drawbacks:</p>
@@ -267,36 +267,36 @@ Base.Math
 </ul>
 <p>In 1.9 we are experimenting with a new concept of &quot;upgradable stdlibs&quot; that come shipped with Julia but can also be upgraded like normal packages. To start with, this is done with the small and relatively sparsely used stdlib DelimitedFiles.</p>
 <p>Starting with a fresh Julia install, we can see that the DelimitedFiles package is loadable and that it is loaded from the Julia installation:</p>
-<pre><code class="language-julia">julia&gt; using DelimitedFiles
-&#91; Info: Precompiling DelimitedFiles &#91;8bb1440f-4735-579b-a4ab-409b98df4dab&#93;
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> DelimitedFiles
+[ Info: Precompiling DelimitedFiles [<span class="hljs-number">8</span>bb1440f-<span class="hljs-number">4735</span>-<span class="hljs-number">579</span>b-a4ab-<span class="hljs-number">409</span>b98df4dab]
 
-julia&gt; pkgdir&#40;DelimitedFiles&#41;
-&quot;/Users/kc/julia/share/julia/stdlib/v1.9/DelimitedFiles&quot;</code></pre>
+julia&gt; pkgdir(DelimitedFiles)
+<span class="hljs-string">&quot;/Users/kc/julia/share/julia/stdlib/v1.9/DelimitedFiles&quot;</span></code></pre>
 <p>However, when DelimitedFiles is added with the package manager a versioned version is installed that is loaded just like a normal package:</p>
-<pre><code class="language-julia">&#40;@v1.9&#41; pkg&gt; add DelimitedFiles
+<pre><code class="julia hljs">(<span class="hljs-meta">@v1</span><span class="hljs-number">.9</span>) pkg&gt; add DelimitedFiles
    Resolving package versions...
-    Updating &#96;~/.julia/environments/v1.9/Project.toml&#96;
-  &#91;8bb1440f&#93; &#43; DelimitedFiles v1.9.1
-    Updating &#96;~/.julia/environments/v1.9/Manifest.toml&#96;
-  &#91;8bb1440f&#93; &#43; DelimitedFiles v1.9.1
+    Updating <span class="hljs-string">`~/.julia/environments/v1.9/Project.toml`</span>
+  [<span class="hljs-number">8</span>bb1440f] + DelimitedFiles v1<span class="hljs-number">.9</span><span class="hljs-number">.1</span>
+    Updating <span class="hljs-string">`~/.julia/environments/v1.9/Manifest.toml`</span>
+  [<span class="hljs-number">8</span>bb1440f] + DelimitedFiles v1<span class="hljs-number">.9</span><span class="hljs-number">.1</span>
 Precompiling environment...
-  1 dependency successfully precompiled in 1 seconds. 59 already precompiled.
+  <span class="hljs-number">1</span> dependency successfully precompiled <span class="hljs-keyword">in</span> <span class="hljs-number">1</span> seconds. <span class="hljs-number">59</span> already precompiled.
 
-julia&gt; using DelimitedFiles
+julia&gt; <span class="hljs-keyword">using</span> DelimitedFiles
 
-julia&gt; pkgdir&#40;DelimitedFiles&#41;
-&quot;/Users/kristoffercarlsson/.julia/packages/DelimitedFiles/aGcsu&quot;</code></pre>
-<h2 id="--math-modefast_disabled"><a href="#--math-modefast_disabled"><code>--math-mode&#61;fast</code> disabled</a></h2>
+julia&gt; pkgdir(DelimitedFiles)
+<span class="hljs-string">&quot;/Users/kristoffercarlsson/.julia/packages/DelimitedFiles/aGcsu&quot;</span></code></pre>
+<h2 id="--math-modefast_disabled"><a href="#--math-modefast_disabled" class="header-anchor"><code>--math-mode&#61;fast</code> disabled</a></h2>
 <p><code>--math-mode&#61;fast</code> is now a no-op &#40;<a href="https://github.com/JuliaLang/julia/pull/41638">#41638</a>&#41;. We came to the conclusion that a global fastmath option is impossible to use correctly in Julia. For example it can lead to surprises such as <code>exp</code> returning completely the wrong value as reported in <a href="https://github.com/JuliaLang/julia/issues/41592">#41592</a>. Combining a <em>runtime</em> fast-math option with precompilation and constant propagation leads to inconsistencies unless we accept the cost of an entirely separate system image.</p>
 <p>Users are encouraged to use the <code>@fastmath</code> macro instead which constrains the effects of fastmath to a small piece of code.</p>
-<h2 id="pkg"><a href="#pkg">Pkg</a></h2>
-<h3 id="pkg_up_foo_will_now_try_to_only_update_foo"><a href="#pkg_up_foo_will_now_try_to_only_update_foo"><code>pkg&gt; up Foo</code> will now try to only update <code>Foo</code></a></h3>
+<h2 id="pkg"><a href="#pkg" class="header-anchor">Pkg</a></h2>
+<h3 id="pkg_up_foo_will_now_try_to_only_update_foo"><a href="#pkg_up_foo_will_now_try_to_only_update_foo" class="header-anchor"><code>pkg&gt; up Foo</code> will now try to only update <code>Foo</code></a></h3>
 <p><em>Kristoffer Carlsson</em></p>
 <p>Previously it was underspecified what packages were actually allowed to upgrade when giving a specific package to update &#40;<code>pkg&gt; up Foo</code>&#41;. Now <code>up Foo</code> only allow <code>Foo</code> itself to update with all other packages having their version fixed in the resolve process. It is possible to loosen this restriction with the various <code>--preserve</code> command options to also allow e.g. dependencies of <code>Foo</code> to update. See the documentation for <code>Pkg.update</code> for more information.</p>
-<h3 id="pkg_add_will_only_auto_update_the_registry_once_per_day"><a href="#pkg_add_will_only_auto_update_the_registry_once_per_day"><code>pkg&gt; add</code> will only auto update the registry once per day</a></h3>
+<h3 id="pkg_add_will_only_auto_update_the_registry_once_per_day"><a href="#pkg_add_will_only_auto_update_the_registry_once_per_day" class="header-anchor"><code>pkg&gt; add</code> will only auto update the registry once per day</a></h3>
 <p><em>Kristoffer Carlsson</em></p>
 <p>Pkg will now remember the last time the registry was updated across julia sessions and only auto-update once per day when using an <code>add</code> command. Previously the registry auto-updated once per session. Note that the <code>update</code> command will as before always try to update the registry.</p>
-<h3 id="pkg_add_can_now_try_to_only_add_already_installed_packages"><a href="#pkg_add_can_now_try_to_only_add_already_installed_packages"><code>pkg&gt; add</code> can now try to only add already installed packages</a></h3>
+<h3 id="pkg_add_can_now_try_to_only_add_already_installed_packages"><a href="#pkg_add_can_now_try_to_only_add_already_installed_packages" class="header-anchor"><code>pkg&gt; add</code> can now try to only add already installed packages</a></h3>
 <p><em>Ian Butterworth</em></p>
 <p>When working with many environments, for instance across Pluto notebooks, the default behavior of <code>Pkg.add</code> to add the latest version of the requested package and any new dependencies can mean hitting precompilation frequently.</p>
 <p><code>Pkg.add</code> can now be told to prefer to add already installed versions of packages &#40;those that already have been downloaded onto your machine&#41;, which are more likely to be precompiled.</p>
@@ -309,53 +309,53 @@ julia&gt; pkgdir&#40;DelimitedFiles&#41;
 </li>
 </ul>
 <p>Note that using this you may get old versions of packages installed so if you are encountering issues, it is usually a good idea to do an actual upgrade to the latest version to see if the issue has been fixed.</p>
-<h3 id="pkg_why_to_tell_you_why_a_package_is_in_the_manifest"><a href="#pkg_why_to_tell_you_why_a_package_is_in_the_manifest"><code>pkg&gt; why</code> to tell you why a package is in the manifest</a></h3>
+<h3 id="pkg_why_to_tell_you_why_a_package_is_in_the_manifest"><a href="#pkg_why_to_tell_you_why_a_package_is_in_the_manifest" class="header-anchor"><code>pkg&gt; why</code> to tell you why a package is in the manifest</a></h3>
 <p><em>Kristoffer Carlsson</em></p>
 <p>To show the reason why a package is in the manifest a new <code>pkg&gt; why Foo</code> command is available. The output is all the different ways to reach the package through the dependency graph starting from the direct dependencies.</p>
-<pre><code class="language-julia">&#40;jl_zMxmBY&#41; pkg&gt; why DataAPI
+<pre><code class="julia hljs">(jl_zMxmBY) pkg&gt; why DataAPI
   CSV → PooledArrays → DataAPI
   CSV → Tables → DataAPI
   CSV → WeakRefStrings → DataAPI</code></pre>
-<h3 id="pkg_test_--coverage_the_default_for_ci_is_now_faster"><a href="#pkg_test_--coverage_the_default_for_ci_is_now_faster"><code>pkg&gt; test --coverage</code> &#40;the default for CI&#41; is now faster</a></h3>
+<h3 id="pkg_test_--coverage_the_default_for_ci_is_now_faster"><a href="#pkg_test_--coverage_the_default_for_ci_is_now_faster" class="header-anchor"><code>pkg&gt; test --coverage</code> &#40;the default for CI&#41; is now faster</a></h3>
 <p><em>Ian Butterworth</em></p>
 <p>Previously, coverage testing could only be enabled for either <code>all</code> where all code visited is checked, <code>user</code> &#40;the prior default for <code>Pkg.test</code>&#41; where everything except for <code>Base</code> is checked including stdlibs, or <code>none</code> where tracking is disabled.</p>
 <p>The github action <code>julia-runtest</code> defaults to coverage testing on, meaning a lot of tracking outside of the package under test previously took place, slowing tests down, especially tight loops.</p>
 <p>v1.8 introduced the ability to specify a path to either a file or directory for coverage to be tracked in via <code>--code-coverage&#61;@path</code>, and v1.9 makes that the default for <code>Pkg.test&#40;coverage&#61;true&#41;</code> &#40;and thus used by <code>julia-runtest</code> by default&#41;.</p>
 <p>This change means often a lot less code needs to be tracked, and in cases where code from dependencies fall in tight loops this can heavily speed up the test suite. In one example Octavian.jl tests with coverage enabled went from &gt;2hrs to ~6 minutes.</p>
-<h3 id="better_support_for_sub-packages_in_monorepos_via_the_manifest_field_in_projecttoml"><a href="#better_support_for_sub-packages_in_monorepos_via_the_manifest_field_in_projecttoml">Better support for sub-packages in monorepos via the <code>manifest</code> field in <code>Project.toml</code></a></h3>
+<h3 id="better_support_for_sub-packages_in_monorepos_via_the_manifest_field_in_projecttoml"><a href="#better_support_for_sub-packages_in_monorepos_via_the_manifest_field_in_projecttoml" class="header-anchor">Better support for sub-packages in monorepos via the <code>manifest</code> field in <code>Project.toml</code></a></h3>
 <p><em>Jacob Quinn, Nick Robinson</em></p>
 <p>Pkg will now support a <code>manifest &#61; &quot;path/to/Manifest.toml&quot;</code> field, which simplifies the package management experience for projects that are organized with smaller sub-packages in the same repository. While Base loading previously supported specifying a custom <code>manifest</code> in the <code>Project.toml</code> file, Pkg.jl was unaware and didn&#39;t take this configuration into account. With this change, &quot;monorepo&quot; style projects can have their sub-projects &#40;internal packages&#41; specify a root-level manifest to &quot;share&quot; dependency resolution and versions. This greatly simplifies Pkg operations on sub-projects because they don&#39;t need their <em>own</em> Manifest.toml files that can quickly get out of sync with the parent or peer manifests.</p>
-<h2 id="apple_silicon_achieves_tier_1_status"><a href="#apple_silicon_achieves_tier_1_status">Apple Silicon Achieves Tier 1 Status</a></h2>
+<h2 id="apple_silicon_achieves_tier_1_status"><a href="#apple_silicon_achieves_tier_1_status" class="header-anchor">Apple Silicon Achieves Tier 1 Status</a></h2>
 <p>With all tests successfully passing and continuous integration &#40;CI&#41; established for Apple Silicon, the <a href="https://julialang.org/downloads/#supported_platforms">platform&#39;s status</a> has been upgraded from Tier 2 to Tier 1.</p>
-<h2 id="llvm_update_to_v14"><a href="#llvm_update_to_v14">LLVM Update to v14</a></h2>
+<h2 id="llvm_update_to_v14"><a href="#llvm_update_to_v14" class="header-anchor">LLVM Update to v14</a></h2>
 <p><em>Valentin Churavy, Mosè Giordano</em></p>
 <p>LLVM is the underlying compiler infrastructure that Julia&#39;s compiler builds upon. With Julia 1.9 we update the version used to <a href="https://releases.llvm.org/14.0.0/docs/ReleaseNotes.html">v14.0.6</a>.</p>
 <p>Among the other features introduced in LLVM 14 there is <a href="https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/llvm-14">autovectorization enabled by default for SVE/SVE2 extensions</a> on AArch64 CPUs. SVE, <em>Scalable Vector Extension</em>, is a SIMD-like extension which uses flexible-width vector registries, instead of the fixed-width registries typically used by other SIMD architectures. Julia code does not have to do anything to use SVE/SVE2 instructions: vectorizable code always uses SIMD instructions when possible, and with LLVM 14 the SVE registries will be used more aggressively on CPUs which support it, such as Fujitsu&#39;s A64FX, Nvidia Grace, or the ARM Neoverse series. We gave an overview of Julia SVE autovectorization capabilitites in the webinar <a href="https://www.youtube.com/watch?v&#61;kZNYFWGnixA"><em>Julia on A64FX</em></a>.</p>
-<h2 id="native_half-precision_floating-point_arithmetic"><a href="#native_half-precision_floating-point_arithmetic">Native half-precision floating-point arithmetic</a></h2>
+<h2 id="native_half-precision_floating-point_arithmetic"><a href="#native_half-precision_floating-point_arithmetic" class="header-anchor">Native half-precision floating-point arithmetic</a></h2>
 <p><em>Gabriel Baraldi, Mosè Giordano</em></p>
 <p>To execute arithmetic operations on <code>Float16</code> values, julia used to promote them to <code>Float32</code>, and then convert them back to <code>Float16</code> to return the result. 1.9 added support for native <code>Float16</code> operations on AArch64 CPUs that have hardware support for half-precision floating-point arithmetic, like Apple&#39;s M series or Fujitsu&#39;s A64FX. In memory-bound applications this allows for up to 2× speedup compared to <code>Float32</code> operations and 4× compared to <code>Float64</code> operations. For example, on an M1 MacBook you can get</p>
-<pre><code class="language-julia">julia&gt; using BenchmarkTools
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> BenchmarkTools
 
-julia&gt; function sumsimd&#40;v&#41;
-           sum &#61; zero&#40;eltype&#40;v&#41;&#41;
-           @simd for x in v
-               sum &#43;&#61; x
-           end
-           return sum
-       end
-sumsimd &#40;generic function with 1 method&#41;
+julia&gt; <span class="hljs-keyword">function</span> sumsimd(v)
+           sum = zero(eltype(v))
+           <span class="hljs-meta">@simd</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> v
+               sum += x
+           <span class="hljs-keyword">end</span>
+           <span class="hljs-keyword">return</span> sum
+       <span class="hljs-keyword">end</span>
+sumsimd (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
 
-julia&gt; @btime sumsimd&#40;x&#41; setup&#61;&#40;x&#61;randn&#40;Float16, 1_000_000&#41;&#41;
-  58.416 μs &#40;0 allocations: 0 bytes&#41;
-Float16&#40;551.0&#41;
+julia&gt; <span class="hljs-meta">@btime</span> sumsimd(x) setup=(x=randn(<span class="hljs-built_in">Float16</span>, <span class="hljs-number">1_000_000</span>))
+  <span class="hljs-number">58.416</span> μs (<span class="hljs-number">0</span> allocations: <span class="hljs-number">0</span> bytes)
+<span class="hljs-built_in">Float16</span>(<span class="hljs-number">551.0</span>)
 
-julia&gt; @btime sumsimd&#40;x&#41; setup&#61;&#40;x&#61;randn&#40;Float32, 1_000_000&#41;&#41;
-  116.916 μs &#40;0 allocations: 0 bytes&#41;
-897.7202f0
+julia&gt; <span class="hljs-meta">@btime</span> sumsimd(x) setup=(x=randn(<span class="hljs-built_in">Float32</span>, <span class="hljs-number">1_000_000</span>))
+  <span class="hljs-number">116.916</span> μs (<span class="hljs-number">0</span> allocations: <span class="hljs-number">0</span> bytes)
+<span class="hljs-number">897.7202f0</span>
 
-julia&gt; @btime sumsimd&#40;x&#41; setup&#61;&#40;x&#61;randn&#40;Float64, 1_000_000&#41;&#41;
-  234.125 μs &#40;0 allocations: 0 bytes&#41;
-1164.2247860232349</code></pre>
+julia&gt; <span class="hljs-meta">@btime</span> sumsimd(x) setup=(x=randn(<span class="hljs-built_in">Float64</span>, <span class="hljs-number">1_000_000</span>))
+  <span class="hljs-number">234.125</span> μs (<span class="hljs-number">0</span> allocations: <span class="hljs-number">0</span> bytes)
+<span class="hljs-number">1164.2247860232349</span></code></pre>
 <p>Milan Klöwer presented an application of using half-precision for a shallow water simulation run on A64FX in his JuliaCon 2021 talk <a href="https://www.youtube.com/watch?v&#61;btHfZr2C0GA"><em>3.6x speedup on A64FX by squeezing ShallowWaters.jl into Float16</em></a>.</p>
 </div><br><br>
 
@@ -363,7 +363,7 @@ julia&gt; @btime sumsimd&#40;x&#41; setup&#61;&#40;x&#61;randn&#40;Float64, 1_00
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -476,7 +476,7 @@ julia&gt; @btime sumsimd&#40;x&#41; setup&#61;&#40;x&#61;randn&#40;Float64, 1_00
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -492,7 +492,7 @@ julia&gt; @btime sumsimd&#40;x&#41; setup&#61;&#40;x&#61;randn&#40;Float64, 1_00
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

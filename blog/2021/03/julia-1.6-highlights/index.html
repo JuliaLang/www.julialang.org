@@ -150,39 +150,39 @@
 <!-- Content appended here -->
 <div class="container main"><p>Julia version 1.6 has been released. Most Julia releases are timed and hence not planned around specific features, but this release was an exception since it is likely to become the next long-term support &#40;LTS&#41; release of Julia. Because of this, we took extra time developing the release to make sure that features which are needed for the future health of the ecosystem made it into the release. Also, the release was tested for regressions against all registered open source packages and issues were tracked down and fixed.  The final decision about whether Julia 1.6 will become the new LTS will be made after it has been battle-tested in the field, around the time of the 1.7 release enters stabilization. The full list of changes can be found in the <a href="https://github.com/JuliaLang/julia/blob/release-1.6/NEWS.md">NEWS file</a>, but here we&#39;ll give a more in-depth overview of some of the release highlights.</p>
 <div class="franklin-toc"><ol><li><a href="#parallel_precompilation">Parallel precompilation</a></li><li><a href="#compile_time_percentage">Compile time percentage</a></li><li><a href="#eliminating_needless_recompilation">Eliminating needless recompilation</a></li><li><a href="#compiler_latency_reduction">Compiler latency reduction</a></li><li><a href="#tooling_to_help_optimize_packages_for_latency">Tooling to help optimize packages for latency</a></li><li><a href="#binary_loading_speedups">Binary loading speedups</a></li><li><a href="#downloads_networkingoptions">Downloads &amp; NetworkingOptions</a></li><li><a href="#ci_robustness">CI Robustness</a></li><li><a href="#improved_stacktrace_formatting">Improved stacktrace formatting</a></li><li><a href="#conclusion">Conclusion</a></li></ol></div>
-<h2 id="parallel_precompilation"><a href="#parallel_precompilation">Parallel precompilation</a></h2>
+<h2 id="parallel_precompilation"><a href="#parallel_precompilation" class="header-anchor">Parallel precompilation</a></h2>
 <p><em>Ian Butterworth</em></p>
 <p>Executing all of the statements in a module often involves compiling a large amount of code, so Julia creates precompiled caches of the module to reduce this time. In 1.6, this package precompilation is faster and happens before you leave <code>pkg&gt;</code> mode. Until now, precompilation took place solely as a single-processed sequence, precompiling dependencies one-by-one when needed during the linear code loading process when a package is <code>using</code>/<code>import</code>-ed for the first time.</p>
 <p>The olden days of &lt;&#61; 1.5, taking as an example <code>DifferentialEquations</code>; a popular package with a particularly high number of dependencies:</p>
-<pre><code class="language-julia-repl">&#40;v1.5&#41; pkg&gt; add DifferentialEquations
+<pre><code class="julia-repl hljs"><span class=hljs-metap>(v1.5) pkg&gt;</span> add DifferentialEquations
 ...
-julia&gt; @time using DifferentialEquations
-&#91; Info: Precompiling DifferentialEquations &#91;0c46a032-eb83-5123-abaf-570d42b7fbaa&#93;
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> <span class="hljs-keyword">using</span> DifferentialEquations
+</span>[ Info: Precompiling DifferentialEquations [0c46a032-eb83-5123-abaf-570d42b7fbaa]
   474.288251 seconds …</code></pre>
 <p>In 1.6, <code>pkg&gt;</code> mode gains a heavily parallelized precompile operation that is auto-invoked after package actions, to keep the active environment ready to load.</p>
-<pre><code class="language-julia-repl">&#40;v1.6&#41; pkg&gt; add DifferentialEquations
+<pre><code class="julia-repl hljs"><span class=hljs-metap>(v1.6) pkg&gt;</span> add DifferentialEquations
 ...
 Precompiling project...
-  Progress &#91;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&gt;&#93;  112/112
+  Progress [========================================&gt;]  112/112
 112 dependencies successfully precompiled in 72 seconds
 
-julia&gt; @time using DifferentialEquations
-  4.995477 seconds …</code></pre>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> <span class="hljs-keyword">using</span> DifferentialEquations
+</span>  4.995477 seconds …</code></pre>
 <p>Whereas the previous code loading precompilation process took ~8 minutes to precompile and load <code>DifferentialEquations</code> without indicating progress while doing so, the new mechanism took a little over 1 minute to precompile while showing progress through the dependencies. Then the first time the package is loaded, it loads at full speed. The new parallel precompilation process takes a depth-first approach of working through the dependency tree in the manifest, first precompiling the packages with no dependencies and working upward to the packages listed in the environment’s <code>Project.toml</code>, allowing multiple packages to be precompiled at the same time. The operation is multi-processed, as opposed to multi-threaded, so is not limited by Julia’s thread count. By default, Julia will spawn a maximum CPU-balanced load of package precompile jobs at once based on the number of CPU cores. Errors during precompilation will only throw for packages listed in the Project to allow for dependencies that may be listed in manifests but not loaded, and the auto precompilation process will remember if a package has errored within the given environment and will not retry until it changes. Auto-precompilation can be gracefully interrupted with a <code>ctrl-c</code> and disabled by setting the environment variable <code>JULIA_PKG_PRECOMPILE_AUTO&#61;0</code>.</p>
 
 <script id="asciicast-381203" src="https://asciinema.org/a/381203.js" data-rows="25" data-cols="104" async></script>
 
 <p>For packages that are being developed, given that their code will be changed by other mechanisms than Pkg, this new workflow won’t automatically avoid encountering the standard code-load time precompilation. However non-dev-ed dependencies of those packages will be kept ready to load, so top-level precompilation at load time should remain lower for dev-ed packages.</p>
-<h2 id="compile_time_percentage"><a href="#compile_time_percentage">Compile time percentage</a></h2>
+<h2 id="compile_time_percentage"><a href="#compile_time_percentage" class="header-anchor">Compile time percentage</a></h2>
 <p><em>Ian Butterworth</em></p>
 <p>A small change that should help understanding of one of Julia’s quirks for newcomers is that the timing macro <code>@time</code> and its verbose friend <code>@timev</code> now report if any of the reported time has been spent on compilation.<sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup></p>
-<pre><code class="language-julia-repl">julia&gt; x &#61; rand&#40;10,10&#41;;
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> x = rand(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>);
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> x * x;
+</span>  0.540600 seconds (2.35 M allocations: 126.526 MiB, 4.43% gc time, 99.94% compilation time)
 
-julia&gt; @time x * x;
-  0.540600 seconds &#40;2.35 M allocations: 126.526 MiB, 4.43&#37; gc time, 99.94&#37; compilation time&#41;
-
-julia&gt; @time x * x;
-  0.000010 seconds &#40;1 allocation: 896 bytes&#41;</code></pre>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> x * x;
+</span>  0.000010 seconds (1 allocation: 896 bytes)</code></pre>
 <p>Given Julia’s Just In Time &#40;JIT&#41; / Just Ahead Of Time &#40;JAOT&#41; compilation, the first time code is run the compilation overhead is often substantial, with big speed improvements seen in subsequent calls. This change highlights that behavior, serving as both a reminder and a tool for rooting out unwanted compilation effort i.e. over-specialized code.</p>
 <table class="fndef" id="fndef:1">
     <tr>
@@ -191,13 +191,13 @@ julia&gt; @time x * x;
     </tr>
 </table>
 
-<h2 id="eliminating_needless_recompilation"><a href="#eliminating_needless_recompilation">Eliminating needless recompilation</a></h2>
+<h2 id="eliminating_needless_recompilation"><a href="#eliminating_needless_recompilation" class="header-anchor">Eliminating needless recompilation</a></h2>
 <p><em>Tim Holy</em></p>
 <p>One of Julia’s most powerful features is its extensibility: you can add new methods to previously-defined functions, and use previously-defined methods on new types. Sometimes, these new entities force Julia to recompile code to account for changes in dispatch. This happens in two steps: first, “outdated” code gets <em>invalidated</em>, marking it as unsuitable for use; second, as needed the code is again compiled from scratch taking account of the new methods and types.</p>
 <p>Earlier versions of Julia were somewhat conservative, and invalidated old code in some circumstances where there was no actual change in dispatch. Moreover, there were many places where Julia and its standard libraries were written in a way that defeated Julia’s type-inference. Because the compiler sometimes had to invalidate code just because a new method <em>might</em> apply, any uncertainty about types magnifies the risk and frequency of invalidation. In older versions of Julia, the combination of these effects made invalidation widespread: just loading certain packages led to invalidation of up to 10&#37; of Julia’s precompiled code. The delay for recompilation could sometimes make interactive sessions feel sluggish. When invalidation occurred in Julia’s package-loading code, it also delayed loading of the next package, contributing to long waits for <code>using
 SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
 <p>In 1.6, the scheme for invalidating old code has been made more accurate and selective. Moreover, Julia and its standard libraries received a thorough makeover to help type inference arrive at a concrete answer more often. The result is a leaner, faster Julia that is far more impervious to method invalidation, and feels considerably more responsive and nimble in interactive sessions. Related blog post: <a href="https://julialang.org/blog/2020/08/invalidations/">Analyzing sources of compiler latency in Julia: method invalidations</a>.</p>
-<h2 id="compiler_latency_reduction"><a href="#compiler_latency_reduction">Compiler latency reduction</a></h2>
+<h2 id="compiler_latency_reduction"><a href="#compiler_latency_reduction" class="header-anchor">Compiler latency reduction</a></h2>
 <p><em>Jameson Nash and Jeff Bezanson</em></p>
 <p>In addition to making our library code more compiler-friendly, we continue to try to speed up the compiler itself. This remains one of our main technical challenges. In this release there aren&#39;t any major breakthroughs, but we do have some modest improvements due to work on the method table data structure.</p>
 <p>Method specificity is a partial order, and prior to 1.6 we stored methods in sorted order. We also attempted to identify ambiguous methods on insertion, hoping to avoid repeating the work for each future query. Unfortunately, sorting a partial order requires quadratic time, and this time began to show up prominently during package loading &#40;when a package&#39;s methods need to be inserted into the currently-active method tables&#41;.</p>
@@ -207,7 +207,7 @@ SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
 <p>Much of this benefit should simply be available without doing anything to your code except updating Julia version&#33; To go even further, there is now also a general framework for profiling compilation times, for investigating what functions contribute most heavily to execution latency. This is described in more detail by others. But with each release, you may just find that an old code pattern, which you used to need to avoid for performance, now works great&#33;</p>
 <p>We applied many micro-optimizations to several internal data-structures also. These again won&#39;t affect how your code works, but should improve how it performs dynamically. For example, <code>invokelatest</code> is now faster than <code>try</code>, and nearly as fast as dynamic dispatch. Several complex internal data-structures that were trees also became simple hash-tables, improving both their scaling performance and making them more cheaply thread-safe. This affects some key areas such as type allocations &#40;<code>apply_type</code> and <code>tuple</code>&#41;, method optimization lookup &#40;<code>MethodInstance</code>&#41;, and dispatch &#40;<code>jl_apply_generic</code>&#41;.</p>
 <p>While we haven&#39;t yet reached our target performance levels, we hope this release is a great step forward. There&#39;s already other work completed in preparation for getting latency down even more in the future&#33;</p>
-<h2 id="tooling_to_help_optimize_packages_for_latency"><a href="#tooling_to_help_optimize_packages_for_latency">Tooling to help optimize packages for latency</a></h2>
+<h2 id="tooling_to_help_optimize_packages_for_latency"><a href="#tooling_to_help_optimize_packages_for_latency" class="header-anchor">Tooling to help optimize packages for latency</a></h2>
 <p><em>Nathan Daly &amp; Tim Holy</em></p>
 <p>Julia 1.6, in conjunction with SnoopCompile v2.2.0 or higher, features new tools for compiler introspection, especially &#40;but not exclusively&#41; for type inference. Developers can use the new tools to profile type inference and determine how particular package implementation choices interact with compilation time. Early adopters have used these tools to eliminate anywhere from a few percent to the large majority of first-use latency.</p>
 <ul>
@@ -216,7 +216,7 @@ SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
 <li><p><a href="https://timholy.github.io/SnoopCompile.jl/stable/">SnoopCompile.jl documentation</a></p>
 </li>
 </ul>
-<h2 id="binary_loading_speedups"><a href="#binary_loading_speedups">Binary loading speedups</a></h2>
+<h2 id="binary_loading_speedups"><a href="#binary_loading_speedups" class="header-anchor">Binary loading speedups</a></h2>
 <p><em>Elliot Saba &amp; Mosè Giordano</em></p>
 <p>Providing reliable, portable binaries to packages is a challenge that all packaging environments must face, and while Julia&#39;s strategy has always been to prioritize reliability and reproducibility over all other concerns, in the past it has come at a cost.  Our solution to the problems of reliability and reproducibility was to more fully isolate installed binaries and cross-compile them ourselves using the <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl"><code>BinaryBuilder.jl</code></a> framework.  Libraries built from <code>BinaryBuilder.jl</code> are most often used through so-called JLL packages which provide a standardized API that Julia packages can use to access the provided binaries.  This ease of use and reliability of installation resulted in <em>vastly</em> increased load times as compared to the bad old days when Julia packages would blindly <code>dlopen&#40;&#41;</code> libraries and load whatever libraries happened to be sitting on the library search path.  To illustrate the issue, in Julia 1.4, loading the GTK&#43;3 stack required <strong>7 seconds</strong> when it used to take around <strong>500ms</strong> on the same machine.  Through many months of hard work and careful investigation, we are pleased to report that the same stack of libraries now takes less than <strong>200ms</strong> to load when using Julia v1.6 on the same machine.</p>
 <p>The cause of this slowdown was multi-faceted and spread across many different layers of the Julia ecosystem.  Part of the issue was general compiler latency, which has been a focus of the compiler team for some time now, as evidenced by the compiler latency reduction section in this blog post.  Another major piece though was general overhead incurred by having so many small JLL packages providing bindings; there was significant overhead in the loading of each package.  In particular, there was code inference, code generation and data-structure loading that needed to be eliminated if the JLL packages were to be lightweight enough to not affect overall load times.  In our experiments, we found that one of the largest sources of package load times was in the deserialization of backedge information, the links from functions in <code>Base</code> back to our packages that would cause our functions to be recompiled if there was an invalidation effecting that <code>Base</code> function.  As counter-intuitive as it may seem, simply using a large number of functions from <code>Base</code> can very quickly balloon the precompilation cache files for your package, causing an increase in loading time&#33;  While the increase itself is small, &#40;<code>3-10ms</code> at the worst&#41; when you are loading many dozens of JLL packages, this adds up quickly.</p>
@@ -227,7 +227,7 @@ SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
 <script type="text/javascript" src="/assets/blog/2021-1.6-highlights/gtk3-jll.js"></script>
 
 <p>The interplay between compiler improvements and the benefits that <code>JLLWrappers</code> affords were <a href="https://github.com/JuliaGraphics/Gtk.jl/issues/466#issuecomment-716058685">well-recorded</a> during the development process, and showcase a speedup of load times for the original, non-JLLWrapperized <code>GTK3_jll</code> package from its peak at <code>6.73</code> seconds on Julia v1.4 down to <code>2.34</code> seconds on Julia v1.6, purely from compiler improvements.  If you haven&#39;t thanked your local compiler team today, you probably should.  Using the slimmed-down JLLWrappers implementation of all relevant JLLWrappers packages results in a further lowering of load time down to a blistering <code>140ms</code>.  End-to-end, this means that this work effected a roughly <strong><code>50x</code> speedup</strong> in load times for large trees of binary artifacts. While there are some minor improvements for lazy loading of shared libraries and such in the pipeline, we are confident that this work will provide a strong foundation for Julia&#39;s binary packaging story for the foreseeable future.</p>
-<h2 id="downloads_networkingoptions"><a href="#downloads_networkingoptions">Downloads &amp; NetworkingOptions</a></h2>
+<h2 id="downloads_networkingoptions"><a href="#downloads_networkingoptions" class="header-anchor">Downloads &amp; NetworkingOptions</a></h2>
 <p><em>Stefan Karpinski</em></p>
 <p>In previous releases, when you download something in Julia, either directly, using the <code>Base.download</code> function, or indirectly when using <code>Pkg</code>, the actual downloading was done by some external process—whichever one of <code>curl</code>, <code>wget</code>, <code>fetch</code> or <code>PowerShell</code> happened to be available on your system. The fact that this frankendownload feature worked at all was something of a miracle, that only worked due to much fussy command-line-option finessing of over the years. And while this did mostly work, there were some major drawbacks to this approach.</p>
 <ol>
@@ -252,7 +252,7 @@ SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
 </li>
 </ul>
 <p>These options are now consistently respected across all network-facing code that ships with Julia itself and we will be working with package developers to encourage them to use <code>NetworkOptions</code> for configuration of libraries such as mbedtls and others. This will allow consistent configuration of networking options across the entire Julia ecosystem.</p>
-<h2 id="ci_robustness"><a href="#ci_robustness">CI Robustness</a></h2>
+<h2 id="ci_robustness"><a href="#ci_robustness" class="header-anchor">CI Robustness</a></h2>
 <p><em>Jeff Bezanson, Keno Fischer, and Jameson Nash</em></p>
 <p>This release cycle we spent quite a bit of time paying down technical debt in the form of intermittent test failures in our continuous integration &#40;CI&#41; process. Like all responsible software projects these days, we run our full build and test suite for every commit and for every proposed change. If the tests fail, you stop the presses until the problem is fixed — either by reverting a change, committing a new fix, or revising a proposed patch until it passes. Given this simple policy, it’s difficult to see how a project could be ambushed by persistent test failures. And yet that’s exactly what happened to us: over time, we ended up in a state where a high percentage of test runs failed, usually with just a single obscure test case failing.</p>
 <p>Several factors contributed to this predicament. First, the base Julia test suite is quite large and covers a wide range of functionality, from parsing and compiling to linear algebra, package management, sockets, threads, handling file system events, and more. With that much surface area, we were likely to end up with a handful of rare bugs, or failures due to overly-fragile tests. We run easily over a hundred builds per day, so even failures with a rate of 0.1&#37; would appear often enough to be disruptive. Timing-sensitive tests are a classic example, e.g. testing that a one-second timeout indeed happens after approximately one second. On hosted VMs in particular, timing can be far more variable than what you would ever see on dedicated hardware. A one-second timeout can, unfortunately, take more than 60 seconds on a heavily loaded VM.</p>
@@ -280,7 +280,7 @@ SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
 </li>
 </ul>
 <p>As a result, the proportion of &quot;green check&quot; PRs is noticeably higher. We are not yet at 100&#37;, but CI can now generally be expected to pass.</p>
-<h2 id="improved_stacktrace_formatting"><a href="#improved_stacktrace_formatting">Improved stacktrace formatting</a></h2>
+<h2 id="improved_stacktrace_formatting"><a href="#improved_stacktrace_formatting" class="header-anchor">Improved stacktrace formatting</a></h2>
 <p><em>Kristoffer Carlsson</em></p>
 <p>Way back in Julia release 0.6, formatting of stacktraces <a href="https://julialang.org/blog/2017/04/repl-0.6-highlights/#printing_of_stack_traces">went through an overhaul</a> and in this release <a href="https://github.com/jkrumbiegel"><code>@jkrumbiegel</code></a> made further improvements on this area &#40;implemented in <a href="https://github.com/JuliaLang/julia/pull/36134">#36134</a>&#41;. Let&#39;s look at an example of the old stacktrace printing and compare it to the new one:</p>
 <p><strong>Old stacktrace</strong>:</p>
@@ -301,7 +301,7 @@ SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
 <li><p>Paths were made shorter by showing <code>~</code> instead of the full path to the home directory.</p>
 </li>
 </ul>
-<h2 id="conclusion"><a href="#conclusion">Conclusion</a></h2>
+<h2 id="conclusion"><a href="#conclusion" class="header-anchor">Conclusion</a></h2>
 <p>Please enjoy the release, and as always <a href="https://github.com/JuliaLang/julia/issues">let us know</a> if you encounter any problems or have any suggestions. We hope to be back in about four months to report on even more progress in version 1.7&#33;</p>
 </div><br><br>
 
@@ -309,7 +309,7 @@ SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -422,7 +422,7 @@ SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -438,7 +438,7 @@ SomePkg</code> when <code>SomePkg</code> depends on other packages.</p>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

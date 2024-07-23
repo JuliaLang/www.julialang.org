@@ -150,107 +150,107 @@
 
 <!-- Content appended here -->
 <div class="container main"><p>My GSoC 2017 <a href="https://summerofcode.withgoogle.com/projects/#5850956641075200">project</a> was to implement a package for Julia to solve Ordinary Differential Equations using Neural Networks. The purpose of the project was to provide an additional DE solver using Neural Networks which has parallelism in time as the key advantage over other solvers which are iterative in nature. The project was based on research paper of <a href="https://arxiv.org/pdf/physics/9705023.pdf">Lagaris et al. 1997</a> which proposed the function approximation capabilities of neural networks &#40;NNs&#41; for solving differential equations. The project was a mixture of research as well as implementation aspects and still has a few parts left to work upon. I chose to work on this project as I have interest in mathematics and machine learning and it involved concepts of both the fields. The package uses <a href="https://github.com/SciML/DifferentialEquations.jl">DifferentialEquations.jl</a> for the solver interface and <a href="https://github.com/denizyuret/Knet.jl">KNet.jl</a> for NN solver implementation.</p>
-<h2 id="how_to_use_neural_network_for_solving_differential_equations"><a href="#how_to_use_neural_network_for_solving_differential_equations">How to use Neural Network for solving Differential Equations?</a></h2>
+<h2 id="how_to_use_neural_network_for_solving_differential_equations"><a href="#how_to_use_neural_network_for_solving_differential_equations" class="header-anchor">How to use Neural Network for solving Differential Equations?</a></h2>
 <p>The concept of this solver is based on the UAT &#40;Universal Approximation Theorem&#41; which says that a NN with at least one hidden layer can approximate any continuous function. The neural network is made to minimize a loss function, defined as the difference between the NN&#39;s derivative and the derivative of the differential equation, which then results in the convergence of our trial solution towards the actual &#40;analytical&#41; solution of the differential equation. To know more about UAT <a href="http://neuralnetworksanddeeplearning.com/chap4.html">click here</a>.</p>
-<h2 id="research_aspect_of_the_project_and_the_challenge"><a href="#research_aspect_of_the_project_and_the_challenge">Research aspect of the project and the challenge</a></h2>
+<h2 id="research_aspect_of_the_project_and_the_challenge"><a href="#research_aspect_of_the_project_and_the_challenge" class="header-anchor">Research aspect of the project and the challenge</a></h2>
 <p>The research paper we referred to on the topic is quite old and understanding the examples as well as explanations was quite challenging. Not much research has been done on using NNs for this purpose and thus we were not able to get much help from the research papers related to the topic. The initial task was to read and understand the mathematics behind solving differential equations. Also the computational methods used to solve differential equations on computers are quite different from the ones we use on paper so it took quite some time to get familiar with them. The structure and type of NN to be used so that the solver advantages &#40;parallelism in time&#41; are retained without compromising the performance was a research subdomain as well was a challenge.</p>
 <p>After implementing the solver for ODEs &#40;Ordinary Differential Equations&#41; and systems of ODEs, the difficult part was to make the NN converge for the systems of ODEs on longer time domains. As there are a lot of factors involved in neural networks, like hidden layer width, number of hidden neurons, activations, weights etc., I relied on my machine learning background as well as the help from my mentors to experiment with most of the feasible settings of NN hyper-parameters and recording the accuracy of convergence and performance of the solver. Making the NNs converge for systems of ODEs is not as easy as it seems and took up most of the time for experimentation and tuning. Predicting the system of DEs solution with larger domain is still a challenge which needs to be worked upon.</p>
-<h2 id="implementation_and_work"><a href="#implementation_and_work">Implementation and Work</a></h2>
+<h2 id="implementation_and_work"><a href="#implementation_and_work" class="header-anchor">Implementation and Work</a></h2>
 <p>The implementation involved integration of mathematical and machine learning aspects to build a neural net solver for ODEs. The <a href="https://github.com/SciML/DiffEqBase.jl">DiffEqBase library</a> is used as a base to extend the algorithm and solver interface while the neural network was developed using the <a href="https://github.com/denizyuret/Knet.jl">Knet.jl library</a>. The work done till now can be seen on the <a href="https://github.com/SciML/NeuralNetDiffEq.jl">NeuralNetDiffEq.jl github repository</a>, primarily in <a href="https://github.com/SciML/NeuralNetDiffEq.jl/tree/SingleNN_Approach">this branch</a>. This work involves implementing a Neural Network solver for ODEs with customized interpolation based on NN prediction.</p>
-<h3 id="how_does_it_work"><a href="#how_does_it_work">How does it work?</a></h3>
+<h3 id="how_does_it_work"><a href="#how_does_it_work" class="header-anchor">How does it work?</a></h3>
 <p>We construct a trial solution for our differential equation in terms of the NN output which should also satisfy the DE boundary conditions. We define a loss function for the neural net which is the difference between the derivative of the neural net solution with regards to its input and the true derivative defined by the ODE. This is an unusual loss function, in that in includes the gradient of the network itself. It is almost unseen elsewhere in other ML applications This loss function is minimized &#40;by equating the derivative difference to zero&#41; using the NN &#40;closer to 0 better convergence&#41; with the trial solution substituted in it in place of the original function &#40;or the solution to the DE&#41;. The neural network tunes its weights using the Adam optimization algorithm on the backpropagated gradients from that loss function.</p>
 <p>For parallel implementation in time we use KnetArray &#40;the array type used in <a href="https://github.com/denizyuret/Knet.jl">KNet.jl</a>&#41; which uses CPU by default but GPU usage is also supported for parallelism but requires CUDNN driver installed to access GPU hardware.</p>
-<h2 id="examples"><a href="#examples">Examples</a></h2>
+<h2 id="examples"><a href="#examples" class="header-anchor">Examples</a></h2>
 <p>Below you can find a few examples on how to use the package I&#39;ve been working on. Following are the initial imports required for the package to work.</p>
-<pre><code class="language-julia">using NeuralNetDiffEq
-using Plots; plotly&#40;&#41;
-using DiffEqBase, ParameterizedFunctions
-using DiffEqProblemLibrary, DiffEqDevTools
-using Knet</code></pre>
-<h3 id="ode_examples"><a href="#ode_examples">ODE Examples</a></h3>
-<h4 id="example_1"><a href="#example_1">Example 1</a></h4>
-<pre><code class="language-julia">linear &#61; &#40;t,u&#41; -&gt; &#40;1.01*u&#41;
-&#40;f::typeof&#40;linear&#41;&#41;&#40;::Type&#123;Val&#123;:analytic&#125;&#125;,t,u0&#41; &#61; u0*exp&#40;1.01*t&#41;
-prob &#61; ODEProblem&#40;linear,1/2,&#40;0.0,1.0&#41;&#41;
-sol &#61; solve&#40;prob,nnode&#40;10&#41;,dt&#61;1/10,iterations&#61;10&#41;
-plot&#40;sol,plot_analytic&#61;true&#41;</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> NeuralNetDiffEq
+<span class="hljs-keyword">using</span> Plots; plotly()
+<span class="hljs-keyword">using</span> DiffEqBase, ParameterizedFunctions
+<span class="hljs-keyword">using</span> DiffEqProblemLibrary, DiffEqDevTools
+<span class="hljs-keyword">using</span> Knet</code></pre>
+<h3 id="ode_examples"><a href="#ode_examples" class="header-anchor">ODE Examples</a></h3>
+<h4 id="example_1"><a href="#example_1" class="header-anchor">Example 1</a></h4>
+<pre><code class="julia hljs">linear = (t,u) -&gt; (<span class="hljs-number">1.01</span>*u)
+(f::typeof(linear))(::<span class="hljs-built_in">Type</span>{<span class="hljs-built_in">Val</span>{:analytic}},t,u0) = u0*exp(<span class="hljs-number">1.01</span>*t)
+prob = ODEProblem(linear,<span class="hljs-number">1</span>/<span class="hljs-number">2</span>,(<span class="hljs-number">0.0</span>,<span class="hljs-number">1.0</span>))
+sol = solve(prob,nnode(<span class="hljs-number">10</span>),dt=<span class="hljs-number">1</span>/<span class="hljs-number">10</span>,iterations=<span class="hljs-number">10</span>)
+plot(sol,plot_analytic=<span class="hljs-literal">true</span>)</code></pre>
 <p><img src="/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode1.png" alt="Plot_ode1" /></p>
-<pre><code class="language-julia">sol&#40;0.232&#41;
+<pre><code class="julia hljs">sol(<span class="hljs-number">0.232</span>)
 
-1-element Array&#123;Any,1&#125;:
-0.625818</code></pre>
-<h4 id="example_2"><a href="#example_2">Example 2</a></h4>
-<pre><code class="language-julia">f &#61; &#40;t,u&#41; -&gt; &#40;t^3 &#43; 2*t &#43; &#40;t^2&#41;*&#40;&#40;1&#43;3*&#40;t^2&#41;&#41;/&#40;1&#43;t&#43;&#40;t^3&#41;&#41;&#41; - u*&#40;t &#43; &#40;&#40;1&#43;3*&#40;t^2&#41;&#41;/&#40;1&#43;t&#43;t^3&#41;&#41;&#41;&#41;
-&#40;::typeof&#40;f&#41;&#41;&#40;::Type&#123;Val&#123;:analytic&#125;&#125;,t,u0&#41; &#61;  u0*exp&#40;-&#40;t^2&#41;/2&#41;/&#40;1&#43;t&#43;t^3&#41; &#43; t^2
-prob2 &#61; ODEProblem&#40;f,1.0,&#40;0.0,1.0&#41;&#41;
-sol2 &#61; solve&#40;prob2,nnode&#40;10&#41;,dt&#61;0.1,iterations&#61;200&#41;
- plot&#40;sol,plot_analytic&#61;true&#41;</code></pre>
+<span class="hljs-number">1</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Any</span>,<span class="hljs-number">1</span>}:
+<span class="hljs-number">0.625818</span></code></pre>
+<h4 id="example_2"><a href="#example_2" class="header-anchor">Example 2</a></h4>
+<pre><code class="julia hljs">f = (t,u) -&gt; (t^<span class="hljs-number">3</span> + <span class="hljs-number">2</span>*t + (t^<span class="hljs-number">2</span>)*((<span class="hljs-number">1</span>+<span class="hljs-number">3</span>*(t^<span class="hljs-number">2</span>))/(<span class="hljs-number">1</span>+t+(t^<span class="hljs-number">3</span>))) - u*(t + ((<span class="hljs-number">1</span>+<span class="hljs-number">3</span>*(t^<span class="hljs-number">2</span>))/(<span class="hljs-number">1</span>+t+t^<span class="hljs-number">3</span>))))
+(::typeof(f))(::<span class="hljs-built_in">Type</span>{<span class="hljs-built_in">Val</span>{:analytic}},t,u0) =  u0*exp(-(t^<span class="hljs-number">2</span>)/<span class="hljs-number">2</span>)/(<span class="hljs-number">1</span>+t+t^<span class="hljs-number">3</span>) + t^<span class="hljs-number">2</span>
+prob2 = ODEProblem(f,<span class="hljs-number">1.0</span>,(<span class="hljs-number">0.0</span>,<span class="hljs-number">1.0</span>))
+sol2 = solve(prob2,nnode(<span class="hljs-number">10</span>),dt=<span class="hljs-number">0.1</span>,iterations=<span class="hljs-number">200</span>)
+ plot(sol,plot_analytic=<span class="hljs-literal">true</span>)</code></pre>
 <p><img src="/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode2.png" alt="Plot_ode2" /></p>
-<pre><code class="language-julia">sol&#40;0.47&#41;
+<pre><code class="julia hljs">sol(<span class="hljs-number">0.47</span>)
 
-1-element Array&#123;Any,1&#125;:
-0.803109</code></pre>
-<h4 id="example_3"><a href="#example_3">Example 3</a></h4>
-<pre><code class="language-julia">f2 &#61; &#40;t,u&#41; -&gt; &#40;-u/5 &#43; exp&#40;-t/5&#41;.*cos&#40;t&#41;&#41;
-&#40;::typeof&#40;f2&#41;&#41;&#40;::Type&#123;Val&#123;:analytic&#125;&#125;,t,u0&#41; &#61;  exp&#40;-t/5&#41;*&#40;u0 &#43; sin&#40;t&#41;&#41;
-prob3 &#61; ODEProblem&#40;f2,Float32&#40;0.0&#41;,&#40;Float32&#40;0.0&#41;,Float32&#40;2.0&#41;&#41;&#41;
-sol3 &#61; solve&#40;prob3,nnode&#40;10&#41;,dt&#61;0.2,iterations&#61;1000&#41;
- plot&#40;sol,plot_analytic&#61;true&#41;</code></pre>
+<span class="hljs-number">1</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Any</span>,<span class="hljs-number">1</span>}:
+<span class="hljs-number">0.803109</span></code></pre>
+<h4 id="example_3"><a href="#example_3" class="header-anchor">Example 3</a></h4>
+<pre><code class="julia hljs">f2 = (t,u) -&gt; (-u/<span class="hljs-number">5</span> + exp(-t/<span class="hljs-number">5</span>).*cos(t))
+(::typeof(f2))(::<span class="hljs-built_in">Type</span>{<span class="hljs-built_in">Val</span>{:analytic}},t,u0) =  exp(-t/<span class="hljs-number">5</span>)*(u0 + sin(t))
+prob3 = ODEProblem(f2,<span class="hljs-built_in">Float32</span>(<span class="hljs-number">0.0</span>),(<span class="hljs-built_in">Float32</span>(<span class="hljs-number">0.0</span>),<span class="hljs-built_in">Float32</span>(<span class="hljs-number">2.0</span>)))
+sol3 = solve(prob3,nnode(<span class="hljs-number">10</span>),dt=<span class="hljs-number">0.2</span>,iterations=<span class="hljs-number">1000</span>)
+ plot(sol,plot_analytic=<span class="hljs-literal">true</span>)</code></pre>
 <p><img src="/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode3.png" alt="Plot_ode3" /></p>
-<pre><code class="language-julia">sol3&#40;&#91;0.721&#93;&#41;
+<pre><code class="julia hljs">sol3([<span class="hljs-number">0.721</span>])
 
-  1-element Array&#123;Any,1&#125;:
-  Any&#91;0.574705&#93;</code></pre>
-<h3 id="system_of_odes_examples"><a href="#system_of_odes_examples">System of ODEs Examples</a></h3>
-<h4 id="example_1_ode_2d_linear"><a href="#example_1_ode_2d_linear">Example 1  ODE 2D Linear</a></h4>
-<pre><code class="language-julia">f_2dlinear &#61; &#40;t,u&#41; -&gt; begin
-    du &#61; Array&#123;Any&#125;&#40;length&#40;u&#41;&#41;
-    for i in 1:length&#40;u&#41;
-    du&#91;i&#93; &#61; 1.01*u&#91;i&#93;
-  end
-    return du
-end
-&#40;f::typeof&#40;f_2dlinear&#41;&#41;&#40;::Type&#123;Val&#123;:analytic&#125;&#125;,t,u0&#41; &#61; u0*exp.&#40;1.01*t&#41;
-prob_ode_2Dlinear &#61; ODEProblem&#40;f_2dlinear,rand&#40;4,1&#41;,&#40;0.0,1.0&#41;&#41;
-sol1 &#61; solve&#40;prob_ode_2Dlinear,nnode&#40;&#91;10,50&#93;&#41;,dt&#61;0.1,iterations&#61;100&#41;
+  <span class="hljs-number">1</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Any</span>,<span class="hljs-number">1</span>}:
+  <span class="hljs-built_in">Any</span>[<span class="hljs-number">0.574705</span>]</code></pre>
+<h3 id="system_of_odes_examples"><a href="#system_of_odes_examples" class="header-anchor">System of ODEs Examples</a></h3>
+<h4 id="example_1_ode_2d_linear"><a href="#example_1_ode_2d_linear" class="header-anchor">Example 1  ODE 2D Linear</a></h4>
+<pre><code class="julia hljs">f_2dlinear = (t,u) -&gt; <span class="hljs-keyword">begin</span>
+    du = <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Any</span>}(length(u))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:length(u)
+    du[i] = <span class="hljs-number">1.01</span>*u[i]
+  <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> du
+<span class="hljs-keyword">end</span>
+(f::typeof(f_2dlinear))(::<span class="hljs-built_in">Type</span>{<span class="hljs-built_in">Val</span>{:analytic}},t,u0) = u0*exp.(<span class="hljs-number">1.01</span>*t)
+prob_ode_2Dlinear = ODEProblem(f_2dlinear,rand(<span class="hljs-number">4</span>,<span class="hljs-number">1</span>),(<span class="hljs-number">0.0</span>,<span class="hljs-number">1.0</span>))
+sol1 = solve(prob_ode_2Dlinear,nnode([<span class="hljs-number">10</span>,<span class="hljs-number">50</span>]),dt=<span class="hljs-number">0.1</span>,iterations=<span class="hljs-number">100</span>)
 
-&#40;:iteration,100,:loss,0.004670103680503722&#41;
-16.494870 seconds &#40;90.08 M allocations: 6.204 GB, 5.82&#37; gc time&#41;</code></pre>
-<pre><code class="language-julia">plot&#40;sol1,plot_analytic&#61;true&#41;</code></pre>
+(:iteration,<span class="hljs-number">100</span>,:loss,<span class="hljs-number">0.004670103680503722</span>)
+<span class="hljs-number">16.494870</span> seconds (<span class="hljs-number">90.08</span> M allocations: <span class="hljs-number">6.204</span> GB, <span class="hljs-number">5.82</span>% gc time)</code></pre>
+<pre><code class="julia hljs">plot(sol1,plot_analytic=<span class="hljs-literal">true</span>)</code></pre>
 <p><img src="/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode1.png" alt="Plot_sode1" /></p>
-<h4 id="example_2_lotka_volterra"><a href="#example_2_lotka_volterra">Example 2 Lotka Volterra</a></h4>
-<pre><code class="language-julia">function lotka_volterra&#40;t,u&#41;
-  du1 &#61; 1.5 .* u&#91;1&#93; - 1.0 .* u&#91;1&#93;.*u&#91;2&#93;
-  du2 &#61; -3 .* u&#91;2&#93; &#43; u&#91;1&#93;.*u&#91;2&#93;
-  &#91;du1,du2&#93;
-end
+<h4 id="example_2_lotka_volterra"><a href="#example_2_lotka_volterra" class="header-anchor">Example 2 Lotka Volterra</a></h4>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> lotka_volterra(t,u)
+  du1 = <span class="hljs-number">1.5</span> .* u[<span class="hljs-number">1</span>] - <span class="hljs-number">1.0</span> .* u[<span class="hljs-number">1</span>].*u[<span class="hljs-number">2</span>]
+  du2 = -<span class="hljs-number">3</span> .* u[<span class="hljs-number">2</span>] + u[<span class="hljs-number">1</span>].*u[<span class="hljs-number">2</span>]
+  [du1,du2]
+<span class="hljs-keyword">end</span>
 
-lotka_volterra &#40;generic function with 1 method&#41;</code></pre>
-<pre><code class="language-julia">prob_ode_lotkavoltera &#61; ODEProblem&#40;lotka_volterra,Float32&#91;1.0,1.0&#93;,&#40;Float32&#40;0.0&#41;,Float32&#40;1.0&#41;&#41;&#41;
-sol2 &#61; solve&#40;prob_ode_lotkavoltera,nnode&#40;&#91;10,50&#93;&#41;,dt&#61;0.2,iterations&#61;1000&#41;
+lotka_volterra (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)</code></pre>
+<pre><code class="julia hljs">prob_ode_lotkavoltera = ODEProblem(lotka_volterra,<span class="hljs-built_in">Float32</span>[<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>],(<span class="hljs-built_in">Float32</span>(<span class="hljs-number">0.0</span>),<span class="hljs-built_in">Float32</span>(<span class="hljs-number">1.0</span>)))
+sol2 = solve(prob_ode_lotkavoltera,nnode([<span class="hljs-number">10</span>,<span class="hljs-number">50</span>]),dt=<span class="hljs-number">0.2</span>,iterations=<span class="hljs-number">1000</span>)
 
-    &#40;:iteration,100,:loss,0.020173132003438572&#41;
-    &#40;:iteration,200,:loss,0.005130137452114811&#41;
-    &#40;:iteration,300,:loss,0.004812458584875589&#41;
-    &#40;:iteration,400,:loss,0.010083624565714974&#41;
-    &#40;:iteration,500,:loss,0.0025328170079611887&#41;
-    &#40;:iteration,600,:loss,0.007685579218433846&#41;
-    &#40;:iteration,700,:loss,0.005065291031504465&#41;
-    &#40;:iteration,800,:loss,0.005326863832044214&#41;
-    &#40;:iteration,900,:loss,0.00030436474139241827&#41;
-    &#40;:iteration,1000,:loss,0.0034853904995959094&#41;
-     22.126081 seconds &#40;99.65 M allocations: 5.923 GB, 5.21&#37; gc time&#41;</code></pre>
-<pre><code class="language-julia">plot&#40;sol2&#41;</code></pre>
+    (:iteration,<span class="hljs-number">100</span>,:loss,<span class="hljs-number">0.020173132003438572</span>)
+    (:iteration,<span class="hljs-number">200</span>,:loss,<span class="hljs-number">0.005130137452114811</span>)
+    (:iteration,<span class="hljs-number">300</span>,:loss,<span class="hljs-number">0.004812458584875589</span>)
+    (:iteration,<span class="hljs-number">400</span>,:loss,<span class="hljs-number">0.010083624565714974</span>)
+    (:iteration,<span class="hljs-number">500</span>,:loss,<span class="hljs-number">0.0025328170079611887</span>)
+    (:iteration,<span class="hljs-number">600</span>,:loss,<span class="hljs-number">0.007685579218433846</span>)
+    (:iteration,<span class="hljs-number">700</span>,:loss,<span class="hljs-number">0.005065291031504465</span>)
+    (:iteration,<span class="hljs-number">800</span>,:loss,<span class="hljs-number">0.005326863832044214</span>)
+    (:iteration,<span class="hljs-number">900</span>,:loss,<span class="hljs-number">0.00030436474139241827</span>)
+    (:iteration,<span class="hljs-number">1000</span>,:loss,<span class="hljs-number">0.0034853904995959094</span>)
+     <span class="hljs-number">22.126081</span> seconds (<span class="hljs-number">99.65</span> M allocations: <span class="hljs-number">5.923</span> GB, <span class="hljs-number">5.21</span>% gc time)</code></pre>
+<pre><code class="julia hljs">plot(sol2)</code></pre>
 <p><img src="/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_sode2.png" alt="Plot_sode2" /></p>
 <p>To show that the solver with current settings and hyper-parameters does not work for a larger domain &#40;Eg 0-10&#41; <code>lotka_volterra</code> here is a graph:</p>
-<pre><code class="language-julia">prob_ode_lotkavoltera &#61; ODEProblem&#40;lotka_volterra,Float32&#91;1.0,1.0&#93;,&#40;Float32&#40;0.0&#41;,Float32&#40;5.0&#41;&#41;&#41;
-sol3 &#61; solve&#40;prob_ode_lotkavoltera,nnode&#40;&#91;10,50&#93;&#41;,dt&#61;0.2,iterations&#61;1000&#41;
-plot&#40;sol3&#41;</code></pre>
+<pre><code class="julia hljs">prob_ode_lotkavoltera = ODEProblem(lotka_volterra,<span class="hljs-built_in">Float32</span>[<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>],(<span class="hljs-built_in">Float32</span>(<span class="hljs-number">0.0</span>),<span class="hljs-built_in">Float32</span>(<span class="hljs-number">5.0</span>)))
+sol3 = solve(prob_ode_lotkavoltera,nnode([<span class="hljs-number">10</span>,<span class="hljs-number">50</span>]),dt=<span class="hljs-number">0.2</span>,iterations=<span class="hljs-number">1000</span>)
+plot(sol3)</code></pre>
 <p><img src="/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_sode3.png" alt="Plot_sode3" /></p>
 <p>However, the true solution should be oscillatory, indicating that the NN did not properly converge. To see more examples and experiment results you can check out my Jupyter notebooks <a href="https://nbviewer.jupyter.org/gist/akaysh/43c9db281b0bd3224114084c44263c13">here</a>.</p>
-<h2 id="future_work"><a href="#future_work">Future Work</a></h2>
+<h2 id="future_work"><a href="#future_work" class="header-anchor">Future Work</a></h2>
 <p>More of research on how to optimize the NN for speed and better convergence is required. For systems of ODEs with larger domains the current Neural Network fails to converge. An optimization algorithm can be used for one time NN hyperparameter optimization so that it can work better for systems of ODEs. We tried many approaches like biasing the cost function to prioritize earlier timepoints but this failed as well. Similar problems were found in an <a href="https://github.com/SciML/TensorFlowDiffEq.jl">alternative implementation using TensorFlow &#40;TensorFlowDiffEq.jl&#41;</a>, which suggests this may just be a problem with the solving method.</p>
-<h2 id="acknowledgements"><a href="#acknowledgements">Acknowledgements</a></h2>
+<h2 id="acknowledgements"><a href="#acknowledgements" class="header-anchor">Acknowledgements</a></h2>
 <p>I would really want to thank my GSoC mentors Chris Rackauckas and Lyndon White for the help they provided in understanding mathematical as well as coding parts of the project. Also I would like to thank the Julia community in general for giving me opportunity to contribute and for sponsoring my JuliaCon 2017 trip which was awesome.</p>
 </div><br><br>
 
@@ -263,7 +263,7 @@ plot&#40;sol3&#41;</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -376,7 +376,7 @@ plot&#40;sol3&#41;</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -392,7 +392,7 @@ plot&#40;sol3&#41;</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

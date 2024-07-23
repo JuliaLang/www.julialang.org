@@ -158,126 +158,126 @@
 </li>
 </ol>
 <p>In the rest of this post, I&#39;ll go over examples demonstrating each of these problems. At <a href="#summary_and_remedy">the end</a>, I&#39;ll talk about better alternatives to shelling out, and in a <a href="/blog/2013/04/put-this-in-your-pipe/">followup post</a>. I&#39;ll demonstrate how Julia makes these better alternatives dead simple to use. Examples below are given in Ruby which shells out to <a href="https://www.gnu.org/software/bash/">Bash</a>, but the same problems exist no matter what language one shells out from: it&#39;s the technique of using an intermediate shell process to spawn external commands that&#39;s at fault, not the language.</p>
-<h2 id="metacharacter_brittleness"><a href="#metacharacter_brittleness">Metacharacter Brittleness</a></h2>
+<h2 id="metacharacter_brittleness"><a href="#metacharacter_brittleness" class="header-anchor">Metacharacter Brittleness</a></h2>
 <p>Let&#39;s start with a simple example of shelling out from Ruby. Suppose you want to count the number of lines containing the string &quot;foo&quot; in all the files under a directory given as an argument. One option is to write Ruby code that reads the contents of the given directory, finds all the files, opens them and iterates through them looking for the string &quot;foo&quot;. However, that&#39;s a lot of work and it&#39;s going to be much slower than using a pipeline of standard UNIX commands, which are written in C and heavily optimized. The most natural and convenient thing to do in Ruby is to shell out, using backticks to capture output:</p>
-<pre><code class="language-julia">&#96;find #&#123;dir&#125; -type f -print0 | xargs -0 grep foo | wc -l&#96;.to_i</code></pre>
+<pre><code class="julia hljs"><span class="hljs-string">`find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`</span>.to_i</code></pre>
 <p>This expression interpolates the <code>dir</code> variable into a command, spawns a Bash shell to execute the resulting command, captures the output into a string, and then converts that string to an integer. The command uses the <code>-print0</code> and <code>-0</code> options to correctly handle strange characters in file names piped from <code>find</code> to <code>xargs</code> &#40;these options cause file names to be delimited by <a href="https://en.wikipedia.org/wiki/Null_character">NULs</a> instead of whitespace&#41;. Even with extra-careful options, this code for shelling out is simple and clear. Here it is in action:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:001:0&gt; dir&#61;&quot;src&quot;
-&#61;&gt; &quot;src&quot;
-irb&#40;main&#41;:002:0&gt; &#96;find #&#123;dir&#125; -type f -print0 | xargs -0 grep foo | wc -l&#96;.to_i
-&#61;&gt; 5</code></pre>
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">001</span>:<span class="hljs-number">0</span>&gt; dir=<span class="hljs-string">&quot;src&quot;</span>
+=&gt; <span class="hljs-string">&quot;src&quot;</span>
+irb(main):<span class="hljs-number">002</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`</span>.to_i
+=&gt; <span class="hljs-number">5</span></code></pre>
 <p>Great. However, this only works as expected if the directory name <code>dir</code> doesn&#39;t contain any characters that the shell considers special. For example, the shell decides what constitutes a single argument to a command using whitespace. Thus, if the value of <code>dir</code> is a directory name containing a space, this will fail:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:003:0&gt; dir&#61;&quot;source code&quot;
-&#61;&gt; &quot;source code&quot;
-irb&#40;main&#41;:004:0&gt; &#96;find #&#123;dir&#125; -type f -print0 | xargs -0 grep foo | wc -l&#96;.to_i
-find: &#96;source&#39;: No such file or directory
-find: &#96;code&#39;: No such file or directory
-&#61;&gt; 0</code></pre>
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">003</span>:<span class="hljs-number">0</span>&gt; dir=<span class="hljs-string">&quot;source code&quot;</span>
+=&gt; <span class="hljs-string">&quot;source code&quot;</span>
+irb(main):<span class="hljs-number">004</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`</span>.to_i
+find: <span class="hljs-string">`source&#x27;: No such file or directory
+find: `</span>code&#x27;: No such file or directory
+=&gt; <span class="hljs-number">0</span></code></pre>
 <p>The simple solution to the problem of spaces is to surround the interpolated directory name in quotes, telling the shell to treat spaces inside as normal characters:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:005:0&gt; &#96;find &#39;#&#123;dir&#125;&#39; -type f -print0 | xargs -0 grep foo | wc -l&#96;.to_i
-&#61;&gt; 5</code></pre>
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">005</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`find &#x27;#{dir}&#x27; -type f -print0 | xargs -0 grep foo | wc -l`</span>.to_i
+=&gt; <span class="hljs-number">5</span></code></pre>
 <p>Excellent. So what&#39;s the problem? While this solution addresses the issue of file names with spaces in them, it is still brittle with respect to other shell metacharacters. What if a file name has a quote character in it? Let&#39;s try it. First, let&#39;s create a very weirdly named directory:</p>
-<pre><code class="language-julia">bash-3.2&#36; mkdir &quot;foo&#39;bar&quot;
-bash-3.2&#36; echo foo &gt; &quot;foo&#39;bar&quot;/test.txt
-bash-3.2&#36; ls -ld foo*bar
-drwxr-xr-x 3 stefan staff 102 Feb  3 16:17 foo&#39;bar/</code></pre>
+<pre><code class="julia hljs">bash-<span class="hljs-number">3.2</span>$ mkdir <span class="hljs-string">&quot;foo&#x27;bar&quot;</span>
+bash-<span class="hljs-number">3.2</span>$ echo foo &gt; <span class="hljs-string">&quot;foo&#x27;bar&quot;</span>/test.txt
+bash-<span class="hljs-number">3.2</span>$ ls -ld foo*bar
+drwxr-xr-x <span class="hljs-number">3</span> stefan staff <span class="hljs-number">102</span> Feb  <span class="hljs-number">3</span> <span class="hljs-number">16</span>:<span class="hljs-number">17</span> foo&#x27;bar/</code></pre>
 <p>That&#39;s an admittedly strange directory name, but it&#39;s perfectly legal in UNIXes of all flavors. Now back to Ruby:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:006:0&gt; dir&#61;&quot;foo&#39;bar&quot;
-&#61;&gt; &quot;foo&#39;bar&quot;
-irb&#40;main&#41;:007:0&gt; &#96;find &#39;#&#123;dir&#125;&#39; -type f -print0  | xargs -0 grep foo | wc -l&#96;.to_i
-sh: -c: line 0: unexpected EOF while looking for matching &#96;&#39;&#39;
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">006</span>:<span class="hljs-number">0</span>&gt; dir=<span class="hljs-string">&quot;foo&#x27;bar&quot;</span>
+=&gt; <span class="hljs-string">&quot;foo&#x27;bar&quot;</span>
+irb(main):<span class="hljs-number">007</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`find &#x27;#{dir}&#x27; -type f -print0  | xargs -0 grep foo | wc -l`</span>.to_i
+sh: -c: line <span class="hljs-number">0</span>: unexpected EOF <span class="hljs-keyword">while</span> looking <span class="hljs-keyword">for</span> matching <span class="hljs-string">`&#x27;&#x27;
 sh: -c: line 1: syntax error: unexpected end of file
-&#61;&gt; 0</code></pre>
+=&gt; 0</span></code></pre>
 <p>Doh. Although this may seem like an unlikely corner case that one needn&#39;t realistically worry about, there are serious security ramifications. Suppose the name of the directory came from an untrusted source — like a web submission, or an argument to a setuid program from an untrusted user. Suppose an attacker could arrange for any value of <code>dir</code> they wanted:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:008:0&gt; dir&#61;&quot;foo&#39;; echo MALICIOUS ATTACK 1&gt;&amp;2; echo &#39;&quot;
-&#61;&gt; &quot;foo&#39;; echo MALICIOUS ATTACK 1&gt;&amp;2; echo &#39;&quot;
-irb&#40;main&#41;:009:0&gt; &#96;find &#39;#&#123;dir&#125;&#39; -type f -print0  | xargs -0 grep foo | wc -l&#96;.to_i
-find: &#96;foo&#39;: No such file or directory
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">008</span>:<span class="hljs-number">0</span>&gt; dir=<span class="hljs-string">&quot;foo&#x27;; echo MALICIOUS ATTACK 1&gt;&amp;2; echo &#x27;&quot;</span>
+=&gt; <span class="hljs-string">&quot;foo&#x27;; echo MALICIOUS ATTACK 1&gt;&amp;2; echo &#x27;&quot;</span>
+irb(main):<span class="hljs-number">009</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`find &#x27;#{dir}&#x27; -type f -print0  | xargs -0 grep foo | wc -l`</span>.to_i
+find: <span class="hljs-string">`foo&#x27;: No such file or directory
 MALICIOUS ATTACK
 grep:  -type f -print0
 : No such file or directory
-&#61;&gt; 0</code></pre>
+=&gt; 0</span></code></pre>
 <p>Your box is now owned. Of course, you could sanitize the value of the <code>dir</code> variable, but there&#39;s a fundamental tug-of-war between security &#40;as limited as possible&#41; and flexibility &#40;as unlimited as possible&#41;. The ideal behavior is to allow any directory name, no matter how bizarre, as long as it actually exists, but &quot;defang&quot; all shell metacharacters.</p>
 <p>The only two way to fully protect against these sorts of metacharacter attacks — whether malicious or accidental — while still using an external shell to construct the pipeline, is to do full shell metacharacter escaping:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:010:0&gt; require &#39;shellwords&#39;
-&#61;&gt; true
-irb&#40;main&#41;:011:0&gt; &#96;find #&#123;Shellwords.shellescape&#40;dir&#41;&#125; -type f -print0  | xargs -0 grep foo | wc -l&#96;.to_i
-find: &#96;foo\&#39;; echo MALICIOUS ATTACK 1&gt;&amp;2; echo \&#39;&#39;: No such file or directory
-&#61;&gt; 0</code></pre>
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">010</span>:<span class="hljs-number">0</span>&gt; require &#x27;shellwords&#x27;
+=&gt; <span class="hljs-literal">true</span>
+irb(main):<span class="hljs-number">011</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`</span>.to_i
+find: <span class="hljs-string">`foo\&#x27;; echo MALICIOUS ATTACK 1&gt;&amp;2; echo \&#x27;&#x27;: No such file or directory
+=&gt; 0</span></code></pre>
 <p>With shell escaping, this safely attempts to search a very oddly named directory instead of executing the malicious attack. Although shell escaping does work &#40;assuming that there aren&#39;t any mistakes in the shell escaping implementation&#41;, realistically, no one actually bothers — it&#39;s too much trouble. Instead, code that shells out with programmatically constructed commands is typically riddled with potential bugs in the best case and massive security holes in the worst case.</p>
-<h2 id="indirection_and_inefficiency"><a href="#indirection_and_inefficiency">Indirection and Inefficiency</a></h2>
+<h2 id="indirection_and_inefficiency"><a href="#indirection_and_inefficiency" class="header-anchor">Indirection and Inefficiency</a></h2>
 <p>If we were using the above code to count the number of lines with the string &quot;foo&quot; in a directory, we would want to check to see if everything worked and respond appropriately if something went wrong. In Ruby, you can check if a shelled out command was successful using the bizarrely named <code>&#36;?.success?</code> indicator:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:012:0&gt; dir&#61;&quot;src&quot;
-&#61;&gt; &quot;src&quot;
-irb&#40;main&#41;:013:0&gt; &#96;find #&#123;Shellwords.shellescape&#40;dir&#41;&#125; -type f -print0  | xargs -0 grep foo | wc -l&#96;.to_i
-&#61;&gt; 5
-irb&#40;main&#41;:014:0&gt; &#36;?.success?
-&#61;&gt; true</code></pre>
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">012</span>:<span class="hljs-number">0</span>&gt; dir=<span class="hljs-string">&quot;src&quot;</span>
+=&gt; <span class="hljs-string">&quot;src&quot;</span>
+irb(main):<span class="hljs-number">013</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`</span>.to_i
+=&gt; <span class="hljs-number">5</span>
+irb(main):<span class="hljs-number">014</span>:<span class="hljs-number">0</span>&gt; $?.success?
+=&gt; <span class="hljs-literal">true</span></code></pre>
 <p>Ok, that correctly indicates success. Let&#39;s make sure that it can detect failure:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:015:0&gt; dir&#61;&quot;nonexistent&quot;
-&#61;&gt; &quot;nonexistent&quot;
-irb&#40;main&#41;:016:0&gt; &#96;find #&#123;Shellwords.shellescape&#40;dir&#41;&#125; -type f -print0  | xargs -0 grep foo | wc -l&#96;.to_i
-find: &#96;nonexistent&#39;: No such file or directory
-&#61;&gt; 0
-irb&#40;main&#41;:017:0&gt; &#36;?.success?
-&#61;&gt; true</code></pre>
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">015</span>:<span class="hljs-number">0</span>&gt; dir=<span class="hljs-string">&quot;nonexistent&quot;</span>
+=&gt; <span class="hljs-string">&quot;nonexistent&quot;</span>
+irb(main):<span class="hljs-number">016</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`</span>.to_i
+find: <span class="hljs-string">`nonexistent&#x27;: No such file or directory
+=&gt; 0
+irb(main):017:0&gt; $?.success?
+=&gt; true</span></code></pre>
 <p>Wait. What?&#33; That wasn&#39;t successful. What&#39;s going on?</p>
 <p>The heart of the problem is that when you shell out, the commands in the pipeline are not immediate children of the main program, but rather its grandchildren: the program spawns a shell, which makes a bunch of UNIX pipes, forks child processes, connects inputs and outputs to pipes using the <a href="https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/dup2.2.html"><code>dup2</code> system call</a>, and then execs the appropriate commands. As a result, your main program is not the parent of the commands in the pipeline, but rather, their grandparent. Therefore, it doesn&#39;t know their process IDs, nor can it wait on them or get their exit statuses when they terminate. The shell process, which is their parent, has to do all of that. Your program can only wait for the shell to finish and see if <em>that</em> was successful. If the shell is only executing a single command, this is fine:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:018:0&gt; &#96;cat /dev/null&#96;
-&#61;&gt; &quot;&quot;
-irb&#40;main&#41;:019:0&gt; &#36;?.success?
-&#61;&gt; true
-irb&#40;main&#41;:020:0&gt; &#96;cat /dev/nada&#96;
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">018</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`cat /dev/null`</span>
+=&gt; <span class="hljs-string">&quot;&quot;</span>
+irb(main):<span class="hljs-number">019</span>:<span class="hljs-number">0</span>&gt; $?.success?
+=&gt; <span class="hljs-literal">true</span>
+irb(main):<span class="hljs-number">020</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`cat /dev/nada`</span>
 cat: /dev/nada: No such file or directory
-&#61;&gt; &quot;&quot;
-irb&#40;main&#41;:021:0&gt; &#36;?.success?
-&#61;&gt; false</code></pre>
+=&gt; <span class="hljs-string">&quot;&quot;</span>
+irb(main):<span class="hljs-number">021</span>:<span class="hljs-number">0</span>&gt; $?.success?
+=&gt; <span class="hljs-literal">false</span></code></pre>
 <p>Unfortunately, by default the shell is quite lenient about what it considers to be a successful pipeline:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:022:0&gt; &#96;cat /dev/nada | sort&#96;
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">022</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`cat /dev/nada | sort`</span>
 cat: /dev/nada: No such file or directory
-&#61;&gt; &quot;&quot;
-irb&#40;main&#41;:023:0&gt; &#36;?.success?
-&#61;&gt; true</code></pre>
+=&gt; <span class="hljs-string">&quot;&quot;</span>
+irb(main):<span class="hljs-number">023</span>:<span class="hljs-number">0</span>&gt; $?.success?
+=&gt; <span class="hljs-literal">true</span></code></pre>
 <p>As long as the last command in a pipeline succeeds — in this case <code>sort</code> — the entire pipeline is considered a success. Thus, even when one or more of the earlier programs in a pipeline fails spectacularly, the last command may not, leading the shell to consider the entire pipeline to be successful. This is probably not what you meant by success.</p>
 <p>Bash&#39;s notion of pipeline success can fortunately be made stricter with the <code>pipefail</code> option. This option causes the shell to consider a pipeline successful only if all of its commands are successful:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:024:0&gt; &#96;set -o pipefail; cat /dev/nada | sort&#96;
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">024</span>:<span class="hljs-number">0</span>&gt; <span class="hljs-string">`set -o pipefail; cat /dev/nada | sort`</span>
 cat: /dev/nada: No such file or directory
-&#61;&gt; &quot;&quot;
-irb&#40;main&#41;:025:0&gt; &#36;?.success?
-&#61;&gt; false</code></pre>
+=&gt; <span class="hljs-string">&quot;&quot;</span>
+irb(main):<span class="hljs-number">025</span>:<span class="hljs-number">0</span>&gt; $?.success?
+=&gt; <span class="hljs-literal">false</span></code></pre>
 <p>Since shelling out spawns a new shell every time, this option has to be set for every multi-command pipeline in order to be able to determine its true success status. Of course, just like shell-escaping every interpolated variable, setting <code>pipefail</code> at the start of every command is simply something that no one actually does. Moreover, even with the <code>pipefail</code> option, your program has no way of determining <em>which</em> commands in a pipeline were unsuccessful — it just knows that something somewhere went wrong. While that&#39;s better than silently failing and continuing as if there were no problem, its not very helpful for postmortem debugging: many programs are not as well-behaved as <code>cat</code> and don&#39;t actually identify themselves or the specific problem when printing error messages before going belly up.</p>
 <p>Given the other problems caused by the indirection of shelling out, it seems like a barely relevant afterthought to mention that execing a shell process just to spawn a bunch of other processes is inefficient. However, it is a real source of unnecessary overhead: the main process could just do the work the shell does itself. Asking the kernel to fork a process and exec a new program is a non-trivial amount of work. The only reason to have the shell do this work for you is that it&#39;s complicated and hard to get right. The shell makes it easy. So programming languages have traditionally relied on the shell to setup pipelines for them, regardless of the additional overhead and problems caused by indirection.</p>
-<h2 id="silent_failures_by_default"><a href="#silent_failures_by_default">Silent Failures by Default</a></h2>
+<h2 id="silent_failures_by_default"><a href="#silent_failures_by_default" class="header-anchor">Silent Failures by Default</a></h2>
 <p>Let&#39;s return to our example of shelling out to count &quot;foo&quot; lines. Here&#39;s the total expression we need to use in order to shell out without being susceptible to metacharacter breakage and so we can actually tell whether the entire pipeline succeeded:</p>
-<pre><code class="language-julia">&#96;set -o pipefail; find #&#123;Shellwords.shellescape&#40;dir&#41;&#125; -type f -print0  | xargs -0 grep foo | wc -l&#96;.to_i</code></pre>
+<pre><code class="julia hljs"><span class="hljs-string">`set -o pipefail; find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`</span>.to_i</code></pre>
 <p>However, an error isn&#39;t raised by default when a shelled out command fails. To avoid silent errors, we need to explicitly check <code>&#36;?.success?</code> after every time we shell out and raise an exception if it indicates failure. Of course, doing this manually is tedious, and as a result, it largely isn&#39;t done. The default behavior — and therefore the easiest and most common behavior — is to assume that shelled out commands worked and completely ignore failures. To make our &quot;foo&quot; counting example well-behaved, we would have to wrap it in a function like so:</p>
-<pre><code class="language-julia">def foo_count&#40;dir&#41;
-n &#61; &#96;set -o pipefail;
-   find #&#123;Shellwords.shellescape&#40;dir&#41;&#125; -type f -print0  | xargs -0 grep foo | wc -l&#96;.to_i
-raise&#40;&quot;pipeline failed&quot;&#41; unless &#36;?.success?
-return n
-end</code></pre>
+<pre><code class="julia hljs">def foo_count(dir)
+n = <span class="hljs-string">`set -o pipefail;
+   find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`</span>.to_i
+raise(<span class="hljs-string">&quot;pipeline failed&quot;</span>) unless $?.success?
+<span class="hljs-keyword">return</span> n
+<span class="hljs-keyword">end</span></code></pre>
 <p>This function behaves the way we would like it to:</p>
-<pre><code class="language-julia">irb&#40;main&#41;:026:0&gt; foo_count&#40;&quot;src&quot;&#41;
-&#61;&gt; 5
-irb&#40;main&#41;:027:0&gt; foo_count&#40;&quot;source code&quot;&#41;
-&#61;&gt; 5
-irb&#40;main&#41;:028:0&gt; foo_count&#40;&quot;nonexistent&quot;&#41;
-find: &#96;nonexistent&#39;: No such file or directory
+<pre><code class="julia hljs">irb(main):<span class="hljs-number">026</span>:<span class="hljs-number">0</span>&gt; foo_count(<span class="hljs-string">&quot;src&quot;</span>)
+=&gt; <span class="hljs-number">5</span>
+irb(main):<span class="hljs-number">027</span>:<span class="hljs-number">0</span>&gt; foo_count(<span class="hljs-string">&quot;source code&quot;</span>)
+=&gt; <span class="hljs-number">5</span>
+irb(main):<span class="hljs-number">028</span>:<span class="hljs-number">0</span>&gt; foo_count(<span class="hljs-string">&quot;nonexistent&quot;</span>)
+find: <span class="hljs-string">`nonexistent&#x27;: No such file or directory
 RuntimeError: pipeline failed
-from &#40;irb&#41;:5:in &#96;foo_count&#39;
-from &#40;irb&#41;:13
-from :0
-irb&#40;main&#41;:029:0&gt; foo_count&#40;&quot;foo&#39;; echo MALICIOUS ATTACK; echo &#39;&quot;&#41;
-find: &#96;foo\&#39;; echo MALICIOUS ATTACK; echo \&#39;&#39;: No such file or directory
+from (irb):5:in `</span>foo_count&#x27;
+from (irb):<span class="hljs-number">13</span>
+from :<span class="hljs-number">0</span>
+irb(main):<span class="hljs-number">029</span>:<span class="hljs-number">0</span>&gt; foo_count(<span class="hljs-string">&quot;foo&#x27;; echo MALICIOUS ATTACK; echo &#x27;&quot;</span>)
+find: <span class="hljs-string">`foo\&#x27;; echo MALICIOUS ATTACK; echo \&#x27;&#x27;: No such file or directory
 RuntimeError: pipeline failed
-from &#40;irb&#41;:5:in &#96;foo_count&#39;
-from &#40;irb&#41;:14
-from :0</code></pre>
+from (irb):5:in `</span>foo_count&#x27;
+from (irb):<span class="hljs-number">14</span>
+from :<span class="hljs-number">0</span></code></pre>
 <p>However, this 6-line, 200-character function is a far cry from the clarity and brevity we started with:</p>
-<pre><code class="language-julia">&#96;find #&#123;dir&#125; -type f -print0 | xargs -0 grep foo | wc -l&#96;.to_i</code></pre>
+<pre><code class="julia hljs"><span class="hljs-string">`find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`</span>.to_i</code></pre>
 <p>If most programmers saw the longer, safer version of this in a program, they&#39;d probably wonder why someone was writing such verbose, cryptic code to get something so simple and straightforward done.</p>
-<h2 id="summary_and_remedy"><a href="#summary_and_remedy">Summary and Remedy</a></h2>
+<h2 id="summary_and_remedy"><a href="#summary_and_remedy" class="header-anchor">Summary and Remedy</a></h2>
 <p>To sum it up, shelling out is great, but making code that shells out bug-free, secure, and not prone to silent failures requires three things that typically aren&#39;t done:</p>
 <ol>
 <li><p>Shell-escaping all values used to construct commands</p>
@@ -295,7 +295,7 @@ from :0</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -408,7 +408,7 @@ from :0</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -424,7 +424,7 @@ from :0</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

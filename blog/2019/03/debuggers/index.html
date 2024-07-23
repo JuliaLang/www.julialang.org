@@ -161,22 +161,22 @@
 </ul>
 <p>The debugger is itself a collection of tools that enable those features. The core is powered by <a href="https://github.com/JuliaDebug/JuliaInterpreter.jl">an interpreter</a> that can faithfully run Julia code while allowing various front-ends to control its execution. Each front-end is its own package: <a href="https://junolab.org/">Juno</a> incorporates the debugger into its IDE, <a href="https://github.com/timholy/Rebugger.jl">Rebugger</a> provides a REPL text UI, and the traditional step/next/continue command-line interface is provided by <a href="https://github.com/JuliaDebug/Debugger.jl">Debugger</a>. All these new debugging capabilities seamlessly integrate with <a href="https://github.com/timholy/Revise.jl">Revise</a>, so that you can continuously analyze and modify code in a single session.</p>
 <div class="franklin-toc"><ol><li><a href="#a_brief_user-level_introduction_to_the_front_end_debuggers">A brief user-level introduction to the front end debuggers</a><ol><li><a href="#juno">Juno</a></li><li><a href="#debugger_and_rebugger">Debugger and Rebugger</a></li></ol></li><li><a href="#an_overview_of_the_packages">An overview of the packages</a><ol><li><a href="#juliainterpreter">JuliaInterpreter</a></li><li><a href="#loweredcodeutils">LoweredCodeUtils</a></li><li><a href="#codetracking">CodeTracking</a></li><li><a href="#revise_and_rebugger">Revise and Rebugger</a></li></ol></li><li><a href="#summary">Summary</a></li></ol></div>
-<h2 id="a_brief_user-level_introduction_to_the_front_end_debuggers"><a href="#a_brief_user-level_introduction_to_the_front_end_debuggers">A brief user-level introduction to the front end debuggers</a></h2>
+<h2 id="a_brief_user-level_introduction_to_the_front_end_debuggers"><a href="#a_brief_user-level_introduction_to_the_front_end_debuggers" class="header-anchor">A brief user-level introduction to the front end debuggers</a></h2>
 <p>To orient potential users to the debugger front-ends, here we include a couple of screen shots that highlight the new capabilities.</p>
-<h3 id="juno"><a href="#juno">Juno</a></h3>
+<h3 id="juno"><a href="#juno" class="header-anchor">Juno</a></h3>
 <p>Juno provides a rich user interface around the interpreter and allows you to set breakpoints and step through directly in the source code. The debugger REPL can execute arbitrary code in a local context and the Workspace allows you to inspect local variables. The screenshot below shows a small debugging session for <code>gcd</code>:</p>
 <p><img src="/assets/blog/2019-03-19-debuggers/juno.png" alt="Juno" /></p>
 <p>The <code>Juno.@run</code> macro interprets your code and drops you in a debugging session if it hits a breakpoint, while <code>Juno.@enter</code> allows you to step through starting from the first line.</p>
-<h3 id="debugger_and_rebugger"><a href="#debugger_and_rebugger">Debugger and Rebugger</a></h3>
+<h3 id="debugger_and_rebugger"><a href="#debugger_and_rebugger" class="header-anchor">Debugger and Rebugger</a></h3>
 <p>If you have a different favorite editor than Atom — or sometimes work in remote sessions through a console interface — you can alternatively perform debugging via the REPL.  There are two REPL interfaces: Debugger offers a &quot;step, next, continue&quot; interface similar to debuggers like <code>gdb</code>, whereas Rebugger aims to provide a console interface that is reminiscent of an IDE. Debugger has some capabilities that none of the other interfaces offer &#40;e.g., very fine-grained control over stepping, the ability to execute the generator of generated functions, etc.&#41;, so it should be your go-to choice for particularly difficult cases. Below is a screenshot of a short session using Debugger.jl, showing some of its features:</p>
 <p><img src="/assets/blog/2019-03-19-debuggers/debugger_jl_screenshot.png" alt="Debugger.jl" /></p>
 <p>In the screenshot, the function <code>closestpair</code> is debugged by prepending the call with the <code>@enter</code> macro. Execution is then suspended on the first line of the function &#40;line 4&#41; and it is possible to see a breakpoint on line 8. Upon running the command <code>c</code> &#40;short for &quot;continue&quot;&#41;, execution is resumed until a breakpoint is encountered. At this point, the command <code>fr</code> &#40;short for &quot;frame&quot;&#41; shows all the local variables and their values at the point where the execution of the code suspended due to the breakpoint. Finally, a &quot;Julia REPL mode&quot; is entered using the <code>&#96;</code> key. This gives a normal Julia REPL mode with the addition that the local variables are available.</p>
 <p>Rebugger enters calls via a key binding. To try it, type <code>gcd&#40;10, 20&#41;</code> and <em>without hitting enter</em> type Meta-i &#40;Esc-i, Alt-i, or option-i&#41;. After a short pause the display should update; type <code>?</code> to see the possible actions:</p>
 <p><img src="/assets/blog/2019-03-19-debuggers/rebugger_interpret.png" alt="Rebugger" /></p>
 <p>Rebugger also features an &quot;edit&quot; interface. For more information, see <a href="https://timholy.github.io/Rebugger.jl/dev/">Rebugger&#39;s documentation</a>.</p>
-<h2 id="an_overview_of_the_packages"><a href="#an_overview_of_the_packages">An overview of the packages</a></h2>
+<h2 id="an_overview_of_the_packages"><a href="#an_overview_of_the_packages" class="header-anchor">An overview of the packages</a></h2>
 <p>With several packages making their initial debut, and some old ones getting new capabilities, we felt it would be appropriate to provide an overview of the underpinnings of the new ecosystem.</p>
-<h3 id="juliainterpreter"><a href="#juliainterpreter">JuliaInterpreter</a></h3>
+<h3 id="juliainterpreter"><a href="#juliainterpreter" class="header-anchor">JuliaInterpreter</a></h3>
 <p><a href="https://github.com/JuliaDebug/JuliaInterpreter.jl">JuliaInterpreter</a> is the lynch pin of the entire stack; it contains the logic needed to evaluate and inspect running Julia code. An <a href="https://en.wikipedia.org/wiki/Interpreter_&#40;computing&#41;">interpreter</a> lends itself naturally to step-wise code evaluation and the implementation of breakpoints.</p>
 <p>JuliaInterpreter descended from an original package <a href="https://github.com/JuliaDebug/ASTInterpreter2.jl">ASTInterpreter2</a> written by Keno Fischer. In its original form &#40;prior to Jan 2019&#41;, ASTInterpreter2 was a fairly small but sophisticated package, capable of handling many advanced aspects of Julia&#39;s internal representation of code.  It was in need of updating to the many changes in Julia 1.0, although most of that work had already been done by <a href="https://github.com/Roboneet">Neethu Joy</a> in late 2018. When we began our own efforts, we finished the updates and decided to extend it in many ways:</p>
 <ul>
@@ -193,23 +193,23 @@
 </li>
 </ul>
 <p>To explore the interpreter in its own right, you can start like this:</p>
-<pre><code class="language-julia">using JuliaInterpreter
-A &#61; rand&#40;1:10, 5&#41;
-@interpret sum&#40;A&#41;</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> JuliaInterpreter
+A = rand(<span class="hljs-number">1</span>:<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)
+<span class="hljs-meta">@interpret</span> sum(A)</code></pre>
 <p>If all is working well, you should see the same answer you get from running <code>sum&#40;A&#41;</code> without <code>@interpret</code>.</p>
-<h3 id="loweredcodeutils"><a href="#loweredcodeutils">LoweredCodeUtils</a></h3>
+<h3 id="loweredcodeutils"><a href="#loweredcodeutils" class="header-anchor">LoweredCodeUtils</a></h3>
 <p><a href="https://github.com/JuliaDebug/LoweredCodeUtils.jl">LoweredCodeUtils</a> is the most specialized and opaque of the new packages.  Its purpose is to build links between multiple cooperating methods.  For example, the seemingly-simple definition</p>
-<pre><code class="language-julia">mymethod&#40;x, y&#61;0; z&#61;&quot;Hello&quot;, msg&#61;&quot;world&quot;&#41; &#61; 1</code></pre>
+<pre><code class="julia hljs">mymethod(x, y=<span class="hljs-number">0</span>; z=<span class="hljs-string">&quot;Hello&quot;</span>, msg=<span class="hljs-string">&quot;world&quot;</span>) = <span class="hljs-number">1</span></code></pre>
 <p>actually creates 5 methods: one &quot;body method&quot; &#40;here, simply returning <code>1</code>&#41;, two &quot;positional-argument&quot; methods &#40;ones that do not accept any keyword arguments&#41;, and two &quot;keyword function&quot; methods &#40;ones that get called when you supply at least one keyword argument, then fill in defaults and standardize order&#41;.  Because all five of these arise from the same user-supplied expression, they need to be implicitly linked in order to provide a satisfying user experience.  In particular, changes to source files cause the line numbers of compiled methods to become outdated; if we didn&#39;t correct that, Juno might open a file to the outdated line number when stepping through code. LoweredCodeUtils does the source-level analysis to discover these associations and handle differences that arise when parsing the same file multiple times.</p>
 <p>If you ever wanted to be able to parse Julia code and extract the signatures of the methods it defines &#40;without redefining the methods&#41;, LoweredCodeUtils is the package for you.</p>
-<h3 id="codetracking"><a href="#codetracking">CodeTracking</a></h3>
+<h3 id="codetracking"><a href="#codetracking" class="header-anchor">CodeTracking</a></h3>
 <p><a href="https://github.com/timholy/CodeTracking.jl">CodeTracking</a> was designed to act as a simple, lightweight &quot;query API&quot; for retrieving data from <a href="https://github.com/timholy/Revise.jl">Revise</a>. Essentially, LoweredCodeUtils performs analysis, Revise manages changes that occur over time, and CodeTracking informs the rest of the world.  For CodeTracking to do anything interesting, you need to be running Revise; to allow CodeTracking to be a lightweight dependency, it relies on Revise to populate its own internal variables.</p>
 <p>See <a href="https://github.com/timholy/CodeTracking.jl">CodeTracking&#39;s README</a> for more information.</p>
-<h3 id="revise_and_rebugger"><a href="#revise_and_rebugger">Revise and Rebugger</a></h3>
+<h3 id="revise_and_rebugger"><a href="#revise_and_rebugger" class="header-anchor">Revise and Rebugger</a></h3>
 <p>Thanks to a rewrite based on JuliaInterpreter, Revise and Rebugger are better &#40;in some cases, much better&#41; at their core tasks. In particular, if you used an earlier version of Rebugger, you may have noticed that it was defeated by many language constructs &#40;e.g., functions containing keyword arguments, <code>@eval</code>-generated methods, etc&#41;.  Most of the underlying causes were resolved by LoweredCodeUtils, which is in turn used by Revise, which then feeds the necessary data to CodeTracking for consumption by Rebugger.  As one measure of the difference, of the more than 10,000 methods in Base, Revise 1.1.0 fails to capture 1,425 method signatures &#40;a failure rate of 13&#37;&#41;. In contrast, Revise 2.0.0 misses only 10 &#40;&lt;0.1&#37;&#41;.</p>
 <p>Consequently, in addition to the new &quot;interpret&quot; interface, the new Rebugger is much better at its original &quot;edit&quot; interface, too.</p>
 <p>Revise &#40;and consequently Rebugger&#41; has also gained some other new abilities, like handling methods defined at the REPL.  In the longer term, the deep analysis of code permitted by JuliaInterpreter and LoweredCodeUtils may support features that were formerly out of reach.</p>
-<h2 id="summary"><a href="#summary">Summary</a></h2>
+<h2 id="summary"><a href="#summary" class="header-anchor">Summary</a></h2>
 <p>This has been only a high-level overview. Some of the individual packages have extensive documentation, and interested readers are encouraged to work through it. For anyone looking to develop a deeper understanding of the internals of Julia&#39;s code, the new packages provide a powerful set of tools for introspection and analysis. And of course, we hope that the new debugging capabilities further accelerate Julia&#39;s rapid development, and make it that much more fun of a language to use.</p>
 <p></p>
 </div><br><br>
@@ -218,7 +218,7 @@ A &#61; rand&#40;1:10, 5&#41;
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -331,7 +331,7 @@ A &#61; rand&#40;1:10, 5&#41;
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -347,7 +347,7 @@ A &#61; rand&#40;1:10, 5&#41;
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

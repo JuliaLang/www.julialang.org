@@ -116,8 +116,8 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="event-chain_monte_carlo_methods_summer_of_code"><a href="#event-chain_monte_carlo_methods_summer_of_code">Event-chain Monte Carlo methods – Summer of Code</a></h1>
-<h2 id="massive_parallel_factorized_bouncy_particle_sampler"><a href="#massive_parallel_factorized_bouncy_particle_sampler">Massive parallel factorized bouncy particle sampler</a></h2>
+<div class="container main"><h1 id="event-chain_monte_carlo_methods_summer_of_code"><a href="#event-chain_monte_carlo_methods_summer_of_code" class="header-anchor">Event-chain Monte Carlo methods – Summer of Code</a></h1>
+<h2 id="massive_parallel_factorized_bouncy_particle_sampler"><a href="#massive_parallel_factorized_bouncy_particle_sampler" class="header-anchor">Massive parallel factorized bouncy particle sampler</a></h2>
 <p>At JuliaCon 2021 a new sampler Monte Carlo method &#40;for example as sampling algorithm for the posterior in Bayesian inference&#41; was  introduced &#91;1&#93;. The method exploits the factorization structure to sample <em>a single</em> continuous time Markov chain targeting a joint distribution in parallel. In contrast to parallel Gibbs sampling in the method at no time a subset of coordinates is kept fixed. In Gibbs sampling keeping  a subset fixed is the main device to achieve massive parallelism: given a separating set of coordinates, the conditional posterior factorizes into independent subproblems. In the presented method, a particle representing a parameter vector sampled from the posterior never  ceases to move, and it is only the decisions about changes of the direction of the movement which happen in parallel on subsets of coordinates.</p>
 <p>There are already two implementations available which make use of Julias multithreading capabilities. Starting from that, the contributor  implements a version of the algorithm using GPU computing techniques as the methods is are suitable for these approaches.</p>
 <p><strong>Expected Results</strong>: Implement massive parallel factorized bouncy particle sampler &#91;1,2&#93; using GPU computing.</p>
@@ -241,7 +241,7 @@
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>

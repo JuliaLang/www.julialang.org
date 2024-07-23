@@ -151,20 +151,20 @@
 <!-- Content appended here -->
 <div class="container main"><p>The central part of my GSoC project is about implementing the Jacobi-Davidson method natively in Julia, available in <a href="https://github.com/haampie/JacobiDavidson.jl">JacobiDavidson.jl</a>. This method computes a few approximate solutions of the eigenvalue problem <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>x</mi><mo>=</mo><mi>λ</mi><mi>B</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Ax = \lambda Bx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault">x</span></span></span></span> for large and sparse matrices <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>. As it uses iterative solvers internally, much time has gone into improving <a href="https://github.com/JuliaMath/IterativeSolvers.jl">IterativeSolvers.jl</a> in general. Lastly, as iterative solvers are typically used with preconditioners, I have implemented the incomplete LU factorization for sparse matrices as well in <a href="https://github.com/haampie/ILU.jl">ILU.jl</a>.</p>
 <div class="franklin-toc"><ol><li><a href="#jacobidavidsonjl">JacobiDavidson.jl</a></li><li><a href="#iterativesolversjl">IterativeSolvers.jl</a></li><li><a href="#ilujl">ILU.jl</a></li><li><a href="#examples">Examples</a><ol><li><a href="#jacobi-davidson">Jacobi-Davidson</a></li><li><a href="#ilu_example">ILU example</a></li></ol></li><li><a href="#acknowledgements">Acknowledgements</a></li></ol></div>
-<h2 id="jacobidavidsonjl"><a href="#jacobidavidsonjl">JacobiDavidson.jl</a></h2>
+<h2 id="jacobidavidsonjl"><a href="#jacobidavidsonjl" class="header-anchor">JacobiDavidson.jl</a></h2>
 <p>The <a href="https://github.com/haampie/JacobiDavidson.jl">Jacobi-Davidson implementation</a> is ready for use and can be applied to solving the &#40;generalized&#41; eigenvalue problem for non-Hermitian matrices. It&#39;s similar to the <code>eigs</code> method already available in Julia: it gives you a couple eigenvalues near a specified target in the complex plane.</p>
 <p>At this point no official release has been tagged yet, as there is still some work to be done: hopefully the functions for the generalized and ordinary eigenvalue problem can largely be merged as they are very similar. Also, some optimizations for Hermitian problems should yet be implemented; lastly the methods do not yet support generic vectors and numbers.</p>
-<h2 id="iterativesolversjl"><a href="#iterativesolversjl">IterativeSolvers.jl</a></h2>
+<h2 id="iterativesolversjl"><a href="#iterativesolversjl" class="header-anchor">IterativeSolvers.jl</a></h2>
 <p>We have been preparing a new release of <a href="https://github.com/JuliaMath/IterativeSolvers.jl">IterativeSolvers.jl</a> that improves speed and memory usage of solvers like GMRES, CG, Chebyshev iteration, stationary methods and the Power Method. Also two new methods MINRES and BiCGStab&#40;l&#41; are available, together with efficient implementations of stationary methods for Julia&#39;s <code>SparseMatrixCSC</code> matrix type.</p>
 <p>Additionally the package has been upgraded to Julia 0.6 and the documentation has been restructured and improved.</p>
-<h2 id="ilujl"><a href="#ilujl">ILU.jl</a></h2>
+<h2 id="ilujl"><a href="#ilujl" class="header-anchor">ILU.jl</a></h2>
 <p>Iterative methods for linear systems <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>x</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">Ax = b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> such as BiCGStab&#40;l&#41; might not converge quickly on any given matrix <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>. Typically convergence is best if the matrix <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> is just a perturbation of the identity matrix. If that&#39;s not the case, preconditioners might help: rather than solving <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>x</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">Ax = b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> you could try and solve <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>P</mi><mi>A</mi><mo stretchy="false">)</mo><mi>x</mi><mo>=</mo><mi>P</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">(PA)x = Pb</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">b</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> is a preconditioner such that <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">PA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">A</span></span></span></span> is closer to the identity matrix.</p>
 <p>A perfect preconditioner would compute the full LU decomposition of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>, but that&#39;s too much computational work and would require way to much of memory. A well-known trick is to compute the LU factorization only approximately, by dropping small terms during the process. This is called incomplete LU or ILU.</p>
 <p>As ILU for the <code>SparseMatrixCSC</code> type was not yet available in Julia, I&#39;ve implemented it based on the article &quot;Crout versions of ILU for general sparse matrices&quot; by Na Li, Yousef Saad and Edmond Chow.</p>
 <p>The package <a href="https://github.com/haampie/ILU.jl">ILU.jl</a> is completely ready for use and is well tested.</p>
-<h2 id="examples"><a href="#examples">Examples</a></h2>
+<h2 id="examples"><a href="#examples" class="header-anchor">Examples</a></h2>
 <p>Below you can find a few examples on how to use the packages I&#39;ve been working on.</p>
-<h3 id="jacobi-davidson"><a href="#jacobi-davidson">Jacobi-Davidson</a></h3>
+<h3 id="jacobi-davidson"><a href="#jacobi-davidson" class="header-anchor">Jacobi-Davidson</a></h3>
 <p>Let&#39;s take a look at a toy example of the generalized eigenvalue problem <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>x</mi><mo>=</mo><mi>λ</mi><mi>B</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Ax = \lambda Bx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault">x</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> are diagonal matrices of size <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n \times n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> with <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mrow><mi>k</mi><mi>k</mi></mrow></msub><mo>=</mo><msqrt><mi>k</mi></msqrt></mrow><annotation encoding="application/x-tex">A_{kk} = \sqrt{k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.10777999999999999em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.93222em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span><span style="top:-2.89222em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
 c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
 c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
@@ -189,23 +189,23 @@ s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
 M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.10777999999999999em;"><span></span></span></span></span></span></span></span></span>. The eigenvalues are just the integers <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">1, \cdots, n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span></span></span></span>. Our goal is to find a few eigenvalues right in the interior of the spectrum near <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n / 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord">2</span></span></span></span>.</p>
 <p>We implement the action of the matrices <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> matrix-free, using LinearMaps.jl:</p>
-<pre><code class="language-julia">using LinearMaps
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> LinearMaps
 
-function myA&#33;&#40;y, x&#41;
-  for i &#61; 1 : length&#40;x&#41;
-    @inbounds y&#91;i&#93; &#61; sqrt&#40;i&#41; * x&#91;i&#93;
-  end
-end
+<span class="hljs-keyword">function</span> myA!(y, x)
+  <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span> : length(x)
+    <span class="hljs-meta">@inbounds</span> y[i] = sqrt(i) * x[i]
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 
-function myB&#33;&#40;y, x&#41;
-  for i &#61; 1 : length&#40;x&#41;
-    @inbounds y&#91;i&#93; &#61; x&#91;i&#93; / sqrt&#40;i&#41;
-  end
-end
+<span class="hljs-keyword">function</span> myB!(y, x)
+  <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span> : length(x)
+    <span class="hljs-meta">@inbounds</span> y[i] = x[i] / sqrt(i)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 
-n &#61; 100_000
-A &#61; LinearMap&#123;Complex128&#125;&#40;myA&#33;, n; ismutating &#61; true&#41;
-B &#61; LinearMap&#123;Complex128&#125;&#40;myB&#33;, n; ismutating &#61; true&#41;</code></pre>
+n = <span class="hljs-number">100_000</span>
+A = LinearMap{Complex128}(myA!, n; ismutating = <span class="hljs-literal">true</span>)
+B = LinearMap{Complex128}(myB!, n; ismutating = <span class="hljs-literal">true</span>)</code></pre>
 <p>The order of the matrices is <code>100_000</code>. It turns out that if we target eigenvalues in the interior of the spectrum, iterative solvers used internally in Jacobi-Davidson might have trouble solving very indefinite systems.</p>
 <p>In that case we should use a preconditioner for <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>−</mo><mi>τ</mi><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(A - \tau B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.1132em;">τ</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span>, where <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.1132em;">τ</span></span></span></span> is the target. We will just use the exact inverse, which is a diagonal matrix <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> with entries <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>k</mi><mi>k</mi></mrow></msub><mo>=</mo><msqrt><mi>k</mi></msqrt><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mi>k</mi><mo>−</mo><mi>τ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_{kk} = \sqrt{k} / (k - \tau)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.18222em;vertical-align:-0.25em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.93222em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span><span style="top:-2.89222em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
 c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
@@ -219,75 +219,75 @@ H400000v40H845.2724
 s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
 M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.10777999999999999em;"><span></span></span></span></span></span><span class="mord">/</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.1132em;">τ</span><span class="mclose">)</span></span></span></span>. It can be implemented matrix-free and in-place:</p>
-<pre><code class="language-julia">import Base.LinAlg.A_ldiv_B&#33;
+<pre><code class="julia hljs"><span class="hljs-keyword">import</span> Base.LinAlg.A_ldiv_B!
 
-struct SuperPreconditioner&#123;numT &lt;: Number&#125;
+<span class="hljs-keyword">struct</span> SuperPreconditioner{numT &lt;: <span class="hljs-built_in">Number</span>}
     target::numT
-end
+<span class="hljs-keyword">end</span>
 
-function A_ldiv_B&#33;&#40;p::SuperPreconditioner, x&#41;
-    for i &#61; 1 : length&#40;x&#41;
-        @inbounds x&#91;i&#93; *&#61; sqrt&#40;i&#41; / &#40;i - p.target&#41;
-    end
-end</code></pre>
+<span class="hljs-keyword">function</span> A_ldiv_B!(p::SuperPreconditioner, x)
+    <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span> : length(x)
+        <span class="hljs-meta">@inbounds</span> x[i] *= sqrt(i) / (i - p.target)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
 <p>Now we call Jacobi-Davidson with the <code>Near</code> target and pass the preconditioner. We use GMRES as the iterative solver, but we could have used BiCGStabl&#40;l&#41; as well.</p>
-<pre><code class="language-julia">using JacobiDavidson
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> JacobiDavidson
 
-τ &#61; 50_000.1 &#43; 0im
-target &#61; Near&#40;τ&#41;
-P &#61; SuperPreconditioner&#40;τ&#41;
+τ = <span class="hljs-number">50_000.1</span> + <span class="hljs-number">0</span><span class="hljs-literal">im</span>
+target = Near(τ)
+P = SuperPreconditioner(τ)
 
-schur, residuals &#61; jdqz&#40;A, B,
-    gmres_solver&#40;n, iterations &#61; 10&#41;,
-    preconditioner &#61; P,
-    target &#61; target,
-    pairs &#61; 5,
-    ɛ &#61; 1e-9,
-    min_dimension &#61; 5,
-    max_dimension &#61; 10,
-    max_iter &#61; 200,
-    verbose &#61; true
-&#41;</code></pre>
+schur, residuals = jdqz(A, B,
+    gmres_solver(n, iterations = <span class="hljs-number">10</span>),
+    preconditioner = P,
+    target = target,
+    pairs = <span class="hljs-number">5</span>,
+    ɛ = <span class="hljs-number">1e-9</span>,
+    min_dimension = <span class="hljs-number">5</span>,
+    max_dimension = <span class="hljs-number">10</span>,
+    max_iter = <span class="hljs-number">200</span>,
+    verbose = <span class="hljs-literal">true</span>
+)</code></pre>
 <p>It converges to the eigenvalues 49999, 50000, 50001, 50002 and 50004:</p>
-<pre><code class="language-julia">50004.00000000014 &#43; 3.5749921718300463e-12im
-49999.999999986496 - 7.348301591250897e-12im
-50001.00000000359 - 1.9761169705101647e-11im
-49998.99999999998 - 1.0866253642291695e-10im
-50002.00000000171 - 2.3559720511618024e-11im</code></pre>
+<pre><code class="julia hljs"><span class="hljs-number">50004.00000000014</span> + <span class="hljs-number">3.5749921718300463e-12</span><span class="hljs-literal">im</span>
+<span class="hljs-number">49999.999999986496</span> - <span class="hljs-number">7.348301591250897e-12</span><span class="hljs-literal">im</span>
+<span class="hljs-number">50001.00000000359</span> - <span class="hljs-number">1.9761169705101647e-11</span><span class="hljs-literal">im</span>
+<span class="hljs-number">49998.99999999998</span> - <span class="hljs-number">1.0866253642291695e-10</span><span class="hljs-literal">im</span>
+<span class="hljs-number">50002.00000000171</span> - <span class="hljs-number">2.3559720511618024e-11</span><span class="hljs-literal">im</span></code></pre>
 <p>It does not yet detect 50003, but that might happen when <code>pairs</code> is increased a bit. As a result of our preconditioner, Jacobi-Davidson converges very quickly:</p>
 <p><img src="/assets/blog/2017-08-23-native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/resnorm.svg" alt="Residual norm" /></p>
 <p>It&#39;s not easy to construct a preconditioner this good for any given problem, but usually people tend to know what works well in specific classes of problems. If no specific preconditioner is available, you can always try a general one such as ILU. The next section illustrates that.</p>
-<h3 id="ilu_example"><a href="#ilu_example">ILU example</a></h3>
+<h3 id="ilu_example"><a href="#ilu_example" class="header-anchor">ILU example</a></h3>
 <p>As an example of how ILU can be used we generate a non-symmetric, banded matrix having a structure that typically arises in finite differences schemes of three-dimensional problems:</p>
-<pre><code class="language-julia">n &#61; 64
-N &#61; n^3
-A &#61; spdiagm&#40;&#40;fill&#40;-1.0, n - 1&#41;, fill&#40;3.0, n&#41;, fill&#40;-2.0, n - 1&#41;&#41;, &#40;-1, 0, 1&#41;&#41;
-Id &#61; speye&#40;n&#41;
-A &#61; kron&#40;A, Id&#41; &#43; kron&#40;Id, A&#41;
-A &#61; kron&#40;A, Id&#41; &#43; kron&#40;Id, A&#41;
-x &#61; ones&#40;N&#41;
-b &#61; A * x</code></pre>
+<pre><code class="julia hljs">n = <span class="hljs-number">64</span>
+N = n^<span class="hljs-number">3</span>
+A = spdiagm((fill(-<span class="hljs-number">1.0</span>, n - <span class="hljs-number">1</span>), fill(<span class="hljs-number">3.0</span>, n), fill(-<span class="hljs-number">2.0</span>, n - <span class="hljs-number">1</span>)), (-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>))
+Id = speye(n)
+A = kron(A, Id) + kron(Id, A)
+A = kron(A, Id) + kron(Id, A)
+x = ones(N)
+b = A * x</code></pre>
 <p>The matrix <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> has size <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><msup><mn>4</mn><mn>3</mn></msup><mo>×</mo><mn>6</mn><msup><mn>4</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">64^3 \times 64^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>. We want to solve the problem <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>x</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">Ax = b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> using for instance BiCGStab&#40;2&#41;, but it turns out that convergence can get slow when the size of the problem grows. A quick benchmark shows it takes about 2.0 seconds to solve the problem to a reasonable tolerance:</p>
-<pre><code class="language-julia">&gt; using BenchmarkTools, IterativeSolvers
-&gt; my_x &#61; @btime bicgstabl&#40;&#36;A, &#36;b, 2, max_mv_products &#61; 2000&#41;;
-2.051 s
-&gt; norm&#40;b - A * my_x&#41; / norm&#40;b&#41;
-1.6967043606691152e-9</code></pre>
+<pre><code class="julia hljs">&gt; <span class="hljs-keyword">using</span> BenchmarkTools, IterativeSolvers
+&gt; my_x = <span class="hljs-meta">@btime</span> bicgstabl($A, $b, <span class="hljs-number">2</span>, max_mv_products = <span class="hljs-number">2000</span>);
+<span class="hljs-number">2.051</span> s
+&gt; norm(b - A * my_x) / norm(b)
+<span class="hljs-number">1.6967043606691152e-9</span></code></pre>
 <p>Now let&#39;s construct the ILU factorization:</p>
-<pre><code class="language-julia">&gt; using ILU
-&gt; LU &#61; crout_ilu&#40;A, τ &#61; 0.1&#41;
-&gt; nnz&#40;LU&#41; / nnz&#40;A&#41;
-2.1180353639352374</code></pre>
+<pre><code class="julia hljs">&gt; <span class="hljs-keyword">using</span> ILU
+&gt; LU = crout_ilu(A, τ = <span class="hljs-number">0.1</span>)
+&gt; nnz(LU) / nnz(A)
+<span class="hljs-number">2.1180353639352374</span></code></pre>
 <p>Using the above drop tolerance <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.1132em;">τ</span></span></span></span>, our ILU factorization stores only about twice as many entries as the original matrix, which is reasonable. Let&#39;s see what happens when we benchmark the solver again, now with ILU as a preconditioner:</p>
-<pre><code class="language-julia">&gt; my_x &#61; @btime bicgstabl&#40;&#36;A, &#36;b, 2, Pl &#61; &#36;LU, max_mv_products &#61; 2000&#41;;
-692.187 ms
-&gt; norm&#40;b - A * my_x&#41; / norm&#40;b&#41;
-2.133397068536056e-9</code></pre>
+<pre><code class="julia hljs">&gt; my_x = <span class="hljs-meta">@btime</span> bicgstabl($A, $b, <span class="hljs-number">2</span>, Pl = $LU, max_mv_products = <span class="hljs-number">2000</span>);
+<span class="hljs-number">692.187</span> ms
+&gt; norm(b - A * my_x) / norm(b)
+<span class="hljs-number">2.133397068536056e-9</span></code></pre>
 <p>It solves the problem 66&#37; faster to the same tolerance. There is of course a caveat, as constructing the preconditioner itself takes time as well:</p>
-<pre><code class="language-julia">&gt; LU &#61; @btime crout_ilu&#40;&#36;A, τ &#61; 0.1&#41;;
-611.019 ms</code></pre>
+<pre><code class="julia hljs">&gt; LU = <span class="hljs-meta">@btime</span> crout_ilu($A, τ = <span class="hljs-number">0.1</span>);
+<span class="hljs-number">611.019</span> ms</code></pre>
 <p>So all in all the problem is solved about 36&#37; faster. However, if we have multiple right-hand sides for the same matrix, we can construct the preconditioner only once and use it multiple times. Even when the matrix changes slightly you could reuse the ILU factorization. The latter is exactly what happens in Jacobi-Davidson.</p>
-<h2 id="acknowledgements"><a href="#acknowledgements">Acknowledgements</a></h2>
+<h2 id="acknowledgements"><a href="#acknowledgements" class="header-anchor">Acknowledgements</a></h2>
 <p>I would really want to thank my GSoC mentor Andreas Noack for the many discussions we had in chat and video calls. Also I would like to thank the Julia community in general for giving me a warm welcome, both online and at JuliaCon 2017.</p>
 </div><br><br>
 
@@ -300,7 +300,7 @@ b &#61; A * x</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -413,7 +413,7 @@ b &#61; A * x</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -429,7 +429,7 @@ b &#61; A * x</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

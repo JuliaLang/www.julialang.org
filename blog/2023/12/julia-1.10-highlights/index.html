@@ -152,7 +152,7 @@
 <p>After 3 betas and 3 release candidates, Julia version 1.10 has finally&#40;&#33;&#41; been released. We would like to thank all the contributors to this release and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.</p>
 <p>The full list of changes can be found in the <a href="https://github.com/JuliaLang/julia/blob/release-1.10/NEWS.md">NEWS file</a>, but here we&#39;ll give a more in-depth overview of some of the release highlights.</p>
 <div class="franklin-toc"><ol><li><a href="#new_parser_written_in_julia">New parser written in Julia</a></li><li><a href="#package_load_time_improvements">Package load time improvements</a></li><li><a href="#improvements_in_stacktrace_rendering">Improvements in stacktrace rendering</a></li><li><a href="#parallel_garbage_collection">Parallel garbage collection</a></li><li><a href="#tracy_and_intel_vtune_ittapi_profiling_integration">Tracy and Intel VTune ITTAPI profiling integration</a></li><li><a href="#upgrade_to_llvm_15">Upgrade to LLVM 15</a></li><li><a href="#linux_aarch64_stability_improvements">Linux AArch64 stability improvements</a></li><li><a href="#parallel_native_code_generation_for_system_images_and_package_images">Parallel native code generation for system images and package images</a></li><li><a href="#avoiding_races_during_parallel_precompilation">Avoiding races during parallel precompilation</a></li><li><a href="#parallel_precompile_on_using">Parallel precompile on using</a></li><li><a href="#acknowledgement">Acknowledgement</a></li></ol></div>
-<h2 id="new_parser_written_in_julia"><a href="#new_parser_written_in_julia">New parser written in Julia</a></h2>
+<h2 id="new_parser_written_in_julia"><a href="#new_parser_written_in_julia" class="header-anchor">New parser written in Julia</a></h2>
 <p><em>Claire Foster</em></p>
 <p>With the release of Julia 1.10, swapped out the default parser, previously written in Scheme, to a new one, written in Julia, known as <a href="https://github.com/JuliaLang/JuliaSyntax.jl/">JuliaSyntax.jl</a>. This change introduces several improvements:</p>
 <ul>
@@ -165,18 +165,18 @@
 </ul>
 <p>An example to illustrate the improvement in error messaging:</p>
 <p><em>Pre Julia 1.10 Error Message:</em></p>
-<pre><code class="language-julia-repl">julia&gt; &#91;&#91;&#93;, &#91;&#93;, &#91;,&#93; &#91;&#93;, &#91;&#93;&#93;
-ERROR: syntax: unexpected &quot;,&quot;</code></pre>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> [[], [], [,] [], []]
+</span>ERROR: syntax: unexpected &quot;,&quot;</code></pre>
 <p>In this version, the error message is general and doesn&#39;t specify the location of the syntax error.</p>
 <p><em>Julia 1.10 Error Message:</em></p>
-<pre><code class="language-julia-repl">julia&gt; &#91;&#91;&#93;, &#91;&#93;, &#91;,&#93; &#91;&#93;, &#91;&#93;&#93;
-ERROR: ParseError:
-# Error @ REPL&#91;1&#93;:1:11
-&#91;&#91;&#93;, &#91;&#93;, &#91;,&#93; &#91;&#93;, &#91;&#93;&#93;
-#         ╙ ── unexpected &#96;,&#96;</code></pre>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> [[], [], [,] [], []]
+</span>ERROR: ParseError:
+# Error @ REPL[1]:1:11
+[[], [], [,] [], []]
+#         ╙ ── unexpected `,`</code></pre>
 <p>Here, the error message includes an indication of the exact location of the issue within the code.</p>
 <p>For a more detailed overview of the new parser, you can refer to this <a href="https://www.youtube.com/watch?v&#61;CIiGng9Brrk">2022 JuliaCon talk</a>.</p>
-<h2 id="package_load_time_improvements"><a href="#package_load_time_improvements">Package load time improvements</a></h2>
+<h2 id="package_load_time_improvements"><a href="#package_load_time_improvements" class="header-anchor">Package load time improvements</a></h2>
 <p><em>Jameson Nash et al.</em></p>
 <p>In 1.9 the TTFX &#40;Time To First X, the time it takes for the result to be available the first time a function is called&#41; was heavily improved by allowing package authors to enable saving of native code during precompilation. In 1.10, as a follow-up, significant work was put into the performance of the loading of packages.</p>
 <p>A lot of this work was driven by profiling and improving the load time of <a href="https://github.com/JuliaComputing/OmniPackage.jl">OmniPackage.jl</a> which is an artificial &quot;mega package&quot; whose only purpose is to depend on and load a lot of dependencies. In total, OmniPackage.jl ends up loading about 650 packages, many of them of significant size.</p>
@@ -194,13 +194,13 @@ ERROR: ParseError:
 </li>
 </ul>
 <p>Running <code>@time using OmniPackage</code> &#40;after precompilation&#41; has the following results on 1.9 and 1.10 respectively &#40;measurements made on an M1 Macbook Pro&#41;:</p>
-<pre><code class="language-julia"># Julia 1.9:
- 48.041773 seconds &#40;102.17 M allocations: 6.522 GiB, 5.82&#37; gc time, 1.21&#37; compilation time: 86&#37; of which was recompilation&#41;
+<pre><code class="julia hljs"><span class="hljs-comment"># Julia 1.9:</span>
+ <span class="hljs-number">48.041773</span> seconds (<span class="hljs-number">102.17</span> M allocations: <span class="hljs-number">6.522</span> GiB, <span class="hljs-number">5.82</span>% gc time, <span class="hljs-number">1.21</span>% compilation time: <span class="hljs-number">86</span>% of which was recompilation)
 
-# Julia 1.10:
- 19.125309 seconds &#40;30.38 M allocations: 2.011 GiB, 11.54&#37; gc time, 10.38&#37; compilation time: 61&#37; of which was recompilation&#41;</code></pre>
+<span class="hljs-comment"># Julia 1.10:</span>
+ <span class="hljs-number">19.125309</span> seconds (<span class="hljs-number">30.38</span> M allocations: <span class="hljs-number">2.011</span> GiB, <span class="hljs-number">11.54</span>% gc time, <span class="hljs-number">10.38</span>% compilation time: <span class="hljs-number">61</span>% of which was recompilation)</code></pre>
 <p>So this is more than a 2x package load improvement for a very big package. Individual packages may seem smaller or larger improvements.</p>
-<h2 id="improvements_in_stacktrace_rendering"><a href="#improvements_in_stacktrace_rendering">Improvements in stacktrace rendering</a></h2>
+<h2 id="improvements_in_stacktrace_rendering"><a href="#improvements_in_stacktrace_rendering" class="header-anchor">Improvements in stacktrace rendering</a></h2>
 <p><em>Jeff Bezanson, Tim Holy, Kristoffer Carlsson</em></p>
 <p>When an error occurs Julia prints out the error together with a &quot;stacktrace&quot; aimed to help at debugging how the error occurred. These stacktraces in Julia are quite detailed, containing information like the method name, argument names and types, and the location of the method in the module and file. However, in complex scenarios involving intricate parametric types, a single stacktrace frame could occupy an entire terminal screen. With the Julia 1.10 release, we&#39;ve introduced improvements to make stacktraces less verbose.</p>
 <p>One major factor contributing to lengthy stacktraces is the use of parametric types, especially when these types are nested within each other. This complexity can quickly escalate. To address this, in pull request <a href="https://github.com/JuliaLang/julia/pull/49795">#49795</a>, the REPL now abbreviates parameters with <code>&#123;…&#125;</code> when these would otherwise be excessively long. Users can view the complete stacktrace by using the <code>show</code> command on the automatically defined <code>err</code> variable in the REPL.</p>
@@ -216,66 +216,66 @@ ERROR: ParseError:
 </li>
 </ul>
 <p>To illustrate, consider the following Julia code:</p>
-<pre><code class="language-julia">f&#40;g, a; kw...&#41; &#61; error&#40;&#41;;
-@inline f&#40;a; kw...&#41; &#61; f&#40;identity, a; kw...&#41;;
-f&#40;1&#41;</code></pre>
+<pre><code class="julia hljs">f(g, a; kw...) = error();
+<span class="hljs-meta">@inline</span> f(a; kw...) = f(identity, a; kw...);
+f(<span class="hljs-number">1</span>)</code></pre>
 <p>Previously, the stacktrace for this code appeared as:</p>
-<pre><code class="language-julia">Stacktrace:
- &#91;1&#93; error&#40;&#41;
-   @ Base ./error.jl:44
- &#91;2&#93; f&#40;g::Function, a::Int64; kw::Base.Pairs&#123;Symbol, Union&#123;&#125;, Tuple&#123;&#125;, NamedTuple&#123;&#40;&#41;, Tuple&#123;&#125;&#125;&#125;&#41;
-   @ Main ./REPL&#91;1&#93;:1
- &#91;3&#93; f&#40;g::Function, a::Int64&#41;
-   @ Main ./REPL&#91;1&#93;:1
- &#91;4&#93; #f#16
-   @ ./REPL&#91;2&#93;:1 &#91;inlined&#93;
- &#91;5&#93; f&#40;a::Int64&#41;
-   @ Main ./REPL&#91;2&#93;:1
- &#91;6&#93; top-level scope
-   @ REPL&#91;6&#93;:1</code></pre>
+<pre><code class="julia hljs">Stacktrace:
+ [<span class="hljs-number">1</span>] error()
+   @ Base ./error.jl:<span class="hljs-number">44</span>
+ [<span class="hljs-number">2</span>] f(g::<span class="hljs-built_in">Function</span>, a::<span class="hljs-built_in">Int64</span>; kw::Base.Pairs{<span class="hljs-built_in">Symbol</span>, <span class="hljs-built_in">Union</span>{}, <span class="hljs-built_in">Tuple</span>{}, <span class="hljs-built_in">NamedTuple</span>{(), <span class="hljs-built_in">Tuple</span>{}}})
+   @ Main ./REPL[<span class="hljs-number">1</span>]:<span class="hljs-number">1</span>
+ [<span class="hljs-number">3</span>] f(g::<span class="hljs-built_in">Function</span>, a::<span class="hljs-built_in">Int64</span>)
+   @ Main ./REPL[<span class="hljs-number">1</span>]:<span class="hljs-number">1</span>
+ [<span class="hljs-number">4</span>] <span class="hljs-comment">#f#16</span>
+   @ ./REPL[<span class="hljs-number">2</span>]:<span class="hljs-number">1</span> [inlined]
+ [<span class="hljs-number">5</span>] f(a::<span class="hljs-built_in">Int64</span>)
+   @ Main ./REPL[<span class="hljs-number">2</span>]:<span class="hljs-number">1</span>
+ [<span class="hljs-number">6</span>] top-level scope
+   @ REPL[<span class="hljs-number">6</span>]:<span class="hljs-number">1</span></code></pre>
 <p>With the improvements in Julia 1.10, the stacktrace is now more concise:</p>
-<pre><code class="language-julia">Stacktrace:
- &#91;1&#93; error&#40;&#41;
-   @ Base ./error.jl:44
- &#91;2&#93; f&#40;g::Function, a::Int64; kw::@Kwargs&#123;&#125;&#41;
-   @ Main ./REPL&#91;1&#93;:1
- &#91;3&#93; f&#40;a::Int64&#41;
-   @ Main ./REPL&#91;2&#93;:1
- &#91;4&#93; top-level scope
-   @ REPL&#91;3&#93;:1</code></pre>
+<pre><code class="julia hljs">Stacktrace:
+ [<span class="hljs-number">1</span>] error()
+   @ Base ./error.jl:<span class="hljs-number">44</span>
+ [<span class="hljs-number">2</span>] f(g::<span class="hljs-built_in">Function</span>, a::<span class="hljs-built_in">Int64</span>; kw::<span class="hljs-meta">@Kwargs</span>{})
+   @ Main ./REPL[<span class="hljs-number">1</span>]:<span class="hljs-number">1</span>
+ [<span class="hljs-number">3</span>] f(a::<span class="hljs-built_in">Int64</span>)
+   @ Main ./REPL[<span class="hljs-number">2</span>]:<span class="hljs-number">1</span>
+ [<span class="hljs-number">4</span>] top-level scope
+   @ REPL[<span class="hljs-number">3</span>]:<span class="hljs-number">1</span></code></pre>
 <p>This update results in stacktraces that are both shorter and easier to read.</p>
-<h2 id="parallel_garbage_collection"><a href="#parallel_garbage_collection">Parallel garbage collection</a></h2>
+<h2 id="parallel_garbage_collection"><a href="#parallel_garbage_collection" class="header-anchor">Parallel garbage collection</a></h2>
 <p><em>Diogo Correia Netto, Valentin Churavy</em></p>
 <p>We parallelized in 1.10 the mark phase of the garbage collector &#40;GC&#41; and also introduced the possibility of running part of the sweeping phase concurrently with application threads. This results in significant speedups on GC time for multithreaded allocation-heavy workloads.</p>
 <p>The multi-threaded GC can be enabled through the command line option <code>--gcthreads&#61;M</code>, which specifies the number of threads to be used in the mark phase of the GC. One may also enable concurrent page sweeping mentioned above through <code>--gcthreads&#61;M,1</code>, meaning <code>M</code> threads will be used in the GC mark phase and one GC thread is responsible for performing part of the sweeping phase concurrently with the application.</p>
 <p>The default number of GC threads is set, by default, to half of the number of compute threads &#40;<code>--threads</code>&#41;.</p>
-<h2 id="tracy_and_intel_vtune_ittapi_profiling_integration"><a href="#tracy_and_intel_vtune_ittapi_profiling_integration">Tracy and Intel VTune ITTAPI profiling integration</a></h2>
+<h2 id="tracy_and_intel_vtune_ittapi_profiling_integration"><a href="#tracy_and_intel_vtune_ittapi_profiling_integration" class="header-anchor">Tracy and Intel VTune ITTAPI profiling integration</a></h2>
 <p><em>Cody Tapscott, Valentin Churavy, Prem Chintalapudi</em></p>
 <p>The Julia runtime has gained additional integration capabilities with the Tracy profiler as well as Intel&#39;s VTune profiler. The profilers are now capable of reporting notable events such as compilation, major and minor GCs, invalidation and memory counters, and more. Profiling support can be enabled while building Julia via the <code>WITH_TRACY&#61;1</code> and <code>WITH_ITTAPI&#61;1</code> <code>make</code> options. We aim to make these profilers usable without having to rebuild Julia in future Julia versions.</p>
 <p>Below is an example of using Tracy when profiling the Julia runtime.</p>
 <p><img src="/assets/blog/2023-1.10-highlights/tracy.png" alt="" /></p>
-<h2 id="upgrade_to_llvm_15"><a href="#upgrade_to_llvm_15">Upgrade to LLVM 15</a></h2>
+<h2 id="upgrade_to_llvm_15"><a href="#upgrade_to_llvm_15" class="header-anchor">Upgrade to LLVM 15</a></h2>
 <p><em>Valentin Churavy, Gabriel Baraldi, Prem Chintalapudi</em></p>
 <p>We continue to track upstream LLVM and the Julia 1.10 release uses LLVM 15. This brings with it updated profiles for new processors and general modernizations.</p>
 <p>Particular noteworthy were the move to the new pass-manager promising compilation time improvements. LLVM 15 brings with it improved support for Float16 on x86.</p>
-<h2 id="linux_aarch64_stability_improvements"><a href="#linux_aarch64_stability_improvements">Linux AArch64 stability improvements</a></h2>
+<h2 id="linux_aarch64_stability_improvements"><a href="#linux_aarch64_stability_improvements" class="header-anchor">Linux AArch64 stability improvements</a></h2>
 <p><em>Mose Giordano</em></p>
 <p>With the upgrade to LLVM 15 we were able to <a href="https://github.com/JuliaLang/julia/pull/49745">use JITLink on aarch64 CPUs on Linux</a>.  <a href="https://llvm.org/docs/JITLink.html">This linker</a>, which had been first introduced in <a href="https://julialang.org/blog/2022/08/julia-1.8-highlights/#improved_support_for_apple_silicon">Julia v1.8 only for Apple Silicon</a> &#40;aarch64 CPUs on macOS&#41;, resolves frequent segmentation fault errors that affected Julia on this platform.  However, due to a <a href="https://github.com/llvm/llvm-project/issues/63236">bug in LLVM memory manager</a>, non-trivial workloads may generate too many memory mappings &#40;<code>mmap</code>&#41; that can exceed the limit of allowed mappings.  If you run into this problem, read the documentation on how to <a href="https://docs.julialang.org/en/v1.10.0/devdocs/build/arm/#AArch64-&#40;ARMv8&#41;">change the <code>mmap</code> limit</a>.</p>
-<h2 id="parallel_native_code_generation_for_system_images_and_package_images"><a href="#parallel_native_code_generation_for_system_images_and_package_images">Parallel native code generation for system images and package images</a></h2>
+<h2 id="parallel_native_code_generation_for_system_images_and_package_images"><a href="#parallel_native_code_generation_for_system_images_and_package_images" class="header-anchor">Parallel native code generation for system images and package images</a></h2>
 <p><em>Prem Chintalapudi</em></p>
 <p>Ahead-of-time compilation &#40;AOT&#41; was sped up by exposing parallelism during <a href="https://github.com/JuliaLang/julia/pull/47797">the LLVM compilation phase</a>. Instead of compiling a large monolithic compilation unit, the work is now split into multiple smaller chunks. This multithreading speeds up the compilation of system images as well as large package images, resulting in lower precompile times for these.</p>
 <p>The amount of parallelism used can be controlled by the environment variable <code>JULIA_IMAGE_THREADS&#61;n</code>. Also, due to the limitations of Windows-native COFF binaries, multithreading is disabled when compiling large images on Windows.</p>
-<h2 id="avoiding_races_during_parallel_precompilation"><a href="#avoiding_races_during_parallel_precompilation">Avoiding races during parallel precompilation</a></h2>
+<h2 id="avoiding_races_during_parallel_precompilation"><a href="#avoiding_races_during_parallel_precompilation" class="header-anchor">Avoiding races during parallel precompilation</a></h2>
 <p><em>Ian Butterworth</em></p>
 <p>In previous versions of Julia multiple processes running with the same depot will all race to precompile packages into cache files, resulting in extra work being done and the potential for corruption of these cache files.</p>
 <p>1.10 introduces a &quot;pidfile&quot; &#40;process id file&#41; locking mechanism that orchestrates it such that only one Julia process will work to precompile a given cache file, where a cache file is specific to the Julia setup that is being targeted during precompilation.</p>
 <p>This arrangement benefits both local users, who may be running multiple processes at once, and high-performance computing users who may be running hundreds of workers with the same shared depot.</p>
-<h2 id="parallel_precompile_on_using"><a href="#parallel_precompile_on_using">Parallel precompile on using</a></h2>
+<h2 id="parallel_precompile_on_using"><a href="#parallel_precompile_on_using" class="header-anchor">Parallel precompile on using</a></h2>
 <p><em>Ian Butterworth</em></p>
 <p>While <code>Pkg</code> automatically precompiles dependencies in parallel after installation, precompilation that happens at <code>using/import</code> time has previously been serial, precompiling one dependency at a time.</p>
 <p>When developing a package users can end up hitting precompilation during load time, and if code changes in developed packages are deep in the dependency tree of the package being loaded the serial precompile process can be particularly slow.</p>
 <p>1.10 introduces parallel precompilation during loading time to catch these cases and precompile faster.</p>
-<h2 id="acknowledgement"><a href="#acknowledgement">Acknowledgement</a></h2>
+<h2 id="acknowledgement"><a href="#acknowledgement" class="header-anchor">Acknowledgement</a></h2>
 <p>The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author&#40;s&#41; and do not necessarily reflect the views of the National Aeronautics and Space Administration.</p>
 </div><br><br>
 
@@ -283,7 +283,7 @@ f&#40;1&#41;</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -396,7 +396,7 @@ f&#40;1&#41;</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -412,7 +412,7 @@ f&#40;1&#41;</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

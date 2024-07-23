@@ -158,7 +158,7 @@
 <p>Recent development of high-throughput DNA sequencers has enabled to sequence massive numbers of DNA fragments &#40;known as reads&#41; from biological samples within a day.  The first step of sequence analysis is locating positions of these fragments in other long reference sequence, then we can detect genetic variants or gene expressions based on the result.  This step is called sequence mapping or aligning, and because reference sequences are most commonly genome-scale &#40;about 3.2 billions length for human&#41;, a full-text search index is used to speed up this alignment process.  This kind of full-text search index is implemented in many bioinformatics tools, most notably <a href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">bowtie2</a> and <a href="http://bio-bwa.sourceforge.net/">BWA</a>, whose papers are cited thousands of times.</p>
 <p><img src="/assets/blog/2015-10-03-sequence-analysis/mapping.png" alt="Mapping" /></p>
 <p>The main focus of my project was creating a full-text search index in Julia that is easy to use and efficient in practical applications.  In the course towards this destination, I&#39;ve created several packages that are useful as a building block for other data structures.  I&#39;m going to introduce you these packages in this post.</p>
-<h2 id="intarraysjl"><a href="#intarraysjl">IntArrays.jl</a></h2>
+<h2 id="intarraysjl"><a href="#intarraysjl" class="header-anchor">IntArrays.jl</a></h2>
 <p><a href="https://github.com/bicycle1885/IntArrays.jl">IntArrays.jl</a> is a package for arrays of unsigned integer. So, is it useful? Yes, it is&#33; This is because the <code>IntArray</code> type implemented in this package can store integers as small space as possible. The <code>IntArray</code> type has a type parameter <code>w</code> that represents the number of bits required to encode elements in an array. For example, if each element is an integer between 0 and 3, you only need to use two bits to encode it and <code>w</code> can be set to 2 or greater. These 2-bit integers are packed into a buffer and therefore the array consumes only one fourth of the space compared to the usual array. The following is a case of a byte sequence of <code>&#91;0x01, 0x03, 0x02, 0x00&#93;</code>:</p>
 
 <pre>
@@ -171,240 +171,240 @@
 
 <p>The full type definition is <code>IntArray&#123;w,T,n&#125;</code>, where <code>w</code> is the number of bits for each element as I explained, <code>T</code> is the type of elements, and <code>n</code> is the dimension of the array.  This type is a subtype of the <code>AbstractArray&#123;T,n&#125;</code> and will behave like a familiar array; allocation, random access and update are supported. <code>IntVector</code> and <code>IntMatrix</code> are also defined as type aliases like <code>Vector</code> and <code>Matrix</code>, respectively.</p>
 <p>Here is an example:</p>
-<pre><code class="language-julia">julia&gt; IntArray&#123;2,UInt8&#125;&#40;2, 3&#41;
-2x3 IntArrays.IntArray&#123;2,UInt8,2&#125;:
- 0x00  0x00  0x01
- 0x00  0x00  0x03
+<pre><code class="julia hljs">julia&gt; IntArray{<span class="hljs-number">2</span>,<span class="hljs-built_in">UInt8</span>}(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+<span class="hljs-number">2</span>x3 IntArrays.IntArray{<span class="hljs-number">2</span>,<span class="hljs-built_in">UInt8</span>,<span class="hljs-number">2</span>}:
+ <span class="hljs-number">0x00</span>  <span class="hljs-number">0x00</span>  <span class="hljs-number">0x01</span>
+ <span class="hljs-number">0x00</span>  <span class="hljs-number">0x00</span>  <span class="hljs-number">0x03</span>
 
-julia&gt; array &#61; IntVector&#123;2,UInt8&#125;&#40;6&#41;
-6-element IntArrays.IntArray&#123;2,UInt8,1&#125;:
- 0x00
- 0x00
- 0x03
- 0x03
- 0x02
- 0x00
+julia&gt; array = IntVector{<span class="hljs-number">2</span>,<span class="hljs-built_in">UInt8</span>}(<span class="hljs-number">6</span>)
+<span class="hljs-number">6</span>-element IntArrays.IntArray{<span class="hljs-number">2</span>,<span class="hljs-built_in">UInt8</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">0x00</span>
+ <span class="hljs-number">0x00</span>
+ <span class="hljs-number">0x03</span>
+ <span class="hljs-number">0x03</span>
+ <span class="hljs-number">0x02</span>
+ <span class="hljs-number">0x00</span>
 
-julia&gt; array&#91;1&#93; &#61; 0x02
-0x02
+julia&gt; array[<span class="hljs-number">1</span>] = <span class="hljs-number">0x02</span>
+<span class="hljs-number">0x02</span>
 
 julia&gt; array
-6-element IntArrays.IntArray&#123;2,UInt8,1&#125;:
- 0x02
- 0x00
- 0x03
- 0x03
- 0x02
- 0x00
+<span class="hljs-number">6</span>-element IntArrays.IntArray{<span class="hljs-number">2</span>,<span class="hljs-built_in">UInt8</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">0x02</span>
+ <span class="hljs-number">0x00</span>
+ <span class="hljs-number">0x03</span>
+ <span class="hljs-number">0x03</span>
+ <span class="hljs-number">0x02</span>
+ <span class="hljs-number">0x00</span>
 
-julia&gt; sort&#33;&#40;array&#41;
-6-element IntArrays.IntArray&#123;2,UInt8,1&#125;:
- 0x00
- 0x00
- 0x02
- 0x02
- 0x03
- 0x03</code></pre>
+julia&gt; sort!(array)
+<span class="hljs-number">6</span>-element IntArrays.IntArray{<span class="hljs-number">2</span>,<span class="hljs-built_in">UInt8</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">0x00</span>
+ <span class="hljs-number">0x00</span>
+ <span class="hljs-number">0x02</span>
+ <span class="hljs-number">0x02</span>
+ <span class="hljs-number">0x03</span>
+ <span class="hljs-number">0x03</span></code></pre>
 <p>And the memory footprint of <code>IntArray</code> is much smaller:</p>
-<pre><code class="language-julia">julia&gt; sizeof&#40;IntVector&#123;2,UInt8&#125;&#40;1_000_000&#41;&#41;
-250000
+<pre><code class="julia hljs">julia&gt; sizeof(IntVector{<span class="hljs-number">2</span>,<span class="hljs-built_in">UInt8</span>}(<span class="hljs-number">1_000_000</span>))
+<span class="hljs-number">250000</span>
 
-julia&gt; sizeof&#40;Vector&#123;UInt8&#125;&#40;1_000_000&#41;&#41;
-1000000</code></pre>
+julia&gt; sizeof(<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">UInt8</span>}(<span class="hljs-number">1_000_000</span>))
+<span class="hljs-number">1000000</span></code></pre>
 <p>Since packing and unpacking integers in a buffer require additional operations, there are overheads in operations and <code>IntArray</code> is often slower than <code>Array</code>. I&#39;ve tried to keep this discrepancy as small as possible, but the <code>IntArray</code> is about 4-5 times slower when sorting it:</p>
-<pre><code class="language-julia">julia&gt; array &#61; rand&#40;0x00:0x03, 2^24&#41;;
+<pre><code class="julia hljs">julia&gt; array = rand(<span class="hljs-number">0x00</span>:<span class="hljs-number">0x03</span>, <span class="hljs-number">2</span>^<span class="hljs-number">24</span>);
 
-julia&gt; sort&#40;array&#41;; @time sort&#40;array&#41;;
-  0.488779 seconds &#40;8 allocations: 16.000 MB&#41;
+julia&gt; sort(array); <span class="hljs-meta">@time</span> sort(array);
+  <span class="hljs-number">0.488779</span> seconds (<span class="hljs-number">8</span> allocations: <span class="hljs-number">16.000</span> MB)
 
-julia&gt; iarray &#61; IntVector&#123;2&#125;&#40;array&#41;;
+julia&gt; iarray = IntVector{<span class="hljs-number">2</span>}(array);
 
-julia&gt; sort&#40;iarray&#41;; @time sort&#40;iarray&#41;;
-  2.290878 seconds &#40;18 allocations: 4.001 MB&#41;</code></pre>
+julia&gt; sort(iarray); <span class="hljs-meta">@time</span> sort(iarray);
+  <span class="hljs-number">2.290878</span> seconds (<span class="hljs-number">18</span> allocations: <span class="hljs-number">4.001</span> MB)</code></pre>
 <p>If you have a great idea to improve the performance, please let me know&#33;</p>
-<h2 id="indexablebitvectorsjl"><a href="#indexablebitvectorsjl">IndexableBitVectors.jl</a></h2>
+<h2 id="indexablebitvectorsjl"><a href="#indexablebitvectorsjl" class="header-anchor">IndexableBitVectors.jl</a></h2>
 <p>The next package is <a href="https://github.com/BioJulia/IndexableBitVectors.jl">IndexableBitVectors.jl</a>. You must be familiar with the <code>BitVector</code> type in the standard library; types defined in my package is a static but indexable version of it. Here &quot;indexable&quot; means that a query to ask the number of bits between an arbitrary range can be answered <strong>in constant time</strong>. If you are already familiar with <a href="https://en.wikipedia.org/wiki/Succinct_data_structure">succinct data structures</a>, you may know this is an important building block of other succinct data structures like wavelet trees, LOUDS, etcetera.</p>
 <p>The package exports two variants of such bit vectors: <code>SucVector</code> and <code>RRR</code>. <code>SucVector</code> is simpler and faster than <code>RRR</code>, but <code>RRR</code> is compressible and will be smaller if 0/1 bits are localized in a bit vector. Both types split a bit vector into blocks and cache the number of bits up to the position. In <code>SucVector</code>, the extra space is about 1/4 bits per bit, so it will become ~25&#37; larger than the original bit vector.</p>
 <p>The most important query operation over these data structures would be the <code>rank1&#40;bv, i&#41;</code> query, which counts the number of 1 bits within <code>bv&#91;1:i&#93;</code>. Owing to the cached bit counts, we can finish the rank operation in constant time:</p>
-<pre><code class="language-julia">julia&gt; using IndexableBitVectors
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> IndexableBitVectors
 
-julia&gt; bv &#61; bitrand&#40;2^30&#41;;
+julia&gt; bv = bitrand(<span class="hljs-number">2</span>^<span class="hljs-number">30</span>);
 
-julia&gt; function myrank1&#40;bv, i&#41;  # count ones by loop
-           r &#61; 0
-           for j in 1:i
-               r &#43;&#61; bv&#91;j&#93;
-           end
-           return r
-       end
-myrank1 &#40;generic function with 1 method&#41;
+julia&gt; <span class="hljs-keyword">function</span> myrank1(bv, i)  <span class="hljs-comment"># count ones by loop</span>
+           r = <span class="hljs-number">0</span>
+           <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:i
+               r += bv[j]
+           <span class="hljs-keyword">end</span>
+           <span class="hljs-keyword">return</span> r
+       <span class="hljs-keyword">end</span>
+myrank1 (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
 
-julia&gt; myrank1&#40;bv, 2^29&#41;; @time myrank1&#40;bv, 2^29&#41;;
-  0.714866 seconds &#40;6 allocations: 192 bytes&#41;
+julia&gt; myrank1(bv, <span class="hljs-number">2</span>^<span class="hljs-number">29</span>); <span class="hljs-meta">@time</span> myrank1(bv, <span class="hljs-number">2</span>^<span class="hljs-number">29</span>);
+  <span class="hljs-number">0.714866</span> seconds (<span class="hljs-number">6</span> allocations: <span class="hljs-number">192</span> bytes)
 
-julia&gt; sbv &#61; SucVector&#40;bv&#41;;
+julia&gt; sbv = SucVector(bv);
 
-julia&gt; rank1&#40;sbv, 2^29&#41;; @time rank1&#40;sbv, 2^29&#41;;  # much faster&#33;
-  0.000003 seconds &#40;6 allocations: 192 bytes&#41;
+julia&gt; rank1(sbv, <span class="hljs-number">2</span>^<span class="hljs-number">29</span>); <span class="hljs-meta">@time</span> rank1(sbv, <span class="hljs-number">2</span>^<span class="hljs-number">29</span>);  <span class="hljs-comment"># much faster!</span>
+  <span class="hljs-number">0.000003</span> seconds (<span class="hljs-number">6</span> allocations: <span class="hljs-number">192</span> bytes)
 
-julia&gt; rrr &#61; RRR&#40;bv&#41;;
+julia&gt; rrr = RRR(bv);
 
-julia&gt; rank1&#40;rrr, 2^29&#41;; @time rank1&#40;rrr, 2^29&#41;;  # much faster, too&#33;
-  0.000004 seconds &#40;6 allocations: 192 bytes&#41;</code></pre>
+julia&gt; rank1(rrr, <span class="hljs-number">2</span>^<span class="hljs-number">29</span>); <span class="hljs-meta">@time</span> rank1(rrr, <span class="hljs-number">2</span>^<span class="hljs-number">29</span>);  <span class="hljs-comment"># much faster, too!</span>
+  <span class="hljs-number">0.000004</span> seconds (<span class="hljs-number">6</span> allocations: <span class="hljs-number">192</span> bytes)</code></pre>
 <p>The <code>select1&#40;bv, j&#41;</code> query is also useful in many cases, which locates the <code>j</code>-th 1 bit in the bit vector <code>bv</code>.  For example, if a set of positive integers is represented in this bit vector, you can efficiently query the <code>j</code>-th smallest member in the set.</p>
 <p>Let&#39;s see the internal representation of <code>SucVector</code> to understand the magic. A bit vector is separated into large blocks:</p>
-<pre><code class="language-julia">type SucVector &lt;: AbstractIndexableBitVector
-    blocks::Vector&#123;Block&#125;
-    len::Int
-end</code></pre>
+<pre><code class="julia hljs">type SucVector &lt;: AbstractIndexableBitVector
+    blocks::<span class="hljs-built_in">Vector</span>{Block}
+    len::<span class="hljs-built_in">Int</span>
+<span class="hljs-keyword">end</span></code></pre>
 <p>Each large block contains 256 bits and consists of four small blocks which contain 64 bits respectively, a large block stores <em>global</em> 1s&#39; count up to the starting position of it and a small block stores <em>local</em> 1s&#39; count staring from the beginning position of its parent large block.  Bits itself are stored in four bit chunks corresponding to small blocks:</p>
-<pre><code class="language-julia">immutable Block
-    # large block
-    large::UInt32
-    # small blocks
-    #   the first small block is used for 8-bit extension of the large block
-    #   hence, 40 &#40;&#61; 32 &#43; 8&#41; bits are available in total
-    smalls::NTuple&#123;4,UInt8&#125;
-    # bit chunks &#40;64bits × 4 &#61; 256bits&#41;
-    chunks::NTuple&#123;4,UInt64&#125;
-end</code></pre>
+<pre><code class="julia hljs">immutable Block
+    <span class="hljs-comment"># large block</span>
+    large::<span class="hljs-built_in">UInt32</span>
+    <span class="hljs-comment"># small blocks</span>
+    <span class="hljs-comment">#   the first small block is used for 8-bit extension of the large block</span>
+    <span class="hljs-comment">#   hence, 40 (= 32 + 8) bits are available in total</span>
+    smalls::<span class="hljs-built_in">NTuple</span>{<span class="hljs-number">4</span>,<span class="hljs-built_in">UInt8</span>}
+    <span class="hljs-comment"># bit chunks (64bits × 4 = 256bits)</span>
+    chunks::<span class="hljs-built_in">NTuple</span>{<span class="hljs-number">4</span>,<span class="hljs-built_in">UInt64</span>}
+<span class="hljs-keyword">end</span></code></pre>
 <p><img src="/assets/blog/2015-10-03-sequence-analysis/sucvector.png" alt="Block" /></p>
 <p>Since the bit count of the first small block is always zero, we can exploit this space to extend the cache of the large block &#40;red frame&#41;.  When running the <code>rank1&#40;bv, i&#41;</code> query, it first picks a large and small block pair that the <code>i</code>-th bit belongs to and then adds their cached bit counts, finally counts remaining 1 bits in a chunk on the fly.</p>
 <p>As I mentioned, this data structure can be used as a building block of various data structures. The next package I&#39;m going to introduce is one of them.</p>
-<h2 id="waveletmatricesjl"><a href="#waveletmatricesjl">WaveletMatrices.jl</a></h2>
+<h2 id="waveletmatricesjl"><a href="#waveletmatricesjl" class="header-anchor">WaveletMatrices.jl</a></h2>
 <p>You may already know about the <a href="https://en.wikipedia.org/wiki/Wavelet_Tree">wavelet tree</a>, which supports the <em>rank</em> and <em>select</em> queries like <code>SucVector</code> and <code>RRR</code>, but elements are not restricted to 0/1 bits.  In fact, the <em>rank</em> and <em>select</em> queries are available on arbitrary unsigned integers. The wavelet tree can be thought as a generalization of indexable bit vectors in this respect.  What I&#39;ve implemented is not the well-known wavelet tree, a variant of it called &quot;wavelet matrix&quot;. You can find an implementation and a link to a paper at <a href="https://github.com/BioJulia/WaveletMatrices.jl">WaveletMatrices.jl</a>. According to the authors of the paper, the wavelet matrix is &quot;simpler to build, simpler to query, and faster in practice than the levelwise wavelet tree&quot;.</p>
 <p>The <code>WaveletMatrix</code> type takes three type parameters: <code>w</code>, <code>T</code>, and <code>B</code>. <code>w</code> and <code>T</code> are analogous to those of <code>IntArray&#123;w,T,n&#125;</code>, and <code>B</code> is a type of indexable bit vector.</p>
-<pre><code class="language-julia">julia&gt; using WaveletMatrices
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> WaveletMatrices
 
-julia&gt; wm &#61; WaveletMatrix&#123;2&#125;&#40;&#91;0x00, 0x01, 0x02, 0x03&#93;&#41;
-4-element WaveletMatrices.WaveletMatrix&#123;2,UInt8,IndexableBitVectors.SucVector&#125;:
- 0x00
- 0x01
- 0x02
- 0x03
+julia&gt; wm = WaveletMatrix{<span class="hljs-number">2</span>}([<span class="hljs-number">0x00</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x03</span>])
+<span class="hljs-number">4</span>-element WaveletMatrices.WaveletMatrix{<span class="hljs-number">2</span>,<span class="hljs-built_in">UInt8</span>,IndexableBitVectors.SucVector}:
+ <span class="hljs-number">0x00</span>
+ <span class="hljs-number">0x01</span>
+ <span class="hljs-number">0x02</span>
+ <span class="hljs-number">0x03</span>
 
-julia&gt; wm&#91;3&#93;
-0x02
+julia&gt; wm[<span class="hljs-number">3</span>]
+<span class="hljs-number">0x02</span>
 
-julia&gt; rank&#40;0x02, wm, 2&#41;
-0
+julia&gt; rank(<span class="hljs-number">0x02</span>, wm, <span class="hljs-number">2</span>)
+<span class="hljs-number">0</span>
 
-julia&gt; rank&#40;0x02, wm, 3&#41;
-1
+julia&gt; rank(<span class="hljs-number">0x02</span>, wm, <span class="hljs-number">3</span>)
+<span class="hljs-number">1</span>
 
-julia&gt; xs &#61; rand&#40;0x00:0x03, 2^16&#41;;
+julia&gt; xs = rand(<span class="hljs-number">0x00</span>:<span class="hljs-number">0x03</span>, <span class="hljs-number">2</span>^<span class="hljs-number">16</span>);
 
-julia&gt; wm &#61; WaveletMatrix&#123;2&#125;&#40;xs&#41;;  # 2-bit encoding
+julia&gt; wm = WaveletMatrix{<span class="hljs-number">2</span>}(xs);  <span class="hljs-comment"># 2-bit encoding</span>
 
-julia&gt; sum&#40;xs&#91;1:2^15&#93; .&#61;&#61; 0x03&#41;
-8171
+julia&gt; sum(xs[<span class="hljs-number">1</span>:<span class="hljs-number">2</span>^<span class="hljs-number">15</span>] .== <span class="hljs-number">0x03</span>)
+<span class="hljs-number">8171</span>
 
-julia&gt; rank&#40;0x03, wm, 2^15&#41;
-8171</code></pre>
+julia&gt; rank(<span class="hljs-number">0x03</span>, wm, <span class="hljs-number">2</span>^<span class="hljs-number">15</span>)
+<span class="hljs-number">8171</span></code></pre>
 <p>The details of the data structure and algorithms are relatively simple but beyond the scope of this post. For people who are interested in this data structure, the paper I mentioned above and my implementation would be helpful. There are more operations that the wavelet matrix can run efficiently and those operations will be added in the future.</p>
-<h2 id="fmindexesjl"><a href="#fmindexesjl">FMIndexes.jl</a></h2>
+<h2 id="fmindexesjl"><a href="#fmindexesjl" class="header-anchor">FMIndexes.jl</a></h2>
 <p>80&#37; of sequence analysis in bioinformatics is about sequence search, which includes pattern search, homologous gene search, genome comparison, short-read mapping, and so on.  The <a href="https://en.wikipedia.org/wiki/FM-index">FM-Index</a> is often regarded as one of the most efficient indices for full-text search, and I&#39;ve implemented it in the <a href="https://github.com/BioJulia/FMIndexes.jl">FMIndexes.jl</a> package.  Thanks to the packages I&#39;ve introduced so far, the code of it looks really simple.  For example, counting the number of occurrences of a given pattern in a text can be written as follows &#40;slightly simplified for explanatory purpose&#41;:</p>
-<pre><code class="language-julia">function count&#40;query, index::FMIndex&#41;
-    sp, ep &#61; 1, length&#40;index&#41;
-    # backward search
-    i &#61; length&#40;query&#41;
-    while sp ≤ ep &amp;&amp; i ≥ 1
-        char &#61; convert&#40;UInt8, query&#91;i&#93;&#41;
-        c &#61; index.count&#91;char&#43;1&#93;
-        sp &#61; c &#43; rank&#40;char, index.bwt, sp - 1&#41; &#43; 1
-        ep &#61; c &#43; rank&#40;char, index.bwt, ep&#41;
-        i -&#61; 1
-    end
-    return length&#40;sp:ep&#41;
-end</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> count(query, index::FMIndex)
+    sp, ep = <span class="hljs-number">1</span>, length(index)
+    <span class="hljs-comment"># backward search</span>
+    i = length(query)
+    <span class="hljs-keyword">while</span> sp ≤ ep &amp;&amp; i ≥ <span class="hljs-number">1</span>
+        char = convert(<span class="hljs-built_in">UInt8</span>, query[i])
+        c = index.count[char+<span class="hljs-number">1</span>]
+        sp = c + rank(char, index.bwt, sp - <span class="hljs-number">1</span>) + <span class="hljs-number">1</span>
+        ep = c + rank(char, index.bwt, ep)
+        i -= <span class="hljs-number">1</span>
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> length(sp:ep)
+<span class="hljs-keyword">end</span></code></pre>
 <p>A unique property of the FM-Index is that an index itself is just a permutation of characters of an original text and counts of characters contained in it. This permutation is called <a href="https://en.wikipedia.org/wiki/Burrows&#37;E2&#37;80&#37;93Wheeler_transform">Burrows-Wheeler transform</a> &#40;also known as BWT&#41;, and the permuted text is stored in a wavelet matrix &#40;or a wavelet tree&#41; in order to efficiently count the number of characters within a specific region.  Therefore, the space required to index a text is often smaller than that of other full-text indices &#40;actually, in practice, efficiently finding positions of a query needs auxiliary data as well&#41;. Moreover, this transform is <a href="https://en.wikipedia.org/wiki/Bijection">bijective</a>, and thus the original text can be restored from an index.</p>
 <p>Building an index for full-text search is ridiculously simple: just passing a sequence to a constructor:</p>
-<pre><code class="language-julia">julia&gt; using FMIndexes
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> FMIndexes
 
-julia&gt; fmindex &#61; FMIndex&#40;&quot;abracadabra&quot;&#41;;</code></pre>
+julia&gt; fmindex = FMIndex(<span class="hljs-string">&quot;abracadabra&quot;</span>);</code></pre>
 <p>The <code>FMIndex</code> type supports two main queries: <code>count</code> and <code>locate</code>.  The <code>count&#40;query, index&#41;</code> query literally counts the number of occurrences of the <code>query</code> string and the <code>locate&#40;query, index&#41;</code> locates starting positions of the <code>query</code>.  In order to restore the original text, you can use the <code>restore</code> function.  Here is a simple usage:</p>
-<pre><code class="language-julia">julia&gt; count&#40;&quot;a&quot;, fmindex&#41;
-5
+<pre><code class="julia hljs">julia&gt; count(<span class="hljs-string">&quot;a&quot;</span>, fmindex)
+<span class="hljs-number">5</span>
 
-julia&gt; count&#40;&quot;abra&quot;, fmindex&#41;
-2
+julia&gt; count(<span class="hljs-string">&quot;abra&quot;</span>, fmindex)
+<span class="hljs-number">2</span>
 
-julia&gt; locate&#40;&quot;a&quot;, fmindex&#41; |&gt; collect
-5-element Array&#123;Any,1&#125;:
- 11
-  8
-  1
-  4
-  6
+julia&gt; locate(<span class="hljs-string">&quot;a&quot;</span>, fmindex) |&gt; collect
+<span class="hljs-number">5</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Any</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">11</span>
+  <span class="hljs-number">8</span>
+  <span class="hljs-number">1</span>
+  <span class="hljs-number">4</span>
+  <span class="hljs-number">6</span>
 
-julia&gt; locate&#40;&quot;abra&quot;, fmindex&#41; |&gt; collect
-2-element Array&#123;Any,1&#125;:
- 8
- 1
+julia&gt; locate(<span class="hljs-string">&quot;abra&quot;</span>, fmindex) |&gt; collect
+<span class="hljs-number">2</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Any</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">8</span>
+ <span class="hljs-number">1</span>
 
-julia&gt; bytestring&#40;restore&#40;fmindex&#41;&#41;
-&quot;abracadabra&quot;</code></pre>
+julia&gt; bytestring(restore(fmindex))
+<span class="hljs-string">&quot;abracadabra&quot;</span></code></pre>
 <p>As an example, for bioinformaticians, let&#39;s try several queries on a chromosome.  You also need to install the <a href="https://github.com/BioJulia/Bio.jl">Bio.jl</a> package to efficiently parse a <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> file. The next script reads a chromosome from a FASTA file, build an FM-Index, and then serialize it into a file for later use &#40;I love the serializers of Julia, they are available for free&#33;&#41;:</p>
 <p><strong>index.jl</strong></p>
-<pre><code class="language-julia">using Bio.Seq
-using IntArrays
-using FMIndexes
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Bio.Seq
+<span class="hljs-keyword">using</span> IntArrays
+<span class="hljs-keyword">using</span> FMIndexes
 
-# encode a DNA sequence with 3-bit unsigned integers;
-# this is because a reference genome has five nucleotides: A/C/G/T/N.
-function encode&#40;seq&#41;
-    encoded &#61; IntVector&#123;3,UInt8&#125;&#40;length&#40;seq&#41;&#41;
-    for i in 1:endof&#40;seq&#41;
-        encoded&#91;i&#93; &#61; convert&#40;UInt8, seq&#91;i&#93;&#41;
-    end
-    return encoded
-end
+<span class="hljs-comment"># encode a DNA sequence with 3-bit unsigned integers;</span>
+<span class="hljs-comment"># this is because a reference genome has five nucleotides: A/C/G/T/N.</span>
+<span class="hljs-keyword">function</span> encode(seq)
+    encoded = IntVector{<span class="hljs-number">3</span>,<span class="hljs-built_in">UInt8</span>}(length(seq))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:endof(seq)
+        encoded[i] = convert(<span class="hljs-built_in">UInt8</span>, seq[i])
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> encoded
+<span class="hljs-keyword">end</span>
 
-# read a chromosome from a FASTA file
-filepath &#61; ARGS&#91;1&#93;
-record &#61; first&#40;open&#40;filepath, FASTA&#41;&#41;
-println&#40;record.name, &quot;: &quot;, length&#40;record.seq&#41;, &quot;bp&quot;&#41;
-# build an FM-Index
-fmindex &#61; FMIndex&#40;encode&#40;record.seq&#41;&#41;
-# save it in a file
-open&#40;string&#40;filepath, &quot;.index&quot;&#41;, &quot;w&#43;&quot;&#41; do io
-    serialize&#40;io, fmindex&#41;
-end</code></pre>
+<span class="hljs-comment"># read a chromosome from a FASTA file</span>
+filepath = <span class="hljs-literal">ARGS</span>[<span class="hljs-number">1</span>]
+record = first(open(filepath, FASTA))
+println(record.name, <span class="hljs-string">&quot;: &quot;</span>, length(record.seq), <span class="hljs-string">&quot;bp&quot;</span>)
+<span class="hljs-comment"># build an FM-Index</span>
+fmindex = FMIndex(encode(record.seq))
+<span class="hljs-comment"># save it in a file</span>
+open(string(filepath, <span class="hljs-string">&quot;.index&quot;</span>), <span class="hljs-string">&quot;w+&quot;</span>) <span class="hljs-keyword">do</span> io
+    serialize(io, fmindex)
+<span class="hljs-keyword">end</span></code></pre>
 <p>OK, then create an index for chromosome 22 of human &#40;you can download it from <a href="https://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/">here</a>&#41;:</p>
-<pre><code class="language-julia">&#36; julia4 index.jl chr22.fa
-chr22: 50818468bp
-&#36; ls -lh chr22.fa.index
--rw-r--r--&#43; 1 kenta  staff    74M  9 26 06:30 chr22.fa.index</code></pre>
+<pre><code class="julia hljs">$ julia4 index.jl chr22.fa
+chr22: <span class="hljs-number">50818468</span>bp
+$ ls -lh chr22.fa.index
+-rw-r--r--+ <span class="hljs-number">1</span> kenta  staff    <span class="hljs-number">74</span>M  <span class="hljs-number">9</span> <span class="hljs-number">26</span> <span class="hljs-number">06</span>:<span class="hljs-number">30</span> chr22.fa.index</code></pre>
 <p>After construction finished &#40;this will take several minutes&#41;, read the index in REPL:</p>
-<pre><code class="language-julia">julia&gt; using FMIndexes
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> FMIndexes
 
-julia&gt; fmindex &#61; open&#40;deserialize, &quot;chr22.fa.index&quot;&#41;;</code></pre>
+julia&gt; fmindex = open(deserialize, <span class="hljs-string">&quot;chr22.fa.index&quot;</span>);</code></pre>
 <p>Now that you can execute queries to search a DNA fragment:</p>
-<pre><code class="language-julia">julia&gt; using Bio.Seq
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> Bio.Seq
 
-julia&gt; count&#40;dna&quot;GACTTTCAC&quot;, fmindex&#41;  # this DNA fragment hits at 111 locations
-111
+julia&gt; count(<span class="hljs-string">dna&quot;GACTTTCAC&quot;</span>, fmindex)  <span class="hljs-comment"># this DNA fragment hits at 111 locations</span>
+<span class="hljs-number">111</span>
 
-julia&gt; count&#40;dna&quot;GACTTTCACTTT&quot;, fmindex&#41;  # this hits at 3 locations
-3
+julia&gt; count(<span class="hljs-string">dna&quot;GACTTTCACTTT&quot;</span>, fmindex)  <span class="hljs-comment"># this hits at 3 locations</span>
+<span class="hljs-number">3</span>
 
-julia&gt; locate&#40;dna&quot;GACTTTCACTTT&quot;, fmindex&#41; |&gt; collect  # the loci of these hits
-3-element Array&#123;Any,1&#125;:
- 36253071
- 47308573
- 34159872
+julia&gt; locate(<span class="hljs-string">dna&quot;GACTTTCACTTT&quot;</span>, fmindex) |&gt; collect  <span class="hljs-comment"># the loci of these hits</span>
+<span class="hljs-number">3</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Any</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">36253071</span>
+ <span class="hljs-number">47308573</span>
+ <span class="hljs-number">34159872</span>
 
-julia&gt; count&#40;dna&quot;GACTTTCACTTTCCC&quot;, fmindex&#41;  # found a unique hit&#33;
-1
+julia&gt; count(<span class="hljs-string">dna&quot;GACTTTCACTTTCCC&quot;</span>, fmindex)  <span class="hljs-comment"># found a unique hit!</span>
+<span class="hljs-number">1</span>
 
-julia&gt; locate&#40;dna&quot;GACTTTCACTTTCCC&quot;, fmindex&#41; |&gt; collect
-1-element Array&#123;Any,1&#125;:
- 36253071
+julia&gt; locate(<span class="hljs-string">dna&quot;GACTTTCACTTTCCC&quot;</span>, fmindex) |&gt; collect
+<span class="hljs-number">1</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Any</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">36253071</span>
 
-julia&gt; @time locate&#40;dna&quot;GACTTTCACTTTCCC&quot;, fmindex&#41;;  # this can be located in 32 μs&#33;
-  0.000032 seconds &#40;5 allocations: 192 bytes&#41;</code></pre>
+julia&gt; <span class="hljs-meta">@time</span> locate(<span class="hljs-string">dna&quot;GACTTTCACTTTCCC&quot;</span>, fmindex);  <span class="hljs-comment"># this can be located in 32 μs!</span>
+  <span class="hljs-number">0.000032</span> seconds (<span class="hljs-number">5</span> allocations: <span class="hljs-number">192</span> bytes)</code></pre>
 <p>This locus, <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db&#61;hg38&amp;position&#61;chr22&#37;3A36253071-36253120&amp;hgsid&#61;446220019_CeC0woSUOd5ov3GLph7a6fs5Uryo">chr22:36253071</a>, is the starting position of the <em>APOL1</em> gene.</p>
-<h2 id="applications"><a href="#applications">Applications</a></h2>
+<h2 id="applications"><a href="#applications" class="header-anchor">Applications</a></h2>
 <p>My aim of having created these packages was to prove that it is practicable to implement high-performance data structures for bioinformatics in Julia.  I&#39;m pretty sure that it is true, but it may be skeptical to others.  So, I&#39;m going to prove it by writing useful and performant applications using these packages. Now I&#39;m working on <a href="https://github.com/bicycle1885/FMM.jl">FMM.jl</a>, which aligns massive amounts of DNA fragments to a genome sequence using the FM-Index and other algorithms.  This is still a work in progress, there would be many bugs and unusual cases I should care about, but its performance is not so bad compared to other implementations.</p>
 <p>The <a href="https://github.com/BioJulia">BioJulia</a> project is also under active development.  The packages I made are intended to work with the <a href="https://github.com/BioJulia/Bio.jl">Bio.jl</a> package.  If you are interested in the BioJulia project, we really welcome your contributions&#33;</p>
 </div><br><br>
@@ -413,7 +413,7 @@ julia&gt; @time locate&#40;dna&quot;GACTTTCACTTTCCC&quot;, fmindex&#41;;  # this
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -526,7 +526,7 @@ julia&gt; @time locate&#40;dna&quot;GACTTTCACTTTCCC&quot;, fmindex&#41;;  # this
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -542,7 +542,7 @@ julia&gt; @time locate&#40;dna&quot;GACTTTCACTTTCCC&quot;, fmindex&#41;;  # this
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

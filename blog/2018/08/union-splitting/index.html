@@ -152,22 +152,22 @@
 <p>Here&#39;s the background: in the old days, you had to take great care to make sure that nearly every function you wrote returned a predictable type. Experienced Julia programmers regularly reached for a tool, <code>@code_warntype</code>, to check whether code exhibited the dreaded &quot;type instability.&quot; This was code that returned &#40;as determined by Julia&#39;s inference engine&#41; objects either of type <code>Any</code> or objects of type <code>Union&#123;Type1, Type2, ...&#125;</code>. The first meant that the inference engine was unable to make any specific statements about the return type; the latter meant that inference was able to determine a specific list of possible return types. Unfortunately, the compiler wasn&#39;t particularly good at taking advantage of this partial knowledge, and so in practice either of these outcomes predictably implied very bad things for the performance of your code.</p>
 <p>Fast forward to 0.7 and 1.0, and the landscape is both &quot;the same&quot; and &quot;completely different.&quot; By this I mean that <code>Any</code> still indicates a likely problem, as the compiler can&#39;t do anything to optimize the code. But often, <code>Union&#123;Type1, Type2, ...&#125;</code> is nothing to worry about, because it causes little or no performance hit of any kind.</p>
 <p>How does this magic work? Very briefly, let&#39;s imagine you have a block of code inside a function that looks like this:</p>
-<pre><code class="language-julia">ret1 &#61; function1&#40;args...&#41;
-ret2 &#61; function2&#40;ret1, ...&#41;
-ret3 &#61; function3&#40;ret1, ret2, ...&#41;
+<pre><code class="julia hljs">ret1 = function1(args...)
+ret2 = function2(ret1, ...)
+ret3 = function3(ret1, ret2, ...)
 ...</code></pre>
 <p>Let&#39;s imagine that <code>ret1</code> can be one of two types, <code>A</code> or <code>B</code> &#40;i.e, <code>Union&#123;A,B&#125;</code>&#41;. In older versions of Julia, here&#39;s what would happen: starting after <code>function1</code>, the compiler would say &quot;I can&#39;t tell which method of <code>function2</code> should be used.&quot; So it wouldn&#39;t specialize any of the code thereafter; instead, each time this block got executed, it would take the actual type of <code>ret1</code> and start poring through the method tables,  performing type-intersection trying to find an applicable compiled version of <code>function2</code>. The computations involved in type intersection, while very well optimized, are nevertheless quite demanding, and consequently the &quot;method lookup&quot; step was quite slow &#40;especially for functions that had tens or hundreds of methods&#41;.</p>
 <p>In Julia 0.7 and 1.0, the compiler does something quite different: it automatically &#40;without any effort on your part&#41; compiles the block above to something that schematically looks like this:</p>
-<pre><code class="language-julia">ret1 &#61; function1&#40;args...&#41;    # ret1 isa Union&#123;A,B&#125;
-if ret1 isa A
-    ret2 &#61; function2_specialized_for_A&#40;ret1, ...&#41;
-    ret3 &#61; function3_specialized_for_A&#40;ret1, ret2, ...&#41;
+<pre><code class="julia hljs">ret1 = function1(args...)    <span class="hljs-comment"># ret1 isa Union{A,B}</span>
+<span class="hljs-keyword">if</span> ret1 <span class="hljs-keyword">isa</span> A
+    ret2 = function2_specialized_for_A(ret1, ...)
+    ret3 = function3_specialized_for_A(ret1, ret2, ...)
     ...
-else
-    ret2 &#61; function2_specialized_for_B&#40;ret1, ...&#41;
-    ret3 &#61; function3_specialized_for_B&#40;ret1, ret2, ...&#41;
+<span class="hljs-keyword">else</span>
+    ret2 = function2_specialized_for_B(ret1, ...)
+    ret3 = function3_specialized_for_B(ret1, ret2, ...)
     ...
-end</code></pre>
+<span class="hljs-keyword">end</span></code></pre>
 <p>The difference here is huge. While Julia can&#39;t know ahead of time the precise type of <code>ret1</code>, within the first block it definitely is of type <code>A</code> &#40;because it checked&#41;, and within the second block it is definitely of type <code>B</code> &#40;because that&#39;s the only other option&#41;. Consequently, Julia can <strong>look up the appropriate compiled methods for <code>function2</code> and <code>function3</code> at compile time rather than run time</strong>, and that allows it to be blazingly fast when you actually run it.</p>
 <p>Now, I hear some of you saying, &quot;but there&#39;s that branch in there, and branches are slow compared to many other CPU instructions.&quot; True enough. But a single branch is almost inconsequential compared to method lookup; moreover, in cases where Union-splitting gets used, it&#39;s often the case that you would have needed that branch anyway. In such cases, the cost is literally zero.</p>
 <p>To illustrate why, consider the operation <code>findfirst&#40;isequal&#40;7&#41;, A&#41;</code> for an array <code>A</code>, which formerly always returned an integer indicating the first index of <code>A</code> at which it found the value 7. One problematic case arises: what if <code>A</code> doesn&#39;t contain any 7s? Previously, we used to return 0, and the receiver had to check <code>if ret1 &#61;&#61; 0</code> to determine whether execution needed to divert to error-handling code. Consequently, in properly-written code there was no getting away from needing that branch. Worse, if you forgot to check, and <code>function2</code> didn&#39;t error when you passed it 0, then you would likely get a meaningless answer. That is far worse than getting an error, because it&#39;s much harder to track down where wrong results come from.</p>
@@ -179,7 +179,7 @@ end</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -292,7 +292,7 @@ end</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -308,7 +308,7 @@ end</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

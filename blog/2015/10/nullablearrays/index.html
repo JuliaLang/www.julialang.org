@@ -149,56 +149,56 @@
 
 <!-- Content appended here -->
 <div class="container main"><p>My project under the 2015 <a href="/jsoc/">Julia Summer of Code</a> program has been to develop the <a href="https://github.com/JuliaStats/NullableArrays.jl">NullableArrays</a> package, which provides the <code>NullableArray</code> data type and its respective interface. I first encountered Julia earlier this year as a suggestion for which language I ought to learn as a matriculating PhD student in statistics. This summer has been an incredible opportunity for me both to develop as a young programmer and to contribute to an open-source community as full of possibility as Julia&#39;s. I&#39;d be remiss not to thank <a href="https://math.mit.edu/~edelman/">Alan Edelman</a>&#39;s group at MIT, <a href="https://numfocus.org/">NumFocus</a>, and the <a href="https://www.moore.org/">Gordon &amp; Betty Moore Foundation</a> for their financial support, <a href="https://github.com/johnmyleswhite/">John Myles White</a> for his mentorship and guidance, and many others of the Julia community who have helped to contribute both to the package and to my edification as a programmer over the summer. Much of my work on this project was conducted at the <a href="https://www.recurse.com">Recurse Center</a>, where I received the support of an amazing community of self-directed learners.</p>
-<h2 id="the_nullablearray_data_structure"><a href="#the_nullablearray_data_structure">The <code>NullableArray</code> data structure</a></h2>
+<h2 id="the_nullablearray_data_structure"><a href="#the_nullablearray_data_structure" class="header-anchor">The <code>NullableArray</code> data structure</a></h2>
 <p><code>NullableArray</code>s are array structures that efficiently represent missing values without incurring the performance difficulties that face <code>DataArray</code> objects, which have heretofore been used to store data that include missing values. The core issue responsible for <code>DataArray</code>s performance woes concerns the way in which the former represent missing values, i.e. through a token <code>NA</code> object of token type <code>NAType</code>. In particular, indexing into, say, a <code>DataArray&#123;Int&#125;</code> can return an object either of type <code>Int</code> or of type <code>NAType</code>. This design does not provide sufficient information to Julia&#39;s type inference system at JIT-compilation time to support the sort of static analysis that Julia&#39;s compiler can otherwise leverage to emit efficient machine code. We can illustrate as much through following example, in which we calculate the sum of five million random <code>Float64</code>s stored in a <code>DataArray</code>:</p>
-<pre><code class="language-julia">julia&gt; using DataArrays
-# warnings suppressed…
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> DataArrays
+<span class="hljs-comment"># warnings suppressed…</span>
 
-julia&gt; A &#61; rand&#40;5_000_000&#41;;
+julia&gt; A = rand(<span class="hljs-number">5_000_000</span>);
 
-julia&gt; D &#61; DataArray&#40;A&#41;;
+julia&gt; D = DataArray(A);
 
-julia&gt; function f&#40;D::AbstractArray&#41;
-           x &#61; 0.0
-           for i in eachindex&#40;D&#41;
-               x &#43;&#61; D&#91;i&#93;
-           end
+julia&gt; <span class="hljs-keyword">function</span> f(D::<span class="hljs-built_in">AbstractArray</span>)
+           x = <span class="hljs-number">0.0</span>
+           <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(D)
+               x += D[i]
+           <span class="hljs-keyword">end</span>
            x
-       end
-f &#40;generic function with 1 method&#41;
+       <span class="hljs-keyword">end</span>
+f (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
 
-julia&gt; f&#40;D&#41;;
+julia&gt; f(D);
 
-julia&gt; @time f&#40;D&#41;
-  0.163567 seconds &#40;10.00 M allocations: 152.598 MB, 9.21&#37; gc time&#41;
-2.500102419334644e6</code></pre>
+julia&gt; <span class="hljs-meta">@time</span> f(D)
+  <span class="hljs-number">0.163567</span> seconds (<span class="hljs-number">10.00</span> M allocations: <span class="hljs-number">152.598</span> MB, <span class="hljs-number">9.21</span>% gc time)
+<span class="hljs-number">2.500102419334644e6</span></code></pre>
 <p>Looping through and summing the elements of <code>D</code> is over twenty times slower and allocates far more memory than running the same loop over <code>A</code>:</p>
-<pre><code class="language-julia">julia&gt; f&#40;A&#41;;
+<pre><code class="julia hljs">julia&gt; f(A);
 
-julia&gt; @time f&#40;A&#41;
-  0.007465 seconds &#40;5 allocations: 176 bytes&#41;
-2.500102419334644e6</code></pre>
+julia&gt; <span class="hljs-meta">@time</span> f(A)
+  <span class="hljs-number">0.007465</span> seconds (<span class="hljs-number">5</span> allocations: <span class="hljs-number">176</span> bytes)
+<span class="hljs-number">2.500102419334644e6</span></code></pre>
 <p>This is because the code generated for <code>f&#40;D&#41;</code> must assume that <code>getindex&#40;D, i&#41;</code> for an arbitrary index <code>i</code> may return an object either of type <code>Float64</code> or of type <code>NAType</code> and hence must “box” every object returned from indexing into <code>D</code>. The performance penalty incurred by this requirement is reflected in the comparison above. &#40;The interested reader can find more about these issues <a href="https://www.johnmyleswhite.com/notebook/2014/11/29/whats-wrong-with-statistics-in-julia/">here</a>.&#41;</p>
 <p>On the other hand, <code>NullableArray</code>s are designed to support the sort of static analysis used by Julia’s type inference system to generate efficient machine code. The crux of the strategy is to use a single type — <code>Nullable&#123;T&#125;</code> — to represent both missing and present values. <code>Nullable&#123;T&#125;</code> objects are specialized containers that hold precisely either one or zero values. A <code>Nullable</code> that wraps, say, <code>5</code> can be taken to represent a present value of <code>5</code>, whereas an empty <code>Nullable&#123;Int&#125;</code> can represent a missing value that, if it had been present, would have been of type <code>Int</code>. Crucially, both such objects are of the same type, i.e. <code>Nullable&#123;Int&#125;</code>. Interested readers can hear a bit more on these design considerations in my <a href="https://www.youtube.com/watch?v&#61;2v5k28F80BQ">JuliaCon 2015 lighting talk</a>.</p>
 <p>Here is the result of running the same loop over a comparable <code>NullableArray</code>:</p>
-<pre><code class="language-julia">julia&gt; using NullableArrays
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> NullableArrays
 
-julia&gt; X &#61; NullableArray&#40;A&#41;;
+julia&gt; X = NullableArray(A);
 
-julia&gt; function f&#40;X::NullableArray&#41;
-           x &#61; Nullable&#40;0.0&#41;
-           for i in eachindex&#40;X&#41;
-               x &#43;&#61; X&#91;i&#93;
-           end
+julia&gt; <span class="hljs-keyword">function</span> f(X::NullableArray)
+           x = Nullable(<span class="hljs-number">0.0</span>)
+           <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(X)
+               x += X[i]
+           <span class="hljs-keyword">end</span>
            x
-       end
-f &#40;generic function with 1 method&#41;
+       <span class="hljs-keyword">end</span>
+f (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
 
-julia&gt; f&#40;X&#41;;
+julia&gt; f(X);
 
-julia&gt; @time f&#40;X&#41;
-  0.009812 seconds &#40;5 allocations: 192 bytes&#41;
-Nullable&#40;2.500102419334644e6&#41;</code></pre>
+julia&gt; <span class="hljs-meta">@time</span> f(X)
+  <span class="hljs-number">0.009812</span> seconds (<span class="hljs-number">5</span> allocations: <span class="hljs-number">192</span> bytes)
+Nullable(<span class="hljs-number">2.500102419334644e6</span>)</code></pre>
 <p>As can be seen, naively looping over a <code>NullableArray</code> is on the same order of magnitude as naively looping over a regular <code>Array</code> in terms of both time elapsed and memory allocated. Below is a set of plots &#40;drawn with <a href="https://github.com/dcjones/Gadfly.jl">Gadfly.jl</a>&#41; that visualize the results of running 20 benchmark samples of <code>f</code> over both <code>NullableArray</code> and <code>DataArray</code> arguments each consisting of 5,000,000 random <code>Float64</code> values and containing either zero null entries or approximately half randomly chosen null entries.</p>
 <p><img src="/assets/blog/2015-10-03-nullablearrays-images/f_plot.png" alt="" /></p>
 <p>Of course, it is possible to bring the performance of such a loop over a <code>DataArray</code> up to par with that of a loop over an <code>Array</code>. But such optimizations generally introduce additional complexity that oughtn’t to be required to achieve acceptable performance in such a simple task. Considerably more complex code can be required to achieve performance in more involved implementations, such as that of <code>broadcast&#33;</code>. We intend for <code>NullableArray</code>s to to perform well under involved tasks involving missing data while requiring as little interaction with <code>NullableArray</code> internals as possible. This includes allowing users to leverage extant implementations without sacrificing performance. Consider for instance the results of relying on Base’s implementation of <code>broadcast&#33;</code> for <code>DataArray</code> and <code>NullableArray</code> arguments &#40;i.e., having omitted the respective <code>src/broadcast.jl</code> from each package’s source code&#41;. Below are plots that visualize the results of running 20 benchmark samples of <code>broadcast&#33;&#40;dest, src1, src2&#41;</code>, where <code>dest</code> and <code>src2</code> are <code>5_000_000 x 2</code> <code>Array</code>s, <code>NullableArray</code>s or <code>DataArray</code>s, and <code>src1</code> is a <code>5_000_000 x 1</code> <code>Array</code>, <code>NullableArray</code> or <code>DataArray</code>. As above, the <code>NullableArray</code> and <code>DataArray</code> arguments are tested in cases with either zero or approximately half null entries:</p>
@@ -206,42 +206,42 @@ Nullable&#40;2.500102419334644e6&#41;</code></pre>
 <p>We have designed the <code>NullableArray</code> type to feel as much like a regular <code>Array</code> as possible. However, that <code>NullableArray</code>s return <code>Nullable</code> objects is a significant departure from both <code>Array</code> and <code>DataArray</code> behavior. Arguably the most important issue is to support user-defined functions that lack methods for <code>Nullable</code> arguments as they interact with <code>Nullable</code> and <code>NullableArray</code> objects. Throughout my project I have also worked to develop interfaces that make dealing with <code>Nullable</code> objects user-friendly and safe.</p>
 <p>Given a method <code>f</code> defined on an argument signature of types <code>&#40;U1, U2, …, UN&#41;</code>, we would like to provide an accessible, safe and performant way for a user to call <code>f</code> on an argument of signature <code>&#40;Nullable&#123;U1&#125;, Nullable&#123;U2&#125;, …, Nullable&#123;UN&#125;&#41;</code> without having to extend <code>f</code> herself. Doing so should return <code>Nullable&#40;f&#40;get&#40;u1&#41;, get&#40;u1&#41;, …, get&#40;un&#41;&#41;&#41;</code> if each argument is non-null, and should return an empty <code>Nullable</code> if any argument is null. Systematically extending an arbitrary method <code>f</code> over <code>Nullable</code> argument signatures is often referred to as “lifting” <code>f</code> over the <code>Nullable</code> arguments.</p>
 <p>NullableArrays offers keyword arguments for certain methods such as <code>broadcast</code> and <code>map</code> that direct the latter methods to lift passed function arguments over <code>NullableArray</code> arguments:</p>
-<pre><code class="language-julia">julia&gt; X &#61; NullableArray&#40;collect&#40;1:10&#41;, rand&#40;Bool, 10&#41;&#41;
-10-element NullableArray&#123;Int64,1&#125;:
- #NULL
- #NULL
- #NULL
-     4
-     5
-     6
-     7
-     8
- #NULL
-    10
+<pre><code class="julia hljs">julia&gt; X = NullableArray(collect(<span class="hljs-number">1</span>:<span class="hljs-number">10</span>), rand(<span class="hljs-built_in">Bool</span>, <span class="hljs-number">10</span>))
+<span class="hljs-number">10</span>-element NullableArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-comment">#NULL</span>
+ <span class="hljs-comment">#NULL</span>
+ <span class="hljs-comment">#NULL</span>
+     <span class="hljs-number">4</span>
+     <span class="hljs-number">5</span>
+     <span class="hljs-number">6</span>
+     <span class="hljs-number">7</span>
+     <span class="hljs-number">8</span>
+ <span class="hljs-comment">#NULL</span>
+    <span class="hljs-number">10</span>
 
-julia&gt; f&#40;x::Int&#41; &#61; 2x
-f &#40;generic function with 2 methods&#41;
+julia&gt; f(x::<span class="hljs-built_in">Int</span>) = <span class="hljs-number">2</span>x
+f (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">2</span> methods)
 
-julia&gt; map&#40;f, X&#41;
-ERROR: MethodError: &#96;f&#96; has no method matching f&#40;::Nullable&#123;Int64&#125;&#41;
+julia&gt; map(f, X)
+ERROR: <span class="hljs-built_in">MethodError</span>: <span class="hljs-string">`f`</span> has no method matching f(::Nullable{<span class="hljs-built_in">Int64</span>})
 Closest candidates are:
-  f&#40;::Any, ::Any&#41;
- &#91;inlined code&#93; from /Users/David/.julia/v0.4/NullableArrays/src/map.jl:93
- in _F_ at /Users/David/.julia/v0.4/NullableArrays/src/map.jl:124
- in map at /Users/David/.julia/v0.4/NullableArrays/src/map.jl:172
+  f(::<span class="hljs-built_in">Any</span>, ::<span class="hljs-built_in">Any</span>)
+ [inlined code] from /Users/David/.julia/v0<span class="hljs-number">.4</span>/NullableArrays/src/map.jl:<span class="hljs-number">93</span>
+ <span class="hljs-keyword">in</span> _F_ at /Users/David/.julia/v0<span class="hljs-number">.4</span>/NullableArrays/src/map.jl:<span class="hljs-number">124</span>
+ <span class="hljs-keyword">in</span> map at /Users/David/.julia/v0<span class="hljs-number">.4</span>/NullableArrays/src/map.jl:<span class="hljs-number">172</span>
 
-julia&gt; map&#40;f, X; lift&#61;true&#41;
-10-element NullableArray&#123;Int64,1&#125;:
- #NULL
- #NULL
- #NULL
-     8
-    10
-    12
-    14
-    16
- #NULL
-    20</code></pre>
+julia&gt; map(f, X; lift=<span class="hljs-literal">true</span>)
+<span class="hljs-number">10</span>-element NullableArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-comment">#NULL</span>
+ <span class="hljs-comment">#NULL</span>
+ <span class="hljs-comment">#NULL</span>
+     <span class="hljs-number">8</span>
+    <span class="hljs-number">10</span>
+    <span class="hljs-number">12</span>
+    <span class="hljs-number">14</span>
+    <span class="hljs-number">16</span>
+ <span class="hljs-comment">#NULL</span>
+    <span class="hljs-number">20</span></code></pre>
 <p>I also plan to release shortly a small package that will offer a more flexible “lift” macro, which will be able to lift function calls over <code>Nullable</code> arguments within a variety of expression types.</p>
 <p>We hope that the new NullableArrays package will help to support not only Julia’s statistical computing ecosystem as it moves forward but also any endeavor that requires an efficient, developed interface for handling arrays of <code>Nullable</code> objects. Please do try the package, submit feature requests, report bugs, and, if you’re interested, submit a PR or two. Happy coding&#33;</p>
 </div><br><br>
@@ -250,7 +250,7 @@ julia&gt; map&#40;f, X; lift&#61;true&#41;
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -363,7 +363,7 @@ julia&gt; map&#40;f, X; lift&#61;true&#41;
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -379,7 +379,7 @@ julia&gt; map&#40;f, X; lift&#61;true&#41;
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

@@ -151,11 +151,11 @@
 <!-- Content appended here -->
 <div class="container main"><p>This is a writeup of my project for the Google Summer of Code 2017. The associated repository contains examples of estimating various models. In addition to this repository, I have collaborated in <a href="https://github.com/tpapp/HamiltonianABC.jl/">HamiltonianABC</a> and its branches as part of the GSOC 2017. See also <a href="https://github.com/DoriszAlbrecht/Bayesian_Examples.jl">Bayesian_Examples.jl</a>.</p>
 <div class="franklin-toc"><ol><li><a href="#gsoc_2017_project_hamiltonian_monte_carlo_and_pseudo-bayesian_indirect_likelihood">GSOC 2017 project: Hamiltonian Monte Carlo and pseudo-Bayesian Indirect Likelihood</a></li><li><a href="#parametric_bayesian_indirect_likelihood_for_the_full_data">Parametric Bayesian Indirect Likelihood for the Full Data</a></li><li><a href="#first_stage_of_my_project">First stage of my project</a></li><li><a href="#second_stage_of_my_project">Second stage of my project</a></li><li><a href="#stochastic_volatility_model">Stochastic Volatility model</a></li><li><a href="#problems_that_i_have_faced_during_gsoc">Problems that I have faced during GSOC</a><ol><li><a href="#1_difficult_auxiliary_model">1 Difficult auxiliary model</a></li><li><a href="#2_type-stability_issues">2 Type-stability issues</a></li></ol></li><li><a href="#future_work">Future work</a></li><li><a href="#references">References</a></li></ol></div>
-<h2 id="gsoc_2017_project_hamiltonian_monte_carlo_and_pseudo-bayesian_indirect_likelihood"><a href="#gsoc_2017_project_hamiltonian_monte_carlo_and_pseudo-bayesian_indirect_likelihood">GSOC 2017 project: Hamiltonian Monte Carlo and pseudo-Bayesian Indirect Likelihood</a></h2>
+<h2 id="gsoc_2017_project_hamiltonian_monte_carlo_and_pseudo-bayesian_indirect_likelihood"><a href="#gsoc_2017_project_hamiltonian_monte_carlo_and_pseudo-bayesian_indirect_likelihood" class="header-anchor">GSOC 2017 project: Hamiltonian Monte Carlo and pseudo-Bayesian Indirect Likelihood</a></h2>
 <p>This summer I have had the opportunity to participate in the Google Summer of Code program. My project was in the Julia language and the main goal was to implement Indirect Inference &#40;A. A. Smith 1993; A. Smith 2008&#41; to overcome the typically arising issues &#40;such as intractable or costly to compute likelihoods&#41; when estimating models using likelihood-based methods. Hamiltonian Monte Carlo was expected to result in a more efficient sampling process.</p>
 <p>Under the mentorship of Tamás K. Papp, I completed a major revision of Bayesian estimation methods using Indirect Inference &#40;II&#41; and Hamiltonian Monte Carlo. I also got familiar with using git, opening issues, creating a repository among others.</p>
 <p>Here I introduce the methods with a bit of context, and discuss an example more extensively.</p>
-<h2 id="parametric_bayesian_indirect_likelihood_for_the_full_data"><a href="#parametric_bayesian_indirect_likelihood_for_the_full_data">Parametric Bayesian Indirect Likelihood for the Full Data</a></h2>
+<h2 id="parametric_bayesian_indirect_likelihood_for_the_full_data"><a href="#parametric_bayesian_indirect_likelihood_for_the_full_data" class="header-anchor">Parametric Bayesian Indirect Likelihood for the Full Data</a></h2>
 <p>Usually when we face an intractable likelihood or a likelihood that would be extremely costly to calculate, we have the option to use an alternative auxiliary model to extract and estimate the parameters of interest. These alternative models should be easier to deal with. Drovandi et al. reviews a collection of parametric Bayesian Indirect Inference &#40;pBII&#41; methods, I focused on the parametric Bayesian Indirect Likelihood for the Full Data &#40;pdBIL&#41; method proposed by Gallant and McCulloch &#40;2009&#41;. The pdBIL uses the likelihood of the auxiliary model as a substitute for the intractable likelihood. The pdBIL does not compare summary statistics, instead works in the following way:</p>
 <p>First the data is generated, once we have the data, we can estimate the parameters of the auxiliary model. Then, the estimated parameters are put into the auxiliary likelihood with the observed/generated data. Afterwards we can use this likelihood in our chosen Bayesian method i.e. MCMC.</p>
 <p>To summarize the method, first we have the parameter vector <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span> and the observed data y. We would like to calculate the likelihood of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">ℓ</mi><mo stretchy="false">(</mo><mi>θ</mi><mi mathvariant="normal">∣</mi><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\ell(\theta|y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">ℓ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>, but it is intractable or costly to compute. In this case, with pdBIL we have to find an auxiliary model &#40;A&#41; that we use to approximate the true likelihood in the following way:</p>
@@ -170,11 +170,11 @@
 <li><p>Under these parameters <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">ϕ</span></span></span></span>, we can now compute the likelihood of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>y</mi><mi mathvariant="normal">∣</mi><mi>ϕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\ell_{A}(y|\phi)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">ℓ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord">∣</span><span class="mord mathdefault">ϕ</span><span class="mclose">)</span></span></span></span>. It is desirable to have the auxiliary likelihood as close to the true likelihood as possible, in the sense of capturing relevant aspects of the model and the generated data.</p>
 </li>
 </ul>
-<h2 id="first_stage_of_my_project"><a href="#first_stage_of_my_project">First stage of my project</a></h2>
+<h2 id="first_stage_of_my_project"><a href="#first_stage_of_my_project" class="header-anchor">First stage of my project</a></h2>
 <p>In the first stage of my project I coded two models from Drovandi et al. using pdBIL. After calculating the likelihood of the auxiliary model, I used a Random Walk Metropolis-Hastings MCMC to sample from the target distribution, resulting in <a href="https://github.com/tpapp/HamiltonianABC.jl/tree/dorisz-toy-models">Toy models</a>. In this stage of the project, the methods I used were well-known. The purpose of the replication of the toy models from Drovandi et al. was to find out what issues we might face later on and to come up with a usable interface. This stage resulted in <a href="https://github.com/tpapp/HamiltonianABC.jl/">HamiltonianABC</a> &#40;collaboration with Tamás K. Papp&#41;.</p>
-<h2 id="second_stage_of_my_project"><a href="#second_stage_of_my_project">Second stage of my project</a></h2>
+<h2 id="second_stage_of_my_project"><a href="#second_stage_of_my_project" class="header-anchor">Second stage of my project</a></h2>
 <p>After the first stage, I worked through Betancourt &#40;2017&#41; and did a code revision for Tamás K. Papp&#39;s <a href="https://github.com/tpapp/DynamicHMC.jl">DynamicHMC.jl</a> which consisted of checking the code and its comparison with the paper. In addition to using the Hamiltonian Monte Carlo method, the usage of the forward mode automatic differentiation of the ForwardDiff package was the other main factor of this stage. The novelty of this project was to find a way to fit every component together in a way to get an efficient estimation out of it. The biggest issue was to define type-stable functions such that to accelerate the sampling process.</p>
-<h2 id="stochastic_volatility_model"><a href="#stochastic_volatility_model">Stochastic Volatility model</a></h2>
+<h2 id="stochastic_volatility_model"><a href="#stochastic_volatility_model" class="header-anchor">Stochastic Volatility model</a></h2>
 <p>After the second stage, I coded economic models for the <a href="https://github.com/tpapp/DynamicHMC.jl">DynamicHMC.jl</a>. The Stochastic Volatility model is one of them. In the following section, I will go through the set up.</p>
 <p>The continuous-time version of the Ornstein-Ulenbeck Stochastic - volatility model describes how the return at time t has mean zero and its volatility is governed by a continuous-time Ornstein-Ulenbeck process of its variance. The big fluctuation of the value of a financial product imply a varying volatility process. That is why we need stochastic elements in the model. As we can access data only in discrete time, it is natural to take the discretization of the model.</p>
 <p>The discrete-time version of the Ornstein-Ulenbeck Stochastic - volatility model:</p>
@@ -182,106 +182,106 @@
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>t</mi></msub><mo>=</mo><mi>ρ</mi><mo>∗</mo><msub><mi>x</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mi>σ</mi><mo>∗</mo><msub><mi>ν</mi><mi>t</mi></msub><mspace width="1em"/><mtext>where</mtext><mspace width="1em"/><msub><mi>ν</mi><mi>t</mi></msub><mo>∼</mo><mi mathvariant="script">N</mi><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{t} = \rho * x_{t-1} + \sigma * \nu_{t}  \quad \text{where}\quad \nu_{t} ∼ \mathcal N(0, 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.6597200000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">ρ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.791661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.06366em;">ν</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.06366em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">where</span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.06366em;">ν</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.06366em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.14736em;">N</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span>
 <p>The discrete-time version was used as the data-generating process. Where <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">y_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> denotes the logarithm of return, <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">x_{t}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the logarithm of variance, while <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϵ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\epsilon_{t}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">ϵ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ν</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\nu_{t}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.06366em;">ν</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.06366em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> are unobserved noise terms.</p>
 <p>For the auxiliary model, we used two regressions. The first regression was an AR&#40;2&#41; process on the first differences, the second was also an AR&#40;2&#41; process on the original variables in order to capture the levels.</p>
-<pre><code class="language-julia">&quot;&quot;&quot;
-    lag_matrix&#40;xs, ns, K &#61; maximum&#40;ns&#41;&#41;
+<pre><code class="julia hljs"><span class="hljs-string">&quot;&quot;&quot;
+    lag_matrix(xs, ns, K = maximum(ns))
 
 Matrix with differently lagged xs.
-&quot;&quot;&quot;
-function lag_matrix&#40;xs, ns, K &#61; maximum&#40;ns&#41;&#41;
-    M &#61; Matrix&#123;eltype&#40;xs&#41;&#125;&#40;length&#40;xs&#41;-K, maximum&#40;ns&#41;&#41;
-    for i ∈ ns
-        M&#91;:, i&#93; &#61; lag&#40;xs, i, K&#41;
-    end
+&quot;&quot;&quot;</span>
+<span class="hljs-keyword">function</span> lag_matrix(xs, ns, K = maximum(ns))
+    M = <span class="hljs-built_in">Matrix</span>{eltype(xs)}(length(xs)-K, maximum(ns))
+    <span class="hljs-keyword">for</span> i ∈ ns
+        M[:, i] = lag(xs, i, K)
+    <span class="hljs-keyword">end</span>
     M
-end
+<span class="hljs-keyword">end</span>
 
-&quot;first auxiliary regression y, X, meant to capture first differences&quot;
-function yX1&#40;zs, K&#41;
-    Δs &#61; diff&#40;zs&#41;
-    lag&#40;Δs, 0, K&#41;, hcat&#40;lag_matrix&#40;Δs, 1:K, K&#41;, ones&#40;eltype&#40;zs&#41;, length&#40;Δs&#41;-K&#41;, lag&#40;zs, 1, K&#43;1&#41;&#41;
-end
+<span class="hljs-string">&quot;first auxiliary regression y, X, meant to capture first differences&quot;</span>
+<span class="hljs-keyword">function</span> yX1(zs, K)
+    Δs = diff(zs)
+    lag(Δs, <span class="hljs-number">0</span>, K), hcat(lag_matrix(Δs, <span class="hljs-number">1</span>:K, K), ones(eltype(zs), length(Δs)-K), lag(zs, <span class="hljs-number">1</span>, K+<span class="hljs-number">1</span>))
+<span class="hljs-keyword">end</span>
 
-&quot;second auxiliary regression y, X, meant to capture levels&quot;
-function yX2&#40;zs, K&#41;
-    lag&#40;zs, 0, K&#41;, hcat&#40;ones&#40;eltype&#40;zs&#41;, length&#40;zs&#41;-K&#41;, lag_matrix&#40;zs, 1:K, K&#41;&#41;
-end</code></pre>
+<span class="hljs-string">&quot;second auxiliary regression y, X, meant to capture levels&quot;</span>
+<span class="hljs-keyword">function</span> yX2(zs, K)
+    lag(zs, <span class="hljs-number">0</span>, K), hcat(ones(eltype(zs), length(zs)-K), lag_matrix(zs, <span class="hljs-number">1</span>:K, K))
+<span class="hljs-keyword">end</span></code></pre>
 <p>The AR&#40;2&#41; process of the first differences can be summarized by:</p>
 <p>Given a series Y, it is the first difference of the first difference. The so called &quot;change in the change&quot; of Y at time t. The second difference of a discrete function can be interpreted as the second derivative of a continuous function, which is the &quot;acceleration&quot; of the function at a point in time t. In this model, we want to capture the &quot;acceleration&quot; of the logarithm of return.</p>
 <p>The AR&#40;2&#41; process of the original variables is needed to capture the effect of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\rho</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">ρ</span></span></span></span>. It turned out that the impact of ρ was rather weak in the AR&#40;2&#41; process of the first differences . That is why we need a second auxiliary model.</p>
 <p>I will now describe the required steps for the estimation of the parameters of interest in the stochastic volatility model with the Dynamic Hamiltonian Monte Carlo method. First we need a callable Julia object which gives back the logdensity and the gradient in DiffResult type. After that, we write a function that computes the density, then we calculate its gradient using the ForwardDiff package in a wrapper function.</p>
 <p>Required packages for the StochasticVolatility model:</p>
-<pre><code class="language-julia">using ArgCheck
-using Distributions
-using Parameters
-using DynamicHMC
-using StatsBase
-using Base.Test
-using ContinuousTransformations
-using DiffWrappers
-import Distributions: Uniform, InverseGamma</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> ArgCheck
+<span class="hljs-keyword">using</span> Distributions
+<span class="hljs-keyword">using</span> Parameters
+<span class="hljs-keyword">using</span> DynamicHMC
+<span class="hljs-keyword">using</span> StatsBase
+<span class="hljs-keyword">using</span> Base.Test
+<span class="hljs-keyword">using</span> ContinuousTransformations
+<span class="hljs-keyword">using</span> DiffWrappers
+<span class="hljs-keyword">import</span> Distributions: Uniform, InverseGamma</code></pre>
 <ul>
 <li><p>First, we define a structure. This structure should contain the observed data, the priors, the shocks and the transformation performed on the parameters, but the components may vary depending on the estimated model.</p>
 </li>
 </ul>
-<pre><code class="language-julia">struct StochasticVolatility&#123;T, Prior_ρ, Prior_σ, Ttrans&#125;
-    &quot;observed data&quot;
-    ys::Vector&#123;T&#125;
-    &quot;prior for ρ &#40;persistence&#41;&quot;
+<pre><code class="julia hljs"><span class="hljs-keyword">struct</span> StochasticVolatility{T, Prior_ρ, Prior_σ, Ttrans}
+    <span class="hljs-string">&quot;observed data&quot;</span>
+    ys::<span class="hljs-built_in">Vector</span>{T}
+    <span class="hljs-string">&quot;prior for ρ (persistence)&quot;</span>
     prior_ρ::Prior_ρ
-    &quot;prior for σ_v &#40;volatility of volatility&#41;&quot;
+    <span class="hljs-string">&quot;prior for σ_v (volatility of volatility)&quot;</span>
     prior_σ::Prior_σ
-    &quot;χ^2 draws for simulation&quot;
-    ϵ::Vector&#123;T&#125;
-    &quot;Normal&#40;0,1&#41; draws for simulation&quot;
-    ν::Vector&#123;T&#125;
-    &quot;Transformations cached&quot;
+    <span class="hljs-string">&quot;χ^2 draws for simulation&quot;</span>
+    ϵ::<span class="hljs-built_in">Vector</span>{T}
+    <span class="hljs-string">&quot;Normal(0,1) draws for simulation&quot;</span>
+    ν::<span class="hljs-built_in">Vector</span>{T}
+    <span class="hljs-string">&quot;Transformations cached&quot;</span>
     transformation::Ttrans
-end</code></pre>
+<span class="hljs-keyword">end</span></code></pre>
 <p>After specifying the data generating function and a couple of facilitator and additional functions for the particular model &#40;whole module can be found in <em>src</em> folder&#41;, we can make the model structure callable, returning the log density. The logjac is needed because of the transformation we make on the parameters.</p>
-<pre><code class="language-julia">function &#40;pp::StochasticVolatility&#41;&#40;θ&#41;
-    @unpack ys, prior_ρ, prior_σ, ν, ϵ, transformation &#61; pp
-    ρ, σ &#61; transformation&#40;θ&#41;
-    logprior &#61; logpdf&#40;prior_ρ, ρ&#41; &#43; logpdf&#40;prior_σ, σ&#41;
-    N &#61; length&#40;ϵ&#41;
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> (pp::StochasticVolatility)(θ)
+    <span class="hljs-meta">@unpack</span> ys, prior_ρ, prior_σ, ν, ϵ, transformation = pp
+    ρ, σ = transformation(θ)
+    logprior = logpdf(prior_ρ, ρ) + logpdf(prior_σ, σ)
+    N = length(ϵ)
 
-    # Generating xs, which is the latent volatility process
+    <span class="hljs-comment"># Generating xs, which is the latent volatility process</span>
 
-    xs &#61; simulate_stochastic&#40;ρ, σ, ϵ, ν&#41;
-    Y_1, X_1 &#61; yX1&#40;xs, 2&#41;
-    β₁ &#61; qrfact&#40;X_1, Val&#123;true&#125;&#41; \ Y_1
-    v₁ &#61; mean&#40;abs2,  Y_1 - X_1*β₁&#41;
-    Y_2, X_2 &#61; yX2&#40;xs, 2&#41;
-    β₂ &#61; qrfact&#40;X_2, Val&#123;true&#125;&#41; \ Y_2
-    v₂ &#61; mean&#40;abs2,  Y_2 - X_2*β₂&#41;
-    # We work with first differences
-    y₁, X₁ &#61; yX1&#40;ys, 2&#41;
-    log_likelihood1 &#61; sum&#40;logpdf.&#40;Normal&#40;0, √v₁&#41;, y₁ - X₁ * β₁&#41;&#41;
-    y₂, X₂ &#61; yX2&#40;ys, 2&#41;
-    log_likelihood2 &#61; sum&#40;logpdf.&#40;Normal&#40;0, √v₂&#41;, y₂ - X₂ * β₂&#41;&#41;
-    logprior &#43; log_likelihood1 &#43; log_likelihood2 &#43; logjac&#40;transformation, θ&#41;
-end</code></pre>
+    xs = simulate_stochastic(ρ, σ, ϵ, ν)
+    Y_1, X_1 = yX1(xs, <span class="hljs-number">2</span>)
+    β₁ = qrfact(X_1, <span class="hljs-built_in">Val</span>{<span class="hljs-literal">true</span>}) \ Y_1
+    v₁ = mean(abs2,  Y_1 - X_1*β₁)
+    Y_2, X_2 = yX2(xs, <span class="hljs-number">2</span>)
+    β₂ = qrfact(X_2, <span class="hljs-built_in">Val</span>{<span class="hljs-literal">true</span>}) \ Y_2
+    v₂ = mean(abs2,  Y_2 - X_2*β₂)
+    <span class="hljs-comment"># We work with first differences</span>
+    y₁, X₁ = yX1(ys, <span class="hljs-number">2</span>)
+    log_likelihood1 = sum(logpdf.(Normal(<span class="hljs-number">0</span>, √v₁), y₁ - X₁ * β₁))
+    y₂, X₂ = yX2(ys, <span class="hljs-number">2</span>)
+    log_likelihood2 = sum(logpdf.(Normal(<span class="hljs-number">0</span>, √v₂), y₂ - X₂ * β₂))
+    logprior + log_likelihood1 + log_likelihood2 + logjac(transformation, θ)
+<span class="hljs-keyword">end</span></code></pre>
 <p>We need the transformations because the parameters are in the proper subset of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="normal">ℜ</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\Re^{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord">ℜ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span></span>, but we want to use <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="normal">ℜ</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\Re^{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord">ℜ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span></span>. The ContinuousTransformation package is used for the transformations. We save the transformations such that the callable object stays type-stable which makes the process faster.</p>
 <p><span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ν</mi></mrow><annotation encoding="application/x-tex">\nu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.06366em;">ν</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ϵ</span></span></span></span> are random variables which we use after the transformation to simulate observation points. This way the simulated variables are continuous in the parameters and the posterior is differentiable.</p>
 <p>Given the defined functions, we can now start the estimation and sampling process:</p>
-<pre><code class="language-julia">RNG &#61; Base.Random.GLOBAL_RNG
-# true parameters and observed data
-ρ &#61; 0.8
-σ &#61; 0.6
-y &#61; simulate_stochastic&#40;ρ, σ, 10000&#41;
-# setting up the model
-model &#61; StochasticVolatility&#40;y, Uniform&#40;-1, 1&#41;, InverseGamma&#40;1, 1&#41;, 10000&#41;
-# we start the estimation process from the true values
-θ₀ &#61; inverse&#40;model.transformation, &#40;ρ, σ&#41;&#41;
-# wrap for gradient calculations
-fgw &#61; ForwardGradientWrapper&#40;model, θ₀&#41;
-# sampling
-sample, tuned_sampler &#61; NUTS_tune_and_mcmc&#40;RNG, fgw, 5000; q &#61; θ₀&#41;</code></pre>
+<pre><code class="julia hljs">RNG = Base.Random.GLOBAL_RNG
+<span class="hljs-comment"># true parameters and observed data</span>
+ρ = <span class="hljs-number">0.8</span>
+σ = <span class="hljs-number">0.6</span>
+y = simulate_stochastic(ρ, σ, <span class="hljs-number">10000</span>)
+<span class="hljs-comment"># setting up the model</span>
+model = StochasticVolatility(y, Uniform(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), InverseGamma(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), <span class="hljs-number">10000</span>)
+<span class="hljs-comment"># we start the estimation process from the true values</span>
+θ₀ = inverse(model.transformation, (ρ, σ))
+<span class="hljs-comment"># wrap for gradient calculations</span>
+fgw = ForwardGradientWrapper(model, θ₀)
+<span class="hljs-comment"># sampling</span>
+sample, tuned_sampler = NUTS_tune_and_mcmc(RNG, fgw, <span class="hljs-number">5000</span>; q = θ₀)</code></pre>
 <p>The following graphs show the results for the parameters:</p>
 <p><img src="/assets/blog/2017-09-19-Hamiltonian-Indirect-Inference/rho_plot.png" alt="rho_plot" /></p>
 <p><img src="/assets/blog/2017-09-19-Hamiltonian-Indirect-Inference/sigma_plot.png" alt="sigma_plot" /></p>
 <p>Analysing the graphs above, we can say that the posterior values are in rather close to the true values. Also worth mentioning that the priors do not affect the posterior values.</p>
-<h2 id="problems_that_i_have_faced_during_gsoc"><a href="#problems_that_i_have_faced_during_gsoc">Problems that I have faced during GSOC</a></h2>
-<h3 id="1_difficult_auxiliary_model"><a href="#1_difficult_auxiliary_model">1 Difficult auxiliary model</a></h3>
+<h2 id="problems_that_i_have_faced_during_gsoc"><a href="#problems_that_i_have_faced_during_gsoc" class="header-anchor">Problems that I have faced during GSOC</a></h2>
+<h3 id="1_difficult_auxiliary_model"><a href="#1_difficult_auxiliary_model" class="header-anchor">1 Difficult auxiliary model</a></h3>
 <ul>
 <li><p>The true model was the g-and-k quantile function described by Rayner and MacGillivray &#40;2002&#41;.</p>
 </li>
@@ -290,36 +290,36 @@ sample, tuned_sampler &#61; NUTS_tune_and_mcmc&#40;RNG, fgw, 5000; q &#61; θ₀
 </ul>
 <p>We faced serious problems with this model.</p>
 <p>First of all, I coded the MLE of the finite component normal mixture model, which computes the means, variances and weights of the normals given the observed data and the desired number of mixtures. With the g-and-k quantile function, I experienced the so called &quot;isolation&quot;, which means that one observation point is an outlier getting weight 1, the other observed points get weight <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>, which results in variance equal to <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>. There are ways to disentangle the problem of isolation, but the parameters of interests still did not converge to the true values. There is work to be done with this model.</p>
-<h3 id="2_type-stability_issues"><a href="#2_type-stability_issues">2 Type-stability issues</a></h3>
+<h3 id="2_type-stability_issues"><a href="#2_type-stability_issues" class="header-anchor">2 Type-stability issues</a></h3>
 <p>To use the automatic differentiation method efficiently, I had to code the functions to be type-stable, otherwise the sampling functions would have taken hours to run. See the following example:</p>
 <ul>
 <li><p>This is not type-stable</p>
 </li>
 </ul>
-<pre><code class="language-julia">function simulate_stochastic&#40;ρ, σ, ϵs, νs&#41;
-    N &#61; length&#40;ϵs&#41;
-    @argcheck N &#61;&#61; length&#40;νs&#41;
-    xs &#61; Vector&#40;N&#41;
-    for i in 1:N
-        xs&#91;i&#93; &#61; &#40;i &#61;&#61; 1&#41; ? νs&#91;1&#93;*σ*&#40;1 - ρ^2&#41;^&#40;-0.5&#41; : &#40;ρ*xs&#91;i-1&#93; &#43; σ*νs&#91;i&#93;&#41;
-    end
-    xs &#43; log.&#40;ϵs&#41; &#43; 1.27
-end</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> simulate_stochastic(ρ, σ, ϵs, νs)
+    N = length(ϵs)
+    <span class="hljs-meta">@argcheck</span> N == length(νs)
+    xs = <span class="hljs-built_in">Vector</span>(N)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:N
+        xs[i] = (i == <span class="hljs-number">1</span>) ? νs[<span class="hljs-number">1</span>]*σ*(<span class="hljs-number">1</span> - ρ^<span class="hljs-number">2</span>)^(-<span class="hljs-number">0.5</span>) : (ρ*xs[i-<span class="hljs-number">1</span>] + σ*νs[i])
+    <span class="hljs-keyword">end</span>
+    xs + log.(ϵs) + <span class="hljs-number">1.27</span>
+<span class="hljs-keyword">end</span></code></pre>
 <ul>
 <li><p>This is type-stable</p>
 </li>
 </ul>
-<pre><code class="language-julia">function simulate_stochastic&#40;ρ, σ, ϵs, νs&#41;
-    N &#61; length&#40;ϵs&#41;
-    @argcheck N &#61;&#61; length&#40;νs&#41;
-    x₀ &#61; νs&#91;1&#93;*σ*&#40;1 - ρ^2&#41;^&#40;-0.5&#41;
-    xs &#61; Vector&#123;typeof&#40;x₀&#41;&#125;&#40;N&#41;
-    for i in 1:N
-        xs&#91;i&#93; &#61; &#40;i &#61;&#61; 1&#41; ? x₀ : &#40;ρ*xs&#91;i-1&#93; &#43; σ*νs&#91;i&#93;&#41;
-    end
-    xs &#43; log.&#40;ϵs&#41; &#43; 1.27
-end</code></pre>
-<h2 id="future_work"><a href="#future_work">Future work</a></h2>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> simulate_stochastic(ρ, σ, ϵs, νs)
+    N = length(ϵs)
+    <span class="hljs-meta">@argcheck</span> N == length(νs)
+    x₀ = νs[<span class="hljs-number">1</span>]*σ*(<span class="hljs-number">1</span> - ρ^<span class="hljs-number">2</span>)^(-<span class="hljs-number">0.5</span>)
+    xs = <span class="hljs-built_in">Vector</span>{typeof(x₀)}(N)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:N
+        xs[i] = (i == <span class="hljs-number">1</span>) ? x₀ : (ρ*xs[i-<span class="hljs-number">1</span>] + σ*νs[i])
+    <span class="hljs-keyword">end</span>
+    xs + log.(ϵs) + <span class="hljs-number">1.27</span>
+<span class="hljs-keyword">end</span></code></pre>
+<h2 id="future_work"><a href="#future_work" class="header-anchor">Future work</a></h2>
 <ul>
 <li><p>More involved models</p>
 </li>
@@ -330,7 +330,7 @@ end</code></pre>
 <li><p>Optimization</p>
 </li>
 </ul>
-<h2 id="references"><a href="#references">References</a></h2>
+<h2 id="references"><a href="#references" class="header-anchor">References</a></h2>
 <ul>
 <li><p>Betancourt, M. &#40;2017&#41;. A Conceptual Introduction to Hamiltonian Monte Carlo.</p>
 </li>
@@ -358,7 +358,7 @@ end</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -471,7 +471,7 @@ end</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -487,7 +487,7 @@ end</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

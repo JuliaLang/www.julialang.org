@@ -152,54 +152,54 @@
 <p>The programming support we&#39;re demonstrating here today consists of the low-level building blocks, sitting at the same abstraction level of CUDA C. You should be interested if you know &#40;or want to learn&#41; how to program a parallel accelerator like a GPU, while dealing with tricky performance characteristics and communication semantics.</p>
 <p>You can easily add GPU support to your Julia installation &#40;see below for detailed instructions&#41; by installing <a href="https://github.com/JuliaGPU/CUDAnative.jl">CUDAnative.jl</a>. This package is built on top of experimental interfaces to the Julia compiler, and the purpose-built <a href="https://github.com/maleadt/LLVM.jl">LLVM.jl</a> and <a href="https://github.com/JuliaGPU/CUDAdrv.jl">CUDAdrv.jl</a> packages to compile and execute code. All this functionality is brand-new and thoroughly untested, so we need your help and feedback in order to improve and finalize the interfaces before Julia 1.0.</p>
 <div class="franklin-toc"><ol><li><a href="#how_to_get_started">How to get started</a></li><li><a href="#hello_world_vector_addition">&quot;Hello World&quot; Vector addition</a><ol><li><a href="#how_does_it_work">How does it work?</a></li><li><a href="#what_is_missing">What is missing?</a></li></ol></li><li><a href="#another_example_parallel_reduction">Another example: parallel reduction</a></li><li><a href="#try_it_out">Try it out&#33;</a><ol><li><a href="#i_want_to_help">I want to help</a></li></ol></li><li><a href="#thanks">Thanks</a></li></ol></div>
-<h2 id="how_to_get_started"><a href="#how_to_get_started">How to get started</a></h2>
+<h2 id="how_to_get_started"><a href="#how_to_get_started" class="header-anchor">How to get started</a></h2>
 <p>CUDAnative.jl is tightly integrated with the Julia compiler and the underlying LLVM framework, which complicates version and platform compatibility. For this preview we only support Julia 0.6 built from source, on Linux or macOS. Luckily, installing Julia from source is well documented in the <a href="https://github.com/JuliaLang/julia/blob/master/README.md#source-download-and-compilation">main repository&#39;s README</a>. Most of the time it boils down to the following commands:</p>
-<pre><code class="language-bash">&#36; git clone https://github.com/JuliaLang/julia.git
-&#36; cd julia
-&#36; git checkout v0.6.0-pre.alpha  # or any later tag
-&#36; make                           # add -jN for N parallel jobs
-&#36; ./julia</code></pre>
+<pre><code class="bash hljs">$ git <span class="hljs-built_in">clone</span> https://github.com/JuliaLang/julia.git
+$ <span class="hljs-built_in">cd</span> julia
+$ git checkout v0.6.0-pre.alpha  <span class="hljs-comment"># or any later tag</span>
+$ make                           <span class="hljs-comment"># add -jN for N parallel jobs</span>
+$ ./julia</code></pre>
 <p>From the Julia REPL, installing CUDAnative.jl and its dependencies is just a matter of using the package manager. Do note that you need to be using the NVIDIA binary driver, and have the CUDA toolkit installed.</p>
-<pre><code class="language-julia">Pkg.add&#40;&quot;CUDAnative&quot;&#41;
+<pre><code class="julia hljs">Pkg.add(<span class="hljs-string">&quot;CUDAnative&quot;</span>)
 
-# Optional: test the package
-Pkg.test&#40;&quot;CUDAnative&quot;&#41;</code></pre>
+<span class="hljs-comment"># Optional: test the package</span>
+Pkg.test(<span class="hljs-string">&quot;CUDAnative&quot;</span>)</code></pre>
 <p>At this point, you can start writing kernels and execute them on the GPU using CUDAnative&#39;s <code>@cuda</code>&#33; Be sure to check out the <a href="https://github.com/JuliaGPU/CUDAnative.jl/tree/master/examples">examples</a>, or continue reading for a more textual introduction.</p>
-<h2 id="hello_world_vector_addition"><a href="#hello_world_vector_addition">&quot;Hello World&quot; Vector addition</a></h2>
+<h2 id="hello_world_vector_addition"><a href="#hello_world_vector_addition" class="header-anchor">&quot;Hello World&quot; Vector addition</a></h2>
 <p>A typical small demo of GPU programming capabilities &#40;think of it as the <em>GPU Hello World</em>&#41; is to perform a vector addition. The snippet below does exactly that using Julia and CUDAnative.jl:</p>
-<pre><code class="language-julia">using CUDAdrv, CUDAnative
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> CUDAdrv, CUDAnative
 
-function kernel_vadd&#40;a, b, c&#41;
-    # from CUDAnative: &#40;implicit&#41; CuDeviceArray type,
-    #                  and thread/block intrinsics
-    i &#61; &#40;blockIdx&#40;&#41;.x-1&#41; * blockDim&#40;&#41;.x &#43; threadIdx&#40;&#41;.x
-    c&#91;i&#93; &#61; a&#91;i&#93; &#43; b&#91;i&#93;
+<span class="hljs-keyword">function</span> kernel_vadd(a, b, c)
+    <span class="hljs-comment"># from CUDAnative: (implicit) CuDeviceArray type,</span>
+    <span class="hljs-comment">#                  and thread/block intrinsics</span>
+    i = (blockIdx().x-<span class="hljs-number">1</span>) * blockDim().x + threadIdx().x
+    c[i] = a[i] + b[i]
 
-    return nothing
-end
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nothing</span>
+<span class="hljs-keyword">end</span>
 
-dev &#61; CuDevice&#40;0&#41;
-ctx &#61; CuContext&#40;dev&#41;
+dev = CuDevice(<span class="hljs-number">0</span>)
+ctx = CuContext(dev)
 
-# generate some data
-len &#61; 512
-a &#61; rand&#40;Int, len&#41;
-b &#61; rand&#40;Int, len&#41;
+<span class="hljs-comment"># generate some data</span>
+len = <span class="hljs-number">512</span>
+a = rand(<span class="hljs-built_in">Int</span>, len)
+b = rand(<span class="hljs-built_in">Int</span>, len)
 
-# allocate &amp; upload on the GPU
-d_a &#61; CuArray&#40;a&#41;
-d_b &#61; CuArray&#40;b&#41;
-d_c &#61; similar&#40;d_a&#41;
+<span class="hljs-comment"># allocate &amp; upload on the GPU</span>
+d_a = CuArray(a)
+d_b = CuArray(b)
+d_c = similar(d_a)
 
-# execute and fetch results
-@cuda &#40;1,len&#41; kernel_vadd&#40;d_a, d_b, d_c&#41;    # from CUDAnative.jl
-c &#61; Array&#40;d_c&#41;
+<span class="hljs-comment"># execute and fetch results</span>
+<span class="hljs-meta">@cuda</span> (<span class="hljs-number">1</span>,len) kernel_vadd(d_a, d_b, d_c)    <span class="hljs-comment"># from CUDAnative.jl</span>
+c = <span class="hljs-built_in">Array</span>(d_c)
 
-using Base.Test
-@test c &#61;&#61; a &#43; b
+<span class="hljs-keyword">using</span> Base.Test
+<span class="hljs-meta">@test</span> c == a + b
 
-destroy&#40;ctx&#41;</code></pre>
-<h3 id="how_does_it_work"><a href="#how_does_it_work">How does it work?</a></h3>
+destroy(ctx)</code></pre>
+<h3 id="how_does_it_work"><a href="#how_does_it_work" class="header-anchor">How does it work?</a></h3>
 <p>Most of this example does not rely on CUDAnative.jl, but uses functionality from CUDAdrv.jl. This package makes it possible to interact with CUDA hardware through user-friendly wrappers of CUDA&#39;s driver API. For example, it provides an array type <code>CuArray</code>, takes care of memory management, integrates with Julia&#39;s garbage collector, implements <code>@elapsed</code> using GPU events, etc. It is meant to form a strong foundation for all interactions with the CUDA driver, and does not require a bleeding-edge version of Julia. A slightly higher-level alternative is available under <a href="https://github.com/JuliaGPU/CUDArt.jl">CUDArt.jl</a>, building on the CUDA runtime API instead, but hasn&#39;t been integrated with CUDAnative.jl yet.</p>
 <p>Meanwhile, CUDAnative.jl takes care of all things related to native GPU programming. The most significant part of that is generating GPU code, and essentially consists of three phases:</p>
 <ol>
@@ -211,35 +211,35 @@ destroy&#40;ctx&#41;</code></pre>
 </li>
 </ol>
 <p>All this is hidden behind the call to <code>@cuda</code>, which generates code to compile our kernel upon first use. Every subsequent invocation will re-use that code, convert and upload arguments<sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup>, and finally launch the kernel. And much like we&#39;re used to on the CPU, you can introspect this code using runtime reflection:</p>
-<pre><code class="language-julia"># CUDAnative.jl provides alternatives to the @code_ macros,
-# looking past @cuda and converting argument types
-julia&gt; CUDAnative.@code_llvm @cuda &#40;1,len&#41; kernel_vadd&#40;d_a, d_b, d_c&#41;
-define void @julia_kernel_vadd_68711 &#123;
-    &#91;LLVM IR&#93;
-&#125;
+<pre><code class="julia hljs"><span class="hljs-comment"># CUDAnative.jl provides alternatives to the @code_ macros,</span>
+<span class="hljs-comment"># looking past @cuda and converting argument types</span>
+julia&gt; CUDAnative.<span class="hljs-meta">@code_llvm</span> <span class="hljs-meta">@cuda</span> (<span class="hljs-number">1</span>,len) kernel_vadd(d_a, d_b, d_c)
+define void <span class="hljs-meta">@julia_kernel_vadd_68711</span> {
+    [LLVM IR]
+}
 
-# ... but you can also invoke without @cuda
-julia&gt; @code_ptx kernel_vadd&#40;d_a, d_b, d_c&#41;
-.visible .func julia_kernel_vadd_68729&#40;...&#41; &#123;
-    &#91;PTX CODE&#93;
-&#125;
+<span class="hljs-comment"># ... but you can also invoke without @cuda</span>
+julia&gt; <span class="hljs-meta">@code_ptx</span> kernel_vadd(d_a, d_b, d_c)
+.visible .func julia_kernel_vadd_68729(...) {
+    [PTX CODE]
+}
 
-# or manually specify types &#40;this is error prone&#33;&#41;
-julia&gt; code_sass&#40;kernel_vadd, &#40;CuDeviceArray&#123;Float32,2&#125;,CuDeviceArray&#123;Float32,2&#125;,CuDeviceArray&#123;Float32,2&#125;&#41;&#41;
-code for sm_20
-        Function : julia_kernel_vadd_68481
-&#91;SASS CODE&#93;</code></pre>
+<span class="hljs-comment"># or manually specify types (this is error prone!)</span>
+julia&gt; code_sass(kernel_vadd, (CuDeviceArray{<span class="hljs-built_in">Float32</span>,<span class="hljs-number">2</span>},CuDeviceArray{<span class="hljs-built_in">Float32</span>,<span class="hljs-number">2</span>},CuDeviceArray{<span class="hljs-built_in">Float32</span>,<span class="hljs-number">2</span>}))
+code <span class="hljs-keyword">for</span> sm_20
+        <span class="hljs-built_in">Function</span> : julia_kernel_vadd_68481
+[SASS CODE]</code></pre>
 <sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup>
 <p>Another important part of CUDAnative.jl are the intrinsics: special functions and macros that provide functionality hard or impossible to express using normal functions. For example, the <code>&#123;thread,block,grid&#125;&#123;Idx,Dim&#125;</code> functions provide access to the size and index of each level of work. Local shared memory can be created using the <code>@cuStaticSharedMem</code> and <code>@cuDynamicSharedMem</code> macros, while <code>@cuprintf</code> can be used to display a formatted string from within a kernel function. Many <a href="https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/src/device/intrinsics.jl#L499-L807">math functions</a> are also available; these should be used instead of similar functions in the standard library.</p>
-<h3 id="what_is_missing"><a href="#what_is_missing">What is missing?</a></h3>
+<h3 id="what_is_missing"><a href="#what_is_missing" class="header-anchor">What is missing?</a></h3>
 <p>As I&#39;ve already hinted, we don&#39;t support all features of the Julia language yet. For example, it is currently impossible to call any function from the Julia C runtime library &#40;aka. <code>libjulia.so</code>&#41;. This makes dynamic allocations impossible, cripples exceptions, etc. As a result, large parts of the standard library are unavailable for use on the GPU. We will obviously try to improve this in the future, but for now the compiler will error when it encounters unsupported language features:</p>
-<pre><code class="language-julia">julia&gt; nope&#40;&#41; &#61; println&#40;42&#41;
-nope &#40;generic function with 1 method&#41;
+<pre><code class="julia hljs">julia&gt; nope() = println(<span class="hljs-number">42</span>)
+nope (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
 
-julia&gt; @cuda &#40;1,1&#41; nope&#40;&#41;
-ERROR: error compiling nope: emit_builtin_call for REPL&#91;1&#93;:1 requires the runtime language feature, which is disabled</code></pre>
+julia&gt; <span class="hljs-meta">@cuda</span> (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>) nope()
+ERROR: error compiling nope: emit_builtin_call <span class="hljs-keyword">for</span> REPL[<span class="hljs-number">1</span>]:<span class="hljs-number">1</span> requires the runtime language feature, which is disabled</code></pre>
 <p>Another big gap is documentation. Most of CUDAnative.jl mimics or copies <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">CUDA C</a>, while CUDAdrv.jl wraps the <a href="https://docs.nvidia.com/cuda/cuda-driver-api/">CUDA driver API</a>. But we haven&#39;t documented what parts of those APIs are covered, or how the abstractions behave, so you&#39;ll need to refer to the examples and tests in the CUDAnative and CUDAdrv repositories.</p>
-<h2 id="another_example_parallel_reduction"><a href="#another_example_parallel_reduction">Another example: parallel reduction</a></h2>
+<h2 id="another_example_parallel_reduction"><a href="#another_example_parallel_reduction" class="header-anchor">Another example: parallel reduction</a></h2>
 <p>For a more complex example, let&#39;s have a look at a <a href="https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/reduce.cu">parallel reduction</a> for <a href="https://devblogs.nvidia.com/parallelforall/faster-parallel-reductions-kepler/">Kepler-generation GPUs</a>. This is a typical well-optimized GPU implementation, using fast communication primitives at each level of execution. For example, threads within a warp execute together on a SIMD-like core, and can share data through each other&#39;s registers. At the block level, threads are allocated on the same core but don&#39;t necessarily execute together, which means they need to communicate through core local memory. Another level up, only the GPU&#39;s DRAM memory is a viable communication medium.</p>
 <p>The <a href="https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/reduce.jl">Julia version of this algorithm</a> looks pretty similar to the CUDA original: this is as intended, because CUDAnative.jl is a counterpart to CUDA C. The new version is much more generic though, specializing both on the reduction operator and value type. And just like we&#39;re used to with regular Julia code, the <code>@cuda</code> macro will just-in-time compile and dispatch to the correct specialization based on the argument types.</p>
 <p>So how does it perform? Turns out, pretty good&#33; The chart below compares the performance of both the CUDAnative.jl and CUDA C implementations<sup id="fnref:2"><a href="#fndef:2" class="fnref">[2]</a></sup>, using BenchmarkTools.jl to <a href="https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/benchmark.jl">measure the execution time</a>. The small constant overhead &#40;note the logarithmic scale&#41; is due to a deficiency in argument passing, and will be fixed.</p>
@@ -251,16 +251,16 @@ ERROR: error compiling nope: emit_builtin_call for REPL&#91;1&#93;:1 requires th
     </tr>
 </table>
  We also aim to be compatible with tools from the CUDA toolkit. For example, you can <a href="/assets/blog/nvvp.png">profile Julia kernels</a> using the NVIDIA Visual Profiler, or use <code>cuda-memcheck</code> to detect out-of-bound accesses</p>
-<pre><code class="language-julia">&#36; cuda-memcheck julia examples/oob.jl
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; CUDA-MEMCHECK
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; Invalid __global__ write of size 4
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;     at 0x00000148 in examples/oob.jl:14:julia_memset_66041
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;     by thread &#40;10,0,0&#41; in block &#40;0,0,0&#41;
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;     Address 0x1020b000028 is out of bounds</code></pre>
+<pre><code class="julia hljs">$ cuda-memcheck julia examples/oob.jl
+========= CUDA-MEMCHECK
+========= Invalid __global__ write of size <span class="hljs-number">4</span>
+=========     at <span class="hljs-number">0x00000148</span> <span class="hljs-keyword">in</span> examples/oob.jl:<span class="hljs-number">14</span>:julia_memset_66041
+=========     by thread (<span class="hljs-number">10</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>) <span class="hljs-keyword">in</span> block (<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)
+=========     Address <span class="hljs-number">0x1020b000028</span> is out of bounds</code></pre>
 <p> Full debug information <a href="https://github.com/JuliaGPU/CUDAnative.jl/issues/31">is not available</a> yet, so <code>cuda-gdb</code> and friends will not work very well.</p>
-<h2 id="try_it_out"><a href="#try_it_out">Try it out&#33;</a></h2>
+<h2 id="try_it_out"><a href="#try_it_out" class="header-anchor">Try it out&#33;</a></h2>
 <p>If you have experience with GPUs or CUDA development, or maintain a package which could benefit from GPU acceleration, please have a look or try out CUDAnative.jl&#33; We need all the feedback we can get, in order to prioritize development and finalize the infrastructure before Julia hits 1.0.</p>
-<h3 id="i_want_to_help"><a href="#i_want_to_help">I want to help</a></h3>
+<h3 id="i_want_to_help"><a href="#i_want_to_help" class="header-anchor">I want to help</a></h3>
 <p>Even better&#33; There&#39;s many ways to contribute, for example by looking at the issues trackers of the individual packages making up this support:</p>
 <ul>
 <li><p><a href="https://github.com/JuliaGPU/CUDAnative.jl/issues">CUDAnative.jl</a></p>
@@ -271,7 +271,7 @@ ERROR: error compiling nope: emit_builtin_call for REPL&#91;1&#93;:1 requires th
 </li>
 </ul>
 <p>Each of those packages are also in perpetual need of better API coverage, and documentation to cover and explain what has already been implemented.</p>
-<h2 id="thanks"><a href="#thanks">Thanks</a></h2>
+<h2 id="thanks"><a href="#thanks" class="header-anchor">Thanks</a></h2>
 <p>This work would not have been possible without Viral Shah and Alan Edelman arranging my stay at MIT. I&#39;d like to thank everybody at Julia Central and around, it has been a blast&#33; I&#39;m also grateful to Bjorn De Sutter, and IWT Vlaanderen, for supporting my time at Ghent University.</p>
 <table class="fndef" id="fndef:1">
     <tr>
@@ -286,7 +286,7 @@ ERROR: error compiling nope: emit_builtin_call for REPL&#91;1&#93;:1 requires th
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -399,7 +399,7 @@ ERROR: error compiling nope: emit_builtin_call for REPL&#91;1&#93;:1 requires th
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -415,7 +415,7 @@ ERROR: error compiling nope: emit_builtin_call for REPL&#91;1&#93;:1 requires th
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

@@ -152,33 +152,33 @@
 <p>This carefully honed ignorance just came in handy when discussing how to improve the learning curve for Julia&#39;s shell interface.</p>
 <p>Turns out it was designed by people born in the command line, making it confusing to use for someone like me. Now enlightened of how things work, I want to share my newly acquired knowledge&#33;</p>
 <p>Let&#39;s start with the basics and my first mental model. You can run a command like this:</p>
-<pre><code class="language-julia">julia&gt; run&#40;&#96;julia -e &#39;println&#40;&quot;hello world&quot;&#41;&#39;&#96;&#41;;
+<pre><code class="julia hljs">julia&gt; run(<span class="hljs-string">`julia -e &#x27;println(&quot;hello world&quot;)&#x27;`</span>);
 hello world</code></pre>
 <p>Since this looks exactly like what I would type into the terminal, I inferred that this is the general rule: Just make it look like a command and it will run like a command&#33;</p>
 <p>But this falls apart as soon as we start interpolating into the command. Let&#39;s consider the following:</p>
-<pre><code class="language-julia">julia&gt; flag1 &#61; &quot;-e &#39;println&#40;\&quot;hello world\&quot;&#41;&#39;&quot;;
+<pre><code class="julia hljs">julia&gt; flag1 = <span class="hljs-string">&quot;-e &#x27;println(\&quot;hello world\&quot;)&#x27;&quot;</span>;
 
-julia&gt; flag2 &#61; &quot;println&#40;\&quot;hello world\&quot;&#41;&quot;;
+julia&gt; flag2 = <span class="hljs-string">&quot;println(\&quot;hello world\&quot;)&quot;</span>;
 
-julia&gt; helloworld &#61; &quot;hello world&quot;;
+julia&gt; helloworld = <span class="hljs-string">&quot;hello world&quot;</span>;
 
-julia&gt; &#96;julia &#36;flag1&#96;
-&#96;julia &quot;-e &#39;println&#40;\&quot;hello world\&quot;&#41;&#39;&quot;&#96; # okay?&#33; Guess strings get quotes
+julia&gt; <span class="hljs-string">`julia <span class="hljs-variable">$flag1</span>`</span>
+<span class="hljs-string">`julia &quot;-e &#x27;println(\&quot;hello world\&quot;)&#x27;&quot;`</span> <span class="hljs-comment"># okay?! Guess strings get quotes</span>
 
-julia&gt;&#96; julia -e &#39;println&#40;&#36;helloworld&#41;&#39;&#96;
-&#96;julia -e &#39;println&#40;&#36;helloworld&#41;&#39;&#96; #what?
+julia&gt;<span class="hljs-string">` julia -e &#x27;println(<span class="hljs-variable">$helloworld</span>)&#x27;`</span>
+<span class="hljs-string">`julia -e &#x27;println(<span class="hljs-variable">$helloworld</span>)&#x27;`</span> <span class="hljs-comment">#what?</span>
 
-julia&gt; &#96;julia -e &#36;flag2&#96;
-&#96;julia -e &#39;println&#40;&quot;hello world&quot;&#41;&#39;&#96; # WHAT? Where are my &quot;
+julia&gt; <span class="hljs-string">`julia -e <span class="hljs-variable">$flag2</span>`</span>
+<span class="hljs-string">`julia -e &#x27;println(&quot;hello world&quot;)&#x27;`</span> <span class="hljs-comment"># WHAT? Where are my &quot;</span>
 
-julia&gt; a &#61; &quot;some   thing&quot;;
+julia&gt; a = <span class="hljs-string">&quot;some   thing&quot;</span>;
 
-julia&gt; b &#61; &#96;some   thing&#96;;
+julia&gt; b = <span class="hljs-string">`some   thing`</span>;
 
-julia&gt; run&#40;&#96;echo &#36;a&#96;&#41;;
+julia&gt; run(<span class="hljs-string">`echo <span class="hljs-variable">$a</span>`</span>);
 some   thing
 
-julia&gt; run&#40;&#96;echo &#36;b&#96;&#41;;
+julia&gt; run(<span class="hljs-string">`echo <span class="hljs-variable">$b</span>`</span>);
 some thing</code></pre>
 <p>If this all makes sense to you, welcome to the group of enlightened people&#33;</p>
 <p>I looked more like this:</p>
@@ -187,9 +187,9 @@ some thing</code></pre>
 <p>First of all, keep in mind that there is always a <code>main</code> sitting somewhere, patiently waiting for you to feed it an array of strings.</p>
 <p>The good ol&#39; <code>main&#40;int argc,  char** argv&#41;</code>&#33;</p>
 <p>Now, what the shell does is splitting the one command string we type in by spaces in order to pass it to this main. This then obviously needs a method to create a string with spaces, which is where <code>&#39;...&#39;</code> or <code>&quot;...&quot;</code> comes into play. If I understand correctly, all other characters are just conventions. So the minus in <code>-e</code> isn&#39;t treated special, as I assumed at some point. And therefore the <code>-e</code> and <code>&#39;println&#40;&quot;hello world&quot;&#41;&#39;</code> only belong together semantically, but not when constructing the array of strings. So trying to interpolate <code>&#39;-e&#39;</code> together with the <code>&#39;...&#39;</code> block failed miserably, since Julia tried to interpret it as one string. What made me fail to see the correct solution was, that Julia can actually do better than the shell, since we can directly pass an array of strings to the command. So this actually works:</p>
-<pre><code class="language-julia">run&#40;Cmd&#40;&#91;&quot;julia&quot;, &quot;-e&quot;, &quot;println&#40;\&quot;hello world\&quot;&#41;&quot;&#93;&#41;&#41;</code></pre>
+<pre><code class="julia hljs">run(<span class="hljs-built_in">Cmd</span>([<span class="hljs-string">&quot;julia&quot;</span>, <span class="hljs-string">&quot;-e&quot;</span>, <span class="hljs-string">&quot;println(\&quot;hello world\&quot;)&quot;</span>]))</code></pre>
 <p>Note that the above is equivalent to:</p>
-<pre><code class="language-julia">run&#40;&#96;julia &#36;&#40;&#91;&quot;-e&quot;, &quot;&quot;&quot;println&#40;&quot;hello world&quot;&#41;&quot;&quot;&quot;&#93;&#41;&#96;&#41;</code></pre>
+<pre><code class="julia hljs">run(<span class="hljs-string">`julia <span class="hljs-subst">$([<span class="hljs-string">&quot;-e&quot;</span>, <span class="hljs-string">&quot;&quot;&quot;println(&quot;hello world&quot;)&quot;&quot;&quot;</span>])</span>`</span>)</code></pre>
 <p>So we can in fact have better interpolation, since we just need to insert a new string into the array.</p>
 <p>Which is why this actually works:</p>
 <code>julia -e &#36;&#40;&quot;println&#40;\&quot;hello world\&quot;&#41;&#41;</code>
@@ -203,7 +203,7 @@ some thing</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -316,7 +316,7 @@ some thing</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -332,7 +332,7 @@ some thing</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

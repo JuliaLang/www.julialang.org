@@ -116,10 +116,10 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="ferritejl_-_finite_element_toolbox_-_summer_of_code"><a href="#ferritejl_-_finite_element_toolbox_-_summer_of_code">Ferrite.jl - Finite Element Toolbox - Summer of Code</a></h1>
+<div class="container main"><h1 id="ferritejl_-_finite_element_toolbox_-_summer_of_code"><a href="#ferritejl_-_finite_element_toolbox_-_summer_of_code" class="header-anchor">Ferrite.jl - Finite Element Toolbox - Summer of Code</a></h1>
 <p><a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a> is a Julia package providing the basic building blocks to develop finite element simulations of partial differential equations. The package provides extensive examples to start from and is designed as a compromise between simplicity and generality, trying to map finite element concepts 1:1 with the code in a low-level . Ferrite is actively used in teaching finite element to students at several universities across different countries &#40;e.g. Ruhr-University Bochum and Chalmers University of Technology&#41;. Further infrastructure is provided in the form of different mesh parsers and a Julia based visualizer called <a href="https://github.com/Ferrite-FEM/FerriteViz.jl">FerriteViz.jl</a>.</p>
 <p>Below we provide a four of potential project ideas in <a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a>. However, interested students should feel free to explore ideas they are interested in. Please contact any of the mentors listed below, or join the <code>#ferrite-fem</code> channel on the Julia slack to discuss. Projects in finite element visualization are also possible with <a href="https://github.com/Ferrite-FEM/FerriteViz.jl">FerriteViz.jl</a>.</p>
-<h2 id="fluid-structure_interaction_example"><a href="#fluid-structure_interaction_example">Fluid-Structure Interaction Example</a></h2>
+<h2 id="fluid-structure_interaction_example"><a href="#fluid-structure_interaction_example" class="header-anchor">Fluid-Structure Interaction Example</a></h2>
 <p><strong>Difficulty</strong>: Easy-Medium &#40;depending on your specific background&#41;</p>
 <p><strong>Project size</strong>: 150-300 hours</p>
 <p><strong>Problem</strong>: <a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a> is designed with the possibility to define partial differential equations on subdomains. This makes it well-suited for interface-coupled multi-physics problems, as for example fluid-structure interaction problems. However, we currently do not have an example showing this capability in our documentation. We also do not provide all necessary utilities for interface-coupled problems.</p>
@@ -135,7 +135,7 @@
 </li>
 </ul>
 <p><strong>Mentors</strong>: <a href="https://github.com/termi-official">Dennis Ogiermann</a> and <a href="https://github.com/fredrikekre/">Fredrik Ekre</a></p>
-<h2 id="investigation_of_performant_assembly_strategies"><a href="#investigation_of_performant_assembly_strategies">Investigation of Performant Assembly Strategies</a></h2>
+<h2 id="investigation_of_performant_assembly_strategies"><a href="#investigation_of_performant_assembly_strategies" class="header-anchor">Investigation of Performant Assembly Strategies</a></h2>
 <p><strong>Difficulty</strong>: Medium</p>
 <p><strong>Project size</strong>: 250-350 hours</p>
 <p><strong>Problem</strong>: <a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a> has an outstanding performance in single-threaded finite element simulations due to elaborate elimination of redundant workloads. However, we recently identified that the way the single-threaded assembly works makes parallel assembly memory bound, rendering the implementation for &quot;cheap&quot; assembly loops not scalable on a wide range of systems. This problem will also translate to high-order schemes, where the single-threaded strategy as is prevents certain common optimization strategies &#40;e.g. sum factorization&#41;.</p>
@@ -266,7 +266,7 @@
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>

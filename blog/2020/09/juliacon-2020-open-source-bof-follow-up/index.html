@@ -153,12 +153,12 @@
 <blockquote>
 <p>Within private companies/institutions, it can be difficult to implement effective internal practices that enable internal code to smoothly transition into high quality, open-source contributions. In this BoF, we’ll swap techniques for maximizing open-source impact in the Julia ecosystem while minimizing refactor time/effort and code churn.</p>
 </blockquote>
-<h2 id="how_the_bof_came_to_be"><a href="#how_the_bof_came_to_be">How The BoF Came To Be</a></h2>
+<h2 id="how_the_bof_came_to_be"><a href="#how_the_bof_came_to_be" class="header-anchor">How The BoF Came To Be</a></h2>
 <p>Allow me to provide some background before diving in - I&#39;m Jarrett 👋 Formerly a research software developer with <a href="https://julia.mit.edu/">the Julia Lab at MIT</a>, I left in 2019 to start <a href="https://beacon.bio">Beacon Biosignals</a> with some incredibly talented neuroscience &#43; Julia friends. We’re building technology to render brain monitoring more accessible, interpretable, and actionable, and the Julia ecosystem has played a critical role in many of our early wins.</p>
 <p>By early 2020, Beacon had accumulated a lot of interesting work internally that I knew we should open-source/upstream, but perhaps unsurprisingly, it was difficult to actually prioritize doing so when there were so many other pressing concerns competing for our finite bandwidth. I imagined that we weren&#39;t the only private entity in the Juliaverse in which the phrase “ah, we should definitely open-source &lt;internal tool&gt; at some point” is commonly uttered but seldom acted upon.</p>
 <p>I also recognized that every organization is unique, and the contribution challenges we faced at Beacon might not be the same challenges faced by other industry users. &quot;Wouldn&#39;t it be great,&quot; I thought, &quot;if us industry folks could get together and hash out strategies for tipping the OSS cost/benefit scales for our organizations?&quot; And thus, the BoF proposal was born.</p>
 <p>The rest of this post summarizes the thoughts, ideas, and conclusions that came out of the ensuing discussion at JuliaCon.</p>
-<h2 id="why_companies_contribute_to_julias_oss_ecosystem"><a href="#why_companies_contribute_to_julias_oss_ecosystem">Why Companies Contribute To Julia&#39;s OSS Ecosystem</a></h2>
+<h2 id="why_companies_contribute_to_julias_oss_ecosystem"><a href="#why_companies_contribute_to_julias_oss_ecosystem" class="header-anchor">Why Companies Contribute To Julia&#39;s OSS Ecosystem</a></h2>
 <p>Many early adopters of Julia in industry are already prolific contributors &#40;and employers&#33;&#41; within the Julia open-source software &#40;OSS&#41; ecosystem. Here are a few motivating factors that have pushed these companies to contribute:</p>
 <ul>
 <li><p>Maintaining a community presence is great for recruiting both community collaborators and future FTEs, especially to attract the scientific domain experts that are prevalent in the Julia community.</p>
@@ -176,15 +176,15 @@
 <li><p>Companies can more easily extend open-source dependencies to better address their particular needs. By upstreaming these extensions &#40;or releasing them as packages in their own right&#41;, companies can drive a dependency in the direction that is most impactful to them.</p>
 </li>
 </ul>
-<h2 id="barriers_to_oss_contribution_from_industry"><a href="#barriers_to_oss_contribution_from_industry">Barriers To OSS Contribution From Industry</a></h2>
+<h2 id="barriers_to_oss_contribution_from_industry"><a href="#barriers_to_oss_contribution_from_industry" class="header-anchor">Barriers To OSS Contribution From Industry</a></h2>
 <p>Industry users face many unique technical and non-technical challenges when making open-source contributions. Here are a few of the items discussed at the BoF.</p>
-<h4 id="clopen_dependency_chains"><a href="#clopen_dependency_chains">&quot;Clopen&quot; Dependency Chains</a></h4>
+<h4 id="clopen_dependency_chains"><a href="#clopen_dependency_chains" class="header-anchor">&quot;Clopen&quot; Dependency Chains</a></h4>
 <p>This problem is introduced when open-sourceable code has a nontrivial &#40;sometimes transitive&#41; dependency that needs to remain closed-source. For example, package <code>A</code> is mostly open-sourceable, but depends on internal package <code>B</code> which is not.</p>
 <p>One solution &#40;that may require a small or large amount of effort, depending on the implementations involved&#41; is to refactor the code-to-be-open-sourced&#39;s API to feature some form of <a href="https://en.wikipedia.org/wiki/Inversion_of_control">control inversion</a> that allows internal users of the code to <a href="https://en.wikipedia.org/wiki/Dependency_injection">pass in values that encapsulate private dependencies</a>. Not only will doing this solve your open-sourcing problem; it&#39;ll also make your code more extensible/composable, so that both internal and external users can more easily extract value from the contribution.</p>
 <p>Another flavor of this problem can exist when open-sourced code features many downstream closed-source dependencies. Multiple attendees noted that organizations would sometimes require the implementation/maintenance of an additional internal wrapper overtop the open-source version of their package.</p>
-<h4 id="organizations_that_dont_use_oss_in_the_first_place"><a href="#organizations_that_dont_use_oss_in_the_first_place">Organizations That Don&#39;t Use OSS In The First Place</a></h4>
+<h4 id="organizations_that_dont_use_oss_in_the_first_place"><a href="#organizations_that_dont_use_oss_in_the_first_place" class="header-anchor">Organizations That Don&#39;t Use OSS In The First Place</a></h4>
 <p>One attendee brought up that, for many organizations, the first barrier to allowing employee OSS contributions is to allow internal usage of OSS at all. It can be hard for decision makers at organizations that have no prior OSS experience to come to terms with the traditional motivations and arguments for OSS. They may even harbor <a href="https://www.dreamsongs.com/IHE/IHE-29.html#58965">common misconceptions</a> about how the process actually works. Luckily, there&#39;s a plethora of material available online that targets exactly this audience that organization members can bundle up in a manner that&#39;s most effective for their organization.</p>
-<h4 id="licensing_patents_and_ip"><a href="#licensing_patents_and_ip">Licensing, Patents, and IP</a></h4>
+<h4 id="licensing_patents_and_ip"><a href="#licensing_patents_and_ip" class="header-anchor">Licensing, Patents, and IP</a></h4>
 <p>One difficulty reported during the BoF was getting organizational approval to release software <a href="https://en.wikipedia.org/wiki/Permissive_software_license">under permissive licenses</a>. This can be tricky, indeed, as there isn&#39;t a one-size-fits-all solution for every business, and non-technical decision makers might not have prior understanding of the legal aspects of OSS. A few different suggestions/ideas came up on this topic during the BoF:</p>
 <ul>
 <li><p>Organizations can appoint an informed decision maker that is trusted by both engineering and business stakeholders to hold final veto power over open-sourcing decisions. At Beacon, this person is the Chief Technology Officer &#40;me&#33;&#41;, while at <a href="https://www.zapatacomputing.com/">Zapata</a>, this person is the Chief Product Officer. Regardless of their title or role, it&#39;s crucial for an organization to have a decision maker that takes point on bridging the gap between technical and business concerns.</p>
@@ -199,11 +199,11 @@
 <li><p>If possible, organizations should formulate their OSS plans in harmony with their IP strategy. It&#39;s easier to plan an IP strategy that incorporates OSS up-front than it is to retrofit OSS policies over top existing IP policies. For later-stage companies, the development of new products/services can provide an opportunity to revisit older IP models and refactor them into more OSS-amenable strategies.</p>
 </li>
 </ul>
-<h4 id="open_sourcing_packages_that_previously_used_internal_cicd"><a href="#open_sourcing_packages_that_previously_used_internal_cicd">Open Sourcing Packages That Previously Used Internal CI/CD</a></h4>
+<h4 id="open_sourcing_packages_that_previously_used_internal_cicd"><a href="#open_sourcing_packages_that_previously_used_internal_cicd" class="header-anchor">Open Sourcing Packages That Previously Used Internal CI/CD</a></h4>
 <p>One important element of successful open-source projects is that CI logs should generally be available to all contributors. This can be a burdensome criteria to meet if a previously closed-source package utilized internal CI/CD pipelines with nicer properties than publicly available CI pipelines. In some instances, certain flavors of this problem can be solved with better tooling, e.g. self-hosted &#40;but publicly accessible&#41; package registries can vendor open-sourced packages just as nicely as Julia&#39;s General Registry, but might leverage custom CI/CD for pre-registration checks.</p>
-<h4 id="open_source_efforts_could_reveal_strategic_intent"><a href="#open_source_efforts_could_reveal_strategic_intent">Open Source Efforts Could Reveal Strategic Intent</a></h4>
+<h4 id="open_source_efforts_could_reveal_strategic_intent"><a href="#open_source_efforts_could_reveal_strategic_intent" class="header-anchor">Open Source Efforts Could Reveal Strategic Intent</a></h4>
 <p>One attendee proposed a very interesting challenge that they&#39;ve faced in industry: In theory, their company was fine with contributing their internal implementation of a technique back to the OSS community, but couldn&#39;t actually do so because it would reveal that the company was working in a specific area of strategic interest to their market that they didn&#39;t want to reveal publicly. One solution to this problem would be to anonymously open source the implementation; however, this is obviously nonideal and the risk to business-critical strategic information will often be too high.</p>
-<h4 id="git_historymetadata_preservation"><a href="#git_historymetadata_preservation">Git History/Metadata Preservation</a></h4>
+<h4 id="git_historymetadata_preservation"><a href="#git_historymetadata_preservation" class="header-anchor">Git History/Metadata Preservation</a></h4>
 <p>Commit history and associated PRs, issues, etc. provide important context about design decisions that can ideally be preserved in the transition from closed-source to open-source. However, this can be a significant challenge depending on the provenance of the code and documentation practices. It appears that this process is easier &#40;or less necessary&#41; if...</p>
 <ul>
 <li><p>...design decisions and their motivations are captured in history-agnostic documentation as a matter of practice.</p>
@@ -213,7 +213,7 @@
 <li><p>...the development platform is the same as the open-sourcing platform, e.g. going from private GitHub repo to public GitHub repo can be easier than migrating from GitLab to GitHub &#40;though <a href="https://github.com/invenia">Invenia</a> has proven that the latter is totally doable&#33;&#41;.</p>
 </li>
 </ul>
-<h2 id="conclusions"><a href="#conclusions">Conclusions</a></h2>
+<h2 id="conclusions"><a href="#conclusions" class="header-anchor">Conclusions</a></h2>
 <p>The BoF ultimately touched on a few high-level takeaways:</p>
 <ul>
 <li><p>Many technical problems associated with OSS are the same problems that make building robust and modular software difficult in the first place. The process is often analogous &#40;and sometimes equivalent&#41; to factoring a reusable library out of an application-centric codebase. The Julia ecosystem alleviates many of the burdens traditionally associated with this process by arming contributors with great open-source tooling, a well-designed package manager, and - of course - a highly composable underlying language.</p>
@@ -352,7 +352,7 @@
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>

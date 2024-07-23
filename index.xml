@@ -1,1065 +1,2031 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
-  <title><![CDATA[JuliaLang - The Julia programming language]]></title>
-  <description><![CDATA[Official website for the Julia programming language.
-]]></description>
-  <link>https://julialang.org/</link>
-  <atom:link href="https://julialang.org/feed.xml" rel="self" type="application/rss+xml" />
-  <item>
-    <title><![CDATA[2024 GSoC and JSoC Fellows Announced]]></title>
-    <link>https://julialang.org/blog/2024/05/gsoc-2024-fellows/</link>
-    <description><![CDATA[GSoC and JSoC Fellows and Projects announced for 2024.
-<br><a href="https://julialang.org/blog/2024/05/gsoc-2024-fellows/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2024/05/gsoc-2024-fellows/</guid>
-    <pubDate>Fri, 3 May 2024 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.10 Highlights]]></title>
-    <link>https://julialang.org/blog/2023/12/julia-1.10-highlights/</link>
-    <description><![CDATA[Highlights of the Julia 1.10 release.
-<br><a href="https://julialang.org/blog/2023/12/julia-1.10-highlights/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2023/12/julia-1.10-highlights/</guid>
-    <pubDate>Wed, 27 Dec 2023 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[PSA: Thread-local state is no longer recommended]]></title>
-    <link>https://julialang.org/blog/2023/07/PSA-dont-use-threadid/</link>
-    <description><![CDATA[PSA: Thread-local state is no longer recommended; Common misconceptions about threadid&#40;&#41; and nthreads&#40;&#41;
-<br><a href="https://julialang.org/blog/2023/07/PSA-dont-use-threadid/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2023/07/PSA-dont-use-threadid/</guid>
-    <pubDate>Thu, 6 Jul 2023 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.9 Highlights]]></title>
-    <link>https://julialang.org/blog/2023/04/julia-1.9-highlights/</link>
-    <description><![CDATA[Highlights of the Julia 1.9 release.
-<br><a href="https://julialang.org/blog/2023/04/julia-1.9-highlights/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2023/04/julia-1.9-highlights/</guid>
-    <pubDate>Fri, 19 May 2023 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.8 Highlights]]></title>
-    <link>https://julialang.org/blog/2022/08/julia-1.8-highlights/</link>
-    <description><![CDATA[Highlights of the Julia 1.8 release.
-<br><a href="https://julialang.org/blog/2022/08/julia-1.8-highlights/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2022/08/julia-1.8-highlights/</guid>
-    <pubDate>Thu, 18 Aug 2022 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JuliaCon 2022 Highlights]]></title>
-    <link>https://julialang.org/blog/2022/08/juliacon-highlights-2022/</link>
-    <description><![CDATA[JuliaCon 2022 Highlights
-<br><a href="https://julialang.org/blog/2022/08/juliacon-highlights-2022/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2022/08/juliacon-highlights-2022/</guid>
-    <pubDate>Wed, 10 Aug 2022 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Doing small network scientific machine learning in Julia 5x faster than PyTorch]]></title>
-    <link>https://julialang.org/blog/2022/04/simple-chains/</link>
-    <description><![CDATA[Doing small network scientific machine learning in Julia 5x faster than PyTorch ...
-<br><a href="https://julialang.org/blog/2022/04/simple-chains/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2022/04/simple-chains/</guid>
-    <pubDate>Thu, 14 Apr 2022 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Why We Use Julia, 10 Years Later]]></title>
-    <link>https://julialang.org/blog/2022/02/10years/</link>
-    <description><![CDATA[10 years ago today, we published &#39;Why we Created Julia&#39; ...
-<br><a href="https://julialang.org/blog/2022/02/10years/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2022/02/10years/</guid>
-    <pubDate>Mon, 14 Feb 2022 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[DTable – an early performance assessment of a new distributed table implementation]]></title>
-    <link>https://julialang.org/blog/2021/12/dtable-performance-assessment/</link>
-    <description><![CDATA[DTable – an early performance assessment of a new distributed table implementation
-<br><a href="https://julialang.org/blog/2021/12/dtable-performance-assessment/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/12/dtable-performance-assessment/</guid>
-    <pubDate>Wed, 8 Dec 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.7 Highlights]]></title>
-    <link>https://julialang.org/blog/2021/11/julia-1.7-highlights/</link>
-    <description><![CDATA[Some highlights of the Julia 1.7 release.
-<br><a href="https://julialang.org/blog/2021/11/julia-1.7-highlights/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/11/julia-1.7-highlights/</guid>
-    <pubDate>Tue, 30 Nov 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs]]></title>
-    <link>https://julialang.org/blog/2021/10/DEQ/</link>
-    <description><![CDATA[Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs
-<br><a href="https://julialang.org/blog/2021/10/DEQ/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/10/DEQ/</guid>
-    <pubDate>Thu, 21 Oct 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia User & Developer Survey 2021]]></title>
-    <link>https://julialang.org/blog/2021/08/julia-user-developer-survey/</link>
-    <description><![CDATA[Julia User &amp; Developer Survey 2021
-<br><a href="https://julialang.org/blog/2021/08/julia-user-developer-survey/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/08/julia-user-developer-survey/</guid>
-    <pubDate>Tue, 24 Aug 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JuliaCon 2021 Highlights]]></title>
-    <link>https://julialang.org/blog/2021/08/juliacon-highlights/</link>
-    <description><![CDATA[JuliaCon 2021 Highlights
-<br><a href="https://julialang.org/blog/2021/08/juliacon-highlights/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/08/juliacon-highlights/</guid>
-    <pubDate>Fri, 20 Aug 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Simulation of a swimming dogfish shark]]></title>
-    <link>https://julialang.org/blog/2021/08/sharks/</link>
-    <description><![CDATA[Simulation of a swimming dogfish shark
-<br><a href="https://julialang.org/blog/2021/08/sharks/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/08/sharks/</guid>
-    <pubDate>Thu, 12 Aug 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Code, docs, and tests: what's in the General registry?]]></title>
-    <link>https://julialang.org/blog/2021/08/general-survey/</link>
-    <description><![CDATA[Code, docs, and tests: what&#39;s in the General registry?
-<br><a href="https://julialang.org/blog/2021/08/general-survey/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/08/general-survey/</guid>
-    <pubDate>Mon, 2 Aug 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JuliaCon 2021, the largest Julia Programming event in history]]></title>
-    <link>https://julialang.org/blog/2021/07/juliacon2021/</link>
-    <description><![CDATA[JuliaCon 2021, the largest Julia Programming event in history
-<br><a href="https://julialang.org/blog/2021/07/juliacon2021/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/07/juliacon2021/</guid>
-    <pubDate>Mon, 26 Jul 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Google Season of Docs 2020-2021 Wrap-Up]]></title>
-    <link>https://julialang.org/blog/2021/04/gsod-2020-wrapup/</link>
-    <description><![CDATA[Google Season of Docs 2020-2021 Wrap-Up.
-<br><a href="https://julialang.org/blog/2021/04/gsod-2020-wrapup/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/04/gsod-2020-wrapup/</guid>
-    <pubDate>Sun, 4 Apr 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.6 Highlights]]></title>
-    <link>https://julialang.org/blog/2021/03/julia-1.6-highlights/</link>
-    <description><![CDATA[Some highlights of the Julia 1.6 release.
-<br><a href="https://julialang.org/blog/2021/03/julia-1.6-highlights/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/03/julia-1.6-highlights/</guid>
-    <pubDate>Wed, 24 Mar 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Profiling type-inference]]></title>
-    <link>https://julialang.org/blog/2021/01/snoopi_deep/</link>
-    <description><![CDATA[Profiling type-inference
-<br><a href="https://julialang.org/blog/2021/01/snoopi_deep/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/01/snoopi_deep/</guid>
-    <pubDate>Thu, 28 Jan 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Apache Arrow Support in Julia]]></title>
-    <link>https://julialang.org/blog/2021/01/arrow/</link>
-    <description><![CDATA[Apache Arrow Support in Julia
-<br><a href="https://julialang.org/blog/2021/01/arrow/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/01/arrow/</guid>
-    <pubDate>Thu, 28 Jan 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[The 2020 Industry Julia Users Contributhon]]></title>
-    <link>https://julialang.org/blog/2021/01/contributhon/</link>
-    <description><![CDATA[A Look Back At The 2020 Industry Julia Users Contributhon
-<br><a href="https://julialang.org/blog/2021/01/contributhon/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/01/contributhon/</guid>
-    <pubDate>Wed, 20 Jan 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Tutorial on precompilation]]></title>
-    <link>https://julialang.org/blog/2021/01/precompile_tutorial/</link>
-    <description><![CDATA[Tutorial on precompilation
-<br><a href="https://julialang.org/blog/2021/01/precompile_tutorial/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2021/01/precompile_tutorial/</guid>
-    <pubDate>Tue, 5 Jan 2021 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Using time travel to remotely debug faulty DRAM]]></title>
-    <link>https://julialang.org/blog/2020/09/rr-memory-magic/</link>
-    <description><![CDATA[The story of debugging a mysterious Julia segfault.
-<br><a href="https://julialang.org/blog/2020/09/rr-memory-magic/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/09/rr-memory-magic/</guid>
-    <pubDate>Thu, 24 Sep 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Transitioning Code From Closed To Open: A JuliaCon 2020 Discussion Between Julia Users In Industry]]></title>
-    <link>https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/</link>
-    <description><![CDATA[Within private companies, it can be difficult to smoothly transition internal code into high quality open-source contributions. At JuliaCon 2020, industry Julia users came together to discuss how to maximize their impact in the Julia ecosystem.
-<br><a href="https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/</guid>
-    <pubDate>Wed, 16 Sep 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2020 Wrap-Up]]></title>
-    <link>https://julialang.org/blog/2020/09/gsoc-2020-wrapup/</link>
-    <description><![CDATA[GSoC &amp; JSoC 2020 Wrap-Up.
-<br><a href="https://julialang.org/blog/2020/09/gsoc-2020-wrapup/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/09/gsoc-2020-wrapup/</guid>
-    <pubDate>Tue, 8 Sep 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Analyzing sources of compiler latency in Julia: method invalidations]]></title>
-    <link>https://julialang.org/blog/2020/08/invalidations/</link>
-    <description><![CDATA[Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency.
-<br><a href="https://julialang.org/blog/2020/08/invalidations/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/08/invalidations/</guid>
-    <pubDate>Wed, 26 Aug 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[2020 Julia User and Developer Survey]]></title>
-    <link>https://julialang.org/blog/2020/08/2020-julia-user-and-developer-survey/</link>
-    <description><![CDATA[This year, 2,565 Julia users and developers participated in the second annual Julia User and Developer Survey.
-<br><a href="https://julialang.org/blog/2020/08/2020-julia-user-and-developer-survey/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/08/2020-julia-user-and-developer-survey/</guid>
-    <pubDate>Mon, 24 Aug 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JuliaCon 2020 Wrap-up]]></title>
-    <link>https://julialang.org/blog/2020/08/juliacon-2020-wrapup/</link>
-    <description><![CDATA[JuliaCon 2020 Wrap-up
-<br><a href="https://julialang.org/blog/2020/08/juliacon-2020-wrapup/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/08/juliacon-2020-wrapup/</guid>
-    <pubDate>Tue, 11 Aug 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.5 Highlights]]></title>
-    <link>https://julialang.org/blog/2020/08/julia-1.5-highlights/</link>
-    <description><![CDATA[Julia version 1.5 has been released, featuring many performance improvements and new capabilities.
-<br><a href="https://julialang.org/blog/2020/08/julia-1.5-highlights/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/08/julia-1.5-highlights/</guid>
-    <pubDate>Mon, 3 Aug 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC and JSoC 2020 Project List]]></title>
-    <link>https://julialang.org/blog/2020/05/jsoc-gsoc2020/</link>
-    <description><![CDATA[GSoC and JSoC 2020 Project List
-<br><a href="https://julialang.org/blog/2020/05/jsoc-gsoc2020/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/05/jsoc-gsoc2020/</guid>
-    <pubDate>Tue, 5 May 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.5 Feature Preview: Time Traveling (Linux) Bug Reporting]]></title>
-    <link>https://julialang.org/blog/2020/05/rr/</link>
-    <description><![CDATA[Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla&#39;s rr project to automatically create fully-reproducible bug reports
-<br><a href="https://julialang.org/blog/2020/05/rr/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/05/rr/</guid>
-    <pubDate>Sat, 2 May 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Google's Code-In Contest Wrap up]]></title>
-    <link>https://julialang.org/blog/2020/02/gci-summary/</link>
-    <description><![CDATA[Over the last couple of months, 212 young people have completed over 690 tasks using Julia as part of the Google Code-In program.
-<br><a href="https://julialang.org/blog/2020/02/gci-summary/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2020/02/gci-summary/</guid>
-    <pubDate>Mon, 10 Feb 2020 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Yao.jl - Differentiable Quantum Programming In Julia]]></title>
-    <link>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/</link>
-    <description><![CDATA[Yao.jl - Differentiable Quantum Programming In Julia
-<br><a href="https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/</guid>
-    <pubDate>Sat, 28 Dec 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[为 Julia 包设计的可靠、可复现的二进制工件系统]]></title>
-    <link>https://julialang.org/blog/2019/12/artifacts-zh_cn/</link>
-    <description><![CDATA[为 Julia 包设计的可靠、可复现的二进制工件系统 
-<br><a href="https://julialang.org/blog/2019/12/artifacts-zh_cn/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/12/artifacts-zh_cn/</guid>
-    <pubDate>Wed, 18 Dec 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Pkg + BinaryBuilder -- The Next Generation]]></title>
-    <link>https://julialang.org/blog/2019/11/artifacts/</link>
-    <description><![CDATA[Over the past few months, we have been iterating on and refining a design for <code>Pkg</code> in Julia 1.3&#43; to reason about binary objects that are not Julia packages.  While the motivating application for this work has been improving the installation experience for binaries built with <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl"><code>BinaryBuilder.jl</code></a>, the artifacts subsystem is much more general and is widely applicable to all Julia packages.
-<br><a href="https://julialang.org/blog/2019/11/artifacts/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/11/artifacts/</guid>
-    <pubDate>Tue, 19 Nov 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Profiling tool wins and woes]]></title>
-    <link>https://julialang.org/blog/2019/09/profilers/</link>
-    <description><![CDATA[Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: <a href="http://www.brendangregg.com/flamegraphs.html">brendangregg&#39;s often cloned flamegraphs tool</a> was created in 2011&#33; So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. <img src="https://julialang.org/assets/blog/2019-09-16-profilers/profile-instruments-bad.png" alt="Instruments.app bad result" />
-<br><a href="https://julialang.org/blog/2019/09/profilers/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/09/profilers/</guid>
-    <pubDate>Mon, 16 Sep 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia的版本发布流程]]></title>
-    <link>https://julialang.org/blog/2019/09/release-process-zh-cn/</link>
-    <description><![CDATA[从事软件开发的行家里手们对版本发布流程与节奏如此了若指掌，以至于他们将其精髓<strong>内化</strong>（internalize）并以为人人都懂得这些“浅显的道理”。可是事实恰好相反，外行一眼望去如同雾里看花。所以为了整个Julia社区，乃至于其它编程语言社区，我觉得有必要将Julia的开发过程白纸黑字地写下来。在本文中，我将阐述...
-<br><a href="https://julialang.org/blog/2019/09/release-process-zh-cn/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/09/release-process-zh-cn/</guid>
-    <pubDate>Sat, 7 Sep 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia Workshop@Beijing and the Julia Localization Prize]]></title>
-    <link>https://julialang.org/blog/2019/09/julia-workshop-beijing/</link>
-    <description><![CDATA[A Julia workshop in China was hosted by <a href="https://github.com/JuliaCN">JuliaCN</a> in Beijing on Aug 24, 2019. This is the 5th Julia workshop in China hosted by <a href="https://github.com/JuliaCN">JuliaCN</a> since 2016. We thank the Julia community and our kind sponsors: <a href="https://caiyunapp.com/">Colorful Clouds</a>, <a href="https://microsoft.com/">Microsoft</a>, <a href="https://swarma.org">Swarma club</a>, and <a href="https://syncedreview.com/">SyncedReview</a>. We received over 100 registrations for this event, and roughly 50 offline participants. The online video stream had 1,600 live viewers.
-<br><a href="https://julialang.org/blog/2019/09/julia-workshop-beijing/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/09/julia-workshop-beijing/</guid>
-    <pubDate>Sat, 7 Sep 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia夏季会议@Beijing - 本地化奖]]></title>
-    <link>https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/</link>
-    <description><![CDATA[<a href="https://github.com/JuliaCN">JuliaCN</a>在8月24日，中国北京举办了自2016以来第五次Julia会议。我们非常感谢Julia社区对本次活动的支持， 以及<a href="https://caiyunapp.com/">彩云科技</a>, <a href="https://microsoft.com/">微软中国</a>, <a href="https://swarma.org">集智俱乐部</a>, <a href="https://syncedreview.com/">机器之心</a>对本次活动的大力支持。本次活动有100余人注册，实到50余人。 线上直播在线人数达1600余人。 
-<br><a href="https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/</guid>
-    <pubDate>Sat, 7 Sep 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia’s Release Process]]></title>
-    <link>https://julialang.org/blog/2019/08/release-process/</link>
-    <description><![CDATA[Julia’s Release Process | People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just <em>know</em> how each stage unfolds. Of course, from the outside looking in it&#39;s not so obvious. So I thought it might be helpful t... 
-<br><a href="https://julialang.org/blog/2019/08/release-process/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/08/release-process/</guid>
-    <pubDate>Wed, 28 Aug 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia User - Developer Survey 2019]]></title>
-    <link>https://julialang.org/blog/2019/08/2019-julia-survey/</link>
-    <description><![CDATA[Julia User and Developer Survey 2019 | We conducted the first annual Julia User &amp; Developer Survey in June, and the results were presented by Viral Shah at JuliaCon on July 23....
-<br><a href="https://julialang.org/blog/2019/08/2019-julia-survey/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/08/2019-julia-survey/</guid>
-    <pubDate>Tue, 6 Aug 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia将支持可组合的多线程并行机制]]></title>
-    <link>https://julialang.org/blog/2019/07/multithreading-zh-cn/</link>
-    <description><![CDATA[Julia将支持可组合的多线程并行机制 | 摩尔定律带来的免费性能提升（free lunch） free lunch 几近结束，... 
-<br><a href="https://julialang.org/blog/2019/07/multithreading-zh-cn/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/07/multithreading-zh-cn/</guid>
-    <pubDate>Tue, 30 Jul 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Announcing composable multi-threaded parallelism in Julia]]></title>
-    <link>https://julialang.org/blog/2019/07/multithreading/</link>
-    <description><![CDATA[Announcing composable multi-threaded parallelism in Julia | Software performance depends more and more on exploiting multiple processor cores.... 
-<br><a href="https://julialang.org/blog/2019/07/multithreading/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/07/multithreading/</guid>
-    <pubDate>Tue, 23 Jul 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Hello @DiffEqBot]]></title>
-    <link>https://julialang.org/blog/2019/06/diffeqbot/</link>
-    <description><![CDATA[Hello @DiffEqBot | Hi&#33; Today we all got a new member to the DiffEq family. Say hi to our own DiffEqBot &#40;https://github.com/DiffEqBot&#41; - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a repository &#40;https://github.com/DiffE... 
-<br><a href="https://julialang.org/blog/2019/06/diffeqbot/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/06/diffeqbot/</guid>
-    <pubDate>Tue, 18 Jun 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[A Summer of Julia 2019]]></title>
-    <link>https://julialang.org/blog/2019/05/jsoc19/</link>
-    <description><![CDATA[A Summer of Julia 2019 | Every summer, we welcome a large group of students working on Julia and its packages via the Google Summer of Code program.... 
-<br><a href="https://julialang.org/blog/2019/05/jsoc19/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/05/jsoc19/</guid>
-    <pubDate>Fri, 31 May 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Beyond machine learning pipelines with MLJ]]></title>
-    <link>https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/</link>
-    <description><![CDATA[Beyond machine learning pipelines with MLJ | - learning curves &#40;from <code>examples/random_forest.jl</code>&#41;... 
-<br><a href="https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/</guid>
-    <pubDate>Thu, 2 May 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[DiffEqFlux.jl – Julia 的神經微分方程套件]]></title>
-    <link>https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw/</link>
-    <description><![CDATA[DiffEqFlux.jl – Julia 的神經微分方程套件 | 在這篇文章中，我們將會展示在 Julia 中使用微分方程解算器（DiffEq solver）搭配神經網路有多麼簡單、有效而且穩定。... 
-<br><a href="https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw/</guid>
-    <pubDate>Thu, 4 Apr 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[A Julia interpreter and debugger]]></title>
-    <link>https://julialang.org/blog/2019/03/debuggers/</link>
-    <description><![CDATA[A Julia interpreter and debugger | The authors are pleased to announce the release of a fully-featured... 
-<br><a href="https://julialang.org/blog/2019/03/debuggers/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/03/debuggers/</guid>
-    <pubDate>Tue, 19 Mar 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[The Julia Project and Its Entities]]></title>
-    <link>https://julialang.org/blog/2019/02/julia-entities/</link>
-    <description><![CDATA[The Julia Project and Its Entities | There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll... 
-<br><a href="https://julialang.org/blog/2019/02/julia-entities/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/02/julia-entities/</guid>
-    <pubDate>Tue, 12 Feb 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms]]></title>
-    <link>https://julialang.org/blog/2019/02/light-graphs/</link>
-    <description><![CDATA[GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms | This blog briefly summarises my GSoC 2018 project &#40;Parallel Graph Development &#40;https://summerofcode.withgoogle.com/archive/2018/projects/5193483178475520/&#41;&#41; and the results achieved. For a detailed description, please refer to my GSoC blog &#40;https://sohamtamba.github.io/GSoC&#41;.... 
-<br><a href="https://julialang.org/blog/2019/02/light-graphs/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/02/light-graphs/</guid>
-    <pubDate>Sun, 3 Feb 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[DiffEqFlux.jl – A Julia Library for Neural Differential Equations]]></title>
-    <link>https://julialang.org/blog/2019/01/fluxdiffeq/</link>
-    <description><![CDATA[DiffEqFlux.jl – A Julia Library for Neural Differential Equations... 
-<br><a href="https://julialang.org/blog/2019/01/fluxdiffeq/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/01/fluxdiffeq/</guid>
-    <pubDate>Fri, 18 Jan 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Building a Language and Compiler for Machine Learning]]></title>
-    <link>https://julialang.org/blog/2018/12/ml-language-compiler/</link>
-    <description><![CDATA[Building a Language and Compiler for Machine Learning | Since we originally proposed the need for a first-class language, compiler and ecosystem for machine learning &#40;ML&#41;, there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTo... 
-<br><a href="https://julialang.org/blog/2018/12/ml-language-compiler/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/12/ml-language-compiler/</guid>
-    <pubDate>Mon, 3 Dec 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[How to get started with Julia 1.0's package manager]]></title>
-    <link>https://julialang.org/blog/2018/09/Pkgtutorial/</link>
-    <description><![CDATA[How to get started with Julia 1.0&#39;s package manager | For those of you in the midst of transitioning or preparing to transition to Julia 1.0, I&#39;ve made a short &#40;less than 6 minutes&#41; tutorial on the basics of the new package manager. This video includes how to interact with the package manager and how to check, install, update, and remove packages.... 
-<br><a href="https://julialang.org/blog/2018/09/Pkgtutorial/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/09/Pkgtutorial/</guid>
-    <pubDate>Wed, 12 Sep 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[A portrait of JuliaCon 2018]]></title>
-    <link>https://julialang.org/blog/2018/09/juliacon2018/</link>
-    <description><![CDATA[A portrait of JuliaCon 2018 | &#33;JuliaCon2018 group photo &#40;/assets/blog/2018-09-11-juliacon2018/JuliaCon2018<em>group</em>photo.jpg&#41;... 
-<br><a href="https://julialang.org/blog/2018/09/juliacon2018/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/09/juliacon2018/</guid>
-    <pubDate>Tue, 11 Sep 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[The Julia Community Prizes, 2018]]></title>
-    <link>https://julialang.org/blog/2018/09/julia-community-prizes/</link>
-    <description><![CDATA[The Julia Community Prizes, 2018 | The Julia Community Prizes celebrate the amazing set of scientists, developers and designers who have come together build such a strong and diverse ecosystem for numerical computing. Each of the four individuals chosen for the first award in 2018 have made immense contributions to Julia over many yea... 
-<br><a href="https://julialang.org/blog/2018/09/julia-community-prizes/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/09/julia-community-prizes/</guid>
-    <pubDate>Tue, 4 Sep 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion]]></title>
-    <link>https://julialang.org/blog/2018/08/GSoC2018-speech-recognition/</link>
-    <description><![CDATA[GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion | Here we are on the other end of Google Summer of Code 2018. It has been a challenging and educational experience, and I wouldn&#39;t have it any other way. I am thankful to the Julia community, and especially my mentor @MikeInnes &#40;https://github.com/mikeinnes&#41;, for supporting me through this. I&#39;ve learn... 
-<br><a href="https://julialang.org/blog/2018/08/GSoC2018-speech-recognition/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/GSoC2018-speech-recognition/</guid>
-    <pubDate>Tue, 14 Aug 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux]]></title>
-    <link>https://julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/</link>
-    <description><![CDATA[GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux | Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to <strong>add newer models to the Flux model-zoo</strong>, <strong>implement some new features</strong> and also <strong>improve the speed of the previous layers</strong>. Specifically, I achieved a <strong>18-fold</strong> speed up... 
-<br><a href="https://julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/</guid>
-    <pubDate>Mon, 13 Aug 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Union-splitting: what it is, and why you should care]]></title>
-    <link>https://julialang.org/blog/2018/08/union-splitting/</link>
-    <description><![CDATA[Union-splitting: what it is, and why you should care | Among those who follow Julia&#39;s development closely, one of the &#40;many&#41; new features causing great excitement is something called &quot;Union-splitting.&quot;... 
-<br><a href="https://julialang.org/blog/2018/08/union-splitting/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/union-splitting/</guid>
-    <pubDate>Thu, 9 Aug 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Announcing the release of Julia 1.0]]></title>
-    <link>https://julialang.org/blog/2018/08/one-point-zero/</link>
-    <description><![CDATA[Announcing the release of Julia 1.0. The much anticipated 1.0 release of Julia is the culmination of...
-<br><a href="https://julialang.org/blog/2018/08/one-point-zero/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/one-point-zero/</guid>
-    <pubDate>Wed, 8 Aug 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.0 正式发布 (Simplified Chinese)]]></title>
-    <link>https://julialang.org/blog/2018/08/one-point-zero-zh_cn/</link>
-    <description><![CDATA[Julia 1.0 正式发布 &#40;Simplified Chinese&#41; | 备受期待的Julia语言 &#40;https://julialang.org&#41;的1.0版本积累了富有野心的程序员们的十年心血。... 
-<br><a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/one-point-zero-zh_cn/</guid>
-    <pubDate>Wed, 8 Aug 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.0 Anunciando el release de Julia 1.0 (Spanish)]]></title>
-    <link>https://julialang.org/blog/2018/08/one-point-zero-es/</link>
-    <description><![CDATA[La anticipada liberación de la versión 1.0 de...
-<br><a href="https://julialang.org/blog/2018/08/one-point-zero-es/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/one-point-zero-es/</guid>
-    <pubDate>Wed, 8 Aug 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 1.0 正式發佈 (Traditional Chinese)]]></title>
-    <link>https://julialang.org/blog/2018/08/one-point-zero-zh_tw/</link>
-    <description><![CDATA[Julia 1.0 正式發佈 &#40;Traditional Chinese&#41; | 眾所期待的 Julia 語言 &#40;https://julialang.org&#41; 1.0 版是近十年的心血結晶。... 
-<br><a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/one-point-zero-zh_tw/</guid>
-    <pubDate>Wed, 8 Aug 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2018: Reinforcement Learning and Generative models using Flux]]></title>
-    <link>https://julialang.org/blog/2018/08/GSoC-Final-Summary/</link>
-    <description><![CDATA[GSoC 2018: Reinforcement Learning and Generative models using Flux | In this post I&#39;m going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of Flux.jl &#40;https://github.com/FluxML&#41;, a machine learning library written in Julia &#40;https://github.com/JuliaLang/julia&#41;. My project cover... 
-<br><a href="https://julialang.org/blog/2018/08/GSoC-Final-Summary/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/GSoC-Final-Summary/</guid>
-    <pubDate>Mon, 6 Aug 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Writing Iterators in Julia 0.7]]></title>
-    <link>https://julialang.org/blog/2018/07/iterators-in-julia-0.7/</link>
-    <description><![CDATA[Writing Iterators in Julia 0.7 | This post originally appeared on the Invenia blog.... 
-<br><a href="https://julialang.org/blog/2018/07/iterators-in-julia-0.7/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/07/iterators-in-julia-0.7/</guid>
-    <pubDate>Sun, 8 Jul 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[First-Class Statistical Missing Values Support in Julia 0.7]]></title>
-    <link>https://julialang.org/blog/2018/06/missing/</link>
-    <description><![CDATA[First-Class Statistical Missing Values Support in Julia 0.7 | The 0.7 release of Julia will soon introduce first-class support for statistical... 
-<br><a href="https://julialang.org/blog/2018/06/missing/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/06/missing/</guid>
-    <pubDate>Tue, 19 Jun 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Extensible broadcast fusion]]></title>
-    <link>https://julialang.org/blog/2018/05/extensible-broadcast-fusion/</link>
-    <description><![CDATA[Extensible broadcast fusion | Julia version 0.7 brings with it an exciting new feature: the ability to customize broadcast... 
-<br><a href="https://julialang.org/blog/2018/05/extensible-broadcast-fusion/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/05/extensible-broadcast-fusion/</guid>
-    <pubDate>Fri, 11 May 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Tetris coming to Julia language for v1.0]]></title>
-    <link>https://julialang.org/blog/2018/04/tetris-and-you/</link>
-    <description><![CDATA[Tetris coming to Julia language for v1.0 | Good news, everyone&#33; Starting v1.0, Tetris will be included in the standard library. This will allow you to play a round of Tetris while your code is busy running.... 
-<br><a href="https://julialang.org/blog/2018/04/tetris-and-you/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/04/tetris-and-you/</guid>
-    <pubDate>Sun, 1 Apr 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia joins NumFOCUS in Google Summer of Code 2018]]></title>
-    <link>https://julialang.org/blog/2018/02/gsoc2018-numfocus/</link>
-    <description><![CDATA[Julia joins NumFOCUS in Google Summer of Code 2018 | The Julia project has participated in summer of code events since 2014, just two... 
-<br><a href="https://julialang.org/blog/2018/02/gsoc2018-numfocus/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/02/gsoc2018-numfocus/</guid>
-    <pubDate>Wed, 21 Feb 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[機器學習以及程式語言(Traditional Chinese)]]></title>
-    <link>https://julialang.org/blog/2017/12/ml-pl-zh_tw/</link>
-    <description><![CDATA[機器學習以及程式語言&#40;Traditional Chinese&#41; | &gt; 任何足夠複雜的機器學習系統都包含一個特別設置、不符規範、充滿 bug 又緩慢實作的程式語言半成品。^greenspun ... 
-<br><a href="https://julialang.org/blog/2017/12/ml-pl-zh_tw/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/12/ml-pl-zh_tw/</guid>
-    <pubDate>Mon, 25 Dec 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[机器学习与编程语言 (Simplified Chinese)]]></title>
-    <link>https://julialang.org/blog/2017/12/ml-pl-cn/</link>
-    <description><![CDATA[机器学习与编程语言 &#40;Simplified Chinese&#41; | &gt; 任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。^greenspun ... 
-<br><a href="https://julialang.org/blog/2017/12/ml-pl-cn/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/12/ml-pl-cn/</guid>
-    <pubDate>Wed, 20 Dec 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[On Machine Learning and Programming Languages]]></title>
-    <link>https://julialang.org/blog/2017/12/ml-pl/</link>
-    <description><![CDATA[On Machine Learning and Programming Languages | &gt; Any sufficiently complicated machine learning system contains an ad-hoc, informally-specified, bug-ridden, slow implementation of half of a programming language.^greenspun ... 
-<br><a href="https://julialang.org/blog/2017/12/ml-pl/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/12/ml-pl/</guid>
-    <pubDate>Wed, 6 Dec 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2017: Native Julia second order ODE and BVP solvers]]></title>
-    <link>https://julialang.org/blog/2017/11/gsoc-ode/</link>
-    <description><![CDATA[GSoC 2017: Native Julia second order ODE and BVP solvers | My original GSoC project was about implementing native Julia solvers for solving boundary value problems &#40;BVPs&#41; that were determined from second order ordinary differential equations &#40;ODEs&#41;. I started down the BVP path, built a shooting method to solve BVPs from initial value problems &#40;IVPs&#41;, and the... 
-<br><a href="https://julialang.org/blog/2017/11/gsoc-ode/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/11/gsoc-ode/</guid>
-    <pubDate>Wed, 1 Nov 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[NeuralNetDiffEq.jl: A Neural Network solver for ODEs]]></title>
-    <link>https://julialang.org/blog/2017/10/gsoc-NeuralNetDiffEq/</link>
-    <description><![CDATA[NeuralNetDiffEq.jl: A Neural Network solver for ODEs | My GSoC 2017 project &#40;https://summerofcode.withgoogle.com/projects/#5850956641075200&#41; was to implement a package for Julia to solve Ordinary Differential Equations using Neural Networks.... 
-<br><a href="https://julialang.org/blog/2017/10/gsoc-NeuralNetDiffEq/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/10/gsoc-NeuralNetDiffEq/</guid>
-    <pubDate>Fri, 13 Oct 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Command interpolation for dummies]]></title>
-    <link>https://julialang.org/blog/2017/10/command-interpolation-for-dummies/</link>
-    <description><![CDATA[Command interpolation for dummies | I&#39;ve never been a big user of the command line. One could even say I actively avoided it&#33;... 
-<br><a href="https://julialang.org/blog/2017/10/command-interpolation-for-dummies/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/10/command-interpolation-for-dummies/</guid>
-    <pubDate>Thu, 5 Oct 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2017 Project: Hamiltonian Indirect Inference]]></title>
-    <link>https://julialang.org/blog/2017/09/Hamiltonian-Indirect-Inference/</link>
-    <description><![CDATA[GSoC 2017 Project: Hamiltonian Indirect Inference | This is a writeup of my project for the Google Summer of Code 2017. The... 
-<br><a href="https://julialang.org/blog/2017/09/Hamiltonian-Indirect-Inference/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/09/Hamiltonian-Indirect-Inference/</guid>
-    <pubDate>Tue, 19 Sep 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2017: Parallelism in BioJulia]]></title>
-    <link>https://julialang.org/blog/2017/09/bio-parallel/</link>
-    <description><![CDATA[GSoC 2017: Parallelism in BioJulia | In this summer, I have worked on a project to develop tools that make BioJulia... 
-<br><a href="https://julialang.org/blog/2017/09/bio-parallel/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/09/bio-parallel/</guid>
-    <pubDate>Thu, 7 Sep 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2017: Efficient Discretizations of PDE Operators]]></title>
-    <link>https://julialang.org/blog/2017/09/gsoc-derivative_operators/</link>
-    <description><![CDATA[GSoC 2017: Efficient Discretizations of PDE Operators | This project is an attempt towards building a PDE solver for JuliaDiffEq using the Finite Difference Method &#40;https://en.wikipedia.org/wiki/Finite<em>difference</em>method&#41;&#40;FDM&#41; approach. We take up the FDM approach instead of FEM &#40;https://en.wikipedia.org/wiki/Finite<em>element</em>method&#41; and FVM &#40;https://en.w... 
-<br><a href="https://julialang.org/blog/2017/09/gsoc-derivative_operators/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/09/gsoc-derivative_operators/</guid>
-    <pubDate>Wed, 6 Sep 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2017 Project: MCMC with flexible numbers of parameters]]></title>
-    <link>https://julialang.org/blog/2017/09/GSOC-MCMC-with-flexible-numbers-of-parameters/</link>
-    <description><![CDATA[GSoC 2017 Project: MCMC with flexible numbers of parameters | My original GSOC proposal &#40;https://docs.google.com/document/d/1yY5VhucSRW4IHSDurvPsoSBeGQQLaqoyKyYKgVW0J8Q/edit&#41; was to implement modify Mamba.jl to enable it to fit Crosscat, a general-purpose Bayesian model which fits tabular data using row-wise Dirichlet cluster models nested inside a column-wise... 
-<br><a href="https://julialang.org/blog/2017/09/GSOC-MCMC-with-flexible-numbers-of-parameters/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/09/GSOC-MCMC-with-flexible-numbers-of-parameters/</guid>
-    <pubDate>Sun, 3 Sep 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox]]></title>
-    <link>https://julialang.org/blog/2017/09/gsoc-fenics/</link>
-    <description><![CDATA[GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox | Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at FEniCS.jl &#40;https://github.com/SciML/FEniCS.jl&#41; . This would allow users to perform FEM calculations direc... 
-<br><a href="https://julialang.org/blog/2017/09/gsoc-fenics/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/09/gsoc-fenics/</guid>
-    <pubDate>Fri, 1 Sep 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2017: Documentation Browser for Juno]]></title>
-    <link>https://julialang.org/blog/2017/08/gsoc-docs-in-juno/</link>
-    <description><![CDATA[GSoC 2017: Documentation Browser for Juno | The aim of this GSoC project is to provide a convenient way to access documentation in the... 
-<br><a href="https://julialang.org/blog/2017/08/gsoc-docs-in-juno/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/08/gsoc-docs-in-juno/</guid>
-    <pubDate>Mon, 28 Aug 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[GSoC 2017: Implementing iterative solvers for numerical linear algebra]]></title>
-    <link>https://julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/</link>
-    <description><![CDATA[GSoC 2017: Implementing iterative solvers for numerical linear algebra | The central part of my GSoC project is about implementing the Jacobi-Davidson method natively in Julia, available in JacobiDavidson.jl &#40;https://github.com/haampie/JacobiDavidson.jl&#41;. This method computes a few approximate solutions of the eigenvalue problem  Ax &#61;  lambda Bx  for large and sparse mat... 
-<br><a href="https://julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/</guid>
-    <pubDate>Wed, 23 Aug 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JuliaCon 2017 on the West Coast]]></title>
-    <link>https://julialang.org/blog/2017/08/juliacon/</link>
-    <description><![CDATA[JuliaCon 2017 on the West Coast | &#33; &#40;/assets/blog/2017-08-15-juliacon/juliacon.jpg&#41;... 
-<br><a href="https://julialang.org/blog/2017/08/juliacon/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/08/juliacon/</guid>
-    <pubDate>Tue, 15 Aug 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Creating domain-specific languages in Julia using macros]]></title>
-    <link>https://julialang.org/blog/2017/08/dsl/</link>
-    <description><![CDATA[Creating domain-specific languages in Julia using macros | Since the beginning of Julia, it has been tempting to use macros to write <strong>domain-specific languages</strong> &#40;DSLs&#41;, i.e. to <em>extend</em> Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is JuMP &#40;https://github.com/Ju... 
-<br><a href="https://julialang.org/blog/2017/08/dsl/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/08/dsl/</guid>
-    <pubDate>Wed, 9 Aug 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 0.6 Release Announcement]]></title>
-    <link>https://julialang.org/blog/2017/06/julia-0.6-release/</link>
-    <description><![CDATA[Julia 0.6 Release Announcement | The Julia community is thrilled to announce the release of version 0.6.0 of the Julia language.... 
-<br><a href="https://julialang.org/blog/2017/06/julia-0.6-release/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/06/julia-0.6-release/</guid>
-    <pubDate>Tue, 27 Jun 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia available in Raspbian on the Raspberry Pi]]></title>
-    <link>https://julialang.org/blog/2017/05/raspberry-pi-julia/</link>
-    <description><![CDATA[Julia available in Raspbian on the Raspberry Pi | Recently, Julia was accepted into the Raspbian &#40;https://www.raspberrypi.org/downloads/raspbian/&#41; distribution for the Raspberry Pi &#40;https://raspberrypi.org&#41;. If you are running the latest Raspbian, all you need to do is <code>apt-get install julia</code>. Most of the common packages can be installed with Pkg,... 
-<br><a href="https://julialang.org/blog/2017/05/raspberry-pi-julia/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/05/raspberry-pi-julia/</guid>
-    <pubDate>Wed, 3 May 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Upgrades to the REPL in Julia 0.6]]></title>
-    <link>https://julialang.org/blog/2017/04/repl-0.6-highlights/</link>
-    <description><![CDATA[Upgrades to the REPL in Julia 0.6 | Since version 0.3, Julia has come with a command-line interface — a REPL &#40;https://en.wikipedia.org/wiki/Read&#37;E2&#37;80&#37;93eval&#37;E2&#37;80&#37;93print_loop&#41;... 
-<br><a href="https://julialang.org/blog/2017/04/repl-0.6-highlights/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/04/repl-0.6-highlights/</guid>
-    <pubDate>Tue, 25 Apr 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Knowing where you are: custom array indices in Julia]]></title>
-    <link>https://julialang.org/blog/2017/04/offset-arrays/</link>
-    <description><![CDATA[Knowing where you are: custom array indices in Julia | Arrays are a crucial component of any programming language,... 
-<br><a href="https://julialang.org/blog/2017/04/offset-arrays/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/04/offset-arrays/</guid>
-    <pubDate>Tue, 18 Apr 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Paper in SIAM Review: Julia - A Fresh Approach to Numerical Computing]]></title>
-    <link>https://julialang.org/blog/2017/03/julia-fresh-paper/</link>
-    <description><![CDATA[Paper in SIAM Review: Julia - A Fresh Approach to Numerical Computing | Our paper, Julia: A Fresh Approach to Numerical Computing, was published in the prestigious SIAM Review &#40;https://dx.doi.org/10.1137/141000671&#41; in February 2017. While drafts of this paper have always been available on Arxiv... 
-<br><a href="https://julialang.org/blog/2017/03/julia-fresh-paper/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/03/julia-fresh-paper/</guid>
-    <pubDate>Sat, 18 Mar 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Some fun with &#928; in Julia]]></title>
-    <link>https://julialang.org/blog/2017/03/piday/</link>
-    <description><![CDATA[Some fun with &pi; in Julia | &#33;pi &#40;/assets/blog/2017-03-14-piday/pi.png&#41; ^credit ... 
-<br><a href="https://julialang.org/blog/2017/03/piday/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/03/piday/</guid>
-    <pubDate>Tue, 14 Mar 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Technical preview: Native GPU programming with CUDAnative.jl]]></title>
-    <link>https://julialang.org/blog/2017/03/cudanative/</link>
-    <description><![CDATA[Technical preview: Native GPU programming with CUDAnative.jl | could use Franklin&#39;s commands to allow this as variable?... 
-<br><a href="https://julialang.org/blog/2017/03/cudanative/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/03/cudanative/</guid>
-    <pubDate>Tue, 14 Mar 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[More Dots: Syntactic Loop Fusion in Julia]]></title>
-    <link>https://julialang.org/blog/2017/01/moredots/</link>
-    <description><![CDATA[More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process &#40;https://github.com/JuliaLang/julia/issues/8450&#41; and preliminary foundations in Julia 0.5 &#40;/blog/2016-10-11-julia-0.5-highlights#vectorized<em>function</em>calls&#41;, Julia 0.6 includes new facilities for writing code in the &quot;vectorized&quot;... 
-<br><a href="https://julialang.org/blog/2017/01/moredots/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/01/moredots/</guid>
-    <pubDate>Sat, 21 Jan 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 0.5 Highlights]]></title>
-    <link>https://julialang.org/blog/2016/10/julia-0.5-highlights/</link>
-    <description><![CDATA[Julia 0.5 Highlights | It introduces more transformative features than any release since the first official version.... 
-<br><a href="https://julialang.org/blog/2016/10/julia-0.5-highlights/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/10/julia-0.5-highlights/</guid>
-    <pubDate>Tue, 11 Oct 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 0.5 Release Announcement]]></title>
-    <link>https://julialang.org/blog/2016/10/julia-0.5-release/</link>
-    <description><![CDATA[Julia 0.5 Release Announcement | After over a year of development, the Julia community is proud to announce... 
-<br><a href="https://julialang.org/blog/2016/10/julia-0.5-release/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/10/julia-0.5-release/</guid>
-    <pubDate>Mon, 10 Oct 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[StructuredQueries.jl - A generic data manipulation framework]]></title>
-    <link>https://julialang.org/blog/2016/10/StructuredQueries/</link>
-    <description><![CDATA[StructuredQueries.jl - A generic data manipulation framework | This post describes my work conducted this summer at the Julia Lab &#40;https://julia.mit.edu/&#41; to develop StructuredQueries.jl &#40;https://github.com/davidagold/StructuredQueries.jl/&#41;, a generic data manipulation framework for Julia.... 
-<br><a href="https://julialang.org/blog/2016/10/StructuredQueries/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/10/StructuredQueries/</guid>
-    <pubDate>Mon, 3 Oct 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[A Personal Perspective On JuliaCon 2016]]></title>
-    <link>https://julialang.org/blog/2016/09/juliacon2016/</link>
-    <description><![CDATA[A Personal Perspective On JuliaCon 2016 | The gentle breeze brushed my face and the mild sunshine warmed an... 
-<br><a href="https://julialang.org/blog/2016/09/juliacon2016/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/09/juliacon2016/</guid>
-    <pubDate>Wed, 21 Sep 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more!]]></title>
-    <link>https://julialang.org/blog/2016/09/biojulia2016-mid/</link>
-    <description><![CDATA[BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more&#33; | We are pleased to announce releasing... 
-<br><a href="https://julialang.org/blog/2016/09/biojulia2016-mid/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/09/biojulia2016-mid/</guid>
-    <pubDate>Sat, 10 Sep 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Announcing support for complex-domain linear programs in Convex.jl]]></title>
-    <link>https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/</link>
-    <description><![CDATA[Announcing support for complex-domain linear programs in Convex.jl | I am pleased to announce the support for complex-domain linear programs &#40;LPs&#41; in Convex.jl. As one of the <em>Google Summer of Code</em> students under <em>The Julia Language</em>, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the... 
-<br><a href="https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/</guid>
-    <pubDate>Wed, 17 Aug 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[An invitation to JuliaCon 2016]]></title>
-    <link>https://julialang.org/blog/2016/05/juliacon-invitation/</link>
-    <description><![CDATA[An invitation to JuliaCon 2016 | the annual meeting of the Julia programming language community.... 
-<br><a href="https://julialang.org/blog/2016/05/juliacon-invitation/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/05/juliacon-invitation/</guid>
-    <pubDate>Sun, 8 May 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[BioJulia Project in 2016]]></title>
-    <link>https://julialang.org/blog/2016/04/biojulia2016/</link>
-    <description><![CDATA[BioJulia Project in 2016 | I am pleased to announce that the next phase of BioJulia is starting&#33; In the next several months, I&#39;m going to implement many crucial features for bioinformatics that will motivate you to use Julia and BioJulia libraries in your work. But before going to the details of the project, let me briefly int... 
-<br><a href="https://julialang.org/blog/2016/04/biojulia2016/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/04/biojulia2016/</guid>
-    <pubDate>Sat, 30 Apr 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Google Summer of Code 2016]]></title>
-    <link>https://julialang.org/blog/2016/04/gsoc/</link>
-    <description><![CDATA[Google Summer of Code 2016 | We’re pleased to announce that the Julia Language is taking part in this year’s Google Summer of Code &#40;https://summerofcode.withgoogle.com&#41;. This means that interested students will have the opportunity to spend their summers getting paid to write code on a project of their choice.... 
-<br><a href="https://julialang.org/blog/2016/04/gsoc/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/04/gsoc/</guid>
-    <pubDate>Thu, 14 Apr 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Generalizing AbstractArrays: opportunities and challenges]]></title>
-    <link>https://julialang.org/blog/2016/03/arrays-iteration/</link>
-    <description><![CDATA[Generalizing AbstractArrays: opportunities and challenges | Somewhat unusually, this blog post is future-looking: it mostly... 
-<br><a href="https://julialang.org/blog/2016/03/arrays-iteration/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/03/arrays-iteration/</guid>
-    <pubDate>Sun, 27 Mar 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[An introduction to ParallelAccelerator.jl]]></title>
-    <link>https://julialang.org/blog/2016/03/parallelaccelerator/</link>
-    <description><![CDATA[An introduction to ParallelAccelerator.jl | The High Performance Scripting team at Intel Labs recently released... 
-<br><a href="https://julialang.org/blog/2016/03/parallelaccelerator/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/03/parallelaccelerator/</guid>
-    <pubDate>Tue, 1 Mar 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Multidimensional algorithms and iteration]]></title>
-    <link>https://julialang.org/blog/2016/02/iteration/</link>
-    <description><![CDATA[Multidimensional algorithms and iteration | Julia makes it easy to write elegant and... 
-<br><a href="https://julialang.org/blog/2016/02/iteration/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/02/iteration/</guid>
-    <pubDate>Mon, 1 Feb 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia IDE work in Atom]]></title>
-    <link>https://julialang.org/blog/2016/01/atom-work/</link>
-    <description><![CDATA[Julia IDE work in Atom | &gt; A PL designer used to be able to design some syntax and semantics for their language, implement a compiler, and then call it a day. –  Sean McDirmid... 
-<br><a href="https://julialang.org/blog/2016/01/atom-work/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/01/atom-work/</guid>
-    <pubDate>Thu, 7 Jan 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JSoC 2015 project: DataStreams.jl]]></title>
-    <link>https://julialang.org/blog/2015/10/datastreams/</link>
-    <description><![CDATA[JSoC 2015 project: DataStreams.jl | Data processing got ya down? Good news&#33; The DataStreams.jl &#40;https://github.com/JuliaDB/DataStreams.jl&#41; package, er, framework, has arrived&#33;... 
-<br><a href="https://julialang.org/blog/2015/10/datastreams/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2015/10/datastreams/</guid>
-    <pubDate>Sun, 25 Oct 2015 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl]]></title>
-    <link>https://julialang.org/blog/2015/10/auto-diff-in-julia/</link>
-    <description><![CDATA[JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl | This summer, I&#39;ve had the good fortune to be able to participate in the first ever <strong>Julia Summer of Code &#40;JSoC&#41;</strong>, generously sponsored by the Gordon and Betty Moore Foundation. My JSoC project was to explore the use of Julia for automatic differentiation &#40;AD&#41;, a topic with a wide array of applicati... 
-<br><a href="https://julialang.org/blog/2015/10/auto-diff-in-julia/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2015/10/auto-diff-in-julia/</guid>
-    <pubDate>Fri, 23 Oct 2015 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl]]></title>
-    <link>https://julialang.org/blog/2015/10/glvisualize/</link>
-    <description><![CDATA[JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl | GLVisualize is an interactive visualization library that supports 2D and 3D rendering as well as building of basic GUIs. It&#39;s written entirely in Julia and OpenGL.... 
-<br><a href="https://julialang.org/blog/2015/10/glvisualize/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2015/10/glvisualize/</guid>
-    <pubDate>Thu, 22 Oct 2015 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia]]></title>
-    <link>https://julialang.org/blog/2015/10/biojulia-sequence-analysis/</link>
-    <description><![CDATA[JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia | Thanks to a grant from the Gordon and Betty Moore Foundation, I&#39;ve enjoyed the... 
-<br><a href="https://julialang.org/blog/2015/10/biojulia-sequence-analysis/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2015/10/biojulia-sequence-analysis/</guid>
-    <pubDate>Wed, 21 Oct 2015 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D]]></title>
-    <link>https://julialang.org/blog/2015/10/compose3d-threejs/</link>
-    <description><![CDATA[JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D | Over the last three months, I&#39;ve been working on Compose3D &#40;https://github.com/rohitvarkey/Compose3D.jl&#41;,... 
-<br><a href="https://julialang.org/blog/2015/10/compose3d-threejs/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2015/10/compose3d-threejs/</guid>
-    <pubDate>Tue, 20 Oct 2015 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JSoC 2015 project: NullableArrays.jl]]></title>
-    <link>https://julialang.org/blog/2015/10/nullablearrays/</link>
-    <description><![CDATA[JSoC 2015 project: NullableArrays.jl | My project under the 2015 Julia Summer of Code program has been to develop the NullableArrays &#40;https://github.com/JuliaStats/NullableArrays.jl&#41; package, which provides the <code>NullableArray</code> data type and its respective interface. I first encountered Julia earlier this year... 
-<br><a href="https://julialang.org/blog/2015/10/nullablearrays/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2015/10/nullablearrays/</guid>
-    <pubDate>Fri, 16 Oct 2015 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 0.4 Release Announcement]]></title>
-    <link>https://julialang.org/blog/2015/10/julia-0.4-release/</link>
-    <description><![CDATA[Julia 0.4 Release Announcement | We are pleased to announce the release of Julia 0.4.0.  This release contains... 
-<br><a href="https://julialang.org/blog/2015/10/julia-0.4-release/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2015/10/julia-0.4-release/</guid>
-    <pubDate>Fri, 9 Oct 2015 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more]]></title>
-    <link>https://julialang.org/blog/2015/05/juliacon-preview/</link>
-    <description><![CDATA[JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more | The first ever JuliaCon &#40;https://juliacon.org/2014/&#41; was held in Chicago last year and was a great success. JuliaCon is back for 2015, this time in Cambridge, Massachusetts at MIT &#40;https://web.mit.edu/&#41;&#39;s architecturally-delightful Stata Center, the home of computer science at MIT &#40;https://www.csail... 
-<br><a href="https://julialang.org/blog/2015/05/juliacon-preview/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2015/05/juliacon-preview/</guid>
-    <pubDate>Sat, 30 May 2015 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia Summer of Code 2015]]></title>
-    <link>https://julialang.org/blog/2015/05/jsoc-cfp/</link>
-    <description><![CDATA[Julia Summer of Code 2015 | Thanks to a generous grant from the Moore Foundation &#40;https://www.moore.org/&#41;, we are happy to announce the 2015 <strong>Julia Summer of Code &#40;JSoC&#41;</strong> administered by NumFocus &#40;https://numfocus.org/&#41;. We realize that this announcement comes quite late in the summer internship process, but we are hoping to ... 
-<br><a href="https://julialang.org/blog/2015/05/jsoc-cfp/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2015/05/jsoc-cfp/</guid>
-    <pubDate>Sat, 23 May 2015 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Julia 0.3 Release Announcement]]></title>
-    <link>https://julialang.org/blog/2014/08/julia-0.3-release/</link>
-    <description><![CDATA[Julia 0.3 Release Announcement | We are pleased to announce the release of Julia 0.3.0.  This release contains numerous improvements across the... 
-<br><a href="https://julialang.org/blog/2014/08/julia-0.3-release/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2014/08/julia-0.3-release/</guid>
-    <pubDate>Wed, 20 Aug 2014 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JuliaCon 2014 Opening Session Presentations]]></title>
-    <link>https://julialang.org/blog/2014/08/juliacon-opening-session/</link>
-    <description><![CDATA[JuliaCon 2014 Opening Session Presentations | Tim Holy is a Professor in the Department of Anatomy and Neurobiology at Washington University in St. Louis. He’s been involved with Julia development for over 2 years. In this presentation, Tim describes how Images.jl can be used for rapid inquiry and dissection of biomedical imaging data.... 
-<br><a href="https://julialang.org/blog/2014/08/juliacon-opening-session/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2014/08/juliacon-opening-session/</guid>
-    <pubDate>Sat, 9 Aug 2014 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[JuliaCon 2014 Optimization Presentations]]></title>
-    <link>https://julialang.org/blog/2014/08/juliacon-opt-session/</link>
-    <description><![CDATA[JuliaCon 2014 Optimization Presentations | Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts Institute of Technology Operations Research Center, where they study constrained continuous and combinatorial numerical optimization methods and theory. In this session they present the JuliaOpt suite of optimization packa... 
-<br><a href="https://julialang.org/blog/2014/08/juliacon-opt-session/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2014/08/juliacon-opt-session/</guid>
-    <pubDate>Sat, 9 Aug 2014 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Fast Numeric Computation in Julia]]></title>
-    <link>https://julialang.org/blog/2013/09/fast-numeric/</link>
-    <description><![CDATA[Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.... 
-<br><a href="https://julialang.org/blog/2013/09/fast-numeric/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2013/09/fast-numeric/</guid>
-    <pubDate>Wed, 4 Sep 2013 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Building GUIs with Julia, Tk, and Cairo, Part I]]></title>
-    <link>https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/</link>
-    <description><![CDATA[Building GUIs with Julia, Tk, and Cairo, Part I | This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia.... 
-<br><a href="https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/</guid>
-    <pubDate>Thu, 23 May 2013 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Building GUIs with Julia, Tk, and Cairo, Part II]]></title>
-    <link>https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/</link>
-    <description><![CDATA[Building GUIs with Julia, Tk, and Cairo, Part II | In this installment, we&#39;ll cover both low-level graphics &#40;using Cairo&#41; and plotting graphs inside GUIs &#40;using Winston&#41;.... 
-<br><a href="https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/</guid>
-    <pubDate>Thu, 23 May 2013 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Passing Julia Callback Functions to C]]></title>
-    <link>https://julialang.org/blog/2013/05/callback/</link>
-    <description><![CDATA[Passing Julia Callback Functions to C | One of the great strengths of Julia is that it is so easy to call C... 
-<br><a href="https://julialang.org/blog/2013/05/callback/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2013/05/callback/</guid>
-    <pubDate>Fri, 10 May 2013 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Put This In Your Pipe]]></title>
-    <link>https://julialang.org/blog/2013/04/put-this-in-your-pipe/</link>
-    <description><![CDATA[Put This In Your Pipe | In a <a href="https://julialang.org/blog/2012/03/shelling-out-sucks/">previous post</a>, I talked about why &quot;shelling out&quot; to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures.... 
-<br><a href="https://julialang.org/blog/2013/04/put-this-in-your-pipe/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2013/04/put-this-in-your-pipe/</guid>
-    <pubDate>Mon, 8 Apr 2013 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Distributed Numerical Optimization]]></title>
-    <link>https://julialang.org/blog/2013/04/distributed-numerical-optimization/</link>
-    <description><![CDATA[Distributed Numerical Optimization | This post walks through the parallel computing functionality of Julia... 
-<br><a href="https://julialang.org/blog/2013/04/distributed-numerical-optimization/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2013/04/distributed-numerical-optimization/</guid>
-    <pubDate>Fri, 5 Apr 2013 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Videos from the Julia tutorial at MIT]]></title>
-    <link>https://julialang.org/blog/2013/03/julia-tutorial-MIT/</link>
-    <description><![CDATA[Videos from the Julia tutorial at MIT | We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. <a href="https://ocw.mit.edu/">MIT Open Courseware</a> and MIT-X &#40;https://www.mitx.org/&#41; graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.... 
-<br><a href="https://julialang.org/blog/2013/03/julia-tutorial-MIT/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2013/03/julia-tutorial-MIT/</guid>
-    <pubDate>Sat, 30 Mar 2013 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Efficient Aggregates in Julia]]></title>
-    <link>https://julialang.org/blog/2013/03/efficient-aggregates/</link>
-    <description><![CDATA[Efficient Aggregates in Julia | We recently introduced an exciting feature that has been in planning for some... 
-<br><a href="https://julialang.org/blog/2013/03/efficient-aggregates/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2013/03/efficient-aggregates/</guid>
-    <pubDate>Tue, 5 Mar 2013 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Design and implementation of Julia]]></title>
-    <link>https://julialang.org/blog/2012/08/design-and-implementation-of-julia/</link>
-    <description><![CDATA[Design and implementation of Julia | We describe the design and implementation of Julia in our first paper - Julia: A Fast Dynamic Language for Technical Computing. This is work in progress and comments are appreciated.... 
-<br><a href="https://julialang.org/blog/2012/08/design-and-implementation-of-julia/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2012/08/design-and-implementation-of-julia/</guid>
-    <pubDate>Thu, 16 Aug 2012 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[New York Open Stats Meetup]]></title>
-    <link>https://julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/</link>
-    <description><![CDATA[New York Open Stats Meetup | I&#39;ll be giving a talk on Julia at the New York Open Statistical Programming <a href="https://www.meetup.com/nyhackr/events/60839932/">Meetup on May 1st</a>. After my presentation, <a href="https://www.johnmyleswhite.com/">John Myles White</a> and <a href="https://www.statalgo.com/">Shane Conway</a> are going to give followup demos of s... 
-<br><a href="https://julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/</guid>
-    <pubDate>Wed, 18 Apr 2012 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Lang.NEXT Announcement]]></title>
-    <link>https://julialang.org/blog/2012/03/lang-next-talk-announcement/</link>
-    <description><![CDATA[Lang.NEXT Announcement | Jeff and I will be giving a <a href="https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia">presentation on Julia</a> at the upcoming <a href="https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012">Lang.NEXT conference</a>, a gathering of &quot;programming language design experts and enthusiasts&quot; featuring &quot;talks, ... 
-<br><a href="https://julialang.org/blog/2012/03/lang-next-talk-announcement/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2012/03/lang-next-talk-announcement/</guid>
-    <pubDate>Sat, 24 Mar 2012 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Shelling Out Sucks]]></title>
-    <link>https://julialang.org/blog/2012/03/shelling-out-sucks/</link>
-    <description><![CDATA[Shelling Out Sucks | Spawning a pipeline of connected programs via an intermediate shell — a.k.a. &quot;shelling out&quot; — is a really convenient and effective way to get things done.... 
-<br><a href="https://julialang.org/blog/2012/03/shelling-out-sucks/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2012/03/shelling-out-sucks/</guid>
-    <pubDate>Sun, 11 Mar 2012 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Stanford Talk Video]]></title>
-    <link>https://julialang.org/blog/2012/03/stanford-talk-video/</link>
-    <description><![CDATA[Stanford Talk Video | Jeff gave his <a href="https://julialang.org/blog/2012/02/talk-announcement/">previously announced</a>, invited talk at Stanford yesterday and the video is available here &#40;https://ee380.stanford.edu/cgi-bin/videologger.php?target&#61;120229-ee380-300.asx&#41;.... 
-<br><a href="https://julialang.org/blog/2012/03/stanford-talk-video/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2012/03/stanford-talk-video/</guid>
-    <pubDate>Thu, 1 Mar 2012 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Stanford Talk Announcement]]></title>
-    <link>https://julialang.org/blog/2012/02/talk-announcement/</link>
-    <description><![CDATA[Stanford Talk Announcement | I will be speaking about Julia at the... 
-<br><a href="https://julialang.org/blog/2012/02/talk-announcement/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2012/02/talk-announcement/</guid>
-    <pubDate>Mon, 27 Feb 2012 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Why We Created Julia]]></title>
-    <link>https://julialang.org/blog/2012/02/why-we-created-julia/</link>
-    <description><![CDATA[Why We Created Julia | In short, because we are greedy.... 
-<br><a href="https://julialang.org/blog/2012/02/why-we-created-julia/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2012/02/why-we-created-julia/</guid>
-    <pubDate>Tue, 14 Feb 2012 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[为什么我们要创造Julia (Simplified Chinese)]]></title>
-    <link>https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/</link>
-    <description><![CDATA[为什么我们要创造Julia &#40;Simplified Chinese&#41; | 我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们... 
-<br><a href="https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/</guid>
-    <pubDate>Tue, 14 Feb 2012 00:00:00 UT</pubDate>
-  </item>
-</channel>
-</rss>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:media="http://search.yahoo.com/mrss/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:georss="http://www.georss.org/georss">
+
+  <channel>
+    <title>
+      <![CDATA[  JuliaLang - The Julia programming language  ]]>
+    </title>
+    <link> https://julialang.org/ </link>
+    <description>
+      <![CDATA[  Official website for the Julia programming language.  ]]>
+    </description>
+    <atom:link
+      href="https://julialang.org/feed.xml"
+      rel="self"
+      type="application/rss+xml" />
+
+
+<item>
+  <title>
+    <![CDATA[  2024 GSoC and JSoC Fellows Announced  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/05/gsoc-2024-fellows/index.html </link>
+  <guid> https://julialang.org/blog/2024/05/gsoc-2024-fellows/index.html </guid>
+  <description>
+    <![CDATA[  GSoC and JSoC Fellows and Projects announced for 2024.  ]]>
+  </description>  
+    
+  <pubDate>Fri, 03 May 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.10 Highlights  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/12/julia-1.10-highlights/index.html </link>
+  <guid> https://julialang.org/blog/2023/12/julia-1.10-highlights/index.html </guid>
+  <description>
+    <![CDATA[  Highlights of the Julia 1.10 release.  ]]>
+  </description>  
+    
+  <pubDate>Wed, 27 Dec 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  PSA: Thread-local state is no longer recommended  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/07/PSA-dont-use-threadid/index.html </link>
+  <guid> https://julialang.org/blog/2023/07/PSA-dont-use-threadid/index.html </guid>
+  <description>
+    <![CDATA[  PSA: Thread-local state is no longer recommended; Common misconceptions about threadid&#40;&#41; and nthreads&#40;&#41;  ]]>
+  </description>  
+    
+  <pubDate>Thu, 06 Jul 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.9 Highlights  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/04/julia-1.9-highlights/index.html </link>
+  <guid> https://julialang.org/blog/2023/04/julia-1.9-highlights/index.html </guid>
+  <description>
+    <![CDATA[  Highlights of the Julia 1.9 release.  ]]>
+  </description>  
+    
+  <pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.8 Highlights  ]]>
+  </title>
+  <link> https://julialang.org/blog/2022/08/julia-1.8-highlights/index.html </link>
+  <guid> https://julialang.org/blog/2022/08/julia-1.8-highlights/index.html </guid>
+  <description>
+    <![CDATA[  Highlights of the Julia 1.8 release.  ]]>
+  </description>  
+    
+  <pubDate>Thu, 18 Aug 2022 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JuliaCon 2022 Highlights  ]]>
+  </title>
+  <link> https://julialang.org/blog/2022/08/juliacon-highlights-2022/index.html </link>
+  <guid> https://julialang.org/blog/2022/08/juliacon-highlights-2022/index.html </guid>
+  <description>
+    <![CDATA[  JuliaCon 2022 Highlights  ]]>
+  </description>  
+    
+  <pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Doing small network scientific machine learning in Julia 5x faster than PyTorch  ]]>
+  </title>
+  <link> https://julialang.org/blog/2022/04/simple-chains/index.html </link>
+  <guid> https://julialang.org/blog/2022/04/simple-chains/index.html </guid>
+  <description>
+    <![CDATA[  Doing small network scientific machine learning in Julia 5x faster than PyTorch ...  ]]>
+  </description>  
+    
+  <pubDate>Thu, 14 Apr 2022 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Why We Use Julia, 10 Years Later  ]]>
+  </title>
+  <link> https://julialang.org/blog/2022/02/10years/index.html </link>
+  <guid> https://julialang.org/blog/2022/02/10years/index.html </guid>
+  <description>
+    <![CDATA[  10 years ago today, we published &#39;Why we Created Julia&#39; ...  ]]>
+  </description>  
+    
+  <pubDate>Mon, 14 Feb 2022 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  DTable – an early performance assessment of a new distributed table implementation  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/12/dtable-performance-assessment/index.html </link>
+  <guid> https://julialang.org/blog/2021/12/dtable-performance-assessment/index.html </guid>
+  <description>
+    <![CDATA[  DTable – an early performance assessment of a new distributed table implementation  ]]>
+  </description>  
+    
+  <pubDate>Wed, 08 Dec 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.7 Highlights  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/11/julia-1.7-highlights/index.html </link>
+  <guid> https://julialang.org/blog/2021/11/julia-1.7-highlights/index.html </guid>
+  <description>
+    <![CDATA[  Some highlights of the Julia 1.7 release.  ]]>
+  </description>  
+    
+  <pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/10/DEQ/index.html </link>
+  <guid> https://julialang.org/blog/2021/10/DEQ/index.html </guid>
+  <description>
+    <![CDATA[  Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs  ]]>
+  </description>  
+    
+  <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia User &amp; Developer Survey 2021  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/08/julia-user-developer-survey/index.html </link>
+  <guid> https://julialang.org/blog/2021/08/julia-user-developer-survey/index.html </guid>
+  <description>
+    <![CDATA[  Julia User &amp; Developer Survey 2021  ]]>
+  </description>  
+    
+  <pubDate>Tue, 24 Aug 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JuliaCon 2021 Highlights  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/08/juliacon-highlights/index.html </link>
+  <guid> https://julialang.org/blog/2021/08/juliacon-highlights/index.html </guid>
+  <description>
+    <![CDATA[  JuliaCon 2021 Highlights  ]]>
+  </description>  
+    
+  <pubDate>Fri, 20 Aug 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Simulation of a swimming dogfish shark  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/08/sharks/index.html </link>
+  <guid> https://julialang.org/blog/2021/08/sharks/index.html </guid>
+  <description>
+    <![CDATA[  Simulation of a swimming dogfish shark  ]]>
+  </description>  
+    
+  <pubDate>Thu, 12 Aug 2021 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Gabriel D Weymouth</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Code, docs, and tests: what&#39;s in the General registry?  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/08/general-survey/index.html </link>
+  <guid> https://julialang.org/blog/2021/08/general-survey/index.html </guid>
+  <description>
+    <![CDATA[  Code, docs, and tests: what&#39;s in the General registry?  ]]>
+  </description>  
+    
+  <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JuliaCon 2021, the largest Julia Programming event in history  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/07/juliacon2021/index.html </link>
+  <guid> https://julialang.org/blog/2021/07/juliacon2021/index.html </guid>
+  <description>
+    <![CDATA[  JuliaCon 2021, the largest Julia Programming event in history  ]]>
+  </description>  
+    
+  <pubDate>Mon, 26 Jul 2021 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Logan Kilpatrick</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Google Season of Docs 2020-2021 Wrap-Up  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/04/gsod-2020-wrapup/index.html </link>
+  <guid> https://julialang.org/blog/2021/04/gsod-2020-wrapup/index.html </guid>
+  <description>
+    <![CDATA[  Google Season of Docs 2020-2021 Wrap-Up.  ]]>
+  </description>  
+    
+  <pubDate>Sun, 04 Apr 2021 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Logan Kilpatrick</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.6 Highlights  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/03/julia-1.6-highlights/index.html </link>
+  <guid> https://julialang.org/blog/2021/03/julia-1.6-highlights/index.html </guid>
+  <description>
+    <![CDATA[  Some highlights of the Julia 1.6 release.  ]]>
+  </description>  
+    
+  <pubDate>Wed, 24 Mar 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Profiling type-inference  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/01/snoopi_deep/index.html </link>
+  <guid> https://julialang.org/blog/2021/01/snoopi_deep/index.html </guid>
+  <description>
+    <![CDATA[  Profiling type-inference  ]]>
+  </description>  
+    
+  <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Apache Arrow Support in Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/01/arrow/index.html </link>
+  <guid> https://julialang.org/blog/2021/01/arrow/index.html </guid>
+  <description>
+    <![CDATA[  Apache Arrow Support in Julia  ]]>
+  </description>  
+    
+  <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  The 2020 Industry Julia Users Contributhon  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/01/contributhon/index.html </link>
+  <guid> https://julialang.org/blog/2021/01/contributhon/index.html </guid>
+  <description>
+    <![CDATA[  A Look Back At The 2020 Industry Julia Users Contributhon  ]]>
+  </description>  
+    
+  <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Tutorial on precompilation  ]]>
+  </title>
+  <link> https://julialang.org/blog/2021/01/precompile_tutorial/index.html </link>
+  <guid> https://julialang.org/blog/2021/01/precompile_tutorial/index.html </guid>
+  <description>
+    <![CDATA[  Tutorial on precompilation  ]]>
+  </description>  
+    
+  <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Using time travel to remotely debug faulty DRAM  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/09/rr-memory-magic/index.html </link>
+  <guid> https://julialang.org/blog/2020/09/rr-memory-magic/index.html </guid>
+  <description>
+    <![CDATA[  The story of debugging a mysterious Julia segfault.  ]]>
+  </description>  
+    
+  <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Keno Fischer</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Transitioning Code From Closed To Open: A JuliaCon 2020 Discussion Between Julia Users In Industry  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/index.html </link>
+  <guid> https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/index.html </guid>
+  <description>
+    <![CDATA[  Within private companies, it can be difficult to smoothly transition internal code into high quality open-source contributions. At JuliaCon 2020, industry Julia users came together to discuss how to maximize their impact in the Julia ecosystem.  ]]>
+  </description>  
+    
+  <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2020 Wrap-Up  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/09/gsoc-2020-wrapup/index.html </link>
+  <guid> https://julialang.org/blog/2020/09/gsoc-2020-wrapup/index.html </guid>
+  <description>
+    <![CDATA[  GSoC &amp; JSoC 2020 Wrap-Up.  ]]>
+  </description>  
+    
+  <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Analyzing sources of compiler latency in Julia: method invalidations  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/08/invalidations/index.html </link>
+  <guid> https://julialang.org/blog/2020/08/invalidations/index.html </guid>
+  <description>
+    <![CDATA[  Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency.  ]]>
+  </description>  
+    
+  <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  2020 Julia User and Developer Survey  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/08/2020-julia-user-and-developer-survey/index.html </link>
+  <guid> https://julialang.org/blog/2020/08/2020-julia-user-and-developer-survey/index.html </guid>
+  <description>
+    <![CDATA[  This year, 2,565 Julia users and developers participated in the second annual Julia User and Developer Survey.  ]]>
+  </description>  
+    
+  <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JuliaCon 2020 Wrap-up  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/08/juliacon-2020-wrapup/index.html </link>
+  <guid> https://julialang.org/blog/2020/08/juliacon-2020-wrapup/index.html </guid>
+  <description>
+    <![CDATA[  JuliaCon 2020 Wrap-up  ]]>
+  </description>  
+    
+  <pubDate>Tue, 11 Aug 2020 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.5 Highlights  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/08/julia-1.5-highlights/index.html </link>
+  <guid> https://julialang.org/blog/2020/08/julia-1.5-highlights/index.html </guid>
+  <description>
+    <![CDATA[  Julia version 1.5 has been released, featuring many performance improvements and new capabilities.  ]]>
+  </description>  
+    
+  <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC and JSoC 2020 Project List  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/05/jsoc-gsoc2020/index.html </link>
+  <guid> https://julialang.org/blog/2020/05/jsoc-gsoc2020/index.html </guid>
+  <description>
+    <![CDATA[  GSoC and JSoC 2020 Project List  ]]>
+  </description>  
+    
+  <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.5 Feature Preview: Time Traveling &#40;Linux&#41; Bug Reporting  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/05/rr/index.html </link>
+  <guid> https://julialang.org/blog/2020/05/rr/index.html </guid>
+  <description>
+    <![CDATA[  Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla&#39;s rr project to automatically create fully-reproducible bug reports  ]]>
+  </description>  
+    
+  <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Google&#39;s Code-In Contest Wrap up  ]]>
+  </title>
+  <link> https://julialang.org/blog/2020/02/gci-summary/index.html </link>
+  <guid> https://julialang.org/blog/2020/02/gci-summary/index.html </guid>
+  <description>
+    <![CDATA[  Over the last couple of months, 212 young people have completed over 690 tasks using Julia as part of the Google Code-In program.  ]]>
+  </description>  
+    
+  <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Yao.jl - Differentiable Quantum Programming In Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/index.html </link>
+  <guid> https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/index.html </guid>
+  <description>
+    <![CDATA[  Yao.jl - Differentiable Quantum Programming In Julia  ]]>
+  </description>  
+    
+  <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  为 Julia 包设计的可靠、可复现的二进制工件系统  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/12/artifacts-zh_cn/index.html </link>
+  <guid> https://julialang.org/blog/2019/12/artifacts-zh_cn/index.html </guid>
+  <description>
+    <![CDATA[  为 Julia 包设计的可靠、可复现的二进制工件系统   ]]>
+  </description>  
+    
+  <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Pkg &#43; BinaryBuilder – The Next Generation  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/11/artifacts/index.html </link>
+  <guid> https://julialang.org/blog/2019/11/artifacts/index.html </guid>
+  <description>
+    <![CDATA[  Over the past few months, we have been iterating on and refining a design for <code>Pkg</code> in Julia 1.3&#43; to reason about binary objects that are not Julia packages.  While the motivating application for this work has been improving the installation experience for binaries built with <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl"><code>BinaryBuilder.jl</code></a>, the artifacts subsystem is much more general and is widely applicable to all Julia packages.  ]]>
+  </description>  
+    
+  <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Profiling tool wins and woes  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/09/profilers/index.html </link>
+  <guid> https://julialang.org/blog/2019/09/profilers/index.html </guid>
+  <description>
+    <![CDATA[  Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: <a href="http://www.brendangregg.com/flamegraphs.html">brendangregg&#39;s often cloned flamegraphs tool</a> was created in 2011&#33; So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. <img src="https://julialang.org/assets/blog/2019-09-16-profilers/profile-instruments-bad.png" alt="Instruments.app bad result" />  ]]>
+  </description>  
+    
+  <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia的版本发布流程  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/09/release-process-zh-cn/index.html </link>
+  <guid> https://julialang.org/blog/2019/09/release-process-zh-cn/index.html </guid>
+  <description>
+    <![CDATA[  从事软件开发的行家里手们对版本发布流程与节奏如此了若指掌，以至于他们将其精髓<strong>内化</strong>（internalize）并以为人人都懂得这些“浅显的道理”。可是事实恰好相反，外行一眼望去如同雾里看花。所以为了整个Julia社区，乃至于其它编程语言社区，我觉得有必要将Julia的开发过程白纸黑字地写下来。在本文中，我将阐述...  ]]>
+  </description>  
+    
+  <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia Workshop@Beijing and the Julia Localization Prize  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/09/julia-workshop-beijing/index.html </link>
+  <guid> https://julialang.org/blog/2019/09/julia-workshop-beijing/index.html </guid>
+  <description>
+    <![CDATA[  A Julia workshop in China was hosted by <a href="https://github.com/JuliaCN">JuliaCN</a> in Beijing on Aug 24, 2019. This is the 5th Julia workshop in China hosted by <a href="https://github.com/JuliaCN">JuliaCN</a> since 2016. We thank the Julia community and our kind sponsors: <a href="https://caiyunapp.com/">Colorful Clouds</a>, <a href="https://microsoft.com/">Microsoft</a>, <a href="https://swarma.org">Swarma club</a>, and <a href="https://syncedreview.com/">SyncedReview</a>. We received over 100 registrations for this event, and roughly 50 offline participants. The online video stream had 1,600 live viewers.  ]]>
+  </description>  
+    
+  <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia夏季会议@Beijing - 本地化奖  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html </link>
+  <guid> https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html </guid>
+  <description>
+    <![CDATA[  <a href="https://github.com/JuliaCN">JuliaCN</a>在8月24日，中国北京举办了自2016以来第五次Julia会议。我们非常感谢Julia社区对本次活动的支持， 以及<a href="https://caiyunapp.com/">彩云科技</a>, <a href="https://microsoft.com/">微软中国</a>, <a href="https://swarma.org">集智俱乐部</a>, <a href="https://syncedreview.com/">机器之心</a>对本次活动的大力支持。本次活动有100余人注册，实到50余人。 线上直播在线人数达1600余人。   ]]>
+  </description>  
+    
+  <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia’s Release Process  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/08/release-process/index.html </link>
+  <guid> https://julialang.org/blog/2019/08/release-process/index.html </guid>
+  <description>
+    <![CDATA[  Julia’s Release Process | People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just <em>know</em> how each stage unfolds. Of course, from the outside looking in it&#39;s not so obvious. So I thought it might be helpful t...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia User - Developer Survey 2019  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/08/2019-julia-survey/index.html </link>
+  <guid> https://julialang.org/blog/2019/08/2019-julia-survey/index.html </guid>
+  <description>
+    <![CDATA[  Julia User and Developer Survey 2019 | We conducted the first annual Julia User &amp; Developer Survey in June, and the results were presented by Viral Shah at JuliaCon on July 23....  ]]>
+  </description>  
+    
+  <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia将支持可组合的多线程并行机制  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/07/multithreading-zh-cn/index.html </link>
+  <guid> https://julialang.org/blog/2019/07/multithreading-zh-cn/index.html </guid>
+  <description>
+    <![CDATA[  Julia将支持可组合的多线程并行机制 | 摩尔定律带来的免费性能提升（free lunch） free lunch 几近结束，...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Jeff Bezanson (JuliaHub), Jameson Nash (JuliaHub), Kiran Pamnany (Intel)</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Announcing composable multi-threaded parallelism in Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/07/multithreading/index.html </link>
+  <guid> https://julialang.org/blog/2019/07/multithreading/index.html </guid>
+  <description>
+    <![CDATA[  Announcing composable multi-threaded parallelism in Julia | Software performance depends more and more on exploiting multiple processor cores....   ]]>
+  </description>  
+    
+  <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Hello @DiffEqBot  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/06/diffeqbot/index.html </link>
+  <guid> https://julialang.org/blog/2019/06/diffeqbot/index.html </guid>
+  <description>
+    <![CDATA[  Hello @DiffEqBot | Hi&#33; Today we all got a new member to the DiffEq family. Say hi to our own DiffEqBot &#40;https://github.com/DiffEqBot&#41; - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a repository &#40;https://github.com/DiffE...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  A Summer of Julia 2019  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/05/jsoc19/index.html </link>
+  <guid> https://julialang.org/blog/2019/05/jsoc19/index.html </guid>
+  <description>
+    <![CDATA[  A Summer of Julia 2019 | Every summer, we welcome a large group of students working on Julia and its packages via the Google Summer of Code program....   ]]>
+  </description>  
+    
+  <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Beyond machine learning pipelines with MLJ  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/index.html </link>
+  <guid> https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/index.html </guid>
+  <description>
+    <![CDATA[  Beyond machine learning pipelines with MLJ | - learning curves &#40;from <code>examples/random_forest.jl</code>&#41;...   ]]>
+  </description>  
+    
+  <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  DiffEqFlux.jl – Julia 的神經微分方程套件  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw/index.html </link>
+  <guid> https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw/index.html </guid>
+  <description>
+    <![CDATA[  DiffEqFlux.jl – Julia 的神經微分方程套件 | 在這篇文章中，我們將會展示在 Julia 中使用微分方程解算器（DiffEq solver）搭配神經網路有多麼簡單、有效而且穩定。...   ]]>
+  </description>  
+    
+  <pubDate>Thu, 04 Apr 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  A Julia interpreter and debugger  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/03/debuggers/index.html </link>
+  <guid> https://julialang.org/blog/2019/03/debuggers/index.html </guid>
+  <description>
+    <![CDATA[  A Julia interpreter and debugger | The authors are pleased to announce the release of a fully-featured...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 19 Mar 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  The Julia Project and Its Entities  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/02/julia-entities/index.html </link>
+  <guid> https://julialang.org/blog/2019/02/julia-entities/index.html </guid>
+  <description>
+    <![CDATA[  The Julia Project and Its Entities | There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/02/light-graphs/index.html </link>
+  <guid> https://julialang.org/blog/2019/02/light-graphs/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms | This blog briefly summarises my GSoC 2018 project &#40;Parallel Graph Development &#40;https://summerofcode.withgoogle.com/archive/2018/projects/5193483178475520/&#41;&#41; and the results achieved. For a detailed description, please refer to my GSoC blog &#40;https://sohamtamba.github.io/GSoC&#41;....   ]]>
+  </description>  
+    
+  <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  DiffEqFlux.jl – A Julia Library for Neural Differential Equations  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/01/fluxdiffeq/index.html </link>
+  <guid> https://julialang.org/blog/2019/01/fluxdiffeq/index.html </guid>
+  <description>
+    <![CDATA[  DiffEqFlux.jl – A Julia Library for Neural Differential Equations...   ]]>
+  </description>  
+    
+  <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Building a Language and Compiler for Machine Learning  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/12/ml-language-compiler/index.html </link>
+  <guid> https://julialang.org/blog/2018/12/ml-language-compiler/index.html </guid>
+  <description>
+    <![CDATA[  Building a Language and Compiler for Machine Learning | Since we originally proposed the need for a first-class language, compiler and ecosystem for machine learning &#40;ML&#41;, there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTo...   ]]>
+  </description>  
+    
+  <pubDate>Mon, 03 Dec 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  How to get started with Julia 1.0&#39;s package manager  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/09/Pkgtutorial/index.html </link>
+  <guid> https://julialang.org/blog/2018/09/Pkgtutorial/index.html </guid>
+  <description>
+    <![CDATA[  How to get started with Julia 1.0&#39;s package manager | For those of you in the midst of transitioning or preparing to transition to Julia 1.0, I&#39;ve made a short &#40;less than 6 minutes&#41; tutorial on the basics of the new package manager. This video includes how to interact with the package manager and how to check, install, update, and remove packages....   ]]>
+  </description>  
+    
+  <pubDate>Wed, 12 Sep 2018 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Jane Herriman</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  A portrait of JuliaCon 2018  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/09/juliacon2018/index.html </link>
+  <guid> https://julialang.org/blog/2018/09/juliacon2018/index.html </guid>
+  <description>
+    <![CDATA[  A portrait of JuliaCon 2018 | &#33;JuliaCon2018 group photo &#40;/assets/blog/2018-09-11-juliacon2018/JuliaCon2018<em>group</em>photo.jpg&#41;...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 11 Sep 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  The Julia Community Prizes, 2018  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/09/julia-community-prizes/index.html </link>
+  <guid> https://julialang.org/blog/2018/09/julia-community-prizes/index.html </guid>
+  <description>
+    <![CDATA[  The Julia Community Prizes, 2018 | The Julia Community Prizes celebrate the amazing set of scientists, developers and designers who have come together build such a strong and diverse ecosystem for numerical computing. Each of the four individuals chosen for the first award in 2018 have made immense contributions to Julia over many yea...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 04 Sep 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/08/GSoC2018-speech-recognition/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/GSoC2018-speech-recognition/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion | Here we are on the other end of Google Summer of Code 2018. It has been a challenging and educational experience, and I wouldn&#39;t have it any other way. I am thankful to the Julia community, and especially my mentor @MikeInnes &#40;https://github.com/mikeinnes&#41;, for supporting me through this. I&#39;ve learn...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 14 Aug 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux | Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to <strong>add newer models to the Flux model-zoo</strong>, <strong>implement some new features</strong> and also <strong>improve the speed of the previous layers</strong>. Specifically, I achieved a <strong>18-fold</strong> speed up...   ]]>
+  </description>  
+    
+  <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Union-splitting: what it is, and why you should care  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/08/union-splitting/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/union-splitting/index.html </guid>
+  <description>
+    <![CDATA[  Union-splitting: what it is, and why you should care | Among those who follow Julia&#39;s development closely, one of the &#40;many&#41; new features causing great excitement is something called &quot;Union-splitting.&quot;...   ]]>
+  </description>  
+    
+  <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Announcing the release of Julia 1.0  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/08/one-point-zero/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/one-point-zero/index.html </guid>
+  <description>
+    <![CDATA[  Announcing the release of Julia 1.0. The much anticipated 1.0 release of Julia is the culmination of...  ]]>
+  </description>  
+    
+  <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.0 正式发布 &#40;Simplified Chinese&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/08/one-point-zero-zh_cn/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/one-point-zero-zh_cn/index.html </guid>
+  <description>
+    <![CDATA[  Julia 1.0 正式发布 &#40;Simplified Chinese&#41; | 备受期待的Julia语言 &#40;https://julialang.org&#41;的1.0版本积累了富有野心的程序员们的十年心血。...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.0 Anunciando el release de Julia 1.0 &#40;Spanish&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/08/one-point-zero-es/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/one-point-zero-es/index.html </guid>
+  <description>
+    <![CDATA[  La anticipada liberación de la versión 1.0 de...  ]]>
+  </description>  
+    
+  <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 1.0 正式發佈 &#40;Traditional Chinese&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/08/one-point-zero-zh_tw/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/one-point-zero-zh_tw/index.html </guid>
+  <description>
+    <![CDATA[  Julia 1.0 正式發佈 &#40;Traditional Chinese&#41; | 眾所期待的 Julia 語言 &#40;https://julialang.org&#41; 1.0 版是近十年的心血結晶。...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2018: Reinforcement Learning and Generative models using Flux  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/08/GSoC-Final-Summary/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/GSoC-Final-Summary/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2018: Reinforcement Learning and Generative models using Flux | In this post I&#39;m going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of Flux.jl &#40;https://github.com/FluxML&#41;, a machine learning library written in Julia &#40;https://github.com/JuliaLang/julia&#41;. My project cover...   ]]>
+  </description>  
+    
+  <pubDate>Mon, 06 Aug 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Writing Iterators in Julia 0.7  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/07/iterators-in-julia-0.7/index.html </link>
+  <guid> https://julialang.org/blog/2018/07/iterators-in-julia-0.7/index.html </guid>
+  <description>
+    <![CDATA[  Writing Iterators in Julia 0.7 | This post originally appeared on the Invenia blog....   ]]>
+  </description>  
+    
+  <pubDate>Sun, 08 Jul 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  First-Class Statistical Missing Values Support in Julia 0.7  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/06/missing/index.html </link>
+  <guid> https://julialang.org/blog/2018/06/missing/index.html </guid>
+  <description>
+    <![CDATA[  First-Class Statistical Missing Values Support in Julia 0.7 | The 0.7 release of Julia will soon introduce first-class support for statistical...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Extensible broadcast fusion  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/05/extensible-broadcast-fusion/index.html </link>
+  <guid> https://julialang.org/blog/2018/05/extensible-broadcast-fusion/index.html </guid>
+  <description>
+    <![CDATA[  Extensible broadcast fusion | Julia version 0.7 brings with it an exciting new feature: the ability to customize broadcast...   ]]>
+  </description>  
+    
+  <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Tetris coming to Julia language for v1.0  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/04/tetris-and-you/index.html </link>
+  <guid> https://julialang.org/blog/2018/04/tetris-and-you/index.html </guid>
+  <description>
+    <![CDATA[  Tetris coming to Julia language for v1.0 | Good news, everyone&#33; Starting v1.0, Tetris will be included in the standard library. This will allow you to play a round of Tetris while your code is busy running....   ]]>
+  </description>  
+    
+  <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia joins NumFOCUS in Google Summer of Code 2018  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/02/gsoc2018-numfocus/index.html </link>
+  <guid> https://julialang.org/blog/2018/02/gsoc2018-numfocus/index.html </guid>
+  <description>
+    <![CDATA[  Julia joins NumFOCUS in Google Summer of Code 2018 | The Julia project has participated in summer of code events since 2014, just two...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  機器學習以及程式語言&#40;Traditional Chinese&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/12/ml-pl-zh_tw/index.html </link>
+  <guid> https://julialang.org/blog/2017/12/ml-pl-zh_tw/index.html </guid>
+  <description>
+    <![CDATA[  機器學習以及程式語言&#40;Traditional Chinese&#41; | &gt; 任何足夠複雜的機器學習系統都包含一個特別設置、不符規範、充滿 bug 又緩慢實作的程式語言半成品。^greenspun ...   ]]>
+  </description>  
+    
+  <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  机器学习与编程语言 &#40;Simplified Chinese&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/12/ml-pl-cn/index.html </link>
+  <guid> https://julialang.org/blog/2017/12/ml-pl-cn/index.html </guid>
+  <description>
+    <![CDATA[  机器学习与编程语言 &#40;Simplified Chinese&#41; | &gt; 任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。^greenspun ...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  On Machine Learning and Programming Languages  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/12/ml-pl/index.html </link>
+  <guid> https://julialang.org/blog/2017/12/ml-pl/index.html </guid>
+  <description>
+    <![CDATA[  On Machine Learning and Programming Languages | &gt; Any sufficiently complicated machine learning system contains an ad-hoc, informally-specified, bug-ridden, slow implementation of half of a programming language.^greenspun ...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 06 Dec 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2017: Native Julia second order ODE and BVP solvers  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/11/gsoc-ode/index.html </link>
+  <guid> https://julialang.org/blog/2017/11/gsoc-ode/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2017: Native Julia second order ODE and BVP solvers | My original GSoC project was about implementing native Julia solvers for solving boundary value problems &#40;BVPs&#41; that were determined from second order ordinary differential equations &#40;ODEs&#41;. I started down the BVP path, built a shooting method to solve BVPs from initial value problems &#40;IVPs&#41;, and the...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  NeuralNetDiffEq.jl: A Neural Network solver for ODEs  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/10/gsoc-NeuralNetDiffEq/index.html </link>
+  <guid> https://julialang.org/blog/2017/10/gsoc-NeuralNetDiffEq/index.html </guid>
+  <description>
+    <![CDATA[  NeuralNetDiffEq.jl: A Neural Network solver for ODEs | My GSoC 2017 project &#40;https://summerofcode.withgoogle.com/projects/#5850956641075200&#41; was to implement a package for Julia to solve Ordinary Differential Equations using Neural Networks....   ]]>
+  </description>  
+    
+  <pubDate>Fri, 13 Oct 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Command interpolation for dummies  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/10/command-interpolation-for-dummies/index.html </link>
+  <guid> https://julialang.org/blog/2017/10/command-interpolation-for-dummies/index.html </guid>
+  <description>
+    <![CDATA[  Command interpolation for dummies | I&#39;ve never been a big user of the command line. One could even say I actively avoided it&#33;...   ]]>
+  </description>  
+    
+  <pubDate>Thu, 05 Oct 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2017 Project: Hamiltonian Indirect Inference  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/09/Hamiltonian-Indirect-Inference/index.html </link>
+  <guid> https://julialang.org/blog/2017/09/Hamiltonian-Indirect-Inference/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2017 Project: Hamiltonian Indirect Inference | This is a writeup of my project for the Google Summer of Code 2017. The...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2017: Parallelism in BioJulia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/09/bio-parallel/index.html </link>
+  <guid> https://julialang.org/blog/2017/09/bio-parallel/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2017: Parallelism in BioJulia | In this summer, I have worked on a project to develop tools that make BioJulia...   ]]>
+  </description>  
+    
+  <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2017: Efficient Discretizations of PDE Operators  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/09/gsoc-derivative_operators/index.html </link>
+  <guid> https://julialang.org/blog/2017/09/gsoc-derivative_operators/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2017: Efficient Discretizations of PDE Operators | This project is an attempt towards building a PDE solver for JuliaDiffEq using the Finite Difference Method &#40;https://en.wikipedia.org/wiki/Finite<em>difference</em>method&#41;&#40;FDM&#41; approach. We take up the FDM approach instead of FEM &#40;https://en.wikipedia.org/wiki/Finite<em>element</em>method&#41; and FVM &#40;https://en.w...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 06 Sep 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2017 Project: MCMC with flexible numbers of parameters  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/09/GSOC-MCMC-with-flexible-numbers-of-parameters/index.html </link>
+  <guid> https://julialang.org/blog/2017/09/GSOC-MCMC-with-flexible-numbers-of-parameters/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2017 Project: MCMC with flexible numbers of parameters | My original GSOC proposal &#40;https://docs.google.com/document/d/1yY5VhucSRW4IHSDurvPsoSBeGQQLaqoyKyYKgVW0J8Q/edit&#41; was to implement modify Mamba.jl to enable it to fit Crosscat, a general-purpose Bayesian model which fits tabular data using row-wise Dirichlet cluster models nested inside a column-wise...   ]]>
+  </description>  
+    
+  <pubDate>Sun, 03 Sep 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/09/gsoc-fenics/index.html </link>
+  <guid> https://julialang.org/blog/2017/09/gsoc-fenics/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox | Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at FEniCS.jl &#40;https://github.com/SciML/FEniCS.jl&#41; . This would allow users to perform FEM calculations direc...   ]]>
+  </description>  
+    
+  <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2017: Documentation Browser for Juno  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/08/gsoc-docs-in-juno/index.html </link>
+  <guid> https://julialang.org/blog/2017/08/gsoc-docs-in-juno/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2017: Documentation Browser for Juno | The aim of this GSoC project is to provide a convenient way to access documentation in the...   ]]>
+  </description>  
+    
+  <pubDate>Mon, 28 Aug 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  GSoC 2017: Implementing iterative solvers for numerical linear algebra  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/index.html </link>
+  <guid> https://julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/index.html </guid>
+  <description>
+    <![CDATA[  GSoC 2017: Implementing iterative solvers for numerical linear algebra | The central part of my GSoC project is about implementing the Jacobi-Davidson method natively in Julia, available in JacobiDavidson.jl &#40;https://github.com/haampie/JacobiDavidson.jl&#41;. This method computes a few approximate solutions of the eigenvalue problem  Ax &#61;  lambda Bx  for large and sparse mat...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 23 Aug 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JuliaCon 2017 on the West Coast  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/08/juliacon/index.html </link>
+  <guid> https://julialang.org/blog/2017/08/juliacon/index.html </guid>
+  <description>
+    <![CDATA[  JuliaCon 2017 on the West Coast | &#33; &#40;/assets/blog/2017-08-15-juliacon/juliacon.jpg&#41;...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Creating domain-specific languages in Julia using macros  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/08/dsl/index.html </link>
+  <guid> https://julialang.org/blog/2017/08/dsl/index.html </guid>
+  <description>
+    <![CDATA[  Creating domain-specific languages in Julia using macros | Since the beginning of Julia, it has been tempting to use macros to write <strong>domain-specific languages</strong> &#40;DSLs&#41;, i.e. to <em>extend</em> Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is JuMP &#40;https://github.com/Ju...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 09 Aug 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 0.6 Release Announcement  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/06/julia-0.6-release/index.html </link>
+  <guid> https://julialang.org/blog/2017/06/julia-0.6-release/index.html </guid>
+  <description>
+    <![CDATA[  Julia 0.6 Release Announcement | The Julia community is thrilled to announce the release of version 0.6.0 of the Julia language....   ]]>
+  </description>  
+    
+  <pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia available in Raspbian on the Raspberry Pi  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/05/raspberry-pi-julia/index.html </link>
+  <guid> https://julialang.org/blog/2017/05/raspberry-pi-julia/index.html </guid>
+  <description>
+    <![CDATA[  Julia available in Raspbian on the Raspberry Pi | Recently, Julia was accepted into the Raspbian &#40;https://www.raspberrypi.org/downloads/raspbian/&#41; distribution for the Raspberry Pi &#40;https://raspberrypi.org&#41;. If you are running the latest Raspbian, all you need to do is <code>apt-get install julia</code>. Most of the common packages can be installed with Pkg,...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 03 May 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Upgrades to the REPL in Julia 0.6  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/04/repl-0.6-highlights/index.html </link>
+  <guid> https://julialang.org/blog/2017/04/repl-0.6-highlights/index.html </guid>
+  <description>
+    <![CDATA[  Upgrades to the REPL in Julia 0.6 | Since version 0.3, Julia has come with a command-line interface — a REPL &#40;https://en.wikipedia.org/wiki/Read&#37;E2&#37;80&#37;93eval&#37;E2&#37;80&#37;93print_loop&#41;...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 25 Apr 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Knowing where you are: custom array indices in Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/04/offset-arrays/index.html </link>
+  <guid> https://julialang.org/blog/2017/04/offset-arrays/index.html </guid>
+  <description>
+    <![CDATA[  Knowing where you are: custom array indices in Julia | Arrays are a crucial component of any programming language,...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Paper in SIAM Review: Julia - A Fresh Approach to Numerical Computing  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/03/julia-fresh-paper/index.html </link>
+  <guid> https://julialang.org/blog/2017/03/julia-fresh-paper/index.html </guid>
+  <description>
+    <![CDATA[  Paper in SIAM Review: Julia - A Fresh Approach to Numerical Computing | Our paper, Julia: A Fresh Approach to Numerical Computing, was published in the prestigious SIAM Review &#40;https://dx.doi.org/10.1137/141000671&#41; in February 2017. While drafts of this paper have always been available on Arxiv...   ]]>
+  </description>  
+    
+  <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Some fun with &#928; in Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/03/piday/index.html </link>
+  <guid> https://julialang.org/blog/2017/03/piday/index.html </guid>
+  <description>
+    <![CDATA[  Some fun with &pi; in Julia | &#33;pi &#40;/assets/blog/2017-03-14-piday/pi.png&#41; ^credit ...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Technical preview: Native GPU programming with CUDAnative.jl  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/03/cudanative/index.html </link>
+  <guid> https://julialang.org/blog/2017/03/cudanative/index.html </guid>
+  <description>
+    <![CDATA[  Technical preview: Native GPU programming with CUDAnative.jl | could use Franklin&#39;s commands to allow this as variable?...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  More Dots: Syntactic Loop Fusion in Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2017/01/moredots/index.html </link>
+  <guid> https://julialang.org/blog/2017/01/moredots/index.html </guid>
+  <description>
+    <![CDATA[  More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process &#40;https://github.com/JuliaLang/julia/issues/8450&#41; and preliminary foundations in Julia 0.5 &#40;/blog/2016-10-11-julia-0.5-highlights#vectorized<em>function</em>calls&#41;, Julia 0.6 includes new facilities for writing code in the &quot;vectorized&quot;...   ]]>
+  </description>  
+    
+  <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 0.5 Highlights  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/10/julia-0.5-highlights/index.html </link>
+  <guid> https://julialang.org/blog/2016/10/julia-0.5-highlights/index.html </guid>
+  <description>
+    <![CDATA[  Julia 0.5 Highlights | It introduces more transformative features than any release since the first official version....   ]]>
+  </description>  
+    
+  <pubDate>Tue, 11 Oct 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 0.5 Release Announcement  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/10/julia-0.5-release/index.html </link>
+  <guid> https://julialang.org/blog/2016/10/julia-0.5-release/index.html </guid>
+  <description>
+    <![CDATA[  Julia 0.5 Release Announcement | After over a year of development, the Julia community is proud to announce...   ]]>
+  </description>  
+    
+  <pubDate>Mon, 10 Oct 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  StructuredQueries.jl - A generic data manipulation framework  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/10/StructuredQueries/index.html </link>
+  <guid> https://julialang.org/blog/2016/10/StructuredQueries/index.html </guid>
+  <description>
+    <![CDATA[  StructuredQueries.jl - A generic data manipulation framework | This post describes my work conducted this summer at the Julia Lab &#40;https://julia.mit.edu/&#41; to develop StructuredQueries.jl &#40;https://github.com/davidagold/StructuredQueries.jl/&#41;, a generic data manipulation framework for Julia....   ]]>
+  </description>  
+    
+  <pubDate>Mon, 03 Oct 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  A Personal Perspective On JuliaCon 2016  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/09/juliacon2016/index.html </link>
+  <guid> https://julialang.org/blog/2016/09/juliacon2016/index.html </guid>
+  <description>
+    <![CDATA[  A Personal Perspective On JuliaCon 2016 | The gentle breeze brushed my face and the mild sunshine warmed an...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 21 Sep 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more&#33;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/09/biojulia2016-mid/index.html </link>
+  <guid> https://julialang.org/blog/2016/09/biojulia2016-mid/index.html </guid>
+  <description>
+    <![CDATA[  BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more&#33; | We are pleased to announce releasing...   ]]>
+  </description>  
+    
+  <pubDate>Sat, 10 Sep 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Announcing support for complex-domain linear programs in Convex.jl  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/index.html </link>
+  <guid> https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/index.html </guid>
+  <description>
+    <![CDATA[  Announcing support for complex-domain linear programs in Convex.jl | I am pleased to announce the support for complex-domain linear programs &#40;LPs&#41; in Convex.jl. As one of the <em>Google Summer of Code</em> students under <em>The Julia Language</em>, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 17 Aug 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  An invitation to JuliaCon 2016  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/05/juliacon-invitation/index.html </link>
+  <guid> https://julialang.org/blog/2016/05/juliacon-invitation/index.html </guid>
+  <description>
+    <![CDATA[  An invitation to JuliaCon 2016 | the annual meeting of the Julia programming language community....   ]]>
+  </description>  
+    
+  <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  BioJulia Project in 2016  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/04/biojulia2016/index.html </link>
+  <guid> https://julialang.org/blog/2016/04/biojulia2016/index.html </guid>
+  <description>
+    <![CDATA[  BioJulia Project in 2016 | I am pleased to announce that the next phase of BioJulia is starting&#33; In the next several months, I&#39;m going to implement many crucial features for bioinformatics that will motivate you to use Julia and BioJulia libraries in your work. But before going to the details of the project, let me briefly int...   ]]>
+  </description>  
+    
+  <pubDate>Sat, 30 Apr 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Google Summer of Code 2016  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/04/gsoc/index.html </link>
+  <guid> https://julialang.org/blog/2016/04/gsoc/index.html </guid>
+  <description>
+    <![CDATA[  Google Summer of Code 2016 | We’re pleased to announce that the Julia Language is taking part in this year’s Google Summer of Code &#40;https://summerofcode.withgoogle.com&#41;. This means that interested students will have the opportunity to spend their summers getting paid to write code on a project of their choice....   ]]>
+  </description>  
+    
+  <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Generalizing AbstractArrays: opportunities and challenges  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/03/arrays-iteration/index.html </link>
+  <guid> https://julialang.org/blog/2016/03/arrays-iteration/index.html </guid>
+  <description>
+    <![CDATA[  Generalizing AbstractArrays: opportunities and challenges | Somewhat unusually, this blog post is future-looking: it mostly...   ]]>
+  </description>  
+    
+  <pubDate>Sun, 27 Mar 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  An introduction to ParallelAccelerator.jl  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/03/parallelaccelerator/index.html </link>
+  <guid> https://julialang.org/blog/2016/03/parallelaccelerator/index.html </guid>
+  <description>
+    <![CDATA[  An introduction to ParallelAccelerator.jl | The High Performance Scripting team at Intel Labs recently released...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Multidimensional algorithms and iteration  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/02/iteration/index.html </link>
+  <guid> https://julialang.org/blog/2016/02/iteration/index.html </guid>
+  <description>
+    <![CDATA[  Multidimensional algorithms and iteration | Julia makes it easy to write elegant and...   ]]>
+  </description>  
+    
+  <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia IDE work in Atom  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/01/atom-work/index.html </link>
+  <guid> https://julialang.org/blog/2016/01/atom-work/index.html </guid>
+  <description>
+    <![CDATA[  Julia IDE work in Atom | &gt; A PL designer used to be able to design some syntax and semantics for their language, implement a compiler, and then call it a day. –  Sean McDirmid...   ]]>
+  </description>  
+    
+  <pubDate>Thu, 07 Jan 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JSoC 2015 project: DataStreams.jl  ]]>
+  </title>
+  <link> https://julialang.org/blog/2015/10/datastreams/index.html </link>
+  <guid> https://julialang.org/blog/2015/10/datastreams/index.html </guid>
+  <description>
+    <![CDATA[  JSoC 2015 project: DataStreams.jl | Data processing got ya down? Good news&#33; The DataStreams.jl &#40;https://github.com/JuliaDB/DataStreams.jl&#41; package, er, framework, has arrived&#33;...   ]]>
+  </description>  
+    
+  <pubDate>Sun, 25 Oct 2015 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl  ]]>
+  </title>
+  <link> https://julialang.org/blog/2015/10/auto-diff-in-julia/index.html </link>
+  <guid> https://julialang.org/blog/2015/10/auto-diff-in-julia/index.html </guid>
+  <description>
+    <![CDATA[  JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl | This summer, I&#39;ve had the good fortune to be able to participate in the first ever <strong>Julia Summer of Code &#40;JSoC&#41;</strong>, generously sponsored by the Gordon and Betty Moore Foundation. My JSoC project was to explore the use of Julia for automatic differentiation &#40;AD&#41;, a topic with a wide array of applicati...   ]]>
+  </description>  
+    
+  <pubDate>Fri, 23 Oct 2015 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl  ]]>
+  </title>
+  <link> https://julialang.org/blog/2015/10/glvisualize/index.html </link>
+  <guid> https://julialang.org/blog/2015/10/glvisualize/index.html </guid>
+  <description>
+    <![CDATA[  JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl | GLVisualize is an interactive visualization library that supports 2D and 3D rendering as well as building of basic GUIs. It&#39;s written entirely in Julia and OpenGL....   ]]>
+  </description>  
+    
+  <pubDate>Thu, 22 Oct 2015 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2015/10/biojulia-sequence-analysis/index.html </link>
+  <guid> https://julialang.org/blog/2015/10/biojulia-sequence-analysis/index.html </guid>
+  <description>
+    <![CDATA[  JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia | Thanks to a grant from the Gordon and Betty Moore Foundation, I&#39;ve enjoyed the...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 21 Oct 2015 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D  ]]>
+  </title>
+  <link> https://julialang.org/blog/2015/10/compose3d-threejs/index.html </link>
+  <guid> https://julialang.org/blog/2015/10/compose3d-threejs/index.html </guid>
+  <description>
+    <![CDATA[  JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D | Over the last three months, I&#39;ve been working on Compose3D &#40;https://github.com/rohitvarkey/Compose3D.jl&#41;,...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JSoC 2015 project: NullableArrays.jl  ]]>
+  </title>
+  <link> https://julialang.org/blog/2015/10/nullablearrays/index.html </link>
+  <guid> https://julialang.org/blog/2015/10/nullablearrays/index.html </guid>
+  <description>
+    <![CDATA[  JSoC 2015 project: NullableArrays.jl | My project under the 2015 Julia Summer of Code program has been to develop the NullableArrays &#40;https://github.com/JuliaStats/NullableArrays.jl&#41; package, which provides the <code>NullableArray</code> data type and its respective interface. I first encountered Julia earlier this year...   ]]>
+  </description>  
+    
+  <pubDate>Fri, 16 Oct 2015 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 0.4 Release Announcement  ]]>
+  </title>
+  <link> https://julialang.org/blog/2015/10/julia-0.4-release/index.html </link>
+  <guid> https://julialang.org/blog/2015/10/julia-0.4-release/index.html </guid>
+  <description>
+    <![CDATA[  Julia 0.4 Release Announcement | We are pleased to announce the release of Julia 0.4.0.  This release contains...   ]]>
+  </description>  
+    
+  <pubDate>Fri, 09 Oct 2015 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more  ]]>
+  </title>
+  <link> https://julialang.org/blog/2015/05/juliacon-preview/index.html </link>
+  <guid> https://julialang.org/blog/2015/05/juliacon-preview/index.html </guid>
+  <description>
+    <![CDATA[  JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more | The first ever JuliaCon &#40;https://juliacon.org/2014/&#41; was held in Chicago last year and was a great success. JuliaCon is back for 2015, this time in Cambridge, Massachusetts at MIT &#40;https://web.mit.edu/&#41;&#39;s architecturally-delightful Stata Center, the home of computer science at MIT &#40;https://www.csail...   ]]>
+  </description>  
+    
+  <pubDate>Sat, 30 May 2015 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia Summer of Code 2015  ]]>
+  </title>
+  <link> https://julialang.org/blog/2015/05/jsoc-cfp/index.html </link>
+  <guid> https://julialang.org/blog/2015/05/jsoc-cfp/index.html </guid>
+  <description>
+    <![CDATA[  Julia Summer of Code 2015 | Thanks to a generous grant from the Moore Foundation &#40;https://www.moore.org/&#41;, we are happy to announce the 2015 <strong>Julia Summer of Code &#40;JSoC&#41;</strong> administered by NumFocus &#40;https://numfocus.org/&#41;. We realize that this announcement comes quite late in the summer internship process, but we are hoping to ...   ]]>
+  </description>  
+    
+  <pubDate>Sat, 23 May 2015 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Julia 0.3 Release Announcement  ]]>
+  </title>
+  <link> https://julialang.org/blog/2014/08/julia-0.3-release/index.html </link>
+  <guid> https://julialang.org/blog/2014/08/julia-0.3-release/index.html </guid>
+  <description>
+    <![CDATA[  Julia 0.3 Release Announcement | We are pleased to announce the release of Julia 0.3.0.  This release contains numerous improvements across the...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 20 Aug 2014 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JuliaCon 2014 Opening Session Presentations  ]]>
+  </title>
+  <link> https://julialang.org/blog/2014/08/juliacon-opening-session/index.html </link>
+  <guid> https://julialang.org/blog/2014/08/juliacon-opening-session/index.html </guid>
+  <description>
+    <![CDATA[  JuliaCon 2014 Opening Session Presentations | Tim Holy is a Professor in the Department of Anatomy and Neurobiology at Washington University in St. Louis. He’s been involved with Julia development for over 2 years. In this presentation, Tim describes how Images.jl can be used for rapid inquiry and dissection of biomedical imaging data....   ]]>
+  </description>  
+    
+  <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  JuliaCon 2014 Optimization Presentations  ]]>
+  </title>
+  <link> https://julialang.org/blog/2014/08/juliacon-opt-session/index.html </link>
+  <guid> https://julialang.org/blog/2014/08/juliacon-opt-session/index.html </guid>
+  <description>
+    <![CDATA[  JuliaCon 2014 Optimization Presentations | Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts Institute of Technology Operations Research Center, where they study constrained continuous and combinatorial numerical optimization methods and theory. In this session they present the JuliaOpt suite of optimization packa...   ]]>
+  </description>  
+    
+  <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Fast Numeric Computation in Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2013/09/fast-numeric/index.html </link>
+  <guid> https://julialang.org/blog/2013/09/fast-numeric/index.html </guid>
+  <description>
+    <![CDATA[  Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality....   ]]>
+  </description>  
+    
+  <pubDate>Wed, 04 Sep 2013 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part I  ]]>
+  </title>
+  <link> https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/index.html </link>
+  <guid> https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/index.html </guid>
+  <description>
+    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part I | This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia....   ]]>
+  </description>  
+    
+  <pubDate>Thu, 23 May 2013 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part II  ]]>
+  </title>
+  <link> https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/index.html </link>
+  <guid> https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/index.html </guid>
+  <description>
+    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part II | In this installment, we&#39;ll cover both low-level graphics &#40;using Cairo&#41; and plotting graphs inside GUIs &#40;using Winston&#41;....   ]]>
+  </description>  
+    
+  <pubDate>Thu, 23 May 2013 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Passing Julia Callback Functions to C  ]]>
+  </title>
+  <link> https://julialang.org/blog/2013/05/callback/index.html </link>
+  <guid> https://julialang.org/blog/2013/05/callback/index.html </guid>
+  <description>
+    <![CDATA[  Passing Julia Callback Functions to C | One of the great strengths of Julia is that it is so easy to call C...   ]]>
+  </description>  
+    
+  <pubDate>Fri, 10 May 2013 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Put This In Your Pipe  ]]>
+  </title>
+  <link> https://julialang.org/blog/2013/04/put-this-in-your-pipe/index.html </link>
+  <guid> https://julialang.org/blog/2013/04/put-this-in-your-pipe/index.html </guid>
+  <description>
+    <![CDATA[  Put This In Your Pipe | In a <a href="https://julialang.org/blog/2012/03/shelling-out-sucks/">previous post</a>, I talked about why &quot;shelling out&quot; to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures....   ]]>
+  </description>  
+    
+  <pubDate>Mon, 08 Apr 2013 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Distributed Numerical Optimization  ]]>
+  </title>
+  <link> https://julialang.org/blog/2013/04/distributed-numerical-optimization/index.html </link>
+  <guid> https://julialang.org/blog/2013/04/distributed-numerical-optimization/index.html </guid>
+  <description>
+    <![CDATA[  Distributed Numerical Optimization | This post walks through the parallel computing functionality of Julia...   ]]>
+  </description>  
+    
+  <pubDate>Fri, 05 Apr 2013 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Videos from the Julia tutorial at MIT  ]]>
+  </title>
+  <link> https://julialang.org/blog/2013/03/julia-tutorial-MIT/index.html </link>
+  <guid> https://julialang.org/blog/2013/03/julia-tutorial-MIT/index.html </guid>
+  <description>
+    <![CDATA[  Videos from the Julia tutorial at MIT | We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. <a href="https://ocw.mit.edu/">MIT Open Courseware</a> and MIT-X &#40;https://www.mitx.org/&#41; graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions....   ]]>
+  </description>  
+    
+  <pubDate>Sat, 30 Mar 2013 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Efficient Aggregates in Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2013/03/efficient-aggregates/index.html </link>
+  <guid> https://julialang.org/blog/2013/03/efficient-aggregates/index.html </guid>
+  <description>
+    <![CDATA[  Efficient Aggregates in Julia | We recently introduced an exciting feature that has been in planning for some...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 05 Mar 2013 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Design and implementation of Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2012/08/design-and-implementation-of-julia/index.html </link>
+  <guid> https://julialang.org/blog/2012/08/design-and-implementation-of-julia/index.html </guid>
+  <description>
+    <![CDATA[  Design and implementation of Julia | We describe the design and implementation of Julia in our first paper - Julia: A Fast Dynamic Language for Technical Computing. This is work in progress and comments are appreciated....   ]]>
+  </description>  
+    
+  <pubDate>Thu, 16 Aug 2012 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  New York Open Stats Meetup  ]]>
+  </title>
+  <link> https://julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/index.html </link>
+  <guid> https://julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/index.html </guid>
+  <description>
+    <![CDATA[  New York Open Stats Meetup | I&#39;ll be giving a talk on Julia at the New York Open Statistical Programming <a href="https://www.meetup.com/nyhackr/events/60839932/">Meetup on May 1st</a>. After my presentation, <a href="https://www.johnmyleswhite.com/">John Myles White</a> and <a href="https://www.statalgo.com/">Shane Conway</a> are going to give followup demos of s...   ]]>
+  </description>  
+    
+  <pubDate>Wed, 18 Apr 2012 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Lang.NEXT Announcement  ]]>
+  </title>
+  <link> https://julialang.org/blog/2012/03/lang-next-talk-announcement/index.html </link>
+  <guid> https://julialang.org/blog/2012/03/lang-next-talk-announcement/index.html </guid>
+  <description>
+    <![CDATA[  Lang.NEXT Announcement | Jeff and I will be giving a <a href="https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia">presentation on Julia</a> at the upcoming <a href="https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012">Lang.NEXT conference</a>, a gathering of &quot;programming language design experts and enthusiasts&quot; featuring &quot;talks, ...   ]]>
+  </description>  
+    
+  <pubDate>Sat, 24 Mar 2012 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Shelling Out Sucks  ]]>
+  </title>
+  <link> https://julialang.org/blog/2012/03/shelling-out-sucks/index.html </link>
+  <guid> https://julialang.org/blog/2012/03/shelling-out-sucks/index.html </guid>
+  <description>
+    <![CDATA[  Shelling Out Sucks | Spawning a pipeline of connected programs via an intermediate shell — a.k.a. &quot;shelling out&quot; — is a really convenient and effective way to get things done....   ]]>
+  </description>  
+    
+  <pubDate>Sun, 11 Mar 2012 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Stanford Talk Video  ]]>
+  </title>
+  <link> https://julialang.org/blog/2012/03/stanford-talk-video/index.html </link>
+  <guid> https://julialang.org/blog/2012/03/stanford-talk-video/index.html </guid>
+  <description>
+    <![CDATA[  Stanford Talk Video | Jeff gave his <a href="https://julialang.org/blog/2012/02/talk-announcement/">previously announced</a>, invited talk at Stanford yesterday and the video is available here &#40;https://ee380.stanford.edu/cgi-bin/videologger.php?target&#61;120229-ee380-300.asx&#41;....   ]]>
+  </description>  
+    
+  <pubDate>Thu, 01 Mar 2012 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name><a href="https://karpinski.org/">Stefan Karpinski</a></atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Stanford Talk Announcement  ]]>
+  </title>
+  <link> https://julialang.org/blog/2012/02/talk-announcement/index.html </link>
+  <guid> https://julialang.org/blog/2012/02/talk-announcement/index.html </guid>
+  <description>
+    <![CDATA[  Stanford Talk Announcement | I will be speaking about Julia at the...   ]]>
+  </description>  
+    
+  <pubDate>Mon, 27 Feb 2012 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Why We Created Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2012/02/why-we-created-julia/index.html </link>
+  <guid> https://julialang.org/blog/2012/02/why-we-created-julia/index.html </guid>
+  <description>
+    <![CDATA[  Why We Created Julia | In short, because we are greedy....   ]]>
+  </description>  
+    
+  <pubDate>Tue, 14 Feb 2012 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  为什么我们要创造Julia &#40;Simplified Chinese&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/index.html </link>
+  <guid> https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/index.html </guid>
+  <description>
+    <![CDATA[  为什么我们要创造Julia &#40;Simplified Chinese&#41; | 我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们...   ]]>
+  </description>  
+    
+  <pubDate>Tue, 14 Feb 2012 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+</channel></rss>

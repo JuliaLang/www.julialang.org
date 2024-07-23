@@ -162,7 +162,7 @@
 </ul>
 <p>这些文字材料是从<a href="https://discourse.julialang.org/">discourse</a>论坛和<a href="http://julialang.org/slack/">Slack</a>协作交流群中摘录而来。 所有资料都是现成的，我只是将其归纳在一处。 如果大家觉得这篇文章颇有益处，我们会考虑将其变成一份官方文档。 宏观上来说，Julia遵循<a href="https://semver.org/">SemVer</a>标准制定的“语义化版本”。 但SemVer在微观上提供了许多自由度，供使用者自行解释。 这篇文章正是为填补这些微观细节所作。</p>
 <div class="franklin-toc"><ol><li><a href="#补丁版本patch_releases">补丁版本（Patch releases）</a></li><li><a href="#次要版本minor_releases">次要版本（Minor releases）</a></li><li><a href="#主要版本major_releases">主要版本（Major releases&#41;</a></li><li><a href="#长期支持long_term_support">长期支持（Long term support）</a></li><li><a href="#不同的版本分支对应于不同的风险承受力">不同的版本分支对应于不同的风险承受力</a></li><li><a href="#发布流程">发布流程</a></li><li><a href="#要预发布版本有何用">要预发布版本有何用？</a></li><li><a href="#版本维护">版本维护</a></li><li><a href="#结论">结论</a></li></ol></div>
-<h2 id="补丁版本patch_releases"><a href="#补丁版本patch_releases">补丁版本（Patch releases）</a></h2>
+<h2 id="补丁版本patch_releases"><a href="#补丁版本patch_releases" class="header-anchor">补丁版本（Patch releases）</a></h2>
 <ul>
 <li><p>SemVer的版本号格式为<strong>主版本号.次版本号.修订号</strong>。 Julia的补丁版本增加版本号的最后位，即<strong>修订号</strong>。 比方说，从<code>1.2.3</code>到<code>1.2.4</code>标志着补丁版本的发布。</p>
 </li>
@@ -182,7 +182,7 @@
 <li><p>大约在发布补丁版本的五天前，我们会在<strong>反向移植</strong>（backport）分支上运行PkgEval。 如果一切顺利，我们会将其<strong>归并</strong>（merge）并<strong>冻结</strong>（freeze）这些版本分支，并在discourse上宣布可以开始测试了。 如果在这接下来的五天里，一切风平浪静，这些版本分支会被贴上新的<strong>版本标签</strong>（tag）。</p>
 </li>
 </ul>
-<h2 id="次要版本minor_releases"><a href="#次要版本minor_releases">次要版本（Minor releases）</a></h2>
+<h2 id="次要版本minor_releases"><a href="#次要版本minor_releases" class="header-anchor">次要版本（Minor releases）</a></h2>
 <ul>
 <li><p>次要版本增加版本号的中间位，即<strong>次版本号</strong>。 比方说，从<code>1.2.3</code>到<code>1.3.0</code>标志着次要版本的发布。</p>
 </li>
@@ -200,7 +200,7 @@
 
 </li>
 </ul>
-<h2 id="主要版本major_releases"><a href="#主要版本major_releases">主要版本（Major releases&#41;</a></h2>
+<h2 id="主要版本major_releases"><a href="#主要版本major_releases" class="header-anchor">主要版本（Major releases&#41;</a></h2>
 <ul>
 <li><p>主要版本增加版本号的第一位，即<strong>主版本号</strong>。比方说，<code>2.0.0</code>标志着主要版本的发布。</p>
 </li>
@@ -216,7 +216,7 @@
 <li><p>主要版本的职责在于修正明显的API设计缺陷，人人都会因为能摆脱这种差劲的，扑朔迷离的API而拍手称快。 主要版本也允许修改底层代码，这会造成某些<strong>第三方库</strong>（package）的不兼容，但这是从根本上改善语言所必须付出的代价。</p>
 </li>
 </ul>
-<h2 id="长期支持long_term_support"><a href="#长期支持long_term_support">长期支持（Long term support）</a></h2>
+<h2 id="长期支持long_term_support"><a href="#长期支持long_term_support" class="header-anchor">长期支持（Long term support）</a></h2>
 <p>一些用户乐于时刻更新Julia以获得最炫最酷的新特性。 另一些用户甚至乐此不疲地每天重新编译Julia的master分支以做第一个吃螃蟹的人。 还有的用户，恰恰相反，一年到头也懒得升级一次。 理想情况下，我们愿意为每个存在于世的次要版本永远提供bug修复服务。 如果我们有无限的资源，我们会将每一个bug修复反向移植到每一个兼容的版本分支上。 理想很丰满，现实很骨感。 我们的资源仅够我们维护几个活跃版本分支。 因此，我们退而求其次，决定在任何时间节点上仅维护至多四个活跃分支：</p>
 <ul>
 <li><p><code>master</code>分支： 这是所有新特性的发源地，大部分bug修复的栖息之处，也将在未来成为有划时代意义的<code>2.0</code>版本的摇篮。</p>
@@ -229,7 +229,7 @@
 </li>
 </ul>
 <p>现在问题只剩一个：什么时候LTS分支会更替？ <code>release-1.0</code>是我们目前唯一确立过的LTS分支。 获得了四个补丁版本后，该分支相当稳定并被广泛支持。 可是，它从<code>master</code>获得的bug修复补丁会与日俱减，并且越来越多的第三方库会放弃对其的支持（这些库需要用到Julia新版本中的特性）。 当合适的时机来临时，我们不得不选择一个新的LTS分支并宣布放弃维护<code>1.0.x</code>系列。 这个新的LTS分支可能是<code>1.4</code>或<code>1.8</code>，也可能是<code>2.0</code>。 我们现在还无法预言，但这一天终究会到来。 幸运的是，即便如此，<code>1.0.x</code>系列的使用者们也并非一定要升级版本。 他们大可以使用这一旧版本，并只与和该版本兼容的第三方库版本打交道。 到那时，它将成为最稳定，最充分测试的Julia版本。 所以，只要你不需要新特性，你大可以放心地继续无限期地使用它。 另外，如果某人或某组织出于自身利益，愿意继续维护某个旧版本分支，也就是<strong>甄选</strong>（cherry-pick）反向移植并运行PkgEval以确保兼容性，我们将很乐意接受这些帮助从而发布更多的版本。 因此，你总可以通过自己维护或雇人维护来获得更长期的支持。 就目前来说，<code>release-1.0</code>仍将继续是一个优秀的，稳定的LTS分支。 并且，当我们打算更替LTS分支时，我们会提前发布大量<strong>警告</strong>（warning）。</p>
-<h2 id="不同的版本分支对应于不同的风险承受力"><a href="#不同的版本分支对应于不同的风险承受力">不同的版本分支对应于不同的风险承受力</a></h2>
+<h2 id="不同的版本分支对应于不同的风险承受力"><a href="#不同的版本分支对应于不同的风险承受力" class="header-anchor">不同的版本分支对应于不同的风险承受力</a></h2>
 <p>不同的用户有不同的<strong>风险承受力</strong>（risk tolerance）。 一些风险承受力高的用户能驾轻就熟地发现并汇报零星的bug，并侦察出为什么某个第三方库与Julia的新版本不兼容。 另一些风险承受力低的用户希望使用久经考验，广泛兼容的版本。 还有些用户介于这两个极端间的某处。 大致可以把大多数用户根据风险承受力分为下面四类：</p>
 <ol>
 <li><p><strong>高风险承受力</strong>（high risk tolerance）：“人生只有一次，我在master分支上翩翩起舞。况且，master分支在未来的相当长一段时间内不会有破坏兼容性的更新<sup id="fnref:comp"><a href="#fndef:comp" class="fnref">[4]</a></sup>。现在master只偶尔出现bug，不过就算出现bug，我也可以帮忙解决。”</p>
@@ -256,7 +256,7 @@
 </li>
 </ul>
 <p>如果一个新的LTS分支满足这两个条件，低风险承受力用户便会升级到该版本，因为他们相信该新LTS分支可靠，经过充分调试，并且需要的第三方库已经向其提供支持（可能需要同时更新库版本）。 我们将从实践中学习新的LTS分支在独当一面前需要滞后稳定分支多少版本。</p>
-<h2 id="发布流程"><a href="#发布流程">发布流程</a></h2>
+<h2 id="发布流程"><a href="#发布流程" class="header-anchor">发布流程</a></h2>
 <p>我们已经讨论了各种版本以及它们所允许的修改，但我们还没深入讨论这些版本的发布流程。 在这一节里，我将描绘这些细节，诸如从<code>master</code>上的新特性到次要版本的发布，再到为次要版本发布补丁。 在这节里，“bug”一词不仅指代传统意义上的错误代码，也同时指代性能问题（运行效率不可接受之低的代码）。 在Julia语言中，性能至关重要，我们经常将性能问题视为不可绕过的bug。 以下是一连串围绕<code>x.y.0</code>次要版本展开的各阶段与标志性事件：</p>
 <ul>
 <li><p><strong>开发</strong>（development），4个月</p>
@@ -346,7 +346,7 @@
 <p>为了解决这一矛盾，我们想了一个好主意。 如果我们同时开展一个版本的稳定化和下一版本的开发，我们就有望如期完成版本迭代。 每个次要版本的开发阶段占用固定的四个月的时间，<code>x.y</code>版本的开发阶段一结束，<code>x.&#40;y&#43;1&#41;</code>版本的开发阶段就立即开始。 雷打不动地，我们每四个月进行一次特性冻结：一旦我们决定了特性冻结的日子，你要么加把劲在这之前<strong>汇入</strong>（merge）你开发的特性，要么索性等下一个版本。 这个操作方法也意味着<code>master</code>分支永远开放用于接受新特性，而不会像不稳定分支那样在稳定化阶段冻结。</p>
 <p>由于开发与稳定化的时间重叠，如果版本候选过程耗时过长，很有可能<code>x.y.0</code>的最终版本将在<code>x.&#40;y&#43;1&#41;.0</code>特性冻结时发布。 一个最好的例子便是<code>1.2.0</code>版本和<code>1.3.0</code>版本。 虽然这在discourse上引起了一些困惑和惊愕，但这种副作用是维持可预测发布周期所必要的。 <code>1.2</code>版本的稳定化阶段不寻常的长，但这并没有什么好奇怪的。 我们时时检视我们的开发流程，反思如何改进。 一个可能的改进是更频繁地调用PkgEval以及自动化这一过程。 这样我们就能尽早地知道何时我们破坏了与第三方库的兼容性。 调用PkgEval越早，调用PkgEval越频繁，我们也就越容易锁定破坏兼容性的变动。 如果有人愿意帮助改善Julia的发布流程，一个行之有效的途径就是替我们多多调用PkgEval，而且这不需要什么高深的技术知识。</p>
 <p>有一点需要注意，特性冻结只冻结了特性，不冻结bug修复。 Bug修复在任何时间在任何分支上都是允许的。 修复bug永远不会迟。 只有一种情况bug修复不进入版本分支，那就是该分支已被遗弃了。 即便如此，如果有人愿意修复遗弃分支的bug并发布一个新版本，我们举双手欢迎，只不过我们不自己带头罢了。</p>
-<h2 id="要预发布版本有何用"><a href="#要预发布版本有何用">要预发布版本有何用？</a></h2>
+<h2 id="要预发布版本有何用"><a href="#要预发布版本有何用" class="header-anchor">要预发布版本有何用？</a></h2>
 <p>虽然<strong>预发布版本</strong>（pre-release&#41;是版本发布流程的标准组成部分，并不是所有人都对alpha和beta版本乃至<strong>候选版本</strong>（release candidate）的意义了若指掌。 这些预发布版本的意义何在？ 我起初对此也懵懵懂懂，直到我开始自己发布软件版本。 这些预发布版本其实是一种<strong>沟通</strong>，一种和所有依赖你的软件的用户的沟通。 它们向你的用户发出信号：“亲，来试试看这个。” 每一个预发布版本向各种用户请求不同的反馈：</p>
 <ul>
 <li><p>alpha版本说道：“我的特性还不齐全，而且几乎一定有bug，但请给我一些关于这些重要新特性的反馈，以便于我在木已成舟之前做出适当的修改。”</p>
@@ -364,7 +364,7 @@
 </li>
 </ul>
 <p>所以，下次当你看到一个预发布版本，不要错过尝试它的机会！ 让我们知道它是否为你正常工作。 如果你这样做的话，最终版本就会给你带来平滑，高质量的使用体验。</p>
-<h2 id="版本维护"><a href="#版本维护">版本维护</a></h2>
+<h2 id="版本维护"><a href="#版本维护" class="header-anchor">版本维护</a></h2>
 <p>关于bug修复，一个（次要）版本的生命并不随着其贴上<code>x.y.0</code>标签而结束。 后面一系列叫<code>x.y.z</code>的补丁版本正翘首以待呢。 这又是怎么一回事？ 所有活跃分支都需要修复bug，但bug修复通常进行于最新的分支，随后才反向移植到之前的活跃分支。 譬如，<code>master</code>上有个bug，这个bug会以<strong>pull请求</strong>（pull request，PR）的方式被修复。 同时，这个bug每波及一个活跃分支，该PR就会被贴上相应的<code>backport x.y</code>的<strong>GitHub标签</strong>（label）。 当前的活跃分支为<code>master</code>，<code>release-1.3</code>（不稳定），<code>release-1.2</code>（稳定），和<code>release-1.0</code>（LTS），这个PR会被贴上相应的<code>backport 1.3</code>， <code>backport 1.2</code>，和<code>backport 1.0</code>标签。 这个代码改动随后通过甄选（使用<code>git cherry-pick -x</code>）运用于这些分支中的每一个，并成为下个补丁版本的一部分。 如果修复成功，测试通过，则皆大欢喜。 如果失败，则需通过额外的手工劳动修复这些分支上的bug。</p>
 <p>一旦某个版本分支积累了足够的bug修复，并且经历了足够的时间，一个新的补丁版本<code>x.y.z</code>就诞生了。 相关消息会在discourse上提前五天公布，以便于用户测试新版本。 我们目前没有精力或资源为补丁版本制作<strong>二进制程序体</strong>（binary）或候选版本——它们多如牛毛。 因此，你要么使用一个<strong>每日构建</strong>（nightly build），要么自己从源码编译。 如果你想助我们一臂之力，自动化并精简补丁版本发布流程是另一个高影响力的工作<sup id="fnref:help"><a href="#fndef:help" class="fnref">[6]</a></sup>。</p>
 <table class="fndef" id="fndef:help">
@@ -374,7 +374,7 @@
     </tr>
 </table>
 
-<h2 id="结论"><a href="#结论">结论</a></h2>
+<h2 id="结论"><a href="#结论" class="header-anchor">结论</a></h2>
 <p>但愿你读完这篇关于Julia版本发布流程和政策的综述后有所启迪。 我们最想看到的是你们当中的某些人读完之后参与到Julia的事业中，同时也希望通过揭秘Julia的发布流程，我们降低了成为Julia开发人员的门槛。</p>
 <p><em>Translator: <a href="https://github.com/WenjieZ">Wenjie Zheng</a></em></p>
 </div><br><br>
@@ -492,7 +492,7 @@
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>

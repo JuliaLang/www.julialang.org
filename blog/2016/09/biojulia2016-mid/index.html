@@ -165,111 +165,111 @@
 </li>
 </ul>
 <p>And many other miscellaneous performance and usability improvements&#33;  Tutorial notebooks are available at <a href="https://github.com/BioJulia/BioTutorials">https://github.com/BioJulia/BioTutorials</a>.  Here I briefly introduce you to these new features one by one.</p>
-<h2 id="online_sequence_search_algorithms"><a href="#online_sequence_search_algorithms">Online sequence search algorithms</a></h2>
+<h2 id="online_sequence_search_algorithms"><a href="#online_sequence_search_algorithms" class="header-anchor">Online sequence search algorithms</a></h2>
 <p>Sequence search is an indispensable tool in sequence analysis.  Since the last post, I have added exact, approximate and regex search algorithms.  The search interface of Bio.jl mimics that of Julia&#39;s standard library.</p>
-<pre><code class="language-julia">julia&gt; using Bio.Seq
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> Bio.Seq
 
-julia&gt; seq &#61; dna&quot;ACAGCGTAGCT&quot;
-11nt DNA Sequence:
+julia&gt; seq = <span class="hljs-string">dna&quot;ACAGCGTAGCT&quot;</span>
+<span class="hljs-number">11</span>nt DNA Sequence:
 ACAGCGTAGCT
 
-# Exact search.
-julia&gt; search&#40;seq, dna&quot;AGCG&quot;&#41;
-3:6
+<span class="hljs-comment"># Exact search.</span>
+julia&gt; search(seq, <span class="hljs-string">dna&quot;AGCG&quot;</span>)
+<span class="hljs-number">3</span>:<span class="hljs-number">6</span>
 
-# Approximate search with one error or less.
-julia&gt; approxsearch&#40;seq, dna&quot;AGGG&quot;, 1&#41;
-3:6
+<span class="hljs-comment"># Approximate search with one error or less.</span>
+julia&gt; approxsearch(seq, <span class="hljs-string">dna&quot;AGGG&quot;</span>, <span class="hljs-number">1</span>)
+<span class="hljs-number">3</span>:<span class="hljs-number">6</span>
 
-# Regular expression search.
-julia&gt; search&#40;seq, biore&quot;AGN*?G&quot;d&#41;
-3:6</code></pre>
-<h2 id="sequence_data_structure_for_reference_genomes"><a href="#sequence_data_structure_for_reference_genomes">Sequence data structure for reference genomes</a></h2>
+<span class="hljs-comment"># Regular expression search.</span>
+julia&gt; search(seq, <span class="hljs-string">biore&quot;AGN*?G&quot;d</span>)
+<span class="hljs-number">3</span>:<span class="hljs-number">6</span></code></pre>
+<h2 id="sequence_data_structure_for_reference_genomes"><a href="#sequence_data_structure_for_reference_genomes" class="header-anchor">Sequence data structure for reference genomes</a></h2>
 <p>In Bio.jl DNA sequences are encoded using 4 bits per base by default in order to store ambiguous nucleotides and this encoding does well in most cases. However, some biological sequences such as chromosomal sequences are so long especially for eukaryotic organisms and the default DNA sequences may result in a waste of memory space. <code>ReferenceSequence</code> is a new type introduced in Bio.jl that compresses positions of ambiguous nucleotides using a sparse bit vector. This type can achieve almost 2-bit encoding in common reference sequences because most of the ambiguous nucleotides are clustered in a sequence and the number of them is small compared to other unambiguous nucleotides.</p>
-<pre><code class="language-julia"># Converting a DNASequence object to ReferenceSequence.
-julia&gt; ReferenceSequence&#40;dna&quot;ACGT&quot;^10000&#41;
-40000nt Reference Sequence:
+<pre><code class="julia hljs"><span class="hljs-comment"># Converting a DNASequence object to ReferenceSequence.</span>
+julia&gt; ReferenceSequence(<span class="hljs-string">dna&quot;ACGT&quot;</span>^<span class="hljs-number">10000</span>)
+<span class="hljs-number">40000</span>nt Reference Sequence:
 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACG…CGTACGTACGTACGTACGTACGTACGTACGTACGTACGT
 
-# Reading chromosome 1 of human from a FASTA file.
-julia&gt; open&#40;first, FASTAReader&#123;ReferenceSequence&#125;, &quot;hg38.fa&quot;&#41;
-Bio.Seq.SeqRecord&#123;Bio.Seq.ReferenceSequence,Bio.Seq.FASTAMetadata&#125;:
+<span class="hljs-comment"># Reading chromosome 1 of human from a FASTA file.</span>
+julia&gt; open(first, FASTAReader{ReferenceSequence}, <span class="hljs-string">&quot;hg38.fa&quot;</span>)
+Bio.Seq.SeqRecord{Bio.Seq.ReferenceSequence,Bio.Seq.FASTAMetadata}:
   name: chr1
   sequence: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN…NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-  metadata: Bio.Seq.FASTAMetadata&#40;&quot;&quot;&#41;
+  metadata: Bio.Seq.FASTAMetadata(<span class="hljs-string">&quot;&quot;</span>)
 
-julia&gt; sequence&#40;ans&#41;
-248956422nt Reference Sequence:
+julia&gt; sequence(ans)
+<span class="hljs-number">248956422</span>nt Reference Sequence:
 NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN…NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</code></pre>
-<h2 id="data_reader_and_writer_for_the_2bit_file_format"><a href="#data_reader_and_writer_for_the_2bit_file_format">Data reader and writer for the 2bit file format</a></h2>
+<h2 id="data_reader_and_writer_for_the_2bit_file_format"><a href="#data_reader_and_writer_for_the_2bit_file_format" class="header-anchor">Data reader and writer for the 2bit file format</a></h2>
 <p>2bit is a binary file format to store reference sequences. This is a kind of binary counterpart of <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> but specialized for DNA reference sequences to enable smaller file size and faster loading. Reference sequences of various organisms are distributed from <a href="https://hgdownload.soe.ucsc.edu/downloads.html">the download page of UCSC</a> in this file format. An important advantage of 2bit is that sequences are indexed by its name and can be accessed immediately.</p>
-<pre><code class="language-julia"># Opening a sequence file of yeast &#40;S.cerevisiae&#41;.
-julia&gt; reader &#61; open&#40;TwoBitReader, &quot;sacCer3.2bit&quot;&#41;;
+<pre><code class="julia hljs"><span class="hljs-comment"># Opening a sequence file of yeast (S.cerevisiae).</span>
+julia&gt; reader = open(TwoBitReader, <span class="hljs-string">&quot;sacCer3.2bit&quot;</span>);
 
-# Loading a chromosome VI using random access index.
-julia&gt; reader&#91;&quot;chrVI&quot;&#93;
-Bio.Seq.SeqRecord&#123;Bio.Seq.ReferenceSequence,Array&#123;UnitRange&#123;Int64&#125;,1&#125;&#125;:
+<span class="hljs-comment"># Loading a chromosome VI using random access index.</span>
+julia&gt; reader[<span class="hljs-string">&quot;chrVI&quot;</span>]
+Bio.Seq.SeqRecord{Bio.Seq.ReferenceSequence,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">UnitRange</span>{<span class="hljs-built_in">Int64</span>},<span class="hljs-number">1</span>}}:
   name: chrVI
   sequence: GATCTCGCAAGTGCATTCCTAGACTTAATTCATATCTGC…GTGTGGTGTGTGGGTGTGGTGTGTGGGTGTGGTGTGTGG
-  metadata: UnitRange&#123;Int64&#125;&#91;&#93;</code></pre>
-<h2 id="data_reader_and_writer_for_the_sam_and_bam_file_formats"><a href="#data_reader_and_writer_for_the_sam_and_bam_file_formats">Data reader and writer for the SAM and BAM file formats</a></h2>
+  metadata: <span class="hljs-built_in">UnitRange</span>{<span class="hljs-built_in">Int64</span>}[]</code></pre>
+<h2 id="data_reader_and_writer_for_the_sam_and_bam_file_formats"><a href="#data_reader_and_writer_for_the_sam_and_bam_file_formats" class="header-anchor">Data reader and writer for the SAM and BAM file formats</a></h2>
 <p>The SAM and BAM file formats are designed for storing sequences aligned to reference sequences. SAM is a line-oriented text file format and easy to handle with UNIX command line tools. BAM is a compressed binary version of SAM and suitable for storing data in disks and processing with purpose-built softwares like <a href="https://samtools.github.io/">samtools</a>. The BAM data reader is carefully tuned so that users can use it in real analysis with large files. It is also feasible to read a <a href="https://www.ebi.ac.uk/ena/software/cram-toolkit">CRAM</a> file combining the BAM reader and <code>samtools view</code> command.</p>
 <p>An experimental feature is parallel processing using multiple threads. Multi-threading support is introduced in Julia 0.5 and we use it to parallelize decompression of BAM files. Here is a simple benchmark script to show how much reading speed can be improved with multiple threads:</p>
-<pre><code class="language-julia">using Bio.Align
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Bio.Align
 
-# Count the number of mapped records.
-function countmapped&#40;reader&#41;
-    ret &#61; 0
-    record &#61; BAMRecord&#40;&#41;
-    while &#33;eof&#40;reader&#41;
-        # in-place reading
-        read&#33;&#40;reader, record&#41;
-        if ismapped&#40;record&#41;
-            ret &#43;&#61; 1
-        end
-    end
-    return ret
-end
+<span class="hljs-comment"># Count the number of mapped records.</span>
+<span class="hljs-keyword">function</span> countmapped(reader)
+    ret = <span class="hljs-number">0</span>
+    record = BAMRecord()
+    <span class="hljs-keyword">while</span> !eof(reader)
+        <span class="hljs-comment"># in-place reading</span>
+        read!(reader, record)
+        <span class="hljs-keyword">if</span> ismapped(record)
+            ret += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> ret
+<span class="hljs-keyword">end</span>
 
-println&#40;open&#40;countmapped, BAMReader, ARGS&#91;1&#93;&#41;&#41;</code></pre>
+println(open(countmapped, BAMReader, <span class="hljs-literal">ARGS</span>[<span class="hljs-number">1</span>]))</code></pre>
 <p><code>JULIA_NUM_THREADS</code> environment variable controls the number of worker threads. The result below shows that the elapsed time is almost halved using two threads:</p>
-<pre><code class="language-julia">~/.j/v/Bio &#36; time julia countmapped.jl SRR1238088.sort.bam
-28040186
-       29.27 real        28.64 user         0.66 sys
-~/.j/v/Bio &#36; env JULIA_NUM_THREADS&#61;2 time julia countmapped.jl SRR1238088.sort.bam
-28040186
-       17.40 real        32.31 user         0.63 sys</code></pre>
-<h2 id="package_to_handle_bgzf_files"><a href="#package_to_handle_bgzf_files">Package to handle BGZF files</a></h2>
+<pre><code class="julia hljs">~/.j/v/Bio $ time julia countmapped.jl SRR1238088.sort.bam
+<span class="hljs-number">28040186</span>
+       <span class="hljs-number">29.27</span> real        <span class="hljs-number">28.64</span> user         <span class="hljs-number">0.66</span> sys
+~/.j/v/Bio $ env JULIA_NUM_THREADS=<span class="hljs-number">2</span> time julia countmapped.jl SRR1238088.sort.bam
+<span class="hljs-number">28040186</span>
+       <span class="hljs-number">17.40</span> real        <span class="hljs-number">32.31</span> user         <span class="hljs-number">0.63</span> sys</code></pre>
+<h2 id="package_to_handle_bgzf_files"><a href="#package_to_handle_bgzf_files" class="header-anchor">Package to handle BGZF files</a></h2>
 <p>BGZF &#40;Blocked GZip Format&#41; is a gzip-compliant file format commonly used in bioinformatics. BGZF can be read using standard gzip tools but files in the format are compressed block by block and special metadata are added to index the compressed files for random access. BAM files are compressed in this file format and sequence alignments in a specific genomic region can be retrieved efficiently.  BGZFStreams.jl is a new package to handle BGZF files like usual I/O streams and it is built on top of our <a href="https://github.com/BioJulia/Libz.jl">Libz.jl</a> package. Parallel decompression mentioned above is implemented in this package layer.</p>
-<pre><code class="language-julia">julia&gt; using BGZFStreams
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> BGZFStreams
 
-julia&gt; stream &#61; BGZFStream&#40;&quot;/Users/kenta/.julia/v0.5/BGZFStreams/test/bar.bgz&quot;&#41;
-BGZFStreams.BGZFStream&#123;IOStream&#125;&#40;&lt;mode&#61;read&gt;&#41;
+julia&gt; stream = BGZFStream(<span class="hljs-string">&quot;/Users/kenta/.julia/v0.5/BGZFStreams/test/bar.bgz&quot;</span>)
+BGZFStreams.BGZFStream{<span class="hljs-built_in">IOStream</span>}(&lt;mode=read&gt;)
 
-julia&gt; readstring&#40;stream&#41;
-&quot;bar&quot;</code></pre>
+julia&gt; readstring(stream)
+<span class="hljs-string">&quot;bar&quot;</span></code></pre>
 
 <https://github.com/BioJulia/BGZFStreams.jl>
 
-<h2 id="sequence_demultiplexing_tool"><a href="#sequence_demultiplexing_tool">Sequence demultiplexing tool</a></h2>
+<h2 id="sequence_demultiplexing_tool"><a href="#sequence_demultiplexing_tool" class="header-anchor">Sequence demultiplexing tool</a></h2>
 <p>Sequence demultiplexing is a technique to distinguish the origin of a sequence using its artificially-attached &quot;barcode&quot; sequence. This is often used at a preprocessing phase after <a href="https://www.illumina.com/technology/next-generation-sequencing/multiplexing-sequencing-assay.html">multiplexed sequencing</a>, a common technique to sequence multiple samples simultaneously.  A barcode sequence, however, may be corrupted due to sequencing error, and we need to find the best matching barcode from a barcode set.  The demultiplexer algorithm implemented in Bio.jl is based on a trie-like data structure, and efficiently finds the optimal barcode from the prefix of a given DNA sequence.</p>
-<pre><code class="language-julia"># Set DNA barcode pool.
-julia&gt; barcodes &#61; DNASequence&#91;&quot;ATGG&quot;, &quot;CAGA&quot;, &quot;GGAA&quot;, &quot;TACG&quot;&#93;;
+<pre><code class="julia hljs"><span class="hljs-comment"># Set DNA barcode pool.</span>
+julia&gt; barcodes = DNASequence[<span class="hljs-string">&quot;ATGG&quot;</span>, <span class="hljs-string">&quot;CAGA&quot;</span>, <span class="hljs-string">&quot;GGAA&quot;</span>, <span class="hljs-string">&quot;TACG&quot;</span>];
 
-# Create a sequence demultiplexer that allows one errors at most.
-julia&gt; dplxr &#61; Demultiplexer&#40;barcodes, n_max_errors&#61;1, distance&#61;:hamming&#41;
-Bio.Seq.Demultiplexer&#123;Bio.Seq.BioSequence&#123;Bio.Seq.DNAAlphabet&#123;4&#125;&#125;&#125;:
+<span class="hljs-comment"># Create a sequence demultiplexer that allows one errors at most.</span>
+julia&gt; dplxr = Demultiplexer(barcodes, n_max_errors=<span class="hljs-number">1</span>, distance=:hamming)
+Bio.Seq.Demultiplexer{Bio.Seq.BioSequence{Bio.Seq.DNAAlphabet{<span class="hljs-number">4</span>}}}:
   distance: hamming
-  number of barcodes: 4
-  number of correctable errors: 1
+  number of barcodes: <span class="hljs-number">4</span>
+  number of correctable errors: <span class="hljs-number">1</span>
 
-# Demultiplex a given sequence from its prefix.
-julia&gt; demultiplex&#40;dplxr, dna&quot;ATGGCGNT&quot;&#41;  # 1st barcode with no errors
-&#40;1,0&#41;
+<span class="hljs-comment"># Demultiplex a given sequence from its prefix.</span>
+julia&gt; demultiplex(dplxr, <span class="hljs-string">dna&quot;ATGGCGNT&quot;</span>)  <span class="hljs-comment"># 1st barcode with no errors</span>
+(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>)
 
-julia&gt; demultiplex&#40;dplxr, dna&quot;CAGGCGNT&quot;&#41;  # 2nd barcode with one error
-&#40;2,1&#41;</code></pre>
-<h2 id="next_step"><a href="#next_step">Next step</a></h2>
+julia&gt; demultiplex(dplxr, <span class="hljs-string">dna&quot;CAGGCGNT&quot;</span>)  <span class="hljs-comment"># 2nd barcode with one error</span>
+(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)</code></pre>
+<h2 id="next_step"><a href="#next_step" class="header-anchor">Next step</a></h2>
 <p>This is still the first half of my project this year. The next term will come with:</p>
 <ul>
 <li><p>Supporting more file formats including GFF3, VCF and BCF.</p>
@@ -280,7 +280,7 @@ julia&gt; demultiplex&#40;dplxr, dna&quot;CAGGCGNT&quot;&#41;  # 2nd barcode wit
 </li>
 </ul>
 <p>And, of course, improving existing features of Bio.jl and other packages. We welcome any contributions and feature requests from you all.  <a href="https://gitter.im/BioJulia/Bio.jl">Gitter chat channel</a> is the best place to communicate with developers and other users. If you love Julia and/or biology, any reason not to join us?</p>
-<h2 id="acknowledgements"><a href="#acknowledgements">Acknowledgements</a></h2>
+<h2 id="acknowledgements"><a href="#acknowledgements" class="header-anchor">Acknowledgements</a></h2>
 <p>I gratefully acknowledge the Moore Foundation and the Julia project for supporting the BioJulia project. I also would like to thank <a href="https://github.com/BenJWard">Ben J. Ward</a> and <a href="https://github.com/kdmurray91">Kevin Murray</a> for comments on my program code and other contributions.</p>
 </div><br><br>
 
@@ -288,7 +288,7 @@ julia&gt; demultiplex&#40;dplxr, dna&quot;CAGGCGNT&quot;&#41;  # 2nd barcode wit
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -401,7 +401,7 @@ julia&gt; demultiplex&#40;dplxr, dna&quot;CAGGCGNT&quot;&#41;  # 2nd barcode wit
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -417,7 +417,7 @@ julia&gt; demultiplex&#40;dplxr, dna&quot;CAGGCGNT&quot;&#41;  # 2nd barcode wit
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

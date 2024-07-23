@@ -150,14 +150,14 @@
 <!-- Content appended here -->
 <div class="container main"><p>Hi&#33; Today we all got a new member to the DiffEq family. Say hi to our own <a href="https://github.com/DiffEqBot">DiffEqBot</a> - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a <a href="https://github.com/DiffEqBot/Reports">repository</a>. What&#39;s special about this is that it is completely stateless &#40;no databases involved at all, just juggling between repositories&#33;&#41; and it has no exposed public URLs. Even though highly inspired by Nanosoldier, this has a completely unique workflow.</p>
 <div class="franklin-toc"><ol><li><a href="#how_do_you_make_it_work">How do you make it work?</a></li><li><a href="#how_does_diffeqbot_work_internally">How does DiffEqBot work internally?</a></li><li><a href="#configuring_the_bot">Configuring the Bot</a></li><li><a href="#access_control_and_security">Access Control and Security</a></li><li><a href="#shortcomings_and_road_ahead">Shortcomings and Road ahead</a></li></ol></div>
-<h2 id="how_do_you_make_it_work"><a href="#how_do_you_make_it_work">How do you make it work?</a></h2>
+<h2 id="how_do_you_make_it_work"><a href="#how_do_you_make_it_work" class="header-anchor">How do you make it work?</a></h2>
 <p>So what all you need to do is call <code>@DiffEqBot runbenchmarks</code> in a comment in a PR of a JuliaDiffEq repository and it will do all the work for you.  It will benchmark your pull request against the current master and post the link of report when the job gets completed. Found a bug in PR and now you don&#39;t need to complete previous job? Just comment <code>@DiffEqBot abort</code> and it won&#39;t run now. You also need to maintain two folders <code>diagrams</code> &#40;For diagrams generation of the report&#41; and <code>benchmark</code>&#40;for comparing the results with master&#41; &#40;like <code>test</code> folder&#41; in the root of your repository. <code>benchmark</code> folder should have <code>benchmark/runbenchmarks.jl</code> &#40;it uses the package <code>PkgBenchmark</code>&#41; and <code>diagrams</code> should have <code>diagrams/diagrams.jl</code>. You can store <code>REQUIRE</code>/<code>Project.toml</code> in the <code>diagrams</code> folder to define the dependencies specifically for <code>diagrams</code> generation.</p>
 <p>For collecting diagrams, all you have to do is to make a dictionary called <code>DIAGRAMS</code> and save all the plot references in that dictionary. For eg -</p>
-<pre><code class="language-julia">DIAGRAMS &#61; Dict&#40;&#41;
-sol &#61; solve&#40;prob, Tsit5&#40;&#41;&#41;
-DIAGRAMS&#91;&quot;Fig1&quot;&#93; &#61; plot&#40;sol&#41;</code></pre>
+<pre><code class="julia hljs">DIAGRAMS = <span class="hljs-built_in">Dict</span>()
+sol = solve(prob, Tsit5())
+DIAGRAMS[<span class="hljs-string">&quot;Fig1&quot;</span>] = plot(sol)</code></pre>
 <p>Right now, <code>DIAGRAMS</code> cannot be a recursive dictionary, i.e. an element of the dictionary can only be a reference to the plot.</p>
-<h2 id="how_does_diffeqbot_work_internally"><a href="#how_does_diffeqbot_work_internally">How does DiffEqBot work internally?</a></h2>
+<h2 id="how_does_diffeqbot_work_internally"><a href="#how_does_diffeqbot_work_internally" class="header-anchor">How does DiffEqBot work internally?</a></h2>
 <p>DiffEqBot works by jumping across many repositories and it has been all possible due to awesome APIs both GitHub and Gitlab has provided us with&#33; I will explain the workflow of DiffEqBot in the steps it take to get a particular job done -</p>
 <ol>
 <li><p>You make a comment on the pull request to run the benchmarks. With the help of GitHub webhooks, <code>comment</code> event is posted on a Heroku app. You get the repository&#39;s name and pull request number where this comment is made. It makes sure all the sanity checks, like if the person can run benchmarks or not, or the repository is registered or not etc.</p>
@@ -173,20 +173,20 @@ DIAGRAMS&#91;&quot;Fig1&quot;&#93; &#61; plot&#40;sol&#41;</code></pre>
 <li><p>Here comes the tricky part. We have a separate dedicated Gitlab private repository called <code>BenchmarkingRepo</code> which is basically an empty repository, but plays an important role which would be explained now. DiffEqBot checks out a branch with name formatted as <code>REPONAME-PR</code> and generates a Gitlab CI configuration script &#40;<code>.gitlab-ci.yml</code>&#41; and makes a commit on this branch. What this configuration does is, pull the PR where the request is made, run the benchmarks, and post the results back to the bot. Basically the script is -</p>
 </li>
 </ol>
-<pre><code class="language-yaml">main:
-  script:
-    - git clone https://github.com/&#36;&#123;org&#125;/&#36;&#123;repo&#125;
-    - cd &#36;&#123;repo&#125;
-    - git fetch origin pull/&#36;&#123;pr&#125;/head:pr/&#36;&#123;pr&#125;
-    - git checkout pr/&#36;&#123;pr&#125;
-    - julia -e &quot;using Pkg;Pkg.clone&#40;pwd&#40;&#41;&#41;;&quot;
-    - cd ..
-    - julia some_script_to_run_benchmarks.jl &quot;&#36;&#123;repo&#125;&quot; &quot;&#36;&#123;pr&#125;&quot; &quot;&#36;&#123;commit&#125;&quot;
+<pre><code class="yaml hljs"><span class="hljs-attr">main:</span>
+  <span class="hljs-attr">script:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">clone</span> <span class="hljs-string">https://github.com/${org}/${repo}</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">cd</span> <span class="hljs-string">${repo}</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">fetch</span> <span class="hljs-string">origin</span> <span class="hljs-string">pull/${pr}/head:pr/${pr}</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">checkout</span> <span class="hljs-string">pr/${pr}</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">julia</span> <span class="hljs-string">-e</span> <span class="hljs-string">&quot;using Pkg;Pkg.clone(pwd());&quot;</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">cd</span> <span class="hljs-string">..</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">julia</span> <span class="hljs-string">some_script_to_run_benchmarks.jl</span> <span class="hljs-string">&quot;${repo}&quot;</span> <span class="hljs-string">&quot;${pr}&quot;</span> <span class="hljs-string">&quot;${commit}&quot;</span>
 
-failed_job:
-  script:
-    - curl &quot;https://endpoint_to_tell_that_report_failed?repo&#61;&#36;&#123;repo&#125;&amp;pr&#61;&#36;&#123;pr&#125;&amp;commit&#61;&#36;&#123;commit&#125;&quot;
-  when: on_failure</code></pre>
+<span class="hljs-attr">failed_job:</span>
+  <span class="hljs-attr">script:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">curl</span> <span class="hljs-string">&quot;https://endpoint_to_tell_that_report_failed?repo=${repo}&amp;pr=${pr}&amp;commit=${commit}&quot;</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">on_failure</span></code></pre>
 <p><img src="https://i.imgur.com/ORRPWx7.jpg" alt="" /></p>
 <ol start="4">
 <li><p>As soon as we make this commit on the <code>BenchmarkingRepo</code> on the branch, the Gitlab CI detects that this pushed branch has a config file in it and it goes wild. It knows now that it needs to run this script&#33; It looks for available Gitlab Runners. We don&#39;t use shared runner as they are not suitable for benchmarking jobs. We have our own dedicated Gitlab Runner for this purpose.</p>
@@ -204,32 +204,32 @@ failed_job:
 </ol>
 <p><img src="https://i.imgur.com/XN8sQMo.png" alt="" /></p>
 <p>Voila 🎉 The job is done, all thanks to DiffEqBot&#33;</p>
-<h2 id="configuring_the_bot"><a href="#configuring_the_bot">Configuring the Bot</a></h2>
+<h2 id="configuring_the_bot"><a href="#configuring_the_bot" class="header-anchor">Configuring the Bot</a></h2>
 <p>All the configuration of DiffEqBot is done through a file <code>config.json</code> in the Heroku Dyno. It contains all sorts of information you need to pass to the Bot so that it works right. That means to deploy your own bot, you only need to edit this file. The <code>config.json</code> file looks something like this -</p>
-<pre><code class="language-json">&#123;
-  &quot;admin&quot;               : &quot;kanav99&quot;,
-  &quot;homepage_url&quot;        : &quot;https://appnameffeqbot.herokuapp.com&quot;,
-  &quot;org&quot;                 : &quot;JuliaDiffEq&quot;,
-  &quot;registered_repos&quot;    : &#91;&quot;OrdinaryDiffEq.jl&quot;&#93;,
-  &quot;benchmarkers&quot;        : &#91;&quot;kanav99&quot;, &quot;ChrisRackauckas&quot;&#93;,
-  &quot;bot_name&quot;            : &quot;DiffEqBot&quot;,
-  &quot;gitlab_runner_secret&quot;: &quot;secret_secret_secret&quot;,
-  &quot;github_app&quot;          :
-    &#123;
-      &quot;client_id&quot;           : &quot;github-app-client-id&quot;,
-      &quot;client_secret&quot;       : &quot;github-app-client-secret&quot;,
-      &quot;bot_endpoint&quot;        : &quot;/bot/secret/endpoint&quot;
-    &#125;,
-  &quot;gitlab_account&quot;      :
-    &#123;
-      &quot;benchmarking_repo_id&quot;: 12345678,
-      &quot;access_token&quot;        : &quot;access_token_of_bot_account_gitlab&quot;
-    &#125;,
-  &quot;github_account&quot;      :
-    &#123;
-      &quot;access_token&quot;        : &quot;access_token_of_bot_account_gitlab&quot;
-    &#125;
-&#125;</code></pre>
+<pre><code class="json hljs"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;admin&quot;</span>               <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;kanav99&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;homepage_url&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://appnameffeqbot.herokuapp.com&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;org&quot;</span>                 <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JuliaDiffEq&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;registered_repos&quot;</span>    <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;OrdinaryDiffEq.jl&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;benchmarkers&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;kanav99&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;ChrisRackauckas&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;bot_name&quot;</span>            <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;DiffEqBot&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;gitlab_runner_secret&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;secret_secret_secret&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;github_app&quot;</span>          <span class="hljs-punctuation">:</span>
+    <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;client_id&quot;</span>           <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;github-app-client-id&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;client_secret&quot;</span>       <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;github-app-client-secret&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;bot_endpoint&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/bot/secret/endpoint&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;gitlab_account&quot;</span>      <span class="hljs-punctuation">:</span>
+    <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;benchmarking_repo_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">12345678</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;access_token&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;access_token_of_bot_account_gitlab&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;github_account&quot;</span>      <span class="hljs-punctuation">:</span>
+    <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;access_token&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;access_token_of_bot_account_gitlab&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
 <ul>
 <li><p><code>admin</code> -  This is the admin and maintainer of the bot. Bot will ping this person in case of any problem.</p>
 </li>
@@ -256,7 +256,7 @@ failed_job:
 <li><p><code>github_account.access_token</code> - Github Personal access token with <code>public_repo</code> scope. You can directly generate this <a href="https://github.com/settings/tokens/new?description&#61;DiffEqBot&amp;scopes&#61;public_repo">here</a>.</p>
 </li>
 </ul>
-<h2 id="access_control_and_security"><a href="#access_control_and_security">Access Control and Security</a></h2>
+<h2 id="access_control_and_security"><a href="#access_control_and_security" class="header-anchor">Access Control and Security</a></h2>
 <p>We have for now given access to only certain members of the organization. We call these members &quot;Benchmarkers&quot;. Basically there is an array called <code>benchmarkers</code> in the bot configuration. When you make a comment in repository, the GitHub webhook provides you with the handle of the person which made the comment, so that way you can check if this person is in the <code>benchmarkers</code> list. The main reason behind this restriction is that you are allowing code from a non-member to be run on your runner. This can be very bad for your machine. Dockerizing the runner can help in this situation. Also currently, there is no provision to provide repository wise access. This can be done easily and expect this patch soon&#33; Another thing which would be needed is easy access control - you cannot edit the heroku dyno everytime. What all we can do is</p>
 <ol>
 <li><p>Make a repository &#40;yet again&#41; for this purpose - maintain a heirarchial access control in its file&#40;s&#41;. For requesting access, you make a PR over there and once its approved and merged - you get the permission to run benchmarks.</p>
@@ -264,7 +264,7 @@ failed_job:
 <li><p>Add the command <code>addbenchmarker</code> to DiffEqBot which would make the specified person a benchmarker. Internally this would need the Bot to make a commit to the access-control repository &#40;remember that the bot is stateless&#41;.</p>
 </li>
 </ol>
-<h2 id="shortcomings_and_road_ahead"><a href="#shortcomings_and_road_ahead">Shortcomings and Road ahead</a></h2>
+<h2 id="shortcomings_and_road_ahead"><a href="#shortcomings_and_road_ahead" class="header-anchor">Shortcomings and Road ahead</a></h2>
 <p>I absolutely love this new member of our community. But it still has several shortcomings. As seen above, due to security concerns, we have allowed only certain members of the organization access to run the benchmarks. Also, we have a basic frontend ready for display of reports, but an even more better design is welcome&#33; We might also need more commands for DiffEqBot than just <code>runbenchmarks</code> and <code>abort</code>. All these extra features would be a cherry on top. I also plan to make it open source and maintain a proper documentation so that other communities can also deploy this for their uses and maybe help in its development too&#33;</p>
 </div><br><br>
 
@@ -272,7 +272,7 @@ failed_job:
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -385,7 +385,7 @@ failed_job:
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -401,7 +401,7 @@ failed_job:
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

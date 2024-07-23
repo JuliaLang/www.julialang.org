@@ -150,40 +150,40 @@
 <!-- Content appended here -->
 <div class="container main"><p>Data processing got ya down? Good news&#33; The <a href="https://github.com/JuliaDB/DataStreams.jl">DataStreams.jl</a> package, er, framework, has arrived&#33;</p>
 <p>The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually every step in-between. It&#39;s really about putting forth an interface &#40;specific types and methods&#41; to go about ingesting and transferring data sources that hopefully makes for a consistent experience for users, no matter what kind of data they&#39;re working with.</p>
-<h3 id="how_does_it_work"><a href="#how_does_it_work">How does it work?</a></h3>
+<h3 id="how_does_it_work"><a href="#how_does_it_work" class="header-anchor">How does it work?</a></h3>
 <p>DataStreams is all about creating &quot;sources&quot; &#40;Julia types that represent true data sources; e.g. csv files, database backends, etc.&#41;, &quot;sinks&quot; or data destinations, and defining the appropriate <code>Data.stream&#33;&#40;source, sink&#41;</code> methods to actually transfer data from source to sink. Let&#39;s look at a quick example.</p>
 <p>Say I have a table of data in a CSV file on my local machine and need to do a little cleaning and aggregation on the data before building a model with the <a href="https://github.com/JuliaStats/GLM.jl">GLM.jl</a> package. Let&#39;s see some code in action:</p>
-<pre><code class="language-julia">using CSV, SQLite, DataStreams, DataFrames
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> CSV, SQLite, DataStreams, DataFrames
 
-# let&#39;s create a Julia type that understands our data file
-csv_source &#61; CSV.Source&#40;&quot;datafile.csv&quot;&#41;
+<span class="hljs-comment"># let&#x27;s create a Julia type that understands our data file</span>
+csv_source = CSV.Source(<span class="hljs-string">&quot;datafile.csv&quot;</span>)
 
-# let&#39;s also create an SQLite destination for our data
-# according to its structure
-db &#61; SQLite.DB&#40;&#41; # create an in-memory SQLite database
+<span class="hljs-comment"># let&#x27;s also create an SQLite destination for our data</span>
+<span class="hljs-comment"># according to its structure</span>
+db = SQLite.DB() <span class="hljs-comment"># create an in-memory SQLite database</span>
 
-# creates an SQLite table
-sqlite_sink &#61; SQLite.Sink&#40;Data.schema&#40;csv_source&#41;, db, &quot;mydata&quot;&#41;
+<span class="hljs-comment"># creates an SQLite table</span>
+sqlite_sink = SQLite.Sink(Data.schema(csv_source), db, <span class="hljs-string">&quot;mydata&quot;</span>)
 
-# parse the CSV data directly into our SQLite table
-Data.stream&#33;&#40;csv_source, sqlite_sink&#41;
+<span class="hljs-comment"># parse the CSV data directly into our SQLite table</span>
+Data.stream!(csv_source, sqlite_sink)
 
-# now I can do some data cleansing/aggregation
-# ...various SQL statements on the &quot;mydata&quot; SQLite table...
+<span class="hljs-comment"># now I can do some data cleansing/aggregation</span>
+<span class="hljs-comment"># ...various SQL statements on the &quot;mydata&quot; SQLite table...</span>
 
-# now I&#39;m ready to get my data out and ready for model fitting
-sqlite_source &#61; SQLite.Source&#40;sqlite_sink&#41;
+<span class="hljs-comment"># now I&#x27;m ready to get my data out and ready for model fitting</span>
+sqlite_source = SQLite.Source(sqlite_sink)
 
-# stream our data into a Julia structure &#40;Data.Table&#41;
-dt &#61; Data.stream&#33;&#40;sqlite_source, Data.Table&#41;
+<span class="hljs-comment"># stream our data into a Julia structure (Data.Table)</span>
+dt = Data.stream!(sqlite_source, Data.Table)
 
-# convert to DataFrame &#40;non-copying&#41;
-df &#61; DataFrame&#40;dt&#41;
+<span class="hljs-comment"># convert to DataFrame (non-copying)</span>
+df = DataFrame(dt)
 
-# do model-fitting
-OLS &#61; glm&#40;Y~X,df,Normal&#40;&#41;,IdentityLink&#40;&#41;&#41;</code></pre>
+<span class="hljs-comment"># do model-fitting</span>
+OLS = glm(Y~X,df,Normal(),IdentityLink())</code></pre>
 <p>Here we see it&#39;s quite simple to create a <code>Source</code> type by wrapping a true datasource &#40;our CSV file&#41;, a destination for that data &#40;an SQLite table&#41;, and to transfer the data. We can then turn our <code>SQLite.Sink</code> into an <code>SQLite.Source</code> for getting the data back out again.</p>
-<h3 id="so_what_have_you_really_been_working_on"><a href="#so_what_have_you_really_been_working_on">So What Have You Really Been Working On?</a></h3>
+<h3 id="so_what_have_you_really_been_working_on"><a href="#so_what_have_you_really_been_working_on" class="header-anchor">So What Have You Really Been Working On?</a></h3>
 <p>Well, a lot actually. Even though the DataStreams framework is currently simple and minimalistic, it took a lot of back and forth on the design, including several discussions at this year&#39;s JuliaCon at MIT. Even with a tidy little framework, however, the bulk of the work still lies in actually implementing the interface in various packages. The two that are ready for release today are <a href="https://github.com/JuliaDB/CSV.jl">CSV.jl</a> and <a href="https://github.com/JuliaDB/SQLite.jl">SQLite.jl</a>. They are currently available for julia 0.4&#43; only.</p>
 <p>Quick rundown of each package:</p>
 <ul>
@@ -192,7 +192,7 @@ OLS &#61; glm&#40;Y~X,df,Normal&#40;&#41;,IdentityLink&#40;&#41;&#41;</code></pr
 <li><p>SQLite: an interface to the popular <a href="https://sqlite.org/">SQLite</a> local-machine database. Provides methods for creating/managing database files, along with executing SQL statements and viewing the results of such.</p>
 </li>
 </ul>
-<h3 id="so_whats_next"><a href="#so_whats_next">So What&#39;s Next?</a></h3>
+<h3 id="so_whats_next"><a href="#so_whats_next" class="header-anchor">So What&#39;s Next?</a></h3>
 <ul>
 <li><p><a href="https://github.com/JuliaDB/ODBC.jl">ODBC.jl</a>: the next package to get the DataStreams makeover is ODBC. I&#39;ve already started work on this and hopefully should be ready soon.</p>
 </li>
@@ -212,7 +212,7 @@ OLS &#61; glm&#40;Y~X,df,Normal&#40;&#41;,IdentityLink&#40;&#41;&#41;</code></pr
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -325,7 +325,7 @@ OLS &#61; glm&#40;Y~X,df,Normal&#40;&#41;,IdentityLink&#40;&#41;&#41;</code></pr
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -341,7 +341,7 @@ OLS &#61; glm&#40;Y~X,df,Normal&#40;&#41;,IdentityLink&#40;&#41;&#41;</code></pr
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

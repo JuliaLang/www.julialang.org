@@ -153,442 +153,442 @@
 <p>In this blog post, we will show how to easily, efficiently, and robustly use steady state nonlinear solvers with neural networks in Julia. We will showcase the relationship between steady states and ODEs, thus connecting the methods for Deep Equilibrium Models &#40;DEQs&#41; and Neural ODEs. We will then show how <a href="https://diffeqflux.sciml.ai/dev/">DiffEqFlux.jl</a> can be used as a package for DEQs, showing how the composability of the Julia ecosystem naturally lends itself to extensions and generalizations of methods in machine learning literature. For background on DiffEqFlux and Neural ODEs, please see the previous blog post <a href="https://julialang.org/blog/2019/01/fluxdiffeq/">DiffEqFlux.jl – A Julia Library for Neural Differential Equations</a>.</p>
 <p>&#40;Note: If you are interested in this work and are an undergraduate or graduate student, we have <a href="/jsoc/projects/">Google Summer of Code projects available in this area</a>. This <a href="https://developers.google.com/open-source/gsoc/help/student-stipends">pays quite well over the summer</a>. Please join the <a href="http://julialang.org/slack/">Julia Slack</a> and the #jsoc channel to discuss in more detail.&#41;</p>
 <div class="franklin-toc"><ol><li><a href="#deep_equilibrium_models_deqs_and_infinitely_deep_networks">Deep Equilibrium Models &#40;DEQs&#41; and Infinitely Deep Networks</a></li><li><a href="#but_why_are_deqs_interesting_for_machine_learning">But why are DEQs interesting for machine learning?</a></li><li><a href="#mixing_deqs_and_neural_ordinary_differential_equations_neural_odes">Mixing DEQs and Neural Ordinary Differential Equations &#40;Neural ODEs&#41;</a></li><li><a href="#let_us_implement_a_simple_deq_model_via_ode_solvers_with_event_handling">Let us implement a simple DEQ Model via ODE Solvers with Event Handling</a></li><li><a href="#generalizing_to_other_solution_techniques">Generalizing to other Solution Techniques</a></li><li><a href="#full_example_deq_for_learning_mnist_from_scratch">Full example: DEQ for learning MNIST from scratch</a></li><li><a href="#conclusion">Conclusion</a></li></ol></div>
-<h2 id="deep_equilibrium_models_deqs_and_infinitely_deep_networks"><a href="#deep_equilibrium_models_deqs_and_infinitely_deep_networks">Deep Equilibrium Models &#40;DEQs&#41; and Infinitely Deep Networks</a></h2>
+<h2 id="deep_equilibrium_models_deqs_and_infinitely_deep_networks"><a href="#deep_equilibrium_models_deqs_and_infinitely_deep_networks" class="header-anchor">Deep Equilibrium Models &#40;DEQs&#41; and Infinitely Deep Networks</a></h2>
 <p>Neural network structures can be viewed as repeated applications of layered computations. For example, when we apply convolution filters on images the network consists of repetitive blocks of convolutional layers, and one linear output layer at the very end. It&#39;s essentially <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(f(f(...f(x))...))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> is the neural network, and we call this &quot;deep&quot; because of the layers of composition. But what if we make this composition go to infinity?</p>
 <p>Now, we cannot practically do infinite computation, so instead we need some sense of what &quot;going close enough to infinity&quot; really means. Fortunately, we can pull a few ideas from the mathematics of dynamical systems to make this definition. We can think of this iterative process as a dynamical system <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{n+1} = f(x_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, where the literature categorizes all of the behaviors that can happen as <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> goes to infinity: <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> can oscillate, it can go to infinity, it can do something that looks almost random &#40;this is the notorious chaos theory&#41;, or importantly, it can &quot;stabilize&quot; to something known as a steady state or equilibria value. This last behavior happens when <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{ss} = f(x_{ss})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, where once it settles into this pattern it will repeat the pattern ad infinitum, and thus solving the infinity problem can be equivalent to finding a steady state. An entire literature characterizes the properties of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> which cause values to converge to a single repeating value in this sense, and we refer you to the book &quot;Nonlinear Dynamics and Chaos&quot; by Strogatz as an accessible introduction to this topic.</p>
 <p>If you take a random <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span>, it turns out one of the most likely behaviors for <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> is to either converge to such steady states or diverge to infinity. If you think about it as just a scalar linear system <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>a</mi><msub><mi>x</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">x_{n+1} = a x_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, when the scalar <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a&lt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> the value keeps decreasing to zero making the system head to a steady state, while <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a&gt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> leads to infinity. Thus if our choice of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> is &quot;tame&quot; enough, we can cause these systems to generally be convergent models. Likewise, if we used an affine system <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>a</mi><msub><mi>x</mi><mi>n</mi></msub><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">x_{n+1} = a x_n + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>, the steady state would be defined as <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>a</mi><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">x_{ss} = ax_{ss} + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> which we can solve to be <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>b</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{ss} = b/(1-a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span>. This is now a parameterized model of an infinite process where, if <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a&lt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, then iterating <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">f(x) = ax+b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> infinitely many times will go to a solution defined by the parameters.</p>
 <p><strong>What if <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> is a neural network and the parameters are weights of the neural network?</strong></p>
 <p>That is the intuition that defines the <a href="https://arxiv.org/abs/1909.01377">Deep Equilibrium Models</a>, where <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">x_{ss}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the prediction from the model. This is why DEQs are referred to as infinitely-deep networks. Now, if the weights are such that <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">x_{ss}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is divergent towards infinity, those weights would have a very large cost in their predictions and thus the weights will naturally be driven away from such solutions. This makes such a structure <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>N</mi><mi>N</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{n+1} = NN(x_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> naturally inclined to learn convergent steady state behavior.</p>
 <p>&#91;Note: this line of thought leaves open some interesting alternatives: what neural networks prevent oscillations and chaos? Or new loss functions? Etc. We&#39;ll leave that for you to figure out.&#93;</p>
-<h2 id="but_why_are_deqs_interesting_for_machine_learning"><a href="#but_why_are_deqs_interesting_for_machine_learning">But why are DEQs interesting for machine learning?</a></h2>
+<h2 id="but_why_are_deqs_interesting_for_machine_learning"><a href="#but_why_are_deqs_interesting_for_machine_learning" class="header-anchor">But why are DEQs interesting for machine learning?</a></h2>
 <p>Before continuing to some examples, we must bridge from &quot;beautiful math&quot; to why you should care. Why should a machine learning engineer care about this structure? The answer is simple: with a DEQ, you never have to wonder if you&#39;ve chosen enough layers. Your number of layers is effectively infinity, so it&#39;s always enough. Indeed, if <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">x_{ss}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the value that comes out of the DEQ, since it&#39;s approximately the solution to this infinite process <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>N</mi><mi>N</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{n+1} = NN(x_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, by definition one more application leaves the prediction essentially unchanged: <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>N</mi><mi>N</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{ss} = NN(x_{ss})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>. Therefore you&#39;re done hyperparameter optimizing: a DEQ does not have a number of layers to choose. Of course, you still have to choose an architecture for <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">NN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>, but this decreases the space of what could go wrong in your training process.</p>
 <p>Another interesting detail is that, surprisingly, backpropagation of a DEQ is cheaper than doing a big number of iterations&#33; How is this possible? It&#39;s actually due to a very old mathematical theorem known as the <a href="https://en.wikipedia.org/wiki/Implicit_function_theorem">Implicit Function Theorem</a>. Let&#39;s take a quick look at the simplified example we wrote before, where <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>a</mi><msub><mi>x</mi><mi>n</mi></msub><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">x_{n+1} = a x_n + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> and thus <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>b</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{ss} = b/(1-a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span>. Essentially the DEQ is the function that gives the solution to a nonlinear system, i.e. <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mi>E</mi><mi>Q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">DEQ(x) = x_{ss}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">Q</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. What is the derivative of the DEQ&#39;s output with respect to the parameters of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>? It turns out this derivative is easy to calculate and does not require differentiating through the infinite iteration process <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>a</mi><msub><mi>x</mi><mi>n</mi></msub><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">x_{n+1} = a x_n + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>: you can directly differentiate <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>b</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{ss} = b/(1-a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span>. The Implicit Function Theorem says that this generally holds: you can always differentiate the steady state without having to go back through the iterative process. This is important because &quot;backpropagation&quot; or &quot;adjoints&quot; are simply the derivative of the output with respect to the parameter weights of the neural network. What this is saying is that, if you have a deep neural network with <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> very large layers, you need to backpropagate through <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> layers. <strong>But if <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> is infinite, you only need to backpropagate through 1&#33;</strong> The details of this have been well-studied in the scientific computing literature since at least the 90&#39;s. For example, Steven Johnson&#39;s <a href="https://math.mit.edu/~stevenj/18.336/adjoint.pdf">Notes on Adjoint Methods for 18.335 from 2006</a> shows a well-written derivation of an adjoint equation &#40;&quot;backpropagation&quot; equation&#41; for a rootfinding solver, along with a <a href="https://link.springer.com/content/pdf/10.1007&#37;2F3-540-45718-6_20.pdf">litany</a> of <a href="http://www.jcomputers.us/vol5/jcp0503-11.pdf">papers</a> that <a href="https://ieeexplore.ieee.org/document/4724607">use</a> this <a href="https://www.computer.org/csdl/proceedings-article/cis/2008/3508a020/12OmNz61djv">result</a> in the 90&#39;s and 00&#39;s to mix neural networks and nonlinear solving. We note very briefly that solving for a steady state is equivalent to solving a system of nonlinear algebraic equations <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>N</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">NN(x) - x = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>, since finding this solution would give <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>N</mi><mi>N</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>s</mi><mi>s</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{ss} = NN(x_{ss})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, or the steady state.</p>
 <p>But everything in this world is a differential equation, so let&#39;s take a turn and twist this into an ODE&#33;</p>
-<h2 id="mixing_deqs_and_neural_ordinary_differential_equations_neural_odes"><a href="#mixing_deqs_and_neural_ordinary_differential_equations_neural_odes">Mixing DEQs and Neural Ordinary Differential Equations &#40;Neural ODEs&#41;</a></h2>
+<h2 id="mixing_deqs_and_neural_ordinary_differential_equations_neural_odes"><a href="#mixing_deqs_and_neural_ordinary_differential_equations_neural_odes" class="header-anchor">Mixing DEQs and Neural Ordinary Differential Equations &#40;Neural ODEs&#41;</a></h2>
 <p>From the viewpoint of Julia and the DiffEqFlux.jl library, it is also natural to look at DEQs from a differential equations perspective. Instead of viewing the dynamical system as a discrete process <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{n+1} = f(x_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, we can equivalently view the system as evolving continuously, i.e. <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x&#x27; = f(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span>. If we think about <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>x</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>t</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">dx/dt = f(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span><span class="mord">/</span><span class="mord mathdefault">d</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span>, by Euler&#39;s method we approximate <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>x</mi><mo>=</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">dx = x_{n+1} - x_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.791661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and simplify to get <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>x</mi><mi>n</mi></msub><mo>+</mo><mi>d</mi><mi>t</mi><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{n+1} = x_n + dt f(x_n) = g(x_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> which relates us back to our original definition with a slight change to the function. However, in this ODE sense, convergence is when the change is zero, or <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#x27;=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>, which again happens when <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(x)=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> and is a rootfinding problem. <strong>But this view is insightful: a DEQ is a neural ODE where time goes to infinity.</strong> Now, instead of taking 1 step at a time, we can take <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">dt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">t</span></span></span></span> steps at a time towards the steady state. This means an adaptive ODE solver can notice we are converging and take larger and larger steps to get to that equilibrium a bit quicker. But also, given DiffEqFlux, this observation makes implementing DEQ models in Julia insanely simple. Let&#39;s go for it&#33;</p>
-<h2 id="let_us_implement_a_simple_deq_model_via_ode_solvers_with_event_handling"><a href="#let_us_implement_a_simple_deq_model_via_ode_solvers_with_event_handling">Let us implement a simple DEQ Model via ODE Solvers with Event Handling</a></h2>
+<h2 id="let_us_implement_a_simple_deq_model_via_ode_solvers_with_event_handling"><a href="#let_us_implement_a_simple_deq_model_via_ode_solvers_with_event_handling" class="header-anchor">Let us implement a simple DEQ Model via ODE Solvers with Event Handling</a></h2>
 <p>The Julia <a href="https://diffeq.sciml.ai/stable/">DifferentialEquations.jl</a> library has a problem type known as <a href="https://diffeq.sciml.ai/stable/types/steady_state_types/">SteadyStateProblem</a> which automatically solves until <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">x&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span> is sufficiently small &#40;below tolerance&#41;, in which case it will automatically use a <a href="https://diffeq.sciml.ai/stable/features/callback_functions/#Example-2:-Terminating-an-Integration">terminating callback</a> to exit the integration at the &#40;approximately&#41; found steady state. Because the <a href="https://sciml.ai/">SciML Organization&#39;s Packages</a> are differentiable, we can stick neural networks inside of this &quot;steady state of ODEs&quot; problem, and that will generate a training mechanism for this continuous-stepping DEQ procedure. This <code>SteadyStateProblem</code> solution then uses the <a href="https://math.mit.edu/~stevenj/18.336/adjoint.pdf">Nonlinear Solve Adjoint</a> to calculate the backpropagation in the efficient manner without requiring backpropagation of the iterations. This thus gives an efficient implementation of a DEQ without requiring any new tooling or packages, but can also outperform the fixed-point iteration approaches by taking multiple steps at a time.</p>
 <p>The following code block creates a DEQ model. An astute reader will notice that this code looks awfully similar to typical <a href="https://julialang.org/blog/2019/01/fluxdiffeq/">Neural ODEs implemented in Julia</a>. Therefore, the DEQ implementation simply adds an extra steady state layer on top of the ODE function, and as long as we use the correct &#40;automatically chosen&#41; sensitivity corresponding to steady state problems, we are covered.</p>
-<pre><code class="language-julia">using Flux
-using DiffEqSensitivity
-using SteadyStateDiffEq
-using OrdinaryDiffEq
-using CUDA
-using Plots
-using LinearAlgebra
-CUDA.allowscalar&#40;false&#41;
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Flux
+<span class="hljs-keyword">using</span> DiffEqSensitivity
+<span class="hljs-keyword">using</span> SteadyStateDiffEq
+<span class="hljs-keyword">using</span> OrdinaryDiffEq
+<span class="hljs-keyword">using</span> CUDA
+<span class="hljs-keyword">using</span> Plots
+<span class="hljs-keyword">using</span> LinearAlgebra
+CUDA.allowscalar(<span class="hljs-literal">false</span>)
 
-struct DeepEquilibriumNetwork&#123;M,P,RE,A,K&#125;
+<span class="hljs-keyword">struct</span> DeepEquilibriumNetwork{M,P,RE,A,K}
     model::M
     p::P
     re::RE
     args::A
     kwargs::K
-end
+<span class="hljs-keyword">end</span>
 
 
-Flux.@functor DeepEquilibriumNetwork
+Flux.<span class="hljs-meta">@functor</span> DeepEquilibriumNetwork
 
-function DeepEquilibriumNetwork&#40;model, args...; kwargs...&#41;
-    p, re &#61; Flux.destructure&#40;model&#41;
-    return DeepEquilibriumNetwork&#40;model, p, re, args, kwargs&#41;
-end
+<span class="hljs-keyword">function</span> DeepEquilibriumNetwork(model, args...; kwargs...)
+    p, re = Flux.destructure(model)
+    <span class="hljs-keyword">return</span> DeepEquilibriumNetwork(model, p, re, args, kwargs)
+<span class="hljs-keyword">end</span>
 
-Flux.trainable&#40;deq::DeepEquilibriumNetwork&#41; &#61; &#40;deq.p,&#41;
+Flux.trainable(deq::DeepEquilibriumNetwork) = (deq.p,)
 
-function &#40;deq::DeepEquilibriumNetwork&#41;&#40;x::AbstractArray&#123;T&#125;,
-                                       p &#61; deq.p&#41; where &#123;T&#125;
-    z &#61; deq.re&#40;p&#41;&#40;x&#41;
-    # Solving the equation f&#40;u&#41; - u &#61; du &#61; 0
-    # The key part of DEQ is similar to that of NeuralODEs
-    dudt&#40;u, _p, t&#41; &#61; deq.re&#40;_p&#41;&#40;u .&#43; x&#41; .- u
-    ssprob &#61; SteadyStateProblem&#40;ODEProblem&#40;dudt, z, &#40;zero&#40;T&#41;, one&#40;T&#41;&#41;, p&#41;&#41;
-    return solve&#40;ssprob, deq.args...; u0 &#61; z, deq.kwargs...&#41;.u
-end
+<span class="hljs-keyword">function</span> (deq::DeepEquilibriumNetwork)(x::<span class="hljs-built_in">AbstractArray</span>{T},
+                                       p = deq.p) <span class="hljs-keyword">where</span> {T}
+    z = deq.re(p)(x)
+    <span class="hljs-comment"># Solving the equation f(u) - u = du = 0</span>
+    <span class="hljs-comment"># The key part of DEQ is similar to that of NeuralODEs</span>
+    dudt(u, _p, t) = deq.re(_p)(u .+ x) .- u
+    ssprob = SteadyStateProblem(ODEProblem(dudt, z, (zero(T), one(T)), p))
+    <span class="hljs-keyword">return</span> solve(ssprob, deq.args...; u0 = z, deq.kwargs...).u
+<span class="hljs-keyword">end</span>
 
-ann &#61; Chain&#40;Dense&#40;1, 5&#41;, Dense&#40;5, 1&#41;&#41; |&gt; gpu
+ann = Chain(Dense(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>), Dense(<span class="hljs-number">5</span>, <span class="hljs-number">1</span>)) |&gt; gpu
 
-deq &#61; DeepEquilibriumNetwork&#40;ann,
-                             DynamicSS&#40;Tsit5&#40;&#41;, abstol &#61; 1f-2, reltol &#61; 1f-2&#41;&#41;</code></pre>
+deq = DeepEquilibriumNetwork(ann,
+                             DynamicSS(Tsit5(), abstol = <span class="hljs-number">1f-2</span>, reltol = <span class="hljs-number">1f-2</span>))</code></pre>
 <p>With these definitions, we are prepared to test our DEQ model on a simple regression problem <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mn>2</mn><mi>x</mi></mrow><annotation encoding="application/x-tex">y=2x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">x</span></span></span></span>. When one runs the following code snippet, the model will print out <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">-10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mord">0</span></span></span></span>, which is the expected answer for this regression problem. Remarkably, switching from GPU to CPU execution is easily accomplished by removing all the &quot;gpu&quot; calls. As a sanity check, our small DEQ model completes this regression problem perfectly.</p>
-<pre><code class="language-julia"># Let&#39;s run a DEQ model on linear regression for y &#61; 2x
-X &#61; reshape&#40;Float32&#91;1;2;3;4;5;6;7;8;9;10&#93;, 1, :&#41; |&gt; gpu
-Y &#61; 2 .* X
-opt &#61; ADAM&#40;0.05&#41;
+<pre><code class="julia hljs"><span class="hljs-comment"># Let&#x27;s run a DEQ model on linear regression for y = 2x</span>
+X = reshape(<span class="hljs-built_in">Float32</span>[<span class="hljs-number">1</span>;<span class="hljs-number">2</span>;<span class="hljs-number">3</span>;<span class="hljs-number">4</span>;<span class="hljs-number">5</span>;<span class="hljs-number">6</span>;<span class="hljs-number">7</span>;<span class="hljs-number">8</span>;<span class="hljs-number">9</span>;<span class="hljs-number">10</span>], <span class="hljs-number">1</span>, :) |&gt; gpu
+Y = <span class="hljs-number">2</span> .* X
+opt = ADAM(<span class="hljs-number">0.05</span>)
 
-loss&#40;x, y&#41; &#61; sum&#40;abs2, y .- deq&#40;x&#41;&#41;
+loss(x, y) = sum(abs2, y .- deq(x))
 
-epochs &#61; 1000
-for i in 1:epochs
-    Flux.train&#33;&#40;loss, Flux.params&#40;deq&#41;, &#40;&#40;X, Y&#41;,&#41;, opt&#41;
-    println&#40;deq&#40;&#91;-5&#93; |&gt; gpu&#41;&#41; # Print model prediction
-end</code></pre>
+epochs = <span class="hljs-number">1000</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:epochs
+    Flux.train!(loss, Flux.params(deq), ((X, Y),), opt)
+    println(deq([-<span class="hljs-number">5</span>] |&gt; gpu)) <span class="hljs-comment"># Print model prediction</span>
+<span class="hljs-keyword">end</span></code></pre>
 <p>Tada, we now have a valid machine-learned model for solving the regression problem where the predictions are given by steady states of an ODE solver, where the ODE is defined by a neural network&#33; GPU compatible? Check. Fast adjoints? Check. Did you do any work? Ehh, not really. Composability did that work for us.</p>
 <p>Before proceeding to a more realistic use case, we visualize the trajectory followed by the neural network. Thereby, we will evaluate our model to a maximum depth of <code>100</code> &#40;or until it converges to a steady state&#41;.</p>
-<pre><code class="language-julia"># Visualizing
-function construct_iterator&#40;deq::DeepEquilibriumNetwork, x, p &#61; deq.p&#41;
-    executions &#61; 1
-    model &#61; deq.re&#40;p&#41;
-    previous_value &#61; nothing
-    function iterator&#40;&#41;
-           z &#61; model&#40;&#40;executions &#61;&#61; 1 ? zero&#40;x&#41; : previous_value&#41; .&#43; x&#41;
-           executions &#43;&#61; 1
-           previous_value &#61; z
-           return z
-    end
-    return iterator
-end
+<pre><code class="julia hljs"><span class="hljs-comment"># Visualizing</span>
+<span class="hljs-keyword">function</span> construct_iterator(deq::DeepEquilibriumNetwork, x, p = deq.p)
+    executions = <span class="hljs-number">1</span>
+    model = deq.re(p)
+    previous_value = <span class="hljs-literal">nothing</span>
+    <span class="hljs-keyword">function</span> iterator()
+           z = model((executions == <span class="hljs-number">1</span> ? zero(x) : previous_value) .+ x)
+           executions += <span class="hljs-number">1</span>
+           previous_value = z
+           <span class="hljs-keyword">return</span> z
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> iterator
+<span class="hljs-keyword">end</span>
 
-function generate_model_trajectory&#40;deq, x, max_depth::Int,
-                                  abstol::T &#61; 1e-8, reltol::T &#61; 1e-8&#41; where &#123;T&#125;
-    deq_func &#61; construct_iterator&#40;deq, x&#41;
-    values &#61; &#91;x, deq_func&#40;&#41;&#93;
-    for i &#61; 2:max_depth
-           sol &#61; deq_func&#40;&#41;
-           push&#33;&#40;values, sol&#41;
-           if &#40;norm&#40;sol .- values&#91;end - 1&#93;&#41; ≤ abstol&#41; || &#40;norm&#40;sol .- values&#91;end - 1&#93;&#41; / norm&#40;values&#91;end - 1&#93;&#41; ≤ reltol&#41;
-               return values
-           end
-    end
-    return values
-end
+<span class="hljs-keyword">function</span> generate_model_trajectory(deq, x, max_depth::<span class="hljs-built_in">Int</span>,
+                                  abstol::T = <span class="hljs-number">1e-8</span>, reltol::T = <span class="hljs-number">1e-8</span>) <span class="hljs-keyword">where</span> {T}
+    deq_func = construct_iterator(deq, x)
+    values = [x, deq_func()]
+    <span class="hljs-keyword">for</span> i = <span class="hljs-number">2</span>:max_depth
+           sol = deq_func()
+           push!(values, sol)
+           <span class="hljs-keyword">if</span> (norm(sol .- values[<span class="hljs-keyword">end</span> - <span class="hljs-number">1</span>]) ≤ abstol) || (norm(sol .- values[<span class="hljs-keyword">end</span> - <span class="hljs-number">1</span>]) / norm(values[<span class="hljs-keyword">end</span> - <span class="hljs-number">1</span>]) ≤ reltol)
+               <span class="hljs-keyword">return</span> values
+           <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> values
+<span class="hljs-keyword">end</span>
 
-traj &#61; generate_model_trajectory&#40;deq, rand&#40;1, 10&#41; .* 10 |&gt; gpu, 100&#41;
+traj = generate_model_trajectory(deq, rand(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>) .* <span class="hljs-number">10</span> |&gt; gpu, <span class="hljs-number">100</span>)
 
-plot&#40;0:&#40;length&#40;traj&#41; - 1&#41;, cpu&#40;vcat&#40;traj...&#41;&#41;, xlabel &#61; &quot;Depth&quot;,
-    ylabel &#61; &quot;Value&quot;, legend &#61; false&#41;</code></pre>
+plot(<span class="hljs-number">0</span>:(length(traj) - <span class="hljs-number">1</span>), cpu(vcat(traj...)), xlabel = <span class="hljs-string">&quot;Depth&quot;</span>,
+    ylabel = <span class="hljs-string">&quot;Value&quot;</span>, legend = <span class="hljs-literal">false</span>)</code></pre>
 <p><img src="https://i.imgur.com/dDckk8A.png" alt="Imgur" /></p>
 <p>The figure above shows ten such trajectories starting from uniformly distributed random numbers between 0 and 10.  Notice that by the end, the dynamics have leveled off to a final point, and the integration cuts off when it gets &quot;sufficiently close to infinity&quot;. This value at the end is the prediction of the DEQ for <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mn>2</mn><mi>x</mi></mrow><annotation encoding="application/x-tex">y=2x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">x</span></span></span></span>. <strong>The general composability of the Julia ecosystem means that there is no &quot;Github repository for DEQs&quot;, instead this is just the ODE solver mixed with the ML library, the AD package, the GPU package, etc. and when put together you get a DEQ&#33;</strong></p>
-<h2 id="generalizing_to_other_solution_techniques"><a href="#generalizing_to_other_solution_techniques">Generalizing to other Solution Techniques</a></h2>
+<h2 id="generalizing_to_other_solution_techniques"><a href="#generalizing_to_other_solution_techniques" class="header-anchor">Generalizing to other Solution Techniques</a></h2>
 <p>There are many ways that one can solve a rootfinding problem with different characteristics. One can directly use Newton&#39;s method, but this can require a good guess and may not distinguish between stable and unstable equilibrium. Julia packages like <a href="https://github.com/JuliaNLSolvers/NLsolve.jl">NLsolve.jl</a> provide many good algorithms, and Bifurcation tools like <a href="https://bifurcationkit.github.io/BifurcationKitDocs.jl/stable/">BifurcationKit.jl</a> give a whole host of other methods. Given the importance of solving nonlinear algebraic systems and their differentiability, the SciML organization has put together a common interface package <a href="https://nonlinearsolve.sciml.ai/dev/">NonlinearSolve.jl</a> that weaves together all of the techniques throughout the package ecosystem &#40;bringing together methods from SUNDIALS, MINPACK, etc.&#41; and generally defines its differentiability, connection to acceleration techniques like Jacobian-Free Newton Krylov, and more. As such, this package gives a &quot;one-stop shop&quot; for weaving both new implementations and classical FORTRAN implementations with machine learning without having to worry about the training details.</p>
-<h2 id="full_example_deq_for_learning_mnist_from_scratch"><a href="#full_example_deq_for_learning_mnist_from_scratch">Full example: DEQ for learning MNIST from scratch</a></h2>
+<h2 id="full_example_deq_for_learning_mnist_from_scratch"><a href="#full_example_deq_for_learning_mnist_from_scratch" class="header-anchor">Full example: DEQ for learning MNIST from scratch</a></h2>
 <p>Let us consider a full-scale example: training a DEQ to classify digits of MNIST. First, we define our DEQ structures:</p>
-<pre><code class="language-julia">using Zygote
-using Flux
-using Flux.Data:DataLoader
-using Flux.Optimise: Optimiser
-using Flux: onehotbatch, onecold
-using Flux.Losses:logitcrossentropy
-using ProgressMeter:@showprogress
-import MLDatasets
-using CUDA
-using DiffEqSensitivity
-using SteadyStateDiffEq
-using OrdinaryDiffEq
-using LinearAlgebra
-using Plots
-using MultivariateStats
-using Statistics
-using PyCall
-using ColorSchemes
-CUDA.allowscalar&#40;false&#41;
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Zygote
+<span class="hljs-keyword">using</span> Flux
+<span class="hljs-keyword">using</span> Flux.Data:DataLoader
+<span class="hljs-keyword">using</span> Flux.Optimise: Optimiser
+<span class="hljs-keyword">using</span> Flux: onehotbatch, onecold
+<span class="hljs-keyword">using</span> Flux.Losses:logitcrossentropy
+<span class="hljs-keyword">using</span> ProgressMeter:<span class="hljs-meta">@showprogress</span>
+<span class="hljs-keyword">import</span> MLDatasets
+<span class="hljs-keyword">using</span> CUDA
+<span class="hljs-keyword">using</span> DiffEqSensitivity
+<span class="hljs-keyword">using</span> SteadyStateDiffEq
+<span class="hljs-keyword">using</span> OrdinaryDiffEq
+<span class="hljs-keyword">using</span> LinearAlgebra
+<span class="hljs-keyword">using</span> Plots
+<span class="hljs-keyword">using</span> MultivariateStats
+<span class="hljs-keyword">using</span> Statistics
+<span class="hljs-keyword">using</span> PyCall
+<span class="hljs-keyword">using</span> ColorSchemes
+CUDA.allowscalar(<span class="hljs-literal">false</span>)
 
 
-struct DeepEquilibriumNetwork&#123;M,P,RE,A,K&#125;
+<span class="hljs-keyword">struct</span> DeepEquilibriumNetwork{M,P,RE,A,K}
     model::M
     p::P
     re::RE
     args::A
     kwargs::K
-end
+<span class="hljs-keyword">end</span>
 
-Flux.@functor DeepEquilibriumNetwork
+Flux.<span class="hljs-meta">@functor</span> DeepEquilibriumNetwork
 
-function DeepEquilibriumNetwork&#40;model, args...; kwargs...&#41;
-    p, re &#61; Flux.destructure&#40;model&#41;
-    return DeepEquilibriumNetwork&#40;model, p, re, args, kwargs&#41;
-end
+<span class="hljs-keyword">function</span> DeepEquilibriumNetwork(model, args...; kwargs...)
+    p, re = Flux.destructure(model)
+    <span class="hljs-keyword">return</span> DeepEquilibriumNetwork(model, p, re, args, kwargs)
+<span class="hljs-keyword">end</span>
 
-Flux.trainable&#40;deq::DeepEquilibriumNetwork&#41; &#61; &#40;deq.p,&#41;
+Flux.trainable(deq::DeepEquilibriumNetwork) = (deq.p,)
 
-function &#40;deq::DeepEquilibriumNetwork&#41;&#40;x::AbstractArray&#123;T&#125;,
-                                       p &#61; deq.p&#41; where &#123;T&#125;
-    z &#61; deq.re&#40;p&#41;&#40;x&#41;
-    # Solving the equation f&#40;u&#41; - u &#61; du &#61; 0
-    dudt&#40;u, _p, t&#41; &#61; deq.re&#40;_p&#41;&#40;u .&#43; x&#41; .- u
-    ssprob &#61; SteadyStateProblem&#40;ODEProblem&#40;dudt, z, &#40;zero&#40;T&#41;, one&#40;T&#41;&#41;, p&#41;&#41;
-    return solve&#40;ssprob, deq.args...; u0 &#61; z, deq.kwargs...&#41;.u
-end
+<span class="hljs-keyword">function</span> (deq::DeepEquilibriumNetwork)(x::<span class="hljs-built_in">AbstractArray</span>{T},
+                                       p = deq.p) <span class="hljs-keyword">where</span> {T}
+    z = deq.re(p)(x)
+    <span class="hljs-comment"># Solving the equation f(u) - u = du = 0</span>
+    dudt(u, _p, t) = deq.re(_p)(u .+ x) .- u
+    ssprob = SteadyStateProblem(ODEProblem(dudt, z, (zero(T), one(T)), p))
+    <span class="hljs-keyword">return</span> solve(ssprob, deq.args...; u0 = z, deq.kwargs...).u
+<span class="hljs-keyword">end</span>
 
-function Net&#40;&#41;
-    return Chain&#40;
+<span class="hljs-keyword">function</span> Net()
+    <span class="hljs-keyword">return</span> Chain(
         Flux.flatten,
-        Dense&#40;784, 100&#41;,
-        DeepEquilibriumNetwork&#40;Chain&#40;Dense&#40;100, 500, tanh&#41;, Dense&#40;500, 100&#41;&#41;,
-                               DynamicSS&#40;Tsit5&#40;&#41;, abstol &#61; 1f-1, reltol &#61; 1f-1&#41;&#41;,
-        Dense&#40;100, 10&#41;,
-    &#41;
-end</code></pre>
+        Dense(<span class="hljs-number">784</span>, <span class="hljs-number">100</span>),
+        DeepEquilibriumNetwork(Chain(Dense(<span class="hljs-number">100</span>, <span class="hljs-number">500</span>, tanh), Dense(<span class="hljs-number">500</span>, <span class="hljs-number">100</span>)),
+                               DynamicSS(Tsit5(), abstol = <span class="hljs-number">1f-1</span>, reltol = <span class="hljs-number">1f-1</span>)),
+        Dense(<span class="hljs-number">100</span>, <span class="hljs-number">10</span>),
+    )
+<span class="hljs-keyword">end</span></code></pre>
 <p>Next we define our data handling and training loops:</p>
-<pre><code class="language-julia">function get_data&#40;args&#41;
-    xtrain, ytrain &#61; MLDatasets.MNIST.traindata&#40;Float32&#41;
-    xtest, ytest &#61; MLDatasets.MNIST.testdata&#40;Float32&#41;
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> get_data(args)
+    xtrain, ytrain = MLDatasets.MNIST.traindata(<span class="hljs-built_in">Float32</span>)
+    xtest, ytest = MLDatasets.MNIST.testdata(<span class="hljs-built_in">Float32</span>)
 
-    device &#61; args.use_cuda ? gpu : cpu
-    xtrain &#61; reshape&#40;xtrain, 28, 28, 1, :&#41; |&gt; device
-    xtest &#61; reshape&#40;xtest, 28, 28, 1, :&#41; |&gt; device
-    ytrain &#61; onehotbatch&#40;ytrain, 0:9&#41; |&gt; device
-    ytest &#61; onehotbatch&#40;ytest, 0:9&#41; |&gt; device
+    device = args.use_cuda ? gpu : cpu
+    xtrain = reshape(xtrain, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>, <span class="hljs-number">1</span>, :) |&gt; device
+    xtest = reshape(xtest, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>, <span class="hljs-number">1</span>, :) |&gt; device
+    ytrain = onehotbatch(ytrain, <span class="hljs-number">0</span>:<span class="hljs-number">9</span>) |&gt; device
+    ytest = onehotbatch(ytest, <span class="hljs-number">0</span>:<span class="hljs-number">9</span>) |&gt; device
 
-    train_loader &#61; DataLoader&#40;&#40;xtrain, ytrain&#41;, batchsize&#61;args.batchsize, shuffle&#61;true&#41;
-    test_loader &#61; DataLoader&#40;&#40;xtest, ytest&#41;,  batchsize&#61;args.batchsize&#41;
+    train_loader = DataLoader((xtrain, ytrain), batchsize=args.batchsize, shuffle=<span class="hljs-literal">true</span>)
+    test_loader = DataLoader((xtest, ytest),  batchsize=args.batchsize)
 
-    return train_loader, test_loader
-end
+    <span class="hljs-keyword">return</span> train_loader, test_loader
+<span class="hljs-keyword">end</span>
 
 
 
-function eval_loss_accuracy&#40;loader, model, device&#41;
-    l &#61; 0f0
-    acc &#61; 0
-    ntot &#61; 0
-    for &#40;x, y&#41; in loader
-        x, y &#61; x |&gt; device, y |&gt; device
-        ŷ &#61; model&#40;x&#41;
-        l &#43;&#61; Flux.Losses.logitcrossentropy&#40;ŷ, y&#41; * size&#40;x&#41;&#91;end&#93;        
-        acc &#43;&#61; sum&#40;onecold&#40;ŷ |&gt; cpu&#41; .&#61;&#61; onecold&#40;y |&gt; cpu&#41;&#41;
-        ntot &#43;&#61; size&#40;x&#41;&#91;end&#93;
-    end
-    return &#40;loss &#61; l / ntot |&gt; round4, acc &#61; acc / ntot * 100 |&gt; round4&#41;
-end
+<span class="hljs-keyword">function</span> eval_loss_accuracy(loader, model, device)
+    l = <span class="hljs-number">0f0</span>
+    acc = <span class="hljs-number">0</span>
+    ntot = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> (x, y) <span class="hljs-keyword">in</span> loader
+        x, y = x |&gt; device, y |&gt; device
+        ŷ = model(x)
+        l += Flux.Losses.logitcrossentropy(ŷ, y) * size(x)[<span class="hljs-keyword">end</span>]        
+        acc += sum(onecold(ŷ |&gt; cpu) .== onecold(y |&gt; cpu))
+        ntot += size(x)[<span class="hljs-keyword">end</span>]
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> (loss = l / ntot |&gt; round4, acc = acc / ntot * <span class="hljs-number">100</span> |&gt; round4)
+<span class="hljs-keyword">end</span>
 
-# utility functions
-round4&#40;x&#41; &#61; round&#40;x, digits&#61;4&#41;
+<span class="hljs-comment"># utility functions</span>
+round4(x) = round(x, digits=<span class="hljs-number">4</span>)
 
-# arguments for the &#96;train&#96; function
-Base.@kwdef mutable struct Args
-    η &#61; 3e-4             # learning rate
-    λ &#61; 0                # L2 regularizer param, implemented as weight decay
-    batchsize &#61; 8      # batch size
-    epochs &#61; 1          # number of epochs
-    seed &#61; 0             # set seed &gt; 0 for reproducibility
-    use_cuda &#61; true      # if true use cuda &#40;if available&#41;
-end
+<span class="hljs-comment"># arguments for the `train` function</span>
+Base.<span class="hljs-meta">@kwdef</span> <span class="hljs-keyword">mutable struct</span> Args
+    η = <span class="hljs-number">3e-4</span>             <span class="hljs-comment"># learning rate</span>
+    λ = <span class="hljs-number">0</span>                <span class="hljs-comment"># L2 regularizer param, implemented as weight decay</span>
+    batchsize = <span class="hljs-number">8</span>      <span class="hljs-comment"># batch size</span>
+    epochs = <span class="hljs-number">1</span>          <span class="hljs-comment"># number of epochs</span>
+    seed = <span class="hljs-number">0</span>             <span class="hljs-comment"># set seed &gt; 0 for reproducibility</span>
+    use_cuda = <span class="hljs-literal">true</span>      <span class="hljs-comment"># if true use cuda (if available)</span>
+<span class="hljs-keyword">end</span>
 
-function train&#40;; kws...&#41;
+<span class="hljs-keyword">function</span> train(; kws...)
 
-    args &#61; Args&#40;; kws...&#41;
-    args.seed &gt; 0 &amp;&amp; Random.seed&#33;&#40;args.seed&#41;
-    use_cuda &#61; args.use_cuda &amp;&amp; CUDA.functional&#40;&#41;
-    if use_cuda
-        device &#61; gpu
-        @info &quot;Training on GPU&quot;
-    else
-        device &#61; cpu
-        @info &quot;Training on CPU&quot;
-    end
+    args = Args(; kws...)
+    args.seed &gt; <span class="hljs-number">0</span> &amp;&amp; Random.seed!(args.seed)
+    use_cuda = args.use_cuda &amp;&amp; CUDA.functional()
+    <span class="hljs-keyword">if</span> use_cuda
+        device = gpu
+        <span class="hljs-meta">@info</span> <span class="hljs-string">&quot;Training on GPU&quot;</span>
+    <span class="hljs-keyword">else</span>
+        device = cpu
+        <span class="hljs-meta">@info</span> <span class="hljs-string">&quot;Training on CPU&quot;</span>
+    <span class="hljs-keyword">end</span>
 
-    ## DATA
-    train_loader, test_loader &#61; get_data&#40;args&#41;
-    @info &quot;Dataset MNIST: &#36;&#40;train_loader.nobs&#41; train and &#36;&#40;test_loader.nobs&#41; test examples&quot;
+    <span class="hljs-comment">## DATA</span>
+    train_loader, test_loader = get_data(args)
+    <span class="hljs-meta">@info</span> <span class="hljs-string">&quot;Dataset MNIST: <span class="hljs-subst">$(train_loader.nobs)</span> train and <span class="hljs-subst">$(test_loader.nobs)</span> test examples&quot;</span>
 
-    ## MODEL AND OPTIMIZER
-    model &#61; Net&#40;&#41; |&gt; device
+    <span class="hljs-comment">## MODEL AND OPTIMIZER</span>
+    model = Net() |&gt; device
 
-    ps &#61; Flux.params&#40;model&#41;
+    ps = Flux.params(model)
 
-    opt &#61; ADAM&#40;args.η&#41;
-    if args.λ &gt; 0 # add weight decay, equivalent to L2 regularization
-        opt &#61; Optimiser&#40;opt, WeightDecay&#40;args.λ&#41;&#41;
-    end
+    opt = ADAM(args.η)
+    <span class="hljs-keyword">if</span> args.λ &gt; <span class="hljs-number">0</span> <span class="hljs-comment"># add weight decay, equivalent to L2 regularization</span>
+        opt = Optimiser(opt, WeightDecay(args.λ))
+    <span class="hljs-keyword">end</span>
 
-    ## TRAINING
-    @info &quot;Start Training&quot;
-    for epoch in 1:args.epochs
-        @showprogress for &#40;x, y&#41; in train_loader
-            x, y &#61; x |&gt; device, y |&gt; device
-            gs &#61; Flux.gradient&#40;
-                &#40;&#41; -&gt; Flux.Losses.logitcrossentropy&#40;model&#40;x&#41;, y&#41;, ps
-            &#41;
-             Flux.Optimise.update&#33;&#40;opt, ps, gs&#41;
-        end
-        loss, accuracy &#61; eval_loss_accuracy&#40;test_loader, model, device&#41;
-        println&#40;&quot;Epoch: &#36;epoch || Test Loss: &#36;loss || Test Accuracy: &#36;accuracy&quot;&#41;
-    end
+    <span class="hljs-comment">## TRAINING</span>
+    <span class="hljs-meta">@info</span> <span class="hljs-string">&quot;Start Training&quot;</span>
+    <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:args.epochs
+        <span class="hljs-meta">@showprogress</span> <span class="hljs-keyword">for</span> (x, y) <span class="hljs-keyword">in</span> train_loader
+            x, y = x |&gt; device, y |&gt; device
+            gs = Flux.gradient(
+                () -&gt; Flux.Losses.logitcrossentropy(model(x), y), ps
+            )
+             Flux.Optimise.update!(opt, ps, gs)
+        <span class="hljs-keyword">end</span>
+        loss, accuracy = eval_loss_accuracy(test_loader, model, device)
+        println(<span class="hljs-string">&quot;Epoch: <span class="hljs-variable">$epoch</span> || Test Loss: <span class="hljs-variable">$loss</span> || Test Accuracy: <span class="hljs-variable">$accuracy</span>&quot;</span>)
+    <span class="hljs-keyword">end</span>
 
-    return model, train_loader, test_loader
-end
+    <span class="hljs-keyword">return</span> model, train_loader, test_loader
+<span class="hljs-keyword">end</span>
 
-# Here we start training the model
-model, train_loader, test_loader &#61; train&#40;batchsize &#61; 128, epochs &#61; 1&#41;;</code></pre>
+<span class="hljs-comment"># Here we start training the model</span>
+model, train_loader, test_loader = train(batchsize = <span class="hljs-number">128</span>, epochs = <span class="hljs-number">1</span>);</code></pre>
 <p>Finally, here is the code to create an iterator for DEQ values.</p>
-<pre><code class="language-julia"># This function iterates through the DEQ solver
-function construct_iterator&#40;deq::DeepEquilibriumNetwork, x, p &#61; deq.p&#41;
-    executions &#61; 1
-    model &#61; deq.re&#40;p&#41;
-    previous_value &#61; nothing
-    function iterator&#40;&#41;
-        z &#61; model&#40;&#40;executions &#61;&#61; 1 ? zero&#40;x&#41; : previous_value&#41; .&#43; x&#41;
-        executions &#43;&#61; 1
-        previous_value &#61; z
-        return z
-    end
-    return iterator
-end
+<pre><code class="julia hljs"><span class="hljs-comment"># This function iterates through the DEQ solver</span>
+<span class="hljs-keyword">function</span> construct_iterator(deq::DeepEquilibriumNetwork, x, p = deq.p)
+    executions = <span class="hljs-number">1</span>
+    model = deq.re(p)
+    previous_value = <span class="hljs-literal">nothing</span>
+    <span class="hljs-keyword">function</span> iterator()
+        z = model((executions == <span class="hljs-number">1</span> ? zero(x) : previous_value) .+ x)
+        executions += <span class="hljs-number">1</span>
+        previous_value = z
+        <span class="hljs-keyword">return</span> z
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> iterator
+<span class="hljs-keyword">end</span>
 
-#This functions records the values over all timesteps
-function generate_model_trajectory&#40;deq, x, max_depth::Int,
-                                    abstol::T &#61; 1e-8, reltol::T &#61; 1e-8&#41; where &#123;T&#125;
-    deq_func &#61; construct_iterator&#40;deq, x&#41;
-    values &#61; &#91;x, deq_func&#40;&#41;&#93;
-    for i &#61; 2:max_depth
-        sol &#61; deq_func&#40;&#41;
-        push&#33;&#40;values, sol&#41;
-        # We end early if the tolerances are met
-        if &#40;norm&#40;sol .- values&#91;end - 1&#93;&#41; ≤ abstol&#41; || &#40;norm&#40;sol .- values&#91;end - 1&#93;&#41; / norm&#40;values&#91;end - 1&#93;&#41; ≤ reltol&#41;
-            return values
-        end
-    end
-    return values
-end
+<span class="hljs-comment">#This functions records the values over all timesteps</span>
+<span class="hljs-keyword">function</span> generate_model_trajectory(deq, x, max_depth::<span class="hljs-built_in">Int</span>,
+                                    abstol::T = <span class="hljs-number">1e-8</span>, reltol::T = <span class="hljs-number">1e-8</span>) <span class="hljs-keyword">where</span> {T}
+    deq_func = construct_iterator(deq, x)
+    values = [x, deq_func()]
+    <span class="hljs-keyword">for</span> i = <span class="hljs-number">2</span>:max_depth
+        sol = deq_func()
+        push!(values, sol)
+        <span class="hljs-comment"># We end early if the tolerances are met</span>
+        <span class="hljs-keyword">if</span> (norm(sol .- values[<span class="hljs-keyword">end</span> - <span class="hljs-number">1</span>]) ≤ abstol) || (norm(sol .- values[<span class="hljs-keyword">end</span> - <span class="hljs-number">1</span>]) / norm(values[<span class="hljs-keyword">end</span> - <span class="hljs-number">1</span>]) ≤ reltol)
+            <span class="hljs-keyword">return</span> values
+        <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> values
+<span class="hljs-keyword">end</span>
 
-# This function performs PCA
-# It reduces an array of size &#40;feature, batchsize&#41; to &#40;2, batchsize&#41; so we can plot it
-function dim_reduce&#40;traj&#41;
-    pca &#61; fit&#40;PCA, cpu&#40;hcat&#40;traj...&#41;&#41;, maxoutdim &#61; 2&#41;
-    return &#91;transform&#40;pca, cpu&#40;t&#41;&#41; for t in traj&#93;
-end
+<span class="hljs-comment"># This function performs PCA</span>
+<span class="hljs-comment"># It reduces an array of size (feature, batchsize) to (2, batchsize) so we can plot it</span>
+<span class="hljs-keyword">function</span> dim_reduce(traj)
+    pca = fit(PCA, cpu(hcat(traj...)), maxoutdim = <span class="hljs-number">2</span>)
+    <span class="hljs-keyword">return</span> [transform(pca, cpu(t)) <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> traj]
+<span class="hljs-keyword">end</span>
 
-# In order to obtain a nice visualization, we loop through the entire test dataset
-function loop&#40;; kws...&#41;
+<span class="hljs-comment"># In order to obtain a nice visualization, we loop through the entire test dataset</span>
+<span class="hljs-keyword">function</span> loop(; kws...)
 
-    args &#61; Args&#40;; kws...&#41;
+    args = Args(; kws...)
 
-    # variables for plotting
-    xmin &#61; 0
-    xmax &#61; 0
-    ymin &#61; 0
-    ymax &#61; 0
+    <span class="hljs-comment"># variables for plotting</span>
+    xmin = <span class="hljs-number">0</span>
+    xmax = <span class="hljs-number">0</span>
+    ymin = <span class="hljs-number">0</span>
+    ymax = <span class="hljs-number">0</span>
 
-    # Arbitrarily, we choose the first data sample as the depth reference
-    X, color &#61; first&#40;test_loader&#41;;
-    traj &#61; generate_model_trajectory&#40;model&#91;3&#93;, model&#91;1:2&#93;&#40;X&#41;, 100, 1e-3, 1e-3&#41; |&gt; cpu
-    traj &#61; dim_reduce&#40;traj&#41;
-    color &#61; Flux.onecold&#40;color&#41; |&gt; cpu
-    #Here we have the compressed features and labels of one data sample
-    #In order to show that learned features are meaningful, we plot features that end at the same depth
-    for &#40;X, Y&#41; in test_loader
-        trajj &#61; generate_model_trajectory&#40;model&#91;3&#93;, model&#91;1:2&#93;&#40;X&#41;, 100, 1e-3, 1e-3&#41; |&gt; cpu
+    <span class="hljs-comment"># Arbitrarily, we choose the first data sample as the depth reference</span>
+    X, color = first(test_loader);
+    traj = generate_model_trajectory(model[<span class="hljs-number">3</span>], model[<span class="hljs-number">1</span>:<span class="hljs-number">2</span>](X), <span class="hljs-number">100</span>, <span class="hljs-number">1e-3</span>, <span class="hljs-number">1e-3</span>) |&gt; cpu
+    traj = dim_reduce(traj)
+    color = Flux.onecold(color) |&gt; cpu
+    <span class="hljs-comment">#Here we have the compressed features and labels of one data sample</span>
+    <span class="hljs-comment">#In order to show that learned features are meaningful, we plot features that end at the same depth</span>
+    <span class="hljs-keyword">for</span> (X, Y) <span class="hljs-keyword">in</span> test_loader
+        trajj = generate_model_trajectory(model[<span class="hljs-number">3</span>], model[<span class="hljs-number">1</span>:<span class="hljs-number">2</span>](X), <span class="hljs-number">100</span>, <span class="hljs-number">1e-3</span>, <span class="hljs-number">1e-3</span>) |&gt; cpu
 
-        #Because we might terminate early by meeting the tolerance requirement, different
-        #data samples have different number of iterations and varying-length trajectories
-        #we arbitrarily control for depth according to our first sample
-        #and don&#39;t plot for any data whose iterator ends at a different depth
-        if length&#40;trajj&#41; &#61;&#61; length&#40;traj&#41;
-            trajj &#61; dim_reduce&#40;trajj&#41;
+        <span class="hljs-comment">#Because we might terminate early by meeting the tolerance requirement, different</span>
+        <span class="hljs-comment">#data samples have different number of iterations and varying-length trajectories</span>
+        <span class="hljs-comment">#we arbitrarily control for depth according to our first sample</span>
+        <span class="hljs-comment">#and don&#x27;t plot for any data whose iterator ends at a different depth</span>
+        <span class="hljs-keyword">if</span> length(trajj) == length(traj)
+            trajj = dim_reduce(trajj)
 
-            #again, for plotting later
-            xminn, yminn &#61; minimum&#40;hcat&#40;minimum.&#40;trajj, dims &#61; 2&#41;...&#41;, dims &#61; 2&#41;
-            xmaxx, ymaxx &#61; maximum&#40;hcat&#40;maximum.&#40;trajj, dims &#61; 2&#41;...&#41;, dims &#61; 2&#41;
+            <span class="hljs-comment">#again, for plotting later</span>
+            xminn, yminn = minimum(hcat(minimum.(trajj, dims = <span class="hljs-number">2</span>)...), dims = <span class="hljs-number">2</span>)
+            xmaxx, ymaxx = maximum(hcat(maximum.(trajj, dims = <span class="hljs-number">2</span>)...), dims = <span class="hljs-number">2</span>)
 
-            if xminn &lt; xmin
-                xmin &#61; xminn
-            end
-            if yminn &lt; ymin
-                ymin &#61; yminn
-            end
-            if xmaxx &gt; xmax
-                xmax &#61; xmaxx
-            end
-            if ymaxx &gt; ymax
-                ymax &#61; ymaxx
-            end
+            <span class="hljs-keyword">if</span> xminn &lt; xmin
+                xmin = xminn
+            <span class="hljs-keyword">end</span>
+            <span class="hljs-keyword">if</span> yminn &lt; ymin
+                ymin = yminn
+            <span class="hljs-keyword">end</span>
+            <span class="hljs-keyword">if</span> xmaxx &gt; xmax
+                xmax = xmaxx
+            <span class="hljs-keyword">end</span>
+            <span class="hljs-keyword">if</span> ymaxx &gt; ymax
+                ymax = ymaxx
+            <span class="hljs-keyword">end</span>
 
-            #this should always evaluate to true, just a sanity check
-            if size&#40;trajj&#91;2&#93;&#41; &#61;&#61; &#40;2,args.batchsize&#41;
+            <span class="hljs-comment">#this should always evaluate to true, just a sanity check</span>
+            <span class="hljs-keyword">if</span> size(trajj[<span class="hljs-number">2</span>]) == (<span class="hljs-number">2</span>,args.batchsize)
 
-                #we concatenate the two feature vectors for easier plotting
-                for i in 1:length&#40;traj&#41;
-                    traj&#91;i&#93; &#61; cat&#40;traj&#91;i&#93;, trajj&#91;i&#93;, dims&#61;2&#41;
-                end
-                Y &#61; Flux.onecold&#40;Y&#41; |&gt; cpu
-                color &#61; cat&#40;color, Y, dims&#61;1&#41;
-            end
-        end
-    end
-    return traj, color, xmin, xmax, ymin, ymax
-end
-traj, color, xmin, xmax, ymin, ymax &#61; loop&#40;&#41;</code></pre>
+                <span class="hljs-comment">#we concatenate the two feature vectors for easier plotting</span>
+                <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:length(traj)
+                    traj[i] = cat(traj[i], trajj[i], dims=<span class="hljs-number">2</span>)
+                <span class="hljs-keyword">end</span>
+                Y = Flux.onecold(Y) |&gt; cpu
+                color = cat(color, Y, dims=<span class="hljs-number">1</span>)
+            <span class="hljs-keyword">end</span>
+        <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> traj, color, xmin, xmax, ymin, ymax
+<span class="hljs-keyword">end</span>
+traj, color, xmin, xmax, ymin, ymax = loop()</code></pre>
 <p>Now let&#39;s see what we got. We&#39;ll do a visualization of the values that come out of the neural network. The neural network acts on a very high dimensional space, so we will need to project that to a visualization in a two dimensional space. If the neural network was successfully trained to be a classifier, then we should see relatively distinct clusters for the various digits, noting that they will not be fully separated in two dimensions due to potential distance warping in the projection.</p>
-<pre><code class="language-julia"># A collection of all the allowed shapes
-shape &#61; &#91;:circle, :rect, :star5, :diamond, :hexagon, :cross, :xcross, :utriangle, :dtriangle, :ltriangle, :rtriangle, :pentagon, :heptagon, :octagon, :star4, :star6, :star7, :star8, :vline, :hline, :&#43;, :x&#93;
+<pre><code class="julia hljs"><span class="hljs-comment"># A collection of all the allowed shapes</span>
+shape = [:circle, :rect, :star5, :diamond, :hexagon, :cross, :xcross, :utriangle, :dtriangle, :ltriangle, :rtriangle, :pentagon, :heptagon, :octagon, :star4, :star6, :star7, :star8, :vline, :hline, :+, :x]
 
-# This is for plotting shapes of different clusters
-# The way Julia handles this requires mapping different colors to shapes
-# i.e. creating a shape array of size color
-shapesvec &#61; &#91;&#93;
-for i in color
-    if i &#61;&#61; 1
-        push&#33;&#40;shapesvec, shape&#91;1&#93;&#41;
-    elseif i &#61;&#61; 2
-        push&#33;&#40;shapesvec, shape&#91;2&#93;&#41;
-    elseif i &#61;&#61; 3
-        push&#33;&#40;shapesvec, shape&#91;3&#93;&#41;
-    elseif i &#61;&#61; 4
-        push&#33;&#40;shapesvec, shape&#91;4&#93;&#41;
-    elseif i &#61;&#61; 5
-        push&#33;&#40;shapesvec, shape&#91;5&#93;&#41;
-    elseif i &#61;&#61; 6
-        push&#33;&#40;shapesvec, shape&#91;6&#93;&#41;
-    elseif i &#61;&#61; 7
-        push&#33;&#40;shapesvec, shape&#91;7&#93;&#41;
-    elseif i &#61;&#61; 8
-        push&#33;&#40;shapesvec, shape&#91;8&#93;&#41;
-    elseif i &#61;&#61; 9
-        push&#33;&#40;shapesvec, shape&#91;9&#93;&#41;
-    elseif i &#61;&#61; 10
-        push&#33;&#40;shapesvec, shape&#91;10&#93;&#41;
-    end
-end
+<span class="hljs-comment"># This is for plotting shapes of different clusters</span>
+<span class="hljs-comment"># The way Julia handles this requires mapping different colors to shapes</span>
+<span class="hljs-comment"># i.e. creating a shape array of size color</span>
+shapesvec = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> color
+    <span class="hljs-keyword">if</span> i == <span class="hljs-number">1</span>
+        push!(shapesvec, shape[<span class="hljs-number">1</span>])
+    <span class="hljs-keyword">elseif</span> i == <span class="hljs-number">2</span>
+        push!(shapesvec, shape[<span class="hljs-number">2</span>])
+    <span class="hljs-keyword">elseif</span> i == <span class="hljs-number">3</span>
+        push!(shapesvec, shape[<span class="hljs-number">3</span>])
+    <span class="hljs-keyword">elseif</span> i == <span class="hljs-number">4</span>
+        push!(shapesvec, shape[<span class="hljs-number">4</span>])
+    <span class="hljs-keyword">elseif</span> i == <span class="hljs-number">5</span>
+        push!(shapesvec, shape[<span class="hljs-number">5</span>])
+    <span class="hljs-keyword">elseif</span> i == <span class="hljs-number">6</span>
+        push!(shapesvec, shape[<span class="hljs-number">6</span>])
+    <span class="hljs-keyword">elseif</span> i == <span class="hljs-number">7</span>
+        push!(shapesvec, shape[<span class="hljs-number">7</span>])
+    <span class="hljs-keyword">elseif</span> i == <span class="hljs-number">8</span>
+        push!(shapesvec, shape[<span class="hljs-number">8</span>])
+    <span class="hljs-keyword">elseif</span> i == <span class="hljs-number">9</span>
+        push!(shapesvec, shape[<span class="hljs-number">9</span>])
+    <span class="hljs-keyword">elseif</span> i == <span class="hljs-number">10</span>
+        push!(shapesvec, shape[<span class="hljs-number">10</span>])
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 
-# We visualize the evolution of learned features according to iterator depth
-# So we see iterator values converging to 10 clusters with time
-anim &#61; Plots.Animation&#40;&#41;
-for &#40;i, t&#41; in enumerate&#40;traj&#41;
-    colorsvec &#61; get&#40;ColorSchemes.tab10, color, :extrema&#41;
-    plot&#40;legend&#61;false,axis&#61;false,grid&#61;false&#41;
-    tsneplot &#61; scatter&#33;&#40;t&#91;1, :&#93;, t&#91;2, :&#93;,
-                            background_color&#61;:white,
-                            color&#61;colorsvec,
-                            markershape&#61;shapesvec,
-                            title&#61;&quot;Depth &#36;i&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-    Plots.frame&#40;anim&#41;
-end
+<span class="hljs-comment"># We visualize the evolution of learned features according to iterator depth</span>
+<span class="hljs-comment"># So we see iterator values converging to 10 clusters with time</span>
+anim = Plots.Animation()
+<span class="hljs-keyword">for</span> (i, t) <span class="hljs-keyword">in</span> enumerate(traj)
+    colorsvec = get(ColorSchemes.tab10, color, :extrema)
+    plot(legend=<span class="hljs-literal">false</span>,axis=<span class="hljs-literal">false</span>,grid=<span class="hljs-literal">false</span>)
+    tsneplot = scatter!(t[<span class="hljs-number">1</span>, :], t[<span class="hljs-number">2</span>, :],
+                            background_color=:white,
+                            color=colorsvec,
+                            markershape=shapesvec,
+                            title=<span class="hljs-string">&quot;Depth <span class="hljs-variable">$i</span>&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+    Plots.frame(anim)
+<span class="hljs-keyword">end</span>
 
-# Here we only visualize the features learned at the end of the trajectory
-# We label the features depending on which class it belongs to &#40;which digit it is&#41;
-# And at the end we see DEQ learning a good cluster for all the digits
-t &#61; traj&#91;end&#93;
-plot&#40;&#41;
-        if &#40;color&#91;i&#93; - 1&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;black&quot;, markershape&#61;shape&#91;1&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        elseif &#40;color&#91;i&#93; - 2&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;blue&quot;, markershape&#61;shape&#91;2&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        elseif &#40;color&#91;i&#93; - 3&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;brown&quot;, markershape&#61;shape&#91;3&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        elseif &#40;color&#91;i&#93; - 4&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;cyan&quot;, markershape&#61;shape&#91;4&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        elseif &#40;color&#91;i&#93; - 5&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;gold&quot;, markershape&#61;shape&#91;5&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        elseif &#40;color&#91;i&#93; - 6&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;gray&quot;, markershape&#61;shape&#91;6&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        elseif &#40;color&#91;i&#93; - 7&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;magenta&quot;, markershape&#61;shape&#91;7&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        elseif &#40;color&#91;i&#93; - 8&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;orange&quot;, markershape&#61;shape&#91;8&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        elseif &#40;color&#91;i&#93; - 9&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;red&quot;, markershape&#61;shape&#91;9&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        elseif &#40;color&#91;i&#93; - 10&#41; &#37; 10 &#61;&#61; 0
-            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;yellow&quot;, markershape&#61;shape&#91;10&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
-        end
-    end
-xlabel&#33;&#40;&quot;PCA Dimension 1&quot;&#41;
-ylabel&#33;&#40;&quot;PCA Dimension 2&quot;&#41;
-plot&#33;&#40;&#41;
-savefig&#40;&quot;DEQ Feature Cluster&quot;&#41;</code></pre>
+<span class="hljs-comment"># Here we only visualize the features learned at the end of the trajectory</span>
+<span class="hljs-comment"># We label the features depending on which class it belongs to (which digit it is)</span>
+<span class="hljs-comment"># And at the end we see DEQ learning a good cluster for all the digits</span>
+t = traj[<span class="hljs-keyword">end</span>]
+plot()
+        <span class="hljs-keyword">if</span> (color[i] - <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;black&quot;</span>, markershape=shape[<span class="hljs-number">1</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">elseif</span> (color[i] - <span class="hljs-number">2</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;blue&quot;</span>, markershape=shape[<span class="hljs-number">2</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">elseif</span> (color[i] - <span class="hljs-number">3</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;brown&quot;</span>, markershape=shape[<span class="hljs-number">3</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">elseif</span> (color[i] - <span class="hljs-number">4</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;cyan&quot;</span>, markershape=shape[<span class="hljs-number">4</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">elseif</span> (color[i] - <span class="hljs-number">5</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;gold&quot;</span>, markershape=shape[<span class="hljs-number">5</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">elseif</span> (color[i] - <span class="hljs-number">6</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;gray&quot;</span>, markershape=shape[<span class="hljs-number">6</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">elseif</span> (color[i] - <span class="hljs-number">7</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;magenta&quot;</span>, markershape=shape[<span class="hljs-number">7</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">elseif</span> (color[i] - <span class="hljs-number">8</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;orange&quot;</span>, markershape=shape[<span class="hljs-number">8</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">elseif</span> (color[i] - <span class="hljs-number">9</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;red&quot;</span>, markershape=shape[<span class="hljs-number">9</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">elseif</span> (color[i] - <span class="hljs-number">10</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>
+            scatter!([t[<span class="hljs-number">1</span>, i]],[t[<span class="hljs-number">2</span>, i]], color=<span class="hljs-string">&quot;yellow&quot;</span>, markershape=shape[<span class="hljs-number">10</span>], alpha=<span class="hljs-number">0.5</span>, title = <span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>, legend = <span class="hljs-literal">false</span>, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+xlabel!(<span class="hljs-string">&quot;PCA Dimension 1&quot;</span>)
+ylabel!(<span class="hljs-string">&quot;PCA Dimension 2&quot;</span>)
+plot!()
+savefig(<span class="hljs-string">&quot;DEQ Feature Cluster&quot;</span>)</code></pre>
 <p><img src="https://i.imgur.com/K411ddI.gif" alt="Imgur" /></p>
 <p>Tada, clusters in the equilibrium&#33;</p>
-<h2 id="conclusion"><a href="#conclusion">Conclusion</a></h2>
+<h2 id="conclusion"><a href="#conclusion" class="header-anchor">Conclusion</a></h2>
 <p>In this blog post, we have demonstrated a new perspective for studying DEQ models. Coupled with the flexible Julia language structure, we have implemented DEQ models by only changing two lines of code compared to Neural ODEs&#33; The world is your oyster, and composability of the <a href="https://sciml.ai/">SciML ecosystem</a> is there to facilitate doing machine learning with your wildest creations. While pre-built DEQ structures will soon be found in <a href="https://github.com/SciML/DiffEqFlux.jl">DiffEqFlux.jl</a>, the larger point is that the composability of the Julia ecosystem makes building such a tool simple, and makes getting the optimal algorithm with Krylov linear solvers, quasi-Newton methods, etc. free due to composability. Mix and match things at will. We&#39;re excited to see what you come up with.</p>
 </div><br><br>
 
@@ -601,7 +601,7 @@ savefig&#40;&quot;DEQ Feature Cluster&quot;&#41;</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -714,7 +714,7 @@ savefig&#40;&quot;DEQ Feature Cluster&quot;&#41;</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -730,7 +730,7 @@ savefig&#40;&quot;DEQ Feature Cluster&quot;&#41;</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

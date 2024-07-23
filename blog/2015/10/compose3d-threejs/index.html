@@ -150,7 +150,7 @@
 <!-- Content appended here -->
 <div class="container main"><p>Over the last three months, I&#39;ve been working on <a href="https://github.com/rohitvarkey/Compose3D.jl">Compose3D</a>, which is an extension of the amazing <a href="https://github.com/dcjones/Compose.jl">Compose</a> package to 3D. My work on Compose3D began as a project for my Computer Graphics course along with <a href="https://github.com/pranavtbhat">Pranav T Bhat</a>, and by the end of the course, we had a working prototype for Compose3D with support for contexts and geometries and a very basic WebGL backend.</p>
 <p>It has been my pleasure to have been able to continue this work under the guidance of <a href="https://github.com/shashi">Shashi Gowda</a> and <a href="https://github.com/SimonDanisch">Simon Danisch</a> as a part of the first ever Julia Summer of Code, generously sponsored by the <a href="https://www.moore.org/">Gordon and Betty Moore Foundation</a>. While I&#39;ve been able to add quite a lot of functionality to Compose3D, it isn&#39;t totally ready for release yet. Hopefully, in some time it will be ready. But as a happy side effect, I have been able to abstract out the WebGL rendering functionality provided by the original prototype &#40;and a lot more&#33;&#41; to a separate package called <a href="https://github.com/rohitvarkey/ThreeJS.jl">ThreeJS.jl</a>, which can now be used to render 3D graphics in browsers using Julia, opening up possibilities of displaying such scenes in <a href="https://github.com/JuliaLang/IJulia.jl">IJulia</a> notebooks and <a href="https://github.com/shashi/Escher.jl">Escher</a>.</p>
-<h2 id="threejsjl"><a href="#threejsjl">ThreeJS.jl</a></h2>
+<h2 id="threejsjl"><a href="#threejsjl" class="header-anchor">ThreeJS.jl</a></h2>
 <p>ThreeJS is now responsible for all the WebGL rendering done by Compose3D. It can also be used as a standalone package for other graphics packages to use as a backend.</p>
 <p>Initially, my approach to render scenes in Compose3D was to just emit out the corresponding JavaScript code, into the IJulia notebook, which would then run it&#33; This worked pretty well in IJulia notebooks, but it was soon apparent that there were several flaws with this approach.</p>
 <ul>
@@ -164,119 +164,119 @@
 <p>So Shashi suggested implementing a <a href="https://www.polymer-project.org/1.0/">Polymer</a> wrapper around the excellent <a href="https://threejs.org/">three.js</a> library, to create threejs web components. The Polymer team had done some work on creating threejs components and had a basic implementation of the same ready, which I promptly <a href="https://github.com/rohitvarkey/three-js">forked</a> and tweaked to add functionality I needed. It&#39;s quite safe to say that I&#39;ve spent more time writing JavaScript than Julia during JSoC&#33;</p>
 <p>Switching over to using web components suddenly opened up 2 major avenues. Compose3D could now work with Escher and also provided interactivity. ThreeJS outputs <a href="https://github.com/shashi/Patchwork.jl">Patchwork</a> elements, which lets it use Patchwork&#39;s clever diffing capabilities, thereby updating only the required DOM elements and helping performance.</p>
 <p>On the other hand, web components introduced issues with IJulia notebooks regarding serving the files required by ThreeJS. I&#39;m still working on finding a good solution for this problem, but for now, a hack gets ThreeJS working in IJulia, albeit with some limitations.</p>
-<h3 id="drawing_stuff"><a href="#drawing_stuff">Drawing stuff&#33;</a></h3>
+<h3 id="drawing_stuff"><a href="#drawing_stuff" class="header-anchor">Drawing stuff&#33;</a></h3>
 <p>Anyway, now we were all set to draw 3D scenes in browsers&#33; The below code snippet, for example, would draw a red cube illuminated from a corner. The camera in the scenes drawn by ThreeJS can be rotated, zoomed and panned using your mouse or trackpad, allowing you to explore the scene.</p>
-<pre><code class="language-julia">import ThreeJS
-ThreeJS.outerdiv&#40;&#41; &lt;&lt; &#40;ThreeJS.initscene&#40;&#41; &lt;&lt;
-    &#91;
-        ThreeJS.mesh&#40;0.0, 0.0, 0.0&#41; &lt;&lt;
-        &#91;
-            ThreeJS.box&#40;1.0,1.0,1.0&#41;,
-            ThreeJS.material&#40;Dict&#40;:kind&#61;&gt;&quot;lambert&quot;,:color&#61;&gt;&quot;red&quot;&#41;&#41;
-        &#93;,
-        ThreeJS.pointlight&#40;3.0, 3.0, 3.0&#41;,
-        ThreeJS.camera&#40;0.0, 0.0, 10.0&#41;
-    &#93;&#41;</code></pre>
-<h3 id="making_them_interactive"><a href="#making_them_interactive">Making them interactive</a></h3>
+<pre><code class="julia hljs"><span class="hljs-keyword">import</span> ThreeJS
+ThreeJS.outerdiv() &lt;&lt; (ThreeJS.initscene() &lt;&lt;
+    [
+        ThreeJS.mesh(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>) &lt;&lt;
+        [
+            ThreeJS.box(<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>),
+            ThreeJS.material(<span class="hljs-built_in">Dict</span>(:kind=&gt;<span class="hljs-string">&quot;lambert&quot;</span>,:color=&gt;<span class="hljs-string">&quot;red&quot;</span>))
+        ],
+        ThreeJS.pointlight(<span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>),
+        ThreeJS.camera(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>)
+    ])</code></pre>
+<h3 id="making_them_interactive"><a href="#making_them_interactive" class="header-anchor">Making them interactive</a></h3>
 <p>Currently, interactivity is broken in IJulia &#40;a side effect of the switch to Polymer 1.0, and the new sneaky DOM&#41;, so Escher is the way to go if you want to interact with your 3D scene. So an example for this can be the same scene as before, but after adding a slider and make it such that the size of the cube is controlled by the slider.</p>
-<pre><code class="language-julia">import ThreeJS
-function main&#40;window&#41;
-  push&#33;&#40;window.assets, &quot;widgets&quot;&#41;
-  push&#33;&#40;window.assets, &#40;&quot;ThreeJS&quot;, &quot;threejs&quot;&#41;&#41;
-  side &#61; Input&#40;1.0&#41;
-  vbox&#40;
-    slider&#40;1.0:5.0&#41; &gt;&gt;&gt; side,
-    lift&#40;side&#41; do val
-      ThreeJS.outerdiv&#40;&#41; &lt;&lt; &#40;ThreeJS.initscene&#40;&#41; &lt;&lt;
-      &#91;
-          ThreeJS.mesh&#40;0.0, 0.0, 0.0&#41; &lt;&lt;
-          &#91;
-              ThreeJS.box&#40;val, val, val&#41;,
-              ThreeJS.material&#40;Dict&#40;:kind&#61;&gt;&quot;lambert&quot;,:color&#61;&gt;&quot;red&quot;&#41;&#41;
-          &#93;,
-          ThreeJS.pointlight&#40;3.0, 3.0, 3.0&#41;,
-          ThreeJS.camera&#40;0.0, 0.0, 10.0&#41;
-      &#93;&#41;
-    end
-  &#41;
-end</code></pre>
-<h3 id="you_can_also_do_animations"><a href="#you_can_also_do_animations">You can also do animations&#33;</a></h3>
+<pre><code class="julia hljs"><span class="hljs-keyword">import</span> ThreeJS
+<span class="hljs-keyword">function</span> main(window)
+  push!(window.assets, <span class="hljs-string">&quot;widgets&quot;</span>)
+  push!(window.assets, (<span class="hljs-string">&quot;ThreeJS&quot;</span>, <span class="hljs-string">&quot;threejs&quot;</span>))
+  side = Input(<span class="hljs-number">1.0</span>)
+  vbox(
+    slider(<span class="hljs-number">1.0</span>:<span class="hljs-number">5.0</span>) &gt;&gt;&gt; side,
+    lift(side) <span class="hljs-keyword">do</span> val
+      ThreeJS.outerdiv() &lt;&lt; (ThreeJS.initscene() &lt;&lt;
+      [
+          ThreeJS.mesh(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>) &lt;&lt;
+          [
+              ThreeJS.box(val, val, val),
+              ThreeJS.material(<span class="hljs-built_in">Dict</span>(:kind=&gt;<span class="hljs-string">&quot;lambert&quot;</span>,:color=&gt;<span class="hljs-string">&quot;red&quot;</span>))
+          ],
+          ThreeJS.pointlight(<span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>),
+          ThreeJS.camera(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>)
+      ])
+    <span class="hljs-keyword">end</span>
+  )
+<span class="hljs-keyword">end</span></code></pre>
+<h3 id="you_can_also_do_animations"><a href="#you_can_also_do_animations" class="header-anchor">You can also do animations&#33;</a></h3>
 <p>Small scale animations can also be created using Escher. Instead of using sliders to update the elements, we just update it at certain intervals using the <code>every</code> function or the <code>fpswhen</code> functions. A scene with a rotating cube can be drawn using just a couple of modifications of the above code.</p>
-<pre><code class="language-julia">import ThreeJS
-function main&#40;window&#41;
-  push&#33;&#40;window.assets, &quot;widgets&quot;&#41;
-  push&#33;&#40;window.assets, &#40;&quot;ThreeJS&quot;, &quot;threejs&quot;&#41;&#41;
-  rx &#61; 0.0
-  ry &#61; 0.0
-  rz &#61; 0.0
-  delta &#61; fpswhen&#40;window.alive, 60&#41; #Update at 60 FPS
-  lift&#40;delta&#41; do _
-      rx &#43;&#61; 0.5
-      ry &#43;&#61; 0.5
-      rz &#43;&#61; 0.5
-      ThreeJS.outerdiv&#40;&#41; &lt;&lt; &#40;ThreeJS.initscene&#40;&#41; &lt;&lt;
-      &#91;
-          ThreeJS.mesh&#40;0.0, 0.0, 0.0&#41; &lt;&lt;
-          &#91;
-              ThreeJS.box&#40;2.0, 2.0, 2.0, rx &#61; rx, ry &#61; ry, rz &#61; rz&#41;,
-              ThreeJS.material&#40;Dict&#40;:kind&#61;&gt;&quot;lambert&quot;,:color&#61;&gt;&quot;red&quot;&#41;&#41;
-          &#93;,
-          ThreeJS.pointlight&#40;3.0, 3.0, 3.0&#41;,
-          ThreeJS.camera&#40;0.0, 0.0, 10.0&#41;
-      &#93;&#41;
-    end
-end</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">import</span> ThreeJS
+<span class="hljs-keyword">function</span> main(window)
+  push!(window.assets, <span class="hljs-string">&quot;widgets&quot;</span>)
+  push!(window.assets, (<span class="hljs-string">&quot;ThreeJS&quot;</span>, <span class="hljs-string">&quot;threejs&quot;</span>))
+  rx = <span class="hljs-number">0.0</span>
+  ry = <span class="hljs-number">0.0</span>
+  rz = <span class="hljs-number">0.0</span>
+  delta = fpswhen(window.alive, <span class="hljs-number">60</span>) <span class="hljs-comment">#Update at 60 FPS</span>
+  lift(delta) <span class="hljs-keyword">do</span> _
+      rx += <span class="hljs-number">0.5</span>
+      ry += <span class="hljs-number">0.5</span>
+      rz += <span class="hljs-number">0.5</span>
+      ThreeJS.outerdiv() &lt;&lt; (ThreeJS.initscene() &lt;&lt;
+      [
+          ThreeJS.mesh(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>) &lt;&lt;
+          [
+              ThreeJS.box(<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, rx = rx, ry = ry, rz = rz),
+              ThreeJS.material(<span class="hljs-built_in">Dict</span>(:kind=&gt;<span class="hljs-string">&quot;lambert&quot;</span>,:color=&gt;<span class="hljs-string">&quot;red&quot;</span>))
+          ],
+          ThreeJS.pointlight(<span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>),
+          ThreeJS.camera(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>)
+      ])
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
 <p><img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/b7dc41f2b3f869c103dcbcb79632f92397767b01/rotating_cube.gif" alt="Rotating Cube" /></p>
-<h3 id="surf_and_mesh_plots_sort_of"><a href="#surf_and_mesh_plots_sort_of">Surf and mesh plots&#33; &#40;Sort of&#41;</a></h3>
+<h3 id="surf_and_mesh_plots_sort_of"><a href="#surf_and_mesh_plots_sort_of" class="header-anchor">Surf and mesh plots&#33; &#40;Sort of&#41;</a></h3>
 <p>ThreeJS has support to render parametric surfaces, which are basically the kind of surfaces drawn by a typical <code>surf</code> plot. It also has support for drawing lines like a typical <code>mesh</code> plot. Colormaps can be applied to these surfaces by passing in an array of colors to be used. Colors to be applied are calculated and chosen by ThreeJS. These come into effect when put together with materials using the <code>colorkind</code> property of <code>vertex</code>. Screenshots of such surfaces drawn by ThreeJS are shown below.</p>
 <p><img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/d1d8e389dd5baf5420cb24c1dfdf784bc61bf217/parametric.png" alt="Parametric surface" /> <img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/d1d8e389dd5baf5420cb24c1dfdf784bc61bf217/meshlines.png" alt="Mesh lines" /></p>
-<h2 id="compose3d"><a href="#compose3d">Compose3D</a></h2>
+<h2 id="compose3d"><a href="#compose3d" class="header-anchor">Compose3D</a></h2>
 <p>Compose3D provides an abstraction over the rendering library and lets you compose together primitives to build scenes just like the inspiration for it, the Compose library. This lets you create very interesting structures, with very less code&#33; Compose3D has similar features to Compose, with users being able to create 3D contexts, and then use relative and absolute measures inside them and compose other primitives together.</p>
 <p>My favorite example to showcase Compose3D would be the Sierpinski pyramid example. Here, we split the parent context into the sections that we want and then just draw the pyramid in them&#33; So the bottom half of the 3D space is split into 4, and then, a pyramid is arranged on top of them.</p>
-<pre><code class="language-julia">using Compose3D
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Compose3D
 
-function sierpinski&#40;n&#41;
-    if n &#61;&#61; 0
-        compose&#40;Context&#40;0w,0h,0d,1w,1h,1d&#41;,pyramid&#40;0w,0h,0d,1w,1h&#41;&#41; #The basic unit
-    else
-        t &#61; sierpinski&#40;n - 1&#41;
-        compose&#40;Context&#40;0w,0h,0d,1w,1h,1d&#41;,
-        &#40;Context&#40;0w,0h,0d,&#40;1/2&#41;w,&#40;1/2&#41;h,&#40;1/2&#41;d&#41;, t&#41;,
-        &#40;Context&#40;0w,0h,0.5d,&#40;1/2&#41;w,&#40;1/2&#41;h,&#40;1/2&#41;d&#41;, t&#41;,
-        &#40;Context&#40;0.5w,0h,0.5d,&#40;1/2&#41;w,&#40;1/2&#41;h,&#40;1/2&#41;d&#41;, t&#41;,
-        &#40;Context&#40;0.5w,0h,0d,&#40;1/2&#41;w,&#40;1/2&#41;h,&#40;1/2&#41;d&#41;, t&#41;,
-        &#40;Context&#40;0.25w,0.5h,0.25d,&#40;1/2&#41;w,&#40;1/2&#41;h,&#40;1/2&#41;d&#41;, t&#41;&#41; #The top one
-    end
-end
-compose&#40;Context&#40;-5mm,-5mm,-5mm,10mm,10mm,10mm&#41;,sierpinski&#40;3&#41;&#41;</code></pre>
+<span class="hljs-keyword">function</span> sierpinski(n)
+    <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>
+        compose(Context(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,<span class="hljs-number">1</span>w,<span class="hljs-number">1</span>h,<span class="hljs-number">1</span>d),pyramid(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,<span class="hljs-number">1</span>w,<span class="hljs-number">1</span>h)) <span class="hljs-comment">#The basic unit</span>
+    <span class="hljs-keyword">else</span>
+        t = sierpinski(n - <span class="hljs-number">1</span>)
+        compose(Context(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,<span class="hljs-number">1</span>w,<span class="hljs-number">1</span>h,<span class="hljs-number">1</span>d),
+        (Context(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t),
+        (Context(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0.5</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t),
+        (Context(<span class="hljs-number">0.5</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0.5</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t),
+        (Context(<span class="hljs-number">0.5</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t),
+        (Context(<span class="hljs-number">0.25</span>w,<span class="hljs-number">0.5</span>h,<span class="hljs-number">0.25</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t)) <span class="hljs-comment">#The top one</span>
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+compose(Context(-<span class="hljs-number">5</span>mm,-<span class="hljs-number">5</span>mm,-<span class="hljs-number">5</span>mm,<span class="hljs-number">10</span>mm,<span class="hljs-number">10</span>mm,<span class="hljs-number">10</span>mm),sierpinski(<span class="hljs-number">3</span>))</code></pre>
 <p>And voila&#33; You have a Sierpinski pyramid of level 3 like in the figure below.</p>
 <p><img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/d1d8e389dd5baf5420cb24c1dfdf784bc61bf217/sierpinski.png" alt="Sierpinski" /></p>
 <p>The switch to ThreeJS allows Compose3D all the advantages that comes with ThreeJS. This includes interactivity and animations&#33;</p>
 <p>For example, the same Sierpinski example can be have some interactive elements, say a slider defining the number of levels of recursion and maybe some controlling the colors of the pyramid. This can be done easily in Escher just like it was done with ThreeJS. After defining the <code>sierpinski</code> function given below, just creating a slider and hooking it up to the <code>sierpinski</code> function will set this up&#33;</p>
-<pre><code class="language-julia">function main&#40;window&#41;
-    push&#33;&#40;window.assets, &#40;&quot;ThreeJS&quot;, &quot;threejs&quot;&#41;&#41; #Push the threejs static assets
-    push&#33;&#40;window.assets, &quot;widgets&quot;&#41;
-    n &#61; Input&#40;0.0&#41;
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> main(window)
+    push!(window.assets, (<span class="hljs-string">&quot;ThreeJS&quot;</span>, <span class="hljs-string">&quot;threejs&quot;</span>)) <span class="hljs-comment">#Push the threejs static assets</span>
+    push!(window.assets, <span class="hljs-string">&quot;widgets&quot;</span>)
+    n = Input(<span class="hljs-number">0.0</span>)
 
-    vbox&#40;
-        slider&#40;0.0:3.0&#41; &gt;&gt;&gt; n, #Set up the slider
-        lift&#40;n&#41; do i
-            #Draw the composed figure&#33;
-            draw&#40;
-                Patchable3D&#40;100,100&#41;,
-                compose&#40;
-                    Context&#40;-5mm,-5mm,-5mm,10mm,10mm,10mm&#41;, sierpinski&#40;i&#41;
-                &#41;
-            &#41;
-        end
-    &#41;
-end</code></pre>
+    vbox(
+        slider(<span class="hljs-number">0.0</span>:<span class="hljs-number">3.0</span>) &gt;&gt;&gt; n, <span class="hljs-comment">#Set up the slider</span>
+        lift(n) <span class="hljs-keyword">do</span> i
+            <span class="hljs-comment">#Draw the composed figure!</span>
+            draw(
+                Patchable3D(<span class="hljs-number">100</span>,<span class="hljs-number">100</span>),
+                compose(
+                    Context(-<span class="hljs-number">5</span>mm,-<span class="hljs-number">5</span>mm,-<span class="hljs-number">5</span>mm,<span class="hljs-number">10</span>mm,<span class="hljs-number">10</span>mm,<span class="hljs-number">10</span>mm), sierpinski(i)
+                )
+            )
+        <span class="hljs-keyword">end</span>
+    )
+<span class="hljs-keyword">end</span></code></pre>
 <p><img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/78fefb17032a0bd9861e8497133cb6ce3876a4d4/interactive_sierpinski.gif" alt="Interactive Sierpinski" /></p>
 <p>An an example for animations, I ported the Escher boids example by Ian Dunning from 2D to 3D and a screencast of the same can be found below.</p>
 
 <div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/Yul3iBkAVHs" frameborder="0" allowfullscreen></iframe></div>
 
-<h2 id="future_directions"><a href="#future_directions">Future directions</a></h2>
+<h2 id="future_directions"><a href="#future_directions" class="header-anchor">Future directions</a></h2>
 <ul>
 <li><p>Several new primitives have been added in ThreeJS which don&#39;t yet have corresponding primitives in Compose3D.</p>
 </li>
@@ -293,7 +293,7 @@ end</code></pre>
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -406,7 +406,7 @@ end</code></pre>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -422,7 +422,7 @@ end</code></pre>
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

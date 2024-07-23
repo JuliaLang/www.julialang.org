@@ -151,7 +151,7 @@
 <div class="container main"><p>Machine learning is a huge discipline, with applications ranging from natural language processing to solving partial differential equations. It is from this landscape that major frameworks such as PyTorch, TensorFlow, and <a href="https://fluxml.ai/">Flux.jl</a> arise and strive to be packages for &quot;all of machine learning&quot;. While some of these frameworks have the backing of large companies such as Facebook and Google, the Julia community has relied on the speed and productivity of the Julia programming language itself in order for its open source community to keep up with the pace of development. It is from this aspect which Flux.jl derives its &quot;slimness&quot;: while PyTorch and TensorFlow include entire separate languages and compilers &#40;torchscript, XLA, etc.&#41;, Flux.jl is just Julia. It is from this that the moniker &quot;you could have built it yourself&quot; is commonly used to describe Flux.jl.</p>
 <p>In this post we take a different look at how the programmability of Julia helps in the machine learning space. Specifically, by targeting the grand space of &quot;all machine learning&quot;, frameworks inevitably make trade-offs that accelerate some aspects of the code to the detriment of others. This comes from the inevitable trade-off between simplicity, generality, and performance. However, the ability to easily construct machine learning libraries thus presents an interesting question: can this development feature be used to easily create alternative frameworks which focus its performance on more non-traditional applications or aspects?</p>
 <p>The answer is yes, you can quickly build machine learning implementations which greatly outperform the frameworks in specialized cases using the Julia programming language, and we demonstrate this with our new package: <a href="https://github.com/PumasAI/SimpleChains.jl">SimpleChains.jl</a>.</p>
-<h2 id="scientific_machine_learning_sciml_and_small_neural_networks"><a href="#scientific_machine_learning_sciml_and_small_neural_networks">Scientific Machine Learning &#40;SciML&#41; and &quot;Small&quot; Neural Networks</a></h2>
+<h2 id="scientific_machine_learning_sciml_and_small_neural_networks"><a href="#scientific_machine_learning_sciml_and_small_neural_networks" class="header-anchor">Scientific Machine Learning &#40;SciML&#41; and &quot;Small&quot; Neural Networks</a></h2>
 <p>SimpleChains.jl is a library developed by <a href="https://pumas.ai/">Pumas-AI</a> and <a href="https://juliahub.com/">JuliaHub</a> in collaboration with <a href="https://www.roche.com/">Roche</a> and the <a href="https://www.pharmacy.umaryland.edu/centers/ctm/">University of Maryland, Baltimore</a>. The purpose of SimpleChains.jl is to be as fast as possible for small neural networks. SimpleChains.jl originated as a solution for the Pumas-AI&#39;s DeepPumas product for <a href="https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/">scientific machine learning &#40;SciML&#41;</a> in healthcare data analytics. As an illustration, small neural networks &#40;and other approximators, such as Fourier series or Chebyshev polynomial expansions&#41; can be combined with known semi-physiologic models to discover previously unknown mechanisms and prognostic factors. For a short introduction to how this is done, check out the following video by Niklas Korsbo:</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TFB_lt1KMto" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -173,170 +173,170 @@
 </li>
 </ol>
 <p>Do these assumptions actually hold in our case? And if they don&#39;t, can we focus on these aspects to draw more performance out for our use cases?</p>
-<h2 id="digging_in_small_neural_network_performance_overheads"><a href="#digging_in_small_neural_network_performance_overheads">Digging In: Small Neural Network Performance Overheads</a></h2>
+<h2 id="digging_in_small_neural_network_performance_overheads"><a href="#digging_in_small_neural_network_performance_overheads" class="header-anchor">Digging In: Small Neural Network Performance Overheads</a></h2>
 <p>It&#39;s easy to show that these assumptions breakdown when we start focusing on this smaller neural network use case. For starters, let&#39;s look at assumptions &#40;1&#41;&#40;2&#41;. It&#39;s not hard to show where these two will unravel:</p>
-<pre><code class="language-julia">using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
 
-function mygemmturbo&#33;&#40;C, A, B&#41;
-    @tturbo for m ∈ axes&#40;A, 1&#41;, n ∈ axes&#40;B, 2&#41;
-        Cmn &#61; zero&#40;eltype&#40;C&#41;&#41;
-        for k ∈ axes&#40;A, 2&#41;
-            Cmn &#43;&#61; A&#91;m, k&#93; * B&#91;k, n&#93;
-        end
-        C&#91;m, n&#93; &#61; Cmn
-    end
-end
+<span class="hljs-keyword">function</span> mygemmturbo!(C, A, B)
+    <span class="hljs-meta">@tturbo</span> <span class="hljs-keyword">for</span> m ∈ axes(A, <span class="hljs-number">1</span>), n ∈ axes(B, <span class="hljs-number">2</span>)
+        Cmn = zero(eltype(C))
+        <span class="hljs-keyword">for</span> k ∈ axes(A, <span class="hljs-number">2</span>)
+            Cmn += A[m, k] * B[k, n]
+        <span class="hljs-keyword">end</span>
+        C[m, n] = Cmn
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 
-function alloc_timer&#40;n&#41;
-    A &#61; rand&#40;Float32,n,n&#41;
-    B &#61; rand&#40;Float32,n,n&#41;
-    C &#61; rand&#40;Float32,n,n&#41;
-    t1 &#61; @belapsed &#36;A * &#36;B
-    t2 &#61; @belapsed &#40;mul&#33;&#40;&#36;C,&#36;A,&#36;B&#41;&#41;
-    t3 &#61; @belapsed &#40;mygemmturbo&#33;&#40;&#36;C,&#36;A,&#36;B&#41;&#41;
-    A,B,C &#61; &#40;cu&#40;A&#41;, cu&#40;B&#41;, cu&#40;C&#41;&#41;
-    t4 &#61; @belapsed CUDA.@sync&#40;&#36;A * &#36;B&#41;
-    t5 &#61; @belapsed CUDA.@sync&#40;mul&#33;&#40;&#36;C,&#36;A,&#36;B&#41;&#41;
+<span class="hljs-keyword">function</span> alloc_timer(n)
+    A = rand(<span class="hljs-built_in">Float32</span>,n,n)
+    B = rand(<span class="hljs-built_in">Float32</span>,n,n)
+    C = rand(<span class="hljs-built_in">Float32</span>,n,n)
+    t1 = <span class="hljs-meta">@belapsed</span> $A * $B
+    t2 = <span class="hljs-meta">@belapsed</span> (mul!($C,$A,$B))
+    t3 = <span class="hljs-meta">@belapsed</span> (mygemmturbo!($C,$A,$B))
+    A,B,C = (cu(A), cu(B), cu(C))
+    t4 = <span class="hljs-meta">@belapsed</span> CUDA.<span class="hljs-meta">@sync</span>($A * $B)
+    t5 = <span class="hljs-meta">@belapsed</span> CUDA.<span class="hljs-meta">@sync</span>(mul!($C,$A,$B))
     t1,t2,t3,t4,t5
-end
-ns &#61; 2 .^ &#40;2:11&#41;
-res &#61; &#91;alloc_timer&#40;n&#41; for n in ns&#93;
-alloc      &#61; &#91;t&#91;1&#93; for t in res&#93;
-noalloc    &#61; &#91;t&#91;2&#93; for t in res&#93;
-noalloclv  &#61; &#91;t&#91;3&#93; for t in res&#93;
-allocgpu   &#61; &#91;t&#91;4&#93; for t in res&#93;
-noallocgpu &#61; &#91;t&#91;5&#93; for t in res&#93;
+<span class="hljs-keyword">end</span>
+ns = <span class="hljs-number">2</span> .^ (<span class="hljs-number">2</span>:<span class="hljs-number">11</span>)
+res = [alloc_timer(n) <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> ns]
+alloc      = [t[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+noalloc    = [t[<span class="hljs-number">2</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+noalloclv  = [t[<span class="hljs-number">3</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+allocgpu   = [t[<span class="hljs-number">4</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+noallocgpu = [t[<span class="hljs-number">5</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
 
-using Plots
-plot&#40;ns, alloc, label&#61;&quot;*&quot;, xscale&#61;:log10, yscale&#61;:log10, legend&#61;:bottomright,
-    title&#61;&quot;Which Micro-optimizations matter for BLAS3?&quot;,
-    yticks&#61;10.0 .^ &#40;-8:0.5:2&#41;,
-    ylabel&#61;&quot;Time &#40;s&#41;&quot;, xlabel&#61;&quot;N&quot;,&#41;
-plot&#33;&#40;ns,noalloc,label&#61;&quot;mul&#33; &#40;OpenBLAS&#41;&quot;&#41;
-plot&#33;&#40;ns,noalloclv,label&#61;&quot;mygemmturbo&#33;&quot;&#41;
-plot&#33;&#40;ns,allocgpu,label&#61;&quot;* gpu&quot;&#41;
-plot&#33;&#40;ns,noallocgpu,label&#61;&quot;mul&#33; gpu&quot;&#41;
-savefig&#40;&quot;microopts_blas3.png&quot;&#41;</code></pre>
+<span class="hljs-keyword">using</span> Plots
+plot(ns, alloc, label=<span class="hljs-string">&quot;*&quot;</span>, xscale=:log10, yscale=:log10, legend=:bottomright,
+    title=<span class="hljs-string">&quot;Which Micro-optimizations matter for BLAS3?&quot;</span>,
+    yticks=<span class="hljs-number">10.0</span> .^ (-<span class="hljs-number">8</span>:<span class="hljs-number">0.5</span>:<span class="hljs-number">2</span>),
+    ylabel=<span class="hljs-string">&quot;Time (s)&quot;</span>, xlabel=<span class="hljs-string">&quot;N&quot;</span>,)
+plot!(ns,noalloc,label=<span class="hljs-string">&quot;mul! (OpenBLAS)&quot;</span>)
+plot!(ns,noalloclv,label=<span class="hljs-string">&quot;mygemmturbo!&quot;</span>)
+plot!(ns,allocgpu,label=<span class="hljs-string">&quot;* gpu&quot;</span>)
+plot!(ns,noallocgpu,label=<span class="hljs-string">&quot;mul! gpu&quot;</span>)
+savefig(<span class="hljs-string">&quot;microopts_blas3.png&quot;</span>)</code></pre>
 <p><img src="https://user-images.githubusercontent.com/1814174/162710865-10a9dc1e-eb14-433d-96c1-6ed9c8b55df7.png" alt="" /></p>
 <p>When we get to larger matrix-matrix operations, such as 100x100 * 100x100, we can effectively write off any overheads due to memory allocations. But we definitely see that there is a potential for some fairly significant performance gains in the lower end&#33; Notice too that these gains are realized by using the pure-Julia LoopVectorization.jl as the standard BLAS tools tend to have extra threading overhead in this region &#40;again, not optimizing as much in this region&#41;.</p>
 <p>If you have been riding the GPU gospel without looking into the details then this plot may be a shocker&#33; However, GPUs are designed as dumb slow chips with many cores, and thus they are only effective on very parallel operations, such as large matrix-matrix multiplications. It is from this point that assumption &#40;2&#41; is derived for large network operations. But again, in the case of small networks such GPU kernels will be outperformed by well-designed CPU kernels due to the lack of parallel opportunities.</p>
 <p>Matrix-matrix operations only occur when batching is able to be used &#40;where each column of the B matrix in A*B is a separate batch&#41;. In many cases in scientific machine learning, such as <a href="https://youtu.be/6hhF6Llv4sI?t&#61;342">the calculation of vector-Jacobian products in ODE adjoints</a>, this operation is a matrix-vector multiplication. These operations are smaller and only O&#40;n^2&#41;, and as you would guess these effects are amplified in this scenario:</p>
-<pre><code class="language-julia">using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
 
-function mygemmturbo&#33;&#40;C, A, B&#41;
-    @tturbo for m ∈ axes&#40;A, 1&#41;, n ∈ axes&#40;B, 2&#41;
-        Cmn &#61; zero&#40;eltype&#40;C&#41;&#41;
-        for k ∈ axes&#40;A, 2&#41;
-            Cmn &#43;&#61; A&#91;m, k&#93; * B&#91;k, n&#93;
-        end
-        C&#91;m, n&#93; &#61; Cmn
-    end
-end
+<span class="hljs-keyword">function</span> mygemmturbo!(C, A, B)
+    <span class="hljs-meta">@tturbo</span> <span class="hljs-keyword">for</span> m ∈ axes(A, <span class="hljs-number">1</span>), n ∈ axes(B, <span class="hljs-number">2</span>)
+        Cmn = zero(eltype(C))
+        <span class="hljs-keyword">for</span> k ∈ axes(A, <span class="hljs-number">2</span>)
+            Cmn += A[m, k] * B[k, n]
+        <span class="hljs-keyword">end</span>
+        C[m, n] = Cmn
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 
-function alloc_timer&#40;n&#41;
-    A &#61; rand&#40;Float32,n,n&#41;
-    B &#61; rand&#40;Float32,n&#41;
-    C &#61; rand&#40;Float32,n&#41;
-    t1 &#61; @belapsed &#36;A * &#36;B
-    t2 &#61; @belapsed &#40;mul&#33;&#40;&#36;C,&#36;A,&#36;B&#41;&#41;
-    t3 &#61; @belapsed &#40;mygemmturbo&#33;&#40;&#36;C,&#36;A,&#36;B&#41;&#41;
-    A,B,C &#61; &#40;cu&#40;A&#41;, cu&#40;B&#41;, cu&#40;C&#41;&#41;
-    t4 &#61; @belapsed CUDA.@sync&#40;&#36;A * &#36;B&#41;
-    t5 &#61; @belapsed CUDA.@sync&#40;mul&#33;&#40;&#36;C,&#36;A,&#36;B&#41;&#41;
+<span class="hljs-keyword">function</span> alloc_timer(n)
+    A = rand(<span class="hljs-built_in">Float32</span>,n,n)
+    B = rand(<span class="hljs-built_in">Float32</span>,n)
+    C = rand(<span class="hljs-built_in">Float32</span>,n)
+    t1 = <span class="hljs-meta">@belapsed</span> $A * $B
+    t2 = <span class="hljs-meta">@belapsed</span> (mul!($C,$A,$B))
+    t3 = <span class="hljs-meta">@belapsed</span> (mygemmturbo!($C,$A,$B))
+    A,B,C = (cu(A), cu(B), cu(C))
+    t4 = <span class="hljs-meta">@belapsed</span> CUDA.<span class="hljs-meta">@sync</span>($A * $B)
+    t5 = <span class="hljs-meta">@belapsed</span> CUDA.<span class="hljs-meta">@sync</span>(mul!($C,$A,$B))
     t1,t2,t3,t4,t5
-end
-ns &#61; 2 .^ &#40;2:11&#41;
-res &#61; &#91;alloc_timer&#40;n&#41; for n in ns&#93;
-alloc      &#61; &#91;t&#91;1&#93; for t in res&#93;
-noalloc    &#61; &#91;t&#91;2&#93; for t in res&#93;
-noalloclv  &#61; &#91;t&#91;3&#93; for t in res&#93;
-allocgpu   &#61; &#91;t&#91;4&#93; for t in res&#93;
-noallocgpu &#61; &#91;t&#91;5&#93; for t in res&#93;
+<span class="hljs-keyword">end</span>
+ns = <span class="hljs-number">2</span> .^ (<span class="hljs-number">2</span>:<span class="hljs-number">11</span>)
+res = [alloc_timer(n) <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> ns]
+alloc      = [t[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+noalloc    = [t[<span class="hljs-number">2</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+noalloclv  = [t[<span class="hljs-number">3</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+allocgpu   = [t[<span class="hljs-number">4</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+noallocgpu = [t[<span class="hljs-number">5</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
 
-using Plots
-plot&#40;ns, alloc, label&#61;&quot;* &#40;OpenBLAS&#41;&quot;, xscale&#61;:log10, yscale&#61;:log10, legend&#61;:bottomright,
-    title&#61;&quot;Which Micro-optimizations matter for BLAS2?&quot;,
-    yticks&#61;10.0 .^ &#40;-8:0.5:2&#41;,
-    ylabel&#61;&quot;Time &#40;s&#41;&quot;, xlabel&#61;&quot;N&quot;,&#41;
-plot&#33;&#40;ns,noalloc,label&#61;&quot;mul&#33; &#40;OpenBLAS&#41;&quot;&#41;
-plot&#33;&#40;ns,noalloclv,label&#61;&quot;mygemvturbo&#33;&quot;&#41;
-plot&#33;&#40;ns,allocgpu,label&#61;&quot;* gpu&quot;&#41;
-plot&#33;&#40;ns,noallocgpu,label&#61;&quot;mul&#33; gpu&quot;&#41;
-savefig&#40;&quot;microopts_blas2.png&quot;&#41;</code></pre>
+<span class="hljs-keyword">using</span> Plots
+plot(ns, alloc, label=<span class="hljs-string">&quot;* (OpenBLAS)&quot;</span>, xscale=:log10, yscale=:log10, legend=:bottomright,
+    title=<span class="hljs-string">&quot;Which Micro-optimizations matter for BLAS2?&quot;</span>,
+    yticks=<span class="hljs-number">10.0</span> .^ (-<span class="hljs-number">8</span>:<span class="hljs-number">0.5</span>:<span class="hljs-number">2</span>),
+    ylabel=<span class="hljs-string">&quot;Time (s)&quot;</span>, xlabel=<span class="hljs-string">&quot;N&quot;</span>,)
+plot!(ns,noalloc,label=<span class="hljs-string">&quot;mul! (OpenBLAS)&quot;</span>)
+plot!(ns,noalloclv,label=<span class="hljs-string">&quot;mygemvturbo!&quot;</span>)
+plot!(ns,allocgpu,label=<span class="hljs-string">&quot;* gpu&quot;</span>)
+plot!(ns,noallocgpu,label=<span class="hljs-string">&quot;mul! gpu&quot;</span>)
+savefig(<span class="hljs-string">&quot;microopts_blas2.png&quot;</span>)</code></pre>
 <p><img src="https://user-images.githubusercontent.com/1814174/162625320-310d633a-34bf-407e-8cc9-ec55ca895d83.png" alt="" /></p>
 <p>And remember, the basic operations of a neural network are <code>sigma.&#40;W*x .&#43; b&#41;</code>, and thus there&#39;s also an O&#40;n&#41; element-wise operation. As you would guess, this operation becomes more significant as n gets smaller while requiring even more consideration for memory operations.</p>
-<pre><code class="language-julia">using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
 
-function mybroadcastturbo&#33;&#40;C, A, B&#41;
-    @tturbo for k ∈ axes&#40;A, 2&#41;
-        C&#91;k&#93; &#43;&#61; A&#91;k&#93; * B&#91;k&#93;
-    end
-end
+<span class="hljs-keyword">function</span> mybroadcastturbo!(C, A, B)
+    <span class="hljs-meta">@tturbo</span> <span class="hljs-keyword">for</span> k ∈ axes(A, <span class="hljs-number">2</span>)
+        C[k] += A[k] * B[k]
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 
-function alloc_timer&#40;n&#41;
-    A &#61; rand&#40;Float32,n,n&#41;
-    B &#61; rand&#40;Float32,n,n&#41;
-    C &#61; rand&#40;Float32,n,n&#41;
-    t1 &#61; @belapsed &#36;A .* &#36;B
-    t2 &#61; @belapsed &#40;&#36;C .&#61; &#36;A .* &#36;B&#41;
-    t3 &#61; @belapsed &#40;mybroadcastturbo&#33;&#40;&#36;C, &#36;A, &#36;B&#41;&#41;
-    A,B,C &#61; &#40;cu&#40;A&#41;, cu&#40;B&#41;, cu&#40;C&#41;&#41;
-    t4 &#61; @belapsed CUDA.@sync&#40;&#36;A .* &#36;B&#41;
-    t5 &#61; @belapsed CUDA.@sync&#40;&#36;C .&#61; &#36;A .* &#36;B&#41;
+<span class="hljs-keyword">function</span> alloc_timer(n)
+    A = rand(<span class="hljs-built_in">Float32</span>,n,n)
+    B = rand(<span class="hljs-built_in">Float32</span>,n,n)
+    C = rand(<span class="hljs-built_in">Float32</span>,n,n)
+    t1 = <span class="hljs-meta">@belapsed</span> $A .* $B
+    t2 = <span class="hljs-meta">@belapsed</span> ($C .= $A .* $B)
+    t3 = <span class="hljs-meta">@belapsed</span> (mybroadcastturbo!($C, $A, $B))
+    A,B,C = (cu(A), cu(B), cu(C))
+    t4 = <span class="hljs-meta">@belapsed</span> CUDA.<span class="hljs-meta">@sync</span>($A .* $B)
+    t5 = <span class="hljs-meta">@belapsed</span> CUDA.<span class="hljs-meta">@sync</span>($C .= $A .* $B)
     t1,t2,t3,t4,t5
-end
-ns &#61; 2 .^ &#40;2:11&#41;
-res &#61; &#91;alloc_timer&#40;n&#41; for n in ns&#93;
-alloc      &#61; &#91;t&#91;1&#93; for t in res&#93;
-noalloc    &#61; &#91;t&#91;2&#93; for t in res&#93;
-noalloclv  &#61; &#91;t&#91;3&#93; for t in res&#93;
-allocgpu   &#61; &#91;t&#91;4&#93; for t in res&#93;
-noallocgpu &#61; &#91;t&#91;5&#93; for t in res&#93;
+<span class="hljs-keyword">end</span>
+ns = <span class="hljs-number">2</span> .^ (<span class="hljs-number">2</span>:<span class="hljs-number">11</span>)
+res = [alloc_timer(n) <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> ns]
+alloc      = [t[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+noalloc    = [t[<span class="hljs-number">2</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+noalloclv  = [t[<span class="hljs-number">3</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+allocgpu   = [t[<span class="hljs-number">4</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
+noallocgpu = [t[<span class="hljs-number">5</span>] <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> res]
 
-using Plots
-plot&#40;ns,alloc,label&#61;&quot;&#61;&quot;,xscale&#61;:log10,yscale&#61;:log10,legend&#61;:bottomright,
-     title&#61;&quot;Which Micro-optimizations matter for BLAS1?&quot;,
-     ylabel &#61; &quot;Time &#40;s&#41;&quot;, xlabel &#61; &quot;N&quot;,
-     yticks &#61; 10.0 .^ &#40;-8:0.5:2&#41;,&#41;
-plot&#33;&#40;ns,noalloc,label&#61;&quot;.&#61;&quot;&#41;
-plot&#33;&#40;ns, noalloc, label&#61;&quot;mybroadcastturbo&#33;&quot;&#41;
-plot&#33;&#40;ns,allocgpu,label&#61;&quot;&#61; gpu&quot;&#41;
-plot&#33;&#40;ns,noallocgpu,label&#61;&quot;.&#61; gpu&quot;&#41;
-savefig&#40;&quot;microopts_blas1.png&quot;&#41;</code></pre>
+<span class="hljs-keyword">using</span> Plots
+plot(ns,alloc,label=<span class="hljs-string">&quot;=&quot;</span>,xscale=:log10,yscale=:log10,legend=:bottomright,
+     title=<span class="hljs-string">&quot;Which Micro-optimizations matter for BLAS1?&quot;</span>,
+     ylabel = <span class="hljs-string">&quot;Time (s)&quot;</span>, xlabel = <span class="hljs-string">&quot;N&quot;</span>,
+     yticks = <span class="hljs-number">10.0</span> .^ (-<span class="hljs-number">8</span>:<span class="hljs-number">0.5</span>:<span class="hljs-number">2</span>),)
+plot!(ns,noalloc,label=<span class="hljs-string">&quot;.=&quot;</span>)
+plot!(ns, noalloc, label=<span class="hljs-string">&quot;mybroadcastturbo!&quot;</span>)
+plot!(ns,allocgpu,label=<span class="hljs-string">&quot;= gpu&quot;</span>)
+plot!(ns,noallocgpu,label=<span class="hljs-string">&quot;.= gpu&quot;</span>)
+savefig(<span class="hljs-string">&quot;microopts_blas1.png&quot;</span>)</code></pre>
 <p><img src="https://user-images.githubusercontent.com/1814174/162710861-d70fb6de-7f54-47ff-bd11-054ebe85cc23.png" alt="" /></p>
 <p>This already highly motivates a project focused on the performance for this case, but assumptions &#40;3&#41; and &#40;4&#41; point us to additionally look at the implementation of the backpropagation. The <a href="https://www.stochasticlifestyle.com/engineering-trade-offs-in-automatic-differentiation-from-tensorflow-and-pytorch-to-jax-and-julia/">trade-off between different machine learning libraries&#39; approaches to automatic differentiation has already been discussed at length</a>, but what the general discussions can miss is the extra opportunities afforded when really specializing on a domain. Take for example the use-case inside of neural ordinary differential equations &#40;neural ODEs&#41; and ODE adjoints. As mentioned above, in this use case the backwards pass is applied immediately after the forward pass. Thus, while <a href="https://github.com/SciML/DiffEqFlux.jl/blob/v1.8.1/src/fast_layers.jl#L38-L56">a handwritten adjoint to a neural network layer</a> can look like:</p>
-<pre><code class="language-julia">ZygoteRules.@adjoint function &#40;f::FastDense&#41;&#40;x,p&#41;
-  W &#61; ...
-  b &#61; ...
-  r &#61; W*x .&#43; b
-  y &#61; f.σ.&#40;r&#41;
-  function FastDense_adjoint&#40;v&#41;
-    σbar &#61; ForwardDiff.derivative.&#40;f.σ,r&#41;
-    zbar &#61; v .* σbar
-    Wbar &#61; zbar * x&#39;
-    bbar &#61; zbar
-    xbar &#61; W&#39; * zbar
-    nothing,xbar,vcat&#40;vec&#40;Wbar&#41;,bbar&#41;
-  end
+<pre><code class="julia hljs">ZygoteRules.<span class="hljs-meta">@adjoint</span> <span class="hljs-keyword">function</span> (f::FastDense)(x,p)
+  W = ...
+  b = ...
+  r = W*x .+ b
+  y = f.σ.(r)
+  <span class="hljs-keyword">function</span> FastDense_adjoint(v)
+    σbar = ForwardDiff.derivative.(f.σ,r)
+    zbar = v .* σbar
+    Wbar = zbar * x&#x27;
+    bbar = zbar
+    xbar = W&#x27; * zbar
+    <span class="hljs-literal">nothing</span>,xbar,vcat(vec(Wbar),bbar)
+  <span class="hljs-keyword">end</span>
   y,FastDense_adjoint
-end</code></pre>
+<span class="hljs-keyword">end</span></code></pre>
 <p>for <code>sigma.&#40;W*x .&#43; b&#41;</code> to calculate <code>J&#39;v</code>, you can greatly optimize this if you know that the backwards pass will immediately precede the forward pass. Specifically, there&#39;s no need to generate closures to store values since there no indeterminate future where the gradient might be needed, instead you can immediately proceed to calculate it. And, if you&#39;re only applying it to a vector of known size <code>v</code>, then this operation can be done without allocating by mutating a cache vector. Lastly, if we know we&#39;re only going to use the derivative w.r.t. <code>x</code> &#40;<code>xbar</code>&#41;, then we can eliminate many calculations. Look at the simplified version:</p>
-<pre><code class="language-julia">r &#61; W*x .&#43; b
-y &#61; σ.&#40;r&#41;
-σbar &#61; derivative.&#40;σ,r&#41;
-zbar &#61; v .* σbar
-Wbar &#61; zbar * x&#39;
-bbar &#61; zbar
-xbar &#61; W&#39; * zbar</code></pre>
+<pre><code class="julia hljs">r = W*x .+ b
+y = σ.(r)
+σbar = derivative.(σ,r)
+zbar = v .* σbar
+Wbar = zbar * x&#x27;
+bbar = zbar
+xbar = W&#x27; * zbar</code></pre>
 <p>and now cached:</p>
-<pre><code class="language-julia">mul&#33;&#40;cache,W,x&#41;
-cache .&#61; σ.&#40;cache .&#43; b&#41;
-cache .&#61; derivative.&#40;σ,cache&#41;
-cache .&#61; v .* cache
-mul&#33;&#40;xbar,W&#39;,cache&#41;</code></pre>
+<pre><code class="julia hljs">mul!(cache,W,x)
+cache .= σ.(cache .+ b)
+cache .= derivative.(σ,cache)
+cache .= v .* cache
+mul!(xbar,W&#x27;,cache)</code></pre>
 <p>or in other words, we can write this as a mutating operation with a single cache vector: <code>vjp&#33;&#40;xbar,W,b,σ,v,cache&#41;</code>. All of the overheads of any automatic differentiation or mutations? Gone.</p>
 <p>Of course, building this up for anything other than the simplest case takes a much larger effort. In comes SimpleChains.jl.</p>
-<h2 id="simplechainsjl_an_optimized_machine_learning_library_for_sciml_use_cases"><a href="#simplechainsjl_an_optimized_machine_learning_library_for_sciml_use_cases">SimpleChains.jl: An Optimized Machine Learning Library for SciML Use Cases</a></h2>
+<h2 id="simplechainsjl_an_optimized_machine_learning_library_for_sciml_use_cases"><a href="#simplechainsjl_an_optimized_machine_learning_library_for_sciml_use_cases" class="header-anchor">SimpleChains.jl: An Optimized Machine Learning Library for SciML Use Cases</a></h2>
 <p><a href="https://github.com/PumasAI/SimpleChains.jl">SimpleChains.jl</a> is the solution to this problem. SimpleChains.jl is a small machine learning framework optimized for quickly fitting small models on the CPU. Early development favored a design that would:</p>
 <ol>
 <li><p>Allow us to achieve good performance, ideally approaching the CPU&#39;s potential peak FLOPs.</p>
@@ -348,408 +348,408 @@ mul&#33;&#40;xbar,W&#39;,cache&#41;</code></pre>
 <li><p>Be written in &quot;pure Julia&quot; for ease of development and optimization; while making heavy use of <a href="https://github.com/JuliaSIMD/LoopVectorization.jl/">LoopVectorization.jl</a>, SimpleChains.jl does not rely on any BLAS or NN libraries. It is a long term aim to extend this loop-compiler approach to optimization to also producing pullbacks automatically, without requiring them to be handwritten. However, the compiler-focused approach is already levered for ease of implementation: while we still have to hand-write gradients, we do not need to hand-optimize them.</p>
 </li>
 </ol>
-<h2 id="simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example"><a href="#simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example">SimpleChains.jl in Action: 30x-ing PyTorch in Tiny Example</a></h2>
-<h4 id="note_all_of_the_code_shown_uses_simplechains_v022_for_updates_see_a_hrefhttpsgithubcompumasaisimplechainsjlthe_packages_documentation"><a href="#note_all_of_the_code_shown_uses_simplechains_v022_for_updates_see_a_hrefhttpsgithubcompumasaisimplechainsjlthe_packages_documentation">Note: All of the code shown uses SimpleChains v0.2.2. For updates, see <a href="https://github.com/PumasAI/SimpleChains.jl">the package&#39;s documentation</a></a></h4>
+<h2 id="simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example"><a href="#simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example" class="header-anchor">SimpleChains.jl in Action: 30x-ing PyTorch in Tiny Example</a></h2>
+<h4 id="note_all_of_the_code_shown_uses_simplechains_v022_for_updates_see_a_hrefhttpsgithubcompumasaisimplechainsjlthe_packages_documentation"><a href="#note_all_of_the_code_shown_uses_simplechains_v022_for_updates_see_a_hrefhttpsgithubcompumasaisimplechainsjlthe_packages_documentation" class="header-anchor">Note: All of the code shown uses SimpleChains v0.2.2. For updates, see <a href="https://github.com/PumasAI/SimpleChains.jl">the package&#39;s documentation</a></a></h4>
 <p>Let&#39;s first try a tiny example, where we map a 2x2 matrix to its matrix exponential; our training and test data:</p>
-<pre><code class="language-julia">function f&#40;x&#41;
-  N &#61; Base.isqrt&#40;length&#40;x&#41;&#41;
-  A &#61; reshape&#40;view&#40;x, 1:N*N&#41;, &#40;N,N&#41;&#41;
-  expA &#61; exp&#40;A&#41;
-  vec&#40;expA&#41;
-end
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> f(x)
+  N = Base.isqrt(length(x))
+  A = reshape(view(x, <span class="hljs-number">1</span>:N*N), (N,N))
+  expA = exp(A)
+  vec(expA)
+<span class="hljs-keyword">end</span>
 
-T &#61; Float32;
-D &#61; 2 # 2x2 matrices
-X &#61; randn&#40;T, D*D, 10_000&#41;; # random input matrices
-Y &#61; reduce&#40;hcat, map&#40;f, eachcol&#40;X&#41;&#41;&#41;; # &#96;mapreduce&#96; is not optimized for &#96;hcat&#96;, but &#96;reduce&#96; is
+T = <span class="hljs-built_in">Float32</span>;
+D = <span class="hljs-number">2</span> <span class="hljs-comment"># 2x2 matrices</span>
+X = randn(T, D*D, <span class="hljs-number">10_000</span>); <span class="hljs-comment"># random input matrices</span>
+Y = reduce(hcat, map(f, eachcol(X))); <span class="hljs-comment"># `mapreduce` is not optimized for `hcat`, but `reduce` is</span>
 
-Xtest &#61; randn&#40;T, D*D, 10_000&#41;;
-Ytest &#61; reduce&#40;hcat, map&#40;f, eachcol&#40;Xtest&#41;&#41;&#41;;</code></pre>
+Xtest = randn(T, D*D, <span class="hljs-number">10_000</span>);
+Ytest = reduce(hcat, map(f, eachcol(Xtest)));</code></pre>
 <p>To fit this, we define the following model:</p>
-<pre><code class="language-julia">using SimpleChains
-mlpd &#61; SimpleChain&#40;
-  static&#40;4&#41;,
-  TurboDense&#40;tanh, 32&#41;,
-  TurboDense&#40;tanh, 16&#41;,
-  TurboDense&#40;identity, 4&#41;
-&#41;</code></pre>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> SimpleChains
+mlpd = SimpleChain(
+  static(<span class="hljs-number">4</span>),
+  TurboDense(tanh, <span class="hljs-number">32</span>),
+  TurboDense(tanh, <span class="hljs-number">16</span>),
+  TurboDense(identity, <span class="hljs-number">4</span>)
+)</code></pre>
 <p>The first layer maps the 4-dimensional input to 32 dimensions with a dense &#40;linear&#41; layer, applies the non-linear <code>tanh</code> activation. The second layer maps these 32 outputs to 16 dimensions with another dense layer, and again applies elementwise <code>tanh</code>, before the final layer dense layer maps these to a 4 dimensional result, which we could reshape into a 2x2 matrix, hopefully approximately equaling the exponential.</p>
 <p>We can fit this matrix as follows:</p>
-<pre><code class="language-julia">@time p &#61; SimpleChains.init_params&#40;mlpd&#41;;
-G &#61; SimpleChains.alloc_threaded_grad&#40;mlpd&#41;;
+<pre><code class="julia hljs"><span class="hljs-meta">@time</span> p = SimpleChains.init_params(mlpd);
+G = SimpleChains.alloc_threaded_grad(mlpd);
 
-mlpdloss &#61; SimpleChains.add_loss&#40;mlpd, SquaredLoss&#40;Y&#41;&#41;;
-mlpdtest &#61; SimpleChains.add_loss&#40;mlpd, SquaredLoss&#40;Ytest&#41;&#41;;
+mlpdloss = SimpleChains.add_loss(mlpd, SquaredLoss(Y));
+mlpdtest = SimpleChains.add_loss(mlpd, SquaredLoss(Ytest));
 
-report &#61; let mtrain &#61; mlpdloss, X&#61;X, Xtest&#61;Xtest, mtest &#61; mlpdtest
-  p -&gt; begin
-    let train &#61; mlpdloss&#40;X, p&#41;, test &#61; mlpdtest&#40;Xtest, p&#41;
-      @info &quot;Loss:&quot; train test
-    end
-  end
-end
+report = <span class="hljs-keyword">let</span> mtrain = mlpdloss, X=X, Xtest=Xtest, mtest = mlpdtest
+  p -&gt; <span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">let</span> train = mlpdloss(X, p), test = mlpdtest(Xtest, p)
+      <span class="hljs-meta">@info</span> <span class="hljs-string">&quot;Loss:&quot;</span> train test
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 
-report&#40;p&#41;
-for _ in 1:3
-  @time SimpleChains.train_unbatched&#33;&#40;
-    G, p, mlpdloss, X, SimpleChains.ADAM&#40;&#41;, 10_000
-  &#41;;
-  report&#40;p&#41;
-end</code></pre>
+report(p)
+<span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">3</span>
+  <span class="hljs-meta">@time</span> SimpleChains.train_unbatched!(
+    G, p, mlpdloss, X, SimpleChains.ADAM(), <span class="hljs-number">10_000</span>
+  );
+  report(p)
+<span class="hljs-keyword">end</span></code></pre>
 <p>On an Intel i9 10980XE, an 18-core system featuring AVX512 with two 512-bit fma units/core, this produces</p>
-<pre><code class="language-julia">julia&gt; report&#40;p&#41;
+<pre><code class="julia hljs">julia&gt; report(p)
 ┌ Info: Loss:
-│   train &#61; 13.402281f0
-└   test &#61; 14.104155f0
+│   train = <span class="hljs-number">13.402281f0</span>
+└   test = <span class="hljs-number">14.104155f0</span>
 
-julia&gt; for _ in 1:3
-         # fit with ADAM for 10_000 epochs
-         @time SimpleChains.train_unbatched&#33;&#40;
-           G, p, mlpdloss, X, SimpleChains.ADAM&#40;&#41;, 10_000
-         &#41;;
-         report&#40;p&#41;
-       end
-  4.851989 seconds &#40;13.06 M allocations: 687.553 MiB, 10.57&#37; gc time, 89.65&#37; compilation time&#41;
+julia&gt; <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">3</span>
+         <span class="hljs-comment"># fit with ADAM for 10_000 epochs</span>
+         <span class="hljs-meta">@time</span> SimpleChains.train_unbatched!(
+           G, p, mlpdloss, X, SimpleChains.ADAM(), <span class="hljs-number">10_000</span>
+         );
+         report(p)
+       <span class="hljs-keyword">end</span>
+  <span class="hljs-number">4.851989</span> seconds (<span class="hljs-number">13.06</span> M allocations: <span class="hljs-number">687.553</span> MiB, <span class="hljs-number">10.57</span>% gc time, <span class="hljs-number">89.65</span>% compilation time)
 ┌ Info: Loss:
-│   train &#61; 0.015274665f0
-└   test &#61; 0.14084631f0
-  0.416341 seconds
+│   train = <span class="hljs-number">0.015274665f0</span>
+└   test = <span class="hljs-number">0.14084631f0</span>
+  <span class="hljs-number">0.416341</span> seconds
 ┌ Info: Loss:
-│   train &#61; 0.0027618674f0
-└   test &#61; 0.09321652f0
-  0.412371 seconds
+│   train = <span class="hljs-number">0.0027618674f0</span>
+└   test = <span class="hljs-number">0.09321652f0</span>
+  <span class="hljs-number">0.412371</span> seconds
 ┌ Info: Loss:
-│   train &#61; 0.0016900344f0
-└   test &#61; 0.08270371f0</code></pre>
+│   train = <span class="hljs-number">0.0016900344f0</span>
+└   test = <span class="hljs-number">0.08270371f0</span></code></pre>
 <p>This was run in a fresh session, so that the first run of <code>train_unbatched</code> includes compile time. Once it has compiled, each further batch of 10_000 epochs takes just over 0.41 seconds, or about 41 microseconds/epoch.</p>
 <p>We also have a PyTorch model <a href="https://github.com/chriselrod/MatrixExponentialTorch">here</a> for fitting this, which produces:</p>
-<pre><code class="language-julia">Initial Train Loss: 7.4430
-Initial Test Loss: 7.3570
-Took: 15.28 seconds
-Train Loss: 0.0051
-Test Loss: 0.0421
-Took: 15.22 seconds
-Train Loss: 0.0015
-Test Loss: 0.0255
-Took: 15.25 seconds
-Train Loss: 0.0008
-Test Loss: 0.0213</code></pre>
+<pre><code class="julia hljs">Initial Train Loss: <span class="hljs-number">7.4430</span>
+Initial Test Loss: <span class="hljs-number">7.3570</span>
+Took: <span class="hljs-number">15.28</span> seconds
+Train Loss: <span class="hljs-number">0.0051</span>
+Test Loss: <span class="hljs-number">0.0421</span>
+Took: <span class="hljs-number">15.22</span> seconds
+Train Loss: <span class="hljs-number">0.0015</span>
+Test Loss: <span class="hljs-number">0.0255</span>
+Took: <span class="hljs-number">15.25</span> seconds
+Train Loss: <span class="hljs-number">0.0008</span>
+Test Loss: <span class="hljs-number">0.0213</span></code></pre>
 <p>Taking over 35x longer, at about 1.5 ms, per epoch.</p>
 <p>Trying on an AMD EPYC 7513, 32-Core CPU featuring AVX2:</p>
-<pre><code class="language-julia">julia&gt; report&#40;p&#41;
+<pre><code class="julia hljs">julia&gt; report(p)
 ┌ Info: Loss:
-│   train &#61; 11.945223f0
-└   test &#61; 12.403147f0
+│   train = <span class="hljs-number">11.945223f0</span>
+└   test = <span class="hljs-number">12.403147f0</span>
 
-julia&gt; for _ in 1:3
-         @time SimpleChains.train_unbatched&#33;&#40;
-           G, p, mlpdloss, X, SimpleChains.ADAM&#40;&#41;, 10_000
-         &#41;;
-         report&#40;p&#41;
-       end
-  5.214252 seconds &#40;8.85 M allocations: 581.803 MiB, 4.73&#37; gc time, 84.76&#37; compilation time&#41;
+julia&gt; <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">3</span>
+         <span class="hljs-meta">@time</span> SimpleChains.train_unbatched!(
+           G, p, mlpdloss, X, SimpleChains.ADAM(), <span class="hljs-number">10_000</span>
+         );
+         report(p)
+       <span class="hljs-keyword">end</span>
+  <span class="hljs-number">5.214252</span> seconds (<span class="hljs-number">8.85</span> M allocations: <span class="hljs-number">581.803</span> MiB, <span class="hljs-number">4.73</span>% gc time, <span class="hljs-number">84.76</span>% compilation time)
 ┌ Info: Loss:
-│   train &#61; 0.016855776f0
-└   test &#61; 0.06515023f0
-  0.717071 seconds
+│   train = <span class="hljs-number">0.016855776f0</span>
+└   test = <span class="hljs-number">0.06515023f0</span>
+  <span class="hljs-number">0.717071</span> seconds
 ┌ Info: Loss:
-│   train &#61; 0.0027835001f0
-└   test &#61; 0.036451153f0
-  0.726994 seconds
+│   train = <span class="hljs-number">0.0027835001f0</span>
+└   test = <span class="hljs-number">0.036451153f0</span>
+  <span class="hljs-number">0.726994</span> seconds
 ┌ Info: Loss:
-│   train &#61; 0.0017783737f0
-└   test &#61; 0.02649088f0</code></pre>
+│   train = <span class="hljs-number">0.0017783737f0</span>
+└   test = <span class="hljs-number">0.02649088f0</span></code></pre>
 <p>While with the PyTorch implementation, we get:</p>
-<pre><code class="language-julia">Initial Train Loss: 6.9856
-Initial Test Loss: 7.1151
-Took: 69.46 seconds
-Train Loss: 0.0094
-Test Loss: 0.0097
-Took: 73.68 seconds
-Train Loss: 0.0010
-Test Loss: 0.0056
-Took: 68.02 seconds
-Train Loss: 0.0006
-Test Loss: 0.0039</code></pre>
+<pre><code class="julia hljs">Initial Train Loss: <span class="hljs-number">6.9856</span>
+Initial Test Loss: <span class="hljs-number">7.1151</span>
+Took: <span class="hljs-number">69.46</span> seconds
+Train Loss: <span class="hljs-number">0.0094</span>
+Test Loss: <span class="hljs-number">0.0097</span>
+Took: <span class="hljs-number">73.68</span> seconds
+Train Loss: <span class="hljs-number">0.0010</span>
+Test Loss: <span class="hljs-number">0.0056</span>
+Took: <span class="hljs-number">68.02</span> seconds
+Train Loss: <span class="hljs-number">0.0006</span>
+Test Loss: <span class="hljs-number">0.0039</span></code></pre>
 <p>SimpleChains has close to a 100x advantage on this system for this model.</p>
 <p>Such small models were the motivation behind developing SimpleChains. But how does it fair as we increase the problem size, to models where GPUs have traditionally started outperforming CPUs?</p>
-<h3 id="edit_timings_against_jax"><a href="#edit_timings_against_jax">Edit: Timings Against Jax</a></h3>
+<h3 id="edit_timings_against_jax"><a href="#edit_timings_against_jax" class="header-anchor">Edit: Timings Against Jax</a></h3>
 <p>The author of the Jax Equinox library submitted a Jax code for benchmarking against. On a AMD Ryzen 9 5950X 16-Core Processor we saw with Jax:</p>
-<pre><code class="language-julia">Took: 14.52 seconds
-Train Loss: 0.0304
-Test Loss: 0.0268
-Took: 14.00 seconds
-Train Loss: 0.0033
-Test Loss: 0.0154
-Took: 13.85 seconds
-Train Loss: 0.0018
-Test Loss: 0.0112</code></pre>
+<pre><code class="julia hljs">Took: <span class="hljs-number">14.52</span> seconds
+Train Loss: <span class="hljs-number">0.0304</span>
+Test Loss: <span class="hljs-number">0.0268</span>
+Took: <span class="hljs-number">14.00</span> seconds
+Train Loss: <span class="hljs-number">0.0033</span>
+Test Loss: <span class="hljs-number">0.0154</span>
+Took: <span class="hljs-number">13.85</span> seconds
+Train Loss: <span class="hljs-number">0.0018</span>
+Test Loss: <span class="hljs-number">0.0112</span></code></pre>
 <p>vs SimpleChains.jl with 16 threads:</p>
-<pre><code class="language-julia">5.097569 seconds &#40;14.81 M allocations: 798.000 MiB, 3.94&#37; gc time, 73.62&#37; compilation time&#41;
+<pre><code class="julia hljs"><span class="hljs-number">5.097569</span> seconds (<span class="hljs-number">14.81</span> M allocations: <span class="hljs-number">798.000</span> MiB, <span class="hljs-number">3.94</span>% gc time, <span class="hljs-number">73.62</span>% compilation time)
 ┌ Info: Loss:
-│   train &#61; 0.022585187f0
-└   test &#61; 0.32509857f0
-  1.310997 seconds
+│   train = <span class="hljs-number">0.022585187f0</span>
+└   test = <span class="hljs-number">0.32509857f0</span>
+  <span class="hljs-number">1.310997</span> seconds
 ┌ Info: Loss:
-│   train &#61; 0.0038023277f0
-└   test &#61; 0.23108596f0
-  1.295088 seconds
+│   train = <span class="hljs-number">0.0038023277f0</span>
+└   test = <span class="hljs-number">0.23108596f0</span>
+  <span class="hljs-number">1.295088</span> seconds
 ┌ Info: Loss:
-│   train &#61; 0.0023415526f0
-└   test &#61; 0.20991518f0</code></pre>
+│   train = <span class="hljs-number">0.0023415526f0</span>
+└   test = <span class="hljs-number">0.20991518f0</span></code></pre>
 <p>or 10x performance improvement, and on 36 × Intel&#40;R&#41; Core&#40;TM&#41; i9-10980XE CPU @ 3.00GHz we saw for Jax:</p>
-<pre><code class="language-julia">Initial Train Loss: 6.4232
-Initial Test Loss: 6.1088
-Took: 9.26 seconds
-Train Loss: 0.0304
-Test Loss: 0.0268
-Took: 8.98 seconds
-Train Loss: 0.0036
-Test Loss: 0.0156
-Took: 9.01 seconds
-Train Loss: 0.0018
-Test Loss: 0.0111</code></pre>
+<pre><code class="julia hljs">Initial Train Loss: <span class="hljs-number">6.4232</span>
+Initial Test Loss: <span class="hljs-number">6.1088</span>
+Took: <span class="hljs-number">9.26</span> seconds
+Train Loss: <span class="hljs-number">0.0304</span>
+Test Loss: <span class="hljs-number">0.0268</span>
+Took: <span class="hljs-number">8.98</span> seconds
+Train Loss: <span class="hljs-number">0.0036</span>
+Test Loss: <span class="hljs-number">0.0156</span>
+Took: <span class="hljs-number">9.01</span> seconds
+Train Loss: <span class="hljs-number">0.0018</span>
+Test Loss: <span class="hljs-number">0.0111</span></code></pre>
 <p>vs SimpleChains.jl:</p>
-<pre><code class="language-julia">4.810973 seconds &#40;13.03 M allocations: 686.357 MiB, 8.25&#37; gc time, 89.76&#37; compilation time&#41;
+<pre><code class="julia hljs"><span class="hljs-number">4.810973</span> seconds (<span class="hljs-number">13.03</span> M allocations: <span class="hljs-number">686.357</span> MiB, <span class="hljs-number">8.25</span>% gc time, <span class="hljs-number">89.76</span>% compilation time)
 ┌ Info: Loss:
-│   train &#61; 0.011851382f0
-└   test &#61; 0.017254675f0
-  0.410168 seconds
+│   train = <span class="hljs-number">0.011851382f0</span>
+└   test = <span class="hljs-number">0.017254675f0</span>
+  <span class="hljs-number">0.410168</span> seconds
 ┌ Info: Loss:
-│   train &#61; 0.0037487738f0
-└   test &#61; 0.009099905f0
-  0.410368 seconds
+│   train = <span class="hljs-number">0.0037487738f0</span>
+└   test = <span class="hljs-number">0.009099905f0</span>
+  <span class="hljs-number">0.410368</span> seconds
 ┌ Info: Loss:
-│   train &#61; 0.002041543f0
-└   test &#61; 0.0065089874f0</code></pre>
+│   train = <span class="hljs-number">0.002041543f0</span>
+└   test = <span class="hljs-number">0.0065089874f0</span></code></pre>
 <p>or ~22x speedup. With an unknown 6-core CPU with unknown threads we saw Jax:</p>
-<pre><code class="language-julia">Initial Train Loss: 6.4232
-Initial Test Loss: 6.1088
-Took: 19.39 seconds
-Train Loss: 0.0307
-Test Loss: 0.0270
-Took: 18.91 seconds
-Train Loss: 0.0037
-Test Loss: 0.0157
-Took: 20.09 seconds
-Train Loss: 0.0018
-Test Loss: 0.0111</code></pre>
+<pre><code class="julia hljs">Initial Train Loss: <span class="hljs-number">6.4232</span>
+Initial Test Loss: <span class="hljs-number">6.1088</span>
+Took: <span class="hljs-number">19.39</span> seconds
+Train Loss: <span class="hljs-number">0.0307</span>
+Test Loss: <span class="hljs-number">0.0270</span>
+Took: <span class="hljs-number">18.91</span> seconds
+Train Loss: <span class="hljs-number">0.0037</span>
+Test Loss: <span class="hljs-number">0.0157</span>
+Took: <span class="hljs-number">20.09</span> seconds
+Train Loss: <span class="hljs-number">0.0018</span>
+Test Loss: <span class="hljs-number">0.0111</span></code></pre>
 <p>vs SimpleChains.jl</p>
-<pre><code class="language-julia">13.428804 seconds &#40;17.76 M allocations: 949.815 MiB, 2.89&#37; gc time, 100.00&#37; compilation time&#41;
+<pre><code class="julia hljs"><span class="hljs-number">13.428804</span> seconds (<span class="hljs-number">17.76</span> M allocations: <span class="hljs-number">949.815</span> MiB, <span class="hljs-number">2.89</span>% gc time, <span class="hljs-number">100.00</span>% compilation time)
 ┌ Info: Loss:
-│   train &#61; 12.414271f0
-└   test &#61; 12.085746f0
- 17.685621 seconds &#40;14.99 M allocations: 808.462 MiB, 4.02&#37; gc time, 48.56&#37; compilation time&#41;
+│   train = <span class="hljs-number">12.414271f0</span>
+└   test = <span class="hljs-number">12.085746f0</span>
+ <span class="hljs-number">17.685621</span> seconds (<span class="hljs-number">14.99</span> M allocations: <span class="hljs-number">808.462</span> MiB, <span class="hljs-number">4.02</span>% gc time, <span class="hljs-number">48.56</span>% compilation time)
 ┌ Info: Loss:
-│   train &#61; 0.034923762f0
-└   test &#61; 0.052024134f0
-  9.208631 seconds &#40;19 allocations: 608 bytes&#41;
+│   train = <span class="hljs-number">0.034923762f0</span>
+└   test = <span class="hljs-number">0.052024134f0</span>
+  <span class="hljs-number">9.208631</span> seconds (<span class="hljs-number">19</span> allocations: <span class="hljs-number">608</span> bytes)
 ┌ Info: Loss:
-│   train &#61; 0.0045825513f0
-└   test &#61; 0.03521506f0
-  9.258355 seconds &#40;30 allocations: 960 bytes&#41;
+│   train = <span class="hljs-number">0.0045825513f0</span>
+└   test = <span class="hljs-number">0.03521506f0</span>
+  <span class="hljs-number">9.258355</span> seconds (<span class="hljs-number">30</span> allocations: <span class="hljs-number">960</span> bytes)
 ┌ Info: Loss:
-│   train &#61; 0.0026099205f0
-└   test &#61; 0.023117168f0</code></pre>
+│   train = <span class="hljs-number">0.0026099205f0</span>
+└   test = <span class="hljs-number">0.023117168f0</span></code></pre>
 <p>Thus against Jax we saw a 2x-22x, with increasing performance improvements based on the availability of threads and the existence of AVX512. More details can be found at <a href="https://gist.github.com/patrick-kidger/68bf7b99ba02c246b20eaa38f2ad3d38">this link</a>, and we invite others to benchmark the libraries in more detail and share the results.</p>
-<h2 id="simplechainsjl_in_action_5x-ing_pytorch_in_small_examples"><a href="#simplechainsjl_in_action_5x-ing_pytorch_in_small_examples">SimpleChains.jl in Action: 5x-ing PyTorch in Small Examples</a></h2>
+<h2 id="simplechainsjl_in_action_5x-ing_pytorch_in_small_examples"><a href="#simplechainsjl_in_action_5x-ing_pytorch_in_small_examples" class="header-anchor">SimpleChains.jl in Action: 5x-ing PyTorch in Small Examples</a></h2>
 <p>Let&#39;s test MNIST with LeNet5. Note that this example will be a very conservative estimate of speed because, as a more traditional machine learning use case, batching can be used to make use of matrix-matrix multiplications instead of the even smaller matrix-vector kernels. That said, even in this case we&#39;ll be able to see a substantial performance benefit because of the semi-small network sizes.</p>
 <p>The following is the Julia code using SimpleChains.jl for the training:</p>
-<pre><code class="language-julia">using SimpleChains, MLDatasets
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> SimpleChains, MLDatasets
 
-lenet &#61; SimpleChain&#40;
-  &#40;static&#40;28&#41;, static&#40;28&#41;, static&#40;1&#41;&#41;,
-  SimpleChains.Conv&#40;SimpleChains.relu, &#40;5, 5&#41;, 6&#41;,
-  SimpleChains.MaxPool&#40;2, 2&#41;,
-  SimpleChains.Conv&#40;SimpleChains.relu, &#40;5, 5&#41;, 16&#41;,
-  SimpleChains.MaxPool&#40;2, 2&#41;,
-  Flatten&#40;3&#41;,
-  TurboDense&#40;SimpleChains.relu, 120&#41;,
-  TurboDense&#40;SimpleChains.relu, 84&#41;,
-  TurboDense&#40;identity, 10&#41;,
-&#41;
+lenet = SimpleChain(
+  (static(<span class="hljs-number">28</span>), static(<span class="hljs-number">28</span>), static(<span class="hljs-number">1</span>)),
+  SimpleChains.Conv(SimpleChains.relu, (<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), <span class="hljs-number">6</span>),
+  SimpleChains.MaxPool(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>),
+  SimpleChains.Conv(SimpleChains.relu, (<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), <span class="hljs-number">16</span>),
+  SimpleChains.MaxPool(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>),
+  Flatten(<span class="hljs-number">3</span>),
+  TurboDense(SimpleChains.relu, <span class="hljs-number">120</span>),
+  TurboDense(SimpleChains.relu, <span class="hljs-number">84</span>),
+  TurboDense(identity, <span class="hljs-number">10</span>),
+)
 
-# 3d and 0-indexed
-xtrain3, ytrain0 &#61; MLDatasets.MNIST.traindata&#40;Float32&#41;;
-xtest3, ytest0 &#61; MLDatasets.MNIST.testdata&#40;Float32&#41;;
+<span class="hljs-comment"># 3d and 0-indexed</span>
+xtrain3, ytrain0 = MLDatasets.MNIST.traindata(<span class="hljs-built_in">Float32</span>);
+xtest3, ytest0 = MLDatasets.MNIST.testdata(<span class="hljs-built_in">Float32</span>);
 
-xtrain4 &#61; reshape&#40;xtrain3, 28, 28, 1, :&#41;;
-xtest4 &#61; reshape&#40;xtest3, 28, 28, 1, :&#41;;
+xtrain4 = reshape(xtrain3, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>, <span class="hljs-number">1</span>, :);
+xtest4 = reshape(xtest3, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>, <span class="hljs-number">1</span>, :);
 
-ytrain1 &#61; UInt32.&#40;ytrain0 .&#43; 1&#41;;
-ytest1 &#61; UInt32.&#40;ytest0 .&#43; 1&#41;;
+ytrain1 = <span class="hljs-built_in">UInt32</span>.(ytrain0 .+ <span class="hljs-number">1</span>);
+ytest1 = <span class="hljs-built_in">UInt32</span>.(ytest0 .+ <span class="hljs-number">1</span>);
 
-lenetloss &#61; SimpleChains.add_loss&#40;lenet, LogitCrossEntropyLoss&#40;ytrain1&#41;&#41;;
+lenetloss = SimpleChains.add_loss(lenet, LogitCrossEntropyLoss(ytrain1));
 
-# initialize parameters
-@time p &#61; SimpleChains.init_params&#40;lenet&#41;;
+<span class="hljs-comment"># initialize parameters</span>
+<span class="hljs-meta">@time</span> p = SimpleChains.init_params(lenet);
 
-# initialize a gradient buffer matrix; number of columns places an upper bound
-# on the number of threads used.
-G &#61; similar&#40;p, length&#40;p&#41;, min&#40;Threads.nthreads&#40;&#41;, &#40;Sys.CPU_THREADS ÷ &#40;&#40;Sys.ARCH &#61;&#61;&#61; :x86_64&#41; &#43; 1&#41;&#41;&#41;&#41;;
+<span class="hljs-comment"># initialize a gradient buffer matrix; number of columns places an upper bound</span>
+<span class="hljs-comment"># on the number of threads used.</span>
+G = similar(p, length(p), min(Threads.nthreads(), (Sys.CPU_THREADS ÷ ((Sys.ARCH === :x86_64) + <span class="hljs-number">1</span>))));
 
-# train
-@time SimpleChains.train_batched&#33;&#40;G, p, lenetloss, xtrain4, SimpleChains.ADAM&#40;3e-4&#41;, 10&#41;;
+<span class="hljs-comment"># train</span>
+<span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
 
-SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain4, p&#41;
-SimpleChains.accuracy_and_loss&#40;lenetloss, xtest4, ytest1, p&#41;
-# train without additional memory allocations
-@time SimpleChains.train_batched&#33;&#40;G, p, lenetloss, xtrain4, SimpleChains.ADAM&#40;3e-4&#41;, 10&#41;;
-# assess training and test loss
-SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain4, p&#41;
-SimpleChains.accuracy_and_loss&#40;lenetloss, xtest4, ytest1, p&#41;</code></pre>
-<h4 id="pytorch"><a href="#pytorch">PyTorch</a></h4>
+SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
+<span class="hljs-comment"># train without additional memory allocations</span>
+<span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
+<span class="hljs-comment"># assess training and test loss</span>
+SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)</code></pre>
+<h4 id="pytorch"><a href="#pytorch" class="header-anchor">PyTorch</a></h4>
 <p>Before we show the results, let&#39;s look at the competition. Here&#39;s two runs of 10 epochs using PyTorch following <a href="https://github.com/chriselrod/LeNetTorch">this script</a> on an A100 GPU using a batch size of 2048:</p>
 <p>A100:</p>
-<pre><code class="language-julia">Took: 17.66
-Accuracy: 0.9491
-Took: 17.62
-Accuracy: 0.9692</code></pre>
+<pre><code class="julia hljs">Took: <span class="hljs-number">17.66</span>
+Accuracy: <span class="hljs-number">0.9491</span>
+Took: <span class="hljs-number">17.62</span>
+Accuracy: <span class="hljs-number">0.9692</span></code></pre>
 <p>Trying a V100:</p>
-<pre><code class="language-julia">Took: 16.29
-Accuracy: 0.9560
-Took: 15.94
-Accuracy: 0.9749</code></pre>
+<pre><code class="julia hljs">Took: <span class="hljs-number">16.29</span>
+Accuracy: <span class="hljs-number">0.9560</span>
+Took: <span class="hljs-number">15.94</span>
+Accuracy: <span class="hljs-number">0.9749</span></code></pre>
 <p>This problem is far too small to saturate the GPU, even with such a large batch size. Time is dominated by moving batches from the CPU to the GPU. Unfortunately, as the batch sizes get larger, we need more epochs to reach the same accuracy, so we can hit a limit in terms of maximizing accuracy/time.</p>
 <p>PyTorch using an AMD EPYC 7513 32-Core Processor:</p>
-<pre><code class="language-julia">Took: 14.86
-Accuracy: 0.9626
-Took: 15.09
-Accuracy: 0.9783</code></pre>
+<pre><code class="julia hljs">Took: <span class="hljs-number">14.86</span>
+Accuracy: <span class="hljs-number">0.9626</span>
+Took: <span class="hljs-number">15.09</span>
+Accuracy: <span class="hljs-number">0.9783</span></code></pre>
 <p>PyTorch using an Intel i9 10980XE 18-Core Processor:</p>
-<pre><code class="language-julia">Took: 11.24
-Accuracy: 0.9759
-Took: 10.78
-Accuracy: 0.9841</code></pre>
-<h4 id="fluxjl"><a href="#fluxjl">Flux.jl</a></h4>
+<pre><code class="julia hljs">Took: <span class="hljs-number">11.24</span>
+Accuracy: <span class="hljs-number">0.9759</span>
+Took: <span class="hljs-number">10.78</span>
+Accuracy: <span class="hljs-number">0.9841</span></code></pre>
+<h4 id="fluxjl"><a href="#fluxjl" class="header-anchor">Flux.jl</a></h4>
 <p>The standard machine learning library in Julia, <a href="https://github.com/FluxML/Flux.jl">Flux.jl</a> was benchmarked using <a href="https://github.com/PumasAI/SimpleChains.jl/blob/main/examples/mnist_lenet.jl">this script</a> with an A100 GPU. How fast was that?</p>
-<pre><code class="language-julia">julia&gt; @time train&#33;&#40;model, train_loader&#41;
- 74.678251 seconds &#40;195.36 M allocations: 12.035 GiB, 4.28&#37; gc time, 77.57&#37; compilation time&#41;
+<pre><code class="julia hljs">julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
+ <span class="hljs-number">74.678251</span> seconds (<span class="hljs-number">195.36</span> M allocations: <span class="hljs-number">12.035</span> GiB, <span class="hljs-number">4.28</span>% gc time, <span class="hljs-number">77.57</span>% compilation time)
 
-julia&gt; eval_loss_accuracy&#40;train_loader, model, device&#41;,
-       eval_loss_accuracy&#40;test_loader, model, device&#41;
-&#40;&#40;loss &#61; 0.1579f0, acc &#61; 95.3583&#41;, &#40;loss &#61; 0.1495f0, acc &#61; 95.54&#41;&#41;
+julia&gt; eval_loss_accuracy(train_loader, model, device),
+       eval_loss_accuracy(test_loader, model, device)
+((loss = <span class="hljs-number">0.1579f0</span>, acc = <span class="hljs-number">95.3583</span>), (loss = <span class="hljs-number">0.1495f0</span>, acc = <span class="hljs-number">95.54</span>))
 
-julia&gt; @time train&#33;&#40;model, train_loader&#41;
-  1.676934 seconds &#40;1.04 M allocations: 1.840 GiB, 5.64&#37; gc time, 0.63&#37; compilation time&#41;
+julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
+  <span class="hljs-number">1.676934</span> seconds (<span class="hljs-number">1.04</span> M allocations: <span class="hljs-number">1.840</span> GiB, <span class="hljs-number">5.64</span>% gc time, <span class="hljs-number">0.63</span>% compilation time)
 
-julia&gt; eval_loss_accuracy&#40;train_loader, model, device&#41;,
-       eval_loss_accuracy&#40;test_loader, model, device&#41;
-&#40;&#40;loss &#61; 0.0819f0, acc &#61; 97.4967&#41;, &#40;loss &#61; 0.076f0, acc &#61; 97.6&#41;&#41;</code></pre>
+julia&gt; eval_loss_accuracy(train_loader, model, device),
+       eval_loss_accuracy(test_loader, model, device)
+((loss = <span class="hljs-number">0.0819f0</span>, acc = <span class="hljs-number">97.4967</span>), (loss = <span class="hljs-number">0.076f0</span>, acc = <span class="hljs-number">97.6</span>))</code></pre>
 <p>Flux on a V100 GPU:</p>
-<pre><code class="language-julia">julia&gt; @time train&#33;&#40;model, train_loader&#41;
- 75.266441 seconds &#40;195.52 M allocations: 12.046 GiB, 4.02&#37; gc time, 74.83&#37; compilation time&#41;
+<pre><code class="julia hljs">julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
+ <span class="hljs-number">75.266441</span> seconds (<span class="hljs-number">195.52</span> M allocations: <span class="hljs-number">12.046</span> GiB, <span class="hljs-number">4.02</span>% gc time, <span class="hljs-number">74.83</span>% compilation time)
 
-julia&gt; eval_loss_accuracy&#40;train_loader, model, device&#41;,
-       eval_loss_accuracy&#40;test_loader, model, device&#41;
-&#40;&#40;loss &#61; 0.1441f0, acc &#61; 95.7883&#41;, &#40;loss &#61; 0.1325f0, acc &#61; 96.04&#41;&#41;
+julia&gt; eval_loss_accuracy(train_loader, model, device),
+       eval_loss_accuracy(test_loader, model, device)
+((loss = <span class="hljs-number">0.1441f0</span>, acc = <span class="hljs-number">95.7883</span>), (loss = <span class="hljs-number">0.1325f0</span>, acc = <span class="hljs-number">96.04</span>))
 
-julia&gt; @time train&#33;&#40;model, train_loader&#41;
-  2.309766 seconds &#40;1.06 M allocations: 1.841 GiB, 2.87&#37; gc time&#41;
+julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
+  <span class="hljs-number">2.309766</span> seconds (<span class="hljs-number">1.06</span> M allocations: <span class="hljs-number">1.841</span> GiB, <span class="hljs-number">2.87</span>% gc time)
 
-julia&gt; eval_loss_accuracy&#40;train_loader, model, device&#41;,
-       eval_loss_accuracy&#40;test_loader, model, device&#41;
-&#40;&#40;loss &#61; 0.0798f0, acc &#61; 97.5867&#41;, &#40;loss &#61; 0.0745f0, acc &#61; 97.53&#41;&#41;</code></pre>
+julia&gt; eval_loss_accuracy(train_loader, model, device),
+       eval_loss_accuracy(test_loader, model, device)
+((loss = <span class="hljs-number">0.0798f0</span>, acc = <span class="hljs-number">97.5867</span>), (loss = <span class="hljs-number">0.0745f0</span>, acc = <span class="hljs-number">97.53</span>))</code></pre>
 <p>Flux on an AMD EPYC 7513 32-Core Processor:</p>
-<pre><code class="language-julia">julia&gt; @time train&#33;&#40;model, train_loader&#41;
-110.816088 seconds &#40;70.82 M allocations: 67.300 GiB, 4.46&#37; gc time, 29.13&#37; compilation time&#41;
+<pre><code class="julia hljs">julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
+<span class="hljs-number">110.816088</span> seconds (<span class="hljs-number">70.82</span> M allocations: <span class="hljs-number">67.300</span> GiB, <span class="hljs-number">4.46</span>% gc time, <span class="hljs-number">29.13</span>% compilation time)
 
-julia&gt; eval_loss_accuracy&#40;train_loader, model, device&#41;,
-       eval_loss_accuracy&#40;test_loader, model, device&#41;
-&#40;&#40;acc &#61; 93.8667, loss &#61; 0.213f0&#41;, &#40;acc &#61; 94.26, loss &#61; 0.1928f0&#41;&#41;
+julia&gt; eval_loss_accuracy(train_loader, model, device),
+       eval_loss_accuracy(test_loader, model, device)
+((acc = <span class="hljs-number">93.8667</span>, loss = <span class="hljs-number">0.213f0</span>), (acc = <span class="hljs-number">94.26</span>, loss = <span class="hljs-number">0.1928f0</span>))
 
-julia&gt; @time train&#33;&#40;model, train_loader&#41;
- 74.710972 seconds &#40;267.64 k allocations: 62.860 GiB, 3.65&#37; gc time&#41;
+julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
+ <span class="hljs-number">74.710972</span> seconds (<span class="hljs-number">267.64</span> k allocations: <span class="hljs-number">62.860</span> GiB, <span class="hljs-number">3.65</span>% gc time)
 
-julia&gt; eval_loss_accuracy&#40;train_loader, model, device&#41;,
-       eval_loss_accuracy&#40;test_loader, model, device&#41;
-&#40;&#40;acc &#61; 96.7117, loss &#61; 0.1121f0&#41;, &#40;acc &#61; 96.92, loss &#61; 0.0998f0&#41;&#41;</code></pre>
+julia&gt; eval_loss_accuracy(train_loader, model, device),
+       eval_loss_accuracy(test_loader, model, device)
+((acc = <span class="hljs-number">96.7117</span>, loss = <span class="hljs-number">0.1121f0</span>), (acc = <span class="hljs-number">96.92</span>, loss = <span class="hljs-number">0.0998f0</span>))</code></pre>
 <p>Flux on an Intel i9 10980XE 18-Core Processor:</p>
-<pre><code class="language-julia">julia&gt; @time train&#33;&#40;model, train_loader&#41;
- 72.472941 seconds &#40;97.92 M allocations: 67.853 GiB, 3.51&#37; gc time, 38.08&#37; compilation time&#41;
+<pre><code class="julia hljs">julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
+ <span class="hljs-number">72.472941</span> seconds (<span class="hljs-number">97.92</span> M allocations: <span class="hljs-number">67.853</span> GiB, <span class="hljs-number">3.51</span>% gc time, <span class="hljs-number">38.08</span>% compilation time)
 
-julia&gt; eval_loss_accuracy&#40;train_loader, model, device&#41;,
-       eval_loss_accuracy&#40;test_loader, model, device&#41;
-&#40;&#40;acc &#61; 95.56, loss &#61; 0.1502f0&#41;, &#40;acc &#61; 95.9, loss &#61; 0.1353f0&#41;&#41;
+julia&gt; eval_loss_accuracy(train_loader, model, device),
+       eval_loss_accuracy(test_loader, model, device)
+((acc = <span class="hljs-number">95.56</span>, loss = <span class="hljs-number">0.1502f0</span>), (acc = <span class="hljs-number">95.9</span>, loss = <span class="hljs-number">0.1353f0</span>))
 
-julia&gt; @time train&#33;&#40;model, train_loader&#41;
- 45.083632 seconds &#40;348.19 k allocations: 62.864 GiB, 2.77&#37; gc time&#41;
+julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
+ <span class="hljs-number">45.083632</span> seconds (<span class="hljs-number">348.19</span> k allocations: <span class="hljs-number">62.864</span> GiB, <span class="hljs-number">2.77</span>% gc time)
 
-julia&gt; eval_loss_accuracy&#40;train_loader, model, device&#41;,
-       eval_loss_accuracy&#40;test_loader, model, device&#41;
-&#40;&#40;acc &#61; 97.5417, loss &#61; 0.082f0&#41;, &#40;acc &#61; 97.74, loss &#61; 0.0716f0&#41;&#41;</code></pre>
-<h4 id="how_long_did_simplechainsjl_take"><a href="#how_long_did_simplechainsjl_take">How long did SimpleChains.jl take?</a></h4>
+julia&gt; eval_loss_accuracy(train_loader, model, device),
+       eval_loss_accuracy(test_loader, model, device)
+((acc = <span class="hljs-number">97.5417</span>, loss = <span class="hljs-number">0.082f0</span>), (acc = <span class="hljs-number">97.74</span>, loss = <span class="hljs-number">0.0716f0</span>))</code></pre>
+<h4 id="how_long_did_simplechainsjl_take"><a href="#how_long_did_simplechainsjl_take" class="header-anchor">How long did SimpleChains.jl take?</a></h4>
 <p>SimpleChains on an AMD EPYC 7513 32-Core Processor:</p>
-<pre><code class="language-julia">#Compile
-julia&gt; @time SimpleChains.train_batched&#33;&#40;G, p, lenetloss, xtrain4, SimpleChains.ADAM&#40;3e-4&#41;, 10&#41;;
- 34.410432 seconds &#40;55.84 M allocations: 5.920 GiB, 3.79&#37; gc time, 85.95&#37; compilation time&#41;
+<pre><code class="julia hljs"><span class="hljs-comment">#Compile</span>
+julia&gt; <span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
+ <span class="hljs-number">34.410432</span> seconds (<span class="hljs-number">55.84</span> M allocations: <span class="hljs-number">5.920</span> GiB, <span class="hljs-number">3.79</span>% gc time, <span class="hljs-number">85.95</span>% compilation time)
 
-julia&gt; SimpleChains.error_mean_and_loss&#40;lenetloss, xtrain4, p&#41;
-&#40;0.972, 0.093898475f0&#41;
+julia&gt; SimpleChains.error_mean_and_loss(lenetloss, xtrain4, p)
+(<span class="hljs-number">0.972</span>, <span class="hljs-number">0.093898475f0</span>)
 
-julia&gt; SimpleChains.error_mean_and_loss&#40;lenetloss, xtest4, ytest1, p&#41;
-&#40;0.9744, 0.08624289f0&#41;
+julia&gt; SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
+(<span class="hljs-number">0.9744</span>, <span class="hljs-number">0.08624289f0</span>)
 
-julia&gt; @time SimpleChains.train_batched&#33;&#40;G, p, lenetloss, xtrain4, SimpleChains.ADAM&#40;3e-4&#41;, 10&#41;;
-  3.083624 seconds
+julia&gt; <span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
+  <span class="hljs-number">3.083624</span> seconds
 
-julia&gt; SimpleChains.error_mean_and_loss&#40;lenetloss, xtrain4, p&#41;
-&#40;0.9835666666666667, 0.056287352f0&#41;
+julia&gt; SimpleChains.error_mean_and_loss(lenetloss, xtrain4, p)
+(<span class="hljs-number">0.9835666666666667</span>, <span class="hljs-number">0.056287352f0</span>)
 
-julia&gt; SimpleChains.error_mean_and_loss&#40;lenetloss, xtest4, ytest1, p&#41;
-&#40;0.9831, 0.053463124f0&#41;</code></pre>
+julia&gt; SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
+(<span class="hljs-number">0.9831</span>, <span class="hljs-number">0.053463124f0</span>)</code></pre>
 <p>SimpleChains on an Intel i9 10980XE 18-Core Processor:</p>
-<pre><code class="language-julia">#Compile
-julia&gt; @time SimpleChains.train_batched&#33;&#40;G, p, lenetloss, xtrain4, SimpleChains.ADAM&#40;3e-4&#41;, 10&#41;;
- 35.578124 seconds &#40;86.34 M allocations: 5.554 GiB, 3.94&#37; gc time, 95.48&#37; compilation time&#41;
+<pre><code class="julia hljs"><span class="hljs-comment">#Compile</span>
+julia&gt; <span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
+ <span class="hljs-number">35.578124</span> seconds (<span class="hljs-number">86.34</span> M allocations: <span class="hljs-number">5.554</span> GiB, <span class="hljs-number">3.94</span>% gc time, <span class="hljs-number">95.48</span>% compilation time)
 
-julia&gt; SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain4, p&#41;
-&#40;0.9697833333333333, 0.10566422f0&#41;
+julia&gt; SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+(<span class="hljs-number">0.9697833333333333</span>, <span class="hljs-number">0.10566422f0</span>)
 
-julia&gt; SimpleChains.accuracy_and_loss&#40;lenetloss, xtest4, ytest1, p&#41;
-&#40;0.9703, 0.095336154f0&#41;
+julia&gt; SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
+(<span class="hljs-number">0.9703</span>, <span class="hljs-number">0.095336154f0</span>)
 
-julia&gt; # train without additional memory allocations
-       @time SimpleChains.train_batched&#33;&#40;G, p, lenetloss, xtrain4, SimpleChains.ADAM&#40;3e-4&#41;, 10&#41;;
-  1.241958 seconds
+julia&gt; <span class="hljs-comment"># train without additional memory allocations</span>
+       <span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
+  <span class="hljs-number">1.241958</span> seconds
 
-julia&gt; # assess training and test loss
-       SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain4, p&#41;
-&#40;0.9801333333333333, 0.06850684f0&#41;
+julia&gt; <span class="hljs-comment"># assess training and test loss</span>
+       SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+(<span class="hljs-number">0.9801333333333333</span>, <span class="hljs-number">0.06850684f0</span>)
 
-julia&gt; SimpleChains.accuracy_and_loss&#40;lenetloss, xtest4, ytest1, p&#41;
-&#40;0.9792, 0.06557372f0&#41;
+julia&gt; SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
+(<span class="hljs-number">0.9792</span>, <span class="hljs-number">0.06557372f0</span>)
 
-julia&gt; # train without additional memory allocations
-       @time SimpleChains.train_batched&#33;&#40;G, p, lenetloss, xtrain4, SimpleChains.ADAM&#40;3e-4&#41;, 10&#41;;
-  1.230244 seconds
+julia&gt; <span class="hljs-comment"># train without additional memory allocations</span>
+       <span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
+  <span class="hljs-number">1.230244</span> seconds
 
-julia&gt; # assess training and test loss
-       SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain4, p&#41;
-&#40;0.9851666666666666, 0.051207382f0&#41;
+julia&gt; <span class="hljs-comment"># assess training and test loss</span>
+       SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+(<span class="hljs-number">0.9851666666666666</span>, <span class="hljs-number">0.051207382f0</span>)
 
-julia&gt; SimpleChains.accuracy_and_loss&#40;lenetloss, xtest4, ytest1, p&#41;
-&#40;0.982, 0.05452118f0&#41;</code></pre>
+julia&gt; SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
+(<span class="hljs-number">0.982</span>, <span class="hljs-number">0.05452118f0</span>)</code></pre>
 <p>SimpleChains on an Intel i7 1165G7 4-Core Processor &#40;thin and light laptop CPU&#41;:</p>
-<pre><code class="language-julia">#Compile
-julia&gt; @time SimpleChains.train_batched&#33;&#40;G, p, lenetloss, xtrain, SimpleChains.ADAM&#40;3e-4&#41;, 10&#41;;
- 41.053800 seconds &#40;104.10 M allocations: 5.263 GiB, 2.83&#37; gc time, 77.62&#37; compilation time&#41;
+<pre><code class="julia hljs"><span class="hljs-comment">#Compile</span>
+julia&gt; <span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
+ <span class="hljs-number">41.053800</span> seconds (<span class="hljs-number">104.10</span> M allocations: <span class="hljs-number">5.263</span> GiB, <span class="hljs-number">2.83</span>% gc time, <span class="hljs-number">77.62</span>% compilation time)
 
-julia&gt; SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain, p&#41;,
-       SimpleChains.accuracy_and_loss&#40;lenetloss, xtest, ytest, p&#41;
-&#40;&#40;0.9491333333333334, 0.16993132f0&#41;, &#40;0.9508, 0.15890576f0&#41;&#41;
+julia&gt; SimpleChains.accuracy_and_loss(lenetloss, xtrain, p),
+       SimpleChains.accuracy_and_loss(lenetloss, xtest, ytest, p)
+((<span class="hljs-number">0.9491333333333334</span>, <span class="hljs-number">0.16993132f0</span>), (<span class="hljs-number">0.9508</span>, <span class="hljs-number">0.15890576f0</span>))
 
-julia&gt; @time SimpleChains.train_batched&#33;&#40;G, p, lenetloss, xtrain, SimpleChains.ADAM&#40;3e-4&#41;, 10&#41;;
-  5.320512 seconds
+julia&gt; <span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
+  <span class="hljs-number">5.320512</span> seconds
 
-julia&gt; SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain, p&#41;,
-       SimpleChains.accuracy_and_loss&#40;lenetloss, xtest, ytest, p&#41;
-&#40;&#40;0.9700833333333333, 0.10100537f0&#41;, &#40;0.9689, 0.09761506f0&#41;&#41;</code></pre>
+julia&gt; SimpleChains.accuracy_and_loss(lenetloss, xtrain, p),
+       SimpleChains.accuracy_and_loss(lenetloss, xtest, ytest, p)
+((<span class="hljs-number">0.9700833333333333</span>, <span class="hljs-number">0.10100537f0</span>), (<span class="hljs-number">0.9689</span>, <span class="hljs-number">0.09761506f0</span>))</code></pre>
 <p>Note that smaller batch sizes improve accuracy per epoch, and batch sizes were set to be proportional to the number of threads.</p>
-<h2 id="benchmark_summary"><a href="#benchmark_summary">Benchmark Summary</a></h2>
+<h2 id="benchmark_summary"><a href="#benchmark_summary" class="header-anchor">Benchmark Summary</a></h2>
 <p>Latency before the first epoch begins training is problematic, but SimpleChains.jl is fast once compiled. Post-compilation, the 10980XE was competitive with Flux using an A100 GPU, and about 35&#37; faster than the V100. The 1165G7, a laptop CPU featuring AVX512, was competitive, handily trouncing any of the competing machine learning libraries when they were run on far beefier CPUs, and even beat PyTorch on both the V100 and A100. Again, we stress that this test case followed the more typical machine learning uses and thus was able to use batching to even make GPUs viable: for many use cases of SimpleChains.jl this is not the case and thus the difference is even larger.</p>
 <p>However, it seems likely that the PyTorch script was not well optimized for GPUs; we are less familiar with PyTorch and would welcome PRs improving it. That said, the script is taken from a real-world user out in the wild, and thus this should demonstrate what one would expect to see from a user that is not digging into internals and hyper-optimizing. Nothing out of the ordinary was done with the Julia scripts: these were all &quot;by the book&quot; implementations. Though of course, the SimpleChains.jl&#39;s simplest code is specifically optimized for this &quot;by the book&quot; use case.</p>
-<h2 id="conclusion"><a href="#conclusion">Conclusion</a></h2>
+<h2 id="conclusion"><a href="#conclusion" class="header-anchor">Conclusion</a></h2>
 <p>There are many things that can make a library achieve high-performance, and nothing is as essential as knowing how it will be used. While the big machine learning frameworks have done extremely well focusing on the top-notch performance for 99.9&#37; of their users, one can still completely outclass them when focusing on some of the 0.1&#37; of applications which fall outside of what they have been targeting. This is the advantage of composability and flexibility: a language that allows you to easily build a machine learning framework is also a language which allows you to build alternative frameworks which are optimized for alternative people. SimpleChains.jl will not be useful to everybody, but it will be extremely useful to those who need it.</p>
 </div><br><br>
 
@@ -757,7 +757,7 @@ julia&gt; SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain, p&#41;,
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -870,7 +870,7 @@ julia&gt; SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain, p&#41;,
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -886,7 +886,7 @@ julia&gt; SimpleChains.accuracy_and_loss&#40;lenetloss, xtrain, p&#41;,
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>

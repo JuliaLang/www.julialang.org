@@ -116,10 +116,10 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="juliahealth_projects"><a href="#juliahealth_projects">JuliaHealth Projects </a></h1>
+<div class="container main"><h1 id="juliahealth_projects"><a href="#juliahealth_projects" class="header-anchor">JuliaHealth Projects </a></h1>
 <p>JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. We believe that by working together and sharing our knowledge and expertise, we can create powerful tools and solutions that have the potential to transform healthcare.</p>
-<h2 id="observational_health_subecosystem_projects"><a href="#observational_health_subecosystem_projects">Observational Health Subecosystem Projects</a></h2>
-<h3 id="project_1_developing_tooling_for_observational_health_research_in_julia"><a href="#project_1_developing_tooling_for_observational_health_research_in_julia">Project 1: Developing Tooling for Observational Health Research in Julia</a></h3>
+<h2 id="observational_health_subecosystem_projects"><a href="#observational_health_subecosystem_projects" class="header-anchor">Observational Health Subecosystem Projects</a></h2>
+<h3 id="project_1_developing_tooling_for_observational_health_research_in_julia"><a href="#project_1_developing_tooling_for_observational_health_research_in_julia" class="header-anchor">Project 1: Developing Tooling for Observational Health Research in Julia</a></h3>
 <p><strong>Description:</strong> The OMOP Common Data Model &#40;OMOP CDM&#41; is a widely used data standard that allows researchers to analyze large, heterogeneous healthcare datasets in a consistent and efficient manner. JuliaHealth has several packages that can interact with databases that adhere to the OMOP CDM &#40;such as OMOPCDMCohortCreator.jl or OMOPCDMDatabaseConnector.jl&#41;. For this project, we are looking for students interested in further developing the tooling in Julia to interact with OMOP CDM databases. </p>
 <ul>
 <li><p><strong>Mentor:</strong> Jacob Zelko &#40;aka TheCedarPrince&#41; &#91;email: jacobszelko@gmail.com&#93;</p>
@@ -166,7 +166,7 @@
 </ul>
 <p>In whatever functionality that gets developed for tools within JuliaHealth, it will also be expected for students to contribute to the existing package documentation to highlight how new features can be used. Although not required, if students would like to submit a lightning talks, posters, etc. to JuliaCon in the future about their work, they will be supported in this endeavor&#33;</p>
 <p>Please contact the mentor for this project if interested and want to discuss what else could be pursued in the course of this project.</p>
-<h3 id="project_2_developing_patient_level_prediction_tooling_within_julia"><a href="#project_2_developing_patient_level_prediction_tooling_within_julia">Project 2: Developing Patient Level Prediction Tooling within Julia</a></h3>
+<h3 id="project_2_developing_patient_level_prediction_tooling_within_julia"><a href="#project_2_developing_patient_level_prediction_tooling_within_julia" class="header-anchor">Project 2: Developing Patient Level Prediction Tooling within Julia</a></h3>
 <p><strong>Description:</strong> Patient level prediction &#40;PLP&#41; is an important area of research in healthcare that involves using patient data to predict outcomes such as disease progression, response to treatment, and hospital readmissions. JuliaHealth is interested in developing tooling for PLP that utilizes historical patient data, such as patient medical claims or electronic health records, that follow the OMOP Common Data Model &#40;OMOP CDM&#41;, a widely used data standard that allows researchers to analyze large, heterogeneous healthcare datasets in a consistent and efficient manner. For this project, we are looking for students interested in developing PLP tooling within Julia.</p>
 <ul>
 <li><p><strong>Mentor:</strong> Sebastian Vollmer &#91;email: sjvollmer@gmail.com&#93;, Jacob Zelko &#40;aka TheCedarPrince&#41; &#91;email: jacobszelko@gmail.com&#93;</p>
@@ -217,10 +217,10 @@
 </ul>
 <p>In whatever functionality that gets developed for tools within JuliaHealth, it will also be expected for students to contribute to the existing package documentation to highlight how new features can be used. For this project, it will be expected as part of the proposal to pursue drafting and giving a talk at JuliaCon.  Furthermore, although not required, publishing in the JuliaCon Proceedings will both be encouraged and supported by project mentors. </p>
 <p>Additionally, depending on the success of the package, there is a potential to run experiments on actual patient data to generate actual patient population insights based on a chosen research question.  This could possibly turn into a separate research paper, conference submission, or poster submission.  Whatever may occur in this situation will be supported by project mentors. </p>
-<h2 id="medical_imaging_subecosystem_projects"><a href="#medical_imaging_subecosystem_projects">Medical Imaging Subecosystem Projects</a></h2>
+<h2 id="medical_imaging_subecosystem_projects"><a href="#medical_imaging_subecosystem_projects" class="header-anchor">Medical Imaging Subecosystem Projects</a></h2>
 <p><a href="https://github.com/JuliaHealth/MedPipe3D.jl">MedPipe3D.jl</a> together with <a href="https://github.com/JuliaHealth/MedEye3d.jl">MedEye3D.jl</a> <a href="https://github.com/JuliaHealth/MedEval3D.jl">MedEval3D.jl</a> and currently in development <a href="https://github.com/JuliaHealth/MedImage.jl">MedImage.jl</a> is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language ecosystem. </p>
 <p>MedImage is a package for the standardization of loading medical imaging data, and for its basic processing that takes into consideration its spatial metadata. MedEye3D is a package that supports the display of medical imaging data.  MedEval3D has implemented some highly performant algorithms for calculating metrics needed to asses the performance of 3d segmentation models.  MedPipe3D was created as a package that improves integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. </p>
-<h3 id="project_3_adding_functionalities_to_medical_imaging_visualizations"><a href="#project_3_adding_functionalities_to_medical_imaging_visualizations">Project 3: Adding functionalities to medical imaging visualizations</a></h3>
+<h3 id="project_3_adding_functionalities_to_medical_imaging_visualizations"><a href="#project_3_adding_functionalities_to_medical_imaging_visualizations" class="header-anchor">Project 3: Adding functionalities to medical imaging visualizations</a></h3>
 <p><strong>Description:</strong>  MedEye3D is a package that supports the display of medical imaging data. It includes multiple functionalities specific to this use case like automatic windowing to display soft tissues, lungs, and other tissues. The display takes into account voxel spacing, support of overlaying display for multimodal imaging, and more. All with high performance powered by OpenGL and Rocket.jl. Still, a lot of further improvements are possible and are described in the Potential Outcomes section. </p>
 <ul>
 <li><p><strong>Mentor:</strong> Jakub Mitura &#91;email: jakub.mitura14@gmail.com&#93;</p>
@@ -271,7 +271,7 @@
 <li><p>The user will be able to display images just by supplying MedImage objects from the MedImage.jl library to a single display function -  20h</p>
 </li>
 </ol>
-<h3 id="project_4_adding_dataset-wide_functions_and_integrations_of_augmentations"><a href="#project_4_adding_dataset-wide_functions_and_integrations_of_augmentations">Project 4: Adding dataset-wide functions and integrations of augmentations</a></h3>
+<h3 id="project_4_adding_dataset-wide_functions_and_integrations_of_augmentations"><a href="#project_4_adding_dataset-wide_functions_and_integrations_of_augmentations" class="header-anchor">Project 4: Adding dataset-wide functions and integrations of augmentations</a></h3>
 <p><strong>Description:</strong>  MedPipe3D was created as a package that improves integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. Currently, it needs to be expanded and adapted so it can be a basis for a fully functional medical imaging pipeline. It requires utilities for preprocessing specific to medical imaging - like uniformization of spacing, orientation, cropping, or padding. It needs to k fold cross validation and simple ensembling. Other necessary part of the segmentation pipeline are the augmentations that should be easier to use, and provide test time augmentation for uncertainty quantification. The last thing in the pipeline that is also important for practitioners is postprocessing - and the most popular postprocessing is finding and keeping only the largest connected component.</p>
 <ul>
 <li><p><strong>Mentor:</strong> Jakub Mitura &#91;email: jakub.mitura14@gmail.com&#93;</p>
@@ -341,7 +341,7 @@
 </li>
 </ol>
 <p>For each point mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it &#40;that just need to be integrated&#41;.</p>
-<h3 id="project_5_highly-efficient_mri_simulations_with_multi-vendor_gpu_support"><a href="#project_5_highly-efficient_mri_simulations_with_multi-vendor_gpu_support">Project 5: Highly-efficient MRI Simulations with Multi-Vendor GPU Support</a></h3>
+<h3 id="project_5_highly-efficient_mri_simulations_with_multi-vendor_gpu_support"><a href="#project_5_highly-efficient_mri_simulations_with_multi-vendor_gpu_support" class="header-anchor">Project 5: Highly-efficient MRI Simulations with Multi-Vendor GPU Support</a></h3>
 <p><strong>Description:</strong>  KomaMRI.jl is a Julia package designed for highly-efficient Magnetic Resonance Imaging &#40;MRI&#41; simulations, serving both educational and research purposes. Simulations can help to grasp hard-to-understand MRI concepts, like pulse sequences, signal generation and acquisition. Moreover, they can guide the design of novel pulse sequences, and generate synthetic data for training machine learning models.</p>
 <p>Currently, our simulator performs GPU-accelerated computations using CUDA arrays. We are now advancing to implement a new simulation method &#40;<code>BlochKernel&lt;:SimulationMethod</code>&#41; based on GPU kernel programming using KernelAbstractions.jl. This enhancement will not only boost computation speeds but also broaden accessibility with KernelAbstractions.jl&#39;s multi-vendor GPU support. This could enable the use of MRI simulations in iterative algorithms to solve inverse problems. We are seeking enthusiastic people interested in developing this functionality.</p>
 <ul>
@@ -503,7 +503,7 @@
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>

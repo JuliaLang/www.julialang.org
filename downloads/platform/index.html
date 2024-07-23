@@ -117,18 +117,18 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="platform_specific_instructions_for_official_binaries"><a href="#platform_specific_instructions_for_official_binaries">Platform Specific Instructions for Official Binaries</a></h1>
+<div class="container main"><h1 id="platform_specific_instructions_for_official_binaries"><a href="#platform_specific_instructions_for_official_binaries" class="header-anchor">Platform Specific Instructions for Official Binaries</a></h1>
 <p>All official Julia binaries produce portable installations. Once installed, the directory in which Julia was installed can be moved to a different location on the same computer, or even to a different computer.</p>
 <p>The instructions here refer to the latest stable release of Julia. If you are using the LTS version or an older version, please substitute the appropriate version number in the instructions.</p>
-<h2 id="cross-platform_installer"><a href="#cross-platform_installer">Cross-platform installer</a></h2>
+<h2 id="cross-platform_installer"><a href="#cross-platform_installer" class="header-anchor">Cross-platform installer</a></h2>
 <p>An installer and version manager for Julia called <a href="https://github.com/JuliaLang/juliaup">juliaup</a> can be installed <a href="https://github.com/JuliaLang/juliaup#mac-and-linux">via the command line</a> on Linux and Mac and is available in the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> for Windows. It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.</p>
-<h2 id="linux_and_freebsd"><a href="#linux_and_freebsd">Linux and FreeBSD</a></h2>
+<h2 id="linux_and_freebsd"><a href="#linux_and_freebsd" class="header-anchor">Linux and FreeBSD</a></h2>
 <p>It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named <code>julia-1.10.4</code>.</p>
 
-<pre><code class="language-shell">wget https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.4-linux-x86_64.tar.gz
+<pre><code class="shell hljs">wget https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.4-linux-x86_64.tar.gz
 tar zxvf julia-1.10.4-linux-x86_64.tar.gz</code></pre>
 
-<h3 id="running_julia"><a href="#running_julia">Running Julia</a></h3>
+<h3 id="running_julia"><a href="#running_julia" class="header-anchor">Running Julia</a></h3>
 <p>The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the <code>julia</code> executable. The directory where Julia is installed is referred to as <code>&lt;Julia directory&gt;</code>.</p>
 <p>To run Julia, you can do any of the following:</p>
 <ul>
@@ -140,14 +140,14 @@ tar zxvf julia-1.10.4-linux-x86_64.tar.gz</code></pre>
 </li>
 </ul>
 <p>To add Julia&#39;s <code>bin</code> folder &#40;with full path&#41; to <code>PATH</code> environment variable, you can edit the <code>~/.bashrc</code> &#40;or <code>~/.bash_profile</code>&#41; file. Open the file in your favourite editor and add a new line as follows:</p>
-<pre><code class="language-shell">export PATH&#61;&quot;&#36;PATH:/path/to/&lt;Julia directory&gt;/bin&quot;</code></pre>
+<pre><code class="shell hljs">export PATH=&quot;$PATH:/path/to/&lt;Julia directory&gt;/bin&quot;</code></pre>
 <p>Apart from this, there are several ways through which you can change environment variable. You can follow <a href="https://help.ubuntu.com/community/EnvironmentVariables">this guide</a> to find out a way convenient for you.</p>
-<h3 id="uninstallation"><a href="#uninstallation">Uninstallation</a></h3>
+<h3 id="uninstallation"><a href="#uninstallation" class="header-anchor">Uninstallation</a></h3>
 <p>Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove <code>~/.julia</code>. The startup file is at <code>~/.julia/config/startup.jl</code> and the history at <code>~/.julia/logs/repl_history.jl</code>.</p>
-<h2 id="windows"><a href="#windows">Windows</a></h2>
+<h2 id="windows"><a href="#windows" class="header-anchor">Windows</a></h2>
 <p>Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.</p>
 <p><strong>We highly recommend running Julia using a modern terminal, such as installing the <a href="https://aka.ms/terminal">Windows Terminal from the Microsoft Store</a>.</strong></p>
-<h3 id="install_julia_in_4_simple_steps"><a href="#install_julia_in_4_simple_steps">Install Julia in 4 simple steps&#33;</a></h3>
+<h3 id="install_julia_in_4_simple_steps"><a href="#install_julia_in_4_simple_steps" class="header-anchor">Install Julia in 4 simple steps&#33;</a></h3>
 <ol>
 <li><p>Download the Windows Julia installer from https://julialang.org/downloads/. Note, the 32-bit Julia binaries work on both 32-bit and 64-bit Windows  &#40;x86 and x86&#95;64&#41;, but the 64-bit Julia binaries only run on 64-bit Windows &#40;x86&#95;64&#41;.</p>
 </li>
@@ -161,10 +161,10 @@ tar zxvf julia-1.10.4-linux-x86_64.tar.gz</code></pre>
 <li><p>Invoke Julia by simply typing <code>julia</code> in your preferred terminal</p>
 </li>
 </ol>
-<h4 id="adding_julia_to_path_for_older_releases"><a href="#adding_julia_to_path_for_older_releases">Adding Julia to path for older releases</a></h4>
+<h4 id="adding_julia_to_path_for_older_releases"><a href="#adding_julia_to_path_for_older_releases" class="header-anchor">Adding Julia to path for older releases</a></h4>
 <p>For older &#40;&lt;&#61; Julia 1.5.4&#41; downloads, note the installation directory at the time of installation. The installation directory should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.10.4</code>, <em>please note this path</em>.</p>
 <p>Then add the Julia executable directory to PATH by performing the following steps.</p>
-<h5 id="adding_julia_to_path_on_windows_10"><a href="#adding_julia_to_path_on_windows_10">Adding Julia to PATH on Windows 10,</a></h5>
+<h5 id="adding_julia_to_path_on_windows_10"><a href="#adding_julia_to_path_on_windows_10" class="header-anchor">Adding Julia to PATH on Windows 10,</a></h5>
 <ol>
 <li><p>Open Run &#40;Windows Key &#43; R&#41;,  type in <code>rundll32 sysdm.cpl,EditEnvironmentVariables</code> and hit enter.</p>
 </li>
@@ -175,7 +175,7 @@ tar zxvf julia-1.10.4-linux-x86_64.tar.gz</code></pre>
 <li><p>Click OK. You can now run Julia from the command line, by typing <code>julia</code>&#33;</p>
 </li>
 </ol>
-<h5 id="adding_julia_to_path_on_windows_7_or_8"><a href="#adding_julia_to_path_on_windows_7_or_8">Adding Julia to PATH on Windows 7 or 8</a></h5>
+<h5 id="adding_julia_to_path_on_windows_7_or_8"><a href="#adding_julia_to_path_on_windows_7_or_8" class="header-anchor">Adding Julia to PATH on Windows 7 or 8</a></h5>
 <ol>
 <li><p>Open Run &#40;Windows Key &#43; R&#41;,  type in <code>rundll32 sysdm.cpl,EditEnvironmentVariables</code> and hit enter.</p>
 </li>
@@ -188,7 +188,7 @@ tar zxvf julia-1.10.4-linux-x86_64.tar.gz</code></pre>
 <li><p>Click OK. You can now run Julia from the command line, by typing <code>julia</code>&#33;</p>
 </li>
 </ol>
-<h3 id="windows_7_windows_server_2012_installation_notes"><a href="#windows_7_windows_server_2012_installation_notes">Windows 7 / Windows Server 2012 Installation Notes</a></h3>
+<h3 id="windows_7_windows_server_2012_installation_notes"><a href="#windows_7_windows_server_2012_installation_notes" class="header-anchor">Windows 7 / Windows Server 2012 Installation Notes</a></h3>
 <p>Windows 7 / Windows Server 2012 users also need to install:</p>
 <ul>
 <li><p>the <a href="https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in">TLS easy&#95;fix</a> for the package manager to work, see <a href="https://discourse.julialang.org/t/errors-for-git-pkg/9351">this Discourse thread</a> for more details.</p>
@@ -196,22 +196,22 @@ tar zxvf julia-1.10.4-linux-x86_64.tar.gz</code></pre>
 <li><p><a href="https://docs.microsoft.com/en-us/powershell/scripting/wmf/overview">Windows Management Framework 3.0 or later</a> to include PowerShell 3.0 or later.</p>
 </li>
 </ul>
-<h3 id="uninstallation__2"><a href="#uninstallation__2">Uninstallation</a></h3>
+<h3 id="uninstallation__2"><a href="#uninstallation__2" class="header-anchor">Uninstallation</a></h3>
 <p>Uninstallation is preferably performed by using the Windows uninstaller. The directory in <code>&#37;HOME&#37;/.julia</code> can then be deleted if you want to remove all traces of Julia &#40;this includes user installed packages&#41;.</p>
-<h2 id="macos"><a href="#macos">macOS</a></h2>
+<h2 id="macos"><a href="#macos" class="header-anchor">macOS</a></h2>
 <p>On macOS, a <code>julia-1.10.4-mac64.dmg</code> file is provided, which contains <code>Julia-1.10.app</code>. Installation is the same as any other Mac software: drag the <code>Julia-1.10.app</code> to Applications Folder&#39;s Shortcut. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard &#40;possibly earlier versions as well&#41; and 32-bit but neither are fully supported.</p>
 <p>You can launch Julia by opening the Julia app <a href="https://www.howtogeek.com/409411/how-to-launch-applications-on-your-mac/">like any other application</a>.</p>
-<h3 id="optional_add_julia_to_path"><a href="#optional_add_julia_to_path">Optional: Add Julia to PATH</a></h3>
+<h3 id="optional_add_julia_to_path"><a href="#optional_add_julia_to_path" class="header-anchor">Optional: Add Julia to PATH</a></h3>
 <p>If you want to launch Julia from the command line, first <a href="https://www.howtogeek.com/682770/how-to-open-the-terminal-on-a-mac/">open a new terminal window</a>, then run the following snippet from your <a href="https://superuser.com/questions/144666/what-is-the-difference-between-shell-console-and-terminal">shell</a> &#40;e.g., using the Terminal app, not inside the Julia prompt&#41;.</p>
 
-<pre><code class="language-shell">sudo mkdir -p /usr/local/bin
+<pre><code class="shell hljs">sudo mkdir -p /usr/local/bin
 sudo rm -f /usr/local/bin/julia
 sudo ln -s /Applications/Julia-1.10.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></pre>
 
 <p>This code creates a <a href="https://en.wikipedia.org/wiki/Symbolic_link">symlink</a> to a Julia version &#40;here 1.10&#41; of your choosing. To launch Julia, simply type <code>julia</code> inside your shell and press return.</p>
-<h3 id="uninstallation__3"><a href="#uninstallation__3">Uninstallation</a></h3>
+<h3 id="uninstallation__3"><a href="#uninstallation__3" class="header-anchor">Uninstallation</a></h3>
 <p>You can uninstall Julia by deleting Julia.app and the packages directory in <code>~/.julia</code>. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove <code>~/.julia/config/startup.jl</code> and <code>~/.julia/logs/repl_history.jl</code>.</p>
-<h1 id="a_brief_note_about_unofficial_binaries"><a href="#a_brief_note_about_unofficial_binaries">A Brief Note About Unofficial Binaries</a></h1>
+<h1 id="a_brief_note_about_unofficial_binaries"><a href="#a_brief_note_about_unofficial_binaries" class="header-anchor">A Brief Note About Unofficial Binaries</a></h1>
 <p>There are a variety of distribution-specific packages that are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All such distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.</p>
 </div><br><br>
 
@@ -219,7 +219,7 @@ sudo ln -s /Applications/Julia-1.10.app/Contents/Resources/julia/bin/julia /usr/
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
 
     
 
@@ -332,7 +332,7 @@ sudo ln -s /Applications/Julia-1.10.app/Contents/Resources/julia/bin/julia /usr/
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: July 21, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: July 23, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
@@ -348,7 +348,7 @@ sudo ln -s /Applications/Julia-1.10.app/Contents/Resources/julia/bin/julia /usr/
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!--  -->
 
 
   </body>
