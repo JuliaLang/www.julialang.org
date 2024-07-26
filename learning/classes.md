@@ -31,6 +31,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [EARS 80.03](https://dartmouth.smartcatalogiq.com/en/current/orc/Departments-Programs-Undergraduate/Earth-Sciences/EARS-Earth-Sciences-Undergraduate/EARS-80-03)
 * École Polytechnique Fédérale de Lausanne
     * [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
+    * [MATH 251(b)](https://teaching.matmat.org/numerical-analysis/), Numerical analysis, Spring 2024
+    * [MATH 500](https://teaching.matmat.org/error-control/), Error control in scientific modelling, from Fall 2023
 * [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/)
     * [Econometrics of DSGE Models](https://web.archive.org/web/20211207064252/https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://gragusa.org))
 * Emory University
