@@ -10,7 +10,7 @@ The nightly builds are for developer previews and not intended for
 normal use. You can expect many packages not to work with this version.
 Most users are advised to use the latest official release version of Julia.
 
-Nighlies are updated asynchronously for each platform after each platforms testing passes.
+Nightlies are updated asynchronously for each platform after each platforms testing passes.
 The time the installers were updated can be seen by hovering over the links.
 
 ~~~
