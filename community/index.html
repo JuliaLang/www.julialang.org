@@ -30,8 +30,21 @@
 <script src="/libs/detectdark.js"></script>
 
 
-
 <script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
    <title>Community</title>   
@@ -207,6 +220,30 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
    </div>
    <br>
  </div>
+
+ <!--
+      Containers: Local Communities
+ -->
+  <div class="container pt-sm-2">
+   <br><br>
+   <div class="container">
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="events">
+          <a href="#local_communities" class="link">Local Communities</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+
+     <br>
+     <p>The Julia Community has several local communities organizing meetups and other activities. If your community is missing from the map, add it <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/_libs/groups.js">here</a>.</p>
+     <br>
+     <div id="map"></div>
+   </div>
+ </div>
+<br>
 
  <!--
       Containers: Events
@@ -506,6 +543,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 <!-- <script src="/libs/highlight/highlight.min.js"></script> -->
 <!-- <script>hljs.initHighlightingOnLoad();</script> -->
 
-
+    <script src="/libs/groups.js"></script>
+    <script src="/libs/map.js"></script>
   </body>
 </html>
