@@ -32,5 +32,11 @@ const groups = [
         lat: 42.373611,
         lon: -71.110558,
         homepage: 'https://www.meetup.com/julia-cajun/',
-    }
+    },
+    {
+        name: 'Julia Paris et Environs',
+        lat: 48.856667,
+        lon: 2.352222,
+        homepage: 'https://www.meetup.com/julia-paris/',
+    },
 ];
