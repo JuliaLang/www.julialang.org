@@ -39,4 +39,10 @@ const groups = [
         lon: 2.352222,
         homepage: 'https://www.meetup.com/julia-paris/',
     },
+    {
+        name: 'JuliaLang Athens, Greece',
+        lat: 37.978117,
+        lon: 23.7831518,
+        homepage: 'https://www.meetup.com/julialang-athens/',
+    },
 ];
