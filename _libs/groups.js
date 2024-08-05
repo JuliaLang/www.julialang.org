@@ -45,4 +45,11 @@ const groups = [
         lon: 23.7831518,
         homepage: 'https://www.meetup.com/julialang-athens/',
     },
+    {
+        name: 'JuliaLang Amsterdam',
+        lat: 52.378835,
+        lon: 4.900374,
+        homepage: 'https://www.meetup.com/julia-lang-amsterdam/',
+        github: 'https://github.com/julia-lang-amsterdam/julia-lang-amsterdam.github.io',
+    },
 ];
