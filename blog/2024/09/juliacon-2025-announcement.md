@@ -1,13 +1,13 @@
 # JuliaCon Global 2025 and JuliaCon 2024 Wrap-Up
 
 ![Pittsburgh Skyline](/assets/blog/2024-JuliaCon/AdobeStock_50245829.jpeg)
-#### We’re happy to announce that JuliaCon Global 2025 will be held in Pittsburgh Pennsylvania, USA July 21 - July 26!
+#### We’re happy to announce that JuliaCon Global 2025 will be held in Pittsburgh, Pennsylvania, USA July 21 - July 26!
 
 A few important date estimates for you:
 
-- Call for Proposals will be open November 1 - January 31
-- Volunteer, and scholarship applications will be open from December 1 - February 28
-- Early-bird tickets will go on sale late this year, full-price ticket sales will start on ==March 15==
+- Call for Proposals will be open November 1 - January 15 with acceptances released March 1
+- Volunteer and scholarship applications will be open from December 1 - February 28
+- Early-bird tickets will go on sale late this year, full-price ticket sales will start on March 15
 
 We look forward to seeing you in Pittsburgh, and please keep an eye out for future announcements!
 
