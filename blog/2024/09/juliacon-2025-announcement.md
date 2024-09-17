@@ -1,7 +1,7 @@
 # JuliaCon Global 2025 and JuliaCon 2024 Wrap-Up
 
 ![Pittsburgh Skyline](/assets/blog/2024-JuliaCon/AdobeStock_50245829.jpeg)
-We’re happy to announce that JuliaCon Global 2025 will be held in Pittsburgh Pennsylvania, USA in the ==third week of July==! As we approach the conference next year we will make further announcements.
+#### We’re happy to announce that JuliaCon Global 2025 will be held in Pittsburgh Pennsylvania, USA July 21 - July 26!
 
 A few important date estimates for you:
 
@@ -40,7 +40,7 @@ We are working on a unified playbook for how to build your local community, how 
 
 ## JuliaCon Global 2024 Wrap Up
 
-![img](https://private-user-images.githubusercontent.com/52289/350892487-7bac9e6d-e343-4c07-b461-f5286d75396a.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjY1ODQ0MTMsIm5iZiI6MTcyNjU4NDExMywicGF0aCI6Ii81MjI4OS8zNTA4OTI0ODctN2JhYzllNmQtZTM0My00YzA3LWI0NjEtZjUyODZkNzUzOTZhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA5MTclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwOTE3VDE0NDE1M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWU0ZjI2NjBlZjQwMmRmZmUwZDA3YzFmYTUyZDMzNDQwNzhjZmE0MGIzYTdiZmRjM2JhMDE0ZWYzYzU1ZDZhNDImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.MC6xJd9Rr4RxAgYwCdSIk8HZXRr0-nxvdpBlW0OLmZ4)
+![JuliaCon Construction Edition](/assets/blog/2024-JuliaCon/AdobeStock_50245829.jpeg)
 
 ### Julia Community Prizes
 
