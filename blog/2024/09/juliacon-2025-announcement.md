@@ -5,13 +5,13 @@
 @def rss = """JuliaCon Global 2025 and JuliaCon 2024 Wrap-Up Blogpost."""
 
 ![Pittsburgh Skyline](/assets/blog/2024-JuliaCon/AdobeStock_50245829.jpeg)
-#### We’re happy to announce that JuliaCon Global 2025 will be held in Pittsburgh, Pennsylvania, USA July 21 - July 26!
+#### We’re happy to announce that JuliaCon Global 2025 will be held in Pittsburgh, Pennsylvania, USA July 21 - July 26, 2025!
 
 A few important date estimates for you:
 
-- Call for Proposals will be open November 1 - January 15 with acceptances released March 1
-- Volunteer and scholarship applications will be open from December 1 - February 28
-- Early-bird tickets will go on sale late this year, full-price ticket sales will start on March 15
+- Call for Proposals will be open November 1, 2024 - January 15, 2025 with acceptances released March 1, 2025
+- Volunteer and scholarship applications will be open from December 1, 2024 - February 28, 2025
+- Early-bird tickets will go on sale late this year, full-price ticket sales will start on March 15, 2025
 
 We look forward to seeing you in Pittsburgh, and please keep an eye out for future announcements!
 
@@ -25,9 +25,9 @@ We have a couple new community efforts we’d like to talk about!
 
 We have a lot of community members who want to give presentations at JuliaCon each year but can’t make it! We receive a lot of requests to submit videos to the conference, but for now we intend to run JuliaCon as an in-person conference first and foremost. Hybrid conferences take a lot of effort, and have a negative impact on the in-person experience.
 
-As an alternative we are starting a new trial program for community members to propose videos for upload to the Julia YouTube Channel. If your proposal is accepted you’ll be asked to prepare your proposal into a full video for upload! This call for proposals will be evergreen, it will be open for as long as we run this program so you are welcome to propose a video at any time.
+As an alternative we are starting a new trial program called ***Julia Online*** for community members to propose videos for upload to the Julia YouTube Channel. If your proposal is accepted you’ll be asked to prepare your proposal into a full video for upload! This call for proposals will be evergreen, it will be open for as long as we run this program so you are welcome to propose a video at any time.
 
-Our YouTube channel is a fantastic forum for you to advertise your packages / work, present tutorials which drive users to the Julia ecosystem, or to present unique perspectives on your favorite problem in computer science, software development, or scientific computing! We have well over 100k views per month, and a lot of impressions on each video we upload.
+Our YouTube channel is a fantastic forum for you to advertise your packages / work, present tutorials which drive users to the Julia ecosystem, or to present unique perspectives on your favorite problem in computer science, software development, or scientific computing! We have well over 100k views per month, and a hundreds of thousands of impressions on each video we upload.
 
 If this program interests you please fill out the following form: <https://forms.gle/rNjqoXGgQ3TnpcRf8>
 
