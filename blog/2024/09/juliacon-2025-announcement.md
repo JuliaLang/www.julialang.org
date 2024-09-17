@@ -1,4 +1,8 @@
-# JuliaCon Global 2025 and JuliaCon 2024 Wrap-Up
+@def title = "JuliaCon Global 2025 and JuliaCon 2024 Wrap-Up"
+@def authors = "JuliaCon Organizing Committee"
+@def published = "18 September 2024"
+@def rss_pubdate = Date(2024, 9, 18)
+@def rss = """JuliaCon Global 2025 and JuliaCon 2024 Wrap-Up Blogpost."""
 
 ![Pittsburgh Skyline](/assets/blog/2024-JuliaCon/AdobeStock_50245829.jpeg)
 #### We’re happy to announce that JuliaCon Global 2025 will be held in Pittsburgh, Pennsylvania, USA July 21 - July 26!
