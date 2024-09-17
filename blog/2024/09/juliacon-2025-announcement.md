@@ -11,7 +11,7 @@ A few important date estimates for you:
 
 We look forward to seeing you in Pittsburgh, and please keep an eye out for future announcements!
 
-***If you’re interested in joining the JuliaCon Global 2025 organizing committee please fill out this form https://forms.gle/1V5nkbeGr959R8s66***
+***If you’re interested in joining the JuliaCon Global 2025 organizing committee please fill out this form***: <https://forms.gle/mYNPDgSvAYyxcNM6A>
 
 ## Julia Community Efforts
 
@@ -19,15 +19,13 @@ We have a couple new community efforts we’d like to talk about!
 
 ### Julia Online Videos
 
-We have a lot of community members who want to give presentations at JuliaCon each year but can’t make it. We receive a lot of requests to submit videos to the conference, but for now we intend to run JuliaCon as an in-person conference first and foremost. Hybrid conferences take a lot of effort, and have a negative impact on the in-person experience.
+We have a lot of community members who want to give presentations at JuliaCon each year but can’t make it! We receive a lot of requests to submit videos to the conference, but for now we intend to run JuliaCon as an in-person conference first and foremost. Hybrid conferences take a lot of effort, and have a negative impact on the in-person experience.
 
 As an alternative we are starting a new trial program for community members to propose videos for upload to the Julia YouTube Channel. If your proposal is accepted you’ll be asked to prepare your proposal into a full video for upload! This call for proposals will be evergreen, it will be open for as long as we run this program so you are welcome to propose a video at any time.
 
 Our YouTube channel is a fantastic forum for you to advertise your packages / work, present tutorials which drive users to the Julia ecosystem, or to present unique perspectives on your favorite problem in computer science, software development, or scientific computing! We have well over 100k views per month, and a lot of impressions on each video we upload.
 
-If this program interests you please fill out the following form:
-
-https://forms.gle/vHUsG4hbbVf5V472A
+If this program interests you please fill out the following form: <https://forms.gle/rNjqoXGgQ3TnpcRf8>
 
 ### JuliaCon Locals
 
