@@ -96,7 +96,5 @@ Our global committee this year was also the biggest we’ve had in years, and or
 
 ![JuliaCon Crowd](/assets/blog/2024-JuliaCon/140A0016.jpg)
 
-
-
 – Raye Kimmerer
 JuliaCon Executive Chair
