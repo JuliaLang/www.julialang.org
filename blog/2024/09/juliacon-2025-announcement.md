@@ -40,7 +40,7 @@ We are working on a unified playbook for how to build your local community, how 
 
 ## JuliaCon Global 2024 Wrap Up
 
-![JuliaCon Construction Edition](/assets/blog/2024-JuliaCon/AdobeStock_50245829.jpeg)
+![JuliaCon Construction Edition](/assets/blog/2024-JuliaCon/tractors.png)
 
 ### Julia Community Prizes
 
@@ -91,6 +91,8 @@ Our global committee this year was also the biggest we’ve had in years, and or
 \- Avik Sengupta, JuliaHub: Organizer
 
 \- Ranjan Anantharaman, JuliaHub: Executive co-Chair
+
+![JuliaCon Crowd](/assets/blog/2024-JuliaCon/140A0016.jpg)
 
 
 
