@@ -62,7 +62,7 @@ Awardees are nominated by the Julia community, and then winners are selected by 
 
 JuliaCon wouldn’t happen without an amazing group of organizers and volunteers. The organizing committee put in an incredible amount of work over the past year, and an incredible 70+ volunteers made the conference possible.
 
-I first want to highlight the incredible Local Organizing Committee. Led by Gareth Thomas, who is unmatched in his ability to bring people together for a common cause, the local committee was the key to both JuliaCon Local Eindhoven and JuliaCon Global 2024!
+We first want to highlight the incredible Local Organizing Committee. Led by Gareth Thomas, who is unmatched in his ability to bring people together for a common cause, the local committee was the key to both JuliaCon Local Eindhoven and JuliaCon Global 2024!
 
 * Gareth Thomas, Version Bay: Local Chair
 
