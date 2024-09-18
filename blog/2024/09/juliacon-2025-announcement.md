@@ -42,6 +42,8 @@ We are working on a unified playbook for how to build your local community, how 
 
 ## JuliaCon Global 2024 Wrap Up
 
+JuliaCon 2024 was a wonderful, record breaking event for our community. If you were able to attend in person we hope you enjoyed the conference and plan to attend future JuliaCons! If you were an online viewer or have been watching our talks as they've been uploaded on YouTube hopefully you plan to join us in 2025!
+
 ![JuliaCon Crowd](/assets/blog/2024-JuliaCon/140A0016.jpg)
 
 ### Julia Community Prizes
@@ -94,7 +96,7 @@ Our global committee this year was also the biggest we’ve had in years, and or
 
 \- Ranjan Anantharaman, JuliaHub: Executive co-Chair
 
-![JuliaCon Construction Edition](/assets/blog/2024-JuliaCon/tractors.png)
+\– Raye Kimmerer, MIT: Executive co-Chair
 
-– Raye Kimmerer
-JuliaCon Executive Chair
+
+![JuliaCon Construction Edition](/assets/blog/2024-JuliaCon/tractors.png)
