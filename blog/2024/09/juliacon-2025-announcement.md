@@ -36,7 +36,7 @@ If this program interests you, please fill out the following form: <https://form
 We had over a dozen community members reach out to talk about hosting a JuliaCon Local at JuliaCon 2024! 
 The first step in this process is always to start a local meetup. We’re happy to help with that as much as we can, you can reach out on the #community channel on Slack at any time. 
 
-Once you have an established meetup and you’d like to host a JuliaCon Local please reach out to raye@julialang.org or ranjan@julialang.org for more information.
+Once you have an established meetup and you’d like to host a JuliaCon Local please reach out to [raye@julialang.org](mailto:raye@julialang.org) or [ranjan@julialang.org](mailto:ranjan@julialang.org) for more information.
 
 We are working on a unified playbook for how to build your local community, how to get access to awesome speakers, and how to find spaces and funds for your meetup, so please keep an eye out for that on our usual channels!
 
@@ -50,11 +50,11 @@ JuliaCon 2024 was a wonderful, record breaking event for our community. If you w
 
 We want to be sure you didn’t miss the Julia Community Prizes. These prizes were announced at the closing session of JuliaCon 2024 on July 12th, but if you missed it, the awardees this year were:
 
-\- **The JuMP Team**: Including **Oscar Dowson**, **Benoît Legat**, and **Miles Lubin**, for their long-term commitment to JuMP.jl and the broader mathematical programming ecosystem in Julia.
+* **The JuMP Team**: Including **Oscar Dowson**, **Benoît Legat**, and **Miles Lubin**, for their long-term commitment to JuMP.jl and the broader mathematical programming ecosystem in Julia.
 
-\- **The Makie Team:** Including **Simon Danisch**, **Julius Krumbiegel**, **Frederic Freyer**, and **Anshul Singhvi**, for their creation of Makie.jl and improvements to the state of data visualization in Julia.
+* **The Makie Team:** Including **Simon Danisch**, **Julius Krumbiegel**, **Frederic Freyer**, and **Anshul Singhvi**, for their creation of Makie.jl and improvements to the state of data visualization in Julia.
 
-\- **Guillaume Dalle:** For his various contributions to the Julia ecosystem including DifferentiationInterface.jl and ModernJuliaWorkflows.
+* **Guillaume Dalle:** For his various contributions to the Julia ecosystem including DifferentiationInterface.jl and ModernJuliaWorkflows.
 
 Awardees are nominated by the Julia community, and then winners are selected by a committee of senior community members based on their holistic contributions across the ecosystem.
 
@@ -64,39 +64,39 @@ JuliaCon wouldn’t happen without an amazing group of organizers and volunteers
 
 I first want to highlight the incredible Local Organizing Committee. Led by Gareth Thomas, who is unmatched in his ability to bring people together for a common cause, the local committee was the key to both JuliaCon Local Eindhoven and JuliaCon Global 2024!
 
-\- Gareth Thomas, Version Bay: Local Chair
+* Gareth Thomas, Version Bay: Local Chair
 
-\- Jorge Vieyra, ASML: Local Organizer
+* Jorge Vieyra, ASML: Local Organizer
 
-\- Max van Dijk, ASML: Local Organizer
+* Max van Dijk, ASML: Local Organizer
 
-\- Erwin Hoogerwoord, TU/e: Local Organizer + Workshops
+* Erwin Hoogerwoord, TU/e: Local Organizer + Workshops
 
-\- Dmitry Bagaev, TU/e: Local Organizer + Web
+* Dmitry Bagaev, TU/e: Local Organizer + Web
 
-\- Long Chen, ASML: Local Organizer
+* Long Chen, ASML: Local Organizer
 
 This local committee is a fantastic blueprint for future JuliaCon Locals, and for local committees in the future.
 
 Our global committee this year was also the biggest we’ve had in years, and organized our wonderful program, diversity initiatives, and sponsorship roster. 
 
-\- Katie Hyatt, AWS: Program co-Chair
+* Katie Hyatt, AWS: Program co-Chair
 
-\- Luca Ferranti, PlantingSpace: Program co-Chair
+* Luca Ferranti, PlantingSpace: Program co-Chair
 
-\- Mark Kittisopikul, HHMI: Finance Chair
+* Mark Kittisopikul, HHMI: Finance Chair
 
-\- Skylar Gering, CalTech: Diversity & Accessibility co-Chair
+* Skylar Gering, CalTech: Diversity & Accessibility co-Chair
 
-\- Valentin Churavy, MIT: Diversity & Accessibility co-Chair
+* Valentin Churavy, MIT: Diversity & Accessibility co-Chair
 
-\- Carsten Bauer: Proceedings Chair
+* Carsten Bauer: Proceedings Chair
 
-\- Avik Sengupta, JuliaHub: Organizer
+* Avik Sengupta, JuliaHub: Organizer
 
-\- Ranjan Anantharaman, JuliaHub: Executive co-Chair
+* Ranjan Anantharaman, JuliaHub: Executive co-Chair
 
-\– Raye Kimmerer, MIT: Executive co-Chair
+* Raye Kimmerer, MIT: Executive co-Chair
 
 
 ![JuliaCon Construction Edition](/assets/blog/2024-JuliaCon/tractors.png)
