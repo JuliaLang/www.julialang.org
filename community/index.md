@@ -101,7 +101,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <div class="row">
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
        <div class="col-lg-4 col-md-6 language-features section-heading">
-         <h2 class="lead secondary-heading" id="events">
+         <h2 class="lead secondary-heading" id="local_communities">
           <a href="#local_communities" class="link">Local Communities</a>
          </h2>
        </div>
