@@ -15,7 +15,7 @@ A few important date estimates for you:
 
 We look forward to seeing you in Pittsburgh, and please keep an eye out for future announcements!
 
-***If you’re interested in joining the JuliaCon Global 2025 organizing committee please fill out this form***: <https://forms.gle/mYNPDgSvAYyxcNM6A>
+**If you’re interested in joining the JuliaCon Global 2025 organizing committee** please fill out this form: <https://forms.gle/mYNPDgSvAYyxcNM6A>
 
 ## Julia Community Efforts
 
@@ -42,7 +42,7 @@ We are working on a unified playbook for how to build your local community, how 
 
 ## JuliaCon Global 2024 Wrap Up
 
-![JuliaCon Construction Edition](/assets/blog/2024-JuliaCon/tractors.png)
+![JuliaCon Crowd](/assets/blog/2024-JuliaCon/140A0016.jpg)
 
 ### Julia Community Prizes
 
@@ -94,7 +94,7 @@ Our global committee this year was also the biggest we’ve had in years, and or
 
 \- Ranjan Anantharaman, JuliaHub: Executive co-Chair
 
-![JuliaCon Crowd](/assets/blog/2024-JuliaCon/140A0016.jpg)
+![JuliaCon Construction Edition](/assets/blog/2024-JuliaCon/tractors.png)
 
 – Raye Kimmerer
 JuliaCon Executive Chair
