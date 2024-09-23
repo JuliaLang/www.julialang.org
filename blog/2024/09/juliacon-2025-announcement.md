@@ -64,7 +64,7 @@ JuliaCon wouldn’t happen without an amazing group of organizers and volunteers
 
 We first want to highlight the incredible Local Organizing Committee. Led by Gareth Thomas, who is unmatched in his ability to bring people together for a common cause, the local committee was the key to both JuliaCon Local Eindhoven and JuliaCon Global 2024!
 
-* Gareth Thomas, Version Bay: Local Chair
+* Gareth Thomas, VersionBay: Local Chair
 
 * Jorge Vieyra, ASML: Local Organizer
 
@@ -75,6 +75,10 @@ We first want to highlight the incredible Local Organizing Committee. Led by Gar
 * Dmitry Bagaev, TU/e: Local Organizer + Web
 
 * Long Chen, ASML: Local Organizer
+
+* Jérôme Carnis, ASML: Local Organizer + Hackathon
+
+* Koen Vossen, TeamTV: Audiovisual Chair
 
 This local committee is a fantastic blueprint for future JuliaCon Locals, and for local committees in the future.
 
