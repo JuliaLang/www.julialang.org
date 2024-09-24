@@ -52,4 +52,19 @@ const groups = [
         homepage: 'https://www.meetup.com/julia-lang-amsterdam/',
         github: 'https://github.com/julia-lang-amsterdam/julia-lang-amsterdam.github.io',
     },
+    {
+        name: 'JuliaLang Iran',
+        lat: 35.6863968,
+        lon: 51.4328575,
+        homepage: 'https://www.Juliair.org/',
+    },
+
+
+
+
+
+
+
+
+    
 ];
