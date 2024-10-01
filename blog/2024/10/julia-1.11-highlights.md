@@ -56,7 +56,7 @@ end
 *Florian Atteneder*
 
 Enabling relocation of cache files, together with other improvements coming in v1.11,
-paves the way for Pkg.jl to serve cache files in the future.
+will help Pkg.jl to serve cache files in the future.
 
 To automatically enable relocatability follow [Pkg.jl's Best Practices](https://pkgdocs.julialang.org/v1/creating-packages/#Best-Practices), i.e.
 do not assume that your package code ends up in a writeable or stable location.
