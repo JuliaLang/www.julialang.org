@@ -3,7 +3,7 @@ mintoclevel = 2
 maxtoclevel = 3
 title = "Julia 1.11 Highlights"
 authors = "The Julia contributors"
-published = "1 Oct
+published = "1 October 2024"
 rss_pubdate = Date(2024, 10, 01)
 rss = """Highlights of the Julia 1.11 release."""
 +++
