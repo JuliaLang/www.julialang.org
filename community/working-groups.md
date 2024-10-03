@@ -44,7 +44,7 @@ to anyone. Please check Slack for the meeting link.
 
 | Name    | Slack channel | Meetings                          | Contact                        |
 | ------- | ------------- | --------------------------------- | ------------------------------ |
-| Triage  | `#triage`     | Every other Thursday at 2:15pm ET | [Jeff Bezanson][Jeff-Bezanson] |
+| Triage  | `#triage`     | Every other Thursday alternating between 1:30 and 13:30 UTC | [Jeff Bezanson][Jeff-Bezanson] |
 
 ### Community groups
 
