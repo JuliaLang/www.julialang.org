@@ -56,6 +56,8 @@ help?> GC.in_finalizer
 to be preferentially picked up by the given julia version. i.e. in the same folder,
 a `Manifest-v1.11.toml` would be used by v1.11 and `Manifest.toml` by every other julia
 version. This makes managing environments for multiple julia versions at the same time easier.
+To create such a manifest it is recommended rename an already generated manifest, rather than start
+with an empty file.
 
 # Improved tab completion and hinting in the REPL
 *Ian Butterworth*, *Shuhei Kadowaki*
@@ -65,7 +67,7 @@ Tab completion has become more powerful in 1.11 and gained inline hinting when t
 ![](/assets/blog/2024-1.11-highlights/inline_complete.png)
 
 If you prefer not to have hinting enabled, disable it via your `startup.jl` with
-```
+```julia
 atreplinit() do repl
     if VERSION >= v"1.11.0-0"
         repl.options.hint_tab_completes = false
@@ -176,11 +178,19 @@ end
 The entry point for Julia has been standardized to `Main.main(args)`. This must be explicitly opted into using the `@main` macro (see the docstring for further details). When opted-in, and `julia` is invoked to run a script or expression (i.e. using `julia script.jl` or `julia -e expr`), `julia` will subsequently run the `Main.main` function automatically. This is intended to unify script and compilation workflows, where code loading may happen in the compiler and execution of `Main.main` may happen in the resulting executable. For interactive use, there is no semantic difference between defining a `main` function and executing the code directly at the end of the script.
 
 # The `@time` macro now reports lock conflicts
-*Ian*
+*Ian Butterworth*
 
-(too niche?)
+The `@time` macro will now report any lock contention within the call being timed, as a number of lock conflicts.
+A lock conflict is where a task attempted to lock a `ReentrantLock` that is already locked, and may indicate design
+issues that could be impeding concurrent performance.
 
-```
+In this example the number of conflicts is clearly expected, but locks could be burried deep in library code, making
+them hard to catch otherwise.
+
+```julia
+julia> Threads.nthreads()
+6
+
 julia> function foo()
           l = ReentrantLock()
           Threads.@threads for i in 1:Threads.nthreads()
