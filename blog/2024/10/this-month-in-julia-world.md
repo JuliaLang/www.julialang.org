@@ -11,6 +11,7 @@ A monthly newsletter, mostly on julia internals, digestible for casual observers
 * [Well documented tips on how to minimize latency](https://docs.julialang.org/en/v1.12-dev/manual/performance-tips/#Execution-latency,-package-loading-and-package-precompiling-time) in your packages are now organized in a new section in the “Performance Tips” docs
 * The trace-compile capabilities provide a convenient way to track what the compiler is working on as you ecnounter new methods during runtime. It is extremely helpful when you want to figure out what precompile statements to add to your packages. A few quality-of-life improvements are coming up, with [better colored output for the traces](https://github.com/JuliaLang/julia/pull/55763).
 * Relatedly, recently we got a special-case of trace-compile, [the new trace-dispatch](https://github.com/JuliaLang/julia/pull/55848) which prints precompile statements only for dynamically encountered methods.
+* And to make this even better, both of these capabilities will now be available interactively directly from the REPL thanks to [new introspection macros](https://github.com/JuliaLang/julia/pull/55915).
 * A great new capability for profiling [why the garbage collector is being triggered](https://github.com/JuliaLang/julia/pull/55826).
 * Work on yet more parallelism in the gargabe collector ([parallel sweeps of stack pools](https://github.com/JuliaLang/julia/pull/55643))
 * Yet more refactoring and cleanup to enable use of [external garbage collectors](https://github.com/JuliaLang/julia/pull/55608).
@@ -29,7 +30,7 @@ Dustbin of History:
 
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
 
-* The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science. Few thousand $ will be paid out already in October for bounties from August.
+* The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science. Few thousand \$ will be paid out already in October for bounties from August.
 * [SciML is running a large set of funded small projects](https://sciml.ai/small_grants/) – a great opportunity to contribute to the community and be paid for it.
 * ChainRules, a foundational package to the Julia autodiff effort is looking for a [new primary maintainer](https://discourse.julialang.org/t/chainrules-project-looking-for-a-new-primary-maintainer/115636).
 
@@ -48,7 +49,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
 Soapboxes (blogs/talks):
 
-* https://dev.to/jballanc/some-types-part-1-3b1n
+* A pleasant and pedagogically valuable blog post on the [julia type system](https://dev.to/jballanc/some-types-part-1-3b1n)
 * Consider subscribing to the [French community newsletter](https://pnavaro.github.io/NouvellesJulia/) (much of the shared materials are in English).
 * Consider subscribing to the [community calendar](https://julialang.org/community/#events) to be informed of upcoming virtual meetings and talks.
 * Consider attending the triage meetings of the julia core contributors (organized on slack) – being a fly on the wall can be a great way to learn the nitty-gritty details of current priorities and development work. These are organized on the triage channel in slack. [Minutes are kept](https://hackmd.io/@LilithHafner/HJaw__uMp).
