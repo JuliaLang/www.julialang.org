@@ -48,6 +48,8 @@ help?> GC.in_finalizer
   directly.
 ```
 
+This new feature was presented at JuliaCon and can be seen [here](https://www.youtube.com/watch?v=2o8MhoN-3NE)
+
 
 # Manifest versioning
 *Ian Butterworth*
@@ -107,7 +109,6 @@ Attempting to relocate such a package should only occur re-precompilation overhe
 Pitfalls for relocation:
 - Usage of `@__DIR__, @__FILE__` 'burns' absolute paths into package images.
  In general, avoid absolute paths or relative paths outside the package's root directory.
-- Anything else?
 
 
 # Stdlib excision
