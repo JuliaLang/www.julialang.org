@@ -109,9 +109,12 @@ Pitfalls for relocation:
 
 
 # Stdlib excision
-(Ian adding this but probably Valentin?)
+*Valentin Churavy*, *Kristoffer Carlsson*
 
-Most stdlibs have now been extracted into their own pkgimages, resulting in the core julia sysimage being smaller and core startup time being faster.
+After the introduction of package-images for native caching in Julia 1.10, we started the process
+of moving standard libraries out of the system-image. This produces a smaller Julia system-image
+and startup for small scripts being faster.
+
 ```
 % hyperfine 'julia +1.10 --startup-file=no -e "1+1"'
 Benchmark 1: julia +1.10 --startup-file=no -e "1+1"
@@ -126,7 +129,46 @@ Benchmark 1: julia +1.11 --startup-file=no -e "1+1"
   Range (min … max):    88.7 ms … 100.8 ms    29 runs
 ```
 
-Excising stdlibs also is a step in the direction of allowing stdlibs to be updated independently of julia version, meaning hotfixes etc. do not need to wait for julia releases.
+Excising standard libaries also intrododuces the opportunity in the future to update standard libraries
+independently of Julia. Consequently since this release standard libraries will have their own version
+numbers. Our goal is to make the development of standard libaries faster and lower the barrier of entry for contributions.
+
+# ScopedValues
+
+ScopedValues are a new runtime supported datatype that provides an alternative to globals for configuration
+parameters.
+
+The example below uses ScopedValues to implement permission checking in a web application.
+When a request is initially processed the permission level needs to be checked only once and
+all subsequent processing of the request will *dynamically* inherit the state of the ScopedValue.
+Dynamically means that the state of ScopedValues is propagated to child functions and child tasks.
+
+```julia
+using Base.ScopedValues
+
+const LEVEL = ScopedValue(:GUEST)
+
+function serve(request, response)
+    level = isAdmin(request) ? :ADMIN : :GUEST
+    with(LEVEL => level) do
+        Threads.@spawn handle(request, response)
+    end
+end
+
+function open(connection::Database)
+    level = LEVEL[]
+    if level !== :ADMIN
+        error("Access disallowed")
+    end
+    # ... open connection
+end
+
+function handle(request, response)
+    # ...
+    open(Database(#=...=#))
+    # ...
+end
+```
 
 # New main entry point
 *Keno*
