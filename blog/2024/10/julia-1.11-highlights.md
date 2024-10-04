@@ -44,7 +44,7 @@ help?> GC.in_finalizer
 
   GC.in_finalizer()::Bool
 
-  Returns true if the current task is running a finalizer, returns false otherwise. Will also return false within a finalizer which was inlined by the compiler's eager finalization optimization, or if finalize is called on the finalizer       
+  Returns true if the current task is running a finalizer, returns false otherwise. Will also return false within a finalizer which was inlined by the compiler's eager finalization optimization, or if finalize is called on the finalizer
   directly.
 ```
 
@@ -83,7 +83,7 @@ for example:
 
 ```toml
 [sources]
-MyUnregisterdPackage = {url = "https://github.com/JuliaLang/MyUnregisteredPacakge.jl"}
+MyUnregisteredPacakge = {url = "https://github.com/JuliaLang/MyUnregisteredPacakge.jl"}
 ```
 
 This feature was also shown at JuliaCon and can be seen [here](https://youtu.be/7n27lF_SrxY?t=19).
@@ -129,9 +129,9 @@ Benchmark 1: julia +1.11 --startup-file=no -e "1+1"
   Range (min … max):    88.7 ms … 100.8 ms    29 runs
 ```
 
-Excising standard libaries also intrododuces the opportunity in the future to update standard libraries
+Excising standard libraries also intrododuces the opportunity in the future to update standard libraries
 independently of Julia. Consequently since this release standard libraries will have their own version
-numbers. Our goal is to make the development of standard libaries faster and lower the barrier of entry for contributions.
+numbers. Our goal is to make the development of standard libraries faster and lower the barrier of entry for contributions.
 
 # ScopedValues
 
