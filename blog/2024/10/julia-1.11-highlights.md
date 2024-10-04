@@ -184,7 +184,7 @@ The `@time` macro will now report any lock contention within the call being time
 A lock conflict is where a task attempted to lock a `ReentrantLock` that is already locked, and may indicate design
 issues that could be impeding concurrent performance.
 
-In this example the number of conflicts is clearly expected, but locks could be burried deep in library code, making
+In this example the number of conflicts is clearly expected, but locks could be buried deep in library code, making
 them hard to catch otherwise.
 
 ```julia
