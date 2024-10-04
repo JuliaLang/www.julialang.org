@@ -85,7 +85,7 @@ for example:
 
 ```toml
 [sources]
-MyUnregisteredPacakge = {url = "https://github.com/JuliaLang/MyUnregisteredPacakge.jl"}
+MyUnregisteredPackage = {url = "https://github.com/JuliaLang/MyUnregisteredPackage.jl"}
 ```
 
 This feature was also shown at JuliaCon and can be seen [here](https://youtu.be/7n27lF_SrxY?t=19).
