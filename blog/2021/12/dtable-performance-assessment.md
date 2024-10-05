@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2021, 12, 08)
-@def rss = """DTable – an early performance assessment of a new distributed table implementation"""
+@def rss_description = """DTable – an early performance assessment of a new distributed table implementation"""
 @def published = "08 December 2021"
 @def title = "DTable – an early performance assessment of a new distributed table implementation"
 @def authors = """Krystian Guliński"""

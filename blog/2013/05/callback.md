@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2013, 5, 10)
-@def rss = """ Passing Julia Callback Functions to C | One of the great strengths of Julia is that it is so easy to call C... """
+@def rss_description = """ Passing Julia Callback Functions to C | One of the great strengths of Julia is that it is so easy to call C... """
 @def published = "10 May 2013"
 @def title = "Passing Julia Callback Functions to C"
-@def authors = """<a href="https://math.mit.edu/~stevenj">Steven G. Johnson</a>"""  
+@def authors = """<a href="https://math.mit.edu/~stevenj">Steven G. Johnson</a>"""
 @def hascode = true
 
 

@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2015, 10, 22)
-@def rss = """ JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl | GLVisualize is an interactive visualization library that supports 2D and 3D rendering as well as building of basic GUIs. It's written entirely in Julia and OpenGL.... """
+@def rss_description = """ JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl | GLVisualize is an interactive visualization library that supports 2D and 3D rendering as well as building of basic GUIs. It's written entirely in Julia and OpenGL.... """
 @def published = "22 October 2015"
 @def title = "JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl"
-@def authors = """<a href="https://github.com/SimonDanisch">Simon Danisch</a>"""  
+@def authors = """<a href="https://github.com/SimonDanisch">Simon Danisch</a>"""
 
 GLVisualize is an interactive visualization library that supports 2D and 3D rendering as well as building of basic GUIs. It's written entirely in Julia and OpenGL.
 I'm really glad that I could continue working on this project with the support of Julia Summer of Code.

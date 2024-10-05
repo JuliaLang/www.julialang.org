@@ -2,7 +2,7 @@
 @def authors = "JuliaCon Organizing Committee"
 @def published = "18 September 2024"
 @def rss_pubdate = Date(2024, 9, 18)
-@def rss = """JuliaCon Global 2025 and JuliaCon 2024 Wrap-Up Blogpost."""
+@def rss_description = """JuliaCon Global 2025 and JuliaCon 2024 Wrap-Up Blogpost."""
 
 ![Pittsburgh Skyline](/assets/blog/2024-JuliaCon/AdobeStock_50245829.jpeg)
 #### We’re happy to announce that JuliaCon Global 2025 will be held in Pittsburgh, Pennsylvania, USA July 21 - July 26, 2025!
@@ -33,8 +33,8 @@ If this program interests you, please fill out the following form: <https://form
 
 ### JuliaCon Locals
 
-We had over a dozen community members reach out to talk about hosting a JuliaCon Local at JuliaCon 2024! 
-The first step in this process is always to start a local meetup. We’re happy to help with that as much as we can, you can reach out on the #community channel on Slack at any time. 
+We had over a dozen community members reach out to talk about hosting a JuliaCon Local at JuliaCon 2024!
+The first step in this process is always to start a local meetup. We’re happy to help with that as much as we can, you can reach out on the #community channel on Slack at any time.
 
 Once you have an established meetup and you’d like to host a JuliaCon Local please reach out to [raye@julialang.org](mailto:raye@julialang.org) or [ranjan@julialang.org](mailto:ranjan@julialang.org) for more information.
 
@@ -82,7 +82,7 @@ We first want to highlight the incredible Local Organizing Committee. Led by Gar
 
 This local committee is a fantastic blueprint for future JuliaCon Locals, and for local committees in the future.
 
-Our global committee this year was also the biggest we’ve had in years, and organized our wonderful program, diversity initiatives, and sponsorship roster. 
+Our global committee this year was also the biggest we’ve had in years, and organized our wonderful program, diversity initiatives, and sponsorship roster.
 
 * Katie Hyatt, AWS: Program co-Chair
 

@@ -2,7 +2,7 @@
 @def published = "5 May 2020"
 @def title = "GSoC and JSoC 2020 Project List"
 @def rss_pubdate = Date(2020, 5, 5)
-@def rss = """GSoC and JSoC 2020 Project List"""
+@def rss_description = """GSoC and JSoC 2020 Project List"""
 
 
 This summer, the Julia Language will be hosting students through GSoC and JSoC. You can read more about this by checking out [our Discourse post](https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc-2020/38754). We are very excited to have 25 students working with us. Here are the projects they will be working on:

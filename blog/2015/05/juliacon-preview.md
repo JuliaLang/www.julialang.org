@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2015, 5, 30)
-@def rss = """ JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more | The first ever JuliaCon (https://juliacon.org/2014/) was held in Chicago last year and was a great success. JuliaCon is back for 2015, this time in Cambridge, Massachusetts at MIT (https://web.mit.edu/)'s architecturally-delightful Stata Center, the home of computer science at MIT (https://www.csail... """
+@def rss_description = """ JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more | The first ever JuliaCon (https://juliacon.org/2014/) was held in Chicago last year and was a great success. JuliaCon is back for 2015, this time in Cambridge, Massachusetts at MIT (https://web.mit.edu/)'s architecturally-delightful Stata Center, the home of computer science at MIT (https://www.csail... """
 @def published = "30 May 2015"
 @def title = "JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more"
-@def authors = "The JuliaCon Committee"  
+@def authors = "The JuliaCon Committee"
 
 
 *[JuliaCon 2015](https://juliacon.org) is being held at the Massachusetts Institute of Technology from June 24th to the 28th. [Get your tickets](https://www.eventbrite.com/e/juliacon-2015-tickets-16517619645) and [book your hotel](https://juliacon.org/#accom) before June 4th to take advantage of early bird pricing.*

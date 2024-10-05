@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2013, 3, 30)
-@def rss = """ Videos from the Julia tutorial at MIT | We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](https://ocw.mit.edu/) and MIT-X (https://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.... """
+@def rss_description = """ Videos from the Julia tutorial at MIT | We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](https://ocw.mit.edu/) and MIT-X (https://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.... """
 @def published = "30 March 2013"
 @def title = "Videos from the Julia tutorial at MIT"
-@def authors = """<a href="https://github.com/ViralBShah/">Viral B. Shah</a>"""  
+@def authors = """<a href="https://github.com/ViralBShah/">Viral B. Shah</a>"""
 
 
 We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](https://ocw.mit.edu/) and [MIT-X](https://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.

@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2018, 6, 19)
-@def rss = """ First-Class Statistical Missing Values Support in Julia 0.7 | The 0.7 release of Julia will soon introduce first-class support for statistical... """
+@def rss_description = """ First-Class Statistical Missing Values Support in Julia 0.7 | The 0.7 release of Julia will soon introduce first-class support for statistical... """
 @def published = "19 June 2018"
 @def title = "First-Class Statistical Missing Values Support in Julia 0.7"
 @def authors = """ <a href="https://bouchet-valat.site.ined.fr">Milan Bouchet-Valat</a>"""

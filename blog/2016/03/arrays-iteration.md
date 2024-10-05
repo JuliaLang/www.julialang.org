@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2016, 3, 27)
-@def rss = """ Generalizing AbstractArrays: opportunities and challenges | Somewhat unusually, this blog post is future-looking: it mostly... """
+@def rss_description = """ Generalizing AbstractArrays: opportunities and challenges | Somewhat unusually, this blog post is future-looking: it mostly... """
 @def published = "27 March 2016"
 @def title = "Generalizing AbstractArrays: opportunities and challenges"
 @def authors = """ <a href="http://holylab.wustl.edu">Tim Holy</a>"""

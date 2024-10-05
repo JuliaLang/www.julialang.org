@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2017, 9, 6)
-@def rss = """ GSoC 2017: Efficient Discretizations of PDE Operators | This project is an attempt towards building a PDE solver for JuliaDiffEq using the Finite Difference Method (https://en.wikipedia.org/wiki/Finite_difference_method)(FDM) approach. We take up the FDM approach instead of FEM (https://en.wikipedia.org/wiki/Finite_element_method) and FVM (https://en.w... """
+@def rss_description = """ GSoC 2017: Efficient Discretizations of PDE Operators | This project is an attempt towards building a PDE solver for JuliaDiffEq using the Finite Difference Method (https://en.wikipedia.org/wiki/Finite_difference_method)(FDM) approach. We take up the FDM approach instead of FEM (https://en.wikipedia.org/wiki/Finite_element_method) and FVM (https://en.w... """
 @def published = "6 September 2017"
 @def title = "GSoC 2017: Efficient Discretizations of PDE Operators"
 @def authors = """Shivin Srivastava, Christopher Rackauckas"""

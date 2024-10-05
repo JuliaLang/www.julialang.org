@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2012, 4, 18)
-@def rss = """ New York Open Stats Meetup | I'll be giving a talk on Julia at the New York Open Statistical Programming [Meetup on May 1st](https://www.meetup.com/nyhackr/events/60839932/). After my presentation, [John Myles White](https://www.johnmyleswhite.com/) and [Shane Conway](https://www.statalgo.com/) are going to give followup demos of s... """
+@def rss_description = """ New York Open Stats Meetup | I'll be giving a talk on Julia at the New York Open Statistical Programming [Meetup on May 1st](https://www.meetup.com/nyhackr/events/60839932/). After my presentation, [John Myles White](https://www.johnmyleswhite.com/) and [Shane Conway](https://www.statalgo.com/) are going to give followup demos of s... """
 @def published = "18 April 2012"
 @def title = "New York Open Stats Meetup"
-@def authors = """<a href="https://karpinski.org/">Stefan Karpinski</a>"""  
+@def authors = """<a href="https://karpinski.org/">Stefan Karpinski</a>"""
 
 
 I'll be giving a talk on Julia at the [New York Open Statistical Programming Meetup on May 1st](https://www.meetup.com/nyhackr/events/60839932/). After my presentation, [John Myles White](https://www.johnmyleswhite.com/) and [Shane Conway](https://www.statalgo.com/) are going to give followup demos of statistical applications using Julia. Then we're going to hang out and grab drinks nearby. Thanks to [Harlan Harris](http://www.harlan.harris.name/) and [Drew Conway](http://www.drewconway.com/) for setting the whole thing up!

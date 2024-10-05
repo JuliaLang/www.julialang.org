@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2017, 4, 25)
-@def rss = """ Upgrades to the REPL in Julia 0.6 | Since version 0.3, Julia has come with a command-line interface — a REPL (https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)... """
+@def rss_description = """ Upgrades to the REPL in Julia 0.6 | Since version 0.3, Julia has come with a command-line interface — a REPL (https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)... """
 @def published = "25 April 2017"
 @def title = "Upgrades to the REPL in Julia 0.6"
-@def authors = """<a href="https://kristofferc.github.io/">Kristoffer Carlsson</a>"""  
+@def authors = """<a href="https://kristofferc.github.io/">Kristoffer Carlsson</a>"""
 @def hascode = true
 
 

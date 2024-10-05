@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2017, 8, 9)
-@def rss = """ Creating domain-specific languages in Julia using macros | Since the beginning of Julia, it has been tempting to use macros to write **domain-specific languages** (DSLs), i.e. to *extend* Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is JuMP (https://github.com/Ju... """
+@def rss_description = """ Creating domain-specific languages in Julia using macros | Since the beginning of Julia, it has been tempting to use macros to write **domain-specific languages** (DSLs), i.e. to *extend* Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is JuMP (https://github.com/Ju... """
 @def published = "9 August 2017"
 @def title = "Creating domain-specific languages in Julia using macros"
-@def authors = """<a href="https://github.com/dpsanders">David P. Sanders</a>"""  
+@def authors = """<a href="https://github.com/dpsanders">David P. Sanders</a>"""
 @def hascode = true
 
 

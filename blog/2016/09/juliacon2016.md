@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2016, 9, 21)
-@def rss = """ A Personal Perspective On JuliaCon 2016 | The gentle breeze brushed my face and the mild sunshine warmed an... """
+@def rss_description = """ A Personal Perspective On JuliaCon 2016 | The gentle breeze brushed my face and the mild sunshine warmed an... """
 @def published = "21 September 2016"
 @def title = "A Personal Perspective On JuliaCon 2016"
 @def authors = """Ranjan Anantharaman"""

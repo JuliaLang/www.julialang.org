@@ -5,7 +5,7 @@ title = "Julia 1.8 Highlights"
 authors = "Jeff Bezanson, Jameson Nash, Ian Butterworth, Kristoffer Carlsson, Shuhei Kadowaki, Elliot Saba, Mosè Giordano, Simeon Schaub, Tim Holy, Keno Fischer"
 published = "18 August 2022"
 rss_pubdate = Date(2022, 08, 18)
-rss = """Highlights of the Julia 1.8 release."""
+rss_description = """Highlights of the Julia 1.8 release."""
 +++
 
 After 3 betas and 4 release candidates, Julia version 1.8 has finally been released. We would like to thank all the contributors to this release and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.

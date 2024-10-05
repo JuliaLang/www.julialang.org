@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2016, 3, 1)
-@def rss = """ An introduction to ParallelAccelerator.jl | The High Performance Scripting team at Intel Labs recently released... """
+@def rss_description = """ An introduction to ParallelAccelerator.jl | The High Performance Scripting team at Intel Labs recently released... """
 @def published = "1 March 2016"
 @def title = "An introduction to ParallelAccelerator.jl"
-@def authors = """<a href="https://users.soe.ucsc.edu/~lkuper/">Lindsey Kuper</a>"""  
+@def authors = """<a href="https://users.soe.ucsc.edu/~lkuper/">Lindsey Kuper</a>"""
 @def hascode = true
 
 The High Performance Scripting team at Intel Labs recently released

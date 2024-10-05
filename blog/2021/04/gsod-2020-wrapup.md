@@ -4,7 +4,7 @@ published = "4 April 2021"
 title = "Google Season of Docs 2020-2021 Wrap-Up"
 author_img = "blog/Logan.JPG"
 author_blurb = "Julia Language Community Manager"
-rss = """Google Season of Docs 2020-2021 Wrap-Up."""
+rss_description = """Google Season of Docs 2020-2021 Wrap-Up."""
 
 meta = [
     ("property", "og:image", "https://1.bp.blogspot.com/-lp5QS2n9-Tk/Xt_dEWSO5kI/AAAAAAAAAdU/R7W-LQrnX-8HCS1yOBJEXw1cBiDOfkoMACLcBGAsYHQ/s1600/SeasonofDocs_Logo_MainGrey_300ppi.png"),

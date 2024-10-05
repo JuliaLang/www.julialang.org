@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2019, 5, 2)
-@def rss = """ Beyond machine learning pipelines with MLJ | - learning curves (from `examples/random_forest.jl`)... """
+@def rss_description = """ Beyond machine learning pipelines with MLJ | - learning curves (from `examples/random_forest.jl`)... """
 @def published = "2 May 2019"
 @def title = "Beyond machine learning pipelines with MLJ"
-@def authors = "Anthony Blaom, Diego Arenas, Franz Kiraly, Yiannis Simillides, Sebastian Vollmer"  
+@def authors = "Anthony Blaom, Diego Arenas, Franz Kiraly, Yiannis Simillides, Sebastian Vollmer"
 @def hascode = true
 
 <!--
