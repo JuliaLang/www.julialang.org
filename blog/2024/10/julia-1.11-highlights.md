@@ -16,10 +16,10 @@ After two alphas, two betas, and four release candidates, Julia version 1.11 has
 The full list of changes can be found in the [NEWS file](https://github.com/JuliaLang/julia/blob/release-1.11/NEWS.md), but here we'll give a more in-depth overview of some of the release highlights.
 
 @@announcement
-**1.10 becomes LTS** A quick note about 1.10 first. With the release of 1.11, 1.10 has become the LTS version,
+**1.10 becomes LTS** A quick note about 1.10 first. With the release of 1.11, 1.10 becomes the LTS version,
 which was previously 1.6. Consider using the new `lts` version specifier with
-[juliaup](https://julialang.org/downloads) and any
-[julia-actions/setup-julia](https://github.com/julia-actions/setup-julia#examples) github actions jobs.
+[juliaup](https://julialang.org/downloads) and the
+[julia-actions/setup-julia](https://github.com/julia-actions/setup-julia#examples) github action.
 @@
 
 \toc
