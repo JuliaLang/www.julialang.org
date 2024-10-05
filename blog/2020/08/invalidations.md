@@ -330,7 +330,7 @@ It's worth noting that the task of improving code is never finished, and this is
 ## Tools for analyzing and fixing invalidations
 
 Recently, the [SnoopCompile] package gained the ability to analyze invalidations and help developers fix them.
-Because these tools will likely change over time, this blog post will only scratch the surface; people who want to help fix invalidations are encouraged to read [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) for further detail.
+Because these tools will likely change over time, this blog post will only scratch the surface; people who want to help fix invalidations are encouraged to read [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/dev/) for further detail.
 There is also a [video](https://www.youtube.com/watch?v=7VbXbI6OmYo) available with a live-session fixing a real-world invalidation, which might serve as a useful example.
 
 But to give you a taste of what this looks like, here are a couple of screenshots.
