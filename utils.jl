@@ -67,6 +67,7 @@ function hfun_blogposts()
                 # pagevars for all pages.
                 Franklin.PAGEVAR_DEPTH[] = 0
                 title = pagevar(surl, :title; default="Untitled")
+                Franklin.PAGEVAR_DEPTH[] = 0
                 pubdate = pagevar(surl, :published)
                 if isnothing(pubdate)
                     date    = "$ys-$ms-01"
@@ -109,6 +110,7 @@ function hfun_recentblogposts()
                 ps       = splitext(post)[1]
                 surl     = "blog/$year/$ms/$ps"
                 surls[i] = surl
+                Franklin.PAGEVAR_DEPTH[] = 0
                 pubdate  = pagevar(surl, :published)
                 days[i]  = isnothing(pubdate) ?
                                 1 : day(Date(pubdate, dateformat"d U Y"))
@@ -128,9 +130,11 @@ function hfun_recentblogposts()
     io = IOBuffer()
     for (surl, date) in recent
         url   = "/$surl/"
+        Franklin.PAGEVAR_DEPTH[] = 0
         title = pagevar(surl, :title)
 		title === nothing && (title = "Untitled")
         sdate = "$(day(date)) $(monthname(date)) $(year(date))"
+        Franklin.PAGEVAR_DEPTH[] = 0
         blurb = pagevar(surl, :rss)
         write(io, """
             <div class="col-lg-4 col-md-12 blog">
