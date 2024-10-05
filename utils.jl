@@ -136,11 +136,12 @@ function hfun_recentblogposts()
         sdate = "$(day(date)) $(monthname(date)) $(year(date))"
         Franklin.PAGEVAR_DEPTH[] = 0
         blurb = pagevar(surl, :rss)
+        blurb = blurb === nothing ? "" : "<p>$blurb</p>"
         write(io, """
             <div class="col-lg-4 col-md-12 blog">
               <h3><a href="$url" class="title" data-proofer-ignore>$title</a>
-              </h3><span class="article-date">$date</span>
-              <p>$blurb</p>
+              </h3><span class="article-date">$sdate</span>
+              $blurb
             </div>
             """)
     end
