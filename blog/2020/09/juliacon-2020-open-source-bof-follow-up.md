@@ -2,7 +2,7 @@
 @def authors = "Jarrett Revels"
 @def published = "16 September 2020"
 @def rss_pubdate = Date(2020, 9, 16)
-@def rss = """Within private companies, it can be difficult to smoothly transition internal code into high quality open-source contributions. At JuliaCon 2020, industry Julia users came together to discuss how to maximize their impact in the Julia ecosystem."""
+@def rss_description = """Within private companies, it can be difficult to smoothly transition internal code into high quality open-source contributions. At JuliaCon 2020, industry Julia users came together to discuss how to maximize their impact in the Julia ecosystem."""
 
 Despite its virtual nature, [this year's JuliaCon](https://julialang.org/blog/2020/08/juliacon-2020-wrapup/) was just as energetic as every previous JuliaCon I've attended - absolutely bustling with fresh ideas and lively discussion amongst key leaders from across the open-source technical computing community. While JuliaCon has always been a hit with academic scientists/engineers that require large-scale simulation and modeling capabilities, recent iterations of the conference have seen a dramatic increase in industry user attendance.
 

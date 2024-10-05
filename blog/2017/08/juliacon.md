@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2017, 8, 15)
-@def rss = """ JuliaCon 2017 on the West Coast | ! (/assets/blog/2017-08-15-juliacon/juliacon.jpg)... """
+@def rss_description = """ JuliaCon 2017 on the West Coast | ! (/assets/blog/2017-08-15-juliacon/juliacon.jpg)... """
 @def published = "15 August 2017"
 @def title = "JuliaCon 2017 on the West Coast"
 @def authors = "Ranjan Anantharaman"

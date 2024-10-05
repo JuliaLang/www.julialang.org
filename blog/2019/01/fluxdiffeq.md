@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2019, 1, 18)
-@def rss = """ DiffEqFlux.jl – A Julia Library for Neural Differential Equations... """
+@def rss_description = """ DiffEqFlux.jl – A Julia Library for Neural Differential Equations... """
 @def published = "18 January 2019"
 @def title = "DiffEqFlux.jl – A Julia Library for Neural Differential Equations"
 @def authors = """Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit"""

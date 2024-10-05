@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2019, 7, 23)
-@def rss = """ Announcing composable multi-threaded parallelism in Julia | Software performance depends more and more on exploiting multiple processor cores.... """
+@def rss_description = """ Announcing composable multi-threaded parallelism in Julia | Software performance depends more and more on exploiting multiple processor cores.... """
 @def published = "23 July 2019"
 @def title = "Announcing composable multi-threaded parallelism in Julia"
-@def authors = "Jeff Bezanson (JuliaHub), Jameson Nash (JuliaHub), Kiran Pamnany (Intel)"  
+@def authors = "Jeff Bezanson (JuliaHub), Jameson Nash (JuliaHub), Kiran Pamnany (Intel)"
 @def hascode = true
 @def mintoclevel = 2
 

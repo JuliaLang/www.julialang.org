@@ -2,7 +2,7 @@
 @def authors = "Logan Kilpatrick, Avik Sengupta, & Chris Rackauckas"
 @def published = "8 September 2020"
 @def rss_pubdate = Date(2020, 9, 8)
-@def rss = """GSoC & JSoC 2020 Wrap-Up."""
+@def rss_description = """GSoC & JSoC 2020 Wrap-Up."""
 
 
 Every summer, we welcome a large group of students working on Julia and its packages via the Google Summer of Code program. This year, in addition to GSoC we [hosted our own Julia Summer of Code](https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc-2020/38754), were fortunate enough to have Julia represented via the [MLH Fellowship](https://discourse.julialang.org/t/call-for-julia-maintainers-to-support-the-julia-language-the-mlh-fellowship/40514), and even had folks working on Julia projects as part of other GSoC orgs.
@@ -165,7 +165,7 @@ Neural Networks for solving differential equations
 
 Blog Posts:
  - [https://nextjournal.com/ashutosh-b-b/jsoc-2020-working-with-differential-equations-and-neural-networks](https://nextjournal.com/ashutosh-b-b/jsoc-2020-working-with-differential-equations-and-neural-networks)
- 
+
 ### Abhinav Mehndiratta
 Parallel Graph Algorithms
 

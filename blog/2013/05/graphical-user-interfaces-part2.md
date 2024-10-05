@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2013, 5, 23)
-@def rss = """ Building GUIs with Julia, Tk, and Cairo, Part II | In this installment, we'll cover both low-level graphics (using Cairo) and plotting graphs inside GUIs (using Winston).... """
+@def rss_description = """ Building GUIs with Julia, Tk, and Cairo, Part II | In this installment, we'll cover both low-level graphics (using Cairo) and plotting graphs inside GUIs (using Winston).... """
 @def published = "23 May 2013"
 @def title = "Building GUIs with Julia, Tk, and Cairo, Part II"
-@def authors = """<a href="http://holylab.wustl.edu">Timothy E. Holy</a>"""  
+@def authors = """<a href="http://holylab.wustl.edu">Timothy E. Holy</a>"""
 @def hascode = true
 
 

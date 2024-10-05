@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2019, 5, 31)
-@def rss = """ A Summer of Julia 2019 | Every summer, we welcome a large group of students working on Julia and its packages via the Google Summer of Code program.... """
+@def rss_description = """ A Summer of Julia 2019 | Every summer, we welcome a large group of students working on Julia and its packages via the Google Summer of Code program.... """
 @def published = "31 May 2019"
 @def title = "A Summer of Julia 2019"
-@def authors = "Avik Sengupta"  
+@def authors = "Avik Sengupta"
 
 
 Every summer, we welcome a large group of students working on Julia and its packages via the Google Summer of Code program.

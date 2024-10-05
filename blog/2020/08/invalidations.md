@@ -2,7 +2,7 @@
 @def published = "26 August 2020"
 @def title = "Analyzing sources of compiler latency in Julia: method invalidations"
 @def rss_pubdate = Date(2020, 8, 26)
-@def rss = """Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency."""
+@def rss_description = """Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency."""
 
 \toc
 

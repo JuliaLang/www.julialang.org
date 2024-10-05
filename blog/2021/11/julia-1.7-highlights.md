@@ -5,7 +5,7 @@ title = "Julia 1.7 Highlights"
 authors = "Jeff Bezanson, Jameson Nash, Ian Butterworth, Kristoffer Carlsson, Shuhei Kadowaki, Elliot Saba, Viral B Shah, Mosè Giordano, Simeon Schaub, Nicholas Bauer, Keno Fischer"
 published = "30 November 2021"
 rss_pubdate = Date(2021, 11, 30)
-rss = """Some highlights of the Julia 1.7 release."""
+rss_description = """Some highlights of the Julia 1.7 release."""
 +++
 
 After 4 betas and 3 release candidates, Julia version 1.7 has finally been released. We would like to thank all the contributors to this release (more than 79 people) and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.

@@ -14,7 +14,7 @@ A full example can be found in `blog/2020/05/rr.md`.
 function hfun_meta()
     title = locvar(:title)
     isnothing(title) && (title = "The Julia Language")
-    descr = locvar(:rss)
+    descr = locvar(:rss_description)
     isnothing(descr) && (descr = "Official website for the Julia programming language")
     p = "property"
     # default og properties, can be overwritten by the user
@@ -135,7 +135,7 @@ function hfun_recentblogposts()
 		title === nothing && (title = "Untitled")
         sdate = "$(day(date)) $(monthname(date)) $(year(date))"
         Franklin.PAGEVAR_DEPTH[] = 0
-        blurb = pagevar(surl, :rss)
+        blurb = pagevar(surl, :rss_description)
         blurb = blurb === nothing ? "" : "<p>$blurb</p>"
         write(io, """
             <div class="col-lg-4 col-md-12 blog">

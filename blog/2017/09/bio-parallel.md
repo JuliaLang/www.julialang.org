@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2017, 9, 7)
-@def rss = """ GSoC 2017: Parallelism in BioJulia | In this summer, I have worked on a project to develop tools that make BioJulia... """
+@def rss_description = """ GSoC 2017: Parallelism in BioJulia | In this summer, I have worked on a project to develop tools that make BioJulia... """
 @def published = "7 September 2017"
 @def title = "GSoC 2017: Parallelism in BioJulia"
-@def authors = "Kenta Sato"  
+@def authors = "Kenta Sato"
 @def hascode = true
 
 

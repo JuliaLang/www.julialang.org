@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2019, 12, 18)
-@def rss = """为 Julia 包设计的可靠、可复现的二进制工件系统 """
+@def rss_description = """为 Julia 包设计的可靠、可复现的二进制工件系统 """
 @def published = "18 December 2019"
 @def title = "为 Julia 包设计的可靠、可复现的二进制工件系统"
-@def authors = """Elliot Saba, Stefan Karpinski, Kristoffer Carlsson"""  
+@def authors = """Elliot Saba, Stefan Karpinski, Kristoffer Carlsson"""
 @def hascode = true
 
 在过去的几个月里，我们在持续迭代和完善一个 Julia 1.3+ 中 `Pkg` 的设计方案，它用来处理不是 Julia 包的二进制对象。这项工作当初的动机是改善用 [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl) 构建的二进制文件的安装体验，不过工件（artifacts）子系统更加通用，适用于所有的 Julia 包。

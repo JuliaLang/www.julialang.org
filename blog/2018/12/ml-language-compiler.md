@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2018, 12, 3)
-@def rss = """ Building a Language and Compiler for Machine Learning | Since we originally proposed the need for a first-class language, compiler and ecosystem for machine learning (ML), there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTo... """
+@def rss_description = """ Building a Language and Compiler for Machine Learning | Since we originally proposed the need for a first-class language, compiler and ecosystem for machine learning (ML), there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTo... """
 @def published = "3 December 2018"
 @def title = "Building a Language and Compiler for Machine Learning"
-@def authors = "Mike Innes, James Bradbury, Keno Fischer, Dhairya Gandhi, Neethu Mariya Joy, Tejan Karmali, Matt Kelley, Avik Pal, Marco Concetto Rudilosso, Elliot Saba, Viral Shah, Deniz Yuret"  
+@def authors = "Mike Innes, James Bradbury, Keno Fischer, Dhairya Gandhi, Neethu Mariya Joy, Tejan Karmali, Matt Kelley, Avik Pal, Marco Concetto Rudilosso, Elliot Saba, Viral Shah, Deniz Yuret"
 @def hascode = true
 
 Since we [originally proposed](/blog/2017/12/ml-pl/) the need for a first-class language, compiler and ecosystem for machine learning (ML), there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTorch, not been resolved, but they are clearer than ever now that both frameworks contain distinct [“static graph”](https://pytorch.org/docs/master/jit.html) and [“eager execution”](https://www.tensorflow.org/guide/eager) interfaces. Meanwhile, the idea of ML models fundamentally being differentiable algorithms – often called [differentiable programming](https://www.facebook.com/yann.lecun/posts/10155003011462143) – has caught on.

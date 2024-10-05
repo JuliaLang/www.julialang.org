@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2018, 4, 1)
-@def rss = """ Tetris coming to Julia language for v1.0 | Good news, everyone! Starting v1.0, Tetris will be included in the standard library. This will allow you to play a round of Tetris while your code is busy running.... """
+@def rss_description = """ Tetris coming to Julia language for v1.0 | Good news, everyone! Starting v1.0, Tetris will be included in the standard library. This will allow you to play a round of Tetris while your code is busy running.... """
 @def published = "1 April 2018"
 
 @def title = "Tetris coming to Julia language for v1.0"

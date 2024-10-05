@@ -2,7 +2,7 @@
 authors = "Keno Fischer"
 published = "2 May 2020"
 title = "Julia 1.5 Feature Preview: Time Traveling (Linux) Bug Reporting"
-rss = """Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla's rr project to automatically create fully-reproducible bug reports"""
+rss_description = """Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla's rr project to automatically create fully-reproducible bug reports"""
 meta = [
     ("property", "og:video", "https://julialang.org/assets/blog/2020-05-02-rr/preview.mp4"),
 		("name", "twitter:player", "https://www.youtube.com/embed/JO6Jvad3XRU"),

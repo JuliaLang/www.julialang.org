@@ -2,7 +2,7 @@
 @def authors = "Tim Holy"
 @def published = "5 January 2021"
 @def rss_pubdate = Date(2021, 1, 5)
-@def rss = """Tutorial on precompilation"""
+@def rss_description = """Tutorial on precompilation"""
 
 One of the main foci of development during Julia 1.6 has been to reduce *latency*, the delay between starting your session and getting useful work done.  This is sometimes called "time to first plot," although it applies to far more than just plotting.
 While a lot of work (and success) has gone into reducing latency in Julia 1.6, users and developers will naturally want to shrink it even more.  This is the inaugural post in a short series devoted to the topic of what package developers can do to reduce latency for their users.  This particular installment covers background material--some key underlying concepts and structures--that will hopefully be useful in later installments.

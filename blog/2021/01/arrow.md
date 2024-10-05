@@ -2,7 +2,7 @@
 @def authors = "Jacob Quinn"
 @def published = "28 January 2021"
 @def rss_pubdate = Date(2021, 1, 28)
-@def rss = """Apache Arrow Support in Julia"""
+@def rss_description = """Apache Arrow Support in Julia"""
 
 We're excited to announce official support for the Julia language in the [Apache Arrow](https://arrow.apache.org/) project. Since the [1.0 release](https://arrow.apache.org/blog/2020/07/24/1.0.0-release/) of the arrow format last July (2020), there have been calls for support in Julia. While Julia supported the original [feather v1](https://github.com/JuliaData/Feather.jl) format very early on, support for the "upgraded" arrow format was delayed as the format matured and a suitable approach and resources were brought together.
 
