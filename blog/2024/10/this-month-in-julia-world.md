@@ -4,7 +4,7 @@
 @def rss_pubdate = Date(2024, 10, 05)
 @def rss = """Community Newsletter for September 2024"""
 
-A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.
+A monthly newsletter, mostly on Julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.
 
 “Internals” Fora and Core Repos (Slack/Zulip/Discourse/Github):
 
@@ -19,10 +19,10 @@ A monthly newsletter, mostly on julia internals, digestible for casual observers
 * New primitives for reliably expressing once-per-thread or once-per-process objects [are nearly ready](https://github.com/JuliaLang/julia/pull/55793). [simplifying the implementation for abstract arrays](https://github.com/JuliaLang/julia/pull/55671), [better implementation for Bool tuples](https://github.com/JuliaLang/julia/pull/55673).
 * A variety of improvements to `any` and `all`: [better generic implementation for `in`](https://github.com/JuliaLang/julia/pull/55669),
 * Looking into [enabling the use of the new LLVM 19](https://github.com/JuliaLang/julia/pull/55650) in the julia compiler.
-* Improvements to the internals of how [julia handles external signals](https://github.com/JuliaLang/julia/pull/55623).
+* Improvements to the internals of how [Julia handles external signals](https://github.com/JuliaLang/julia/pull/55623).
 * A neat and small improvement in how the optimizer [handles throwing errors for undefined variables](https://github.com/JuliaLang/julia/pull/55600) – it is small, so it can be a good place to start reading internal implementation code. Based on another small improvement in [how much metadata the optimizer tracks in conditionals](https://github.com/JuliaLang/julia/pull/55545).
-* Minor improvements to the non-default makefile for compiling julia with [profile guided optimization and link time optimization](https://github.com/JuliaLang/julia/pull/55581). That makefile has been discussed before in the newsletter – hopefully it will become a default in the future, but until then you can gain some compiler performance by using it manually.
-* It is always frustrating when julia or julia’s imported BLAS does not automatically obey the number of logically-available threads. [Related fixes](https://github.com/JuliaLang/julia/pull/55574).
+* Minor improvements to the non-default makefile for compiling Julia with [profile guided optimization and link time optimization](https://github.com/JuliaLang/julia/pull/55581). That makefile has been discussed before in the newsletter – hopefully it will become a default in the future, but until then you can gain some compiler performance by using it manually.
+* It is always frustrating when Julia or Julia’s imported BLAS does not automatically obey the number of logically-available threads. [Related fixes](https://github.com/JuliaLang/julia/pull/55574).
 
 Dustbin of History:
 
@@ -36,10 +36,10 @@ In search of contributors and new maintainers (specify novice/moderate/expert an
 
 Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
-* [JuliaCon 2025](https://discourse.julialang.org/t/juliacon-global-2025-announcement/119656) will be in Pittsburg.
+* [JuliaCon Global 2025](https://discourse.julialang.org/t/juliacon-global-2025-announcement/119656) will be in Pittsburgh from July 21 - July 26, 2025.
 * Tutorials on [interoperability between Rust and Julia](https://discourse.julialang.org/t/ann-a-tutorial-for-jlrs/119651).
-* A [fun discussion](https://discourse.julialang.org/t/the-unreasonable-efficiency-and-effectiveness-of-multiple-dispatch-your-favourite-examples/119477) with many examples of the surprising power of multiple dispatch (the main programming paradigm in Julia) – good place to mine for examples
-* Discussion on planned improvements for the [low-level implementation of strings](https://discourse.julialang.org/t/redesigning-string-optimising-small-strings-and-comparison/119716) in julia.
+* A [fun discussion](https://discourse.julialang.org/t/the-unreasonable-efficiency-and-effectiveness-of-multiple-dispatch-your-favourite-examples/119477) with many examples of the surprising power of multiple dispatch (the main programming paradigm in Julia) – a good place to mine for examples.
+* Discussion on planned improvements for the [low-level implementation of strings](https://discourse.julialang.org/t/redesigning-string-optimising-small-strings-and-comparison/119716) in Julia.
 * https://discourse.julialang.org/t/enzyme-ready-for-everyday-use-2024/118819
 * There is a new [breaking release](https://github.com/gdalle/DifferentiationInterface.jl/releases/tag/DifferentiationInterface-v0.6.0) of DifferentiationInterface (v0.6) with support for additional constant arguments. This opens DI to even more use cases, so @gdalle will try to integrate it to a bunch of SciML repos (NonlinearSolve, Optimization, OrdinaryDiffEq) as well as Turing. Other potential users are more than welcome to open issues and ask for help.
 * AcceleratedKernels.jl is a new library with [primitives for parallel algorithms](https://discourse.julialang.org/t/ann-acceleratedkernels-jl-cross-architecture-parallel-algorithms-for-julias-gpu-backends/119698) on any hardware accelerator.
@@ -49,9 +49,9 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
 Soapboxes (blogs/talks):
 
-* A pleasant and pedagogically valuable blog post on the [julia type system](https://dev.to/jballanc/some-types-part-1-3b1n)
+* A pleasant and pedagogically valuable blog post on the [Julia type system](https://dev.to/jballanc/some-types-part-1-3b1n)
 * Consider subscribing to the [French community newsletter](https://pnavaro.github.io/NouvellesJulia/) (much of the shared materials are in English).
 * Consider subscribing to the [community calendar](https://julialang.org/community/#events) to be informed of upcoming virtual meetings and talks.
-* Consider attending the triage meetings of the julia core contributors (organized on slack) – being a fly on the wall can be a great way to learn the nitty-gritty details of current priorities and development work. These are organized on the triage channel in slack. [Minutes are kept](https://hackmd.io/@LilithHafner/HJaw__uMp).
+* Consider attending the triage meetings of the Julia core contributors (organized on Slack) – being a fly on the wall can be a great way to learn the nitty-gritty details of current priorities and development work. These are organized on the triage channel in slack. [Minutes are kept](https://hackmd.io/@LilithHafner/HJaw__uMp).
 
-You can engage in the discussion of this newsletter on [discourse](https://discourse.julialang.org/c/community/news/66)
+You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)
