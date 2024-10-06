@@ -47,7 +47,7 @@ crossorigin=""/>
 <script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
-   <title>Tensor network contraction order optimization and visualization</title>   
+   <title>This Month in Julia World</title>   
 
   
   <style>
@@ -62,10 +62,25 @@ crossorigin=""/>
 
   <!-- Specific style for blog pages (except the /blob/index) -->
   
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
 
   <!-- OGP Metadata -->
-	<meta property="og:title" content="Tensor network contraction order optimization and visualization">
-<meta property="og:description" content="">
+	<meta property="og:title" content="This Month in Julia World">
+<meta property="og:description" content="Community Newsletter for September 2024">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
 
@@ -96,7 +111,7 @@ crossorigin=""/>
         <li class="nav-item   flex-md-fill text-md-center">
           <a class="nav-link" href="/learning/">Learn</a>
         </li>
-        <li class="nav-item  flex-md-fill text-md-center">
+        <li class="nav-item active flex-md-fill text-md-center">
           <a class="nav-link" href="/blog/">Blog</a>
         </li>
         <li class="nav-item   flex-md-fill text-md-center">
@@ -105,7 +120,7 @@ crossorigin=""/>
         <li class="nav-item   flex-md-fill text-md-center">
           <a class="nav-link" href="/contribute/">Contribute</a>
         </li>
-        <li class="nav-item  active flex-md-fill text-md-center">
+        <li class="nav-item   flex-md-fill text-md-center">
           <a class="nav-link" href="/jsoc/">JSoC</a>
         </li>
       </ul>
@@ -122,47 +137,112 @@ crossorigin=""/>
 <br><br>
 
 
+<div class="container blog-title">
+  <h1>This Month in Julia World
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 05 October 2024 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Stefan Krastanov </span> 
+  </h3>
+</div>
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsoc/contractionorder.md" title="Edit this page on GitHub" class="edit-float">
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2024/10/this-month-in-julia-world.md" title="Edit this page on GitHub" class="edit-float">
 </a>
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="tensor_network_contraction_order_optimization_and_visualization"><a href="#tensor_network_contraction_order_optimization_and_visualization" class="header-anchor">Tensor network contraction order optimization and visualization</a></h1>
-<p><a href="https://github.com/under-Peter/OMEinsum.jl">OMEinsum.jl</a> is a pure Julia package for tensor network computation,  which has been used in various projects, including</p>
+<div class="container main"><p>A monthly newsletter, mostly on Julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.</p>
+<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
 <ul>
-<li><p><a href="https://github.com/QuEraComputing/GenericTensorNetworks.jl">GenericTensorNetworks.jl</a> for solving combinatorial optimization problems,</p>
+<li><p><a href="https://docs.julialang.org/en/v1.12-dev/manual/performance-tips/#Execution-latency,-package-loading-and-package-precompiling-time">Well documented tips on how to minimize latency</a> in your packages are now organized in a new section in the “Performance Tips” docs</p>
 </li>
-<li><p><a href="https://github.com/QuantumBFS/YaoToEinsum.jl">YaoToEinsum.jl</a> for simulating large scale quantum circuit and</p>
+<li><p>The trace-compile capabilities provide a convenient way to track what the compiler is working on as you ecnounter new methods during runtime. It is extremely helpful when you want to figure out what precompile statements to add to your packages. A few quality-of-life improvements are coming up, with <a href="https://github.com/JuliaLang/julia/pull/55763">better colored output for the traces</a>.</p>
 </li>
-<li><p><a href="https://github.com/TensorBFS/TensorInference.jl">TensorInference.jl</a> for Bayesian inference.</p>
+<li><p>Relatedly, recently we got a special-case of trace-compile, <a href="https://github.com/JuliaLang/julia/pull/55848">the new trace-dispatch</a> which prints precompile statements only for dynamically encountered methods.</p>
+</li>
+<li><p>And to make this even better, both of these capabilities will now be available interactively directly from the REPL thanks to <a href="https://github.com/JuliaLang/julia/pull/55915">new introspection macros</a>.</p>
+</li>
+<li><p>A great new capability for profiling <a href="https://github.com/JuliaLang/julia/pull/55826">why the garbage collector is being triggered</a>.</p>
+</li>
+<li><p>Work on yet more parallelism in the gargabe collector &#40;<a href="https://github.com/JuliaLang/julia/pull/55643">parallel sweeps of stack pools</a>&#41;</p>
+</li>
+<li><p>Yet more refactoring and cleanup to enable use of <a href="https://github.com/JuliaLang/julia/pull/55608">external garbage collectors</a>.</p>
+</li>
+<li><p>Better caching of package precompiled code and package extensions drastically lowered the time-to-first-X in the ecosystem over the last couple of years. This led also to much more precompilation being possible, which leads to the trade off of long installation times. A <a href="https://github.com/JuliaLang/julia/issues/55516">discussion has started on github</a> about how to enable more modular packages &#40;lowering the amount of what is installed and compiled&#41; without leading to a proliferation of registered subpackages with &#40;frustratingly&#41; independent versioning.</p>
+</li>
+<li><p>New primitives for reliably expressing once-per-thread or once-per-process objects <a href="https://github.com/JuliaLang/julia/pull/55793">are nearly ready</a>. <a href="https://github.com/JuliaLang/julia/pull/55671">simplifying the implementation for abstract arrays</a>, <a href="https://github.com/JuliaLang/julia/pull/55673">better implementation for Bool tuples</a>.</p>
+</li>
+<li><p>A variety of improvements to <code>any</code> and <code>all</code>: <a href="https://github.com/JuliaLang/julia/pull/55669">better generic implementation for <code>in</code></a>,</p>
+</li>
+<li><p>Looking into <a href="https://github.com/JuliaLang/julia/pull/55650">enabling the use of the new LLVM 19</a> in the julia compiler.</p>
+</li>
+<li><p>Improvements to the internals of how <a href="https://github.com/JuliaLang/julia/pull/55623">Julia handles external signals</a>.</p>
+</li>
+<li><p>A neat and small improvement in how the optimizer <a href="https://github.com/JuliaLang/julia/pull/55600">handles throwing errors for undefined variables</a> – it is small, so it can be a good place to start reading internal implementation code. Based on another small improvement in <a href="https://github.com/JuliaLang/julia/pull/55545">how much metadata the optimizer tracks in conditionals</a>.</p>
+</li>
+<li><p>Minor improvements to the non-default makefile for compiling Julia with <a href="https://github.com/JuliaLang/julia/pull/55581">profile guided optimization and link time optimization</a>. That makefile has been discussed before in the newsletter – hopefully it will become a default in the future, but until then you can gain some compiler performance by using it manually.</p>
+</li>
+<li><p>It is always frustrating when Julia or Julia’s imported BLAS does not automatically obey the number of logically-available threads. <a href="https://github.com/JuliaLang/julia/pull/55574">Related fixes</a>.</p>
 </li>
 </ul>
-<p>Unlike other tensor contraction packages such as <code>ITensors.jl</code> and <code>TensorOperations.jl</code>, it is designed for large scale tensor networks with arbitrary topology. The key feature of <code>OMEinsum.jl</code> is that it can automatically optimize the contraction order of a tensor network. Related features are implemented in <a href="https://github.com/TensorBFS/OMEinsumContractionOrders.jl">OMEinsumContractionOrders.jl</a>.</p>
-<p>We are looking for a student to work on the following tasks:</p>
+<p>Dustbin of History:</p>
 <ul>
-<li><p>Implement a better contraction order optimizer based on <a href="https://arxiv.org/abs/2202.07793">Tamaki&#39;s algorithm</a>.</p>
-</li>
-<li><p>Implement a hyper-graph visualization tool based on <a href="https://arxiv.org/abs/2308.05043">arXiv:2308.05043</a></p>
-</li>
-<li><p>Port the contraction order optimizers to <a href="https://github.com/Jutho/TensorOperations.jl">TensorOperations.jl</a></p>
+<li><p>Wouldn’t it be great if we had <a href="https://github.com/JuliaLang/julia/issues/40717">a type-safe <code>&#61;&#61;</code></a> &#40;related to occasionally conflating <code>&#61;&#61;</code> and <code>&#61;&#61;&#61;</code>&#41;.</p>
 </li>
 </ul>
-<p><strong>Recommended skills:</strong> familiarity with tensor networks, graph theory and high performance computing.</p>
-<p><strong>Expected results:</strong></p>
+<p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
 <ul>
-<li><p>new features added to the package <code>OMEinsumContractionOrders.jl</code> along with tests and relevant documentation.</p>
+<li><p>The Center for Quantum Networks is running <a href="https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md">many bounties and minigrants</a> on a variety of support packages for quantum information science. Few thousand &#36; will be paid out already in October for bounties from August.</p>
 </li>
-<li><p>a new package about hyper-graph visualization, and relevant feature added to <code>OMEinsum.jl</code>.</p>
+<li><p><a href="https://sciml.ai/small_grants/">SciML is running a large set of funded small projects</a> – a great opportunity to contribute to the community and be paid for it.</p>
 </li>
-<li><p>a pull request to <code>TensorOperations.jl</code> for better contraction order optimization.</p>
+<li><p>ChainRules, a foundational package to the Julia autodiff effort is looking for a <a href="https://discourse.julialang.org/t/chainrules-project-looking-for-a-new-primary-maintainer/115636">new primary maintainer</a>.</p>
 </li>
 </ul>
-<p><strong>Mentors:</strong> <a href="https://github.com/giggleliu">Jin-Guo Liu</a>, <a href="https://github.com/Jutho">Jutho Haegeman</a> and <a href="https://github.com/lkdvos">Lukas Devos</a></p>
-<p><strong>Project difficulty:</strong> Medium to Hard</p>
-<p><strong>Project length:</strong> 350 hrs</p>
-<p><strong>Contact:</strong> feel free to ask questions via <a href="cacate0129@gmail.com">email</a> or the Julia slack &#40;user name: JinGuo Liu&#41;.</p>
+<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<ul>
+<li><p><a href="https://discourse.julialang.org/t/juliacon-global-2025-announcement/119656">JuliaCon Global 2025</a> will be in Pittsburgh from July 21 - July 26, 2025.</p>
+</li>
+<li><p>Tutorials on <a href="https://discourse.julialang.org/t/ann-a-tutorial-for-jlrs/119651">interoperability between Rust and Julia</a>.</p>
+</li>
+<li><p>A <a href="https://discourse.julialang.org/t/the-unreasonable-efficiency-and-effectiveness-of-multiple-dispatch-your-favourite-examples/119477">fun discussion</a> with many examples of the surprising power of multiple dispatch &#40;the main programming paradigm in Julia&#41; – a good place to mine for examples.</p>
+</li>
+<li><p>Discussion on planned improvements for the <a href="https://discourse.julialang.org/t/redesigning-string-optimising-small-strings-and-comparison/119716">low-level implementation of strings</a> in Julia.</p>
+</li>
+<li><p>https://discourse.julialang.org/t/enzyme-ready-for-everyday-use-2024/118819</p>
+</li>
+<li><p>There is a new <a href="https://github.com/gdalle/DifferentiationInterface.jl/releases/tag/DifferentiationInterface-v0.6.0">breaking release</a> of DifferentiationInterface &#40;v0.6&#41; with support for additional constant arguments. This opens DI to even more use cases, so @gdalle will try to integrate it to a bunch of SciML repos &#40;NonlinearSolve, Optimization, OrdinaryDiffEq&#41; as well as Turing. Other potential users are more than welcome to open issues and ask for help.</p>
+</li>
+<li><p>AcceleratedKernels.jl is a new library with <a href="https://discourse.julialang.org/t/ann-acceleratedkernels-jl-cross-architecture-parallel-algorithms-for-julias-gpu-backends/119698">primitives for parallel algorithms</a> on any hardware accelerator.</p>
+</li>
+<li><p>OptimalTransportNetworks.jl is a new library for <a href="https://discourse.julialang.org/t/ann-new-optimaltransportnetworks-jl-optimal-transport-networks-in-spatial-equilibrium/119649">optimizing paths in networks</a>.</p>
+</li>
+<li><p>Guidelines for setting up <a href="https://discourse.julialang.org/t/juhpc-hpc-setup-for-juliaup-julia-and-some-hpc-key-packages/119556">Julia on HPC clusters</a> in a reliable and clean way.</p>
+</li>
+<li><p>Brief discussion on baseline comparisons between <a href="https://discourse.julialang.org/t/lux-jl-vs-jax/119654">Lux and Jax</a>.</p>
+</li>
+</ul>
+<p>Soapboxes &#40;blogs/talks&#41;:</p>
+<ul>
+<li><p>A pleasant and pedagogically valuable blog post on the <a href="https://dev.to/jballanc/some-types-part-1-3b1n">Julia type system</a></p>
+</li>
+<li><p>Consider subscribing to the <a href="https://pnavaro.github.io/NouvellesJulia/">French community newsletter</a> &#40;much of the shared materials are in English&#41;.</p>
+</li>
+<li><p>Consider subscribing to the <a href="https://julialang.org/community/#events">community calendar</a> to be informed of upcoming virtual meetings and talks.</p>
+</li>
+<li><p>Consider attending the triage meetings of the Julia core contributors &#40;organized on Slack&#41; – being a fly on the wall can be a great way to learn the nitty-gritty details of current priorities and development work. These are organized on the triage channel in slack. <a href="https://hackmd.io/@LilithHafner/HJaw__uMp">Minutes are kept</a>.</p>
+</li>
+</ul>
+<p>You can engage in the discussion of this newsletter on <a href="https://discourse.julialang.org/c/community/news/66">Discourse</a></p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
