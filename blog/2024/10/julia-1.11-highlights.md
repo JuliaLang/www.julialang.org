@@ -139,7 +139,7 @@ Benchmark 1: julia +1.11 --startup-file=no -e "1+1"
   Range (min … max):    88.7 ms … 100.8 ms    29 runs
 ```
 
-Excising standard libraries also intrododuces the opportunity in the future to update standard libraries
+Excising standard libraries also introduces the opportunity in the future to update standard libraries
 independently of Julia. Consequently since this release standard libraries will have their own version
 numbers. Our goal is to make the development of standard libraries faster and lower the barrier of entry for contributions.
 
