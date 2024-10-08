@@ -45,6 +45,14 @@
     padding: 0;
 }
 
+.announcement {
+  padding: 8px 14px 8px 14px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background-color: #ddf0d9;
+  border-color: #404040;
+}
+
 .note {
     padding: 8px 35px 8px 14px;
     margin-bottom: 20px;
