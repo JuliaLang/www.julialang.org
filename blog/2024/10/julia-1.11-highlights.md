@@ -213,3 +213,87 @@ julia> @time foo()
   6.069761 seconds (28.14 k allocations: 1.410 MiB, 5 lock conflicts, 1.34% compilation time)
 ```
 
+# Inference enhancements
+
+_Keno Fisher_, _Shuhei Kadowaki_
+
+#### Exception type inference
+
+In v1.11, several new features have been added to inference.
+
+The first feature we’d like to introduce is exception type inference.
+The Julia compiler is now able to infer the types of exception objects, significantly
+improving type stability in `catch` blocks. For example, in the following `demo_exc_inf`
+method, you can see that the type of the `err` object is inferred as
+`::Union{Float64, DomainError}` instead of `::Any` (as was in v1.10):
+```julia
+julia> function demo_exc_inf(x::Float64)
+           local v
+           try
+               v = x > 0 ? sin(x) : throw(x)
+           catch err # the type of `err` can be inferred >v1.11
+               if err isa DomainError
+                   v = zero(x)
+               else
+                   v = err
+               end
+           end
+           return v
+       end
+demo_exc_inf (generic function with 1 method)
+
+julia> only(code_typed(demo_exc_inf, (Float64,); optimize=false))
+CodeInfo(
+1 ──       Core.NewvarNode(:(v))::Any
+2 ── %2  = enter #8
+3 ── %3  = (x > 0)::Bool
+└───       goto #5 if not %3
+4 ──       (@_5 = Main.sin(x))::Float64
+└───       goto #6
+5 ──       (@_5 = Main.throw(x))::Union{}
+6 ┄─ %8  = @_5::Float64
+│          (v = %8)::Float64
+└───       $(Expr(:leave, :(%2)))
+7 ──       goto #12
+8 ┄─       (err = $(Expr(:the_exception)))::Union{Float64, DomainError}
+│    %13 = err::Union{Float64, DomainError}
+│    %14 = (%13 isa Main.DomainError)::Bool
+└───       goto #10 if not %14
+9 ──       (v = Main.zero(x))::Core.Const(0.0)
+└───       goto #11
+10 ─ %18 = err::Float64
+└───       (v = %18)::Float64
+11 ┄       $(Expr(:pop_exception, :(%2)))::Core.Const(nothing)
+12 ┄ %21 = v::Float64
+└───       return %21
+) => Float64
+```
+
+You can check the summarized result of type inference for exception objects that a
+particular method call may raise using `Base.infer_exception_type`.
+```julia
+julia> Base.infer_exception_type(sin, (Float64,))
+DomainError
+```
+
+However note that the accuracy of exception type inference is not yet very high.
+It generally works well only when the `try` block contains basic functions.
+In particular, it often fails to provide accurate results for `try` blocks that might call
+functions involving external calls, such as `ccall`.
+
+#### Escape analysis
+
+The next feature we’d like to introduce is Julia-level escape analysis
+([`Core.Compiler.EscapeAnalysis`](https://docs.julialang.org/en/v1/devdocs/EscapeAnalysis/)).
+While `Core.Compiler.EscapeAnalysis` was implemented back in v1.8, it was not enabled in the
+actual compilation pipeline due to issues with its precision and latency.
+
+As a first step towards leveraging `EscapeAnalysis` for various optimizations, in v1.11, it
+is now selectively enabled in the actual compilation pipeline with the goal of improving the
+precision of effects analysis for methods involving non-escaping mutation allocations.
+
+Currently, the precision of `EscapeAnalysis` is not very high, and it struggles to perform
+well for functions with complex memory operations. As a result, it has not yet been used for
+other purposes. However, we plan to continue improving it and apply it to various
+optimizations such as more aggressive constant propagation, better SROA
+(Scalar Replacements of Aggregates), `finalizer` optimization, and stack allocation.
