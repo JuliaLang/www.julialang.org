@@ -8,9 +8,6 @@ rss_pubdate = Date(2024, 10, 08)
 rss = """Highlights of the Julia 1.11 release."""
 +++
 
-...
-
-
 After two alphas, two betas, and four release candidates, Julia version 1.11 has finally(!!!) been released. We want to thank all the contributors to this release and all the testers who helped find regressions and issues in the pre-releases. Without you, this release would not have been possible.
 
 The full list of changes can be found in the [NEWS file](https://github.com/JuliaLang/julia/blob/release-1.11/NEWS.md), but here we'll give a more in-depth overview of some of the release highlights.
