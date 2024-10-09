@@ -178,7 +178,7 @@ end
 ```
 
 # New main entry point
-*Keno*
+*Keno Fischer*
 
 The entry point for Julia has been standardized to `Main.main(args)`. This must be explicitly opted into using the `@main` macro (see the docstring for further details). When opted-in, and `julia` is invoked to run a script or expression (i.e. using `julia script.jl` or `julia -e expr`), `julia` will subsequently run the `Main.main` function automatically. This is intended to unify script and compilation workflows, where code loading may happen in the compiler and execution of `Main.main` may happen in the resulting executable. For interactive use, there is no semantic difference between defining a `main` function and executing the code directly at the end of the script.
 
@@ -212,11 +212,11 @@ julia> @time foo()
 
 # Inference enhancements
 
-_Keno Fisher_, _Shuhei Kadowaki_
-
-#### Exception type inference
+_Keno Fischer_, _Shuhei Kadowaki_
 
 In v1.11, several new features have been added to inference.
+
+#### Exception type inference
 
 The first feature we’d like to introduce is exception type inference.
 The Julia compiler is now able to infer the types of exception objects, significantly
@@ -287,7 +287,7 @@ actual compilation pipeline due to issues with its precision and latency.
 
 As a first step towards leveraging `EscapeAnalysis` for various optimizations, in v1.11, it
 is now selectively enabled in the actual compilation pipeline with the goal of improving the
-precision of effects analysis for methods involving non-escaping mutation allocations.
+precision of effects analysis for methods involving non-escaping mutable allocations.
 
 Currently, the precision of `EscapeAnalysis` is not very high, and it struggles to perform
 well for functions with complex memory operations. As a result, it has not yet been used for
