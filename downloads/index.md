@@ -98,7 +98,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td rowspan="5"> Linux (Glibc) </td>
+      <td rowspan="6"> Linux (Glibc) </td>
       <td rowspan="5"> 2.6.24+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
@@ -116,11 +116,12 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
-      <td> PowerPC (64-bit)  </td>
+      <td> PowerPC (64-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
-      <td> RISC-V (64-bit)  </td>
+      <td> 6.4+ </td>
+      <td> RISC-V (64-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
