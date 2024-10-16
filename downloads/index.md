@@ -117,7 +117,11 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td> PowerPC (64-bit)  </td>
-      <td> <font color="crimson">Tier 3</font>  </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td> RISC-V (64-bit)  </td>
+      <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
       <td rowspan="1"> Linux (Musl) </td>
