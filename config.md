@@ -13,9 +13,9 @@ author = ""
 # Templating of the Downloads
 # NOTE: When updating for a new release, make sure to also rerun
 # `downloads/oldreleases.jl`
-stable_release = "1.11.0"
+stable_release = "1.11.1"
 stable_release_short = "1.11"
-stable_release_date = "October 7, 2024"
+stable_release_date = "October 16, 2024"
 lts_release = "1.10.5"
 lts_release_short = "1.10"
 lts_release_date = "August 27, 2024"
