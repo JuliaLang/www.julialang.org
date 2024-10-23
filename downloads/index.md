@@ -241,13 +241,13 @@ Please see [platform specific instructions](/downloads/platform/) for further ma
       <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.exe">installer</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.zip">portable</a> </td> </td>
     </tr>
     <tr>
-      <td> macOS x86 (Intel or Rosetta) <a href="/downloads/platform/#macos">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.tar.gz">.tar.gz</a> </td>
+      <td> macOS (Apple Silicon) <a href="/downloads/platform/#macos">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.tar.gz">.tar.gz</a> </td>
       <td> </td>
     </tr>
     <tr>
-      <td> macOS (Apple Silicon) <a href="/downloads/platform/#macos">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.tar.gz">.tar.gz</a> </td>
+      <td> macOS x86 (Intel or Rosetta) <a href="/downloads/platform/#macos">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.tar.gz">.tar.gz</a> </td>
       <td> </td>
     </tr>
     <tr>
@@ -335,7 +335,12 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
       <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{lts_release_short}}/julia-{{lts_release}}-win32.exe">installer</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{lts_release_short}}/julia-{{lts_release}}-win32.zip">portable</a> </td> </td>
     </tr>
     <tr>
-      <td> macOS <a href="/downloads/platform/#macos">[help]</a></td>
+      <td> macOS (Apple Silicon) <a href="/downloads/platform/#macos">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{lts_release_short}}/julia-{{lts_release}}-macaarch64.dmg">.dmg</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> macOS x86 (Intel or Rosetta) <a href="/downloads/platform/#macos">[help]</a></td>
       <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{lts_release_short}}/julia-{{lts_release}}-mac64.dmg">.dmg</a> </td>
       <td> </td>
     </tr>
