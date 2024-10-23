@@ -336,12 +336,12 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
     </tr>
     <tr>
       <td> macOS (Apple Silicon) <a href="/downloads/platform/#macos">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{lts_release_short}}/julia-{{lts_release}}-macaarch64.dmg">.dmg</a> </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{lts_release_short}}/julia-{{lts_release}}-macaarch64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{lts_release_short}}/julia-{{lts_release}}-macaarch64.tar.gz">.tar.gz</a> </td>
       <td> </td>
     </tr>
     <tr>
       <td> macOS x86 (Intel or Rosetta) <a href="/downloads/platform/#macos">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{lts_release_short}}/julia-{{lts_release}}-mac64.dmg">.dmg</a> </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{lts_release_short}}/julia-{{lts_release}}-mac64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{lts_release_short}}/julia-{{lts_release}}-mac64.tar.gz">.tar.gz</a> </td></td>
       <td> </td>
     </tr>
     <tr>
