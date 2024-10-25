@@ -13,6 +13,8 @@ Most users are advised to use the latest official release version of Julia.
 Nightlies are updated asynchronously for each platform after each platforms testing passes.
 The time the installers were updated can be seen by hovering over the links.
 
+Nightly builds are also available through the `nightly` channel on `juliaup`.
+
 ~~~
 <table class="downloads table table-hover table-bordered">
   <tbody>
@@ -38,7 +40,12 @@ The time the installers were updated can be seen by hovering over the links.
   </tr>
   <tr>
       <td> Generic Linux on ARM </td>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz">AArch64</a> </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz">.tar.gz</a> </td>
+      <td> </td>
+  </tr>
+  <tr>
+      <td> Generic FreeBSD on x86 </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/freebsd/x86_64/julia-latest-freebsd-x86_64.tar.gz">.tar.gz</a> </td>
       <td> </td>
   </tr>
   </tbody>
