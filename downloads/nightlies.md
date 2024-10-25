@@ -45,7 +45,7 @@ Nightly builds are also available through the `nightly` channel on `juliaup`.
   </tr>
   <tr>
       <td> Generic FreeBSD on x86 </td>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/freebsd/x64/julia-latest-freebsd-x86_64.tar.gz">.tar.gz</a> </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/freebsd/x86_64/julia-latest-freebsd-x86_64.tar.gz">.tar.gz</a> </td>
       <td> </td>
   </tr>
   </tbody>
