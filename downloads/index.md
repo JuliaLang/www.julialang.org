@@ -83,11 +83,6 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> 10.14+ </td>
-      <td> i686 (32-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-    <tr>
       <td rowspan="2"> Windows </td>
       <td rowspan="2"> 10+ </td>
       <td> x86-64 (64-bit) </td>
@@ -137,7 +132,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td> i686 (32-bit) </td>
+      <td> ARMv8 (64-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
   </tbody>
