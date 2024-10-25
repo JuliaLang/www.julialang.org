@@ -72,7 +72,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <th> Support Tier </th>
     </tr>
     <tr>
-      <td rowspan="3"> macOS </td>
+      <td rowspan="2"> macOS </td>
       <td> 10.14+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
