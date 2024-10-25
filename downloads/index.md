@@ -137,7 +137,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td> i686 (32-bit) </td>
+      <td> ARMv8 (64-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
   </tbody>
