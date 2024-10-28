@@ -46,7 +46,7 @@ Julia installs all its files in a single directory. Deleting the directory where
 
 ## Windows
 
-Julia works best on 64-bit, and latest Windows 11 (you can expect terminal problems on default Windows 10), and is available for Windows 7 and later for both 32- and 64-bit versions.
+Julia is available for Windows 7 and later for both 32- and 64-bit versions.
 
 **We highly recommend running Julia using a modern terminal, such as installing the [Windows Terminal from the Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701).**
 
