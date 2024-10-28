@@ -14,7 +14,7 @@
       <div class="row" id="other-platforms-instructions" style="display: none;">
         Install the latest Julia version (<a href="#current_stable_release">v{{stable_release}}</a> {{stable_release_date}}) by running this in your terminal:
         <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
-        <div class="install-platform-note"><span id="platform-subnote-other">It looks like you're using a Unix-type system. </span>For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a></div>
+        <div class="install-platform-note"><span id="platform-subnote-other">It looks like you're using a Unix/Linux-type system. </span>For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a></div>
       </div>
     </div>
     <script>
@@ -52,9 +52,9 @@ Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia
 
 ---
 
-### Please do not use the version of "Julia" shipped by unix package managers
+### Please do not use the version of "Julia" shipped by Linux or BSD package managers
 
-Many unix package managers ship broken and/or significantly out of date versions of Julia. Please use juliaup or download the official binaries instead.
+Many Linux/BSD/Unix package managers ship broken and/or significantly out of date versions of Julia. Please use juliaup or download the official binaries instead.
 
 ### Supported platforms
 
