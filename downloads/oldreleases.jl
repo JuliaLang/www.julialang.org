@@ -62,8 +62,8 @@ open("./oldreleases.md", "w") do io
 
             Binaries for old releases are available should you need to use them to run Julia
             code written for those releases. Note that these are not actively developed
-            nor maintained anymore. 
-        
+            nor maintained anymore.
+
             All releases and pre-releases are [tagged in git](https://github.com/JuliaLang/julia/tags).
 
             @@row @@col-12
@@ -83,7 +83,7 @@ open("./oldreleases.md", "w") do io
             """)
     for (version, files) in releases
         n = length(files)
-    
+
         release_date = get(release_dict, version, "Unknown")
 
         println(io, """
