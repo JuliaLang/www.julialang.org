@@ -53,4 +53,10 @@ const groups = [
         homepage: 'https://www.meetup.com/julia-lang-amsterdam/',
         github: 'https://github.com/julia-lang-amsterdam/julia-lang-amsterdam.github.io',
     },
+    {
+        name: 'Copenhagen Julia Meetup Group',
+        lat: 55.692852,
+        lon: 12.599143,
+        homepage: 'https://www.meetup.com/copenhagen-julia-meetup-group',
+    },
 ];
