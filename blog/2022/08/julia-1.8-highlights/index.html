@@ -283,7 +283,12 @@ Thread <span class="hljs-number">4</span> Total snapshots: <span class="hljs-num
 <p>1.8 also introduces the option to profile code that is already running. Say you have started some long-running code and progress appears to slow. At any time you see what&#39;s happening without interrupting by triggering a 1-second profile via sending <code>SIGINFO</code> on BSDs including MacOS, or <code>SIGUSR1</code> on Linux &#40;not supported on Windows&#41;. MacOS &amp; FreeBSD have the added convenience of sending <code>SIGINFO</code> via <code>ctrl-t</code>.</p>
 <p>First, an immediate stacktrace will print, followed by the report after the profile sampling at the next yield point.</p>
 <p>Here, the signal is sent shortly after executing the <code>sleep</code>. &#40;stacktraces have been cut short for brevity&#41;</p>
-<pre><code class="julia hljs">julia&gt; sleep(<span class="hljs-number">5</span>)
+<pre><code class="julia hljs">julia&gt; getpid()
+<span class="hljs-number">123456</span>
+
+julia&gt; sleep(<span class="hljs-number">5</span>)
+<span class="hljs-comment"># hit ctrl-t on MacOS or FreeBSD</span>
+<span class="hljs-comment"># or run `kill -s SIGUSR1 123456` for Linux, `kill -s SIGINFO 123456` for macOS/BSD in another terminal</span>
 load: <span class="hljs-number">2.82</span>  cmd: julia <span class="hljs-number">32246</span> waiting <span class="hljs-number">37.66</span>u <span class="hljs-number">8.33</span>s
 
 ======================================================================================
@@ -488,7 +493,7 @@ Thread <span class="hljs-number">4</span> <span class="hljs-built_in">Task</span
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: October 30, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: November 04, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
