@@ -205,7 +205,7 @@ julia> getpid()
 
 julia> sleep(5)
 # hit ctrl-t on MacOS or FreeBSD
-# if on Linux, run `kill -s SIGUSR1 123456` in another terminal
+# or run `kill -s SIGUSR1 123456` in another terminal
 load: 2.82  cmd: julia 32246 waiting 37.66u 8.33s
 
 ======================================================================================
