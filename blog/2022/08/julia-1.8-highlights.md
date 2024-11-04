@@ -200,7 +200,12 @@ First, an immediate stacktrace will print, followed by the report after the prof
 Here, the signal is sent shortly after executing the `sleep`. (stacktraces have been cut short for brevity)
 
 ```julia
+julia> getpid()
+123456
+
 julia> sleep(5)
+# hit ctrl-t on MacOS or FreeBSD
+# if on Linux, run `kill -s SIGUSR1 123456` in another terminal
 load: 2.82  cmd: julia 32246 waiting 37.66u 8.33s
 
 ======================================================================================
