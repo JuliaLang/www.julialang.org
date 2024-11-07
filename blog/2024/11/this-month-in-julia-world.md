@@ -34,9 +34,7 @@ Garbage Collector Internals:
 
 Dustbin of History:
 
-* ENV["JULIA_DEBUG"] = "loading"
 * For those interested in archeology, this is not the [first attempt](http://thisweekinjulia.github.io/) to run a julia newsletter.
-* https://github.com/JuliaLang/julia/issues/51183 and https://discourse.julialang.org/t/why-does-let-allow-comma-separated-assignments/113812
 
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
 
