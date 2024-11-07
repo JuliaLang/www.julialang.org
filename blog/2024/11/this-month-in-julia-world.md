@@ -39,7 +39,7 @@ Dustbin of History:
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
 
 * @avik and @thecedarprince (the Co-Admins for Julia’s Participation in Google Summer of Code) are looking for new Google Summer of Code admin volunteers – low-effort and low-time commitment with a big impact on the Julia community!
-* The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science. Few thousand $ will be paid out already in October for bounties from August.
+* The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science. Few thousand \$ will be paid out already in October for bounties from August.
 * [SciML is running a large set of funded small projects](https://sciml.ai/small_grants/) – a great opportunity to contribute to the community and be paid for it.
 * ChainRules, a foundational package to the Julia autodiff effort is looking for a [new primary maintainer](https://discourse.julialang.org/t/chainrules-project-looking-for-a-new-primary-maintainer/115636).
 
@@ -47,7 +47,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
 * [Tensorial](https://discourse.julialang.org/t/ann-tensorial-jl-statically-sized-tensors-and-related-operations-for-julia/121588) is a great new package for tensor math. Also [discussed on slack](https://julialang.slack.com/archives/C6FGJ8REC/p1729174454227819), including in terms of how it compares to other Julia tools.
 * A wonderful new docstring linter for julia: [CheckDoc](https://github.com/tecosaur/CheckDoc.jl)
-* New experimental package to check that a struct is defined with inferrable concrete types: [CheckConcreteStructs](https://github.com/gdalle/CheckConcreteStructs.jl)
+* New experimental package to check that a struct is defined with inferable concrete types: [CheckConcreteStructs](https://github.com/gdalle/CheckConcreteStructs.jl)
 * Fun workarounds for broadcast nesting and general discussion of broadcast hacks on [slack](https://julialang.slack.com/archives/C67TK21LJ/p1730789206177099).
 * Hackable belief propagation algorithm implementations in Julia: [BeliefPropagation.jl](https://github.com/stecrotti/BeliefPropagation.jl)
 * [CodingTheory](https://github.com/esabo/CodingTheory) is a new package built on top of Oscar for work with classical and quantum error-correction codes.
