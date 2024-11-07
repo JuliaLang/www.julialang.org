@@ -39,8 +39,7 @@ Dustbin of History:
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
 
 * @avik and @thecedarprince (the Co-Admins for Julia’s Participation in Google Summer of Code) are looking for new Google Summer of Code admin volunteers – low-effort and low-time commitment with a big impact on the Julia community!
-* The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science. Few thousand \$ will be paid out already in October for bounties from August.
-* [SciML is running a large set of funded small projects](https://sciml.ai/small_grants/) – a great opportunity to contribute to the community and be paid for it.
+* The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science.
 * ChainRules, a foundational package to the Julia autodiff effort is looking for a [new primary maintainer](https://discourse.julialang.org/t/chainrules-project-looking-for-a-new-primary-maintainer/115636).
 
 Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
