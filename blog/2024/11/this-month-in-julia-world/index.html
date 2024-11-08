@@ -80,7 +80,7 @@ crossorigin=""/>
 
   <!-- OGP Metadata -->
 	<meta property="og:title" content="This Month in Julia World">
-<meta property="og:description" content="Community Newsletter for September 2024">
+<meta property="og:description" content="Community Newsletter for October 2024">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
 
@@ -144,7 +144,7 @@ crossorigin=""/>
     </a>
   </h1>
   <h3>
-   <span style="font-weight: lighter;"> 05 October 2024 </span>
+   <span style="font-weight: lighter;"> 07 November 2024 </span>
 	|
 	
 	 <span style="font-weight: bold;"></span> 
@@ -155,91 +155,129 @@ crossorigin=""/>
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2024/10/this-month-in-julia-world.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2024/11/this-month-in-julia-world.md" title="Edit this page on GitHub" class="edit-float">
 </a>
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on Julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.</p>
+<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.</p>
 <p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
 <ul>
-<li><p><a href="https://docs.julialang.org/en/v1.12-dev/manual/performance-tips/#Execution-latency,-package-loading-and-package-precompiling-time">Well documented tips on how to minimize latency</a> in your packages are now organized in a new section in the “Performance Tips” docs</p>
+<li><p>With the introduced of the new <code>Memory</code> low-level type, a lot of new compiler optimizations became possible. Particularly exciting is <a href="https://github.com/JuliaLang/julia/pull/55913">turning <code>memorynew</code> into an intrinsic</a>, bringing up the possibility to stack-allocate small arrays. This would be an amazing improvement, especially for newbies frustrated by the fact that they have to use temporary tuples instead of temporary arrays in tight inner loops.</p>
 </li>
-<li><p>The trace-compile capabilities provide a convenient way to track what the compiler is working on as you ecnounter new methods during runtime. It is extremely helpful when you want to figure out what precompile statements to add to your packages. A few quality-of-life improvements are coming up, with <a href="https://github.com/JuliaLang/julia/pull/55763">better colored output for the traces</a>.</p>
+<li><p>“<a href="https://hackmd.io/BbEw0_B4Q8uDSS34LOvpCw">A Roadmap to Interfaces</a>” - thoughts by Keno and others on the past, current, and future of supporting interfaces naturally in the language.</p>
 </li>
-<li><p>Relatedly, recently we got a special-case of trace-compile, <a href="https://github.com/JuliaLang/julia/pull/55848">the new trace-dispatch</a> which prints precompile statements only for dynamically encountered methods.</p>
+<li><p>The compiler was recently <a href="https://github.com/JuliaLang/julia/pull/55575">restructured to do much less “internal state”-tracking</a> &#40;a more stackless setup&#41;, opening up the door for many possible improvements.</p>
 </li>
-<li><p>And to make this even better, both of these capabilities will now be available interactively directly from the REPL thanks to <a href="https://github.com/JuliaLang/julia/pull/55915">new introspection macros</a>.</p>
+<li><p>The “package extension” capabilities might become quite a bit <a href="https://hackmd.io/@KristofferC/ryyTJl_R0">more sophisticated</a> as discussed in this memo. This popped up in response to extension management <a href="https://github.com/JuliaLang/julia/issues/55516">bottlenecks</a> as reported by the SciML team, discussed in the previous issue of this letter.</p>
 </li>
-<li><p>A great new capability for profiling <a href="https://github.com/JuliaLang/julia/pull/55826">why the garbage collector is being triggered</a>.</p>
+<li><p>The fact that we do not do the typical object-oriented language rewriting of <code>obj.method&#40;&#41;</code> into <code>method&#40;obj&#41;</code> comes up often. Given that Julia is multiple-dispatch oriented, that rewriting makes quite a bit less sense here, but we lose some nice autocompletion features. I liked this <a href="https://discourse.julialang.org/t/oop-like-dot-notation-in-julia/120971/26">comment that describes the difficulty</a>.</p>
 </li>
-<li><p>Work on yet more parallelism in the gargabe collector &#40;<a href="https://github.com/JuliaLang/julia/pull/55643">parallel sweeps of stack pools</a>&#41;</p>
+<li><p>Do we want <code>-f</code> to automatically create a new function that is the <a href="https://github.com/JuliaLang/julia/pull/55920">negation of a function <code>f</code></a> the way <code>&#33;f</code> is a new function that is the logical not of <code>f</code>.</p>
 </li>
-<li><p>Yet more refactoring and cleanup to enable use of <a href="https://github.com/JuliaLang/julia/pull/55608">external garbage collectors</a>.</p>
+<li><p><a href="https://github.com/JuliaLang/julia/pull/55910">Package extensions occasionally hamper parallelism</a> of compilation &#40;they block the package dependants from starting to compile&#41;. That PR addresses the issue.</p>
 </li>
-<li><p>Better caching of package precompiled code and package extensions drastically lowered the time-to-first-X in the ecosystem over the last couple of years. This led also to much more precompilation being possible, which leads to the trade off of long installation times. A <a href="https://github.com/JuliaLang/julia/issues/55516">discussion has started on github</a> about how to enable more modular packages &#40;lowering the amount of what is installed and compiled&#41; without leading to a proliferation of registered subpackages with &#40;frustratingly&#41; independent versioning.</p>
+<li><p>Great work on <a href="https://github.com/JuliaLang/julia/pull/55841">bringing more clarity and simplicity to stack traces</a>.</p>
 </li>
-<li><p>New primitives for reliably expressing once-per-thread or once-per-process objects <a href="https://github.com/JuliaLang/julia/pull/55793">are nearly ready</a>.</p>
+<li><p>Consideration of permitting the <a href="https://github.com/JuliaLang/julia/pull/56153">syntax <code>for else</code> and <code>while else</code></a>. But there is a long discussion of folks wondering whether it should have a <a href="https://github.com/JuliaLang/julia/issues/1289">different meaning from the one in python</a>.</p>
 </li>
-<li><p>A variety of improvements to <code>any</code> and <code>all</code>: <a href="https://github.com/JuliaLang/julia/pull/55669">better generic implementation for <code>in</code></a>, <a href="https://github.com/JuliaLang/julia/pull/55671">simplifying the implementation for abstract arrays</a>, <a href="https://github.com/JuliaLang/julia/pull/55673">better implementation for Bool tuples</a></p>
+<li><p>Adding an <a href="https://github.com/JuliaLang/julia/pull/56045"><code>--experimental</code> CLI flag</a> to make it easier to opt into new experimental julia features.</p>
 </li>
-<li><p>Looking into <a href="https://github.com/JuliaLang/julia/pull/55650">enabling the use of the new LLVM 19</a> in the julia compiler.</p>
+<li><p>Now that Julia has version-specific Manifest.toml files, juliaup will be set up to take advantage of that and <a href="https://github.com/JuliaLang/juliaup/pull/1059">launch the appropriate version</a>.</p>
 </li>
-<li><p>Improvements to the internals of how <a href="https://github.com/JuliaLang/julia/pull/55623">Julia handles external signals</a>.</p>
+</ul>
+<p>Compiler Internals:</p>
+<ul>
+<li><p>“<a href="https://www.youtube.com/watch?v&#61;hUxnLunOU4w">Julia as a Statically Compiled Language</a>” by Jeff, discussing the upcoming ahead-of-time compiler mode for Julia. Related to that, check out the new <code>--trim</code> option for smaller binaries and some <a href="https://discourse.julialang.org/t/pushing-the-limits-of-small-binary-creation/120989">fun experiments community members have been doing with small binaries</a>. Are we one step closer to Julia being a backend to other languages?</p>
 </li>
-<li><p>A neat and small improvement in how the optimizer <a href="https://github.com/JuliaLang/julia/pull/55600">handles throwing errors for undefined variables</a> – it is small, so it can be a good place to start reading internal implementation code. Based on another small improvement in <a href="https://github.com/JuliaLang/julia/pull/55545">how much metadata the optimizer tracks in conditionals</a>.</p>
+<li><p>The &#40;julia-side, before LLVM&#41; Compiler can become an independent package soon enough. Work started here with <a href="https://github.com/JuliaLang/julia/pull/56128">moving it into Base</a>. The work continues <a href="https://github.com/JuliaLang/julia/pull/56409">here</a>.</p>
 </li>
-<li><p>Minor improvements to the non-default makefile for compiling Julia with <a href="https://github.com/JuliaLang/julia/pull/55581">profile guided optimization and link time optimization</a>. That makefile has been discussed before in the newsletter – hopefully it will become a default in the future, but until then you can gain some compiler performance by using it manually.</p>
+<li><p>For a while there has been an effor to <a href="https://github.com/JuliaLang/julia/pull/54654">“partition” variable bindings by World-age</a>, enabling many neat future features, including struct-aware Revise. Recently, <a href="https://github.com/JuliaLang/julia/pull/56299">the compiler learnt how to handle such binding partitions</a>.</p>
 </li>
-<li><p>It is always frustrating when Julia or Julia’s imported BLAS does not automatically obey the number of logically-available threads. <a href="https://github.com/JuliaLang/julia/pull/55574">Related fixes</a>.</p>
+<li><p>The optimizer might be able to <a href="https://github.com/JuliaLang/julia/pull/55990">call finalizers much earlier</a> soon enough.</p>
+</li>
+</ul>
+<p>Garbage Collector Internals:</p>
+<ul>
+<li><p><a href="https://github.com/JuliaLang/julia/pull/55956"><code>threadcall</code> might become gc safe soon</a></p>
+</li>
+<li><p>We are getting closer to having <a href="https://github.com/JuliaLang/julia/pull/56288">MMTk as an optional alternative garbage collection toolkit</a> in julia.</p>
 </li>
 </ul>
 <p>Dustbin of History:</p>
 <ul>
-<li><p>Wouldn’t it be great if we had <a href="https://github.com/JuliaLang/julia/issues/40717">a type-safe <code>&#61;&#61;</code></a> &#40;related to occasionally conflating <code>&#61;&#61;</code> and <code>&#61;&#61;&#61;</code>&#41;.</p>
+<li><p>For those interested in archeology, this is not the <a href="http://thisweekinjulia.github.io/">first attempt</a> to run a julia newsletter.</p>
 </li>
 </ul>
 <p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
 <ul>
-<li><p>The Center for Quantum Networks is running <a href="https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md">many bounties and minigrants</a> on a variety of support packages for quantum information science. Few thousand &#36; will be paid out already in October for bounties from August.</p>
+<li><p>@avik and @thecedarprince &#40;the Co-Admins for Julia’s Participation in Google Summer of Code&#41; are looking for new Google Summer of Code admin volunteers – low-effort and low-time commitment with a big impact on the Julia community&#33;</p>
 </li>
-<li><p><a href="https://sciml.ai/small_grants/">SciML is running a large set of funded small projects</a> – a great opportunity to contribute to the community and be paid for it.</p>
+<li><p>The Center for Quantum Networks is running <a href="https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md">many bounties and minigrants</a> on a variety of support packages for quantum information science.</p>
 </li>
 <li><p>ChainRules, a foundational package to the Julia autodiff effort is looking for a <a href="https://discourse.julialang.org/t/chainrules-project-looking-for-a-new-primary-maintainer/115636">new primary maintainer</a>.</p>
 </li>
 </ul>
 <p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
 <ul>
-<li><p><a href="https://discourse.julialang.org/t/juliacon-global-2025-announcement/119656">JuliaCon Global 2025</a> will be in Pittsburgh from July 21 - July 26, 2025.</p>
+<li><p><a href="https://discourse.julialang.org/t/ann-tensorial-jl-statically-sized-tensors-and-related-operations-for-julia/121588">Tensorial</a> is a great new package for tensor math. Also <a href="https://julialang.slack.com/archives/C6FGJ8REC/p1729174454227819">discussed on slack</a>, including in terms of how it compares to other Julia tools.</p>
 </li>
-<li><p>Tutorials on <a href="https://discourse.julialang.org/t/ann-a-tutorial-for-jlrs/119651">interoperability between Rust and Julia</a>.</p>
+<li><p>A wonderful new docstring linter for julia: <a href="https://github.com/tecosaur/CheckDoc.jl">CheckDoc</a></p>
 </li>
-<li><p>A <a href="https://discourse.julialang.org/t/the-unreasonable-efficiency-and-effectiveness-of-multiple-dispatch-your-favourite-examples/119477">fun discussion</a> with many examples of the surprising power of multiple dispatch &#40;the main programming paradigm in Julia&#41; – a good place to mine for examples.</p>
+<li><p>New experimental package to check that a struct is defined with inferable concrete types: <a href="https://github.com/gdalle/CheckConcreteStructs.jl">CheckConcreteStructs</a></p>
 </li>
-<li><p>Discussion on planned improvements for the <a href="https://discourse.julialang.org/t/redesigning-string-optimising-small-strings-and-comparison/119716">low-level implementation of strings</a> in Julia.</p>
+<li><p>Fun workarounds for broadcast nesting and general discussion of broadcast hacks on <a href="https://julialang.slack.com/archives/C67TK21LJ/p1730789206177099">slack</a>.</p>
 </li>
-<li><p>https://discourse.julialang.org/t/enzyme-ready-for-everyday-use-2024/118819</p>
+<li><p>Hackable belief propagation algorithm implementations in Julia: <a href="https://github.com/stecrotti/BeliefPropagation.jl">BeliefPropagation.jl</a></p>
 </li>
-<li><p>There is a new <a href="https://github.com/gdalle/DifferentiationInterface.jl/releases/tag/DifferentiationInterface-v0.6.0">breaking release</a> of DifferentiationInterface &#40;v0.6&#41; with support for additional constant arguments. This opens DI to even more use cases, so @gdalle will try to integrate it to a bunch of SciML repos &#40;NonlinearSolve, Optimization, OrdinaryDiffEq&#41; as well as Turing. Other potential users are more than welcome to open issues and ask for help.</p>
+<li><p><a href="https://github.com/esabo/CodingTheory">CodingTheory</a> is a new package built on top of Oscar for work with classical and quantum error-correction codes.</p>
 </li>
-<li><p>AcceleratedKernels.jl is a new library with <a href="https://discourse.julialang.org/t/ann-acceleratedkernels-jl-cross-architecture-parallel-algorithms-for-julias-gpu-backends/119698">primitives for parallel algorithms</a> on any hardware accelerator.</p>
+<li><p>Another magic trick from Lilith: having your Julia session lazily autoload commonly used packages <a href="https://github.com/LilithHafner/BasicAutoloads.jl">BasicAutoloads.jl</a></p>
 </li>
-<li><p>OptimalTransportNetworks.jl is a new library for <a href="https://discourse.julialang.org/t/ann-new-optimaltransportnetworks-jl-optimal-transport-networks-in-spatial-equilibrium/119649">optimizing paths in networks</a>.</p>
+</ul>
+<p>Julia Autodiff ecosystem &#40;enough topics for its own category this month&#41;:</p>
+<ul>
+<li><p>The DifferentiationInterface.jl &#40;DI.jl&#41; repository has been transferred to the <a href="https://github.com/JuliaDiff/DifferentiationInterface.jl">JuliaDiff</a> organization to ensure continued maintenance.</p>
 </li>
-<li><p>Guidelines for setting up <a href="https://discourse.julialang.org/t/juhpc-hpc-setup-for-juliaup-julia-and-some-hpc-key-packages/119556">Julia on HPC clusters</a> in a reliable and clean way.</p>
+<li><p>DI.jl: A breaking release v0.6 was tagged. Thanks to recent changes, it is now possible to pass non-differentiated arguments &#40;first constants, and soon caches/buffers&#41; to the function, in addition to the one active argument.</p>
 </li>
-<li><p>Brief discussion on baseline comparisons between <a href="https://discourse.julialang.org/t/lux-jl-vs-jax/119654">Lux and Jax</a>.</p>
+<li><p>DI.jl: Testing for StaticArrays has been drastically improved and allocations have been nearly eliminated with ForwardDiff &amp; forward mode Enzyme for functions working on SArrays. There’s some concern how sustainable this is though, as the sensitive and fragile performance requirements for most StaticArrays use cases may be very easy to break in one or multiple backends.</p>
+</li>
+<li><p>DI.jl: Mainly for fun, we tried to interface DI with JAX in <a href="https://github.com/gdalle/DifferentiationInterfaceJAX.jl">DifferentiationInterfaceJAX.jl</a>. There is still some overhead from Julia-Python tensor conversion with <a href="https://github.com/pabloferz/DLPack.jl">DLPack.jl</a>, any help is welcome.</p>
+</li>
+<li><p><a href="https://github.com/EnzymeAD/Reactant.jl">Reactant.jl</a> can take a Julia function, compile it in MLIR, do a plethora of optimization and autodifferentiation tricks on it, and compile it to a very wide variety of accelerators.</p>
+</li>
+<li><p>What does <code>compile</code> in <code>ReverseDiff</code> <a href="https://github.com/SciML/ADTypes.jl/issues/91">mean</a>?</p>
+</li>
+</ul>
+<p>Notes from other ecosystems:</p>
+<ul>
+<li><p>NumPy now supports a <a href="https://quansight.com/post/my-numpy-year-creating-a-dtype-for-the-next-generation-of-scientific-computing/">much more general data type</a> for its arrays.</p>
+</li>
+<li><p>Useful <a href="https://github.com/HazyResearch/ThunderKittens">CUDA primitives</a> for various linear-algebra related kernels.</p>
+</li>
+<li><p>Can we get <a href="https://em-tg.github.io/csborrow/">inspiration from C#</a> for how to put mutable objects on the stack.</p>
+</li>
+<li><p>A julia slack discussion on how <a href="https://julialang.slack.com/archives/C688QKS7Q/p1728398666009809">C# implements elegant abstractions for SIMD-accelerated arrays</a>. Brings up related <a href="https://github.com/JuliaLang/julia/pull/55118">Julia work on implementing similar capabilities</a>.</p>
 </li>
 </ul>
 <p>Soapboxes &#40;blogs/talks&#41;:</p>
 <ul>
-<li><p>A pleasant and pedagogically valuable blog post on the <a href="https://dev.to/jballanc/some-types-part-1-3b1n">Julia type system</a></p>
+<li><p><a href="https://bsky.app/profile/thecedarprince.bsky.social/post/3l7lmnjewv52e">Looking to build more of a Julia presence on BlueSky</a></p>
 </li>
-<li><p>Consider subscribing to the <a href="https://pnavaro.github.io/NouvellesJulia/">French community newsletter</a> &#40;much of the shared materials are in English&#41;.</p>
+<li><p>The <a href="https://www.youtube.com/@JuliaDispatch">Julia Dispatch podcast</a> has started as <a href="https://julialang.slack.com/archives/C67910KEH/p1729107731948489">discussed on slack</a> as well</p>
+</li>
+<li><p>@TheCedarPrince wrote about <a href="https://discourse.julialang.org/t/perspectives-from-2024-gsoc-mentor-summit/121488">his experience at the 2024 Google Summer of Code Mentor Summit</a> and led a <a href="https://docs.google.com/document/d/1fmKEmA8iKCO4QuSWto8rHiCKCuNm7nLUIxW2jPWINws/edit?tab&#61;t.0">talk</a> across organizations about research software engineering across orgs</p>
+</li>
+<li><p>The Julia Optimization Days 2024 in Toulouse &#40;France&#41; featured a <a href="https://gdalle.github.io/JuliaOptimizationDays2024-FastJulia/">tutorial on code optimization</a> and an <a href="https://gdalle.github.io/JuliaOptimizationDays2024-AutoDiff/">introduction to autodiff</a>. If there is community interest, those tutorials could be recorded by the author and put on the YouTube channel of the Julia language.</p>
+</li>
+<li><p>If you’re in/near France, consider presenting your optimization-related Julia work at the upcoming conference on operations research <a href="https://roadef2025.org/">ROADEF 2025</a> &#40;next February in Paris&#41;.</p>
+</li>
+<li><p>Consider subscribing to the <a href="https://pnavaro.github.io/NouvellesJulia/">French community newsletter</a> &#40;much of the shared materials are in English&#41;. If you’re in/near France, consider presenting your optimization-related Julia work at the upcoming conference on operations research <a href="https://roadef2025.org/">ROADEF 2025</a> &#40;next February in Paris&#41;.</p>
 </li>
 <li><p>Consider subscribing to the <a href="https://julialang.org/community/#events">community calendar</a> to be informed of upcoming virtual meetings and talks.</p>
 </li>
-<li><p>Consider attending the triage meetings of the Julia core contributors &#40;organized on Slack&#41; – being a fly on the wall can be a great way to learn the nitty-gritty details of current priorities and development work. These are organized on the triage channel in slack. <a href="https://hackmd.io/@LilithHafner/HJaw__uMp">Minutes are kept</a>.</p>
+<li><p>Consider attending the triage meetings of the julia core contributors &#40;organized on slack&#41; – being a fly on the wall can be a great way to learn the nitty-gritty details of current priorities and development work. These are organized on the triage channel in slack. <a href="https://hackmd.io/@LilithHafner/HJaw__uMp">Minutes are kept</a>.</p>
 </li>
 </ul>
 <p>You can engage in the discussion of this newsletter on <a href="https://discourse.julialang.org/c/community/news/66">Discourse</a></p>
