@@ -21,7 +21,7 @@ which was previously 1.6. Consider using the new `lts` version specifier with
 
 \toc
 
-# `Array` now implemented in Julia, new `Memory` type
+## `Array` now implemented in Julia, new `Memory` type
 *Jameson Nash* , *Oscar Smith*
 
 Prior to Julia 1.11, `Array` was a special object in Julia. Operations like resizing and creation had to be done completely in C, which created overhead and made some of the code much harder to write and difficult for the compiler to optimize. `Array` also had some features that were unnecessary for some uses (e.g. resizing and multiple dimensions) which imposed a small cost. To fix this, in [PR #51319](https://github.com/JuliaLang/julia/pull/51319), we added a new, lower level `Memory` type, which allowed re-implementing all of `Array` in Julia code on top of it. This moved much of the complexity around resizing and copying an array into pure Julia code. And it allowed a few important data types, that don’t need all of `Array`’s features (such as `Dict`), to avoid a small amount of overhead. This has led to some great performance improvements. For example, `push!` on Array is now roughly ~2x faster, and several types in Base now use slightly less memory.
@@ -29,7 +29,7 @@ Prior to Julia 1.11, `Array` was a special object in Julia. Operations like resi
 This new feature was presented at JuliaCon and can be seen [here](https://www.youtube.com/watch?v=L6BFQ1d8xNs).
 
 
-# New `public` keyword
+## New `public` keyword
 *Lilith Hafner*
 
 In previous Julia versions, there was no "programmatic way" of knowing if an unexported name was considered part of the public API or not.
@@ -55,7 +55,7 @@ help?> GC.in_finalizer
 This new feature was presented at JuliaCon and can be seen [here](https://www.youtube.com/watch?v=2o8MhoN-3NE)
 
 
-# Manifest versioning
+## Manifest versioning
 *Ian Butterworth*
 
 `Manifest.toml` files can now be renamed in the format `Manifest-v{major}.{minor}.toml`
@@ -65,7 +65,7 @@ version. This makes managing environments for multiple julia versions at the sam
 To create such a manifest it is recommended rename an already generated manifest, rather than start
 with an empty file.
 
-# Improved tab completion and hinting in the REPL
+## Improved tab completion and hinting in the REPL
 *Ian Butterworth*, *Shuhei Kadowaki*
 
 Tab completion has become more powerful in 1.11 and gained inline hinting when there is a singular completion available that can be completed with tab.
@@ -82,7 +82,7 @@ end
 ```
 
 
-# Sources section in Project.toml in Pkg.jl
+## Sources section in Project.toml in Pkg.jl
 *Kristoffer Carlsson*
 
 Previously to be able to instantiate an environment that used unregistered dependencies it was required that the manifest file was available since that
@@ -96,7 +96,7 @@ MyUnregisteredPackage = {url = "https://github.com/JuliaLang/MyUnregisteredPacka
 
 This feature was also shown at JuliaCon and can be seen [here](https://youtu.be/7n27lF_SrxY?t=19).
 
-# Precompile file relocatability
+## Precompile file relocatability
 *Florian Atteneder*
 
 Enabling relocation of cache files, together with other improvements coming in v1.11,
@@ -115,7 +115,7 @@ Pitfalls for relocation:
  In general, avoid absolute paths or relative paths outside the package's root directory.
 
 
-# Stdlib excision
+## Stdlib excision
 *Valentin Churavy*, *Kristoffer Carlsson*
 
 After the introduction of package-images for native caching in Julia 1.10, we started the process
@@ -140,7 +140,7 @@ Excising standard libraries also introduces the opportunity in the future to upd
 independently of Julia. Consequently since this release standard libraries will have their own version
 numbers. Our goal is to make the development of standard libraries faster and lower the barrier of entry for contributions.
 
-# ScopedValues
+## ScopedValues
 
 ScopedValues are a new runtime supported datatype that provides an alternative to globals for configuration
 parameters.
@@ -177,7 +177,7 @@ function handle(request, response)
 end
 ```
 
-# New main entry point
+## New main entry point
 *Keno Fischer*
 
 The entry point for Julia has been standardized to `Main.main(args)`. This must be explicitly opted into using the `@main` macro (see the docstring for further details). When opted-in, and `julia` is invoked to run a script or expression (i.e. using `julia script.jl` or `julia -e expr`), `julia` will subsequently run the `Main.main` function automatically. This is intended to unify script and compilation workflows, where code loading may happen in the compiler and execution of `Main.main` may happen in the resulting executable. For interactive use, there is no semantic difference between defining a `main` function and executing the code directly at the end of the script.
@@ -210,7 +210,7 @@ julia> @time foo()
   6.069761 seconds (28.14 k allocations: 1.410 MiB, 5 lock conflicts, 1.34% compilation time)
 ```
 
-# Inference enhancements
+## Inference enhancements
 
 _Keno Fischer_, _Shuhei Kadowaki_
 
