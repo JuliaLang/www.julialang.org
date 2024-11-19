@@ -112,7 +112,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td> PowerPC (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
+      <td> Tier 4 </td>
     </tr>
     <tr>
       <td> 6.4+ </td>
