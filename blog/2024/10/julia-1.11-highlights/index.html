@@ -165,12 +165,12 @@ crossorigin=""/>
 <p>After two alphas, two betas, and four release candidates, Julia version 1.11 has finally&#40;&#33;&#33;&#33;&#41; been released. We want to thank all the contributors to this release and all the testers who helped find regressions and issues in the pre-releases. Without you, this release would not have been possible.</p>
 <p>The full list of changes can be found in the <a href="https://github.com/JuliaLang/julia/blob/release-1.11/NEWS.md">NEWS file</a>, but here we&#39;ll give a more in-depth overview of some of the release highlights.</p>
 <div class="announcement"><strong>1.10 becomes LTS</strong> A quick note about 1.10 first. With the release of 1.11, 1.10 becomes the LTS version, which was previously 1.6. Consider using the new <code>lts</code> version specifier with <a href="https://julialang.org/downloads">juliaup</a> and the <a href="https://github.com/julia-actions/setup-julia#examples">julia-actions/setup-julia</a> github action.</div>
-
-<h1 id="array_now_implemented_in_julia_new_memory_type"><a href="#array_now_implemented_in_julia_new_memory_type" class="header-anchor"><code>Array</code> now implemented in Julia, new <code>Memory</code> type</a></h1>
+<div class="franklin-toc"><ol><li><a href="#array_now_implemented_in_julia_new_memory_type"><code>Array</code> now implemented in Julia, new <code>Memory</code> type</a></li><li><a href="#new_public_keyword">New <code>public</code> keyword</a></li><li><a href="#manifest_versioning">Manifest versioning</a></li><li><a href="#improved_tab_completion_and_hinting_in_the_repl">Improved tab completion and hinting in the REPL</a></li><li><a href="#sources_section_in_projecttoml_in_pkgjl">Sources section in Project.toml in Pkg.jl</a></li><li><a href="#precompile_file_relocatability">Precompile file relocatability</a></li><li><a href="#stdlib_excision">Stdlib excision</a></li><li><a href="#scopedvalues">ScopedValues</a></li><li><a href="#new_main_entry_point">New main entry point</a></li><li><a href="#inference_enhancements">Inference enhancements</a></li></ol></div>
+<h2 id="array_now_implemented_in_julia_new_memory_type"><a href="#array_now_implemented_in_julia_new_memory_type" class="header-anchor"><code>Array</code> now implemented in Julia, new <code>Memory</code> type</a></h2>
 <p><em>Jameson Nash</em> , <em>Oscar Smith</em></p>
 <p>Prior to Julia 1.11, <code>Array</code> was a special object in Julia. Operations like resizing and creation had to be done completely in C, which created overhead and made some of the code much harder to write and difficult for the compiler to optimize. <code>Array</code> also had some features that were unnecessary for some uses &#40;e.g. resizing and multiple dimensions&#41; which imposed a small cost. To fix this, in <a href="https://github.com/JuliaLang/julia/pull/51319">PR #51319</a>, we added a new, lower level <code>Memory</code> type, which allowed re-implementing all of <code>Array</code> in Julia code on top of it. This moved much of the complexity around resizing and copying an array into pure Julia code. And it allowed a few important data types, that don’t need all of <code>Array</code>’s features &#40;such as <code>Dict</code>&#41;, to avoid a small amount of overhead. This has led to some great performance improvements. For example, <code>push&#33;</code> on Array is now roughly ~2x faster, and several types in Base now use slightly less memory.</p>
 <p>This new feature was presented at JuliaCon and can be seen <a href="https://www.youtube.com/watch?v&#61;L6BFQ1d8xNs">here</a>.</p>
-<h1 id="new_public_keyword"><a href="#new_public_keyword" class="header-anchor">New <code>public</code> keyword</a></h1>
+<h2 id="new_public_keyword"><a href="#new_public_keyword" class="header-anchor">New <code>public</code> keyword</a></h2>
 <p><em>Lilith Hafner</em></p>
 <p>In previous Julia versions, there was no &quot;programmatic way&quot; of knowing if an unexported name was considered part of the public API or not. Instead, the guideline was basically that if it was not in the manual then it was not public which was a bit underwhelming. To remedy that, there is now a <code>public</code> keyword in Julia that can be used to indicate that an unexported name is part of the public API. Whether a name is public or not can now be checked with the &#40;public&#41; method <code>Base.ispublic&#40;m::Module, name::Symbol&#41;</code>, and this is for example used by the help system in the REPL to indicate if a documented name is non-public:</p>
 <pre><code class="julia hljs">help?&gt; GC.in_finalizer
@@ -185,10 +185,10 @@ crossorigin=""/>
   Returns <span class="hljs-literal">true</span> <span class="hljs-keyword">if</span> the current task is running a finalizer, returns <span class="hljs-literal">false</span> otherwise. Will also <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> within a finalizer which was inlined by the compiler&#x27;s eager finalization optimization, or <span class="hljs-keyword">if</span> finalize is called on the finalizer
   directly.</code></pre>
 <p>This new feature was presented at JuliaCon and can be seen <a href="https://www.youtube.com/watch?v&#61;2o8MhoN-3NE">here</a></p>
-<h1 id="manifest_versioning"><a href="#manifest_versioning" class="header-anchor">Manifest versioning</a></h1>
+<h2 id="manifest_versioning"><a href="#manifest_versioning" class="header-anchor">Manifest versioning</a></h2>
 <p><em>Ian Butterworth</em></p>
 <p><code>Manifest.toml</code> files can now be renamed in the format <code>Manifest-v&#123;major&#125;.&#123;minor&#125;.toml</code> to be preferentially picked up by the given julia version. i.e. in the same folder, a <code>Manifest-v1.11.toml</code> would be used by v1.11 and <code>Manifest.toml</code> by every other julia version. This makes managing environments for multiple julia versions at the same time easier. To create such a manifest it is recommended rename an already generated manifest, rather than start with an empty file.</p>
-<h1 id="improved_tab_completion_and_hinting_in_the_repl"><a href="#improved_tab_completion_and_hinting_in_the_repl" class="header-anchor">Improved tab completion and hinting in the REPL</a></h1>
+<h2 id="improved_tab_completion_and_hinting_in_the_repl"><a href="#improved_tab_completion_and_hinting_in_the_repl" class="header-anchor">Improved tab completion and hinting in the REPL</a></h2>
 <p><em>Ian Butterworth</em>, <em>Shuhei Kadowaki</em></p>
 <p>Tab completion has become more powerful in 1.11 and gained inline hinting when there is a singular completion available that can be completed with tab.</p>
 <p><img src="/assets/blog/2024-1.11-highlights/inline_complete.png" alt="" /></p>
@@ -198,13 +198,13 @@ crossorigin=""/>
         repl.options.hint_tab_completes = <span class="hljs-literal">false</span>
     <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></code></pre>
-<h1 id="sources_section_in_projecttoml_in_pkgjl"><a href="#sources_section_in_projecttoml_in_pkgjl" class="header-anchor">Sources section in Project.toml in Pkg.jl</a></h1>
+<h2 id="sources_section_in_projecttoml_in_pkgjl"><a href="#sources_section_in_projecttoml_in_pkgjl" class="header-anchor">Sources section in Project.toml in Pkg.jl</a></h2>
 <p><em>Kristoffer Carlsson</em></p>
 <p>Previously to be able to instantiate an environment that used unregistered dependencies it was required that the manifest file was available since that file gave the information of e.g. what URL the unregistered dependencies are available. Now this information can be specified in the Project file, for example:</p>
 <pre><code class="toml hljs"><span class="hljs-section">[sources]</span>
 <span class="hljs-attr">MyUnregisteredPackage</span> = {url = <span class="hljs-string">&quot;https://github.com/JuliaLang/MyUnregisteredPackage.jl&quot;</span>}</code></pre>
 <p>This feature was also shown at JuliaCon and can be seen <a href="https://youtu.be/7n27lF_SrxY?t&#61;19">here</a>.</p>
-<h1 id="precompile_file_relocatability"><a href="#precompile_file_relocatability" class="header-anchor">Precompile file relocatability</a></h1>
+<h2 id="precompile_file_relocatability"><a href="#precompile_file_relocatability" class="header-anchor">Precompile file relocatability</a></h2>
 <p><em>Florian Atteneder</em></p>
 <p>Enabling relocation of cache files, together with other improvements coming in v1.11, will help Pkg.jl to serve cache files in the future.</p>
 <p>To automatically enable relocatability follow <a href="https://pkgdocs.julialang.org/v1/creating-packages/#Best-Practices">Pkg.jl&#39;s Best Practices</a>, i.e. do not assume that your package code ends up in a writeable or stable location. Instead, utilize existing tools like Artifacts.jl, Scratch.jl or Preferences.jl to make your package self-contained, immutable, and relocatable.</p>
@@ -215,7 +215,7 @@ crossorigin=""/>
 </li>
 </ul>
 <p>In general, avoid absolute paths or relative paths outside the package&#39;s root directory.</p>
-<h1 id="stdlib_excision"><a href="#stdlib_excision" class="header-anchor">Stdlib excision</a></h1>
+<h2 id="stdlib_excision"><a href="#stdlib_excision" class="header-anchor">Stdlib excision</a></h2>
 <p><em>Valentin Churavy</em>, <em>Kristoffer Carlsson</em></p>
 <p>After the introduction of package-images for native caching in Julia 1.10, we started the process of moving standard libraries out of the system-image. This produces a smaller Julia system-image and startup for small scripts being faster.</p>
 <pre><code class="julia hljs">% hyperfine &#x27;julia +<span class="hljs-number">1.10</span> --startup-file=no -e <span class="hljs-string">&quot;1+1&quot;</span>&#x27;
@@ -227,7 +227,7 @@ Benchmark <span class="hljs-number">1</span>: julia +<span class="hljs-number">1
   Time (mean ± σ):      <span class="hljs-number">91.9</span> ms ±   <span class="hljs-number">3.0</span> ms    [User: <span class="hljs-number">72.5</span> ms, System: <span class="hljs-number">19.1</span> ms]
   Range (min … max):    <span class="hljs-number">88.7</span> ms … <span class="hljs-number">100.8</span> ms    <span class="hljs-number">29</span> runs</code></pre>
 <p>Excising standard libraries also introduces the opportunity in the future to update standard libraries independently of Julia. Consequently since this release standard libraries will have their own version numbers. Our goal is to make the development of standard libraries faster and lower the barrier of entry for contributions.</p>
-<h1 id="scopedvalues"><a href="#scopedvalues" class="header-anchor">ScopedValues</a></h1>
+<h2 id="scopedvalues"><a href="#scopedvalues" class="header-anchor">ScopedValues</a></h2>
 <p>ScopedValues are a new runtime supported datatype that provides an alternative to globals for configuration parameters.</p>
 <p>The example below uses ScopedValues to implement permission checking in a web application. When a request is initially processed the permission level needs to be checked only once and all subsequent processing of the request will <em>dynamically</em> inherit the state of the ScopedValue. Dynamically means that the state of ScopedValues is propagated to child functions and child tasks.</p>
 <pre><code class="julia hljs"><span class="hljs-keyword">using</span> Base.ScopedValues
@@ -254,7 +254,7 @@ Benchmark <span class="hljs-number">1</span>: julia +<span class="hljs-number">1
     open(Database(<span class="hljs-comment">#=...=#</span>))
     <span class="hljs-comment"># ...</span>
 <span class="hljs-keyword">end</span></code></pre>
-<h1 id="new_main_entry_point"><a href="#new_main_entry_point" class="header-anchor">New main entry point</a></h1>
+<h2 id="new_main_entry_point"><a href="#new_main_entry_point" class="header-anchor">New main entry point</a></h2>
 <p><em>Keno Fischer</em></p>
 <p>The entry point for Julia has been standardized to <code>Main.main&#40;args&#41;</code>. This must be explicitly opted into using the <code>@main</code> macro &#40;see the docstring for further details&#41;. When opted-in, and <code>julia</code> is invoked to run a script or expression &#40;i.e. using <code>julia script.jl</code> or <code>julia -e expr</code>&#41;, <code>julia</code> will subsequently run the <code>Main.main</code> function automatically. This is intended to unify script and compilation workflows, where code loading may happen in the compiler and execution of <code>Main.main</code> may happen in the resulting executable. For interactive use, there is no semantic difference between defining a <code>main</code> function and executing the code directly at the end of the script.</p>
 <h1 id="the_time_macro_now_reports_lock_conflicts"><a href="#the_time_macro_now_reports_lock_conflicts" class="header-anchor">The <code>@time</code> macro now reports lock conflicts</a></h1>
@@ -276,7 +276,7 @@ foo (generic <span class="hljs-keyword">function</span> with <span class="hljs-n
 
 julia&gt; <span class="hljs-meta">@time</span> foo()
   <span class="hljs-number">6.069761</span> seconds (<span class="hljs-number">28.14</span> k allocations: <span class="hljs-number">1.410</span> MiB, <span class="hljs-number">5</span> lock conflicts, <span class="hljs-number">1.34</span>% compilation time)</code></pre>
-<h1 id="inference_enhancements"><a href="#inference_enhancements" class="header-anchor">Inference enhancements</a></h1>
+<h2 id="inference_enhancements"><a href="#inference_enhancements" class="header-anchor">Inference enhancements</a></h2>
 <p><em>Keno Fischer</em>, <em>Shuhei Kadowaki</em></p>
 <p>In v1.11, several new features have been added to inference.</p>
 <h4 id="exception_type_inference"><a href="#exception_type_inference" class="header-anchor">Exception type inference</a></h4>
@@ -449,7 +449,7 @@ CodeInfo(
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: November 17, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: November 19, 2024. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
