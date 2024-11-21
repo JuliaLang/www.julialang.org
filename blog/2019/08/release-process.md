@@ -85,7 +85,7 @@ If these two criteria are satisfied by a new LTS branch, then users in the "low 
 
 We've discussed what various kinds of releases mean and what types of changes can go into them, but we haven't talked much about how a release actually gets made. In this section I'll outline how we go from working on features on the `master` branch to tagging a final version of the release and after that making patches of that release. I will use the word “bugs” to refer to both bugs in the usual sense of incorrect code but also “performance bugs”—i.e. code that runs slower than we consider acceptable. In Julia, performance is a vital property and we often consider performance issues to be blocking bugs. The following is an outline of the sequence of events surrounding a `x.y.0` minor release:
 
-- **Development** (4 months)
+- **Development** (~~4 months~~ time period varies)
     - on the `master` branch
         - develop new features, fix bugs, etc.
     - tag `x.y.0-alpha` (optional)
