@@ -87,4 +87,4 @@ Each of these groups is organized around a common area of interest with a commun
 [Kim-Auth]: https://github.com/kimauth
 [Tan-Zhi-Xuan]: https://github.com/ztangent
 [Timothy Chapman]: https://github.com/tecosaur
-[Rachel-Kurchin]: https://engineering.cmu.edu/directory/bios/kurchin-rachel.html
+[Rachel-Kurchin]: https://github.com/rkurchin
