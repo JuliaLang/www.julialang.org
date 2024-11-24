@@ -1,4 +1,4 @@
-v## Working Groups
+## Working Groups
 
 A working group is a group of people that are interested in working on a common
 topic. Working groups are informal and have no official authority. All working
