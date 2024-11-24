@@ -16,11 +16,11 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | Working Group                    | Slack channel       | Meetings                                 | Contact                                                                  |
 | -------------------------------- | ------------------- | ---------------------------------------- | ------------------------------------------------------------------------ |
 | Astronomy                        | `#astro`            | Fourth Friday of each month at 19:00 UTC | [Mosè Giordano][Mosè-Giordano], [Miles Lucas][Miles-Lucas]               |
-| CI infrastructure                | `#ci-dev`           | Every other Monday at 12pm ET             | [Elliot Saba][Elliot-Saba], [Dilum Aluthge][Dilum-Aluthge]               |
-| [Dagger][dagger]                 | `#distributed`      | Every other Thursday at 10am ET          | [Julian Samaroo][Julian-Samaroo], [Krystian Guliński][Krystian-Guliński]    |
+| [Dagger][dagger]                 | `#distributed`      | Every other Thursday at 10am ET          | [Julian Samaroo][Julian-Samaroo], [Krystian Guliński][Krystian-Guliński] |
 | [Documentation tooling][wg-docs] | `#documentation`    | Last Tuesday of every month at 18:00 UTC | [Morten Piibeleht][Morten-Piibeleht], [Fredrik Ekre][Fredrik-Ekre]       |
 | [GPU][gpu]                       | `#gpu`              | Every other Monday at 11am ET            | [Tim Besard][Tim-Besard], [Valentin Churavy][Valentin-Churavy]           |
 | High-performance computing (HPC) | `#hpc`              | Fourth Tuesday of each month at 2pm ET   | [Valentin Churavy][Valentin-Churavy]                                     |
+| [JuliaMolSim]                    | `#juliamolsim`      | Third Monday of each month at 12:15 ET   | [Rachel Kurchin][Rachel-Kurchin]                                         |
 | Machine learning                 | `#machine-learning` | Every other Tuesday at 12pm ET           | [Kyle Daruwalla][Kyle-Daruwalla], [Lorenz Ohly][Lorenz-Ohly]             |
 | Multithreading                   | `#multithreading`   | First Wednesday of each month at 10am ET | [Jameson Nash][Jameson-Nash]                                             |
 | [Pkg][pkg]                       | `#pkg-dev`          | Occasional Tuesdays at 2:15pm ET         | [Kristoffer Carlsson][Kristoffer-Carlsson], [Fredrik Ekre][Fredrik-Ekre] |
@@ -34,6 +34,7 @@ the `#ml-contributors` and `#repl` streams on the [Julia Zulip][zulip].
 [wg-docs]: https://github.com/JuliaDocs
 [gpu]: https://github.com/JuliaGPU
 [pkg]: https://github.com/JuliaLang/Pkg.jl
+[JuliaMolSim]: https://juliamolsim.org
 
 ### Triage call
 
@@ -85,3 +86,4 @@ Each of these groups is organized around a common area of interest with a commun
 [Kim-Auth]: https://github.com/kimauth
 [Tan-Zhi-Xuan]: https://github.com/ztangent
 [Timothy Chapman]: https://github.com/tecosaur
+[Rachel-Kurchin]: https://github.com/rkurchin
