@@ -20,7 +20,7 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | [Documentation tooling][wg-docs] | `#documentation`    | Last Tuesday of every month at 18:00 UTC | [Morten Piibeleht][Morten-Piibeleht], [Fredrik Ekre][Fredrik-Ekre]       |
 | [GPU][gpu]                       | `#gpu`              | Every other Monday at 11am ET            | [Tim Besard][Tim-Besard], [Valentin Churavy][Valentin-Churavy]           |
 | High-performance computing (HPC) | `#hpc`              | Fourth Tuesday of each month at 2pm ET   | [Valentin Churavy][Valentin-Churavy]                                     |
-| [JuliaMolSim]                    |                     | Third Monday of each month at 12:15 ET   | [Rachel Kurchin][Rachel-Kurchin]                                         |
+| [JuliaMolSim]                    | `#juliamolsim`      | Third Monday of each month at 12:15 ET   | [Rachel Kurchin][Rachel-Kurchin]                                         |
 | Machine learning                 | `#machine-learning` | Every other Tuesday at 12pm ET           | [Kyle Daruwalla][Kyle-Daruwalla], [Lorenz Ohly][Lorenz-Ohly]             |
 | Multithreading                   | `#multithreading`   | First Wednesday of each month at 10am ET | [Jameson Nash][Jameson-Nash]                                             |
 | [Pkg][pkg]                       | `#pkg-dev`          | Occasional Tuesdays at 2:15pm ET         | [Kristoffer Carlsson][Kristoffer-Carlsson], [Fredrik Ekre][Fredrik-Ekre] |
