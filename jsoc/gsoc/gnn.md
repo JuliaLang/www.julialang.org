@@ -31,7 +31,7 @@ for the Julia ML and data ecosystem.
 
 ### Improving performance using sparse linear algebra 
 
-Many graph convolutional layers can be expressed as non-materializing algebraic operations involving the adjacency matrix instead of the slower and more memory-consuming gather/scatter mechanism. We aim at extending as far as possible and in a gpu-friendly way these *fused* implementation.
+Many graph convolutional layers can be expressed as non-materializing algebraic operations involving the adjacency matrix instead of the slower and more memory-consuming gather/scatter mechanism. We aim at extending as far as possible and in a gpu-friendly way these *fused* implementation. The project will involve fixing some outstanding issues in CUDA.jl that are blocking sparse adjacency matrix support on GPU.
 
 **Duration**: 350h.
 
