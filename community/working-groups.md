@@ -15,7 +15,7 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 
 | Working Group                    | Slack channel       | Meetings                                 | Contact                                                                  |
 | -------------------------------- | ------------------- | ---------------------------------------- | ------------------------------------------------------------------------ |
-| Astronomy                        | `#astro`            | Fourth Thursday of each month at 12:00 ET | [Paul Barrett][Paul-Barrett]                                            |
+| [Astronomy][juliaastro]          | `#astronomy`        | Fourth Thursday of each month at 12:00 ET | [Paul Barrett][Paul-Barrett]                                            |
 | [Dagger][dagger]                 | `#distributed`      | Every other Thursday at 10am ET          | [Julian Samaroo][Julian-Samaroo], [Krystian Guliński][Krystian-Guliński] |
 | [Documentation tooling][wg-docs] | `#documentation`    | Last Tuesday of every month at 18:00 UTC | [Morten Piibeleht][Morten-Piibeleht], [Fredrik Ekre][Fredrik-Ekre]       |
 | [GPU][gpu]                       | `#gpu`              | Every other Monday at 11am ET            | [Tim Besard][Tim-Besard], [Valentin Churavy][Valentin-Churavy]           |
@@ -30,6 +30,7 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 The machine learning and REPL working groups can respectively also be found on
 the `#ml-contributors` and `#repl` streams on the [Julia Zulip][zulip].
 
+[juliaastro]: https://github.com/JuliaAstro
 [dagger]: https://github.com/JuliaParallel/Dagger.jl
 [wg-docs]: https://github.com/JuliaDocs
 [gpu]: https://github.com/JuliaGPU
@@ -81,6 +82,7 @@ Each of these groups is organized around a common area of interest with a commun
 [Miles-Lucas]: https://github.com/mileslucas
 [Morten-Piibeleht]: https://github.com/mortenpi
 [Mosè-Giordano]: https://github.com/giordano
+[Paul-Barrett]: https://github.com/barrettp
 [Tim-Besard]: https://github.com/maleadt
 [Valentin-Churavy]: https://github.com/vchuravy
 [Kim-Auth]: https://github.com/kimauth
