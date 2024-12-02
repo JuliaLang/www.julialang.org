@@ -64,7 +64,7 @@ We strongly welcome candidates that already have potential project ideas in mind
 
 **Pre-requisite**: Having already contributed to a Julia package either in JuliaDynamics or of sufficient relevance to JuliaDynamics.
 
-**Recommended Skills**: Familiarity with nonlinear dynamics and/or differential equations and/or timeseries analysis based on Julia language.
+**Recommended Skills**: Familiarity with nonlinear dynamics and/or differential equations and/or timeseries analysis based on the Julia language.
 
 **Expected Results**: Well-documented, well-tested new algorithms for DynamicalSystems.jl.
 
