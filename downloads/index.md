@@ -2,8 +2,8 @@
 @def title = "Download Julia"
 
 ~~~
-  <div class="main-download-instructions">
-   <div class="main-download-instructions-inner">
+  <div>
+   <div>
     <h2 id="install_julia"> <a href="#install_julia">Install <img src="/assets/infra/logo.svg" class="julialogo inline-h2-julia-logo" alt="Julia"></img></h2></a>
     <div class="container pt-sm-2">
       <div class="row" id="windows-instructions" style="display: none;">
@@ -52,176 +52,12 @@ Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia
 
 ---
 
-### Please do not use the version of "Julia" shipped by Linux or BSD package managers
-
-Many Linux/BSD/Unix package managers ship broken and/or significantly out of date versions of Julia. Please use juliaup or download the official binaries instead.
-
-### Supported platforms
-
-Different OSes and architectures have varying [tiers of support](/downloads/#support_tiers_for_the_latest_stable_release_of_julia).
-
-
-@@row @@col-12
-~~~
-<table class="downloads table table-hover ">
-  <tbody>
-    <tr>
-      <th> Operating System </th>
-      <th> OS Version </th>
-      <th> Architecture </th>
-      <th> Support Tier </th>
-    </tr>
-    <tr>
-      <td rowspan="3"> macOS </td>
-      <td> 10.14+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> 10.14+ </td>
-      <td> x86-64 (64-bit) on Apple Silicon (via Rosetta)</td>
-      <td> <font color="red">Not recommended (untested)</font> </td>
-    </tr>
-    <tr>
-      <td> 11.4+ </td>
-      <td> ARMv8 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="2"> Windows </td>
-      <td rowspan="2"> 10+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> i686 (32-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="6"> Linux (Glibc) </td>
-      <td rowspan="5"> 2.6.24+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> i686 (32-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> ARMv8 (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td> ARMv7 (32-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-    <tr>
-      <td> PowerPC (64-bit) </td>
-      <td> Tier 4 </td>
-    </tr>
-    <tr>
-      <td> 6.4+ </td>
-      <td> RISC-V (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="1"> Linux (Musl) </td>
-      <td rowspan="1"> 2.6.39+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="2"> FreeBSD </td>
-      <td rowspan="2"> 13.2+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td> ARMv8 (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-  </tbody>
-</table>
-~~~
-@@ @@
-
-Julia also supports a variety of hardware accelerators, by means of external packages.
-
-@@row @@col-12
-~~~
-<table class="downloads table table-hover ">
-  <tbody>
-    <tr>
-      <th> Hardware Accelerator </th>
-      <th> Platform </th>
-      <th> Requirements </th>
-      <th> Support Tier </th>
-    </tr>
-    <tr>
-      <td rowspan="2"> <a href="https://juliagpu.org/cuda">NVIDIA GPUs using CUDA</a> </td>
-      <td> Linux (64-bit) </td>
-      <td rowspan="2"> NVIDIA driver for CUDA 11.0+ </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> Windows (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td> <a href="https://juliagpu.org/metal">Apple GPUs using Metal</a> </td>
-      <td> Apple Silicon </td>
-      <td> macOS 13+ </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="2"> <a href="https://juliagpu.org/oneapi">Intel GPUs with oneAPI</a> </td>
-      <td> Linux (64-bit) </td>
-      <td> 6.2+ </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td> Windows (64-bit) </td>
-      <td> WSL2 </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="2"> <a href="https://juliagpu.org/rocm">AMD GPUs using ROCm</a> </td>
-      <td> Linux (64-bit) </td>
-      <td rowspan="2"> ROCM 5.3+ </td>
-      <td> <font color="crimson">Tier 3</font> </a> </td>
-    </tr>
-    <tr>
-      <td> Windows (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </a> </td>
-    </tr>
-  </tbody>
-</table>
-~~~
-@@ @@
-
-#### Support tiers for the latest stable release of Julia
-
-@@row @@col-12
-~~~
-<ul>
-<li> <font color="green">Tier 1</font>: Julia is guaranteed to build from source and pass all tests on these platforms when built with the default options. Official binaries are always available and CI is run on every commit to ensure support is actively maintained.
-<li> <font color="orange">Tier 2</font>: Julia is guaranteed to build from source using the default build options, but may or may not pass all tests. Official binaries are available on a case-by-case basis.
-<li> <font color="crimson">Tier 3</font>: Julia may or may not build. If it does, it is unlikely to pass tests. Binaries may be available in some cases. When they are, they should be considered experimental. Ongoing support is dependent on community efforts.
-<li> Tier 4: Julia built at some point in the past, but is known not to build currently.
-</ul>
-~~~
-@@ @@
-
----
-
-## Official Binaries for Manual Download
-
-Note that all Julia versions are installable through [Juliaup](#install_julia).
+### Manual Download
 
 Please see [platform specific instructions](/downloads/platform/) for further manual installation instructions. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
 
 ~~~
-<h3 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h3>
+<h4 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h4>
 ~~~
 
 [Release notes](https://github.com/JuliaLang/julia/blob/v{{stable_release}}/NEWS.md) | [GitHub tag](https://github.com/JuliaLang/julia/releases/tag/v{{stable_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5)
@@ -313,7 +149,7 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
 
 
 ~~~
-<h3 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h3>
+<h4 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h4>
 ~~~
 
 [Release notes](https://github.com/JuliaLang/julia/blob/v{{lts_release}}/NEWS.md) | [GitHub tag](https://github.com/JuliaLang/julia/releases/tag/v{{lts_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5)
@@ -497,6 +333,168 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
 <sup>[1]</sup>
 ~~~
 Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.
+
+### Please do not use the version of "Julia" shipped by Linux or BSD package managers
+
+Many Linux/BSD/Unix package managers ship broken and/or significantly out of date versions of Julia. Please use juliaup or download the official binaries instead.
+
+### Supported platforms
+
+Different OSes and architectures have varying [tiers of support](/downloads/#support_tiers_for_the_latest_stable_release_of_julia).
+
+
+@@row @@col-12
+~~~
+<table class="downloads table table-hover ">
+  <tbody>
+    <tr>
+      <th> Operating System </th>
+      <th> OS Version </th>
+      <th> Architecture </th>
+      <th> Support Tier </th>
+    </tr>
+    <tr>
+      <td rowspan="3"> macOS </td>
+      <td> 10.14+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> 10.14+ </td>
+      <td> x86-64 (64-bit) on Apple Silicon (via Rosetta)</td>
+      <td> <font color="red">Not recommended (untested)</font> </td>
+    </tr>
+    <tr>
+      <td> 11.4+ </td>
+      <td> ARMv8 (64-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> Windows </td>
+      <td rowspan="2"> 10+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> i686 (32-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="6"> Linux (Glibc) </td>
+      <td rowspan="5"> 2.6.24+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> i686 (32-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> ARMv8 (64-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> ARMv7 (32-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td> PowerPC (64-bit) </td>
+      <td> Tier 4 </td>
+    </tr>
+    <tr>
+      <td> 6.4+ </td>
+      <td> RISC-V (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="1"> Linux (Musl) </td>
+      <td rowspan="1"> 2.6.39+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> FreeBSD </td>
+      <td rowspan="2"> 13.2+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> ARMv8 (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+  </tbody>
+</table>
+~~~
+@@ @@
+
+Julia also supports a variety of hardware accelerators, by means of external packages.
+
+@@row @@col-12
+~~~
+<table class="downloads table table-hover ">
+  <tbody>
+    <tr>
+      <th> Hardware Accelerator </th>
+      <th> Platform </th>
+      <th> Requirements </th>
+      <th> Support Tier </th>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/cuda">NVIDIA GPUs using CUDA</a> </td>
+      <td> Linux (64-bit) </td>
+      <td rowspan="2"> NVIDIA driver for CUDA 11.0+ </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> <a href="https://juliagpu.org/metal">Apple GPUs using Metal</a> </td>
+      <td> Apple Silicon </td>
+      <td> macOS 13+ </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/oneapi">Intel GPUs with oneAPI</a> </td>
+      <td> Linux (64-bit) </td>
+      <td> 6.2+ </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> WSL2 </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/rocm">AMD GPUs using ROCm</a> </td>
+      <td> Linux (64-bit) </td>
+      <td rowspan="2"> ROCM 5.3+ </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
+    </tr>
+  </tbody>
+</table>
+~~~
+@@ @@
+
+#### Support tiers for the latest stable release of Julia
+
+@@row @@col-12
+~~~
+<ul>
+<li> <font color="green">Tier 1</font>: Julia is guaranteed to build from source and pass all tests on these platforms when built with the default options. Official binaries are always available and CI is run on every commit to ensure support is actively maintained.
+<li> <font color="orange">Tier 2</font>: Julia is guaranteed to build from source using the default build options, but may or may not pass all tests. Official binaries are available on a case-by-case basis.
+<li> <font color="crimson">Tier 3</font>: Julia may or may not build. If it does, it is unlikely to pass tests. Binaries may be available in some cases. When they are, they should be considered experimental. Ongoing support is dependent on community efforts.
+<li> Tier 4: Julia built at some point in the past, but is known not to build currently.
+</ul>
+~~~
+@@ @@
+
+---
 
 ### Older Releases
 
