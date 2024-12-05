@@ -7,6 +7,7 @@ We have our project ideas organized below roughly by domain but you can also see
 @@tight-list
 * [BayesianOptimization.jl](/jsoc/gsoc/bayesopt/) - a package for global optimization of black-box functions
 * [Compiler](/jsoc/gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
+* [CliMA](/jsoc/gsoc/clima/) – a new open-source climate model that runs on GPUs.
 <!--* [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.-->
 * [Ferrite FEM](/jsoc/gsoc/ferrite-fem/) - A modern finite element toolbox in Julia.
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
