@@ -58,3 +58,24 @@ to learn) to write fast code.
 for Trixi.jl.
 
 **Mentors**: [Michael Schlottke-Lakemper](https://github.com/sloede), [Benedict Geihe](https://www.mi.uni-koeln.de/NumSim/dr-benedict-geihe/), [Johannes Markert](https://github.com/jmark)
+
+## Asynchronous computing for communication blocking MPI and multi-GPU computing using Trixi.jl
+
+**Difficulty**: Medium
+
+**Project size**: 175 hours or 350 hours, depending on the chosen subtasks
+
+Asynchronous computing is a modern approach to avoid communication bottlenecks by performing non-blocking sends and developing algorithms that can use the currently available data. This approach gives great scalability on parallel computing systems.
+
+The overall goal of this project is to implement a subset of feature of Trixi that can perform parallel simulations asynchronously. The possible subtasks in this project include
+
+- Explore and implement asynchronous algorithm for the 1D advection equation or 1D compressible Euler equations that will use Trixi's API.
+- Explore and implement an asynchronous algorithm for Trixi's basic `TreeMesh` type.
+- Explore and implement asynchronous algorithm for a multi-GPU setup.
+- Explore and implement asynchronous algorithms using Remote Memory Access Programming
+- Optimize and compare the performance of various implementations
+
+**Recommended skills:** Some knowledge of GPU or MPI programming, numerical analysis.
+
+**Expected results:** Draft of a working subset of the functionality of [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) efficiently using asynchronous computing.
+
