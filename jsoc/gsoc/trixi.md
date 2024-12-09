@@ -65,7 +65,7 @@ for Trixi.jl.
 
 **Project size**: 175 hours or 350 hours, depending on the chosen subtasks
 
-The high performance of modern scientific software is built on parallel computing using MPI and GPUs. The communication speed has not kept up with the exponential increase in compute speed and algorithms are often communication bound, leading to underutilization of hardare capabilities. Asynchronous computing avoids communication bottlenecks by performing non-blocking sends and algorithms that can reliably give results using the currently available data. This approach gives great scalability on parallel computing systems.
+The high performance of modern scientific software is built on parallel computing using MPI and GPUs. The communication speed has not kept up with the exponential increase in compute speed and algorithms are often communication bound, leading to underutilization of hardware capabilities. Asynchronous computing avoids communication bottlenecks by performing non-blocking sends and using algorithms that can give reliable results using the currently available data. This approach gives great scalability on parallel computing systems.
 
 [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) currently performs distributed memory parallelization using [MPI.jl](https://github.com/JuliaParallel/MPI.jl), and has experimental GPU capabilities using [CUDA.jl](https://github.com/JuliaGPU/CUDA.jl) and [KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl). The goal of this project is to implement a subset of features of [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) that can perform parallel simulations asynchronously.
 
@@ -75,7 +75,7 @@ The possible subtasks in this project include
 - Taking the simple code as a prototype, explore and implement an asynchronous algorithm starting with the basic [TreeMesh](https://trixi-framework.github.io/Trixi.jl/stable/meshes/tree_mesh/) type in [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) and potentially extending up to [P4estMesh](https://trixi-framework.github.io/Trixi.jl/stable/meshes/p4est_mesh/).
 - Explore and implement asynchronous algorithms for a multi-GPU setup, in the 1D prototype and in [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/).
 - Explore and implement asynchronous algorithms using [Remote Memory Access Programming using MPI.jl](https://juliaparallel.org/MPI.jl/dev/reference/onesided/).
-- Optimize and compare the performance of various implementations across various hardwares.
+- Optimize and compare the performance of the above implementations across different hardwares.
 
 This project is good for both software engineers interested in the fields of scientific computing, machine learning and numerical analysis as well as those students who are interested in pursuing graduate research in the field.
 
