@@ -82,3 +82,5 @@ This project is good for both software engineers interested in the fields of sci
 **Recommended skills:** Some knowledge of GPU or MPI programming. Knowledge of any numerical analysis (e.g., finite differences) will help, but is not strictly required.
 
 **Expected results:** Draft of a working subset of the functionality of [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) efficiently using asynchronous computing.
+
+**Mentors**: [Arpit Babbar](https://github.com/arpit-babbar), [Hendrik Ranocha](https://github.com/ranocha)
