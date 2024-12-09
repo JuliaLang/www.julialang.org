@@ -1,8 +1,8 @@
 # Modern computational fluid dynamics with Trixi.jl
 
-[Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) is a Julia package for adaptive 
+[Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) is a Julia package for adaptive
 high-order numerical simulations of conservation laws. It is designed to be simple to use
-for students and researchers, extensible for research and teaching, as well as efficient 
+for students and researchers, extensible for research and teaching, as well as efficient
 and suitable for high-performance computing.
 
 
@@ -65,17 +65,20 @@ for Trixi.jl.
 
 **Project size**: 175 hours or 350 hours, depending on the chosen subtasks
 
-Asynchronous computing is a modern approach to avoid communication bottlenecks by performing non-blocking sends and developing algorithms that can use the currently available data. This approach gives great scalability on parallel computing systems.
+The high performance of modern scientific software is built on parallel computing using MPI and GPUs. The communication speed has not kept up with the exponential increase in compute speed and algorithms are often communication bound, leading to underutilization of hardare capabilities. Asynchronous computing avoids communication bottlenecks by performing non-blocking sends and algorithms that can reliably give results using the currently available data. This approach gives great scalability on parallel computing systems.
 
-The overall goal of this project is to implement a subset of feature of Trixi that can perform parallel simulations asynchronously. The possible subtasks in this project include
+[Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) currently performs distributed memory parallelization using [MPI.jl](https://github.com/JuliaParallel/MPI.jl), and has experimental GPU capabilities using [CUDA.jl](https://github.com/JuliaGPU/CUDA.jl) and [KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl). The goal of this project is to implement a subset of features of [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) that can perform parallel simulations asynchronously.
 
-- Explore and implement asynchronous algorithm for the 1D advection equation or 1D compressible Euler equations that will use Trixi's API.
-- Explore and implement an asynchronous algorithm for Trixi's basic `TreeMesh` type.
-- Explore and implement asynchronous algorithm for a multi-GPU setup.
-- Explore and implement asynchronous algorithms using Remote Memory Access Programming
-- Optimize and compare the performance of various implementations
+The possible subtasks in this project include
 
-**Recommended skills:** Some knowledge of GPU or MPI programming, numerical analysis.
+- Explore and implement a simple code for asynchronous algorithms for solving the 1D advection equation or 1D compressible Euler equations using the API of [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/).
+- Taking the simple code as a prototype, explore and implement an asynchronous algorithm starting with the basic [TreeMesh](https://trixi-framework.github.io/Trixi.jl/stable/meshes/tree_mesh/) type in [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) and potentially extending up to [P4estMesh](https://trixi-framework.github.io/Trixi.jl/stable/meshes/p4est_mesh/).
+- Explore and implement asynchronous algorithms for a multi-GPU setup, in the 1D prototype and in [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/).
+- Explore and implement asynchronous algorithms using [Remote Memory Access Programming using MPI.jl](https://juliaparallel.org/MPI.jl/dev/reference/onesided/).
+- Optimize and compare the performance of various implementations across various hardwares.
+
+This project is good for both software engineers interested in the fields of scientific computing, machine learning and numerical analysis as well as those students who are interested in pursuing graduate research in the field.
+
+**Recommended skills:** Some knowledge of GPU or MPI programming. Knowledge of any numerical analysis (e.g., finite differences) will help, but is not strictly required.
 
 **Expected results:** Draft of a working subset of the functionality of [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) efficiently using asynchronous computing.
-
