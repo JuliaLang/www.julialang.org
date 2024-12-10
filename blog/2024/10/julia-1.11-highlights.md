@@ -294,3 +294,7 @@ well for functions with complex memory operations. As a result, it has not yet b
 other purposes. However, we plan to continue improving it and apply it to various
 optimizations such as more aggressive constant propagation, better SROA
 (Scalar Replacements of Aggregates), `finalizer` optimization, and stack allocation.
+
+## Acknowledgement
+
+The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
