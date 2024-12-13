@@ -27,11 +27,6 @@ A monthly newsletter, mostly on julia internals, digestible for casual observers
 * A dive into the [details of constraint propagation](https://discourse.julialang.org/t/why-the-compiler-cant-optimize-this-simple-code/122504) and when can the compiler figure those out, with a simple example.
 * Yet another insightful discussion on Julia’s type system: [nominal typing vs structural typing/traits](https://discourse.julialang.org/t/why-did-julia-choose-nominal-typing-over-structural-typing-traits/122517).
 
-Dustbin of History:
-
-* ENV["JULIA_DEBUG"] = "loading"
-* https://github.com/JuliaLang/julia/issues/51183 and https://discourse.julialang.org/t/why-does-let-allow-comma-separated-assignments/113812
-
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
 
 * The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science.
