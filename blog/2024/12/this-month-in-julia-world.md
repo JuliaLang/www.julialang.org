@@ -15,7 +15,7 @@ A monthly newsletter, mostly on julia internals, digestible for casual observers
 * This newsletter announced the transition to LLVM 16 only last year. We already are on our way to use LLVM 19, so [16 is going out](https://github.com/JuliaLang/julia/pull/56751).
 * Fun edge cases with parsing `function()() end` discussed on [slack](https://julialang.slack.com/archives/C67910KEH/p1732783146467099).
 * Standardizing how and when global `=` gets lowered, [sticking to using `setglobal!`](https://github.com/JuliaLang/julia/pull/56713), leading to fewer special cases in the compiler passes.
-* [`disable_new_worlds()`](https://github.com/JuliaLang/julia/pull/56639) can now be called, freezing the world age, stopping invalidation tracking, significantly improving the performance of code loading, as long as you know that the new code does not invalidate anything. At the same time we also got a lot more [standardization and cleanup to when word ages actually get incremented](https://github.com/JuliaLang/julia/pull/56509).
+* [`disable_new_worlds()`](https://github.com/JuliaLang/julia/pull/56639) can now be called, freezing the world age, stopping invalidation tracking, significantly improving the performance of code loading, as long as you know that the new code does not invalidate anything. At the same time we also got a lot more [standardization and cleanup to when world ages actually get incremented](https://github.com/JuliaLang/julia/pull/56509).
 * Maybe [`nth` will be added to Base](https://github.com/JuliaLang/julia/pull/56580) to generalize `first` and `last`.
 * [`LinearAlgebra` was moved to its own](https://github.com/JuliaLang/julia/pull/56637) repository (but it is not yet an external independently-versioned standard library)
 * The base `ReentrantLock` might get an optional [warning message on detecting lock contention](https://github.com/JuliaLang/julia/pull/56744).
@@ -24,7 +24,7 @@ A monthly newsletter, mostly on julia internals, digestible for casual observers
 * The Julia 1.12 [feature freeze is announced](https://discourse.julialang.org/t/julia-1-12-feature-freeze-wednesday-january-8-2025/122902) – January 8th.
 * An informative discussion on the lack of [non-blocking IO in Julia](https://discourse.julialang.org/t/non-blocking-network-io/123344) and what it would take to implement it.
 * Proposal for significant [improvements to Julia’s IO interface](https://discourse.julialang.org/t/upcoming-video-call-improving-base-io/123171). Direct [link to the proposal itself](https://hackmd.io/@jakobnissen/SksGljkfkl).
-* A dive into the [details of constraint propagation](https://discourse.julialang.org/t/why-the-compiler-cant-optimize-this-simple-code/122504) and when can the compiler figure those out, with a simple example.
+* A dive into the [details of constant propagation](https://discourse.julialang.org/t/why-the-compiler-cant-optimize-this-simple-code/122504) and when can the compiler figure those out, with a simple example.
 * Yet another insightful discussion on Julia’s type system: [nominal typing vs structural typing/traits](https://discourse.julialang.org/t/why-did-julia-choose-nominal-typing-over-structural-typing-traits/122517).
 
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
@@ -55,7 +55,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
 Julia Autodiff ecosystem (enough topics for its own category this month):
 
-* For floats `0.0 != -0.0`. The various types of equality checks have come up often on various community forums, but this time it is about an exciting interaction between this surprising float inequality and autodiff. Discussed on [slack](https://julialang.slack.com/archives/C67910KEH/p1733134512456069) with a reference to this informative [manuscript](https://arxiv.org/pdf/2006.02080).
+* For floats `0.0 !== -0.0`. The various types of equality checks have come up often on various community forums, but this time it is about an exciting interaction between this surprising float inequality and autodiff. Discussed on [slack](https://julialang.slack.com/archives/C67910KEH/p1733134512456069) with a reference to this informative [manuscript](https://arxiv.org/pdf/2006.02080).
 * Mixed-mode sparse Jacobians at insane speeds available in DifferentiationInterface.jl, discussed on [slack](https://julialang.slack.com/archives/C6G240ENA/p1731256638885619)
 * How about finite-differences mode in Enzyme, discussed on [slack](https://julialang.slack.com/archives/C01J3R4FHB3/p1731439512764739)
 
