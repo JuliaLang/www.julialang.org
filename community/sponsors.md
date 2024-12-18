@@ -32,6 +32,7 @@ running:
 - [MIT's Julia Lab](https://julia.mit.edu/) is maintaining data center for the project space and providing a significant number of CI machines
 - [NVIDIA](nvidia.com) has provided both JuliaHub and the Julia Lab with a significant number of free GPUs across various generations of NVIDIA products
 - [Buildkite](https://buildkite.com) provides a free Buildkite account for use in Base Julia CI
+- [Cloudflare](https://buildkite.com) provides the Julia package servers with free CDN services
 
 ## Direct Funding
 
