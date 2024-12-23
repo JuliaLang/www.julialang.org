@@ -8,7 +8,7 @@ ML/Stats ecosystem.
 
 ### List of projects
 
-MLJ is released under the MIT license and sponsored by the Alan Turing Institute.
+MLJ is released under the MIT license.
 
 \toc
 
@@ -85,51 +85,6 @@ Specifically, you will:
 
 -   [Survival.jl
 	Documentation](https://juliastats.org/Survival.jl/latest/)
-
-
-## Feature transformations
-
-Enhancing MLJ data-preprocessing capabilities by integrating
-[TableTransforms](https://github.com/JuliaML/TableTransforms.jl) into
-MLJ.
-
-**Difficulty.** Easy. **Duration.** 350 hours
-
-### Description
-
-TableTransforms.jl is a Julia package heavily inspired by
-FeatureTranforms.jl which aims to provide feature engineering
-transforms which are vital in the Statistics and Machine Learning
-domain. This project would implement the necessary methods to
-integrate TableTransforms with MLJ, making them available for
-incorporation into sophisticated ML workflows.
-
-**Mentors.** [Anthony Blaom](https://ablaom.github.io/).
-
-### Prerequisites
-
--   Julia language fluency is essential.
-
--   Git-workflow familiarity is strongly preferred.
-
--   A passing familiarity with machine learning goals and workflow
-	preferred
-
-### Your contribution
-
--   Implement the MLJ model interface for transformers in TableTransforms.jl.
-
--   Integrate TableTransforms pipelines with MLJ.
-
-### References
-
--   [TableTransforms](https://github.com/JuliaML/TableTransforms.jl) Github
-	repository.
-
--   [MLJModels](https://github.com/JuliaAI/MLJModels.jl) Github
-	repository with existing MLJ transformers.
-
--   [Specification of the MLJ model API](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/).
 
 
 ## Time series forecasting at scale - speed up via Julia
@@ -244,67 +199,6 @@ You will enhance your visualisation skills as well as your ability to "debug" an
 **Mentors**: [Sebastian Vollmer](https://sebastian.vollmer.ms), [Diego Arenas](https://github.com/darenasc).
 
 
-## Deeper Bayesian Integration
-Bayesian methods and probabilistic supervised learning provide uncertainty quantification. This project aims increasing integration to combine Bayesian and non-Bayesian methods using Turing.
-
-**Difficulty.** Difficult. **Duration.** 350 hours.
-
-### Description
-As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) in Turing. The bulk of the project is to implement methods that combine multiple predictive distributions.
-
-### Your contributions
-- Interface between Turing and MLJ
-- Comparisons of ensambling, stacking of predictive distribution
-- reproducible benchmarks across various settings.
-
-### References
-[Bayesian Stacking](http://www.stat.columbia.edu/~gelman/research/published/stacking_paper_discussion_rejoinder.pdf)
-[SKpro](https://github.com/alan-turing-institute/skpro/blob/master/README.md)
-### Difficulty: Medium to Hard
-
-**Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://sebastian.vollmer.ms)
-
-
-## Tracking and sharing MLJ workflows using MLFlow
-
-Help data scientists using MLJ track and share their machine learning
-experiments using [MLFlow](https://mlflow.org).
-
-**Difficulty.** Moderate. **Duration.** 350 hours.
-
-### Description
-
-MLFlow is an open source platform for the machine learning life
-cycle. It allows the data scientist to upload experiment metadata and
-outputs to the platform for reproducing and sharing purposes. This
-project aims to integrate the MLJ machine learning platform with
-MLFlow.
-
-### Prerequisites
-- Julia language fluency essential.
-- Git-workflow familiarity strongly preferred.
-- General familiarity with data science workflows
-
-### Your contribution
-* You will familiarize yourself with MLJ, MLFlow and MLFlowClient.jl client APIs.
-* Implement functionality to upload to MLFlow machine learning
-  model hyper-parameters, performance evaluations, and
-  artifacts encapsulating the trained model. 
-* Implement functionality allowing for the live tracking of learning
-  for iterative models, such as neural networks, by hooking in to
-  [MLJIteration.jl](https://github.com/JuliaAI/MLJIteration.jl).
-
-### References
-* [MLFlow](https://mlflow.org) website.
-* [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html).
-* [MLFlowClient.jl](https://github.com/JuliaAI/MLFlowClient.jl)
-* [MLJIteration.jl](https://github.com/JuliaAI/MLJIteration.jl)
-
-**Mentors.** [Deyan Dyankov](https://github.com/deyandyankov),
-[Anthony Blaom](https://ablaom.github.io/), [Diego
-Arenas](https://github.com/darenasc).
-
-
 ## Speed demons only need apply
 
 Diagnose and exploit opportunities for speeding up common MLJ
@@ -329,7 +223,7 @@ In this project you will:
 - limitations of the generic Tables.jl interface for interacting with tabular data which, in common cases (DataFrames), has extra functionality that can be exploited
 - rolling out new data front-end for models to avoid unnecessary copying of data
 - in conjunction with your mentor, identify best design for introducing better sparse data support to MLJ models (e.g., naive Bayes)
-- implement a multi-threading and/or multi-processor parallelism to the current learning networks scheduler
+- implement multi-processor parallelism in the current learning networks scheduler
 - benchmark and profile common workflows to identify opportunities for further code optimizations
 - implement some of these optimizations
 
@@ -339,93 +233,3 @@ In this project you will:
 - [Data front end](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/#Implementing-a-data-front-end-1) for MLJ models.
 
 **Mentors.** [Anthony Blaom](https://ablaom.github.io)
-
-
-## Correcting for class imbalance in classification problems
-
-Improve and extend Julia's offering of algorithms for correcting class
-imbalance, with a view to integration into MLJ and elsewhere.
-
-**Difficulty.** Easy - moderate. **Duration.** 350 hours
-
-### Description
-
-Many classification algorithms do not perform well when there is a
-class imbalance in the target variable (for example, many more
-positives than negatives). There are number of well-known data
-preprocessing algorithms, such as oversampling, for compensating for
-class imbalance. See for instance the python package
-[imbalance-learn](https://imbalanced-learn.org/stable/).
-
-The Julia package
-[ClassImbalance.jl](https://github.com/bcbi/ClassImbalance.jl)
-provides some native Julia class imbalance algorithms. For wider
-adoption it is proposed that:
-
-- ClassImbalance.jl be made more data-generic, for example made to
-  support arbitrary tables (objects implementing
-  [Tables.jl](https://github.com/JuliaData/Tables.jl)). Currently
-  there is only support for an old version of DataFrames.jl. 
-  
-- ClassImbalance.jl implements a general transformer interface, such
-  the ones provided by
-  [TableTransforms.jl](https://github.com/JuliaML/TableTransforms.jl),
-  [MLJ](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/)
-  or
-  [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
-  (MLJ may ultimately support the TableTransforms.jl API - see the
-  separate "Feature Transforms" project)
-  
-- ClassImbalance.jl also support data containers implementing the
-  `getobs` interface in
-  [LearnBase.jl](https://mldatapatternjl.readthedocs.io/en/latest/documentation/container.html)
-  (but note [this](https://github.com/JuliaML/LearnBase.jl/issues/49)
-  code re-organization project and [this issue](https://github.com/JuliaML/MLUtils.jl/issues/61)).
-
-- Other Julia-native algorithms be added
-
-**Mentor.** [Anthony Blaom](https://ablaom.github.io/).
-
-
-### Prerequisites
-
-- Julia language fluency is essential.
-
-- An understanding of the class imbalance phenomena essential. A
-  detailed understanding of at least one class imbalance algorithm
-  essential.
-
-- Git-workflow familiarity is strongly preferred.
-
-- A familiarity with machine learning goals and workflow preferred
-	
-
-### Your contribution
-
-- Familiarize yourself with the existing ClassImbalance package,
-  including known issues
-
-- Familiarize yourself with the Tables.jl interface
-
-- Assess the merits of different transformer API choices and choose
-  one in consultation with your mentor
-  
-- Implement the proposed improvements in parallel with testing and
-  documentation additions to the package. Testing and documentation
-  must be up-to-date before new algorithms are added. 
-  
-
-### References
-
-- [ClassImbalance.jl](https://github.com/bcbi/ClassImbalance.jl) 
-
-- [TableTransforms.jl](https://github.com/JuliaML/TableTransforms.jl) Github
-	repository.
-
-- [Tables.jl](https://github.com/JuliaData/Tables.jl)
-
-- [Specification of the MLJ model API](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/). 
-
-- [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
-
-- [The `getobs` data container interface](https://mldatapatternjl.readthedocs.io/en/latest/documentation/container.html)
