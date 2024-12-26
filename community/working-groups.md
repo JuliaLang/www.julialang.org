@@ -44,9 +44,9 @@ to discuss open issues and pull requests. Unlike working groups, the triage call
 tend to discuss a wider range of topics. Triage calls are held online and are open
 to anyone. Please check Slack for the meeting link.
 
-| Name    | Slack channel | Meetings                          | Contact                        |
-| ------- | ------------- | --------------------------------- | ------------------------------ |
-| Triage  | `#triage`     | Every other Thursday alternating between 1:30 and 13:30 UTC | [Jeff Bezanson][Jeff-Bezanson] |
+| Name    | Slack channel | Meetings                        | Contact                        |
+| ------- | ------------- | -------------------------------- | ------------------------------ |
+| Triage  | `#triage`     | Every other Thursday at 13:15 ET | [Jeff Bezanson][Jeff-Bezanson] |
 
 ### Community groups
 
