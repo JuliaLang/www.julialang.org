@@ -80,6 +80,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/blog/2025/01/this-month-in-julia-world/index.html</loc>
+    <lastmod>2024-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2017/05/raspberry-pi-julia/index.html</loc>
     <lastmod>2024-12-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1077,6 +1083,12 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/08/release-process/index.html</loc>
+    <lastmod>2024-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/blog/2024/12/this-month-in-julia-world/index.html</loc>
     <lastmod>2024-12-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
