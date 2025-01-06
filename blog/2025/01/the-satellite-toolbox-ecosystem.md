@@ -63,7 +63,7 @@ The development strategy of
 development strategy at all 😅. I had no idea where this would take me, I just wanted to
 learn all the cool stuff about space engineering. The fact that I needed to use the nightly
 build of Julia and things were breaking every month (or week!) was not helping either. I
-also was not expecting any external help since Julia was almost prohibited in Engineering
+also was not expecting any external help since Julia was almost prohibited in engineering
 fields by that time.
 
 Despite the challenges, I remained steadfast in my belief in Julia’s promises and diligently
@@ -162,7 +162,7 @@ ways.
 
 After reviewing the opened issues, we haven’t had many complaints about the API or the
 algorithms in the past five years. And all the studies we’ve done with this ecosystem
-haven’t found any major problems with the algorithms. So, I decided to start upgrading all
+haven’t found any major problems with the algorithms. So, I decided to start updating all
 the packages to version 1.0 at the beginning of 2025. That way, we can officially declare
 the API stable.
 
@@ -211,7 +211,7 @@ ecosystem a part of the Brazilian Space Program 🇧🇷!
 
 With our solid base and extensive testing, I will be implementing a range of analysis
 algorithms in the [SatelliteAnalysis.jl](https://github.com/JuliaSpace/SatelliteAnalysis.jl)
-package. This will empower Julia users to perform various space mission tasks effortlessly.
+package. This will empower Julia users to perform various space mission tasks.
 For instance, we already have a function that lists all the access windows between a
 satellite and a ground station. This crucial information is vital for mission design for
 example.
