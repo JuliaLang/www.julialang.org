@@ -23,6 +23,21 @@
 
 <item>
   <title>
+    <![CDATA[  The SatelliteToolbox.jl Ecosystem  ]]>
+  </title>
+  <link> https://julialang.org/blog/2025/01/the-satellite-toolbox-ecosystem/index.html </link>
+  <guid> https://julialang.org/blog/2025/01/the-satellite-toolbox-ecosystem/index.html </guid>
+  <description>
+    <![CDATA[  The history of the SatelliteToolbox.jl ecosystem  ]]>
+  </description>  
+    
+  <pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  This Month in Julia World  ]]>
   </title>
   <link> https://julialang.org/blog/2025/01/this-month-in-julia-world/index.html </link>

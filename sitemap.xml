@@ -344,6 +344,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/blog/2025/01/the-satellite-toolbox-ecosystem/index.html</loc>
+    <lastmod>2025-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2017/12/ml-pl-cn/index.html</loc>
     <lastmod>2025-01-06</lastmod>
     <changefreq>monthly</changefreq>
