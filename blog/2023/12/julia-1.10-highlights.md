@@ -5,7 +5,7 @@ title = "Julia 1.10 Highlights"
 authors = "The Julia contributors"
 published = "27 December 2023"
 rss_pubdate = Date(2023, 12, 27)
-rss = """Highlights of the Julia 1.10 release."""
+rss_description = """Highlights of the Julia 1.10 release."""
 +++
 
 

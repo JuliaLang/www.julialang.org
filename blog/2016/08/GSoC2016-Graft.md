@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2016, 8, 22)
-@def rss = """ Graft.jl - General purpose graph analytics for Julia | This blog post describes my work on Graft.jl (https://github.com/pranavtbhat/Graft.jl), a general purpose graph analysis package for Julia. For those unfamiliar with graph algorithms, a quick introduction (https://www.cl.cam.ac.uk/teaching/1011/PrincComm/slides/graph_theory_1-11.pdf) might help.... """
+@def rss_description = """ Graft.jl - General purpose graph analytics for Julia | This blog post describes my work on Graft.jl (https://github.com/pranavtbhat/Graft.jl), a general purpose graph analysis package for Julia. For those unfamiliar with graph algorithms, a quick introduction (https://www.cl.cam.ac.uk/teaching/1011/PrincComm/slides/graph_theory_1-11.pdf) might help.... """
 @def published = "22 August 2016"
 @def title = "Graft.jl - General purpose graph analytics for Julia"
 @def authors = """<a href="https://github.com/pranavtbhat">Pranav Thulasiram Bhat</a>"""

@@ -275,6 +275,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [Advanced Scientific Computing (Bio5989)](https://github.com/timholy/AdvancedScientificComputing/tree/main) (Prof. [Tim Holy](https://neuroscience.wustl.edu/people/timothy-holy-phd/)), annual. See [videos](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA) and corresponding [branch](https://github.com/timholy/AdvancedScientificComputing/tree/Fall2021) from the Fall 2021 edition of the course.
 * Western University Canada
     * [CS 2101A](https://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza), Fall 2013
+* TH Köln (University of Applied Sciences), Institute of Automotive Engineering
+    * Introduction to Scientific Computing (Prof. Georg Engelmann), since Fall 2023
+    * Numerical Methods in Engineering (Prof. Georg Engelmann), since Spring 2023
 @@
-
 Have a Julia class you want added to this list? Please [open an issue or pull request](https://github.com/JuliaLang/www.julialang.org/issues).

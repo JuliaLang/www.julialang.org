@@ -2,7 +2,7 @@
 @def authors = "Tim Holy and Nathan Daly"
 @def published = "28 January 2021"
 @def rss_pubdate = Date(2021, 1, 28)
-@def rss = """Profiling type-inference"""
+@def rss_description = """Profiling type-inference"""
 
 This is the second in a short series on what package developers can do to reduce the latency of Julia packages.
 In the [first post](https://julialang.org/blog/2021/01/precompile_tutorial/), we introduced precompilation and some of its constraints.

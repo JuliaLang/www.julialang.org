@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2019, 8, 6)
-@def rss = """Julia User and Developer Survey 2019 | We conducted the first annual Julia User & Developer Survey in June, and the results were presented by Viral Shah at JuliaCon on July 23...."""
+@def rss_description = """Julia User and Developer Survey 2019 | We conducted the first annual Julia User & Developer Survey in June, and the results were presented by Viral Shah at JuliaCon on July 23...."""
 @def published = "6 August 2019"
 @def title = "Julia User - Developer Survey 2019"
 @def authors = "Viral Shah (JuliaHub), Andrew Claster (JuliaHub), Abhijith C (JuliaHub)"

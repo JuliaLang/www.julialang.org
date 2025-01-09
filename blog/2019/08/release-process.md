@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2019, 8, 28)
-@def rss = """ Julia’s Release Process | People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just _know_ how each stage unfolds. Of course, from the outside looking in it's not so obvious. So I thought it might be helpful t... """
+@def rss_description = """ Julia’s Release Process | People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just _know_ how each stage unfolds. Of course, from the outside looking in it's not so obvious. So I thought it might be helpful t... """
 @def published = "28 August 2019"
 @def title = "Julia’s Release Process"
 @def authors = "Stefan Karpinski (JuliaHub)"

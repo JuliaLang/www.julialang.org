@@ -2,7 +2,7 @@
 @def authors = "Jeff Bezanson & Stefan Karpinski"
 @def published = "3 August 2020"
 @def rss_pubdate = Date(2020, 8, 3)
-@def rss = """Julia version 1.5 has been released, featuring many performance improvements and new capabilities."""
+@def rss_description = """Julia version 1.5 has been released, featuring many performance improvements and new capabilities."""
 
 
 [Julia version 1.5 has been released](https://discourse.julialang.org/t/julia-v1-5-0-has-been-released/44169).

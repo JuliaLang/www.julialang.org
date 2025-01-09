@@ -2,7 +2,7 @@
 @def authors = "Avik Sengupta, Jacob Zelko"
 @def published = "3 May 2024"
 @def rss_pubdate = Date(2024, 5, 3)
-@def rss = """GSoC and JSoC Fellows and Projects announced for 2024."""
+@def rss_description = """GSoC and JSoC Fellows and Projects announced for 2024."""
 
 Hi Julia Community,
 
@@ -10,7 +10,7 @@ It is with GREAT excitement we are pleased to announce this year's Google Summer
 
 ## Google Summer of Code
 
-To give some quick statistics, we had $26$ proposals we submitted to Google and we were allocated $21$ slots -- that's $\approx 81\%$ of the proposals! Here are the list of projects, their fellows, and the mentors for each project; if you want to learn any [more details about the projects, click here](https://summerofcode.withgoogle.com/programs/2024/organizations/the-julia-language). 
+To give some quick statistics, we had $26$ proposals we submitted to Google and we were allocated $21$ slots -- that's $\approx 81\%$ of the proposals! Here are the list of projects, their fellows, and the mentors for each project; if you want to learn any [more details about the projects, click here](https://summerofcode.withgoogle.com/programs/2024/organizations/the-julia-language).
 
 ---
 
@@ -41,7 +41,7 @@ To give some quick statistics, we had $26$ proposals we submitted to Google and 
 
 ## Julia Summer of Code
 
-Additionally, the limited number of slots from Google meant that not all projects that we selected could receive a GSoC fellowship. We were however able to offer additional fellowships through the broader Julia Summer of Code umbrella via open source funds. 
+Additionally, the limited number of slots from Google meant that not all projects that we selected could receive a GSoC fellowship. We were however able to offer additional fellowships through the broader Julia Summer of Code umbrella via open source funds.
 
 ---
 
@@ -57,5 +57,5 @@ Additionally, the limited number of slots from Google meant that not all project
 
 A huge congratulations to all the fellows for this year's Google Summer of Code and Julia Summer of Code cohorts! Additionally, a massive thank you to all the mentors who are overseeing projects this year. We are thrilled to have you all within the Julia Community and are eager to see what all comes next!
 
-~ Avik Sengupta & Jacob Zelko 
+~ Avik Sengupta & Jacob Zelko
   (Julia Season of Contributions Team)

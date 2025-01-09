@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2016, 1, 7)
-@def rss = """ Julia IDE work in Atom | > A PL designer used to be able to design some syntax and semantics for their language, implement a compiler, and then call it a day. –  Sean McDirmid... """
+@def rss_description = """ Julia IDE work in Atom | > A PL designer used to be able to design some syntax and semantics for their language, implement a compiler, and then call it a day. –  Sean McDirmid... """
 @def published = "7 January 2016"
 @def title = "Julia IDE work in Atom"
-@def authors = "Mike Innes"  
+@def authors = "Mike Innes"
 
 ~~~
 <div align="center"><img src="https://github.com/JunoLab/atom-ink/raw/readme/demos/full.gif" /></div>

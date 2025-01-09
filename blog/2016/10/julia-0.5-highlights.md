@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2016, 10, 11)
-@def rss = """ Julia 0.5 Highlights | It introduces more transformative features than any release since the first official version.... """
+@def rss_description = """ Julia 0.5 Highlights | It introduces more transformative features than any release since the first official version.... """
 @def published = "11 October 2016"
 @def title = "Julia 0.5 Highlights"
-@def authors = "Stefan Karpinski"  
+@def authors = "Stefan Karpinski"
 @def hascode = true
 
 

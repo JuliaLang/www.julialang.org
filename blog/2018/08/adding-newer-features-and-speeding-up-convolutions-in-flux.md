@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2018, 8, 13)
-@def rss = """ GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux | Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to __add newer models to the Flux model-zoo__, __implement some new features__ and also __improve the speed of the previous layers__. Specifically, I achieved a __18-fold__ speed up... """
+@def rss_description = """ GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux | Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to __add newer models to the Flux model-zoo__, __implement some new features__ and also __improve the speed of the previous layers__. Specifically, I achieved a __18-fold__ speed up... """
 @def published = "13 August 2018"
 @def title = "GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux"
 @def authors = """<a href="https://github.com/avik-pal/">Avik Pal</a>"""

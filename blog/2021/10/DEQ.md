@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2021, 10, 21)
-@def rss = """Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"""
+@def rss_description = """Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"""
 @def published = "21 October 2021"
 @def title = "Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"
-@def authors = """Qiyao Wei, Frank Schäfer, Avik Pal, Chris Rackauckas"""  
+@def authors = """Qiyao Wei, Frank Schäfer, Avik Pal, Chris Rackauckas"""
 
 The [SciML Common Interface](https://docs.sciml.ai/SciMLBase/stable/) defines a complete
 set of equation solving techniques, from differential equations and optimization
@@ -259,7 +259,7 @@ plot(0:(length(traj) - 1), cpu(vcat(traj...)), xlabel = "Depth",
 
 ![Imgur](https://i.imgur.com/dDckk8A.png)
 
-The figure above shows ten such trajectories starting from uniformly distributed random numbers between 0 and 10. 
+The figure above shows ten such trajectories starting from uniformly distributed random numbers between 0 and 10.
 Notice that by the end, the dynamics have leveled off to a final point, and the integration cuts off when it gets
 "sufficiently close to infinity". This value at the end is the prediction of the DEQ for $y=2x$.
 **The general composability of the Julia ecosystem means that there is no "Github repository for DEQs",
@@ -376,7 +376,7 @@ function eval_loss_accuracy(loader, model, device)
     for (x, y) in loader
         x, y = x |> device, y |> device
         ŷ = model(x)
-        l += Flux.Losses.logitcrossentropy(ŷ, y) * size(x)[end]        
+        l += Flux.Losses.logitcrossentropy(ŷ, y) * size(x)[end]
         acc += sum(onecold(ŷ |> cpu) .== onecold(y |> cpu))
         ntot += size(x)[end]
     end

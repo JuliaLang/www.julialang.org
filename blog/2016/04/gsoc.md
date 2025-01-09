@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2016, 4, 14)
-@def rss = """ Google Summer of Code 2016 | We’re pleased to announce that the Julia Language is taking part in this year’s Google Summer of Code (https://summerofcode.withgoogle.com). This means that interested students will have the opportunity to spend their summers getting paid to write code on a project of their choice.... """
+@def rss_description = """ Google Summer of Code 2016 | We’re pleased to announce that the Julia Language is taking part in this year’s Google Summer of Code (https://summerofcode.withgoogle.com). This means that interested students will have the opportunity to spend their summers getting paid to write code on a project of their choice.... """
 @def published = "14 April 2016"
 @def title = "Google Summer of Code 2016"
-@def authors = "Summer of Code Organizers"  
+@def authors = "Summer of Code Organizers"
 
 
 We’re pleased to announce that the Julia Language is taking part in this year’s [Google Summer of Code](https://summerofcode.withgoogle.com). This means that interested students will have the opportunity to spend their summers getting paid to write code on a project of their choice.

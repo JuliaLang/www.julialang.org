@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2017, 12, 20)
-@def rss = """ 机器学习与编程语言 (Simplified Chinese) | > 任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。^greenspun ... """
+@def rss_description = """ 机器学习与编程语言 (Simplified Chinese) | > 任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。^greenspun ... """
 @def published = "20 December 2017"
 @def title = "机器学习与编程语言 (Simplified Chinese)"
-@def authors = "By Mike Innes (JuliaHub), David Barber (UCL), Tim Besard (UGent), James Bradbury (Salesforce Research), Valentin Churavy (MIT), Simon Danisch (MIT), Alan Edelman (MIT), Stefan Karpinski (JuliaHub), Jon Malmaud (MIT), Jarrett Revels (MIT), Viral Shah (JuliaHub), Pontus Stenetorp (UCL) and Deniz Yuret (Koç University)"  
+@def authors = "By Mike Innes (JuliaHub), David Barber (UCL), Tim Besard (UGent), James Bradbury (Salesforce Research), Valentin Churavy (MIT), Simon Danisch (MIT), Alan Edelman (MIT), Stefan Karpinski (JuliaHub), Jon Malmaud (MIT), Jarrett Revels (MIT), Viral Shah (JuliaHub), Pontus Stenetorp (UCL) and Deniz Yuret (Koç University)"
 @def hascode = true
 
 > 任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。[^greenspun]

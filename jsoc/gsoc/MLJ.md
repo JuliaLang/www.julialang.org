@@ -8,61 +8,9 @@ ML/Stats ecosystem.
 
 ### List of projects
 
-MLJ is released under the MIT license and sponsored by the Alan Turing Institute.
+MLJ is released under the MIT license.
 
 \toc
-
-## Categorical variable encoding
-
-Extend the categorical variable encoding of MLJ.
-
-**Difficulty.** Moderate. **Duration.** 350 hours
-
-### Description
-
-MLJ provides basic one-hot encoding of categorical variables but no sophisticated encoding
-techniques. One-hot encoding is rather limited, in particular when a categorical has a
-very large number of classes. Many other techniques exists, and this project aims to make
-some of these available to the MLJ user.
-
-
-**Mentors.** [Anthony Blaom](https://ablaom.github.io/) (best contact: direct message on Julia slack)
-
-### Prerequisites
-
--   Julia language fluency is essential.
-
--   Git-workflow familiarity is strongly preferred.
-
--   Experience with machine learning and data science workflows.
-
--   Familiarity with MLJ's API a plus.
-
-### Your contribution
-
-In this project you will survey popular existing methods for one-hot encoding categorical
-variables. In collaboration with the mentor, you will make a plan for integrating some of
-these techniques into MLJ. You will begin work on the plan, initially focusing on simple
-methods, providing MLJ interfaces to existing julia packages, or new implementations where
-needed. If the project advances well, you will implement more advanced techniques, such as
-[entity embedding](https://arxiv.org/abs/1604.06737) via MLJFlux.jl (MLJ's neural network
-interface).
-
-### References
-
-- Existing encoding in MLJ:
-  [OneHotEncoder](https://alan-turing-institute.github.io/MLJ.jl/dev/models/OneHotEncoder_MLJModels/#OneHotEncoder_MLJModels);
-  [ContinuousEncoder](https://alan-turing-institute.github.io/MLJ.jl/dev/models/ContinuousEncoder_MLJModels/#ContinuousEncoder_MLJModels);
-  [UnivariateContinuousTimeEncoder](https://alan-turing-institute.github.io/MLJ.jl/dev/models/UnivariateTimeTypeToContinuous_MLJModels/#UnivariateTimeTypeToContinuous_MLJModels)
-
-- StatsModels.jl [encoders](https://juliastats.org/StatsModels.jl/stable/contrasts/)
-
-- MLJ [feature request](https://github.com/JuliaAI/MLJModels.jl/issues/534)
-
-- Guo and Berkhahn [(2016]](https://arxiv.org/abs/1604.06737) "Entity Embeddings of Categorical Variables"
-
-- [MLJFlux.jl](https://github.com/FluxML/MLJFlux.jl)
-
 
 ## Machine Learning in Predictive Survival Analysis
 
@@ -83,11 +31,6 @@ default), commercial ventures (customer churn), engineering (component
 lifetime), and many more. This project aims to implement models for
 performing survivor analysis with the MLJ machine learning framework.
 
-**[mlr3proba](https://mlr3proba.mlr-org.com) is currently the most complete survival
-analysis interface, let's get SurvivalAnalysisA.jl to the same standard - but learning from mistakes
-along the way.**
-
-
 **Mentors.** [Sebastian Vollmer](https://sebastian.vollmer.ms), [Anthony Blaom](https://ablaom.github.io/),
 
 ### Prerequisites
@@ -105,101 +48,155 @@ along the way.**
 
 ### Your contribution
 
-You will work towards creating a survival analysis package with a range of metrics,
-capable of making distribution predictions for classical and ML models. You will bake in
-competing risks in early, as well as prediction transformations, and include both left and
-interval censoring.  You will code up basic models (Cox PH and AFT), as well as one ML
-model as a proof of concept (probably decision tree is simplest or Coxnet).
-
 Specifically, you will:
 
 -   Familiarize yourself with the training and evaluation machine
 	learning models in MLJ.
 
--  For SurvivalAnalysis.jl, implement the [MLJ model interface](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/).
+-   Survey existing survival models in Julia.
 
--   Consider Explainability of SurvivalAnalysis through SurvSHAP(t)
+-   Integrate some existing classical survival models into MLJ.
 
 -   Develop a proof of concept for newer advanced survival analysis
 	models not currently implemented in Julia.
 
 ### References
 
-- Mateusz Krzyziński et al., [SurvSHAP(t): Time-Dependent Explanations of Machine Learning Survival Models](https://doi.org/10.1016/j.knosys.2022.110234), Knowledge-Based Systems 262 (February 2023): 110234
+-   [Kvamme, H., Borgan, Ø., & Scheel, I. (2019). Time-to-event
+	prediction with neural networks and Cox regression. Journal of
+	Machine Learning Research, 20(129),
+	1--30.](https://arxiv.org/abs/1907.00825)
 
-- Kvamme, H., Borgan, Ø., & Scheel, I. (2019). [Time-to-event prediction with neural networks and Cox regression](https://arxiv.org/abs/1907.00825). Journal of Machine Learning Research, 20(129), 1--30.
+-   [Lee, C., Zame, W. R., Yoon, J., & van der Schaar, M. (2018).
+	Deephit: A deep learning approach to survival analysis with
+	competing risks. In Thirty-Second AAAI Conference on Artificial
+	Intelligence.](https://ojs.aaai.org/index.php/AAAI/article/view/11842/11701)
 
-- Lee, C., Zame, W. R., Yoon, J., & van der Schaar, M. (2018). [Deephit: A deep learning approach to survival analysis with	competing risks.](https://ojs.aaai.org/index.php/AAAI/article/view/11842/11701) In Thirty-Second AAAI Conference on Artificial	Intelligence.
+-   [Katzman, J. L., Shaham, U., Cloninger, A., Bates, J., Jiang, T., &
+	Kluger, Y. (2018). DeepSurv: personalized treatment recommender
+	system using a Cox proportional hazards deep neural network. BMC
+	Medical Research Methodology, 18(1),
+	24.](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-018-0482-1)
+	<https://doi.org/10.1186/s12874-018-0482-1>
 
-- Katzman, J. L., Shaham, U., Cloninger, A., Bates, J., Jiang, T., & Kluger, Y. (2018). [DeepSurv: personalized treatment recommender system using a Cox proportional hazards deep neural network](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-018-0482-1). BMC Medical Research Methodology, 18(1), 24.
+-   [Gensheimer, M. F., & Narasimhan, B. (2019). A scalable
+	discrete-time survival model for neural networks. PeerJ, 7,
+	e6257.](https://peerj.com/articles/6257/)
 
-- Gensheimer, M. F., & Narasimhan, B. (2019). A scalable discrete-time survival model for neural networks.](https://peerj.com/articles/6257/) PeerJ, 7, e6257.
-
-- [SurvivalAnalysis.jl](https://github.com/RaphaelS1/SurvivalAnalysis.jl)
-
-
-## Deeper Bayesian Integration
-Bayesian methods and probabilistic supervised learning provide uncertainty quantification. This project aims increasing integration to combine Bayesian and non-Bayesian methods using Turing.
-
-**Difficulty.** Difficult. **Duration.** 350 hours.
-
-### Description
-As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) in Turing. The bulk of the project is to implement methods that combine multiple predictive distributions.
-
-### Your contributions
-- Interface between Turing and MLJ
-- Comparisons of ensembling, stacking of predictive distribution
-- reproducible benchmarks across various settings.
-
-### References
-[Bayesian Stacking](http://www.stat.columbia.edu/~gelman/research/published/stacking_paper_discussion_rejoinder.pdf)
-[SKpro](https://github.com/alan-turing-institute/skpro/blob/master/README.md)
-### Difficulty: Medium to Hard
-
-**Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://sebastian.vollmer.ms)
+-   [Survival.jl
+	Documentation](https://juliastats.org/Survival.jl/latest/)
 
 
-## Tracking and sharing MLJ workflows using MLflow
+## Time series forecasting at scale - speed up via Julia
 
-Help data scientists using MLJ track and share their machine learning experiments using
-[MLflow](https://mlflow.org). The emphasis iin this phase of the project is:
+Time series are ubiquitous - stocks, sensor reading, vital signs. This projects aims at adding time series forecasting to MLJ and perform benchmark comparisons to [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
 
-- support *asynchronous* workflows, as appear in parallelized model tuning
-- support live logging while training *iterative* models, such as neural networks
-
-**Difficulty.** Moderate. **Duration.** 350 hours.
-
-### Description
-
-MLflow is an open source platform for the machine learning life cycle. It allows the data
-scientist to upload experiment metadata and outputs to the platform for reproducing and
-sharing purposes. MLJ [already allows](https://github.com/JuliaAI/MLJFlow.jl) users to
-report basic model performance evaluation to an MLflow service and this project seeks to
-greatly enhance this integration.
+**Difficulty.** Moderate - hard. **Duration.** 350 hours.
 
 ### Prerequisites
-- Julia language fluency essential
-- Understanding of asynchronous programming principles
-- Git-workflow familiarity strongly preferred.
-- General familiarity with data science workflows
+- Julia language fluency essential.
+- Git-workflow essential
+- Some prior contact with time series forecasting
+- HPC in julia is a desirable
 
 ### Your contribution
-* You will familiarize yourself with MLJ, MLflow and MLflowClient.jl client APIs.
-* You will familiarize yourself with the MLJFlow.jl package providing MLJ <--> MLflow integration
-* Implement changes needed to allow correct *asynchronous* logging of model performance evaluations
-* Extend logging to (parallelized) model tuning (MLJ's `TunedModel` wrapper)
-* Extend logging to controlled training of iterative models (MLJ's `IteratedModel` wrapper)
+MLJ is so far focused on tabular data and time series classification. This project is to add support for time series data in a modular, composable way.
 
+Time series are everywhere in real-world applications and there has been an increase in interest in time series frameworks recently (see e.g. [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
+
+But there are still very few principled time-series libraries out there, so you would be working on something that could be very useful for a large number of people. To find out more, check out this [paper](http://learningsys.org/neurips19/assets/papers/sktime_ml_systems_neurips2019.pdf) on sktime.
+
+**Mentors**: [Sebastian Vollmer](https://sebastian.vollmer.ms), [Markus Löning](https://github.com/mloning) (sktime developer).
 
 ### References
-* [MLflow](https://mlflow.org) website.
-* [MLflow REST API](https://mlflow.org/docs/latest/rest-api.html).
-* [MLJFlow.jl](https://github.com/JuliaAI/MLJFlow.jl)
-* [MLflowClient.jl](https://github.com/JuliaAI/MLFlowClient.jl)
-* [MLJIteration.jl](https://github.com/JuliaAI/MLJIteration.jl)
-* [Issue on asynchronous reporting](https://github.com/JuliaAI/MLJFlow.jl/issues/26)
+* [sktime](https://github.com/alan-turing-institute/sktime)
+* [tslearn](https://github.com/rtavenar/tslearn)
+* [tsml](https://github.com/uea-machine-learning/tsml/)
+* [sktime paper](http://learningsys.org/neurips19/assets/papers/sktime_ml_systems_neurips2019.pdf)
 
-**Mentors.** [Anthony Blaom](https://ablaom.github.io/)
+
+## Interpretable Machine Learning in Julia
+
+Interpreting and explaining black box interpretation crucial to establish trust and improve performance
+
+**Difficulty.** Easy - moderate. **Duration.** 350 hours.
+
+### Description
+It is important to have mechanisms in place to interpret the results of machine learning models. Identify the relevant factors of a decision or scoring of a model.
+
+This project will implement methods for model and feature interpretability.
+
+**Mentors.** [Diego Arenas](https://github.com/darenasc), [Sebastian Vollmer](https://sebastian.vollmer.ms).
+
+### Prerequisites
+- Julia language fluency essential.
+- Git-workflow familiarity strongly preferred.
+- Some prior contact with explainable AI/ML methods is desirable.
+- A passing familiarity with machine learning goals and workflow preferred
+
+### Your contribution
+
+The aim of this project is to implement multiple  variants implementation algorithms such as:
+
+- Implement methods to show feature importance
+- Partial dependence plots
+- Tree surrogate
+- LocalModel: Local Interpretable Model-agnostic Explanations
+- Add Dataset loaders for standard interpretability datasets.
+- Add performance metrics for interpretability
+- Add interpretability algorithms
+- Glue code to SHAP package
+
+Specifically you will
+- Familiarize yourself with MLJ
+- Survey of some of the literature and existing implementations in Julia and other languages, and preparing a short summary
+- Implement visualizations of explanations
+- Implement use cases
+- You will learn about the benefits and short comings of model interpretation and how to use them.
+
+### References
+- [Interpretable Machine Learning - A Guide for Making Black Box Models Explainable by Christoph Molnalr](https://christophm.github.io/interpretable-ml-book/)
+- [iml R package](https://github.com/christophM/iml/)
+- [AI Explainability 360 by IBM]: A survey on particle swarm optimization with emphasis on engineering and network applications](https://github.com/Trusted-AI/AIX360)
+
+Tutorials
+- [AI explainability 360: hands-on tutorial](https://dl.acm.org/doi/abs/10.1145/3351095.3375667)
+- [IML tutorial](https://mlr3book.mlr-org.com/iml.html)
+
+
+## Model visualization in MLJ
+
+Design and implement a data visualization module for MLJ.
+
+**Difficulty**. Easy.  **Duration.** 350 hours.
+
+### Description
+
+Design and implement a data visualization module for MLJ to visualize numeric and categorical features (histograms, boxplots, correlations, frequencies), intermediate results, and metrics generated by MLJ machines.
+
+Using a suitable Julia package for data visualization.
+
+The idea is to implement a similar resource to what [mlr3viz](https://github.com/mlr-org/mlr3viz) does for [mlr3](https://mlr3.mlr-org.com).
+
+### Prerequisites
+* Julia language fluency essential.
+* Git-workflow essential.
+* Some prior work on data visualization is desirable
+
+### Your contribution
+So far visualizing data or features in MLJ is an ad-hoc task. Defined by the user case by case. You will be implementing a standard way to visualize model performance, residuals, benchmarks and predictions for MLJ users.
+
+The structures and metrics will be given from the results of models or data sets used; your task will be to implement the right visualizations depending on the data type of the features.
+
+A relevant part of this project is to visualize the target variable against the rest of the features.
+
+You will enhance your visualisation skills as well as your ability to "debug" and understand models and their prediction visually.
+
+### References
+* [mlr3viz](https://github.com/mlr-org/mlr3viz)
+* [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl)
+
+**Mentors**: [Sebastian Vollmer](https://sebastian.vollmer.ms), [Diego Arenas](https://github.com/darenasc).
 
 
 ## Speed demons only need apply
@@ -222,10 +219,12 @@ In addition to investigating a number of known performance bottlenecks, you will
 ### Your contribution
 In this project you will:
 - familiarize yourself with the training, evaluation and tuning of machine learning models in MLJ
-- benchmark and profile common workflows to identify opportunities for further code optimizations, with a focus on the most popular models
-- work to address problems identified
-- roll out new data front-end for iterative models, to avoid unnecessary copying of data
-- experiment with adding multi-processor parallelism to the current learning networks scheduler
+- work towards addressing a number of known performance issues, including:
+- limitations of the generic Tables.jl interface for interacting with tabular data which, in common cases (DataFrames), has extra functionality that can be exploited
+- rolling out new data front-end for models to avoid unnecessary copying of data
+- in conjunction with your mentor, identify best design for introducing better sparse data support to MLJ models (e.g., naive Bayes)
+- implement multi-processor parallelism in the current learning networks scheduler
+- benchmark and profile common workflows to identify opportunities for further code optimizations
 - implement some of these optimizations
 
 ### References
@@ -233,4 +232,4 @@ In this project you will:
 - [Taking performance more seriously GitHub issue](https://github.com/alan-turing-institute/MLJBase.jl/issues/309)
 - [Data front end](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/#Implementing-a-data-front-end-1) for MLJ models.
 
-**Mentors.** [Anthony Blaom](https://ablaom.github.io), Okon Samuel.
+**Mentors.** [Anthony Blaom](https://ablaom.github.io)

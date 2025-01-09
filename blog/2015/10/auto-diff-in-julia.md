@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2015, 10, 23)
-@def rss = """ JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl | This summer, I've had the good fortune to be able to participate in the first ever **Julia Summer of Code (JSoC)**, generously sponsored by the Gordon and Betty Moore Foundation. My JSoC project was to explore the use of Julia for automatic differentiation (AD), a topic with a wide array of applicati... """
+@def rss_description = """ JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl | This summer, I've had the good fortune to be able to participate in the first ever **Julia Summer of Code (JSoC)**, generously sponsored by the Gordon and Betty Moore Foundation. My JSoC project was to explore the use of Julia for automatic differentiation (AD), a topic with a wide array of applicati... """
 @def published = "23 October 2015"
 @def title = "JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl"
-@def authors = "Jarrett Revels"  
+@def authors = "Jarrett Revels"
 @def hascode = true
 @def hasmath = true
 

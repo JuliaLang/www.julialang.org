@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2013, 4, 5)
-@def rss = """ Distributed Numerical Optimization | This post walks through the parallel computing functionality of Julia... """
+@def rss_description = """ Distributed Numerical Optimization | This post walks through the parallel computing functionality of Julia... """
 @def published = "5 April 2013"
 @def title = "Distributed Numerical Optimization"
 @def authors = """<a href="https://mlubin.github.io/">Miles Lubin</a>"""

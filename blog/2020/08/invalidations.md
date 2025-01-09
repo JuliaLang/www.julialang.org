@@ -2,7 +2,7 @@
 @def published = "26 August 2020"
 @def title = "Analyzing sources of compiler latency in Julia: method invalidations"
 @def rss_pubdate = Date(2020, 8, 26)
-@def rss = """Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency."""
+@def rss_description = """Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency."""
 
 \toc
 
@@ -330,7 +330,7 @@ It's worth noting that the task of improving code is never finished, and this is
 ## Tools for analyzing and fixing invalidations
 
 Recently, the [SnoopCompile] package gained the ability to analyze invalidations and help developers fix them.
-Because these tools will likely change over time, this blog post will only scratch the surface; people who want to help fix invalidations are encouraged to read [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) for further detail.
+Because these tools will likely change over time, this blog post will only scratch the surface; people who want to help fix invalidations are encouraged to read [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/dev/) for further detail.
 There is also a [video](https://www.youtube.com/watch?v=7VbXbI6OmYo) available with a live-session fixing a real-world invalidation, which might serve as a useful example.
 
 But to give you a taste of what this looks like, here are a couple of screenshots.

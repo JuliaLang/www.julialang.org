@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2018, 9, 11)
-@def rss = """ A portrait of JuliaCon 2018 | !JuliaCon2018 group photo (/assets/blog/2018-09-11-juliacon2018/JuliaCon2018_group_photo.jpg)... """
+@def rss_description = """ A portrait of JuliaCon 2018 | !JuliaCon2018 group photo (/assets/blog/2018-09-11-juliacon2018/JuliaCon2018_group_photo.jpg)... """
 @def published = "11 September 2018"
 @def title = "A portrait of JuliaCon 2018"
 @def authors = "Jane Herriman"

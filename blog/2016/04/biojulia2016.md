@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2016, 4, 30)
-@def rss = """ BioJulia Project in 2016 | I am pleased to announce that the next phase of BioJulia is starting! In the next several months, I'm going to implement many crucial features for bioinformatics that will motivate you to use Julia and BioJulia libraries in your work. But before going to the details of the project, let me briefly int... """
+@def rss_description = """ BioJulia Project in 2016 | I am pleased to announce that the next phase of BioJulia is starting! In the next several months, I'm going to implement many crucial features for bioinformatics that will motivate you to use Julia and BioJulia libraries in your work. But before going to the details of the project, let me briefly int... """
 @def published = "30 April 2016"
 @def title = "BioJulia Project in 2016"
 @def authors = "Kenta Sato"

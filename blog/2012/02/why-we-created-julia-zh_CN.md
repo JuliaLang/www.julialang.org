@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2012, 2, 14)
-@def rss = """ 为什么我们要创造Julia (Simplified Chinese) | 我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们... """
+@def rss_description = """ 为什么我们要创造Julia (Simplified Chinese) | 我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们... """
 @def published = "14 February 2012"
 @def title = "为什么我们要创造Julia (Simplified Chinese)"
-@def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"  
+@def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"
 
 ~~~
 <a href="https://github.com/JeffBezanson/">Jeff Bezanson</a>
