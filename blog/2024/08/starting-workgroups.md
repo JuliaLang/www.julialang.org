@@ -11,21 +11,19 @@ TODO: Add this last
 
 Hey there, this post is dedicated to all those people who want to start a working group in julia. If you already have one, there might be some helpful tips for you too.
 
-#### What is a working group?
+### What is a working group?
 
 As per [Julia's official website](https://julialang.org/community/working-groups/#working_groups),
 
 > A working group is a group of people that are interested in working on a common topic. Working groups are informal and have no official authority. All working groups have a public channel on the Julia Slack.
 
-Not only this but most working groups regularly hold meetings, everyone is free to attend these meetings and discuss about the topics which they want to. Most meeting schedules are posted on julia's community events calender but one can also find relevant links in the respective slack channels.
+Not only this but most working groups regularly hold meetings, everyone is free to attend these meetings and discuss about the topics which they want to. Most meeting schedules are posted on Julia's community events calendar but one can also find relevant links in the respective slack channels.
 
-Alright, now that we know what a working group is.
-
-#### Gaining Members
+### Gaining Members
 
 > You created a working group now what?
 
-You need members hence the "*group*" part. If you already had members and wanted to a space where everyone could work/discuss on similar topics good for you. But if you don't have, you can announce about your working group on different social platforms so that people know about your group and maybe join it too. You can also post about your working group in other channels like `#general`, `#introduction`, etc. but please be mindful to not spam it into these or any other channels. People are very welcoming in Julia community but that doesn't mean one should misuse their goodwill.
+You need members hence the "*group*" part. If you already had members and just wanted to have a space where everyone could work/discuss on similar topics good for you. But if you don't have, you can announce about your working group on different social platforms so that people know about your group and maybe join it too. You can also post about your working group in other channels like `#general`, `#introduction`, etc. but please be mindful to not spam it into these or any other channels. People are very welcoming in Julia community but that doesn't mean one should misuse their goodwill.
 
 Ok, we now have a working group with enough members in it. Let's move forward with topics which help you in maintaining a healthy environment for your working group.
 
@@ -51,9 +49,9 @@ A meeting won't have at infinitium time for everyone, they will have a limited t
 
 Additionally, you can also have a document in which you write down short but relevant minutes of meetings so if someone wants to take a look to get a better context for the past events they can and possibly leave some useful comments if they want.
 
-## General tips for being a workgroup leader
+## General tips for being a workgroup coordinator
 
-Other small things you should take care while being a workgroup leader is, you should always introduce and appreciate the new attendees and contributors to the channel whether it is on weekly or monthly basis. If you have a package with similar motives as of the workgroup you can talk and/or introduce it and encourage people to contribute to it or atleast check it out. Organize talks from people of other workgroups, external attendees, special contributors, etc. You can also have talks about organizational stuff like code architecture for a project or package, managing flow, release schedule, onboarding new contributors, documentation, tutorials, blog posts and many more things!
+Other small things you should take care while being a workgroup coordinator is, you should always introduce and appreciate the new attendees and contributors to the channel whether it is on weekly or monthly basis. If you have a package with similar motives as of the workgroup you can talk and/or introduce it and encourage people to contribute to it or atleast check it out. Organize talks from people of other workgroups, external attendees, special contributors, etc. You can also have talks about organizational stuff like code architecture for a project or package, managing flow, release schedule, onboarding new contributors, documentation, tutorials, blog posts and many more things!
 
 Always keep space for open ended discussions and questions in the channel and guide the people to right medium when they post non-relevant questions, always keep calm you don't know your response could be the someone's first impression to the entire community.
 
