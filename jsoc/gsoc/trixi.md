@@ -109,4 +109,4 @@ This project is good for people who are interested in GPU programming, parallel 
 
 **Expected results:** A working example of AMR running on GPUs.
 
-**Mentors**: [Huiyu Xie](https://github.com/huiyuxie), [Jesse Chan](https://github.com/jlchan)
+**Mentors**: [Huiyu Xie](https://github.com/huiyuxie), [Jesse Chan](https://github.com/jlchan), [Hendrik Ranocha](https://github.com/ranocha)
