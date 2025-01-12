@@ -99,7 +99,7 @@ The possible subtasks in this project include:
 
 - Implementing the abstract tree initialization process on GPUs.  
 - Exploring the [`TreeMesh`](https://trixi-framework.github.io/Trixi.jl/stable/meshes/tree_mesh/) initialization processes on GPUs based on the implementation of the first task and combining them.  
-- Integrating the above into `AMRCallback` in the simulation using [dynamic parallelism](https://cuda.juliagpu.org/stable/api/kernel/#Dynamic-parallelism) (via CUDA.jl).  
+- Integrating the above into [`AMRCallback`](https://trixi-framework.github.io/Trixi.jl/stable/tutorials/adaptive_mesh_refinement/#Callback) in the simulation using [dynamic parallelism](https://cuda.juliagpu.org/stable/api/kernel/#Dynamic-parallelism) (via CUDA.jl).  
 - Optimizing the code for data transfer, kernel launch overhead, occupancy, etc.  
 - Starting the above work in 1D and then expanding it to 2D and 3D problems.
 - (Optional) Try similar work for [`P4estMesh`](https://trixi-framework.github.io/Trixi.jl/stable/meshes/p4est_mesh/) in 2D and 3D.
