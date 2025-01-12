@@ -102,7 +102,7 @@ The possible subtasks in this project include:
 - Integrating the above into `AMRCallback` in the simulation using [dynamic parallelism](https://cuda.juliagpu.org/stable/api/kernel/#Dynamic-parallelism) (via CUDA.jl).  
 - Optimizing the code for data transfer, kernel launch overhead, occupancy, etc.  
 - Starting the above work in 1D and then expanding it to 2D and 3D problems.
-- (Optional) Try similar work for `P4estMesh` in 2D and 3D.
+- (Optional) Try similar work for [`P4estMesh`](https://trixi-framework.github.io/Trixi.jl/stable/meshes/p4est_mesh/) in 2D and 3D.
 
 This project is good for people who are interested in GPU programming, parallel computing, parallel algorithm optimization, and scientific computing.
 
