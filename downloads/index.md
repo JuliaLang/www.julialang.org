@@ -360,14 +360,14 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> 10.14+ </td>
-      <td> x86-64 (64-bit) on Apple Silicon (via Rosetta)</td>
-      <td> <font color="red">Not recommended (untested)</font> </td>
-    </tr>
-    <tr>
       <td> 11.4+ </td>
       <td> ARMv8 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> 10.14+ </td>
+      <td> Rosetta 2 </td>
+      <td> <font color="red">Tier 3</font> </td>
     </tr>
     <tr>
       <td rowspan="2"> Windows </td>
@@ -378,6 +378,10 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     <tr>
       <td> i686 (32-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> WSL 2 </td>
+      <td> <font color="red">Tier 3</font> </td>
     </tr>
     <tr>
       <td rowspan="6"> Linux (Glibc) </td>
