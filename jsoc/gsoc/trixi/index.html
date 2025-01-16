@@ -153,7 +153,7 @@ crossorigin=""/>
 <p><strong>Project size</strong>: 175 hours or 350 hours, depending on the chosen subtasks</p>
 <p>The high performance of modern scientific software is built on parallel computing using MPI and GPUs. The communication speed has not kept up with the exponential increase in compute speed and algorithms are often communication bound, leading to underutilization of hardware capabilities. Asynchronous computing avoids communication bottlenecks by performing non-blocking sends and using algorithms that can give reliable results using the currently available data. This approach gives great scalability on parallel computing systems.</p>
 <p><a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> currently performs distributed memory parallelization using <a href="https://github.com/JuliaParallel/MPI.jl">MPI.jl</a>, and has experimental GPU capabilities using <a href="https://github.com/JuliaGPU/CUDA.jl">CUDA.jl</a> and <a href="https://github.com/JuliaGPU/KernelAbstractions.jl">KernelAbstractions.jl</a>. The goal of this project is to implement a subset of features of <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> that can perform parallel simulations asynchronously.</p>
-<p>The possible subtasks in this project include</p>
+<p>The possible subtasks in this project include:</p>
 <ul>
 <li><p>Explore and implement a simple code for asynchronous algorithms for solving the 1D advection equation or 1D compressible Euler equations using the API of <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a>.</p>
 </li>
@@ -170,6 +170,30 @@ crossorigin=""/>
 <p><strong>Recommended skills:</strong> Some knowledge of GPU or MPI programming. Knowledge of any numerical analysis &#40;e.g., finite differences&#41; will help, but is not strictly required.</p>
 <p><strong>Expected results:</strong> Draft of a working subset of the functionality of <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> efficiently using asynchronous computing.</p>
 <p><strong>Mentors</strong>: <a href="https://github.com/arpit-babbar">Arpit Babbar</a>, <a href="https://github.com/ranocha">Hendrik Ranocha</a>, <a href="https://github.com/sloede">Michael Schlottke-Lakemper</a></p>
+<h2 id="adaptive_mesh_refinement_on_gpus_with_cuda_dynamic_parallelism"><a href="#adaptive_mesh_refinement_on_gpus_with_cuda_dynamic_parallelism" class="header-anchor">Adaptive mesh refinement on GPUs with CUDA dynamic parallelism</a></h2>
+<p><strong>Difficulty</strong>: Hard</p>
+<p><strong>Project size</strong>: 175 hours or 350 hours, depending on the chosen subtasks</p>
+<p><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#cuda-dynamic-parallelism">Dynamic parallelism</a> is designed for applications with either a variation of work across space or a dynamically varying workload over time. It is perfect for tasks like mesh refinement. When a thread discovers that an area needs to be refined, it can launch a new grid to perform computations on the refined area without the overhead of terminating the current grid, reporting to the host, and launching the new grid from the host.</p>
+<p><a href="https://trixi-framework.github.io/Trixi.jl/stable/tutorials/adaptive_mesh_refinement/">Adaptive mesh refinement &#40;AMR&#41;</a> is applied in <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> to dynamically refine the mesh during simulations, ensuring finer resolution in critical regions for improved accuracy. Currently, the mesh refinement process is performed on CPUs using parallelism with <a href="https://github.com/JuliaParallel/MPI.jl">MPI.jl</a>. The goal of this project is to migrate AMR to GPUs using dynamic parallelism for acceleration with <a href="https://github.com/JuliaGPU/CUDA.jl">CUDA.jl</a>.</p>
+<p>The possible subtasks in this project include:</p>
+<ul>
+<li><p>Implementing the abstract tree initialization process on GPUs.  </p>
+</li>
+<li><p>Exploring the <a href="https://trixi-framework.github.io/Trixi.jl/stable/meshes/tree_mesh/"><code>TreeMesh</code></a> initialization processes on GPUs based on the implementation of the first task and combining them.  </p>
+</li>
+<li><p>Integrating the above into <a href="https://trixi-framework.github.io/Trixi.jl/stable/tutorials/adaptive_mesh_refinement/#Callback"><code>AMRCallback</code></a> in the simulation using <a href="https://cuda.juliagpu.org/stable/api/kernel/#Dynamic-parallelism">dynamic parallelism</a> &#40;via CUDA.jl&#41;.  </p>
+</li>
+<li><p>Optimizing the code for data transfer, kernel launch overhead, occupancy, etc.  </p>
+</li>
+<li><p>Starting the above work in 1D and then expanding it to 2D and 3D problems.</p>
+</li>
+<li><p>&#40;Optional&#41; Try similar work for <a href="https://trixi-framework.github.io/Trixi.jl/stable/meshes/p4est_mesh/"><code>P4estMesh</code></a> in 2D and 3D.</p>
+</li>
+</ul>
+<p>This project is good for people who are interested in GPU programming, parallel computing, parallel algorithm optimization, and scientific computing.</p>
+<p><strong>Recommended skills:</strong> GPU programming, knowledge of CUDA dynamic parallelism, and familiarity with mesh refinement. &#40;For beginners or those unfamiliar with dynamic parallelism, it is recommended to start with the <a href="https://github.com/NVIDIA/cuda-samples/tree/master/Samples/3_CUDA_Features/cdpQuadtree">CUDA quadtree example</a>.&#41;</p>
+<p><strong>Expected results:</strong> A working example of AMR running on GPUs.</p>
+<p><strong>Mentors</strong>: <a href="https://github.com/huiyuxie">Huiyu Xie</a>, <a href="https://github.com/jlchan">Jesse Chan</a>, <a href="https://github.com/ranocha">Hendrik Ranocha</a></p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
@@ -286,7 +310,7 @@ crossorigin=""/>
     </div>
     <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
-        <p>Last modified: January 08, 2025. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>Last modified: January 16, 2025. This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
         <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
       </div>
