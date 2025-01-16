@@ -1,4 +1,3 @@
-
 @def title = "Download Julia"
 
 ~~~
@@ -360,24 +359,28 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> 10.14+ </td>
-      <td> x86-64 (64-bit) on Apple Silicon (via Rosetta)</td>
-      <td> <font color="red">Not recommended (untested)</font> </td>
-    </tr>
-    <tr>
       <td> 11.4+ </td>
       <td> ARMv8 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td rowspan="2"> Windows </td>
-      <td rowspan="2"> 10+ </td>
+      <td> 11.4+ </td>
+      <td> Rosetta 2 </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="3"> Windows </td>
+      <td rowspan="3"> 10+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
       <td> i686 (32-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> WSL 2 (Ubuntu LTS) </td>
+      <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
       <td rowspan="6"> Linux (Glibc) </td>
@@ -395,11 +398,11 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td> ARMv7 (32-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
+      <td> <font color="black">Tier 4</font> </td>
     </tr>
     <tr>
-      <td> PowerPC (64-bit) </td>
-      <td> Tier 4 </td>
+      <td> PowerPC LE (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
       <td> 6.4+ </td>
@@ -410,7 +413,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td rowspan="1"> Linux (Musl) </td>
       <td rowspan="1"> 2.6.39+ </td>
       <td> x86-64 (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
+      <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
       <td rowspan="2"> FreeBSD </td>
