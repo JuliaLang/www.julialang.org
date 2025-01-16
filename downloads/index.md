@@ -399,7 +399,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td> ARMv7 (32-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
+      <td> <font color="black">Tier 4</font> </td>
     </tr>
     <tr>
       <td> PowerPC LE (64-bit) </td>
