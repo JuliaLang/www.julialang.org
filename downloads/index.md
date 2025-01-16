@@ -1,4 +1,3 @@
-
 @def title = "Download Julia"
 
 ~~~
@@ -365,7 +364,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> 10.14+ </td>
+      <td> 11.4+ </td>
       <td> Rosetta 2 </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
