@@ -68,7 +68,7 @@ Julia stands out as a high-performance language that's essential yet underrepres
 **Project Goals and Deliverables:**
 
 1. **Knowledge Base Expansion:** Grow the AIHelpMe.jl knowledge base to include comprehensive, up-to-date resources from critical Julia ecosystems such as the Julia documentation site, DataFrames, Makie, Plots/StatsPlots, the Tidier-verse, SciML, and more. See [Github Issue](https://github.com/svilupp/AIHelpMe.jl/issues/3) for more details. This expansion is crucial for enriching the context and accuracy of AI-generated responses related to Julia programming.
-   
+
 2. **Performance Tuning:** Achieve at least a 10% improvement in accuracy and relevance on a golden Q&A dataset, refining the AIHelpMe.jl Q&A pipeline for enhanced performance.
 
 ### Project 4: Enhancing Julia's AI Ecosystem with ColBERT v2 for Efficient Document Retrieval
@@ -147,7 +147,7 @@ As a pivotal resource for the Julia community, the [Julia LLM Leaderboard](https
 
 ### Project 7: Counterfactuals for LLMs (*Model Explainability* and *Generative AI*)
 
-**Project Overview:** This project aims to extend the functionality of [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl) to Large Language Models (LLMs). As a backbone for this, support for computing feature attributions for LLMs will also need to be implemented. The project will contribute to both [Taija](https://github.com/JuliaTrustworthyAI) and [JuliaGenAI](https://github.com/JuliaGenAI). 
+**Project Overview:** This project aims to extend the functionality of [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl) to Large Language Models (LLMs). As a backbone for this, support for computing feature attributions for LLMs will also need to be implemented. The project will contribute to both [Taija](https://github.com/JuliaTrustworthyAI) and [JuliaGenAI](https://github.com/JuliaGenAI).
 
 **Mentor:** [Jan Siml](https://github.com/svilupp) (JuliaGenAI) and [Patrick Altmeyer](https://github.com/pat-alt) (Taija)
 
@@ -170,6 +170,6 @@ As a pivotal resource for the Julia community, the [Julia LLM Leaderboard](https
 
 We'd love to hear your ideas and discuss potential projects with you.
 
-Probably the easiest way is to join our [JuliaLang Slack](https://julialang.org/slack/) and join the `#generative-ai` channel. 
+Probably the easiest way is to join our [JuliaLang Slack](https://julialang.org/slack/) and join the `#generative-ai` channel.
 You can also reach out to us on [Julia Zulip](https://julialang.zulipchat.com/#narrow/stream/423470-generative-ai) or post a GitHub Issue on our website [JuliaGenAI](https://github.com/JuliaGenAI/juliagenai.org).
 
