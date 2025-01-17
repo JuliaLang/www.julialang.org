@@ -47,7 +47,7 @@ crossorigin=""/>
 <script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
-   <title>Quantum Optics and State Vector Modeling Tools</title>   
+   <title>Quantum Optics and State Vector Modeling Tools - Summer of Code</title>   
 
   
   <style>
@@ -64,7 +64,7 @@ crossorigin=""/>
   
 
   <!-- OGP Metadata -->
-	<meta property="og:title" content="Quantum Optics and State Vector Modeling Tools">
+	<meta property="og:title" content="Quantum Optics and State Vector Modeling Tools - Summer of Code">
 <meta property="og:description" content="">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
@@ -129,7 +129,7 @@ crossorigin=""/>
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="quantum_optics_and_state_vector_modeling_tools"><a href="#quantum_optics_and_state_vector_modeling_tools" class="header-anchor">Quantum Optics and State Vector Modeling Tools</a></h1>
+<div class="container main"><h1 id="quantum_optics_and_state_vector_modeling_tools_-_summer_of_code"><a href="#quantum_optics_and_state_vector_modeling_tools_-_summer_of_code" class="header-anchor">Quantum Optics and State Vector Modeling Tools - Summer of Code</a></h1>
 <p>The most common way to represent and model quantum states is the state vector formalism &#40;underlying Schroedinger&#39;s and Heisenberg&#39;s equations as well as many other master equations&#41;. The <a href="https://github.com/qojulia/QuantumOptics.jl">QuantumOptics.jl</a> Julia project enables such simulations, utilizing much of the uniquely powerful DiffEq infrastructure in Julia.</p>
 <h2 id="gpu_accelerated_operators_and_ode_solvers"><a href="#gpu_accelerated_operators_and_ode_solvers" class="header-anchor">GPU accelerated operators and ODE solvers</a></h2>
 <p>Much of the internal representation of quantum states in QuantumOptics.jl relies on standard dense arrays. Thanks to the multiple-dispatch nature of Julia, much of these objects can already work well with GPU arrays. This project would involve a thorough investigation and validation of the current interfaces to make sure they work well with GPU arrays. In particular, attention will have to be paid to the &quot;lazy&quot; operators as special kernels might need to be implemented for them.</p>

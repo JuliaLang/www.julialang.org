@@ -47,7 +47,7 @@ crossorigin=""/>
 <script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
-   <title>Modern computational fluid dynamics with Trixi.jl</title>   
+   <title>Modern computational fluid dynamics with Trixi.jl - Summer of Code</title>   
 
   
   <style>
@@ -64,7 +64,7 @@ crossorigin=""/>
   
 
   <!-- OGP Metadata -->
-	<meta property="og:title" content="Modern computational fluid dynamics with Trixi.jl">
+	<meta property="og:title" content="Modern computational fluid dynamics with Trixi.jl - Summer of Code">
 <meta property="og:description" content="">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
@@ -129,7 +129,7 @@ crossorigin=""/>
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="modern_computational_fluid_dynamics_with_trixijl"><a href="#modern_computational_fluid_dynamics_with_trixijl" class="header-anchor">Modern computational fluid dynamics with Trixi.jl</a></h1>
+<div class="container main"><h1 id="modern_computational_fluid_dynamics_with_trixijl_-_summer_of_code"><a href="#modern_computational_fluid_dynamics_with_trixijl_-_summer_of_code" class="header-anchor">Modern computational fluid dynamics with Trixi.jl - Summer of Code</a></h1>
 <p><a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> is a Julia package for adaptive high-order numerical simulations of conservation laws. It is designed to be simple to use for students and researchers, extensible for research and teaching, as well as efficient and suitable for high-performance computing.</p>
 <h2 id="advanced_visualization_and_in-situ_visualization_with_paraview"><a href="#advanced_visualization_and_in-situ_visualization_with_paraview" class="header-anchor">Advanced visualization and in-situ visualization with ParaView</a></h2>
 <p><strong>Difficulty</strong>: Medium</p>
@@ -177,13 +177,13 @@ crossorigin=""/>
 <p><a href="https://trixi-framework.github.io/Trixi.jl/stable/tutorials/adaptive_mesh_refinement/">Adaptive mesh refinement &#40;AMR&#41;</a> is applied in <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> to dynamically refine the mesh during simulations, ensuring finer resolution in critical regions for improved accuracy. Currently, the mesh refinement process is performed on CPUs using parallelism with <a href="https://github.com/JuliaParallel/MPI.jl">MPI.jl</a>. The goal of this project is to migrate AMR to GPUs using dynamic parallelism for acceleration with <a href="https://github.com/JuliaGPU/CUDA.jl">CUDA.jl</a>.</p>
 <p>The possible subtasks in this project include:</p>
 <ul>
-<li><p>Implementing the abstract tree initialization process on GPUs.  </p>
+<li><p>Implementing the abstract tree initialization process on GPUs.</p>
 </li>
-<li><p>Exploring the <a href="https://trixi-framework.github.io/Trixi.jl/stable/meshes/tree_mesh/"><code>TreeMesh</code></a> initialization processes on GPUs based on the implementation of the first task and combining them.  </p>
+<li><p>Exploring the <a href="https://trixi-framework.github.io/Trixi.jl/stable/meshes/tree_mesh/"><code>TreeMesh</code></a> initialization processes on GPUs based on the implementation of the first task and combining them.</p>
 </li>
-<li><p>Integrating the above into <a href="https://trixi-framework.github.io/Trixi.jl/stable/tutorials/adaptive_mesh_refinement/#Callback"><code>AMRCallback</code></a> in the simulation using <a href="https://cuda.juliagpu.org/stable/api/kernel/#Dynamic-parallelism">dynamic parallelism</a> &#40;via CUDA.jl&#41;.  </p>
+<li><p>Integrating the above into <a href="https://trixi-framework.github.io/Trixi.jl/stable/tutorials/adaptive_mesh_refinement/#Callback"><code>AMRCallback</code></a> in the simulation using <a href="https://cuda.juliagpu.org/stable/api/kernel/#Dynamic-parallelism">dynamic parallelism</a> &#40;via CUDA.jl&#41;.</p>
 </li>
-<li><p>Optimizing the code for data transfer, kernel launch overhead, occupancy, etc.  </p>
+<li><p>Optimizing the code for data transfer, kernel launch overhead, occupancy, etc.</p>
 </li>
 <li><p>Starting the above work in 1D and then expanding it to 2D and 3D problems.</p>
 </li>
