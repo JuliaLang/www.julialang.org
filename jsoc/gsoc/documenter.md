@@ -1,4 +1,4 @@
-# Documentation tooling
+# Documentation tooling – Summer of Code
 
 ## Documenter.jl
 

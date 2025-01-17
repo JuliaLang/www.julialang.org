@@ -3,7 +3,7 @@
 Removed reference to this file on the main projects page for summer 2021 since they weren't updated.
 -->
 
-#  Graphic Projects – Summer of Code
+# Graphic Projects – Summer of Code
 
 ## Makie
 

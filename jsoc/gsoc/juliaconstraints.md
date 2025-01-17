@@ -1,4 +1,4 @@
-# Constraint Programming in Julia
+# Constraint Programming in Julia – Summer of Code
 
 [JuliaConstraints](https://juliaconstraints.github.io/) is an organization supporting packages for Constraint Programming in Julia. Although it is independent of it, it aims for a tight integration with JuMP.jl over time. For a detailed overview of basic Constraint Programming in Julia, please have a look at our video from JuliaCon 2021 [Put some constraints into your life with JuliaCon(straints)](https://youtu.be/G4siuvNMj0c).
 
