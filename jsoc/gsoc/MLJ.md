@@ -1,12 +1,9 @@
-# MLJ.jl Projects – Summer of Code
+# MLJ.jl Projects
 
 [MLJ](https://github.com/alan-turing-institute/MLJ.jl) is a machine
 learning framework for Julia aiming to provide a convenient way to use
 and combine a multitude of tools and models available in the Julia
 ML/Stats ecosystem.
-
-
-### List of projects
 
 MLJ is released under the MIT license.
 

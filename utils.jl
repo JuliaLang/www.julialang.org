@@ -229,7 +229,12 @@ function hfun_all_gsoc_projects()
 	for project in all_projects
 		project in ("general.md", "tooling.md", "graphics.md") && continue
 		endswith(project, ".md") || continue
-		write(md, read(joinpath(base_dir, project)))
+        contents = read(joinpath(base_dir, project), String)
+        # remove any table of contents
+        contents = replace(contents, "\\toc" => "")
+        # increase the header level by 1
+        contents = replace(contents, r"(?m)^#" => "##")
+		write(md, contents)
 		write(md, "\n\n")
 	end
 	allmd = String(take!(md))
