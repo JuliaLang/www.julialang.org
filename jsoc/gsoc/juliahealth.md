@@ -1,4 +1,4 @@
-# JuliaHealth Projects 
+# JuliaHealth Projects – Summer of Code
 
 JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards.
 Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making.

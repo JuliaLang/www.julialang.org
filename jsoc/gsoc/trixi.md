@@ -1,4 +1,4 @@
-# Modern computational fluid dynamics with Trixi.jl
+# Modern computational fluid dynamics with Trixi.jl - Summer of Code
 
 [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) is a Julia package for adaptive
 high-order numerical simulations of conservation laws. It is designed to be simple to use

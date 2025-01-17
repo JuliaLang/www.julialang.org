@@ -1,4 +1,4 @@
-# Symbolic computation project ideas
+# Symbolic computation project ideas - Summer of Code
 
 ## Efficient Tensor Differentiation
 

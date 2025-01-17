@@ -234,6 +234,8 @@ function hfun_all_gsoc_projects()
         contents = replace(contents, "\\toc" => "")
         # increase the header level by 1
         contents = replace(contents, r"(?m)^#" => "##")
+        # remove ' - Summer of Code' suffix from the primary header
+        contents = replace(contents, r"(?m)^# (.*) - Summer of Code" => "# \\1")
 		write(md, contents)
 		write(md, "\n\n")
 	end

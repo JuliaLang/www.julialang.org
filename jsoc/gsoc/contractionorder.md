@@ -1,4 +1,4 @@
-# Tensor network contraction order optimization and visualization
+# Tensor network contraction order optimization and visualization – Summer of Code
 
 [OMEinsum.jl](https://github.com/under-Peter/OMEinsum.jl) is a pure Julia package for tensor network computation,
  which has been used in various projects, including

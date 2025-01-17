@@ -1,4 +1,6 @@
-# MLJ.jl Projects
+@def mintoclevel = 2
+
+# MLJ.jl Projects - Summer of Code
 
 [MLJ](https://github.com/alan-turing-institute/MLJ.jl) is a machine
 learning framework for Julia aiming to provide a convenient way to use

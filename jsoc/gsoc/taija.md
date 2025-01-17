@@ -1,4 +1,4 @@
-# Taija Projects
+# Taija Projects - Summer of Code
 
 [Taija](https://github.com/JuliaTrustworthyAI) is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Taija currently covers a range of approaches towards making AI systems more trustworthy:
 

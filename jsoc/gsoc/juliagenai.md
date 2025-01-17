@@ -1,4 +1,4 @@
-# JuliaGenAI Projects
+# JuliaGenAI Projects – Summer of Code
 
 ![JuliaGenAI Logo](https://github.com/JuliaGenAI/juliagenai.org/blob/main/assets/logos/logo-256.png?raw=true)
 
