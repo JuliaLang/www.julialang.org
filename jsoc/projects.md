@@ -30,7 +30,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [QuantumOptics](/jsoc/gsoc/quantumoptics) - Quantum dynamics and master equations
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
 * [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
-* [Tabular Data](/jsoc/gsoc/tables/) - Working with data
 * [Taija](/jsoc/gsoc/taija/) - Trustworthy Artificial Intelligence in Julia
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.
