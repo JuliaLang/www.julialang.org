@@ -136,30 +136,6 @@ crossorigin=""/>
 <p><strong>Expected Results</strong>: A working implementation of the D* algorithm that is capable of performing efficient differentiations on tensor expressions.</p>
 <p><strong>Mentors</strong>: <a href="https://github.com/YingboMa">Yingbo Ma</a></p>
 <p><strong>Duration</strong>: 350 hours</p>
-<h2 id="symbolic_root_finding"><a href="#symbolic_root_finding" class="header-anchor">Symbolic root finding</a></h2>
-<p>Symbolics.jl have robust ways to convert symbolic expressions into multi-variate polynomials. There is now a robust Groebner basis implementation in &#40;Groebner.jl&#41;. Finding roots and varieties of sets of polynomials would be extremely useful in many applications. This project would involve implementing various techniques for solving polynomial systems, and where possible other non-linear equation systems. A good proposal should try to enumerate a number of techniques that are worth implementing, for example:</p>
-<ol>
-<li><p>Analytical solutions for polynomial systems of degree &lt;&#61; 4</p>
-</li>
-<li><p>Use of HomotopyContinuations.jl for testing for solvability and finding numerical solutions</p>
-</li>
-<li><p>Newton-raphson methods</p>
-</li>
-<li><p>Using Groebner basis computations to find varieties</p>
-</li>
-</ol>
-<p>The API for these features should be extremely user-friendly:</p>
-<ol>
-<li><p>A single <code>roots</code> function should take the sets of equations and result in the right type of roots as output &#40;either varieties or numerical answers&#41;</p>
-</li>
-<li><p>It should automatically find the fastest strategy to solve the set of equations and apply it.</p>
-</li>
-<li><p>It should fail with descriptive error messages when equations are not solvable, or degenerate in some way.</p>
-</li>
-<li><p>This should allow implementing symbolic eigenvalue computation when <code>eigs</code> is called.</p>
-</li>
-</ol>
-<p><strong>Mentors</strong>: <a href="https://github.com/shashi">Shashi Gowda</a>, <a href="https://github.com/sumiya11">Alexander Demin</a> <strong>Duration</strong>: 350 hours</p>
 <h2 id="symbolic_integration_in_symbolicsjl"><a href="#symbolic_integration_in_symbolicsjl" class="header-anchor">Symbolic Integration in Symbolics.jl</a></h2>
 <p>Implement the <a href="https://dspace.mit.edu/handle/1721.1/11997">heuristic approach to symbolic integration</a>. Then hook into a repository of rules such as <a href="https://rulebasedintegration.org/">RUMI</a>. See also the potential of using symbolic-numeric integration techniques &#40;https://github.com/SciML/SymbolicNumericIntegration.jl&#41;</p>
 <p><strong>Recommended Skills</strong>: High school/Freshman Calculus</p>
