@@ -1550,59 +1550,6 @@ e6257.&#93;&#40;https://peerj.com/articles/6257/&#41;</p>
 <p><a href="https://herbie.uwplse.org/">Herbie</a> documents a way to optimize floating point functions so as to reduce instruction count while reorganizing operations such that floating point inaccuracies do not get magnified. It would be a great addition to have this written in Julia and have it work on Symbolics.jl expressions. An ideal implementation would use the e-graph facilities of Metatheory.jl to implement this.</p>
 <p><strong>Mentors</strong>: <a href="https://github.com/shashi">Shashi Gowda</a>, <a href="https://github.com/0x0f0f0f">Alessandro Cheli</a></p>
 <p><strong>Duration</strong>: 350 hours</p>
-<h2 id="tabular_data_summer_of_code"><a href="#tabular_data_summer_of_code" class="header-anchor">Tabular Data – Summer of Code</a></h2>
-<h3 id="parquetjl_enhancements"><a href="#parquetjl_enhancements" class="header-anchor">Parquet.jl enhancements</a></h3>
-<p><strong>Difficulty</strong>: Medium</p>
-<p><strong>Duration</strong>: 175 hours</p>
-<p><a href="https://parquet.apache.org/">Apache Parquet</a> is a binary data format for tabular data. It has features for compression and memory-mapping of datasets on disk. A decent implementation of Parquet in Julia is likely to be highly performant. It will be useful as a standard format for distributing tabular data in a binary format. There exists a Parquet.jl package that has a Parquet reader and a writer. It currently conforms to the Julia Tabular file IO interface at a very basic level. It needs more work to add support for critical elements that would make Parquet.jl usable for fast large scale parallel data processing. Each of these goals can be targeted as a single, short duration &#40;175 hrs&#41; project.</p>
-<div class="tight-list"><ul>
-<li><p>Lazy loading and support for out-of-core processing, with Arrow.jl and Tables.jl integration. Improved usability and performance of Parquet reader and writer for large files.</p>
-</li>
-<li><p>Reading from and writing data on to cloud data stores, including support for partitioned data.</p>
-</li>
-<li><p>Support for missing data types and encodings making the Julia implementation fully featured.</p>
-</li>
-</ul></div>
-<p><strong>Resources:</strong></p>
-<div class="tight-list"><ul>
-<li><p>The <a href="https://parquet.apache.org/documentation/latest/">Parquet</a> file format &#40;also are many articles and talks on the Parquet storage format on the internet&#41;</p>
-</li>
-<li><p><a href="https://quinnj.home.blog/2019/07/21/a-tour-of-the-data-ecosystem-in-julia/">A tour of the data ecosystem in Julia</a></p>
-</li>
-<li><p><a href="https://github.com/JuliaData/Tables.jl">Tables.jl</a></p>
-</li>
-<li><p><a href="https://github.com/JuliaData/Arrow.jl">Arrow.jl</a></p>
-</li>
-</ul></div>
-<p><strong>Recommended skills:</strong> Good knowledge of Julia language, Julia data stack and writing performant Julia code.</p>
-<p><strong>Expected Results:</strong> Depends on the specific projects we would agree on.</p>
-<p><strong>Mentors:</strong> <a href="https://github.com/tanmaykm">Tanmay Mohapatra</a></p>
-<h3 id="dataframesjl_join_enhancements"><a href="#dataframesjl_join_enhancements" class="header-anchor">DataFrames.jl join enhancements</a></h3>
-<p><strong>Difficulty</strong>: Hard</p>
-<p><strong>Duration</strong>: 175 hours</p>
-<p><a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> is one of the more popular implementations of tabular data type for Julia. One of the features it supports is data frame joining. However, more work is needed to improve this functionality. The specific targets for this project are &#40;a final list of targets included in the scope of the project can be decided later&#41;.</p>
-<div class="tight-list"><ul>
-<li><p>fully implement multi-threading support by joins, reduce memory requirements of used join algorithms &#40;which should additionally improve their performance&#41;, verify efficiency of alternative joining strategies in comparison to those currently used and implement them along with adaptive algorithm choosing the right joining strategy depending on the passed data;</p>
-</li>
-<li><p>implement join allowing for efficient matching on non-equal keys; special attention should be made to matching on keys that are date/time and spatial objects;</p>
-</li>
-<li><p>implement join allowing for an in-place update of columns of one data frame by values stored in another data frame based on matching key and condition specifying when an update should be performed;</p>
-</li>
-<li><p>implement an more flexible mechanizm than currently available allowing to define output data frame column names when performing a join.</p>
-</li>
-</ul></div>
-<p><strong>Resources:</strong></p>
-<div class="tight-list"><ul>
-<li><p><a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a></p>
-</li>
-<li><p><a href="https://github.com/JuliaData/Tables.jl">Tables.jl</a></p>
-</li>
-<li><p><a href="https://github.com/JuliaData/DataAPI.jl">DataAPI.jl</a></p>
-</li>
-</ul></div>
-<p><strong>Recommended skills:</strong> Good knowledge of Julia language, Julia data stack and writing performant multi-threaded Julia code. Experience with benchmarking code and writing tests. Knowledge of join algorithms &#40;as e.g. used in databases like <a href="https://duckdb.org/">DuckDB</a> or other tabular data manipulation ecosystems e.g. <a href="https://www.pola.rs/">Polars</a> or <a href="https://github.com/Rdatatable/data.table">data.table</a>&#41;.</p>
-<p><strong>Expected Results:</strong> Depends on the specific projects we would agree on.</p>
-<p><strong>Mentors:</strong> <a href="https://github.com/bkamins">Bogumił Kamiński</a></p>
 <h2 id="taija_projects"><a href="#taija_projects" class="header-anchor">Taija Projects</a></h2>
 <p><a href="https://github.com/JuliaTrustworthyAI">Taija</a> is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Taija currently covers a range of approaches towards making AI systems more trustworthy:</p>
 <ul>
