@@ -12,7 +12,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Ferrite FEM](/jsoc/gsoc/ferrite-fem/) - A modern finite element toolbox in Julia.
 * [Gabs](/jsoc/gsoc/gabs/) - A Gaussian quantum information simulator
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
-* [GUI](/jsoc/gsoc/gui/) - Projects related to Graphical User Interface toolkits
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [GPU Programming](/jsoc/gsoc/gpu/) - Projects that involve the Julia GPU stack
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
@@ -22,7 +21,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [JuliaHealth](/jsoc/gsoc/juliahealth/) - Using the Julia programming language to improve medicine, health care, public health, and biomedical research.
 * [JuliaReach](/jsoc/gsoc/juliareach/) - Reachability analysis for dynamical systems
 * [JuliaStats](/jsoc/gsoc/juliastats/) - Statistical analysis in Julia
-* [Language interoperability](/jsoc/gsoc/interop/) - Projects related to interfacing between Julia and other programming languages (C++, Rust)
 * [Machine learning](/jsoc/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
