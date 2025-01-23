@@ -16,9 +16,9 @@ author = ""
 stable_release = "1.11.3"
 stable_release_short = "1.11"
 stable_release_date = "January 21, 2025"
-lts_release = "1.10.7"
+lts_release = "1.10.8"
 lts_release_short = "1.10"
-lts_release_date = "November 26, 2024"
+lts_release_date = "January 22, 2025"
 
 # plotly
 hasplotly = false
