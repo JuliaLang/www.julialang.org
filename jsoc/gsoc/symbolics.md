@@ -46,7 +46,7 @@ Julia functions that take arrays and output arrays or scalars can be traced usin
 
 ## Reparametrizing ODE models with scaling transformations
 
-**Project Overview:** Many ODE models appearing in applications have hidden symmetries which makes the solution of data fitting problem nonunique. [StructuralIdentifiability.jl](https://github.com/SciML/StructuralIdentifiability.jl) offers algorithms for proposing new coordinates for the model removing this redundancy. The approach used at the moment relies on heavy computations and may be very slow for larger models. Scaling is a particular type of reparametrizations which can be discovered much faster. The goal of the project would be to implement such faster algorithms (adapting them to the context of identifiability assesment) and integrate into StructuralIdentifiability.jl.
+**Project Overview:** Many ODE models appearing in applications have hidden symmetries which makes the solution of data fitting problem nonunique. [StructuralIdentifiability.jl](https://github.com/SciML/StructuralIdentifiability.jl) offers algorithms for proposing new coordinates for the model removing this redundancy. The approach used at the moment relies on heavy computations and may be very slow for larger models. Scaling is a particular type of reparametrizations which can be discovered much faster. The goal of the project would be to implement such faster algorithms (adapting them to the context of identifiability assessment) and integrate into StructuralIdentifiability.jl.
 
 **Mentors:** [Alexander Demin](https://github.com/sumiya11), [Gleb Pogudin](https://www.lix.polytechnique.fr/Labo/Gleb.POGUDIN/)
 
