@@ -1550,6 +1550,68 @@ e6257.&#93;&#40;https://peerj.com/articles/6257/&#41;</p>
 <p><a href="https://herbie.uwplse.org/">Herbie</a> documents a way to optimize floating point functions so as to reduce instruction count while reorganizing operations such that floating point inaccuracies do not get magnified. It would be a great addition to have this written in Julia and have it work on Symbolics.jl expressions. An ideal implementation would use the e-graph facilities of Metatheory.jl to implement this.</p>
 <p><strong>Mentors</strong>: <a href="https://github.com/shashi">Shashi Gowda</a>, <a href="https://github.com/0x0f0f0f">Alessandro Cheli</a></p>
 <p><strong>Duration</strong>: 350 hours</p>
+<h3 id="reparametrizing_ode_models_with_scaling_transformations"><a href="#reparametrizing_ode_models_with_scaling_transformations" class="header-anchor">Reparametrizing ODE models with scaling transformations</a></h3>
+<p><strong>Project Overview:</strong> Many ODE models appearing in applications have hidden symmetries which makes the solution of data fitting problem nonunique. <a href="https://github.com/SciML/StructuralIdentifiability.jl">StructuralIdentifiability.jl</a> offers algorithms for proposing new coordinates for the model removing this redundancy. The approach used at the moment relies on heavy computations and may be very slow for larger models. Scaling is a particular type of reparametrizations which can be discovered much faster. The goal of the project would be to implement such faster algorithms &#40;adapting them to the context of identifiability assessment&#41; and integrate into StructuralIdentifiability.jl.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/sumiya11">Alexander Demin</a>, <a href="https://www.lix.polytechnique.fr/Labo/Gleb.POGUDIN/">Gleb Pogudin</a></p>
+<p><strong>Project Difficulty</strong>: Medium</p>
+<p><strong>Estimated Duration</strong>: 350 hours</p>
+<p><strong>Ideal Candidate Profile:</strong></p>
+<ul>
+<li><p>Basic experience with Julia</p>
+</li>
+<li><p>Knowledge of linear algebra</p>
+</li>
+</ul>
+<p><strong>Project Goals and Deliverables:</strong></p>
+<ul>
+<li><p>Implementation of an algorithm in Julia to perform scaling reparametrization of ODEs</p>
+</li>
+<li><p>Comprehensive documentation and examples</p>
+</li>
+<li><p>&#40;Bonus&#41; Integration with <a href="https://github.com/SciML/StructuralIdentifiability.jl">StructuralIdentifiability.jl</a></p>
+</li>
+</ul>
+<p><strong>Useful References:</strong></p>
+<ul>
+<li><p><a href="https://journals.plos.org/ploscompbiol/article?id&#61;10.1371/journal.pcbi.1008248">Paper on scaling transformations</a></p>
+</li>
+<li><p><a href="https://inria.hal.science/hal-00668882/">More involved paper on scaling transformations</a></p>
+</li>
+<li><p><a href="https://desr.readthedocs.io/en/latest/intro.html">Implementation in Python</a></p>
+</li>
+</ul>
+<h3 id="polynomialization_of_ordinary_differential_equations"><a href="#polynomialization_of_ordinary_differential_equations" class="header-anchor">Polynomialization of ordinary differential equations</a></h3>
+<p><strong>Project Overview:</strong> Many ODE models arising in modeling involve nonpolynomial functions &#40;fractions, exponentials, trigonometric, etc&#41;. Polynomialization is the rewriting of nonpolynomial functions as equivalent polynomial equations. It is a necessary preprocessing step in several contexts &#40;structural identifiability, model order reduction, reaction network synthesis&#41;. The project aims at implementing a package for polynomialization of ODEs and, potentially, adapting it for use in <a href="https://github.com/SciML/StructuralIdentifiability.jl">StructuralIdentifiability.jl</a>.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/sumiya11">Alexander Demin</a>, <a href="https://www.lix.polytechnique.fr/Labo/Gleb.POGUDIN/">Gleb Pogudin</a>, <a href="https://www.chrisrackauckas.com/">Chris Rackauckas</a></p>
+<p><strong>Project Difficulty</strong>: Medium</p>
+<p><strong>Estimated Duration</strong>: 350 hours</p>
+<p><strong>Ideal Candidate Profile:</strong></p>
+<ul>
+<li><p>Basic experience with Julia</p>
+</li>
+<li><p>Knowledge of ordinary differential equations</p>
+</li>
+</ul>
+<p><strong>Project Goals and Deliverables:</strong></p>
+<ul>
+<li><p>Implementation of an algorithm in Julia to perform polynomialization of ODEs</p>
+</li>
+<li><p>Comprehensive documentation and examples</p>
+</li>
+<li><p>&#40;Bonus&#41; Integration with <a href="https://github.com/SciML/StructuralIdentifiability.jl">StructuralIdentifiability.jl</a></p>
+</li>
+</ul>
+<p><strong>Useful References:</strong></p>
+<ul>
+<li><p><a href="https://inria.hal.science/hal-03220725">Paper on polynomialization #1</a></p>
+</li>
+<li><p><a href="https://dl.acm.org/doi/10.1145/1687399.1687474">Paper on polynomialization #2</a></p>
+</li>
+<li><p><a href="https://github.com/SciML/StructuralIdentifiability.jl/issues/144">Relevant GitHub issue</a></p>
+</li>
+<li><p><a href="https://github.com/AndreyBychkov/QBee/blob/master/qbee/polynomialization.py">An implementation of similar algorithms in Python</a></p>
+</li>
+</ul>
 <h2 id="taija_projects"><a href="#taija_projects" class="header-anchor">Taija Projects</a></h2>
 <p><a href="https://github.com/JuliaTrustworthyAI">Taija</a> is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Taija currently covers a range of approaches towards making AI systems more trustworthy:</p>
 <ul>
