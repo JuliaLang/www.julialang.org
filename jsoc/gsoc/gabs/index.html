@@ -47,15 +47,24 @@ crossorigin=""/>
 <script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
-   <title>Projects</title>   
+   <title>Simulations of Gaussian quantum information - Summer of Code</title>   
 
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
   
 
   <!-- Specific style for blog pages (except the /blob/index) -->
   
 
   <!-- OGP Metadata -->
-	<meta property="og:title" content="Projects">
+	<meta property="og:title" content="Simulations of Gaussian quantum information - Summer of Code">
 <meta property="og:description" content="">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
@@ -115,85 +124,31 @@ crossorigin=""/>
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/projects.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsoc/gabs.md" title="Edit this page on GitHub" class="edit-float">
 </a>
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="projects"><a href="#projects" class="header-anchor">Projects</a></h1>
-<p>This page lists a bunch of project ideas, meant to serve as starting points as you develop your own plan. You&#39;re free to modify them to your tastes, or propose something totally different in an area you&#39;re interested in.</p>
-<p>We have our project ideas organized below roughly by domain but you can also see a <a href="/jsoc/allprojects">single page with all our projects together</a>:</p>
-<div class="tight-list"><ul>
-<li><p><a href="/jsoc/gsoc/bayesopt/">BayesianOptimization.jl</a> - a package for global optimization of black-box functions</p>
-</li>
-<li><p><a href="/jsoc/gsoc/compiler/">Compiler</a> – work on the Julia compiler&#39;s internals to make things better for everyone.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/clima/">CliMA</a> – a new open-source climate model that runs on GPUs.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/ferrite-fem/">Ferrite FEM</a> - A modern finite element toolbox in Julia.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/gabs/">Gabs</a> - A Gaussian quantum information simulator</p>
-</li>
-<li><p><a href="/jsoc/gsoc/gnn/">Graph neural networks</a> - Deep learning on graphs with GraphNeuralNetworks.jl.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/gui/">GUI</a> - Projects related to Graphical User Interface toolkits</p>
-</li>
-<li><p><a href="/jsoc/gsoc/hpc/">High Performance and Parallel Computing</a> – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/gpu/">GPU Programming</a> - Projects that involve the Julia GPU stack</p>
-</li>
-<li><p><a href="/jsoc/gsoc/images/">Images</a> – extend Julia&#39;s suite of tools for visualization and analysis of images.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/juliaconstraints/">JuliaConstraints</a> - A collection of tools for Constraint Programming in Julia</p>
-</li>
-<li><p><a href="/jsoc/gsoc/juliadynamics/">JuliaDynamics</a> - Dynamical systems, complex systems and nonlinear dynamics in Julia</p>
-</li>
-<li><p><a href="/jsoc/gsoc/juliagenai/">JuliaGenAI</a> - Research and applications of Generative AI in Julia</p>
-</li>
-<li><p><a href="/jsoc/gsoc/juliahealth/">JuliaHealth</a> - Using the Julia programming language to improve medicine, health care, public health, and biomedical research.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/juliareach/">JuliaReach</a> - Reachability analysis for dynamical systems</p>
-</li>
-<li><p><a href="/jsoc/gsoc/juliastats/">JuliaStats</a> - Statistical analysis in Julia</p>
-</li>
-<li><p><a href="/jsoc/gsoc/interop/">Language interoperability</a> - Projects related to interfacing between Julia and other programming languages &#40;C&#43;&#43;, Rust&#41;</p>
-</li>
-<li><p><a href="/jsoc/gsoc/machine-learning">Machine learning</a> - work on problems in machine learning in the broader Julia ML ecosystem</p>
-</li>
-<li><p><a href="/jsoc/gsoc/MLJ/">MLJ.jl</a> – a Machine Learning Toolbox for Julia.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/molly/">Molecular simulation</a> - molecular simulation with Molly.jl.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/pdmp/">PDMPs and event-chain Monte Carlo</a> - a family of continuous time Markov-Chain Monte Carlo methods.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/quantumclifford">QuantumClifford</a> - Quantum circuits with Clifford gates</p>
-</li>
-<li><p><a href="/jsoc/gsoc/quantumoptics">QuantumOptics</a> - Quantum dynamics and master equations</p>
-</li>
-<li><p><a href="/jsoc/gsoc/kalmanbucy/">Signal processing</a> - Continuous time Signal Processing</p>
-</li>
-<li><p><a href="/jsoc/gsoc/symbolics/">Symbolic computation</a> - User friendly symbolic programming</p>
-</li>
-<li><p><a href="/jsoc/gsoc/taija/">Taija</a> - Trustworthy Artificial Intelligence in Julia</p>
-</li>
-<li><p><a href="/jsoc/gsoc/turing/">Turing</a> - for probabilistic modelling and probabilistic programming</p>
-</li>
-<li><p><a href="/jsoc/gsoc/topopt/">Topology optimisation</a> - improving topology optimisation tools in Julia.</p>
-</li>
-<li><p><a href="/jsoc/gsoc/trixi/">Trixi.jl</a> - modern computational fluid dynamics with Trixi.jl in Julia.</p>
-</li>
-</ul></div>
-<p>We also have Julia project&#39;s available under other organizations. If you are applying for those projects, make sure your application is for that organization and NOT the Julia Language:</p>
-<div class="tight-list"><ul>
-<li><p><a href="https://github.com/numfocus/gsoc#gridap">Gridap - NumFOCUS</a></p>
-</li>
-<li><p><a href="https://github.com/numfocus/gsoc#fluxml">FluxML - NumFOCUS</a></p>
-</li>
-<li><p><a href="https://github.com/numfocus/gsoc#sciml">SciML - NumFOCUS</a></p>
-</li>
-<li><p><a href="https://github.com/numfocus/gsoc#arviz">ArviZ - NumFOCUS</a></p>
-</li>
-</ul></div>
+<div class="container main"><h1 id="simulations_of_gaussian_quantum_information_-_summer_of_code"><a href="#simulations_of_gaussian_quantum_information_-_summer_of_code" class="header-anchor">Simulations of Gaussian quantum information - Summer of Code</a></h1>
+<p>Quantum harmonic oscillators are important modalities for quantum computation and quantum networking. A class of them, known as Gaussian bosonic systems, are efficient to simulate on a classical computer. Although such systems do not provide quantum computational advantage, they are present in most protocols and algorithms in continuous variable quantum information. <a href="https://github.com/apkille/Gabs.jl">Gabs.jl</a> is a Julia library designed to enable fast simulations of Gaussian bosonic circuits and serve as a sandbox for quantum hardware and protocol design.</p>
+<h2 id="efficient_classical_simulations_of_linear_combinations_of_gaussian_quantum_states"><a href="#efficient_classical_simulations_of_linear_combinations_of_gaussian_quantum_states" class="header-anchor">Efficient classical simulations of linear combinations of Gaussian quantum states</a></h2>
+<p>Non-Gaussian quantum states cannot be simulated via their first- and second-order statistical moments in the phase space representation like Gaussian states. However, there exist fast classical algorithms for simulating superpositions of Gaussian states, which are non-Gaussian in nature. This project involves implementing such algorithmic support for analyzing certain classes of non-Gaussian states.</p>
+<p><strong>Recommended skills:</strong> In-depth understanding of the quantum phase space formalism. <a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.110.042402">This paper</a> and <a href="https://arxiv.org/abs/2404.07115">also this paper</a> are useful references.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/apkille">Andrew Kille</a> and <a href="https://github.com/Krastanov">Stefan Krastanov</a>.</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan more extensive work&#41;</p>
+<p><strong>Difficulty:</strong> Medium</p>
+<h2 id="matrix_product_state_representations_of_gaussian_and_non-gaussian_quantum_states"><a href="#matrix_product_state_representations_of_gaussian_and_non-gaussian_quantum_states" class="header-anchor">Matrix product state representations of Gaussian and non-Gaussian quantum states</a></h2>
+<p>A matrix product state &#40;MPS&#41; is a valuable tensor network method for simulating quantum many-body systems. In particular, large continuous variable quantum systems that contain low entanglement can be simulated extremely fast with the MPS method. This project involves implementing support for MPS representations of Gaussian and non-Gaussian systems.</p>
+<p><strong>Recommended skills:</strong> In-depth understanding of the quantum phase space formalism. In addition, familiarity with tensor network methods and software such as <a href="https://github.com/ITensor/ITensors.jl">ITensors.jl</a>. For this project, <a href="https://opg.optica.org/optica/fulltext.cfm?uri&#61;optica-8-10-1306&amp;id&#61;460148">this paper</a> and <a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.104.012415">also this paper</a> are useful references.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/apkille">Andrew Kille</a> and <a href="https://github.com/Krastanov">Stefan Krastanov</a>.</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan more extensive work&#41;</p>
+<p><strong>Difficulty:</strong> Hard</p>
+<h2 id="gaussian_cluster_states"><a href="#gaussian_cluster_states" class="header-anchor">Gaussian cluster states</a></h2>
+<p>Due to the technological maturity of quantum measurement schemes for photons, one-way quantum computation is an attractive approach for photonic quantum processing. In the continuous variable formalism, Gaussian cluster states serve as an important piece of the measurement-based quantum computation model. This project involves the creation of conversion tools between phase space representations of Gaussian bosonic systems and Gaussian cluster states in the graph formalism.</p>
+<p><strong>Recommended skills:</strong> Understanding of the quantum phase space formalism and the measurement-based quantum computation model. <a href="https://journals.aps.org/rmp/pdf/10.1103/RevModPhys.84.621">This review article</a> and <a href="https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.2.030343">recent paper</a> is a useful reference.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/apkille">Andrew Kille</a> and <a href="https://github.com/Krastanov">Stefan Krastanov</a>.</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan more extensive work&#41;</p>
+<p><strong>Difficulty:</strong> Easy</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
