@@ -29,7 +29,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 * [Makie 0.22 is now out](https://makie.org/website/blogposts/v0.22/), with further improvements to geometry primitives and 3D capabilities.
 * [BorrowChecker.jl](https://github.com/MilesCranmer/BorrowChecker.jl) is a new package that introduces Rust-like ownership and borrowing semantics to Julia, aiming to improve memory safety. Related to this earlier [discourse discussion](https://discourse.julialang.org/t/package-for-rust-like-borrow-checker-in-julia/124442).
 * [Statistics.median](https://github.com/JuliaArrays/StaticArrays.jl/pull/973) is now available for StaticArrays, providing efficient median computation via bitonic sorting.
-* AlgebraOfGraphics.jl (inspired by R’s grammar of graphics ggplot, built on Makie) is working surprisingly well with [sophisticated edge-case composition of plots](https://julialang.slack.com/archives/C8RQUU2KH/p1737034714609659).
+* AlgebraOfGraphics.jl (inspired by R’s grammar of graphics ggplot, built on Makie) is working surprisingly well with [sophisticated edge-case composition of plots](https://aog.makie.org/stable/gallery/gallery/scales/split_scales_facet/#Split-scales-across-facets).
 * SatelliteToolbox.jl is [officially v1 after 10 years](https://discourse.julialang.org/t/ann-satellitetoolbox-v1-after-almost-10-years-we-reached-v1-0/124349) – used in attitude and orbit control of actual satellites.
 * [QuantumCircuitDraw.jl](https://github.com/nicolasloizeau/QuantumCircuitDraw.jl) is a new package for visualizing quantum circuits in the style of Qiskit.
 
