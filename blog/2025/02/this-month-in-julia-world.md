@@ -15,7 +15,7 @@ The deadline for [submitting a proposal to JuliaCon 2025 is extended to Feb 14th
 * [PR #57049](https://github.com/JuliaLang/julia/pull/57049) introduces LLVM-based feature detection for CPU parsing.
 * The difficulty of writing multithreaded code, and footguns related to the difference between thread and task, the danger of moving tasks between threads, and the subleties of properly setting up thread- or task-local storage come up often. This is [a recent good discussion of the topic](https://discourse.julialang.org/t/sharp-edge-with-threads-threadid-and-task-migration/124550). It reminds me also of the [recently merged](https://github.com/JuliaLang/julia/pull/55793) `perprocess` / `perthread` / `pertask` constructs which help manage some of these subtleties.
 * An interesting suggestion for having [julia automatically logging to the terminal to current state of progress through a script](https://github.com/JuliaLang/julia/pull/57137).
-* [Unicode v16 is now supported](https://github.com/JuliaLang/julia/pull/56925) in Julia source files. We get access to "face with bags under eyes" but there is still now superscript “q”.
+* [Unicode v16 is now supported](https://github.com/JuliaLang/julia/pull/56925) in Julia source files. We get access to "face with bags under eyes" but there is still no superscript “q”.
 
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
 
