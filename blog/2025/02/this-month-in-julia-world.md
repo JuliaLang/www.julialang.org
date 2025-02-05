@@ -66,7 +66,4 @@ Soapboxes (blogs/talks):
 
 See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [minutes of triage meetings](https://hackmd.io/@LilithHafner/HJaw__uMp)
 
-Please feel free to post below with your own interesting finds, or in-depth explanations, or questions about these developments.
-
-If you would like to help with the draft for next month, please drop your **short**, **well formatted**, **linked** notes in [this shared document](https://docs.google.com/document/d/1Np1deH_W1o0EO7_tZkScveCLA0XiYg538ceUJs0bFpE/edit). Some of it might survive by the time of posting
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)
