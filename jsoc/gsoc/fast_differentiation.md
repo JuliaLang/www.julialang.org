@@ -46,7 +46,7 @@ The goal of this project is to first analyze the sources of the incompatibilitie
 
 See [this](https://github.com/brianguenter/Proposals) page for a more detailed description of tasks.
 
-**Medium difficulty, 350 hours.**
+**Medium difficulty, 175 hours.**
 
 **Recommended Skills:** Julia programming experience, previous work with graph algorithms helpful but not required.
 
