@@ -1,6 +1,6 @@
 # Add Conditionals to FastDifferentiation.jl
 
-FastDifferentiation supports conditionals in function definitions but cannot yet compute derviatives of functions with conditionals:
+FastDifferentiation supports conditionals in function definitions but cannot yet compute derivatives of functions with conditionals:
 ```julia
 julia> @variables x y
 
