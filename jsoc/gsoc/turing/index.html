@@ -130,51 +130,8 @@ crossorigin=""/>
 
 <!-- Content appended here -->
 <div class="container main"><h1 id="turing_projects_-_summer_of_code"><a href="#turing_projects_-_summer_of_code" class="header-anchor">Turing Projects - Summer of Code</a></h1>
-<p><a href="https://turinglang.org/">Turing</a> is a universal probabilistic programming language embedded in Julia. Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc. Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added.</p>
-<p>Below is a list of ideas for potential projects, though you are welcome to propose your own to the Turing team. If you are interested in exploring any of these projects, please reach out to the listed project mentors or Xianda Sun &#40;at xs307&#91;at&#93;cam.ac.uk&#41;. You can find their contact information <a href="https://turinglang.org/stable/team">here</a>.</p>
-<h2 id="implementing_models_from_posteriordb_in_turing_julia"><a href="#implementing_models_from_posteriordb_in_turing_julia" class="header-anchor">Implementing models from PosteriorDB in Turing / Julia</a></h2>
-<p><strong>Mentors:</strong> Seth Axen, Tor Fjelde, Kai Xu, Hong Ge</p>
-<p><strong>Project difficulty:</strong> Medium</p>
-<p><strong>Project length:</strong> 175 hrs or 350 hrs</p>
-<p><strong>Description:</strong> <a href="https://github.com/stan-dev/posteriordb">posteriordb</a> is a database of 120 diverse Bayesian models implemented in Stan &#40;with 1 example model in PyMC&#41; with reference posterior draws, data, and metadata. For performance comparison and for showcasing best practices in Turing, it is useful to have Turing implementations of these models. The goal of this project is to implement a large subset of these models in Turing/Julia.</p>
-<p>For each model, we consider the following tasks: Correctness test: when reference posterior draws and sampler configuration are available in posteriordb, correctness of the implementation and consistency can be tested by sampling the model with the same configuration and comparing the samples to the reference draws. Best practices: all models must be checked to be differentiable with all Turing-supported AD frameworks.</p>
-<h2 id="improving_the_integration_between_turing_and_turings_mcmc_inference_packages"><a href="#improving_the_integration_between_turing_and_turings_mcmc_inference_packages" class="header-anchor">Improving the integration between Turing and Turing’s MCMC inference packages</a></h2>
-<p><strong>Mentors:</strong> Tor Fjelde, Jaime Ruiz Zapatero, Cameron Pfiffer, David Widmann</p>
-<p><strong>Project difficulty:</strong> Easy</p>
-<p><strong>Project length:</strong> 175 hrs</p>
-<p><strong>Description:</strong> Most samplers in Turing.jl implements the AbstractMCMC.jl interface, allowing a unified way for the user to interact with the samplers. The interface of AbstractMCMC.jl is currently very bare-bones and does not lend itself nicely to interoperability between samplers.</p>
-<p>For example, it’s completely valid to compose to MCMC kernels, e.g. taking one step using the RWMH from AdvancedMH.jl, followed by taking one step using NUTS from AdvancedHMC.jl. Unfortunately, implementing such a composition requires explicitly defining conversions between the state returned from RWMH and the state returned from NUTS, and conversion of state from NUTS to state of RWMH. Doing this for one such sampler-pair is generally very easy to do, but once you have to do this for N samplers, suddenly the amount of work needed to be done becomes insurmountable.</p>
-<p>One way to deal alleviate this issue would be to add a simple interface for interacting with the states of the samplers, e.g. a method for getting the current values in the state, a method for setting the current values in the state, in addition to a set of glue-methods which can be overridden in the specific case where more information can be shared between the states.</p>
-<p>As an example of some ongoing work that attempts to take a step in this direction is: <a href="https://github.com/TuringLang/AbstractMCMC.jl/pull/86">https://github.com/TuringLang/AbstractMCMC.jl/pull/86</a></p>
-<h2 id="gpu_support_for_normalizingflowsjl_and_bijectorsjl"><a href="#gpu_support_for_normalizingflowsjl_and_bijectorsjl" class="header-anchor">GPU support for NormalizingFlows.jl and Bijectors.jl</a></h2>
-<p><strong>Mentors:</strong> Tor Fjelde, Tim Hargreaves, Xianda Sun, Kai Xu, Hong Ge</p>
-<p><strong>Project difficulty:</strong> Hard</p>
-<p><strong>Project length:</strong> 175 hrs or 350 hrs</p>
-<p><strong>Description:</strong> Bijectors.jl, a package that facilitates transformations of distributions within Turing.jl, currently lacks full GPU compatibility. This limitation stems partly from the implementation details of certain bijectors and also from how some distributions are implemented in the Distributions.jl package. NormalizingFlows.jl, a newer addition to the Turing.jl ecosystem built atop Bijectors.jl, offers a user-friendly interface and utility functions for training normalizing flows but shares the same GPU compatibility issues.</p>
-<p>The aim of this project is to enhance GPU support for both Bijectors.jl and NormalizingFlows.jl.</p>
-<h2 id="batched_support_for_normalizingflowsjl_and_bijectorsjl"><a href="#batched_support_for_normalizingflowsjl_and_bijectorsjl" class="header-anchor">Batched support for NormalizingFlows.jl and Bijectors.jl</a></h2>
-<p><strong>Mentors:</strong> Tor Fjelde, Xianda Sun, David Widmann, Hong Ge</p>
-<p><strong>Project difficulty:</strong> Medium</p>
-<p><strong>Project length:</strong> 350 hrs</p>
-<p><strong>Description:</strong> This project aims to introduce a <code>batched mode</code> to Bijectors.jl and NormalizingFlows.jl, which are built on top of Bijectors.jl.</p>
-<p>Put simply, we want to enable users to provide multiple inputs to the model simultaneously by “stacking” the parameters into a higher-dimensional array.</p>
-<p>The implementation can take various forms, as a team of developers who care about both performance and user experience, we are open to different approaches and discussions. One possible approach is to develop a mechanism that signals the code to process the given input as a batch rather than as individual entries.  A preliminary implementation can be found <a href="https://github.com/torfjelde/Batching.jl">here</a>.</p>
-<h2 id="targets_for_benchmarking_samplers_with_vectorization_gpu_and_high-order_derivative_supports"><a href="#targets_for_benchmarking_samplers_with_vectorization_gpu_and_high-order_derivative_supports" class="header-anchor">Targets for Benchmarking Samplers with vectorization, GPU and high-order derivative supports</a></h2>
-<p><strong>Mentors:</strong> Kai Xu, Hong Ge</p>
-<p><strong>Project difficulty:</strong> Medium</p>
-<p><strong>Project length:</strong> 175 hrs</p>
-<p><strong>Description:</strong> The project aims to develop a comprehensive collection of target distributions designed to study and benchmark Markov Chain Monte Carlo &#40;MCMC&#41; samplers in various computational environments. This collection will be an extension and enhancement of the existing Julia package, <a href="https://github.com/xukai92/VecTargets.jl">VecTargets.jl</a>, which currently offers limited support for vectorization, GPU acceleration, and high-order derivatives. The main objectives of this project include:</p>
-<ul>
-<li><p>Ensuring that the target distributions fully support vectorization and GPU acceleration</p>
-</li>
-<li><p>Making high-order derivatives &#40;up to 3rd order&#41; seamlessly integrable with the target distributions</p>
-</li>
-<li><p>Creating a clear and comprehensive documentation that outlines the capabilities and limitations of the project, including explicit details on cases where vectorization, GPU acceleration, or high-order derivatives are not supported.</p>
-</li>
-<li><p>Investigating and documenting how different Automatic Differentiation &#40;AD&#41; packages available in Julia can be combined or utilized to achieve efficient and accurate computation of high-order derivatives.</p>
-</li>
-</ul>
-<p>By achieving these goals, the project aims to offer a robust framework that can significantly contribute to the research and development of more efficient and powerful MCMC samplers, thereby advancing the field of computational statistics and machine learning.</p>
+<p><a href="https://turinglang.org/">Turing.jl</a> is a universal probabilistic programming language embedded in Julia. Turing allows the user to write statistical models in standard Julia syntax, and provides a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics, and data science. Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added.</p>
+<p>The Turing team is currently planning projects for GSoC 2025, and will post them here once they are ready. You are also welcome to propose your own projects. If you are interested in working on Turing for GSoC 2025, please reach out to Markus Hauru &#40;@mhauru&#41; on Julia&#39;s <a href="https://julialang.org/slack/">Slack</a> or <a href="https://discourse.julialang.org/">Discourse</a>.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
