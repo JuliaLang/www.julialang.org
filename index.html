@@ -59,51 +59,48 @@ crossorigin=""/>
   </div>
 
 
-  <div class="container py-3 py-lg-0">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
-    <!-- LOGO -->
-    <a class="navbar-brand" href="/">
-      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
-    </a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container">
+      <a class="navbar-brand" href="/">
+          <img src="/assets/infra/logo.svg" alt="JuliaLang Logo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/learning/">Learn</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/blog/">Blog</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/community/">Community</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="btn btn-outline-dark btn-sm btn-star" href="https://github.com/JuliaLang/julia" target="_blank">⭐ Star</a>
+              <a class="btn btn-danger btn-sm btn-sponsor" href="https://github.com/sponsors/julialang" target="_blank">❤️ Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item   flex-md-fill text-md-center">
-          <a class="nav-link" href="/downloads/">Download</a>
-        </li>
-        <li class="nav-item flex-md-fill text-md-center">
-          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
-        </li>
-        <li class="nav-item   flex-md-fill text-md-center">
-          <a class="nav-link" href="/learning/">Learn</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="/blog/">Blog</a>
-        </li>
-        <li class="nav-item   flex-md-fill text-md-center">
-          <a class="nav-link" href="/community/">Community</a>
-        </li>
-        <li class="nav-item   flex-md-fill text-md-center">
-          <a class="nav-link" href="/contribute/">Contribute</a>
-        </li>
-        <li class="nav-item   flex-md-fill text-md-center">
-          <a class="nav-link" href="/jsoc/">JSoC</a>
-        </li>
-      </ul>
-      <span class="navbar-right">
-        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
-        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-      </span>
-    </div>
-
-  </nav>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!--
        Splash: THE JULIA PROGRAMMING LANGUAGE
