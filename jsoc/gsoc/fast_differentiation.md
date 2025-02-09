@@ -1,3 +1,11 @@
+[FastDifferentiation.jl](https://github.com/brianguenter/FastDifferentiation.jl) is a Julia package for computing very efficient symbolic derivatives of Julia functions and for compiling the derivatives into  efficient executables. It can differentiate much larger expressions than other symbolic systems, such as Symbolics.jl, and the resulting derivatives are also much more efficient, rivaling hand computed derivatives in some cases (see the website for benchmark examples).
+
+[FastDifferentiation.jl](https://github.com/brianguenter/FastDifferentiation.jl) also computes the exact sparsity patterns of Jacobians and Hessians (and any other order derivative) and detects common terms in derivatives of Rⁿ->Rᵐ functions for large n,m. As a consequence computation time of Jacobians generally scales sub-linearly as a function of n,m.
+
+
+However, the current system has several weaknesses. It is not currently possible to differentiate through conditional expressions so many commonly used Julia functions cannot be differentiated.
+Derivatives of any order can be computed but orders above 3 or 4 become increasingly inefficient. These projects aim to address these weaknesse.
+
 # Add Conditionals to FastDifferentiation.jl
 
 FastDifferentiation supports conditionals in function definitions but cannot yet compute derivatives of functions with conditionals:
@@ -11,7 +19,7 @@ julia> derivative(f,x)
 ERROR: Your expression contained a if_else expression. FastDifferentiation does not yet support differentiation through this function
 ```
 
-The goal of this project is to modify the derivative graph analysis code so that it detects conditional subgraphs and then generates run time code to evaluate conditionals and branches to correct derivative expressions.
+>The goal of this project is to modify the derivative graph analysis code so that it detects conditional subgraphs and then generates run time code to evaluate conditionals and branches to correct derivative expressions.
 
 **Medium difficulty, 175 hours.**
 
@@ -30,7 +38,7 @@ This will require a rewrite of the graph factorization code as well as some theo
 
 **Hard, 350 hours.**
 
-**Recommended Skills:** Julia programming experience, previous work with graph algorithms helpful but not required.
+**Recommended Skills:** Julia programming experience, previous work with graph algorithms helpful but not required. Understanding of [Faa Di Bruno's](https://en.wikipedia.org/wiki/Fa%C3%A0_di_Bruno%27s_formula) and [Leibniz's rule](https://en.wikipedia.org/wiki/General_Leibniz_rule).
 
 **Expected Outcome:** Well-tested and well-documented support for higher order derivatives.
 
