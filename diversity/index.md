@@ -15,6 +15,4 @@ Find out more about our [current initiatives](/diversity/current/)
 
 Find out more about our ideas for [future initiatives](/diversity/ideas/)
 
-Find out more about our [past initiatives](/diversity/past/)
-
 __We would like to give a special thank you to all of the Julia Community members working tirelessly on these various Diversity and Inclusion initiates. These individuals are taking time away from their technical work in order to help promote a more inclusive and equitable community, and for that, we are in their debt.__
