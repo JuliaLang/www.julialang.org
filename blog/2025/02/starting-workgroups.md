@@ -1,9 +1,10 @@
-@def title = "So, You Want to Start a Julia Workgroup?"
-@def authors = "Hetarth Shah, George Datseris, Jacob S. Zelko"
-@def published = "10 Feb 2024"
-@def rss_pubdate = Date(2025, 2, 10)
-
-@def rss = """Thoughts and advice on starting your own Julia community workgroup."""
++++
+title = "So, You Want to Start a Julia Workgroup?"
+authors = "Hetarth Shah, George Datseris, Jacob S. Zelko"
+published = "10 February 2025"
+rss_pubdate = Date(2025, 2, 10)
+rss = """Thoughts and advice on starting your own Julia community workgroup."""
++++
 
 ## Introduction
 
@@ -88,8 +89,7 @@ Take them and adapt them to your own style -- or make a [PR here and add your ow
 
 - Try to introduce and appreciate new attendees and contributors to your community. 
 
-- If there is a great package within your community, highlight or introduce it!
-It can encourage people to contribute to it or be aware of it for future usage. 
+- If there is a great package within your community, highlight or introduce it! It can encourage people to contribute to it or be aware of it for future usage. 
 
 - Arrange talks from other workgroups, outside attendees, special contributors, etc. 
 
