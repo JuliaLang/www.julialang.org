@@ -10,9 +10,11 @@ We have our project ideas organized below roughly by domain but you can also see
 * [CliMA](/jsoc/gsoc/clima/) – a new open-source climate model that runs on GPUs.
 <!--* [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.-->
 * [Ferrite FEM](/jsoc/gsoc/ferrite-fem/) - A modern finite element toolbox in Julia.
+* [Gabs](/jsoc/gsoc/gabs/) - A Gaussian quantum information simulator
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
 * [GUI](/jsoc/gsoc/gui/) - Projects related to Graphical User Interface toolkits
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
+* [GPU Programming](/jsoc/gsoc/gpu/) - Projects that involve the Julia GPU stack
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [JuliaConstraints](/jsoc/gsoc/juliaconstraints/) - A collection of tools for Constraint Programming in Julia
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
@@ -29,7 +31,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [QuantumOptics](/jsoc/gsoc/quantumoptics) - Quantum dynamics and master equations
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
 * [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
-* [Tabular Data](/jsoc/gsoc/tables/) - Working with data
 * [Taija](/jsoc/gsoc/taija/) - Trustworthy Artificial Intelligence in Julia
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.

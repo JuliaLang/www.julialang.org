@@ -229,7 +229,22 @@ function hfun_all_gsoc_projects()
 	for project in all_projects
 		project in ("general.md", "tooling.md", "graphics.md") && continue
 		endswith(project, ".md") || continue
-		write(md, read(joinpath(base_dir, project)))
+        for line in eachline(joinpath(base_dir, project))
+            # remove any table of contents
+            if line == "\\toc"
+                continue
+            end
+
+            # remove ' - Summer of Code' suffix from the primary header
+            line = replace(line, r"^# (.*) - Summer of Code" => s"# \1")
+
+            # increase the header level by 1
+            if startswith(line, "#")
+                line = "#" * line
+            end
+
+            println(md, line)
+        end
 		write(md, "\n\n")
 	end
 	allmd = String(take!(md))

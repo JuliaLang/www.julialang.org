@@ -1,4 +1,4 @@
-# Taija Projects
+# Taija Projects - Summer of Code
 
 [Taija](https://github.com/JuliaTrustworthyAI) is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Taija currently covers a range of approaches towards making AI systems more trustworthy:
 
@@ -20,7 +20,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 ## Project 1: Conformal Prediction meets Bayes (*Predictive Uncertainty*)
 
-**Project Overview:** [ConformalPrediction.jl](https://github.com/JuliaTrustworthyAI/ConformalPrediction.jl) is a package for Predictive Uncertainty Quantification through Conformal Prediction for Machine Learning models trained in MLJ. This project aims to enhance ConformalPrediction.jl by adding support for [Conformal(ized) Bayes](https://github.com/JuliaTrustworthyAI/ConformalPrediction.jl/issues/64). 
+**Project Overview:** [ConformalPrediction.jl](https://github.com/JuliaTrustworthyAI/ConformalPrediction.jl) is a package for Predictive Uncertainty Quantification through Conformal Prediction for Machine Learning models trained in MLJ. This project aims to enhance ConformalPrediction.jl by adding support for [Conformal(ized) Bayes](https://github.com/JuliaTrustworthyAI/ConformalPrediction.jl/issues/64).
 
 **Mentor:** [Patrick Altmeyer](https://github.com/pat-alt) and/or [Mojtaba Farmanbar](https://nl.linkedin.com/in/mfarmanbar)
 
@@ -41,7 +41,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 ## Project 2: Counterfactual Regression (*Model Explainability*)
 
-**Project Overview:** [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl) is a package for Counterfactual Explanations and Algorithmic Recourse in Julia. This project aims to extend the package functionality to [regression models](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl/issues/388). 
+**Project Overview:** [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl) is a package for Counterfactual Explanations and Algorithmic Recourse in Julia. This project aims to extend the package functionality to [regression models](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl/issues/388).
 
 **Mentor:** [Patrick Altmeyer](https://github.com/pat-alt)
 
@@ -58,10 +58,10 @@ There is a high overlap with organizations, you might be also interested in:
 - Carefully think about architecture choices: how can we fit support for regression models into the existing code base?
 - Add support for the following approaches: [ad-hoc thresholding](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl/issues/391), [Bayesian optimisation](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl/issues/392), [information-theoretic saliency](https://openreview.net/forum?id=IrEYkhuxup&noteId=IrEYkhuxup).
 - Comprehensively test and document your work
-  
+
 ## Project 3: Counterfactuals for LLMs (*Model Explainability* and *Generative AI*)
 
-**Project Overview:** This project aims to extend the functionality of [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl) to Large Language Models (LLMs). As a backbone for this, support for computing feature attributions for LLMs will also need to be implemented. The project will contribute to both [Taija](https://github.com/JuliaTrustworthyAI) and [JuliaGenAI](https://github.com/JuliaGenAI). 
+**Project Overview:** This project aims to extend the functionality of [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl) to Large Language Models (LLMs). As a backbone for this, support for computing feature attributions for LLMs will also need to be implemented. The project will contribute to both [Taija](https://github.com/JuliaTrustworthyAI) and [JuliaGenAI](https://github.com/JuliaGenAI).
 
 **Mentor:** [Patrick Altmeyer](https://github.com/pat-alt) (Taija) and [Jan Siml](https://github.com/svilupp)  (JuliaGenAI)
 
@@ -95,7 +95,7 @@ This extension aims to enhance the CounterfactualExplanations.jl package by inco
 - Experience with Julia
 - Background in causality and familiarity with counterfactual reasoning.
 - Basic knowledge of minimal interventions and causal graph building.
-  
+
 **Project Goals and Deliverables:**
 - Carefully think about architecture choices: how can we fit support for causal interventions into the existing code base?
 - Develop code that could integrate causal graph building with other Julia libs such as [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl), [GraphPlot.jl](https://juliagraphs.org/GraphPlot.jl/) and [CausalInference.jl](https://github.com/mschauer/CausalInference.jl).
@@ -104,7 +104,7 @@ This extension aims to enhance the CounterfactualExplanations.jl package by inco
 
 ## About Us
 
-[Patrick Altmeyer](https://www.paltmeyer.com/) is a PhD Candidate in Trustworthy Artificial Intelligence at Delft University of Technology working on the intersection of Computer Science and Finance. He has presented work related to Taija at JuliaCon 2022 and 2023. In the past year, Patrick has mentored multiple groups of students at Delft University of Technology who have made major contributions to Taija. 
+[Patrick Altmeyer](https://www.paltmeyer.com/) is a PhD Candidate in Trustworthy Artificial Intelligence at Delft University of Technology working on the intersection of Computer Science and Finance. He has presented work related to Taija at JuliaCon 2022 and 2023. In the past year, Patrick has mentored multiple groups of students at Delft University of Technology who have made major contributions to Taija.
 
 ## How to Contact Us
 

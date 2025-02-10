@@ -1,4 +1,4 @@
-# Symbolic computation project ideas
+# Symbolic computation project ideas - Summer of Code
 
 ## Efficient Tensor Differentiation
 
@@ -10,26 +10,6 @@ Implement the [D* algorithm](https://www.microsoft.com/en-us/research/wp-content
 
 **Mentors**: [Yingbo Ma](https://github.com/YingboMa)
 
-**Duration**: 350 hours
-
-## Symbolic root finding
-
-Symbolics.jl have robust ways to convert symbolic expressions into multi-variate polynomials. There is now a robust Groebner basis implementation in (Groebner.jl). Finding roots and varieties of sets of polynomials would be extremely useful in many applications. This project would involve implementing various techniques for solving polynomial systems, and where possible other non-linear equation systems. A good proposal should try to enumerate a number of techniques that are worth implementing, for example:
-
-1. Analytical solutions for polynomial systems of degree <= 4
-2. Use of HomotopyContinuations.jl for testing for solvability and finding numerical solutions
-3. Newton-raphson methods
-4. Using Groebner basis computations to find varieties
-
-The API for these features should be extremely user-friendly:
-
-1. A single `roots` function should take the sets of equations and result in the right type of roots as output (either varieties or numerical answers)
-2. It should automatically find the fastest strategy to solve the set of equations and apply it.
-3. It should fail with descriptive error messages when equations are not solvable, or degenerate in some way.
-4. This should allow implementing symbolic eigenvalue computation when `eigs` is called.
-
-
-**Mentors**: [Shashi Gowda](https://github.com/shashi), [Alexander Demin](https://github.com/sumiya11)
 **Duration**: 350 hours
 
 ## Symbolic Integration in Symbolics.jl
@@ -56,7 +36,6 @@ Julia functions that take arrays and output arrays or scalars can be traced usin
 
 **Duration**: 175 hours
 
-
 ## Automatically improving floating point accuracy (Herbie)
 
 [Herbie](https://herbie.uwplse.org/) documents a way to optimize floating point functions so as to reduce instruction count while reorganizing operations such that floating point inaccuracies do not get magnified. It would be a great addition to have this written in Julia and have it work on Symbolics.jl expressions. An ideal implementation would use the e-graph facilities of Metatheory.jl to implement this.
@@ -64,3 +43,53 @@ Julia functions that take arrays and output arrays or scalars can be traced usin
 **Mentors**: [Shashi Gowda](https://github.com/shashi), [Alessandro Cheli](https://github.com/0x0f0f0f)
 
 **Duration**: 350 hours
+
+## Reparametrizing ODE models with scaling transformations
+
+**Project Overview:** Many ODE models appearing in applications have hidden symmetries which makes the solution of data fitting problem nonunique. [StructuralIdentifiability.jl](https://github.com/SciML/StructuralIdentifiability.jl) offers algorithms for proposing new coordinates for the model removing this redundancy. The approach used at the moment relies on heavy computations and may be very slow for larger models. Scaling is a particular type of reparametrizations which can be discovered much faster. The goal of the project would be to implement such faster algorithms (adapting them to the context of identifiability assessment) and integrate into StructuralIdentifiability.jl.
+
+**Mentors:** [Alexander Demin](https://github.com/sumiya11), [Gleb Pogudin](https://www.lix.polytechnique.fr/Labo/Gleb.POGUDIN/)
+
+**Project Difficulty**: Medium
+
+**Estimated Duration**: 350 hours
+
+**Ideal Candidate Profile:**
+- Basic experience with Julia
+- Knowledge of linear algebra
+
+**Project Goals and Deliverables:**
+- Implementation of an algorithm in Julia to perform scaling reparametrization of ODEs
+- Comprehensive documentation and examples
+- (Bonus) Integration with [StructuralIdentifiability.jl](https://github.com/SciML/StructuralIdentifiability.jl)
+
+**Useful References:**
+- [Paper on scaling transformations](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008248)
+- [More involved paper on scaling transformations](https://inria.hal.science/hal-00668882/)
+- [Implementation in Python](https://desr.readthedocs.io/en/latest/intro.html)
+
+## Polynomialization of ordinary differential equations
+
+**Project Overview:** Many ODE models arising in modeling involve nonpolynomial functions (fractions, exponentials, trigonometric, etc). Polynomialization is the rewriting of nonpolynomial functions as equivalent polynomial equations. It is a necessary preprocessing step in several contexts (structural identifiability, model order reduction, reaction network synthesis). The project aims at implementing a package for polynomialization of ODEs and, potentially, adapting it for use in [StructuralIdentifiability.jl](https://github.com/SciML/StructuralIdentifiability.jl).
+
+**Mentors:** [Alexander Demin](https://github.com/sumiya11), [Gleb Pogudin](https://www.lix.polytechnique.fr/Labo/Gleb.POGUDIN/), [Chris Rackauckas](https://www.chrisrackauckas.com/)
+
+**Project Difficulty**: Medium
+
+**Estimated Duration**: 350 hours
+
+**Ideal Candidate Profile:**
+- Basic experience with Julia
+- Knowledge of ordinary differential equations
+
+**Project Goals and Deliverables:**
+- Implementation of an algorithm in Julia to perform polynomialization of ODEs
+- Comprehensive documentation and examples
+- (Bonus) Integration with [StructuralIdentifiability.jl](https://github.com/SciML/StructuralIdentifiability.jl)
+
+**Useful References:**
+- [Paper on polynomialization \#1](https://inria.hal.science/hal-03220725)
+- [Paper on polynomialization \#2](https://dl.acm.org/doi/10.1145/1687399.1687474)
+- [Relevant GitHub issue](https://github.com/SciML/StructuralIdentifiability.jl/issues/144)
+- [An implementation of similar algorithms in Python](https://github.com/AndreyBychkov/QBee/blob/master/qbee/polynomialization.py)
+

@@ -1,4 +1,4 @@
-# JuliaHealth Projects 
+# JuliaHealth Projects – Summer of Code
 
 JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards.
 Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making.
@@ -10,7 +10,7 @@ We believe that by working together and sharing our knowledge and expertise, we 
 
 **Description:** The OMOP Common Data Model (OMOP CDM) is a widely used data standard that allows researchers to analyze large, heterogeneous healthcare datasets in a consistent and efficient manner.
 JuliaHealth has several packages that can interact with databases that adhere to the OMOP CDM (such as OMOPCDMCohortCreator.jl or OMOPCDMDatabaseConnector.jl).
-For this project, we are looking for students interested in further developing the tooling in Julia to interact with OMOP CDM databases. 
+For this project, we are looking for students interested in further developing the tooling in Julia to interact with OMOP CDM databases.
 
 - **Mentor:** Jacob Zelko (aka TheCedarPrince) [email: jacobszelko@gmail.com]
 
@@ -18,23 +18,23 @@ For this project, we are looking for students interested in further developing t
 
 - **Duration**: 350 hours
 
-- **Suggested Skills and Background**: 
+- **Suggested Skills and Background**:
   - Experience with Julia
-  - Familiarity with some of the following Julia packages would be a strong asset: 
+  - Familiarity with some of the following Julia packages would be a strong asset:
     - FunSQL.jl
-    - DataFrames.jl 
-    - Distributed.jl 
-    - OMOPCDMCohortCreator.jl 
-    - OMOPCDMDatabaseConnector.jl 
+    - DataFrames.jl
+    - Distributed.jl
+    - OMOPCDMCohortCreator.jl
+    - OMOPCDMDatabaseConnector.jl
     - OMOPCommonDataModel.jl
   - Comfort with the OMOP Common Data Model (or a willingness to learn!)
 
-- **Potential Outcomes:** 
+- **Potential Outcomes:**
 
 Some potential project outcomes could be:
 
 - Expanding OMOPCDMCohortCreator.jl to enable users to add constraints to potential patient populations they want to create such as conditional date ranges for a given drug or disease diagnosis.
-- Support parallelization of OMOPCDMCohortCreator.jl based queries when developing a patient population. 
+- Support parallelization of OMOPCDMCohortCreator.jl based queries when developing a patient population.
 - Develop and explore novel ways for how population filters within OMOPCDMCohortCreator.jl can be composed together for rapid analysis.
 
 In whatever functionality that gets developed for tools within JuliaHealth, it will also be expected for students to contribute to the existing package documentation to highlight how new features can be used.
@@ -54,51 +54,51 @@ For this project, we are looking for students interested in developing PLP tooli
 
 - **Duration**: 350 hours
 
-- **Suggested Skills and Background**: 
+- **Suggested Skills and Background**:
   - Experience with Julia
   - Exposure to machine learning concepts and ideas
-  - Familiarity with some of the following Julia packages would be a strong asset: 
-    - DataFrames.jl 
-    - OMOPCDMCohortCreator.jl 
-    - MLJ.jl 
-    - ModelingToolkit.jl 
+  - Familiarity with some of the following Julia packages would be a strong asset:
+    - DataFrames.jl
+    - OMOPCDMCohortCreator.jl
+    - MLJ.jl
+    - ModelingToolkit.jl
   - Comfort with the OMOP Common Data Model (or a willingness to learn)
 
-- **Outcomes:** 
+- **Outcomes:**
 
 This project will be very experimental and exploratory in nature.
 To constrain the expectations for this project, here is a possible approach students will follow while working on this project:
 
   - Review existing literature on approaches to PLP
   - Familiarize oneself with tools for machine learning and prediction within the Julia ecosystem
-  - Determine PLP research question to drive package development 
-  - Develop PLP package utilizing JuliaHealth tools to work with an OMOP CDM database 
-  - Test and validate PLP package for investigating the research question 
+  - Determine PLP research question to drive package development
+  - Develop PLP package utilizing JuliaHealth tools to work with an OMOP CDM database
+  - Test and validate PLP package for investigating the research question
   - Document findings and draft JuliaCon talk
 
 In whatever functionality that gets developed for tools within JuliaHealth, it will also be expected for students to contribute to the existing package documentation to highlight how new features can be used.
-For this project, it will be expected as part of the proposal to pursue drafting and giving a talk at JuliaCon. 
-Furthermore, although not required, publishing in the JuliaCon Proceedings will both be encouraged and supported by project mentors. 
+For this project, it will be expected as part of the proposal to pursue drafting and giving a talk at JuliaCon.
+Furthermore, although not required, publishing in the JuliaCon Proceedings will both be encouraged and supported by project mentors.
 
-Additionally, depending on the success of the package, there is a potential to run experiments on actual patient data to generate actual patient population insights based on a chosen research question. 
-This could possibly turn into a separate research paper, conference submission, or poster submission. 
-Whatever may occur in this situation will be supported by project mentors. 
+Additionally, depending on the success of the package, there is a potential to run experiments on actual patient data to generate actual patient population insights based on a chosen research question.
+This could possibly turn into a separate research paper, conference submission, or poster submission.
+Whatever may occur in this situation will be supported by project mentors.
 
 
 ## Medical Imaging Subecosystem Projects
 
-[MedPipe3D.jl](https://github.com/JuliaHealth/MedPipe3D.jl) together with [MedEye3D.jl](https://github.com/JuliaHealth/MedEye3d.jl) [MedEval3D.jl](https://github.com/JuliaHealth/MedEval3D.jl) and currently in development [MedImage.jl](https://github.com/JuliaHealth/MedImage.jl) is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language ecosystem. 
+[MedPipe3D.jl](https://github.com/JuliaHealth/MedPipe3D.jl) together with [MedEye3D.jl](https://github.com/JuliaHealth/MedEye3d.jl) [MedEval3D.jl](https://github.com/JuliaHealth/MedEval3D.jl) and currently in development [MedImage.jl](https://github.com/JuliaHealth/MedImage.jl) is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language ecosystem.
 
 MedImage is a package for the standardization of loading medical imaging data, and for its basic processing that takes into consideration its spatial metadata.
-MedEye3D is a package that supports the display of medical imaging data. 
-MedEval3D has implemented some highly performant algorithms for calculating metrics needed to asses the performance of 3d segmentation models. 
-MedPipe3D was created as a package that improves integration between other parts of the small ecosystem (MedEye3D, MedEval3D, and MedImage). 
+MedEye3D is a package that supports the display of medical imaging data.
+MedEval3D has implemented some highly performant algorithms for calculating metrics needed to asses the performance of 3d segmentation models.
+MedPipe3D was created as a package that improves integration between other parts of the small ecosystem (MedEye3D, MedEval3D, and MedImage).
 
 
 ### Project 3: Adding functionalities to medical imaging visualizations
 
-**Description:** 
-MedEye3D is a package that supports the display of medical imaging data. It includes multiple functionalities specific to this use case like automatic windowing to display soft tissues, lungs, and other tissues. The display takes into account voxel spacing, support of overlaying display for multimodal imaging, and more. All with high performance powered by OpenGL and Rocket.jl. Still, a lot of further improvements are possible and are described in the Potential Outcomes section. 
+**Description:**
+MedEye3D is a package that supports the display of medical imaging data. It includes multiple functionalities specific to this use case like automatic windowing to display soft tissues, lungs, and other tissues. The display takes into account voxel spacing, support of overlaying display for multimodal imaging, and more. All with high performance powered by OpenGL and Rocket.jl. Still, a lot of further improvements are possible and are described in the Potential Outcomes section.
 
 - **Mentor:** Jakub Mitura [email: jakub.mitura14@gmail.com]
 
@@ -106,12 +106,12 @@ MedEye3D is a package that supports the display of medical imaging data. It incl
 
 - **Duration**: 350 hours
 
-- **Suggested Skills and Background**: 
+- **Suggested Skills and Background**:
   - Experience with Julia
   - Basic familiarity with computer graphics preferably OpenGL example [link](https://www.opengl-tutorial.org/beginners-tutorials/)
   - Some experience with 3d volumetric data with spatial metadata (or a willingness to learn!) look into for example [link](https://simpleitk.readthedocs.io/en/master/fundamentalConcepts.html)
 
-- **Potential Outcomes:** 
+- **Potential Outcomes:**
 Although MedEye3D already supports displaying medical images, there are still some functionalities that will be useful for the implementation of some more advanced algorithms, like supervoxel segmentation or image registration (and both of them are crucial for solving a lot of important problems in medical imaging). To achieve this this project's goal is to implement.
 1) Developing support for multiple image viewing with indicators for image registration like display of the borders, and display lines connecting points.
 2) Automatic correct windowing for MRI and PET.
@@ -130,7 +130,7 @@ Although MedEye3D already supports displaying medical images, there are still so
 
 ### Project 4: Adding dataset-wide functions and integrations of augmentations
 
-**Description:** 
+**Description:**
 MedPipe3D was created as a package that improves integration between other parts of the small ecosystem (MedEye3D, MedEval3D, and MedImage). Currently, it needs to be expanded and adapted so it can be a basis for a fully functional medical imaging pipeline. It requires utilities for preprocessing specific to medical imaging - like uniformization of spacing, orientation, cropping, or padding. It needs to k fold cross validation and simple ensembling. Other necessary part of the segmentation pipeline are the augmentations that should be easier to use, and provide test time augmentation for uncertainty quantification. The last thing in the pipeline that is also important for practitioners is postprocessing - and the most popular postprocessing is finding and keeping only the largest connected component.
 
 - **Mentor:** Jakub Mitura [email: jakub.mitura14@gmail.com]
@@ -139,14 +139,14 @@ MedPipe3D was created as a package that improves integration between other parts
 
 - **Duration**: 350 hours
 
-- **Suggested Skills and Background**: 
+- **Suggested Skills and Background**:
   - Experience with Julia
-  - Familiarity with some of the following Julia packages would be a strong asset: 
-    - MedEye3D.jl 
+  - Familiarity with some of the following Julia packages would be a strong asset:
+    - MedEye3D.jl
     - MedEval3D.jl
 
 
-- **Potential Outcomes:** 
+- **Potential Outcomes:**
 1) Integrate augmentations like rotations recalling gamma etc.
 2) Enable invertible augmentations and support test time augmentations.
 3) Add patch-based data loading with probabilistic oversampling.
@@ -160,9 +160,9 @@ This set of changes although time-consuming to implement should not pose a signi
 
 - **Success criteria and time needed:** How the success of functionality described above is defined and the approximate time required for each.
 
-1) Given the configuration struct supplied by the user the supplied augmentations will be executed with some defined probability after loading the image: Brightness transform, Contrast augmentation transform, Gamma Transform, Gaussian noise transform, Rician noise transform, Mirror transform, Scale transform, Gaussian blur transform, Simulate low-resolution transform, Elastic deformation transform -100h. 
+1) Given the configuration struct supplied by the user the supplied augmentations will be executed with some defined probability after loading the image: Brightness transform, Contrast augmentation transform, Gamma Transform, Gaussian noise transform, Rician noise transform, Mirror transform, Scale transform, Gaussian blur transform, Simulate low-resolution transform, Elastic deformation transform -100h.
 2) Enable some transformation to be executed on the model input, then inverse this transform on the model output; execute model inference n times when n is supplied by the user and return mean and standard deviation of segmentation masks produced by the model as the output -60h.
-3) given the size of the 3D patch by the user algorithm after data loading will crop or pad the supplied image to meet the set size criterion. The part of the image where the label is present should be selected more frequently than the areas without during cropping, the probability that the area with some label indicated on segmentation mas will be chosen will equal p (0-1) where p is supplied by the user -40h. 
+3) given the size of the 3D patch by the user algorithm after data loading will crop or pad the supplied image to meet the set size criterion. The part of the image where the label is present should be selected more frequently than the areas without during cropping, the probability that the area with some label indicated on segmentation mas will be chosen will equal p (0-1) where p is supplied by the user -40h.
 4) given the list of paths to medical images it will load them calculate the mean or median spacing (option selected by the user), and return it. Then during pipeline execution, all images should be resampled to a user-supplied spacing and user-supplied orientation - 40h.
 5) Given a model output and a threshold that will be used for each channel of the output to binarize the output user will have an option to retrieve only n largest components from binarized algorithm output - 20h.
 6) Probabilities and hyperparameters of all augmentations, thresholds for binarization of output channels chosen spacing for preprocessing, number and settings of test time augmentations should be available in a hyperparam struct that is the additional argument of the pipeline function and that can be used for hyperparameter tuning -30h.

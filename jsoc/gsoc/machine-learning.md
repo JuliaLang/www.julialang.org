@@ -1,4 +1,4 @@
-#  Machine Learning Projects - Summer of Code
+# Machine Learning Projects - Summer of Code
 
 **Note: FluxML participates as a NumFOCUS sub-organization. Head to [the FluxML GSoC page](http://fluxml.ai/gsoc/) for their idea list.**
 
