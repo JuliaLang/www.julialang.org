@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>So, You Want to Start a Julia Workgroup?</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="So, You Want to Start a Julia Workgroup?">
+<meta property="og:description" content="Thoughts and advice on starting your own Julia community workgroup.">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container">
+      <a class="navbar-brand" href="/">
+          <img src="/assets/infra/logo.svg" alt="JuliaLang Logo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/learning/">Learn</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/blog/">Blog</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/community/">Community</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="btn btn-outline-dark btn-sm btn-star" href="https://github.com/JuliaLang/julia" target="_blank">⭐ Star</a>
+              <a class="btn btn-danger btn-sm btn-sponsor" href="https://github.com/sponsors/julialang" target="_blank">❤️ Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>So, You Want to Start a Julia Workgroup?
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 10 February 2025 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Hetarth Shah, George Datseris, Jacob S. Zelko </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2025/02/starting-workgroups.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<h2 id="introduction"><a href="#introduction" class="header-anchor">Introduction</a></h2>
+<p>Have you ever wondered how to start a workgroup within Julia?</p>
+<p>This post is dedicated to you&#33;  Read on to learn how to get started and even if you already are in a workgroup, there might be some helpful tips and advice for you here too&#33;</p>
+<h3 id="what_is_a_working_group"><a href="#what_is_a_working_group" class="header-anchor">What is a working group?</a></h3>
+<p>As per <a href="https://julialang.org/community/working-groups/#working_groups">Julia&#39;s official website</a>,</p>
+<blockquote>
+<p>A working group is a group of people that are interested in working on a common topic. Working groups are informal and have no official authority. All working groups have a public channel on the Julia Slack.</p>
+</blockquote>
+<p>Not only this but most working groups regularly hold meetings, everyone is free to attend these meetings and discuss about the topics which they want to. Most meeting schedules are posted on Julia&#39;s community events calendar but one can also find relevant links in the respective Julia community channels.</p>
+<h2 id="starting_a_group"><a href="#starting_a_group" class="header-anchor">Starting a Group</a></h2>
+<blockquote>
+<p>How do groups get started within the Julia community?</p>
+</blockquote>
+<p>Starting a workgroup within the Julia community is rather straightforward. Generally, how most workgroups get started is if there is a particular community &#40;say, the Machine Learning or Documentation ecosystems&#41; that doesn&#39;t yet have an active workgroup. One can post about wanting to start a group for that community in that community&#39;s respective platform &#40;whether on Slack, Zulip, etc.&#41; to gauge interest. If you feel there is enough community interest, go for starting the group and see how it goes&#33;</p>
+<h3 id="gaining_members"><a href="#gaining_members" class="header-anchor">Gaining Members</a></h3>
+<blockquote>
+<p>You created a working group; now what?</p>
+</blockquote>
+<p>From there, it&#39;s up to you to set-up the workgroup meeting. You can use the <a href="discourse.julialang.org/">Julia Discourse</a>, <a href="https://julialang.org/slack/#the_julia_language_slack">Slack</a>, <a href="https://julialang.zulipchat.com">Zulip</a>, or other communication platforms to announce the creation of a workgroup and also say where workgroup members can find members of this community &#40;usually on Slack or Zulip&#41;.</p>
+<p>Then, you can use these platforms to advertise your group – some folks use a single Discourse thread to announce regular meetings while others use a unique thread per meeting, you could use the respective Slack or Zulip channels to announce your group &#40;as well as the #community channel in Slack&#41; and some advertise their group across social media.  You can also post about your working group in other channels like <code>#general</code>, <code>#introduction</code>, etc. but please be mindful to not post too much as it may come across spammy within the community.</p>
+<p>Now we have a working group with enough members in it&#33; Let&#39;s move forward with topics which help in maintaining a healthy environment for your working group.</p>
+<h2 id="developing_an_agenda"><a href="#developing_an_agenda" class="header-anchor">Developing an agenda</a></h2>
+<blockquote>
+<p>What to talk about? </p>
+</blockquote>
+<p>After creating a workgroup, it makes sense to have a goal, things to work on or discuss with group members.  What may be helpful is to create an agenda for the workgroup to act as a roadmap for the meeting. It helps to direct effort and accomplish things within the community faster if you have agenda/roadmap planned out.  Additionally, loop in your community members to see if they prefer certain activities more than others.  Take into account all opinions if possible as this will help in preparing your agenda every meeting to have new events and activities. </p>
+<p>Having a well-planned agenda can also bring in other communities.  For example, if you plan events that may be of interest to a more general Julia audience, you could post it in relevant channels about those particular events to see if folks want to join in on your community discussion.  Finally, to help keep folks in your community engaged, consider introducing some fun agenda topics such as regular shout-outs to new talent joining or appreciating major contributors each meeting.  This can help in keeping members active as well as excited about being a part of your workgroup&#33;</p>
+<h2 id="setting_up_a_time"><a href="#setting_up_a_time" class="header-anchor">Setting up a time</a></h2>
+<blockquote>
+<p>When is good?</p>
+</blockquote>
+<p>We have members and you have planned a nice agenda with consultation of the members – great&#33; The next step is to decide a time for the events such that you get the most participation and people also get a chance to digest things which they have attended.</p>
+<p>The best thing you can do is ask the people about the timings which they are most comfortable with.  Consider making a poll for upcoming events with appropriate options for different timezones.  If by any chance, the event gets cancelled or reschedule try to notify everyone about the update status as soon as possible to avoid any conflicts and save member&#39;s time.  As workgroups evolve over time, consider reviewing your selected meeting schedule once or twice a year to see how members can best participate in the workgroup.</p>
+<h2 id="what_to_do_next_with_meetings"><a href="#what_to_do_next_with_meetings" class="header-anchor">What to do next with meetings</a></h2>
+<blockquote>
+<p>To infinity and beyond&#33;</p>
+</blockquote>
+<p>You have now successfully organised an event and all members are happy with it too – hooray&#33; Here are some final thoughts as we conclude this blog post:</p>
+<p>In a meeting you won&#39;t have time to probably cover everything for everyone. Not all topics can be covered but instead what one can do is at the end of workgroup meetings, one can ask if someone wanted to discuss a topic or write down what topics were left over from the original agenda. And just like that, you have some of your agenda prepared for the next workgroup meeting&#33; In this way, topics will be covered and no one will be left unsatisfied.</p>
+<p>Additionally, you can also have a document in which you write down short but relevant minutes of meetings so if someone wants to take a look to get a better context for the past events they can and possibly leave some useful comments if they want. Some workgroups also make public meeting recordings such as on the <a href="https://www.youtube.com/@TheJuliaLanguage">Julia YouTube Channel</a>.</p>
+<h2 id="other_tips_for_being_a_workgroup_coordinator"><a href="#other_tips_for_being_a_workgroup_coordinator" class="header-anchor">Other tips for being a workgroup coordinator</a></h2>
+<blockquote>
+<p>Some other thoughts and advice for coordinating your workgroup</p>
+</blockquote>
+<p>Here are some additional small pieces of advice from workgroup leaders that may be helpful for your own workgroup. Take them and adapt them to your own style – or make a <a href="https://github.com/JuliaLang/www.julialang.org">PR here and add your own</a>&#33; </p>
+<ul>
+<li><p>Try to introduce and appreciate new attendees and contributors to your community. </p>
+</li>
+<li><p>If there is a great package within your community, highlight or introduce it&#33; It can encourage people to contribute to it or be aware of it for future usage. </p>
+</li>
+<li><p>Arrange talks from other workgroups, outside attendees, special contributors, etc. </p>
+</li>
+<li><p>Make call to actions for organizational maintenance, code architecture, onboarding new contributors, documentation, tutorials, blog posts and more</p>
+</li>
+<li><p>Always keep space for open ended discussions and questions in the channel and guide people to where the community is</p>
+</li>
+<li><p>Remember, you are representing your own workgroup as well as the Julia community – help people to feel welcomed.</p>
+</li>
+</ul>
+<p>Finally, don&#39;t be too stressed about your workgroup. Not all months/weeks/days will be packed with action. Some might be slow, some not&#33; No one expects a tightly two week packed agile sprint with meetings and planning. </p>
+<h2 id="conclusion"><a href="#conclusion" class="header-anchor">Conclusion</a></h2>
+<p>We hope this blog covers how to get started with workgroups within the Julia community and some useful advice for those already running workgroups&#33; If things are still unclear, always feel free to ask in the Julia Slack. Thanks and see you around&#33;</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/community/stewards/">Stewards</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/libs/groups.js"></script>
+    <script src="/libs/map.js"></script>
+  </body>
+</html>
