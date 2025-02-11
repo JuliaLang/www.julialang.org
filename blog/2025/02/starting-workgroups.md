@@ -9,6 +9,7 @@ rss = """Thoughts and advice on starting your own Julia community workgroup."""
 ## Introduction
 
 Have you ever wondered how to start a workgroup within Julia?
+
 This post is dedicated to you! 
 Read on to learn how to get started and even if you already are in a workgroup, there might be some helpful tips and advice for you here too!
 
