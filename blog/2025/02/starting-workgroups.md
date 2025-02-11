@@ -37,7 +37,8 @@ If you feel there is enough community interest, go for starting the group and se
 
 From there, it's up to you to set-up the workgroup meeting.
 You can use the [Julia Discourse](discourse.julialang.org/), [Slack](https://julialang.org/slack/#the_julia_language_slack), [Zulip](https://julialang.zulipchat.com), or other communication platforms to announce the creation of a workgroup and also say where workgroup members can find members of this community (usually on Slack or Zulip).
-Then, you can use these platforms to advertise your group -- some folks use a single Discourse thread to announce regular meetings while others use a unique thread per meeting, you could use the respective Slack or Zulip channels to announce your group (as well as the #community channel in Slack) and still others advertise their group across social media. 
+
+Then, you can use these platforms to advertise your group -- some folks use a single Discourse thread to announce regular meetings while others use a unique thread per meeting, you could use the respective Slack or Zulip channels to announce your group (as well as the #community channel in Slack) and some advertise their group across social media. 
 You can also post about your working group in other channels like `#general`, `#introduction`, etc. but please be mindful to not post too much as it may come across spammy within the community.
 
 Now we have a working group with enough members in it! Let's move forward with topics which help in maintaining a healthy environment for your working group.
