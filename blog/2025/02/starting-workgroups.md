@@ -63,7 +63,8 @@ This can help in keeping members active as well as excited about being a part of
 > When is good?
 
 We have members and you have planned a nice agenda with consultation of the members -- great!
-The next step is to decide a time for the events such that you get the most participation and people also get a chance to digest things which they have attended. 
+The next step is to decide a time for the events such that you get the most participation and people also get a chance to digest things which they have attended.
+
 The best thing you can do is ask the people about the timings which they are most comfortable with. 
 Consider making a poll for upcoming events with appropriate options for different timezones. 
 If by any chance, the event gets cancelled or reschedule try to notify everyone about the update status as soon as possible to avoid any conflicts and save member's time. 
