@@ -52,7 +52,7 @@ Additionally, loop in your community members to see if they prefer certain activ
 Take into account all opinions if possible as this will help in preparing your agenda every meeting to have new events and activities. 
 
 Having a well-planned agenda can also bring other communities. 
-For example, if you plan events that may be interested to a more general Julia audience, you could post in relevant channels about those particular events to see if folks wants to join your community discussion. 
+For example, if you plan events that may be of interest to a more general Julia audience, you could post it in relevant channels about those particular events to see if folks want to join in on your community discussion. 
 Finally, to help keep folks in your community engaged, consider introducing some fun agenda topics such as regular shout-outs to new talent joining or appreciating major contributors each meeting. 
 This can help in keeping members active as well as excited about being a part of your workgroup!
 
