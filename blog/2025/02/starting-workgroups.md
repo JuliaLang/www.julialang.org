@@ -73,7 +73,7 @@ As workgroups evolve over time, consider reviewing your selected meeting schedul
 
 You have now successfully organised an event and all members are happy with it too -- hooray! Here are some final thoughts as we conclude this blog post:
 
-In a meeting you won't have time to probably cover everything for everyone. Not all topics will be covered but instead what one can do is at the end of workgroup meetings, one can ask if someone wanted to discuss a topic or write down what topics were left over from the original agenda.
+In a meeting you won't have time to probably cover everything for everyone. Not all topics can be covered but instead what one can do is at the end of workgroup meetings, one can ask if someone wanted to discuss a topic or write down what topics were left over from the original agenda.
 And just like that, you have some of your agenda prepared for the next workgroup meeting!
 In this way, topics will be covered and no one will be left unsatisfied.
 
