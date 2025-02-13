@@ -25,3 +25,25 @@ There are projects now that host the building blocks: [DaggerGPU.jl](https://git
 **Skills:** Familiarity with GPU, representing execution models as DAGs, CUDA.jl
 
 **Mentors:** [Julian Samaroo](https://github.com/jpsamaroo), and [Rabab Alomairy](https://github.com/Rabab53)
+
+## Distributed Linear Algebra
+
+**Difficulty:** Hard (350h)
+
+Add distributed linear algebra capabilities to Dagger.jl. This project will involve building abstractions for distributed linear algebra operations, such as matrix multiplication, matrix factorizations, and different data distribution schemes (cyclic, block-cyclic, 2D, 3D). The student will build on top of Dagger.jl to enable distributed linear algebra operations across multiple devices. The final result should demonstrate a linear algebra operation running across multiple devices in parallel via the Dagger.jl APIs.
+
+**Skills:** Familiarity with distributed computing, numerical linear algebra, Dagger.jl
+
+**Mentors:** [Felipe Tomé](https://github.com/fda-tome), and [Rabab Alomairy](https://github.com/Rabab53)
+
+ 
+
+## Optimizing MPI integration in Dagger.jl
+
+**Difficulty:** Hard (350h)
+
+This project aims to enhance the performance of the already implemented MPI integration in Dagger.jl. The student will investigate and optimize the communication patterns between ranks, focusing on reducing communication overhead and latency. The project will involve profiling and benchmarking different communication schemes, such as point-to-point, collective and Random Memory Access (RMA) strategies, and analyzing their impact on performance. Through performance benchmarking and optimization, this project will provide hands-on experience in parallel algorithm design and , distributed computing, equipping students with valuable skills for tackling real-world scientific and data-intensive applications.
+
+**Skills:** Familiarity with MPI, representing execution models as DAGs, Dagger.jl, RMA
+
+**Mentors:** [Felipe Tomé](https://github.com/fda-tome), and [Julian Samaroo](https://github.com/jpsamaroo)
