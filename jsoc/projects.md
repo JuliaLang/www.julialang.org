@@ -13,8 +13,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [GPU Programming](/jsoc/gsoc/gpu/) - Projects that involve the Julia GPU stack
-* [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
-* [JuliaConstraints](/jsoc/gsoc/juliaconstraints/) - A collection of tools for Constraint Programming in Julia
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
 * [JuliaGenAI](/jsoc/gsoc/juliagenai/) - Research and applications of Generative AI in Julia
 * [JuliaHealth](/jsoc/gsoc/juliahealth/) - Using the Julia programming language to improve medicine, health care, public health, and biomedical research.
