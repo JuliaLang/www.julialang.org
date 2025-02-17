@@ -85,123 +85,222 @@ This could possibly turn into a separate research paper, conference submission, 
 Whatever may occur in this situation will be supported by project mentors.
 
 
-## Medical Imaging Subecosystem Projects
+# Medical Imaging Subecosystem Projects
 
-[MedPipe3D.jl](https://github.com/JuliaHealth/MedPipe3D.jl) together with [MedEye3D.jl](https://github.com/JuliaHealth/MedEye3d.jl) [MedEval3D.jl](https://github.com/JuliaHealth/MedEval3D.jl) and currently in development [MedImage.jl](https://github.com/JuliaHealth/MedImage.jl) is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language ecosystem.
+# Julia Radiomics
 
-MedImage is a package for the standardization of loading medical imaging data, and for its basic processing that takes into consideration its spatial metadata.
-MedEye3D is a package that supports the display of medical imaging data.
-MedEval3D has implemented some highly performant algorithms for calculating metrics needed to asses the performance of 3d segmentation models.
-MedPipe3D was created as a package that improves integration between other parts of the small ecosystem (MedEye3D, MedEval3D, and MedImage).
+**Project Title:** Julia Radiomics  
+**Difficulty:** Medium  
+**Duration:** 375 hours (22 Weeks)  
+**Mentor:** Jakub Mitura  
 
+## Description
+Radiomic features are quantitative metrics extracted from medical images using data-characterization algorithms. These features capture tissue and lesion characteristics, such as heterogeneity and shape, which may provide valuable insights beyond what the naked eye can perceive.
 
-### Project 3: Adding functionalities to medical imaging visualizations
-
-**Description:**
-MedEye3D is a package that supports the display of medical imaging data. It includes multiple functionalities specific to this use case like automatic windowing to display soft tissues, lungs, and other tissues. The display takes into account voxel spacing, support of overlaying display for multimodal imaging, and more. All with high performance powered by OpenGL and Rocket.jl. Still, a lot of further improvements are possible and are described in the Potential Outcomes section.
-
-- **Mentor:** Jakub Mitura [email: jakub.mitura14@gmail.com]
-
-- **Difficulty**: Hard
-
-- **Duration**: 350 hours
-
-- **Suggested Skills and Background**:
-  - Experience with Julia
-  - Basic familiarity with computer graphics preferably OpenGL example [link](https://www.opengl-tutorial.org/beginners-tutorials/)
-  - Some experience with 3d volumetric data with spatial metadata (or a willingness to learn!) look into for example [link](https://simpleitk.readthedocs.io/en/master/fundamentalConcepts.html)
-
-- **Potential Outcomes:**
-Although MedEye3D already supports displaying medical images, there are still some functionalities that will be useful for the implementation of some more advanced algorithms, like supervoxel segmentation or image registration (and both of them are crucial for solving a lot of important problems in medical imaging). To achieve this this project's goal is to implement.
-1) Developing support for multiple image viewing with indicators for image registration like display of the borders, and display lines connecting points.
-2) Automatic correct windowing for MRI and PET.
-3) Support of display for supervoxels (sv). Show borders of sv; indicate whether the gradient of the image is in agreement with sv borders.
-4) Improve start time.
-5) Simplify basic usage by providing high-level functions.
-
-- **Success criteria and time needed:** How the success of functionality described above is defined and the approximate time required for each.
-
-1) The user can load 2 different images, and they would display concurrently one next to the other. During scrolling the same area of the body should be displayed (for well-registered sample images) based on the supplied metadata. While moving the mouse cursor on one image the position of the cursor in the same physical spot on the other image should be displayed (physical location calculated from spatial metadata).  120h
-2) Given the most common PET and MRI modalities (random FDG PET/CT, and T2, T1, FLAIR, ADC, DWI on MRI) - the user will see the image similar to what is automatically displayed in 3DSlicer - 10h
-3) Given an integer mask where a unique integer value will encode information about a single supervoxel and an underlying 3d medical image user will have the option to overlay the original image with the borders of the superpixels where adjacent borders will have different colors, or show those borders on the background of the image convolved with edge filter, for example, Sobel filter - 180h
-4) Any measurable decrease in the start time of the viewer -   20h
-5) The user will be able to display images just by supplying MedImage objects from the MedImage.jl library to a single display function -  20h
+This project aims to implement algorithms for extracting radiomic features from 2D and 3D medical images, similar to PyRadiomics, using Julia. The implementation will include Gray Level Co-occurrence Matrix (GLCM), Gray Level Size Zone Matrix (GLSZM), Gray Level Run Length Matrix (GLRM), Neighborhood Gray Tone Difference Matrix (NGTDM), and Gray Level Dependence Matrix (GLDM). The extracted features will be validated against PyRadiomics and applied to medical imaging data, such as the AutoPET dataset, to demonstrate the methodology. 
 
 
-### Project 4: Adding dataset-wide functions and integrations of augmentations
+## Deliverables
 
-**Description:**
-MedPipe3D was created as a package that improves integration between other parts of the small ecosystem (MedEye3D, MedEval3D, and MedImage). Currently, it needs to be expanded and adapted so it can be a basis for a fully functional medical imaging pipeline. It requires utilities for preprocessing specific to medical imaging - like uniformization of spacing, orientation, cropping, or padding. It needs to k fold cross validation and simple ensembling. Other necessary part of the segmentation pipeline are the augmentations that should be easier to use, and provide test time augmentation for uncertainty quantification. The last thing in the pipeline that is also important for practitioners is postprocessing - and the most popular postprocessing is finding and keeping only the largest connected component.
+### Implementation of Radiomic Feature Extraction Algorithms
+- **First Group:** GLCM, GLSZM, GLRM
+- **Second Group:** NGTDM, GLDM
 
-- **Mentor:** Jakub Mitura [email: jakub.mitura14@gmail.com]
+### Feature Extraction Pipeline
+- Extract all features from segmented lesions in PET and CT modalities.
+- Use MedImages.jl for image handling.
+- Leverage KernelAbstractions.jl for performance optimization where possible.
 
-- **Difficulty**: Medium
+### Validation
+- Compare extracted features against PyRadiomics outputs.
+- Ensure statistical equivalence in extracted features.
 
-- **Duration**: 350 hours
+### Final Report & Code Repository
+- Methodology, results, benchmarking.
+- Public GitHub repository under an MIT license.
 
-- **Suggested Skills and Background**:
-  - Experience with Julia
-  - Familiarity with some of the following Julia packages would be a strong asset:
-    - MedEye3D.jl
-    - MedEval3D.jl
+## Success Criteria and Timeline
+
+### 1. Literature Review and Setup (3 Weeks)
+- Review PyRadiomics documentation, MedImages.jl, KernelAbstractions.jl APIs, and AutoPET dataset structure.
+- **Success Criteria:** Understanding of feature definitions, dataset access, and GPU kernel design.
+
+### 2. Feature Implementation (6 Weeks)
+- Implement GLCM, GLSZM, GLRM, NGTDM, and GLDM matrices.
+- Validate outputs against PyRadiomics (>90% similarity in unit tests).
+- **Success Criteria:** GPU-accelerated implementation for 3D volumes.
+
+### 3. Feature Extraction Pipeline (4 Weeks)
+- Build a pipeline to process AutoPET lesions using MedImages.jl.
+- **Success Criteria:** Extraction of 100+ features per lesion, support for batch processing.
+
+### 4. Validation (3 Weeks)
+- Compare Julia feature extraction results with PyRadiomics.
+- **Success Criteria:** Statistical equivalence (e.g., t-test p > 0.05), with documented discrepancies <5%.
+
+### 5. Documentation and Packaging (4 Weeks)
+- Write documentation for the Julia-based radiomics library.
+- Write automated tests for the proper functioning of the library.
+- Register the package in the Julia package registry.
+- **Success Criteria:** The final working library is successfully available in the Julia ecosystem.
+
+### 6. Reporting (2 Weeks)
+- Document methodology, results, and benchmarking.
+- **Success Criteria:** Reproducible code, Jupyter notebooks, open-source repository.
+
+## Stretch Goals
+- Implementation of additional radiomic features such as:
+  - Wavelet Features (Transform-based texture analysis)
+  - Fractal Analysis (Estimating complexity in medical images)
+  - Laplacian of Gaussian (LoG) Features (Edge detection-based feature extraction)
+- Optimized parallel computation using GPU acceleration in KernelAbstractions.jl.
+- Implementation of an interactive Julia-based visualization tool for extracted radiomic features.
+
+## Clarification
+This implementation will be done entirely in Julia, and Python will not be used in any part of the implementation.  
+Any cross-validation with PyRadiomics is purely for benchmarking purposes.
+
+## Importance and Impact
+
+### Technical Impact
+- **Julia Ecosystem Growth:** First native Radiomics toolkit in Julia.
+- **GPU Acceleration:** Utilizes KernelAbstractions.jl for efficient 3D feature extraction.
+- **Reproducibility:** Open-source implementation ensures transparency in radiomics research.
+
+### Clinical Impact
+- **Cancer Differentiation:** Model insights may aid in non-invasive cancer subtyping.
+- **Standardization:** Cross-tool validation enhances study comparability across different platforms.
+
+### Community Impact
+- **Foundation for Future Work:** Enables Julia-based radiomics pipelines for projects like TCIA.
+- **Educational Value:** Demonstrates GPU-accelerated medical image processing in Julia for researchers and students.
+
+## References
+- [PyRadiomics Documentation](https://pyradiomics.readthedocs.io)
+- [AutoPET Dataset](https://autopet.grand-challenge.org/)
+- [MedImages.jl](https://github.com/JuliaHealth/MedImages.jl)
+- [KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl)
+- Radiomics Research: Various studies on the clinical relevance of radiomics in medical imaging.
+- Kumar, V., et al. "Radiomics: the process and the challenges." Magnetic Resonance Imaging, 2012.
+- Gillies, R.J., et al. "Radiomics: images are more than pictures, they are data." Nature Reviews Cancer, 2016.
+- Lambin, P., et al. "Radiomics: extracting more information from medical images using advanced feature analysis." European Journal of Cancer, 2012.
 
 
-- **Potential Outcomes:**
-1) Integrate augmentations like rotations recalling gamma etc.
-2) Enable invertible augmentations and support test time augmentations.
-3) Add patch-based data loading with probabilistic oversampling.
-4) Calculate median and mean spacing and enable applying resampling to the median or mean spacing of the dataset.
-5) Add basic post-processing like the largest connected component analysis.
-6) Set all hyperparameters (of augmentation; size of a patch, threshold for getting binary mask from probabilities) in a struct or dictionary to enable hyperparameter tuning.
-7) Enable automated display of the algorithm output in the validation epoch, including saving such outputs to persistent storage.
-8) Support k-fold cross-validation.
-
-This set of changes although time-consuming to implement should not pose a significant issue to anybody with experience with the Julia programming language. However, implementing those will be a huge step in making Julia language a good alternative to Python in developing end-to-end medical imaging segmentation algorithms.
-
-- **Success criteria and time needed:** How the success of functionality described above is defined and the approximate time required for each.
-
-1) Given the configuration struct supplied by the user the supplied augmentations will be executed with some defined probability after loading the image: Brightness transform, Contrast augmentation transform, Gamma Transform, Gaussian noise transform, Rician noise transform, Mirror transform, Scale transform, Gaussian blur transform, Simulate low-resolution transform, Elastic deformation transform -100h.
-2) Enable some transformation to be executed on the model input, then inverse this transform on the model output; execute model inference n times when n is supplied by the user and return mean and standard deviation of segmentation masks produced by the model as the output -60h.
-3) given the size of the 3D patch by the user algorithm after data loading will crop or pad the supplied image to meet the set size criterion. The part of the image where the label is present should be selected more frequently than the areas without during cropping, the probability that the area with some label indicated on segmentation mas will be chosen will equal p (0-1) where p is supplied by the user -40h.
-4) given the list of paths to medical images it will load them calculate the mean or median spacing (option selected by the user), and return it. Then during pipeline execution, all images should be resampled to a user-supplied spacing and user-supplied orientation - 40h.
-5) Given a model output and a threshold that will be used for each channel of the output to binarize the output user will have an option to retrieve only n largest components from binarized algorithm output - 20h.
-6) Probabilities and hyperparameters of all augmentations, thresholds for binarization of output channels chosen spacing for preprocessing, number and settings of test time augmentations should be available in a hyperparam struct that is the additional argument of the pipeline function and that can be used for hyperparameter tuning -30h.
-7) During the validation epoch the images can be saved into persistent storage and a single random image loaded together with the output mask into MedEye3d for visualization during training -30h.
-8) The user can set either val_percentage - which will lead to the division of the dataset to training and validation fold or supply k which will lead to k-fold cross-validation. In the latter option mean, threshold, and standard deviation of the ensemble will be returned as the final output of the model -30h.
-
-For each point mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it (that just need to be integrated).
 
 
-### Project 5: Highly-efficient MRI Simulations with Multi-Vendor GPU Support
 
-**Description:** 
-KomaMRI.jl is a Julia package designed for highly-efficient Magnetic Resonance Imaging (MRI) simulations, serving both educational and research purposes. Simulations can help to grasp hard-to-understand MRI concepts, like pulse sequences, signal generation and acquisition. Moreover, they can guide the design of novel pulse sequences, and generate synthetic data for training machine learning models.
+# Enhancing MedPipe3D: Building a Comprehensive Medical Imaging Pipeline in Julia
 
-Currently, our simulator performs GPU-accelerated computations using CUDA arrays. We are now advancing to implement a new simulation method (`BlochKernel<:SimulationMethod`) based on GPU kernel programming using KernelAbstractions.jl. This enhancement will not only boost computation speeds but also broaden accessibility with KernelAbstractions.jl's multi-vendor GPU support. This could enable the use of MRI simulations in iterative algorithms to solve inverse problems. We are seeking enthusiastic people interested in developing this functionality.
+## Description
+MedPipe3D was created to improve integration between other parts of the small ecosystem (MedEye3D, MedEval3D, and MedImage). Currently, it needs to be expanded and adapted to serve as the basis for a fully functional medical imaging pipeline.
 
-- **Mentors:** Carlos Castillo [email: cncastillo@uc.cl], Boris Oróstica [email: beorostica@uc.cl], Pablo Irarrazaval [email: pim@uc.cl]
+**Mentor:** Jakub Mitura [email: jakub.mitura14@gmail.com]
 
-- **Difficulty:** Hard
+## Project Difficulty and Timeline
+**Difficulty:** Medium  
+**Duration:** 12 weeks
 
-- **Duration:** 350 hours (2 months, 8 hours per day)
+## Required Skills and Background
+- Strong knowledge of the Julia programming language is required.
+- Experience with the following Julia packages is highly desirable:
+  - MedPipe3D.jl
+  - MedEye3D.jl
+  - MedEval3D.jl
+  - MedImage.jl
+- Familiarity with the following packages would be a valuable asset:
+  - Lux.jl
+  - TensorBoard
+  - Logging.jl
 
-- **Suggested Skills and Background:**
-  - Experience with Julia
-  - Exposure to MRI concepts and ideas
-  - High-level knowledge of GPU programming
-  - Familiarity with some of the following Julia packages would be desired:
-    - KernelAbstractions.jl
-    - CUDA.jl
-    - Adapt.jl
-    - Functors.jl
+## Potential Outcomes
+- Implement comprehensive logging with TensorBoard Integration and Error and Warning Logs with Logging.jl for better tracking and debugging.
+- Improve the performance of augmentations.
+- Enable per-layer memory usage inspection of Lux models.
+- Enable gradient checkpointing of chosen layers to save memory.
+- Support loading tabular data (e.g., clinical data) together with the image into the supplied model.
+- Enhance documentation with in-depth tutorial, code examples, and a refined README for easy onboarding.
 
-- **Outcomes**:
+This set of changes, although time-consuming to implement, should not pose a significant issue to anyone with experience with the Julia programming language. Each feature will be implemented using existing Julia libraries and frameworks where possible. However, implementing these changes will be a huge step in making the Julia language a good alternative to Python for developing end-to-end medical imaging segmentation algorithms.
 
-We expect the following outcomes by the end of this program:
+## Success Criteria and Time Needed
+1. **Logging:** Implement logging to track the progress and debug issues - 2 weeks.
+2. **Performance Improvements:** Optimize the performance of augmentations to ensure efficient processing - 2 weeks.
+3. **Memory Usage Inspection:** Enable per-layer memory usage inspection of Lux models to monitor and optimize memory consumption - 2 weeks.
+4. **Gradient Checkpointing:** Enable gradient checkpointing of chosen layers to save memory during training - 4 weeks.
+5. **Tabular Data Support:** Support loading tabular data (e.g., clinical data) together with the image into the supplied model - 1 week.
+6. **Documentation:** Improve documentation to provide clear instructions and examples for users - 1 week.
 
-1) Extended and/or improved GPU-accelerated simulations, having generated a new simulation method `BlochKernel` with multi-vendor GPU support.
-2) Developed documentation explaining the new simulation method, including showcasing some use-case examples.
-3) Implemented automatic pipelines on Buildkite for testing the simulations across multiple GPU architectures.
-4) Reported performance improvements between `BlochKernel` and `Bloch`.
+**Total estimated time:** 12 weeks.
 
-Please contact the mentors of this project if you are interested and want to discuss other aspects that could be pursued during the course of this project.
+## Why Implementation of These Features is Important
+Implementing these features is crucial for advancing medical imaging technology. Enhanced logging with TensorBoard integration will allow for better insight into model training. Performance improvements ensure reliable and efficient processing of large datasets. Improved documentation and memory management make the tools more accessible and usable for medical professionals, facilitating better integration into clinical workflows. Supporting tabular data alongside imaging allows for comprehensive analysis, combining clinical and imaging data to improve diagnostic accuracy and patient outcomes.
+
+For each point, the mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it (that just need to be integrated).
+
+
+# Project Title: A Digital Twin Approach for Advanced Supervoxel Visualization for Multi-Image View in Medical Imaging
+
+## General Idea
+This project aims to develop visualization and interaction software for advanced supervoxel visualization on multi-image views. Building on the experiences from MedEye3D, the project will focus on creating a tool that allows users to interact with and visualize supervoxels across different imaging modalities (e.g., CT and MRI) simultaneously. The software will highlight corresponding supervoxels in different images when the user hovers over them, facilitating reliable analysis even in the presence of natural elastic deformations.
+
+## Potential Outcomes
+- **Enhanced Visualization:** A software tool that provides side-by-side views of different imaging studies, displaying supervoxel borders and highlighting corresponding supervoxels across images.
+- **Improved Interaction:** An interactive interface allowing users to manually correct supervoxel associations by clicking and highlighting supervoxels in both images.
+- **Control Points Annotation:** Support for annotating and displaying control points to aid in registration and user orientation.
+- **User Feedback Integration:** Mechanisms for users to indicate incorrect supervoxel associations, improving the reliability of the tool.
+
+## Success Criteria and Time Needed
+- **Software Development:** [10 Weeks]
+  - Develop the core visualization tool with side-by-side image views.
+  - Implement supervoxel border display and highlighting functionality.
+  - Integrate control points annotation and display features.
+- **User Interaction Features:** [6 Weeks]
+  - Develop interactive features for manual correction of supervoxel associations.
+  - Implement user feedback mechanisms for indicating incorrect associations.
+- **Testing and Validation:** [2 Weeks]
+  - Conduct extensive testing with sample medical imaging data.
+  - Validate the tool's accuracy and reliability in highlighting corresponding supervoxels.
+- **Documentation and User Training:** [2 Weeks]
+  - Create comprehensive documentation for the software.
+  - Develop training materials and conduct user training sessions.
+- **Final Review and Deployment:** [2 Weeks]
+  - Review the project outcomes and make necessary adjustments.
+  - Deploy the software for use by the scientific community.
+
+The total estimated time for the project is approximately 22 weeks. Success will be measured by the tool's ability to accurately highlight corresponding supervoxels, ease of use, and positive feedback from users in the medical imaging community.
+
+## Technical Requirements and Expected Expertise
+- Strong programming skills in Julia/C++
+- Experience with medical imaging libraries (ITK, SimpleITK, NIfTI)
+- Familiarity with GUI development (preferably ModernGL.jl)
+- Understanding of 3D visualization techniques
+- Basic knowledge of medical image processing concepts
+- Experience with version control (Git)
+
+## Tools and Technologies
+- **Primary Language:** Julia
+- **GUI Framework:** ModernGL.jl/ Vulkan.jl
+- **Image Processing:** ITK/SimpleITK
+- **Visualization:** OpenGL
+- **Building upon:** MedEye3D framework
+
+## User Interaction Examples
+- **Hovering Over Supervoxels:** When the user hovers the mouse over a supervoxel in one image (e.g., CT scan), the corresponding supervoxel in the other image (e.g., MRI scan) will be highlighted automatically.
+- **Manual Correction:** If the user identifies an incorrect supervoxel association, they can click on the supervoxel in one image to freeze it, then manually find and click the correct supervoxel in the other image to establish the correct association.
+- **Control Points:** Users can annotate control points by clicking on corresponding anatomical areas in both images. These points will be saved and displayed to assist in image registration and orientation.
+
+## Importance and Impact
+This project is significant because it addresses the challenges of non-rigid registration in medical imaging, which is crucial for accurate diagnosis and treatment planning. By providing a reliable tool for visualizing and interacting with supervoxels across different imaging modalities, the project has the potential to:
+- Enhance the accuracy of image registration and subsequent measurements.
+- Reduce the time required for manual registration by radiologists and nuclear medicine specialists.
+- Enable the development of new algorithms and methods in the medical imaging field.
+- Improve clinical decision-making by providing more reliable imaging data.
+
+While various medical image visualization tools exist, there is currently no software solution that specifically addresses supervoxel-based visualization across multiple imaging modalities with interactive correction capabilities. This project builds upon MedEye3D as an independent extension, enhancing its capabilities with new features for supervoxel visualization and interaction.
+
+
+Overall, this project aims to contribute to the advancement of medical imaging technology, ultimately benefiting both the scientific community and patient care. Additionally, it will serve as a support tool for digital twin projects, enhancing the reliability of image registration and subsequent measurements.
+
+
+
+
