@@ -129,61 +129,14 @@ crossorigin=""/>
 <div class="container main"><h1 id="juliahealth_projects_summer_of_code"><a href="#juliahealth_projects_summer_of_code" class="header-anchor">JuliaHealth Projects – Summer of Code</a></h1>
 <p>JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. We believe that by working together and sharing our knowledge and expertise, we can create powerful tools and solutions that have the potential to transform healthcare.</p>
 <h2 id="observational_health_subecosystem_projects"><a href="#observational_health_subecosystem_projects" class="header-anchor">Observational Health Subecosystem Projects</a></h2>
-<h3 id="project_1_developing_tooling_for_observational_health_research_in_julia"><a href="#project_1_developing_tooling_for_observational_health_research_in_julia" class="header-anchor">Project 1: Developing Tooling for Observational Health Research in Julia</a></h3>
-<p><strong>Description:</strong> The OMOP Common Data Model &#40;OMOP CDM&#41; is a widely used data standard that allows researchers to analyze large, heterogeneous healthcare datasets in a consistent and efficient manner. JuliaHealth has several packages that can interact with databases that adhere to the OMOP CDM &#40;such as OMOPCDMCohortCreator.jl or OMOPCDMDatabaseConnector.jl&#41;. For this project, we are looking for students interested in further developing the tooling in Julia to interact with OMOP CDM databases.</p>
+<h3 id="project_1_supporting_patient_level_prediction_pipelines_within_juliahealth"><a href="#project_1_supporting_patient_level_prediction_pipelines_within_juliahealth" class="header-anchor">Project 1: Supporting Patient Level Prediction Pipelines within JuliaHealth</a></h3>
+<p><strong>Description:</strong> Patient level prediction &#40;PLP&#41; is an important area of research in observational health research that involves using patient data to predict outcomes such as disease progression, response to treatment, and hospital readmissions. JuliaHealth is interested in developing supportive tooling for PLP that utilizes historical patient data, such as patient medical claims or electronic health records, that follow the OMOP Common Data Model &#40;OMOP CDM&#41;, a widely used data standard that allows researchers to analyze large, heterogeneous healthcare datasets in a consistent and efficient manner. For this project, we are looking for students interested in developing supportive PLP tooling within JuliaHealth.</p>
 <ul>
-<li><p><strong>Mentor:</strong> Jacob Zelko &#40;aka TheCedarPrince&#41; &#91;email: jacobszelko@gmail.com&#93;</p>
+<li><p><strong>Mentor:</strong> Jacob S. Zelko &#40;aka TheCedarPrince&#41; &#91;email: jacobszelko@gmail.com&#93;</p>
 </li>
 <li><p><strong>Difficulty</strong>: Medium</p>
 </li>
-<li><p><strong>Duration</strong>: 350 hours</p>
-</li>
-<li><p><strong>Suggested Skills and Background</strong>:</p>
-<ul>
-<li><p>Experience with Julia</p>
-</li>
-<li><p>Familiarity with some of the following Julia packages would be a strong asset:</p>
-<ul>
-<li><p>FunSQL.jl</p>
-</li>
-<li><p>DataFrames.jl</p>
-</li>
-<li><p>Distributed.jl</p>
-</li>
-<li><p>OMOPCDMCohortCreator.jl</p>
-</li>
-<li><p>OMOPCDMDatabaseConnector.jl</p>
-</li>
-<li><p>OMOPCommonDataModel.jl</p>
-</li>
-</ul>
-</li>
-<li><p>Comfort with the OMOP Common Data Model &#40;or a willingness to learn&#33;&#41;</p>
-</li>
-</ul>
-</li>
-<li><p><strong>Potential Outcomes:</strong></p>
-</li>
-</ul>
-<p>Some potential project outcomes could be:</p>
-<ul>
-<li><p>Expanding OMOPCDMCohortCreator.jl to enable users to add constraints to potential patient populations they want to create such as conditional date ranges for a given drug or disease diagnosis.</p>
-</li>
-<li><p>Support parallelization of OMOPCDMCohortCreator.jl based queries when developing a patient population.</p>
-</li>
-<li><p>Develop and explore novel ways for how population filters within OMOPCDMCohortCreator.jl can be composed together for rapid analysis.</p>
-</li>
-</ul>
-<p>In whatever functionality that gets developed for tools within JuliaHealth, it will also be expected for students to contribute to the existing package documentation to highlight how new features can be used. Although not required, if students would like to submit a lightning talks, posters, etc. to JuliaCon in the future about their work, they will be supported in this endeavor&#33;</p>
-<p>Please contact the mentor for this project if interested and want to discuss what else could be pursued in the course of this project.</p>
-<h3 id="project_2_developing_patient_level_prediction_tooling_within_julia"><a href="#project_2_developing_patient_level_prediction_tooling_within_julia" class="header-anchor">Project 2: Developing Patient Level Prediction Tooling within Julia</a></h3>
-<p><strong>Description:</strong> Patient level prediction &#40;PLP&#41; is an important area of research in healthcare that involves using patient data to predict outcomes such as disease progression, response to treatment, and hospital readmissions. JuliaHealth is interested in developing tooling for PLP that utilizes historical patient data, such as patient medical claims or electronic health records, that follow the OMOP Common Data Model &#40;OMOP CDM&#41;, a widely used data standard that allows researchers to analyze large, heterogeneous healthcare datasets in a consistent and efficient manner. For this project, we are looking for students interested in developing PLP tooling within Julia.</p>
-<ul>
-<li><p><strong>Mentor:</strong> Sebastian Vollmer &#91;email: sjvollmer@gmail.com&#93;, Jacob Zelko &#40;aka TheCedarPrince&#41; &#91;email: jacobszelko@gmail.com&#93;</p>
-</li>
-<li><p><strong>Difficulty</strong>: Hard</p>
-</li>
-<li><p><strong>Duration</strong>: 350 hours</p>
+<li><p><strong>Duration</strong>: 175 hours</p>
 </li>
 <li><p><strong>Suggested Skills and Background</strong>:</p>
 <ul>
@@ -216,16 +169,20 @@ crossorigin=""/>
 </li>
 <li><p>Familiarize oneself with tools for machine learning and prediction within the Julia ecosystem</p>
 </li>
-<li><p>Determine PLP research question to drive package development</p>
+<li><p>Develop infrastructure needed for doing PLP within the JuliaHealth ecosystem such as:</p>
+<ul>
+<li><p>Consistent DataFrames.jl interface</p>
 </li>
-<li><p>Develop PLP package utilizing JuliaHealth tools to work with an OMOP CDM database</p>
+<li><p>Data harmonization methods</p>
 </li>
-<li><p>Test and validate PLP package for investigating the research question</p>
-</li>
-<li><p>Document findings and draft JuliaCon talk</p>
+<li><p>Sampling considerations for large scale patient data</p>
 </li>
 </ul>
-<p>In whatever functionality that gets developed for tools within JuliaHealth, it will also be expected for students to contribute to the existing package documentation to highlight how new features can be used. For this project, it will be expected as part of the proposal to pursue drafting and giving a talk at JuliaCon. Furthermore, although not required, publishing in the JuliaCon Proceedings will both be encouraged and supported by project mentors.</p>
+</li>
+<li><p>Document findings and novel software</p>
+</li>
+</ul>
+<p>In whatever functionality that gets developed for tools within JuliaHealth, it will also be expected for students to contribute to the existing package documentation to highlight how new features can be used. Another perspective of this project is that its intended goal is to provide the foundational support needed within JuliaHealth to better accommodate multiple modalities of data available within public health settings. The long term goal is to use the development of foundational tooling with JuliaHealth to better support patient level prediction workflows across observational health data and additional information such as survey data, social determinants of health data, and climate data.</p>
 <p>Additionally, depending on the success of the package, there is a potential to run experiments on actual patient data to generate actual patient population insights based on a chosen research question. This could possibly turn into a separate research paper, conference submission, or poster submission. Whatever may occur in this situation will be supported by project mentors.</p>
 <h1 id="medical_imaging_subecosystem_projects"><a href="#medical_imaging_subecosystem_projects" class="header-anchor">Medical Imaging Subecosystem Projects</a></h1>
 <h1 id="julia_radiomics"><a href="#julia_radiomics" class="header-anchor">Julia Radiomics</a></h1>
