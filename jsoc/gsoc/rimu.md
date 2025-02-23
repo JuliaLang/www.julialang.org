@@ -22,4 +22,4 @@
 
 **Mentors**: [Joachim Brand](https://github.com/joachimbrand), [Daniel Kats](https://github.com/dnkats), [Elke Pahl](https://github.com/ElkePahl)
 
-
+If you are interested please get in touch by [email](mailto:j.brand@massey.ac.nz).
