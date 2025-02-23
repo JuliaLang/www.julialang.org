@@ -262,6 +262,12 @@ This project is significant because it addresses the challenges of non-rigid reg
 
 While various medical image visualization tools exist, there is currently no software solution that specifically addresses supervoxel-based visualization across multiple imaging modalities with interactive correction capabilities. This project builds upon MedEye3D as an independent extension, enhancing its capabilities with new features for supervoxel visualization and interaction.
 
+## Visual Examples
+1. 2 Different Patient's MRI and CT Studies on Transversal plane with supervoxels
+![MRI and CT Supervoxels](../../assets/gsoc/supervoxel_one.png)
+
+2. Highlighting the same anatomical region in both images with supervoxel display
+![MRI and CT Supervoxels with same anatomical regions highlighted](../../assets/gsoc/supervoxel_two.png)
 
 Overall, this project aims to contribute to the advancement of medical imaging technology, ultimately benefiting both the scientific community and patient care. Additionally, it will serve as a support tool for digital twin projects, enhancing the reliability of image registration and subsequent measurements.
 
