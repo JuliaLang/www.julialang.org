@@ -264,10 +264,10 @@ While various medical image visualization tools exist, there is currently no sof
 
 ## Visual Examples
 1. 2 Different Patient's MRI and CT Studies on Transversal plane with supervoxels
-![MRI and CT Supervoxels](../../assets/gsoc/supervoxel_one.png)
+![MRI and CT Supervoxels](../../assets/contribute/gsoc/supervoxel_one.png)
 
 2. Highlighting the same anatomical region in both images with supervoxel display
-![MRI and CT Supervoxels with same anatomical regions highlighted](../../assets/gsoc/supervoxel_two.png)
+![MRI and CT Supervoxels with same anatomical regions highlighted](../../assets/contribute/gsoc/supervoxel_two.png)
 
 Overall, this project aims to contribute to the advancement of medical imaging technology, ultimately benefiting both the scientific community and patient care. Additionally, it will serve as a support tool for digital twin projects, enhancing the reliability of image registration and subsequent measurements.
 
