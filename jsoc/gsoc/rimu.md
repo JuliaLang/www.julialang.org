@@ -1,6 +1,6 @@
 # Rimu.jl - Projector Quantum Monte Carlo - Summer of Code
 
-[Rimu.jl](https://github.com/RimuQMC/Rimu.jl) is a Julia package for finding ground states (and low-lying excited states) of quantum many-body problems with projector quantum Mote Carlo (using a flavour called full configuration interaction quantum Monte Carlo, FCIQMC) and with exact diagonalisation.
+[Rimu.jl](https://github.com/RimuQMC/Rimu.jl) is a Julia package for finding ground states (and low-lying excited states) of quantum many-body problems with projector quantum Monte Carlo (using a flavour called full configuration interaction quantum Monte Carlo, FCIQMC) and with exact diagonalisation.
 
 ## Ab-Initio Quantum Chemistry with Rimu.jl
  
@@ -13,7 +13,7 @@
 
 **Minimum goal**: A minimum goal would be to enable reading in the relevant information about the molecular orbital basis set and integrals that define the molecular Hamiltonian from a file (in the standard FCIDUMP format) and defining an appropriate Hamiltonian type for Rimu.jl that enables its usage for exact diagonalisation and FCIQMC.
 
-**Extended goal**: An extended goal would be to make the molecular Hamiltonian efficient for FCIQMC, e.g. by finding and implementing an appropriate strategy for an excitation generator, e.g. a variant of (precomputed) heat-bath sampling.
+**Extended goal**: An extended goal would be to make the molecular Hamiltonian efficient for FCIQMC, e.g. by finding and implementing an appropriate strategy for an excitation generator, e.g. a variant of (precomputed) heat-bath sampling. Another worthwhile extension would be to implement variants of the Configuration Interaction (CI) method by filtering the configurations to a relevant subspace (e.g. CI-SD, selctive CI, etc.) for the exact-diagonalisation part of Rimu.jl.
 
 **Recommended skills**:
 - prior exposure to or strong interest in quantum chemistry
