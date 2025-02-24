@@ -20,6 +20,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
 * [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
 * [QuantumOptics](/jsoc/gsoc/quantumoptics) - Quantum dynamics and master equations
+* [Rimu.jl](/jsoc/gsoc/rimu.md) - Quantum Monte Carlo for physics and chemistry
 * [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [Tooling](/jsoc/gsoc/tooling/) - Development of developer tools and development environments for Julia

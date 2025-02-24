@@ -17,7 +17,6 @@
 
 **Recommended skills**:
 - prior exposure to or strong interest in quantum chemistry
-- basic familiarity with point group symmetries and their representations
 - good to excellent Julia coding skills
 
 **Mentors**: [Joachim Brand](https://github.com/joachimbrand), [Daniel Kats](https://github.com/dnkats), [Elke Pahl](https://github.com/ElkePahl)
