@@ -14,7 +14,7 @@ Here are some features or areas that are looking for contributions:
 * Work on any of the ideas that have been [marked as plugins](https://github.com/JuliaDocs/Documenter.jl/labels/Type%3A%20Plugin), as they offer self-contained features to work on.
 * Improve Documenter's own documentation.
 
-If any of these sound interesting, please reach out to the mentors to ask for more details and to narrow down the project for a proposal.
+If any of these sound interesting, please reach out to the mentors to ask for more details and to narrow down the project for a proposal. The possible projects vary in difficulty and size, depending on the project and the ultimate scope.
 
 **Recommended skills**: Depends on the project, but the work would generally involved both Julia programming, but also basic web developments (HTML, CSS, JS).
 
