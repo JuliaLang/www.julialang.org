@@ -133,9 +133,10 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Southcentral Kentucky Community and Technical College
     * CIT 120 Computational Thinking (Inst. [Bryan Knowles](https://github.com/snotskie/)), Online, Fall 2017
 * Stanford University
-    * [ENGR108](https://web.stanford.edu/class/engr108/), Introduction to Matrix Methods (Prof Stephen Boyd), Fall 2021
-    * AA222, Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer), Spring 2014
-    * [AA228/CS238](https://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer), Fall 2014
+    * [ENGR108](https://web.stanford.edu/class/engr108/), Introduction to Matrix Methods (Prof Stephen Boyd), Since 2021
+    * [AA222/CS361](https://aa222.stanford.edu), Engineering Design Optimization (Prof. Mykel J. Kochenderfer), Since 2014
+    * [AA228/CS238](https://aa228.stanford.edu), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer), Since 2014
+    * [AA228V/CS238V](https://aa228v.stanford.edu), Validation of Safety-Critical Systems (Sydney Katz and Prof. Mykel J. Kochenderfer), Since 2025
     * [EE103](https://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014, Fall 2015
     * [CME 257](https://github.com/icme/cme257-advanced-julia/), Advanced Topics in Scientific Computing with Julia (Mr. [Brad Nelson](https://github.com/bnels)), Fall 2015
     * [EE266](http://ee266.stanford.edu/), Stochastic Control (Prof. Sanjay Lall), Spring 2016
