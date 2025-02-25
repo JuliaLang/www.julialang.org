@@ -17,7 +17,7 @@ If any of these sound interesting, please reach out to the mentors to ask for mo
 
 **Recommended skills**: Depends on the project, but the work would generally involved both Julia programming, but also basic web developments (HTML, CSS, JS).
 
-**Mentors:** [Morten Piibeleht](https://github.com/mortenpi), [Fredrik-Ekre](https://github.com/fredrikekre)
+**Mentors:** [Morten Piibeleht](https://github.com/mortenpi), [Fredrik Ekre](https://github.com/fredrikekre)
 
 ## Contact
 
