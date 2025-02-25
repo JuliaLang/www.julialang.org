@@ -12,7 +12,6 @@ Here are some features or areas that are looking for contributions:
 * Rework Documenter's page layout and navigation. See [JuliaDocs/Documenter.jl#2177](https://github.com/JuliaDocs/Documenter.jl/issues/2177).
 * Improve or rework Documenter's search index.
 * Work on any of the ideas that have been [marked as plugins](https://github.com/JuliaDocs/Documenter.jl/labels/Type%3A%20Plugin), as they offer self-contained features to work on.
-* Improve Documenter's own documentation.
 
 If any of these sound interesting, please reach out to the mentors to ask for more details and to narrow down the project for a proposal. The possible projects vary in difficulty and size, depending on the project and the ultimate scope.
 
