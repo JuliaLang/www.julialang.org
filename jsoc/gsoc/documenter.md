@@ -15,7 +15,7 @@ Here are some features or areas that are looking for contributions:
 
 If any of these sound interesting, please reach out to the mentors to ask for more details and to narrow down the project for a proposal. The possible projects vary in difficulty and size, depending on the project and the ultimate scope.
 
-**Recommended skills**: Depends on the project, but the work would generally involved both Julia programming, but also basic web developments (HTML, CSS, JS).
+**Recommended skills**: Depends on the project, but the work would generally involved both Julia programming, but also basic web development (HTML, CSS, JS).
 
 **Mentors:** [Morten Piibeleht](https://github.com/mortenpi), [Fredrik Ekre](https://github.com/fredrikekre)
 
