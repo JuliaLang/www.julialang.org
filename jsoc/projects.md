@@ -11,6 +11,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Ferrite FEM](/jsoc/gsoc/ferrite-fem/) - A modern finite element toolbox in Julia.
 * [Gabs](/jsoc/gsoc/gabs/) - A Gaussian quantum information simulator
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
+* [Herb](/jsoc/gsoc/herb/) - Let programs write themselves with program synthesis
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [GPU Programming](/jsoc/gsoc/gpu/) - Projects that involve the Julia GPU stack
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
