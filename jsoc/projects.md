@@ -16,6 +16,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
 * [JuliaGenAI](/jsoc/gsoc/juliagenai/) - Research and applications of Generative AI in Julia
 * [JuliaHealth](/jsoc/gsoc/juliahealth/) - Using the Julia programming language to improve medicine, health care, public health, and biomedical research.
+* [JuliaReach](/jsoc/gsoc/juliareach/) - Reachability analysis for dynamical systems
 * [Machine learning](/jsoc/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
 * [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
