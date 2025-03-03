@@ -359,6 +359,79 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 </ul>
 <p><strong>Expected Results:</strong> A set of optimized GPU kernels in GPUArrays.jl that are vendor-agnostic and performant across different GPU backends. This will improve the portability of the Julia GPU stack and make it easier to support new GPU architectures.</p>
 <p><strong>Mentors:</strong> <a href="https://github.com/maleadt">Tim Besard</a>, <a href="https://github.com/vchuravy">Valentin Churavy</a></p>
+<h2 id="herbjl_projects"><a href="#herbjl_projects" class="header-anchor">Herb.jl Projects</a></h2>
+<p><img src="https://raw.githubusercontent.com/Herb-AI/Herb.jl/refs/heads/documentation/docs/src/assets/herb.png" alt="Herb Logo" /></p>
+<p>Wouldn’t it be great if Julia would program itself? Tell it what you want, Julia magic happens, and you get your program directly. We introduce Herb.jl, a library written in Julia that gets us a step closer to our big goal. <a href="https://herb-ai.github.io/">Herb.jl</a> is a library for program synthesis: The task of automatically generating programs from a given specification. Here, “a program” could be anything, from an actual Python program over moves in chess to the synthesis of biochemical molecules. There are numerous works on program synthesis, all speaking a different language in code and terminology. We want to make developing, comparing, and applying ideas in program synthesis easier.</p>
+<p>Herb’s main goal is, therefore, two-fold. First, we aim to provide a toolbox for 1. developing new program synthesizers or 2. easily re-implementing existing ones. Second, we aim to unify many different flavors of program synthesis under a joint framework, making program synthesizers easy to use on new problems.</p>
+<p>If you have any questions or ideas, please <a href="mailto:t.r.hinnerichs@tudelft.nl">contact Tilman</a>.</p>
+<h3 id="project_1_optimizations"><a href="#project_1_optimizations" class="header-anchor">Project 1: Optimizations</a></h3>
+<p><strong>Difficulty:</strong> Medium</p>
+<p><strong>Estimated Duration:</strong> 350 hours</p>
+<p><strong>Project Overview:</strong> <code>Herb.jl</code> has an outstanding performance in enumerating programs. Every generated program also needs to be evaluated, making evaluation the main bottleneck in finding a suitable program. We want to improve this aspect by leveraging various well-engineered projects from the Julia community.</p>
+<p>First, we have so far lessened the burden of evaluation by developing custom interpreters. This is time-consuming and error-prone, so we would like to avoid it. The core challenge here is that the explore programs don&#39;t have a fixed structure and are constructed during synthesis; therefore, they cannot be compiled ahead of time. The Julia package <code>DynamicExpressions.jl</code> is developed to overcome this exact problem, allowing for &quot;ridiculously fast symbolic expressions&quot;. We would like to integrate <code>DynamicExpressions.jl</code> into our ecosystem and get a faster evaluation of Julia programs <em>for free</em>.</p>
+<p>Second, Herb is limited to Julia so far. Our goal is, however, to make Herb a <em>language agnostic</em> program synthesis library. We would like to extend Herb with connections to other interpreters for common languages like Python, Java, Prolog, et cetera. This would make it possible for Herb users to use any programming language that fits their needs.</p>
+<p>Third, another crucial aspect of every program synthesis engine is the construction of candidate programs. State-of-the-art program synthesis tools, like CVC5, have invested significant time into optimizing the program construction step, resulting in significantly improved performance. We want to map these ideas into Herb.</p>
+<p><strong>Minimum goal:</strong> Connect <code>DynamicExpressions.jl</code> to <code>Herb.jl</code>. This involves implementing the expression interface from <code>DynamicExpressions.jl</code> for <code>Herb.jl</code>’s expression tree formulation.</p>
+<p><strong>Extended goal:</strong> Add support for at least one non-Julia program interpreter or add tricks from CVC5 to Herb.</p>
+<p><strong>Recommended skills:</strong></p>
+<ul>
+<li><p>basic knowledge of data structures</p>
+</li>
+<li><p>interest in program optimization</p>
+</li>
+<li><p>the eagerness to learn to write and optimize code</p>
+</li>
+</ul>
+<p><strong>Mentors:</strong> Reuben Gardos-Reid, Tilman Hinnerichs and Sebastijan Dumancic</p>
+<p><strong>Some literature:</strong></p>
+<ul>
+<li><p>The Program Synthesis book &#40;by Gulwani et al., <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/10/program_synthesis_now.pdf">link</a></p>
+</li>
+<li><p>CVC4SY paper: <a href="https://link.springer.com/chapter/10.1007/978-3-030-25543-5_5">link</a></p>
+</li>
+<li><p><code>DynamicExpression.jl</code>: <a href="https://ai.damtp.cam.ac.uk/dynamicexpressions/dev/">link</a></p>
+</li>
+<li><p>Our website: <a href="https://herb-ai.github.io/">link</a></p>
+</li>
+</ul>
+<h3 id="project_2_herblearn_integration"><a href="#project_2_herblearn_integration" class="header-anchor">Project 2: HerbLearn Integration</a></h3>
+<p><strong>Difficulty:</strong> Medium</p>
+<p><strong>Estimated Duration:</strong> 350h</p>
+<p><strong>Problem description:</strong> Neurally-guided program synthesizers form a popular class of synthesizers, which learn a heuristic to guide program generation. Following Herb&#39;s paradigm to unify the field, we want to reach the same goal for this sub-field. Specifically, learning guiding policies comprise the same building blocks of 1. program sampling, 2. program-data-encoding, 3. policy learning with respect to a loss function, and 4. deploying that strategy.</p>
+<p>In this project, we want to implement these building blocks to allow researchers to reuse the modules directly. To guide this project, we implemented a template structure to follow and extend.</p>
+<p><strong>Minimum goal:</strong> Implement a naive but modular strategy for all four steps. To allow for easy integration of with existing models, we aim to implement the machine learning part using Flux.jl.</p>
+<p><strong>Extended goal:</strong> The extended goal is to deepen one or more of these modules that fit the student&#39;s interests. The literature provides numerous ideas on how to make all four steps smarter individually. Concretely, this could include</p>
+<ul>
+<li><p>smarter program-sampling,</p>
+</li>
+<li><p>different program encoding strategies from the literature,</p>
+</li>
+<li><p>implementing and applying different loss functions, and</p>
+</li>
+<li><p>incorporating this with different search procedures.</p>
+</li>
+</ul>
+<p><strong>Recommended skills:</strong></p>
+<ul>
+<li><p>Basic knowledge of machine learning principles &#40;neural networks, model training, ...&#41;</p>
+</li>
+<li><p>Preferably prior experiences with Flux.jl</p>
+</li>
+</ul>
+<p><strong>Mentors:</strong> Tilman Hinnerichs, Reuben Gardos-Reid and Sebastijan Dumancic</p>
+<p><strong>Some literature:</strong></p>
+<ul>
+<li><p>The Program Synthesis book &#40;by Gulwani et al., <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/10/program_synthesis_now.pdf">link</a></p>
+</li>
+<li><p>Our website: <a href="https://herb-ai.github.io/">https://herb-ai.github.io/</a></p>
+</li>
+<li><p>BUSTLE: Bottom-up Program Synthesis through learning-guided exploration: <a href="https://arxiv.org/pdf/2007.14381">link</a></p>
+</li>
+<li><p>DeepCoder <a href="https://arxiv.org/pdf/1611.01989">link</a></p>
+</li>
+<li><p>DreamCoder <a href="https://dl.acm.org/doi/pdf/10.1145/3453483.3454080">link</a></p>
+</li>
+</ul>
 <h2 id="high_performance_and_parallel_computing_projects_summer_of_code"><a href="#high_performance_and_parallel_computing_projects_summer_of_code" class="header-anchor">High Performance and Parallel Computing Projects – Summer of Code</a></h2>
 <p>Julia is emerging as a serious tool for technical computing and is ideally suited for the ever-growing needs of big data analytics. This set of proposed projects addresses specific areas for improvement in analytics algorithms and distributed data management.</p>
 <h3 id="distributed_training"><a href="#distributed_training" class="header-anchor">Distributed Training</a></h3>
