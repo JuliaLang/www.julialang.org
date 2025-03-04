@@ -37,4 +37,8 @@ Participants will gain hands-on experience in Bayesian statistics, software engi
 
 ## Jaxprs in Julia
 
+Difficulty: Hard
+
+Duration: TBD
+
 The Turing.jl team is looking for a student to implement a lightweight Julia library to work with [Jaxprs](https://docs.jax.dev/en/latest/jaxpr.html). If this could be you, get in touch and we can discuss the details.
