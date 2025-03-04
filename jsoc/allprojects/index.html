@@ -1070,6 +1070,38 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <p><strong>Mentors:</strong> <a href="https://github.com/Krastanov">Stefan Krastanov</a> <a href="mailto:stefan@krastanov.org">&lt;stefan@krastanov.org&gt;</a> and QuantumOptics.jl team members</p>
 <p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan more extensive work&#41;</p>
 <p><strong>Difficulty:</strong> Easy</p>
+<h2 id="rimujl_-_projector_quantum_monte_carlo"><a href="#rimujl_-_projector_quantum_monte_carlo" class="header-anchor">Rimu.jl - Projector Quantum Monte Carlo</a></h2>
+<p><a href="https://github.com/RimuQMC/Rimu.jl">Rimu.jl</a> is a Julia package for finding ground states &#40;and low-lying excited states&#41; of quantum many-body problems with projector quantum Monte Carlo &#40;using a flavour called full configuration interaction quantum Monte Carlo, FCIQMC&#41; and with exact diagonalisation.</p>
+<h3 id="ab-initio_quantum_chemistry_with_rimujl"><a href="#ab-initio_quantum_chemistry_with_rimujl" class="header-anchor">Ab-Initio Quantum Chemistry with Rimu.jl</a></h3>
+<p><strong>Difficulty</strong>: Easy to medium &#40;if the recommended skills are available&#41;</p>
+<p><strong>Project size</strong>: 175 - 350 hours</p>
+<p><strong>Problem</strong>: <a href="https://github.com/RimuQMC/Rimu.jl">Rimu.jl</a> provides an interface for defining a custom quantum many-body Hamiltonian and currently implements a selection of model Hamiltonians &#40;e.g. variants of the Hubbard model and the Fröhlich polaron model&#41;.  The high-level goal of the project is to implement the required functionality to solve ab-initio quantum chemistry problems with <a href="https://github.com/RimuQMC/Rimu.jl">Rimu.jl</a> and embed the package into the <a href="https://github.com/JuliaMolSim">JuliaMolSim</a> ecosystem, in particular with <a href="https://github.com/fkfest/ElemCo.jl">ElemCo.jl</a>.</p>
+<p><strong>Minimum goal</strong>: A minimum goal would be to enable reading in the relevant information about the molecular orbital basis set and integrals that define the molecular Hamiltonian from a file &#40;in the standard FCIDUMP format&#41; and defining an appropriate Hamiltonian type for Rimu.jl that enables its usage for exact diagonalisation and FCIQMC.</p>
+<p><strong>Extended goal</strong>: An extended goal would be to make the molecular Hamiltonian efficient for FCIQMC, e.g. by finding and implementing an appropriate strategy for an excitation generator, e.g. a variant of &#40;precomputed&#41; heat-bath sampling. Another worthwhile extension would be to implement variants of the Configuration Interaction &#40;CI&#41; method by filtering the configurations to a relevant subspace &#40;e.g. CI-SD, selctive CI, etc.&#41; for the exact-diagonalisation part of Rimu.jl.</p>
+<p><strong>Recommended skills</strong>:</p>
+<ul>
+<li><p>prior exposure to or strong interest in quantum chemistry</p>
+</li>
+<li><p>good to excellent Julia coding skills</p>
+</li>
+</ul>
+<p><strong>Mentors</strong>: <a href="https://github.com/joachimbrand">Joachim Brand</a>, <a href="https://github.com/dnkats">Daniel Kats</a>, <a href="https://github.com/ElkePahl">Elke Pahl</a></p>
+<p>If you are interested please get in touch by <a href="mailto:j.brand@massey.ac.nz">email</a>.</p>
+<h3 id="load_balancing_rimujl_for_multi-node_hpc_calculations"><a href="#load_balancing_rimujl_for_multi-node_hpc_calculations" class="header-anchor">Load balancing Rimu.jl for multi-node &#40;HPC&#41; calculations</a></h3>
+<p><strong>Difficulty</strong>: Medium to hard</p>
+<p><strong>Project size</strong>: 175 - 350 hours</p>
+<p><strong>Problem</strong>: <a href="https://github.com/RimuQMC/Rimu.jl">Rimu.jl</a> parallelises the workload of FCIQMC by making extensive use of native threading for shared-memory parallelism. In high-performance computing environments the primary data structure containing information about the sampled configurations and their amplitudes can further be distributed across nodes, which communicate using the MPI protocol in every time step &#40;making use of <a href="https://github.com/JuliaParallel/MPI.jl">MPI.jl</a>&#41;. In the current implementation the distribution of configurations to nodes is done passively &#40;in a pseudo-random fashion using a hashing algorithm&#41;. While this is fast and easy and usually leads to a fairly even distribution of data and work across the nodes, it does not scale very well when employing hundreds of nodes as every MPI rank has to wait for the slowest one to complete the work done at each time step.</p>
+<p><strong>Minimum goal</strong>: Implement an active load-balancing approach where load information of each MPI rank is monitored and work load is shifted between nodes to even out the workload.</p>
+<p><strong>Extended goal</strong>: Explore other load-balancing strategies like agent-based approaches, possibly even exploring algorithmic alternatives &#40;e.g. continuous-time Monte Carlo&#41;. Design communication protocols that take into account the network topology.</p>
+<p><strong>Recommended skills</strong>:</p>
+<ul>
+<li><p>experience with HPC environments and MPI-style programming</p>
+</li>
+<li><p>good to excellent Julia coding skills</p>
+</li>
+</ul>
+<p><strong>Mentors</strong>: <a href="https://github.com/mtsch">Matija Čufar</a>, <a href="https://github.com/joachimbrand">Joachim Brand</a></p>
+<p>If you are interested please get in touch with <a href="matijacufar@gmail.com">Matija</a> or <a href="mailto:j.brand@massey.ac.nz">Joachim</a>.</p>
 <h2 id="symbolic_computation_project_ideas"><a href="#symbolic_computation_project_ideas" class="header-anchor">Symbolic computation project ideas</a></h2>
 <h3 id="efficient_tensor_differentiation"><a href="#efficient_tensor_differentiation" class="header-anchor">Efficient Tensor Differentiation</a></h3>
 <p>Implement the <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/main-65.pdf">D* algorithm</a> for tensor expressions.</p>
