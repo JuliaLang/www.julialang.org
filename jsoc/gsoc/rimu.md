@@ -41,5 +41,5 @@ If you are interested please get in touch by [email](mailto:j.brand@massey.ac.nz
 
 **Mentors**: [Matija Čufar](https://github.com/mtsch), [Joachim Brand](https://github.com/joachimbrand)
 
-If you are interested please get in touch with [Matija](matijacufar@gmail.com) or [Joachim](mailto:j.brand@massey.ac.nz).
+If you are interested please get in touch with [Matija](mailto:matijacufar@gmail.com) or [Joachim](mailto:j.brand@massey.ac.nz).
 
