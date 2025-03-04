@@ -1338,7 +1338,32 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <p><strong>Mentors</strong>: <a href="https://github.com/huiyuxie">Huiyu Xie</a>, <a href="https://github.com/jlchan">Jesse Chan</a>, <a href="https://github.com/ranocha">Hendrik Ranocha</a></p>
 <h2 id="turing_projects"><a href="#turing_projects" class="header-anchor">Turing Projects</a></h2>
 <p><a href="https://turinglang.org/">Turing.jl</a> is a universal probabilistic programming language embedded in Julia. Turing allows the user to write statistical models in standard Julia syntax, and provides a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics, and data science. Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added.</p>
-<p>The Turing team is currently planning projects for GSoC 2025, and will post them here once they are ready. You are also welcome to propose your own projects. If you are interested in working on Turing for GSoC 2025, please reach out to Markus Hauru &#40;@mhauru&#41; on Julia&#39;s <a href="https://julialang.org/slack/">Slack</a> or <a href="https://discourse.julialang.org/">Discourse</a>.</p>
+<p>Below are the projects we have in mind for GSoC 2025. If you are interested in working on any of them, or want to propose your own Turing.jl-related GSoC project, please reach out to Markus Hauru &#40;@mhauru&#41; on Julia&#39;s <a href="https://julialang.org/slack/">Slack</a> or <a href="https://discourse.julialang.org/">Discourse</a>.</p>
+<h3 id="mooncakejl_performance_optimization"><a href="#mooncakejl_performance_optimization" class="header-anchor">Mooncake.jl Performance Optimization</a></h3>
+<p>Difficulty: Medium</p>
+<p>Duration: 350 hours</p>
+<p>Description: <a href="https://github.com/compintell/Mooncake.jl/">Mooncake.jl</a> is a reverse-mode AD package written entirely in Julia, which addresses many of limitations of the popular <a href="https://github.com/JuliaDiff/ReverseDiff.jl">ReverseDiff.jl</a> and <a href="https://github.com/FluxML/Zygote.jl">Zygote.jl</a> libraries. While the library is typically fast, performance is not tested as systematically as it could be, meaning that there are probably a range of performance bugs waiting to be uncovered. Additionally, there are a range of known performance limitations which need to be addressed. This project aims to resolve known performance problems, to find new ones, and fix them too&#33;</p>
+<p>Skills: familiarity with Julia programming, how to make Julia code performant, and a strong desire to make existing Julia code more performant&#33; An understanding of AD is helpful, but not essential.</p>
+<h3 id="r_and_python_interfaces_for_juliabugs"><a href="#r_and_python_interfaces_for_juliabugs" class="header-anchor">R and Python Interfaces for JuliaBUGS</a></h3>
+<p>Difficulty: Medium</p>
+<p>Duration: 175 hours or 350 hours</p>
+<p><a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS</a> is a Julia implementation of the <a href="https://en.wikipedia.org/wiki/WinBUGS">BUGS</a> probabilistic programming language. It emphasizes interoperability and modularity. JuliaBUGS gives users familiar with BUGS access to Hamiltonian Monte Carlo &#40;HMC&#41;, Automatic Differentiation &#40;AD&#41;, and Julia’s powerful scientific computing tools. This Google Summer of Code &#40;GSoC&#41; project aims to create easy-to-use R and Python interfaces for JuliaBUGS.</p>
+<p>Project Tasks:</p>
+<ul>
+<li><p><em>Interface Design</em>: Develop R and Python packages similar to existing and widely used R packages like R2OpenBUGS and rjags, making it easy for users to adopt.</p>
+</li>
+<li><p><em>Interoperability Development</em>: Use Julia&#39;s existing packages &#40;<a href="https://github.com/JuliaInterop/JuliaCall">JuliaCall</a> and <a href="https://github.com/JuliaPy/PythonCall.jl">PythonCall</a>&#41; to create the interfaces. This will allow smooth data transfer and function calls between Julia, R, and Python.</p>
+</li>
+<li><p><em>Integration with Tools &#40;Large Project&#41;</em>: Integrate these new interfaces seamlessly with popular Bayesian visualization and diagnostics tools—such as bayesplot, posterior, and coda in R, and ArviZ in Python.</p>
+</li>
+<li><p><em>Documentation and Tutorials &#40;Large Project&#41;</em>: Create clear and practical documentation, including tutorials, to support users in understanding and effectively using the interfaces.</p>
+</li>
+</ul>
+<p>Participants will gain hands-on experience in Bayesian statistics, software engineering, computational methods, and developing software that works across multiple programming languages. This will prepare them well for future academic and professional opportunities.</p>
+<h3 id="jaxprs_in_julia"><a href="#jaxprs_in_julia" class="header-anchor">Jaxprs in Julia</a></h3>
+<p>Difficulty: Hard</p>
+<p>Duration: TBD</p>
+<p>The Turing.jl team is looking for a student to implement a lightweight Julia library to work with <a href="https://docs.jax.dev/en/latest/jaxpr.html">Jaxprs</a>. If this could be you, get in touch and we can discuss the details.</p>
 <h2 id="vs_code_projects"><a href="#vs_code_projects" class="header-anchor">VS Code projects</a></h2>
 <h3 id="vs_code_extension"><a href="#vs_code_extension" class="header-anchor">VS Code extension</a></h3>
 <p>We are generally looking for folks that want to help with the <a href="https://www.julia-vscode.org/">Julia VS Code extension</a>. We have a long list of open issues, and some of them amount to significant projects.</p>
