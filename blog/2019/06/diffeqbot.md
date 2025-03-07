@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2019, 6, 18)
-@def rss = """ Hello @DiffEqBot | Hi! Today we all got a new member to the DiffEq family. Say hi to our own DiffEqBot (https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a repository (https://github.com/DiffE... """
+@def rss_description = """ Hello @DiffEqBot | Hi! Today we all got a new member to the DiffEq family. Say hi to our own DiffEqBot (https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a repository (https://github.com/DiffE... """
 @def published = "18 June 2019"
 @def title = "Hello @DiffEqBot"
 @def authors = """<a href="https://github.com/kanav99">Kanav Gupta</a>"""

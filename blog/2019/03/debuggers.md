@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2019, 3, 19)
-@def rss = """ A Julia interpreter and debugger | The authors are pleased to announce the release of a fully-featured... """
+@def rss_description = """ A Julia interpreter and debugger | The authors are pleased to announce the release of a fully-featured... """
 @def published = "19 March 2019"
 @def title = "A Julia interpreter and debugger"
 @def authors = """<a href="https://github.com/timholy">Tim Holy</a>, <a href="https://github.com/KristofferC">Kristoffer Carlsson</a>, <a href="https://github.com/pfitzseb">Sebastian Pfitzner</a>, <a href="https://github.com/Keno">Keno Fischer</a>"""

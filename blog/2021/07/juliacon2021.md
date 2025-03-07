@@ -4,7 +4,7 @@ published = "26 July 2021"
 title = "JuliaCon 2021, the largest Julia Programming event in history"
 author_img = "blog/Logan.JPG"
 author_blurb = "Julia Language Community Manager"
-rss = """JuliaCon 2021, the largest Julia Programming event in history"""
+rss_description = """JuliaCon 2021, the largest Julia Programming event in history"""
 
 meta = [
    ("property", "og:image", "https://media-exp1.licdn.com/dms/image/C560BAQFjhRdbE2Mbzw/company-logo_200_200/0/1611003674426?e=2159024400&v=beta&t=ICjmwSKSAAgH3fqbHwoUOSaNRqdSVyi9rQY5Sk9J5Bg"),

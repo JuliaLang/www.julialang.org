@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2017, 9, 3)
-@def rss = """ GSoC 2017 Project: MCMC with flexible numbers of parameters | My original GSOC proposal (https://docs.google.com/document/d/1yY5VhucSRW4IHSDurvPsoSBeGQQLaqoyKyYKgVW0J8Q/edit) was to implement modify Mamba.jl to enable it to fit Crosscat, a general-purpose Bayesian model which fits tabular data using row-wise Dirichlet cluster models nested inside a column-wise... """
+@def rss_description = """ GSoC 2017 Project: MCMC with flexible numbers of parameters | My original GSOC proposal (https://docs.google.com/document/d/1yY5VhucSRW4IHSDurvPsoSBeGQQLaqoyKyYKgVW0J8Q/edit) was to implement modify Mamba.jl to enable it to fit Crosscat, a general-purpose Bayesian model which fits tabular data using row-wise Dirichlet cluster models nested inside a column-wise... """
 @def published = "3 September 2017"
 @def title = "GSoC 2017 Project: MCMC with flexible numbers of parameters"
-@def authors = "Jameson Quinn"  
+@def authors = "Jameson Quinn"
 @def hasmath = false
 
 

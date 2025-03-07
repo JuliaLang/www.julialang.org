@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2018, 7, 8)
-@def rss = """ Writing Iterators in Julia 0.7 | This post originally appeared on the Invenia blog.... """
+@def rss_description = """ Writing Iterators in Julia 0.7 | This post originally appeared on the Invenia blog.... """
 @def published = "8 July 2018"
 @def title = "Writing Iterators in Julia 0.7"
-@def authors = """ <a href="https://github.com/iamed2">Eric Davies</a>"""  
+@def authors = """ <a href="https://github.com/iamed2">Eric Davies</a>"""
 @def hascode = true
 @def published = "8 July 2018"
 

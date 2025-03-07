@@ -2,7 +2,7 @@
 @def authors = "Eric P. Hanson, Mosè Giordano"
 @def published = "2 August 2021"
 @def rss_pubdate = Date(2021, 8, 2)
-@def rss = """Code, docs, and tests: what's in the General registry?"""
+@def rss_description = """Code, docs, and tests: what's in the General registry?"""
 
 Julia users like to think the programming language they love is easy to use and
 as such it can promote good programming practices, like writing documentation,

@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2019, 12, 28)
-@def rss = """Yao.jl - Differentiable Quantum Programming In Julia"""
+@def rss_description = """Yao.jl - Differentiable Quantum Programming In Julia"""
 @def published = "28 December 2019"
 @def title = "Yao.jl - Differentiable Quantum Programming In Julia"
-@def authors = """<a href="https://rogerluo.me/">Xiu-Zhe (Roger) Luo</a> and <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>"""  
+@def authors = """<a href="https://rogerluo.me/">Xiu-Zhe (Roger) Luo</a> and <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>"""
 @def hascode = true
 
 We introduce [**Yao**](https://yaoquantum.org/) ([check our latest paper](https://arxiv.org/abs/1912.10877)), an open-source Julia package for solving practical problems in quantum computation research. The name Yao comes from the first Chinese character for unitary (幺正).

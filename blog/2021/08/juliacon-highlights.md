@@ -2,7 +2,7 @@
 @def authors = "The JuliaCon 2021 committee"
 @def published = "20 August 2021"
 @def rss_pubdate = Date(2021, 8, 20)
-@def rss = """JuliaCon 2021 Highlights"""
+@def rss_description = """JuliaCon 2021 Highlights"""
 
 This year’s [JuliaCon](https://www.youtube.com/playlist?list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK) was the biggest and best ever, with [more than 300 presentations available for free on YouTube](https://www.youtube.com/playlist?list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK), more than 20,000 registrations, and more than 43,000 unique YouTube viewers during the conference, up from 162 presentations, 10,000 registrations, and 28,900 unique YouTube viewers during last year's conference. You can read more about last year's conference in our [wrap-up post](https://julialang.org/blog/2020/08/juliacon-2020-wrapup/).
 
@@ -47,7 +47,7 @@ The third annual [Julia User & Developer Survey](https://www.youtube.com/watch?v
 
 ## Sponsors
 
-As always, we want to thank our sponsors for making JuliaCon possible. You can find our list of JuliaCon 2021 sponsors below: 
+As always, we want to thank our sponsors for making JuliaCon possible. You can find our list of JuliaCon 2021 sponsors below:
 
 ~~~
 <img width="792" alt="JuliaCon2021Sponsors" src="https://user-images.githubusercontent.com/35577566/130253763-58b8ab78-dc86-4148-ba08-ef191895976b.png">
@@ -68,7 +68,7 @@ You might want to check out some of the other awesome blog posts folks have writ
 
 ## Beyond JuliaCon 2021
 
-As you might be able to tell, this year's conference was another massive leap for the Julia community. The work required to put on a conference of this size cannot be understated. If you would be interested in helping with future iterations of JuliaCon, we would love to hear from you! Please see this [Volunteer form](https://forms.gle/2KnYko7HnGKLvHJB7) and do reach out if you want to help. 
+As you might be able to tell, this year's conference was another massive leap for the Julia community. The work required to put on a conference of this size cannot be understated. If you would be interested in helping with future iterations of JuliaCon, we would love to hear from you! Please see this [Volunteer form](https://forms.gle/2KnYko7HnGKLvHJB7) and do reach out if you want to help.
 
 We also still have a [general JuliaCon 2021 feedback form](https://forms.gle/7w9q1MBow5u9kUGY7) live. Please feel free to send over any feedback on the conference as we are always interested in improving the experience.
 

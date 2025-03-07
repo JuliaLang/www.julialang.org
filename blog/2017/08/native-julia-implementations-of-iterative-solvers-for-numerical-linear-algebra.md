@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2017, 8, 23)
-@def rss = """ GSoC 2017: Implementing iterative solvers for numerical linear algebra | The central part of my GSoC project is about implementing the Jacobi-Davidson method natively in Julia, available in JacobiDavidson.jl (https://github.com/haampie/JacobiDavidson.jl). This method computes a few approximate solutions of the eigenvalue problem  Ax =  lambda Bx  for large and sparse mat... """
+@def rss_description = """ GSoC 2017: Implementing iterative solvers for numerical linear algebra | The central part of my GSoC project is about implementing the Jacobi-Davidson method natively in Julia, available in JacobiDavidson.jl (https://github.com/haampie/JacobiDavidson.jl). This method computes a few approximate solutions of the eigenvalue problem  Ax =  lambda Bx  for large and sparse mat... """
 @def published = "23 August 2017"
 @def title = "GSoC 2017: Implementing iterative solvers for numerical linear algebra"
 @def authors = "Harmen Stoppels, Andreas Noack"

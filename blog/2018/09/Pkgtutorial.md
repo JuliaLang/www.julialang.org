@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2018, 9, 12)
-@def rss = """ How to get started with Julia 1.0's package manager | For those of you in the midst of transitioning or preparing to transition to Julia 1.0, I've made a short (less than 6 minutes) tutorial on the basics of the new package manager. This video includes how to interact with the package manager and how to check, install, update, and remove packages.... """
+@def rss_description = """ How to get started with Julia 1.0's package manager | For those of you in the midst of transitioning or preparing to transition to Julia 1.0, I've made a short (less than 6 minutes) tutorial on the basics of the new package manager. This video includes how to interact with the package manager and how to check, install, update, and remove packages.... """
 @def published = "12 September 2018"
 @def title = "How to get started with Julia 1.0's package manager"
 @def author = "Jane Herriman"

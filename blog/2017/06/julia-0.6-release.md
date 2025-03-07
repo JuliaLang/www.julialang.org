@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2017, 6, 27)
-@def rss = """ Julia 0.6 Release Announcement | The Julia community is thrilled to announce the release of version 0.6.0 of the Julia language.... """
+@def rss_description = """ Julia 0.6 Release Announcement | The Julia community is thrilled to announce the release of version 0.6.0 of the Julia language.... """
 @def published = "27 June 2017"
 @def title = "Julia 0.6 Release Announcement"
-@def authors = "The Julia Community"  
+@def authors = "The Julia Community"
 
 
 The Julia community is thrilled to announce the release of version 0.6.0 of the Julia language.

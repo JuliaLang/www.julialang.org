@@ -2,7 +2,7 @@
 @def authors = "Jeff Bezanson, Ian Butterworth, Nathan Daly, Keno Fischer, Jameson Nash, Tim Holy, Elliot Saba, Mosè Giordano, Stefan Karpinski, Kristoffer Carlsson"
 @def published = "24 March 2021"
 @def rss_pubdate = Date(2021, 3, 24)
-@def rss = """Some highlights of the Julia 1.6 release."""
+@def rss_description = """Some highlights of the Julia 1.6 release."""
 @def hasplotly = true
 
 Julia version 1.6 has been released. Most Julia releases are timed and hence not

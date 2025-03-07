@@ -753,3 +753,92 @@ pre .bash-block::before {
   margin-left: 5px;
   color: rgb(127, 127, 127);
 }
+.navbar {
+  padding: 1rem 0;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 1rem !important;
+  color: #444 !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #CB3C33 !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #CB3C33;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+  transform: scale(1.05);
+}
+
+.btn-star, .btn-sponsor {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-weight: 500;
+}
+
+.btn-star:hover, .btn-sponsor:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-sponsor {
+  background-color: #CB3C33;
+  border-color: #CB3C33;
+}
+
+.btn-sponsor:hover {
+  background-color: #b93530;
+  border-color: #b93530;
+}
+
+/* Improve mobile menu styles */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+  }
+
+  .navbar-action-buttons {
+      margin-top: 1rem;
+      justify-content: center;
+  }
+
+  .nav-link {
+      padding: 0.75rem 1rem !important;
+  }
+
+  .navbar-toggler {
+      border: none;
+      padding: 0.5rem;
+  }
+
+  .navbar-toggler:focus {
+      box-shadow: none;
+      outline: none;
+  }
+}

@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2019, 9, 7)
-@def rss = """ A Julia workshop in China was hosted by [JuliaCN](https://github.com/JuliaCN) in Beijing on Aug 24, 2019. This is the 5th Julia workshop in China hosted by [JuliaCN](https://github.com/JuliaCN) since 2016. We thank the Julia community and our kind sponsors: [Colorful Clouds](https://caiyunapp.com/), [Microsoft](https://microsoft.com/), [Swarma club](https://swarma.org), and [SyncedReview](https://syncedreview.com/). We received over 100 registrations for this event, and roughly 50 offline participants. The online video stream had 1,600 live viewers."""
+@def rss_description = """ A Julia workshop in China was hosted by [JuliaCN](https://github.com/JuliaCN) in Beijing on Aug 24, 2019. This is the 5th Julia workshop in China hosted by [JuliaCN](https://github.com/JuliaCN) since 2016. We thank the Julia community and our kind sponsors: [Colorful Clouds](https://caiyunapp.com/), [Microsoft](https://microsoft.com/), [Swarma club](https://swarma.org), and [SyncedReview](https://syncedreview.com/). We received over 100 registrations for this event, and roughly 50 offline participants. The online video stream had 1,600 live viewers."""
 @def published = "7 September 2019"
 @def title = "Julia Workshop@Beijing and the Julia Localization Prize"
-@def authors = "Roger Luo, Jun Tian"  
+@def authors = "Roger Luo, Jun Tian"
 
 A Julia workshop in China was hosted by [JuliaCN](https://github.com/JuliaCN) in Beijing on Aug 24, 2019.
 This is the 5th Julia workshop in China hosted by [JuliaCN](https://github.com/JuliaCN) since 2016. We thank the Julia community and

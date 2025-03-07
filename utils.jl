@@ -14,7 +14,7 @@ A full example can be found in `blog/2020/05/rr.md`.
 function hfun_meta()
     title = locvar(:title)
     isnothing(title) && (title = "The Julia Language")
-    descr = locvar(:rss)
+    descr = locvar(:rss_description)
     isnothing(descr) && (descr = "Official website for the Julia programming language")
     p = "property"
     # default og properties, can be overwritten by the user
@@ -67,6 +67,7 @@ function hfun_blogposts()
                 # pagevars for all pages.
                 Franklin.PAGEVAR_DEPTH[] = 0
                 title = pagevar(surl, :title; default="Untitled")
+                Franklin.PAGEVAR_DEPTH[] = 0
                 pubdate = pagevar(surl, :published)
                 if isnothing(pubdate)
                     date    = "$ys-$ms-01"
@@ -109,6 +110,7 @@ function hfun_recentblogposts()
                 ps       = splitext(post)[1]
                 surl     = "blog/$year/$ms/$ps"
                 surls[i] = surl
+                Franklin.PAGEVAR_DEPTH[] = 0
                 pubdate  = pagevar(surl, :published)
                 days[i]  = isnothing(pubdate) ?
                                 1 : day(Date(pubdate, dateformat"d U Y"))
@@ -128,15 +130,18 @@ function hfun_recentblogposts()
     io = IOBuffer()
     for (surl, date) in recent
         url   = "/$surl/"
+        Franklin.PAGEVAR_DEPTH[] = 0
         title = pagevar(surl, :title)
 		title === nothing && (title = "Untitled")
         sdate = "$(day(date)) $(monthname(date)) $(year(date))"
-        blurb = pagevar(surl, :rss)
+        Franklin.PAGEVAR_DEPTH[] = 0
+        blurb = pagevar(surl, :rss_description)
+        blurb = blurb === nothing ? "" : "<p>$blurb</p>"
         write(io, """
             <div class="col-lg-4 col-md-12 blog">
               <h3><a href="$url" class="title" data-proofer-ignore>$title</a>
-              </h3><span class="article-date">$date</span>
-              <p>$blurb</p>
+              </h3><span class="article-date">$sdate</span>
+              $blurb
             </div>
             """)
     end
@@ -224,7 +229,22 @@ function hfun_all_gsoc_projects()
 	for project in all_projects
 		project in ("general.md", "tooling.md", "graphics.md") && continue
 		endswith(project, ".md") || continue
-		write(md, read(joinpath(base_dir, project)))
+        for line in eachline(joinpath(base_dir, project))
+            # remove any table of contents
+            if line == "\\toc"
+                continue
+            end
+
+            # remove ' - Summer of Code' suffix from the primary header
+            line = replace(line, r"^# (.*) - Summer of Code" => s"# \1")
+
+            # increase the header level by 1
+            if startswith(line, "#")
+                line = "#" * line
+            end
+
+            println(md, line)
+        end
 		write(md, "\n\n")
 	end
 	allmd = String(take!(md))

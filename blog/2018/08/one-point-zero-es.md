@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2018, 8, 8)
-@def rss = """La anticipada liberación de la versión 1.0 de..."""
+@def rss_description = """La anticipada liberación de la versión 1.0 de..."""
 @def published = "8 August 2018"
 @def title = "Julia 1.0 Anunciando el release de Julia 1.0 (Spanish)"
-@def authors = "the Julia developers"  
+@def authors = "the Julia developers"
 
 ~~~
 Translations:  <a href="/blog/2018/08/one-point-zero-zh_cn/">Simplified Chinese</a>, <a href="/blog/2018/08/one-point-zero-zh_tw/">Traditional Chinese</a>, <a href="/blog/2018/08/one-point-zero-es/">Spanish</a>

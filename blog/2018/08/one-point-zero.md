@@ -1,7 +1,7 @@
 @def title = "Announcing the release of Julia 1.0"
 @def authors = "Julia developers"
 @def rss_pubdate = Date(2018, 8, 8)
-@def rss = "Announcing the release of Julia 1.0. The much anticipated 1.0 release of Julia is the culmination of..."
+@def rss_description = "Announcing the release of Julia 1.0. The much anticipated 1.0 release of Julia is the culmination of..."
 @def published = "8 August 2018"
 
 ~~~

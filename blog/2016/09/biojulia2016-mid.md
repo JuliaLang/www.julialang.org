@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2016, 9, 10)
-@def rss = """ BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more! | We are pleased to announce releasing... """
+@def rss_description = """ BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more! | We are pleased to announce releasing... """
 @def published = "10 September 2016"
 @def title = "BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more!"
-@def authors = "Kenta Sato"  
+@def authors = "Kenta Sato"
 @def hascode = true
 
 

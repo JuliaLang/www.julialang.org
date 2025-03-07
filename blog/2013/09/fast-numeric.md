@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2013, 9, 4)
-@def rss = """ Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.... """
+@def rss_description = """ Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.... """
 @def published = "4 September 2013"
 @def title = "Fast Numeric Computation in Julia"
 @def authors = """<a href="https://dahua.me">Dahua Lin</a>"""

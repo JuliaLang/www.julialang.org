@@ -25,7 +25,7 @@ author_blurb = """
     Associate Professor of Marine Hydrodynamics at University of Southampton
     """
 
-rss = """
+rss_description = """
     Simulation of a swimming dogfish shark
     """
 rss_pubdate = Date(2021, 8, 12)

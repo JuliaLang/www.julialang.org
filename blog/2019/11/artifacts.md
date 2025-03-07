@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2019, 11, 19)
-@def rss = """Over the past few months, we have been iterating on and refining a design for `Pkg` in Julia 1.3+ to reason about binary objects that are not Julia packages.  While the motivating application for this work has been improving the installation experience for binaries built with [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl), the artifacts subsystem is much more general and is widely applicable to all Julia packages."""
+@def rss_description = """Over the past few months, we have been iterating on and refining a design for `Pkg` in Julia 1.3+ to reason about binary objects that are not Julia packages.  While the motivating application for this work has been improving the installation experience for binaries built with [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl), the artifacts subsystem is much more general and is widely applicable to all Julia packages."""
 @def published = "19 November 2019"
 @def title = "Pkg + BinaryBuilder -- The Next Generation"
-@def authors = """Elliot Saba, Stefan Karpinski, Kristoffer Carlsson"""  
+@def authors = """Elliot Saba, Stefan Karpinski, Kristoffer Carlsson"""
 @def hascode=true
 
 Over the past few months, we have been iterating on and refining a design for `Pkg` in Julia 1.3+ to reason about binary objects that are not Julia packages.  While the motivating application for this work has been improving the installation experience for binaries built with [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl), the artifacts subsystem is much more general and is widely applicable to all Julia packages.

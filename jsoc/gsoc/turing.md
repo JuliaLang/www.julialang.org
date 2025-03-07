@@ -1,96 +1,44 @@
 # Turing Projects - Summer of Code
 
-[Turing](https://turinglang.org/) is a universal probabilistic programming language embedded in Julia.
-Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc.
+[Turing.jl](https://turinglang.org/) is a universal probabilistic programming language embedded in Julia.
+Turing allows the user to write statistical models in standard Julia syntax, and provides a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics, and data science.
 Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added.
 
-Below is a list of ideas for potential projects, though you are welcome to propose your own to the Turing team.
-If you are interested in exploring any of these projects, please reach out to the listed project mentors or Xianda Sun (at xs307[at]cam.ac.uk). You can find their contact information [here](https://turinglang.org/stable/team).
+Below are the projects we have in mind for GSoC 2025. If you are interested in working on any of them, or want to propose your own Turing.jl-related GSoC project, please reach out to Markus Hauru (@mhauru) on Julia's [Slack](https://julialang.org/slack/) or [Discourse](https://discourse.julialang.org/).
 
-## Implementing models from PosteriorDB in Turing / Julia
+## Mooncake.jl Performance Optimization
 
-**Mentors:** Seth Axen, Tor Fjelde, Kai Xu, Hong Ge
+Difficulty: Medium
 
-**Project difficulty:** Medium
+Duration: 350 hours
 
-**Project length:** 175 hrs or 350 hrs
+Description: [Mooncake.jl](https://github.com/compintell/Mooncake.jl/) is a reverse-mode AD package written entirely in Julia, which addresses many of limitations of the popular [ReverseDiff.jl](https://github.com/JuliaDiff/ReverseDiff.jl) and [Zygote.jl](https://github.com/FluxML/Zygote.jl) libraries.
+While the library is typically fast, performance is not tested as systematically as it could be, meaning that there are probably a range of performance bugs waiting to be uncovered.
+Additionally, there are a range of known performance limitations which need to be addressed.
+This project aims to resolve known performance problems, to find new ones, and fix them too!
 
-**Description:**
-[posteriordb](https://github.com/stan-dev/posteriordb) is a database of 120 diverse Bayesian models implemented in Stan (with 1 example model in PyMC) with reference posterior draws, data, and metadata.
-For performance comparison and for showcasing best practices in Turing, it is useful to have Turing implementations of these models.
-The goal of this project is to implement a large subset of these models in Turing/Julia.
+Skills: familiarity with Julia programming, how to make Julia code performant, and a strong desire to make existing Julia code more performant! An understanding of AD is helpful, but not essential.
 
-For each model, we consider the following tasks:
-Correctness test: when reference posterior draws and sampler configuration are available in posteriordb, correctness of the implementation and consistency can be tested by sampling the model with the same configuration and comparing the samples to the reference draws.
-Best practices: all models must be checked to be differentiable with all Turing-supported AD frameworks.
+## R and Python Interfaces for JuliaBUGS
 
-## Improving the integration between Turing and Turing’s MCMC inference packages
+Difficulty: Medium
 
-**Mentors:** Tor Fjelde, Jaime Ruiz Zapatero, Cameron Pfiffer, David Widmann
+Duration: 175 hours or 350 hours
 
-**Project difficulty:** Easy
+[JuliaBUGS](https://github.com/TuringLang/JuliaBUGS.jl) is a Julia implementation of the [BUGS](https://en.wikipedia.org/wiki/WinBUGS) probabilistic programming language. It emphasizes interoperability and modularity. JuliaBUGS gives users familiar with BUGS access to Hamiltonian Monte Carlo (HMC), Automatic Differentiation (AD), and Julia’s powerful scientific computing tools. This Google Summer of Code (GSoC) project aims to create easy-to-use R and Python interfaces for JuliaBUGS.
 
-**Project length:** 175 hrs
+Project Tasks:
+* *Interface Design*: Develop R and Python packages similar to existing and widely used R packages like R2OpenBUGS and rjags, making it easy for users to adopt.
+* *Interoperability Development*: Use Julia's existing packages ([JuliaCall](https://github.com/JuliaInterop/JuliaCall) and [PythonCall](https://github.com/JuliaPy/PythonCall.jl)) to create the interfaces. This will allow smooth data transfer and function calls between Julia, R, and Python.
+* *Integration with Tools (Large Project)*: Integrate these new interfaces seamlessly with popular Bayesian visualization and diagnostics tools—such as bayesplot, posterior, and coda in R, and ArviZ in Python.
+* *Documentation and Tutorials (Large Project)*: Create clear and practical documentation, including tutorials, to support users in understanding and effectively using the interfaces.
 
-**Description:**
-Most samplers in Turing.jl implements the AbstractMCMC.jl interface, allowing a unified way for the user to interact with the samplers.
-The interface of AbstractMCMC.jl is currently very bare-bones and does not lend itself nicely to interoperability between samplers.
+Participants will gain hands-on experience in Bayesian statistics, software engineering, computational methods, and developing software that works across multiple programming languages. This will prepare them well for future academic and professional opportunities.
 
-For example, it’s completely valid to compose to MCMC kernels, e.g. taking one step using the RWMH from AdvancedMH.jl, followed by taking one step using NUTS from AdvancedHMC.jl.
-Unfortunately, implementing such a composition requires explicitly defining conversions between the state returned from RWMH and the state returned from NUTS, and conversion of state from NUTS to state of RWMH.
-Doing this for one such sampler-pair is generally very easy to do, but once you have to do this for N samplers, suddenly the amount of work needed to be done becomes insurmountable.
+## Jaxprs in Julia
 
-One way to deal alleviate this issue would be to add a simple interface for interacting with the states of the samplers, e.g. a method for getting the current values in the state, a method for setting the current values in the state, in addition to a set of glue-methods which can be overridden in the specific case where more information can be shared between the states.
+Difficulty: Hard
 
-As an example of some ongoing work that attempts to take a step in this direction is: <https://github.com/TuringLang/AbstractMCMC.jl/pull/86>
+Duration: TBD
 
-## GPU support for NormalizingFlows.jl and Bijectors.jl
-
-**Mentors:** Tor Fjelde, Tim Hargreaves, Xianda Sun, Kai Xu, Hong Ge
-
-**Project difficulty:** Hard
-
-**Project length:** 175 hrs or 350 hrs
-
-**Description:**
-Bijectors.jl, a package that facilitates transformations of distributions within Turing.jl, currently lacks full GPU compatibility.
-This limitation stems partly from the implementation details of certain bijectors and also from how some distributions are implemented in the Distributions.jl package.
-NormalizingFlows.jl, a newer addition to the Turing.jl ecosystem built atop Bijectors.jl, offers a user-friendly interface and utility functions for training normalizing flows but shares the same GPU compatibility issues.
-
-The aim of this project is to enhance GPU support for both Bijectors.jl and NormalizingFlows.jl.
-
-## Batched support for NormalizingFlows.jl and Bijectors.jl
-
-**Mentors:** Tor Fjelde, Xianda Sun, David Widmann, Hong Ge
-
-**Project difficulty:** Medium
-
-**Project length:** 350 hrs
-
-**Description:**
-This project aims to introduce a `batched mode` to Bijectors.jl and NormalizingFlows.jl, which are built on top of Bijectors.jl.
-
-Put simply, we want to enable users to provide multiple inputs to the model simultaneously by “stacking” the parameters into a higher-dimensional array.
-
-The implementation can take various forms, as a team of developers who care about both performance and user experience, we are open to different approaches and discussions.
-One possible approach is to develop a mechanism that signals the code to process the given input as a batch rather than as individual entries. 
-A preliminary implementation can be found [here](https://github.com/torfjelde/Batching.jl).
-
-## Targets for Benchmarking Samplers with vectorization, GPU and high-order derivative supports
-
-**Mentors:** Kai Xu, Hong Ge
-
-**Project difficulty:** Medium
-
-**Project length:** 175 hrs
-
-**Description:**
-The project aims to develop a comprehensive collection of target distributions designed to study and benchmark Markov Chain Monte Carlo (MCMC) samplers in various computational environments. This collection will be an extension and enhancement of the existing Julia package, [VecTargets.jl](https://github.com/xukai92/VecTargets.jl), which currently offers limited support for vectorization, GPU acceleration, and high-order derivatives. The main objectives of this project include:
-  
-* Ensuring that the target distributions fully support vectorization and GPU acceleration
-* Making high-order derivatives (up to 3rd order) seamlessly integrable with the target distributions
-* Creating a clear and comprehensive documentation that outlines the capabilities and limitations of the project, including explicit details on cases where vectorization, GPU acceleration, or high-order derivatives are not supported.
-* Investigating and documenting how different Automatic Differentiation (AD) packages available in Julia can be combined or utilized to achieve efficient and accurate computation of high-order derivatives.
-  
-By achieving these goals, the project aims to offer a robust framework that can significantly contribute to the research and development of more efficient and powerful MCMC samplers, thereby advancing the field of computational statistics and machine learning.
-
+The Turing.jl team is looking for a student to implement a lightweight Julia library to work with [Jaxprs](https://docs.jax.dev/en/latest/jaxpr.html). If this could be you, get in touch and we can discuss the details.

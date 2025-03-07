@@ -2,7 +2,7 @@
 @def authors = "Jarrett Revels"
 @def published = "20 January 2021"
 @def rss_pubdate = Date(2021, 1, 20)
-@def rss = """A Look Back At The 2020 Industry Julia Users Contributhon"""
+@def rss_description = """A Look Back At The 2020 Industry Julia Users Contributhon"""
 
 A few months ago, I wrote [a blog post](https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/) reflecting on an interesting JuliaCon 2020 discussion between a group of industry-focused Julia users that focused on the interplay between closed-source proprietary software development and Julia's open source software (OSS) ecosystem.
 The blog post summarized a few key issues that our discussion group felt served as real hurdles to meaningful OSS contribution from within private organizations.

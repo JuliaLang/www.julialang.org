@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2018, 2, 21)
-@def rss = """ Julia joins NumFOCUS in Google Summer of Code 2018 | The Julia project has participated in summer of code events since 2014, just two... """
+@def rss_description = """ Julia joins NumFOCUS in Google Summer of Code 2018 | The Julia project has participated in summer of code events since 2014, just two... """
 @def published = "21 February 2018"
 @def title = "Julia joins NumFOCUS in Google Summer of Code 2018"
-@def authors = "The Julia Summer of Code Organizers"  
+@def authors = "The Julia Summer of Code Organizers"
 
 
 The Julia project has participated in summer of code events since 2014, just two

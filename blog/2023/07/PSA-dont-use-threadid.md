@@ -5,7 +5,7 @@ title = "PSA: Thread-local state is no longer recommended"
 authors = "Mason Protter, Valentin Churavy, Ian Butterworth, and many helpful contributors"
 published = "06 July 2023"
 rss_pubdate = Date(2023, 07, 06)
-rss = """PSA: Thread-local state is no longer recommended; Common misconceptions about threadid() and nthreads()"""
+rss_description = """PSA: Thread-local state is no longer recommended; Common misconceptions about threadid() and nthreads()"""
 +++
 
 

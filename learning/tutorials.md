@@ -17,6 +17,7 @@
 * [Programación básica en Julia](https://hedero.webs.upv.es/julia-basico/) and [Claves para programar en Julia](https://hedero.webs.upv.es/julia-claves/) by Helios De Rosario. Two guides in Spanish to get started on Julia.
 * [Practical introduction to Julia for modelling and data analysis in biodiversity and earth sciences](https://github.com/vboussange/WSLJuliaWorkshop2023) by [Victor Boussange](https://vboussange.github.io) and [Mauro Werder](https://maurow.bitbucket.io).
 * [Julia Programming Tutorial For Beginners](https://www.datacamp.com/tutorial/julia-programming-tutorial-for-beginners) by Bekhruz Tuychiev (DataCamp).
+* [Grundlagen der Programmiersprache Julia](http://dx.doi.org/10.13140/RG.2.2.26626.86721) and [Statistik mit Julia](http://dx.doi.org/10.13140/RG.2.2.19915.98086) by Georg Kindermann. Two guides in German to get started on Julia and Statistics with Julia.
 @@
 
 

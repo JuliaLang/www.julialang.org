@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2017, 1, 21)
-@def rss = """ More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process (https://github.com/JuliaLang/julia/issues/8450) and preliminary foundations in Julia 0.5 (/blog/2016-10-11-julia-0.5-highlights#vectorized_function_calls), Julia 0.6 includes new facilities for writing code in the "vectorized"... """
+@def rss_description = """ More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process (https://github.com/JuliaLang/julia/issues/8450) and preliminary foundations in Julia 0.5 (/blog/2016-10-11-julia-0.5-highlights#vectorized_function_calls), Julia 0.6 includes new facilities for writing code in the "vectorized"... """
 @def published = "21 January 2017"
 @def title = "More Dots: Syntactic Loop Fusion in Julia"
 @def authors = """ <a href="https://math.mit.edu/~stevenj">Steven G. Johnson</a>"""

@@ -1,4 +1,4 @@
-# VS Code projects
+# VS Code projects - Summer of Code
 
 ## VS Code extension
 

@@ -12,6 +12,7 @@ Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Ste
 Researchers contributing to Julia have been awarded various prizes:
 
 @@tight-list
+* [2024: Julia Community Prizes](https://juliacon.org/2024/prize/): Guillaume Dalle, the Makie team (Simon Danisch, Julius Krumbiegel, Frederic Freyer, & Anshul Singhvi) and the JuMP team (Oscar Dowson, Benoît Legat, & Miles Lubin)
 * [2023: Julia Community Prizes](https://juliacon.org/2023/prize/): Valentin Churavy, William Moses, Ian Butterworth, Kristoffer Carlsson, and Yingbo Ma
 * [2022: Julia Community Prizes](https://juliacon.org/2022/prize/): Morten Piibeleht, Michael Hatherly, Fredrik Ekre, and Mauro Werder, Frames White, and Shuhei Kadowaki
 * [2021: Julia Community Prizes](https://juliacon.org/2021/prize/): Bogumił Kamiński & Milan Bouchet-Valat, Fons van der Plas, and Dilum Aluthge

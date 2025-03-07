@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2016, 8, 17)
-@def rss = """ Announcing support for complex-domain linear programs in Convex.jl | I am pleased to announce the support for complex-domain linear programs (LPs) in Convex.jl. As one of the *Google Summer of Code* students under *The Julia Language*, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the... """
+@def rss_description = """ Announcing support for complex-domain linear programs in Convex.jl | I am pleased to announce the support for complex-domain linear programs (LPs) in Convex.jl. As one of the *Google Summer of Code* students under *The Julia Language*, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the... """
 @def published = "17 August 2016"
 @def title = "Announcing support for complex-domain linear programs in Convex.jl"
 @def authors = "Ayush Pandey"

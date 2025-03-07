@@ -63,7 +63,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <!-- 3 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>Chat</h3>
-       <p>For casual conversations, we have a <a href="https://julialang.zulipchat.com/register/">Zulip</a>. As a closed source alternative to Zulip, we have an <a href="https://julialang.org/slack/">official Julia Slack</a>. There is also an active community on the <a href="https://discord.gg/mm2kYjB">Humans of Julia Discord server</a>.
+       <p>For casual conversations, we have <a href="https://julialang.zulipchat.com/register/">Zulip</a>, <a href="https://julialang.org/slack/">Slack</a> and <a href="https://discord.gg/mm2kYjB">Discord</a>.
        </p>
      </div>
      <!-- 4 -->
@@ -91,6 +91,30 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
    </div>
    <br>
  </div>
+
+ <!--
+      Containers: Local Communities
+ -->
+  <div class="container pt-sm-2">
+   <br><br>
+   <div class="container">
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="local_communities">
+          <a href="#local_communities" class="link">Local Communities</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+
+     <br>
+     <p>The Julia Community has several local communities organizing meetups and other activities. If your community is missing from the map, add it <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/_libs/groups.js">here</a>.</p>
+     <br>
+     <div id="map"></div>
+   </div>
+ </div>
+<br>
 
  <!--
       Containers: Events

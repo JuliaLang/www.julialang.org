@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2019, 2, 12)
-@def rss = """ The Julia Project and Its Entities | There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll... """
+@def rss_description = """ The Julia Project and Its Entities | There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll... """
 @def published = "12 February 2019"
 @def title = "The Julia Project and Its Entities"
 @def authors = """<a href="https://github.com/StefanKarpinski">Stefan Karpinski</a>"""

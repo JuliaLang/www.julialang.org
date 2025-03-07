@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2017, 9, 1)
-@def rss = """ GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox | Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at FEniCS.jl (https://github.com/SciML/FEniCS.jl) . This would allow users to perform FEM calculations direc... """
+@def rss_description = """ GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox | Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at FEniCS.jl (https://github.com/SciML/FEniCS.jl) . This would allow users to perform FEM calculations direc... """
 @def published = "1 September 2017"
 @def title = "GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox"
-@def authors = "Yiannis Simillides, Bart Janssens, Chris Rackauckas"  
+@def authors = "Yiannis Simillides, Bart Janssens, Chris Rackauckas"
 @def hasmath = true
 @def hascode = true
 

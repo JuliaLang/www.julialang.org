@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2016, 2, 1)
-@def rss = """ Multidimensional algorithms and iteration | Julia makes it easy to write elegant and... """
+@def rss_description = """ Multidimensional algorithms and iteration | Julia makes it easy to write elegant and... """
 @def published = "1 February 2016"
 @def title = "Multidimensional algorithms and iteration"
 @def authors = """ <a href="http://holylab.wustl.edu">Tim Holy</a>"""

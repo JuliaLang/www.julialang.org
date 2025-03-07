@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2018, 8, 8)
-@def rss = """ Julia 1.0 正式發佈 (Traditional Chinese) | 眾所期待的 Julia 語言 (https://julialang.org) 1.0 版是近十年的心血結晶。... """
+@def rss_description = """ Julia 1.0 正式發佈 (Traditional Chinese) | 眾所期待的 Julia 語言 (https://julialang.org) 1.0 版是近十年的心血結晶。... """
 @def published = "8 August 2018"
 @def title = "Julia 1.0 正式發佈 (Traditional Chinese)"
-@def authors = "the Julia developers"  
+@def authors = "the Julia developers"
 
 
 ~~~Translations:  <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>

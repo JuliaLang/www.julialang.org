@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2012, 8, 16)
-@def rss = """ Design and implementation of Julia | We describe the design and implementation of Julia in our first paper - Julia: A Fast Dynamic Language for Technical Computing. This is work in progress and comments are appreciated.... """
+@def rss_description = """ Design and implementation of Julia | We describe the design and implementation of Julia in our first paper - Julia: A Fast Dynamic Language for Technical Computing. This is work in progress and comments are appreciated.... """
 @def published = "16 August 2012"
 @def title = "Design and implementation of Julia"
-@def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"  
+@def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"
 
 
 ~~~<a href="https://github.com/JeffBezanson/">Jeff Bezanson</a>

@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2018, 9, 4)
-@def rss = """ The Julia Community Prizes, 2018 | The Julia Community Prizes celebrate the amazing set of scientists, developers and designers who have come together build such a strong and diverse ecosystem for numerical computing. Each of the four individuals chosen for the first award in 2018 have made immense contributions to Julia over many yea... """
+@def rss_description = """ The Julia Community Prizes, 2018 | The Julia Community Prizes celebrate the amazing set of scientists, developers and designers who have come together build such a strong and diverse ecosystem for numerical computing. Each of the four individuals chosen for the first award in 2018 have made immense contributions to Julia over many yea... """
 @def published = "4 September 2018"
 @def title = "The Julia Community Prizes, 2018"
-@def authors = "Avik Sengupta"  
+@def authors = "Avik Sengupta"
 
 
 ## Congratulations to Tim Besard, Katharine Hyatt, Chris Rackauckas and Elliot Saba

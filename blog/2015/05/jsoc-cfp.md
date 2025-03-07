@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2015, 5, 23)
-@def rss = """ Julia Summer of Code 2015 | Thanks to a generous grant from the Moore Foundation (https://www.moore.org/), we are happy to announce the 2015 **Julia Summer of Code (JSoC)** administered by NumFocus (https://numfocus.org/). We realize that this announcement comes quite late in the summer internship process, but we are hoping to ... """
+@def rss_description = """ Julia Summer of Code 2015 | Thanks to a generous grant from the Moore Foundation (https://www.moore.org/), we are happy to announce the 2015 **Julia Summer of Code (JSoC)** administered by NumFocus (https://numfocus.org/). We realize that this announcement comes quite late in the summer internship process, but we are hoping to ... """
 @def published = "23 May 2015"
 @def title = "Julia Summer of Code 2015"
-@def authors = "The JSoC organizers"  
+@def authors = "The JSoC organizers"
 
 
 

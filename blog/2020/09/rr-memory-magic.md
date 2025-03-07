@@ -3,7 +3,7 @@ author = "Keno Fischer"
 published = "24 September 2020"
 title = "Using time travel to remotely debug faulty DRAM"
 author_blurb = "Co-Founder & CTO of JuliaHub"
-rss = """The story of debugging a mysterious Julia segfault."""
+rss_description = """The story of debugging a mysterious Julia segfault."""
 meta = [
     ("property", "og:image", "https://julialang.org/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg"),
     ("name", "twitter:creator:id", "4922348584"),

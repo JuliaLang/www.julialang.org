@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2017, 8, 28)
-@def rss = """ GSoC 2017: Documentation Browser for Juno | The aim of this GSoC project is to provide a convenient way to access documentation in the... """
+@def rss_description = """ GSoC 2017: Documentation Browser for Juno | The aim of this GSoC project is to provide a convenient way to access documentation in the... """
 @def published = "28 August 2017"
 @def title = "GSoC 2017: Documentation Browser for Juno"
-@def authors = "Sebastian Pfitzner"  
+@def authors = "Sebastian Pfitzner"
 @def hasmath = true
 @def hascode = true
 

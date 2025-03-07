@@ -3,7 +3,7 @@ title =  "Julia User & Developer Survey 2021"
 authors = "Andrew Claster and Viral Shah (JuliaHub)"
 published = "24 August 2021"
 rss_pubdate = Date(2021, 8, 24)
-rss = """Julia User & Developer Survey 2021"""
+rss_description = """Julia User & Developer Survey 2021"""
 base = "/assets/images/"
 +++
 

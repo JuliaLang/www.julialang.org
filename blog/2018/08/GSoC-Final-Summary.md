@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2018, 8, 6)
-@def rss = """ GSoC 2018: Reinforcement Learning and Generative models using Flux | In this post I'm going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of Flux.jl (https://github.com/FluxML), a machine learning library written in Julia (https://github.com/JuliaLang/julia). My project cover... """
+@def rss_description = """ GSoC 2018: Reinforcement Learning and Generative models using Flux | In this post I'm going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of Flux.jl (https://github.com/FluxML), a machine learning library written in Julia (https://github.com/JuliaLang/julia). My project cover... """
 @def published = "6 August 2018"
 @def title = "GSoC 2018: Reinforcement Learning and Generative models using Flux"
 @def authors = """ <a href="https://github.com/tejank10">Tejan Karmali</a>"""

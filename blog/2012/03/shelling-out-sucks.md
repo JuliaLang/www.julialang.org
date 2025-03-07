@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2012, 3, 11)
-@def rss = """ Shelling Out Sucks | Spawning a pipeline of connected programs via an intermediate shell — a.k.a. "shelling out" — is a really convenient and effective way to get things done.... """
+@def rss_description = """ Shelling Out Sucks | Spawning a pipeline of connected programs via an intermediate shell — a.k.a. "shelling out" — is a really convenient and effective way to get things done.... """
 @def published = "11 March 2012"
 @def title = "Shelling Out Sucks"
-@def authors = """ <a href="https://karpinski.org/">Stefan Karpinski</a>"""  
+@def authors = """ <a href="https://karpinski.org/">Stefan Karpinski</a>"""
 @def hascode = true
 
 [followup post]: /blog/2013/04/put-this-in-your-pipe/

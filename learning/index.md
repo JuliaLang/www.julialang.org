@@ -83,9 +83,7 @@
      </p>
      <p>There also exist a growing number of curated Julia courses in the form of video lecture series. These courses are freely available on <a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>. You can also sign up through <a href="https://juliaacademy.com">JuliaAcademy</a> to track your progress, take quizzes, and get certificates.</p>
      <a href="https://juliaacademy.com/courses">
-     <img src="assets/JA-1.png" alt="JuliaAcademy" class="img-fluid">
-     <img src="assets/JA-2.png" alt="JuliaAcademy" class="img-fluid">
-     <img src="assets/JA-3.png" alt="JuliaAcademy" class="img-fluid">
+     <img src="assets/JA.svg" alt="JuliaAcademy" class="img-fluid">
      </a>
    </div>
  </div>
@@ -132,7 +130,7 @@
     </div>
 
     <p><a href="https://plutojl.org/">Pluto.jl</a> is a Julia programming environment designed for <em>learning and teaching</em>, and it is a great way to get started with Julia programming, packages and visualisation.</p>
-    <p>Pluto.jl is <a href="https://plutojl.org/#install">easy to install</a>, and you can write interactive documents with no prior experience. 
+    <p>Pluto.jl is <a href="https://plutojl.org/#install">easy to install</a>, and you can write interactive documents with no prior experience.
     </p>
     <br>
     <br>

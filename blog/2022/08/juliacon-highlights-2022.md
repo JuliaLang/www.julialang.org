@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2022, 08, 10)
-@def rss = """JuliaCon 2022 Highlights"""
+@def rss_description = """JuliaCon 2022 Highlights"""
 @def published = "10 August 2022"
 @def title = "JuliaCon 2022 Highlights"
 @def authors = """The JuliaCon 2022 Organizing Committee"""
@@ -12,9 +12,9 @@ meta = [ ("property", "og:image", "https://user-images.githubusercontent.com/355
 
 Another successful JuliaCon is officially in the books! This year, we had 7,986 free registrations via Eventbrite with over 220 people opting to make a donation to the Julia Project while signing up. Between the period of July 19th (start of workshops) - July 30th (last day of the conference), we had over 41,000 unique viewers on the Julia Language’s YouTube and 10,000+ more across the PyData YouTube along with other venues like LinkedIn despite the Summer of 2022 including travel plans for many along with virtual conference burnout. This year’s conference boasted the highest quality content to date, with more engagement overall than we have seen in previous years.
 
-# Julia Community Prize Winners 
+# Julia Community Prize Winners
 
-We wanted to give another warm congratulation to the [2022 Julia Community Prize winners](https://juliacon.org/2022/prize/). This year’s winners are: 
+We wanted to give another warm congratulation to the [2022 Julia Community Prize winners](https://juliacon.org/2022/prize/). This year’s winners are:
 
 - Morten Piibeleht, Michael Hatherly, Fredrik Ekre, and Mauro Werder (For their work on Documenter.jl and its ecosystem)
 - Frames White (For her many technical and community contributions across the Julia ecosystem)
@@ -22,7 +22,7 @@ We wanted to give another warm congratulation to the [2022 Julia Community Prize
 
 It is an incredibly tough job to pick just three awards each year as there are so many deserving people in the Julia community.
 
-# Keynotes 
+# Keynotes
 
 JuliaCon 2022 brought together an amazing group of keynote speakers sharing some truly amazing perspectives.
 
@@ -46,7 +46,7 @@ This year's 4th annual Julia User and Developer survey captured the thoughts of 
 
 # Sponsors
 
-JuliaCon would not be possible without the support of such amazing sponsors.  You can find our list of JuliaCon 2022 sponsors below with their sponsored videos: 
+JuliaCon would not be possible without the support of such amazing sponsors.  You can find our list of JuliaCon 2022 sponsors below with their sponsored videos:
 
 - JuliaHub, Platinum Sponsor, [Sponsored Talk](https://www.youtube.com/watch?v=ZB15pk1fpgA)
 - Julius Technologies, Platinum Sponsor, [Sponsored Talk](https://www.youtube.com/watch?v=Giq0qRByfmY)
@@ -64,7 +64,7 @@ JuliaCon would not be possible without the support of such amazing sponsors.  Yo
 - Jeffrey Sarnoff, Silver Sponsor
 - Packt Publishing, Gather, and Vercel: Media Partners
 - Data Umbrella and WiMLDS: Community Partners
-- NumFOCUS, Fiscal Sponsor 
+- NumFOCUS, Fiscal Sponsor
 
 # JuliaCon T-Shirt, Mug, and more!
 
@@ -77,7 +77,7 @@ We are always trying to make JuliaCon more inclusive, fun, and informative. If y
 
 # Wrapping up
 
-JuliaCon 2022 was yet another amazing event for the community and ecosystem to come together (albeit virtually). During the closing remarks of this year's conference, co-chair Valentin Churavy [announced that next year’s conference will be in-person at MIT July 23rd - 28th, 2023](https://www.youtube.com/watch?v=9H9igUoavxc). 
+JuliaCon 2022 was yet another amazing event for the community and ecosystem to come together (albeit virtually). During the closing remarks of this year's conference, co-chair Valentin Churavy [announced that next year’s conference will be in-person at MIT July 23rd - 28th, 2023](https://www.youtube.com/watch?v=9H9igUoavxc).
 
 Thank you to all of the amazing speakers, volunteers, organizations, and the entire Julia community for making this year's conference a success. It truly does take a community to put on JuliaCon!
 

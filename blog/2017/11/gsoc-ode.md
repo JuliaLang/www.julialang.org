@@ -1,8 +1,8 @@
 @def rss_pubdate = Date(2017, 11, 1)
-@def rss = """ GSoC 2017: Native Julia second order ODE and BVP solvers | My original GSoC project was about implementing native Julia solvers for solving boundary value problems (BVPs) that were determined from second order ordinary differential equations (ODEs). I started down the BVP path, built a shooting method to solve BVPs from initial value problems (IVPs), and the... """
+@def rss_description = """ GSoC 2017: Native Julia second order ODE and BVP solvers | My original GSoC project was about implementing native Julia solvers for solving boundary value problems (BVPs) that were determined from second order ordinary differential equations (ODEs). I started down the BVP path, built a shooting method to solve BVPs from initial value problems (IVPs), and the... """
 @def published = "1 November 2017"
 @def title = "GSoC 2017: Native Julia second order ODE and BVP solvers"
-@def authors = "Yingbo Ma, Chris Rackauckas, Jiahao Chen, Christoph Ortner"  
+@def authors = "Yingbo Ma, Chris Rackauckas, Jiahao Chen, Christoph Ortner"
 @def hascode = true
 @def hasmath = true
 
