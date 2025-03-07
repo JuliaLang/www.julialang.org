@@ -40,7 +40,7 @@ Many graph convolutional layers can be expressed as non-materializing algebraic 
 **Expected outcome**: A noticeable performance increase for many graph convolutional operations.
 
 
-### Support for AMGDPU and Apple Silicon
+### Support for AMDGPU and Apple Silicon
 
 We currently support scatter/gather operation only on CPU and CUDA hardware. We aim to extend this to AMDGPU and Apple Silicon
 leveraging KernelAbstractions.jl, AMDGPU.jl, and Metal.jl.
