@@ -23,7 +23,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
 * [QuantumOptics](/jsoc/gsoc/quantumoptics) - Quantum dynamics and master equations
 * [Rimu.jl](/jsoc/gsoc/rimu) - Quantum Monte Carlo for physics and chemistry
-* [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [Tooling](/jsoc/gsoc/tooling/) - Development of developer tools and development environments for Julia
 * [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.
@@ -32,8 +31,8 @@ We have our project ideas organized below roughly by domain but you can also see
 
 We also have Julia project's available under other organizations. If you are applying for those projects, make sure your application is for that organization and NOT the Julia Language:
 @@tight-list
-* [Gridap - NumFOCUS](https://github.com/numfocus/gsoc#gridap)
-* [FluxML - NumFOCUS](https://github.com/numfocus/gsoc#fluxml)
-* [SciML - NumFOCUS](https://github.com/numfocus/gsoc#sciml)
-* [ArviZ - NumFOCUS](https://github.com/numfocus/gsoc#arviz)
+* [Gridap - NumFOCUS \[Finite Element Discretizations of Partial Differential Equations\]](https://github.com/numfocus/gsoc#gridap)
+* [FluxML - NumFOCUS \[Deep Learning\]](https://github.com/numfocus/gsoc#fluxml)
+* [SciML - NumFOCUS \[Numerical Solvers (Differential Equations, Optimization, etc.), Symbolic Computing, Modeling Languages, Scientific Machine Learning\]](https://github.com/numfocus/gsoc#sciml)
+* [ArviZ - NumFOCUS \[Bayesian Modeling and Visualization\]](https://github.com/numfocus/gsoc#arviz)
 @@
