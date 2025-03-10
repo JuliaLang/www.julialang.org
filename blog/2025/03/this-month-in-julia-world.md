@@ -6,8 +6,6 @@
 
 A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.
 
-FYI, a JuliaCon Local is planned for Paris in late 2025. More details to follow in future issues of the newsletter.
-
 “Internals” Fora and Core Repos (Slack/Zulip/Discourse/Github):
 
 * Revise is almost ready to work on structs, not just functions… This went from “never going to happen” to “standard feature” in the blink of an eye. See [slack discussion](https://julialang.slack.com/archives/C03D578FCDD/p1738836742511929) and the [last PR in the series](https://github.com/JuliaLang/julia/pull/57253).
