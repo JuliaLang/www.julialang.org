@@ -13,12 +13,12 @@ author = ""
 # Templating of the Downloads
 # NOTE: When updating for a new release, make sure to also rerun
 # `downloads/oldreleases.jl`
-stable_release = "1.11.3"
+stable_release = "1.11.4"
 stable_release_short = "1.11"
-stable_release_date = "January 21, 2025"
-lts_release = "1.10.8"
+stable_release_date = "March 10, 2025"
+lts_release = "1.10.9"
 lts_release_short = "1.10"
-lts_release_date = "January 22, 2025"
+lts_release_date = "March 10, 2025"
 
 # plotly
 hasplotly = false
