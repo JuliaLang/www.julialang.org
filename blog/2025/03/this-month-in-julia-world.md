@@ -6,6 +6,8 @@
 
 A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.
 
+FYI, a JuliaCon Local is planned for Paris in late 2025. More details to follow in future issues of the newsletter.
+
 “Internals” Fora and Core Repos (Slack/Zulip/Discourse/Github):
 
 * Revise is almost ready to work on structs, not just functions… This went from “never going to happen” to “standard feature” in the blink of an eye. See [slack discussion](https://julialang.slack.com/archives/C03D578FCDD/p1738836742511929) and the [last PR in the series](https://github.com/JuliaLang/julia/pull/57253).
@@ -18,17 +20,19 @@ A monthly newsletter, mostly on julia internals, digestible for casual observers
 * Deep [rework and cleanup for `IOBuffer`](https://github.com/JuliaLang/julia/pull/57570) is coming up.
 * In case you did not know, besides the subtyping comparator `<:` we have a supertyping comparator `:>` that can be used in type parameterizations. It now also has a little bit more [syntactic sugar support](https://github.com/JuliaLang/julia/pull/57554).
 * Suggested best practices for [documenting return value types](https://github.com/JuliaLang/julia/pull/57583).
-* BinaryBuilder.jl will soon be able to run on newer versions of julia instead of [being stuck to 1.7](https://github.com/JuliaPackaging/JLLPrefixes.jl/issues/6) thanks to [stability guarantees to some internals of Pkg](https://github.com/JuliaLang/Pkg.jl/pull/4156) enabled by [recent work](https://github.com/JuliaLang/Pkg.jl/pull/4151).
-* Internal support for LLVM 19 and 20 in the julia compiler is [nearly done](https://github.com/JuliaLang/julia/pull/57352).
+* BinaryBuilder.jl [is stuck to julia 1.7](https://github.com/JuliaPackaging/JLLPrefixes.jl/issues/6). Work has started on removing these constraints, thanks to [stability guarantees in Pkg internals](https://github.com/JuliaLang/Pkg.jl/pull/4156) enabled by [recent work](https://github.com/JuliaLang/Pkg.jl/pull/4151).
+* Internal support for LLVM 19 in the julia compiler is [done](https://github.com/JuliaLang/julia/pull/56130) and [progress is being made for LLVM 20](https://github.com/JuliaLang/julia/pull/57352).
 * Support for using various external garbage collection algorithms (thanks to immix) is [growing here](https://github.com/JuliaLang/julia/pull/57327) and [here](https://github.com/JuliaLang/julia/pull/57294).
 
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
 
+* The Center for Quantum Networks is [hirring GUI developers](https://discourse.julialang.org/t/gui-developer-for-simulation-tools-at-the-nsf-center-for-quantum-networks/126782) for work on open source network design and simulation frontend, hopefully with positive outcomes to the graphs.jl ecosystem as well.
 * The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science.
 * [SciML is running a large set of funded small projects](https://sciml.ai/small_grants/) – a great opportunity to contribute to the community and be paid for it.
 
 Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
+* [Google Colab now supports Julia natively](https://discourse.julialang.org/t/julia-in-colab/126600)
 * [ComposableAsyncStatus.jl](https://code.tecosaur.net/tec/ComposableAsyncStatus.jl#headline-1) is amazing for [progress reporting from multiple potentially parallel tasks](https://julialang.slack.com/archives/C67910KEH/p1739280864875829).
 * [RxInfer.jl just got to v1](https://discourse.julialang.org/t/release-rxinfer-4-0-0-and-updated-documentation/126145), an amazing package for Bayesian inference.
 * AcademicIdentifiers.jl – a convenient library to work with [DOI/ORCiD/Arxiv and more](https://code.tecosaur.net/tec/AcademicIdentifiers.jl)
