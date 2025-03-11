@@ -31,8 +31,8 @@ We have our project ideas organized below roughly by domain but you can also see
 
 We also have Julia project's available under other organizations. If you are applying for those projects, make sure your application is for that organization and NOT the Julia Language:
 @@tight-list
-* [Gridap - NumFOCUS \[Finite Element Discretizations of Partial Differential Equations\]](https://github.com/numfocus/gsoc#gridap)
-* [FluxML - NumFOCUS \[Deep Learning\]](https://github.com/numfocus/gsoc#fluxml)
-* [SciML - NumFOCUS \[Numerical Solvers (Differential Equations, Optimization, etc.), Symbolic Computing, Modeling Languages, Scientific Machine Learning\]](https://github.com/numfocus/gsoc#sciml)
-* [ArviZ - NumFOCUS \[Bayesian Modeling and Visualization\]](https://github.com/numfocus/gsoc#arviz)
+* [Gridap - NumFOCUS [Finite Element Discretizations of Partial Differential Equations]](https://github.com/numfocus/gsoc#gridap)
+* [FluxML - NumFOCUS [Deep Learning]](https://github.com/numfocus/gsoc#fluxml)
+* [SciML - NumFOCUS [Numerical Solvers (Differential Equations, Optimization, etc.), Symbolic Computing, Modeling Languages, Scientific Machine Learning]](https://github.com/numfocus/gsoc#sciml)
+* [ArviZ - NumFOCUS [Bayesian Modeling and Visualization]](https://github.com/numfocus/gsoc#arviz)
 @@
