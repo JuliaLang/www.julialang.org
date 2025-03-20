@@ -4,6 +4,23 @@
 Application domains of set-based reachability include formal verification, controller synthesis and estimation under uncertain model parameters or inputs.
 For further context reach us on the [JuliaReach zulip](https://julialang.zulipchat.com/#narrow/stream/278609-juliareach) stream. You may also refer to the review article [Set Propagation Techniques for Reachability Analysis](https://www.annualreviews.org/doi/abs/10.1146/annurev-control-071420-081941).
 
+## Integration with the Julia numerical modeling ecosystem
+
+**Difficulty**: Medium.
+
+**Description.** [ReachabilityAnalysis](https://github.com/JuliaReach/ReachabilityAnalysis.jl) is a Julia library for set propagation of dynamical systems.
+This project aims at integrating ReachabilityAnalysis with the numerical modeling ecosystem in Julia.
+
+**Expected Results.** The proposal is to let the user specify models defined in [ModelingToolkit.jl](https://github.com/SciML/ModelingToolkit.jl) from the [SciML](https://github.com/sciml) ecosystem,
+and solve them using reachability methods. This first iteration would cover purely continuous systems; a second iteration would cover systems with discrete transitions (hybrid systems).
+
+**Expected Length.** 175 hours.
+
+**Recommended Skills.** Familiarity with Julia and Git/GitHub is mandatory.
+Familiarity with [LazySets](https://github.com/JuliaReach/LazySets.jl) and [ReachabilityAnalysis](https://github.com/JuliaReach/ReachabilityAnalysis.jl) is welcome but not required.
+
+**Mentors**: [Marcelo Forets](https://github.com/mforets), [Christian Schilling](https://github.com/schillic).
+
 ## Efficient symbolic-numeric set computations
 
 **Difficulty**: Medium.
