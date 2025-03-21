@@ -227,7 +227,6 @@ function hfun_all_gsoc_projects()
 	all_projects = readdir(base_dir)
 	md = IOBuffer()
 	for project in all_projects
-		project in ("general.md", "tooling.md", "graphics.md") && continue
 		endswith(project, ".md") || continue
         for line in eachline(joinpath(base_dir, project))
             # remove any table of contents
