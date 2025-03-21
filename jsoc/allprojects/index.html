@@ -360,6 +360,12 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 </ul>
 <p><strong>Expected Results:</strong> A set of optimized GPU kernels in GPUArrays.jl that are vendor-agnostic and performant across different GPU backends. This will improve the portability of the Julia GPU stack and make it easier to support new GPU architectures.</p>
 <p><strong>Mentors:</strong> <a href="https://github.com/maleadt">Tim Besard</a>, <a href="https://github.com/vchuravy">Valentin Churavy</a></p>
+<h2 id="graphic_projects_summer_of_code"><a href="#graphic_projects_summer_of_code" class="header-anchor">Graphic Projects – Summer of Code</a></h2>
+<h3 id="vegalitejl_improvements"><a href="#vegalitejl_improvements" class="header-anchor">VegaLite.jl Improvements</a></h3>
+<p>The <a href="https://github.com/queryverse/VegaLite.jl">VegaLite.jl</a> package provides a Julia wrapper for <a href="https://vega.github.io/vega-lite/">vega-lite</a> and <a href="https://vega.github.io/vega/">vega</a>. There are many areas that could be improved: 1&#41; provide a more powerful <a href="https://vega.github.io/vega/">vega</a> API that is similar to the existing <a href="https://vega.github.io/vega-lite/">vega-lite</a> API, 2&#41; complete the <a href="https://vega.github.io/vega-lite/">vega-lite</a> API &#40;there are many corner cases that are not ideally handled right now&#41;, 3&#41; make things work better for large datasets, 4&#41; come up with a way to auto-convert/integrate the comprehensive vega-lite documentation into the VegaLite.jl documentation, 5&#41; write more documentation, 6&#41; increase test coverage or 7&#41; add a simple non-grammar of graphics API.</p>
+<p><strong>Expected Results</strong>: Some subset of the list mentioned above.</p>
+<p><strong>Recommended Skills</strong>: Familiarity with Julia, vega-lite or vega, and Node.</p>
+<p><strong>Mentors</strong>: <a href="https://github.com/davidanthoff">David Anthoff</a></p>
 <h2 id="herbjl_projects"><a href="#herbjl_projects" class="header-anchor">Herb.jl Projects</a></h2>
 <p><img src="https://raw.githubusercontent.com/Herb-AI/Herb.jl/refs/heads/documentation/docs/src/assets/herb.png" alt="Herb Logo" /></p>
 <p>Wouldn’t it be great if Julia would program itself? Tell it what you want, Julia magic happens, and you get your program directly. We introduce Herb.jl, a library written in Julia that gets us a step closer to our big goal. <a href="https://herb-ai.github.io/">Herb.jl</a> is a library for program synthesis: The task of automatically generating programs from a given specification. Here, “a program” could be anything, from an actual Python program over moves in chess to the synthesis of biochemical molecules. There are numerous works on program synthesis, all speaking a different language in code and terminology. We want to make developing, comparing, and applying ideas in program synthesis easier.</p>
@@ -1154,6 +1160,39 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 </ul>
 <p><strong>Mentors</strong>: <a href="https://github.com/mtsch">Matija Čufar</a>, <a href="https://github.com/joachimbrand">Joachim Brand</a></p>
 <p>If you are interested please get in touch with <a href="mailto:matijacufar@gmail.com">Matija</a> or <a href="mailto:j.brand@massey.ac.nz">Joachim</a>.</p>
+<h2 id="tooling"><a href="#tooling" class="header-anchor">Tooling</a></h2>
+<h3 id="development_of_a_new_language_server_for_julia_350_hours"><a href="#development_of_a_new_language_server_for_julia_350_hours" class="header-anchor">Development of a new language server for Julia &#40;350 hours&#41;</a></h3>
+<p>The goal of this project is to develop a new language server for Julia, currently called <a href="https://github.com/aviatesk/JETLS.jl">JETLS</a>. This language server aims to enhance developer productivity by providing advanced static analysis and seamless integration with the Julia runtime. By leveraging tooling technologies like JET, Revise and JuliaLowering, JETLS aims to offer enhanced language features such as type-sensitive diagnostics and macro-aware code completions.</p>
+<p>The project is currently in the very early stages of prototyping. We&#39;ve implemented the basic JSON message communication system and the protocol, but the core functionalities of the language server, including its analysis routines and incremental state management system, is still pretty primitive. The plan is to have the core functionalities of the language server more solid by the summer when GSoC 2025 starts, through working on implementing &quot;diagnostics&quot; and &quot;completion&quot; features. During GSoC, we expect to combine these core features with new tooling technologies like JuliaLowering.jl to implement new language server features, such as &quot;go to definition&quot; and &quot;outline.&quot;</p>
+<p>Also, as preparation, we hope that by the time GSoC starts, you&#39;ll have gained some knowledge about the implementation of JETLS.jl and tools like <a href="https://github.com/aviatesk/JET.jl">JET.jl</a>, <a href="https://github.com/timholy/Revise.jl">Revise.jl</a> and <a href="https://github.com/c42f/JuliaLowering.jl/pulls">JuliaLowering.jl</a>.</p>
+<ul>
+<li><p><strong>Expected Outcomes</strong>: A functional language server that significantly improves the developer experience for Julia users, with enhanced language capabilities including type-sensitive diagnostics and macro-aware code completions.</p>
+</li>
+<li><p><strong>Skills Required</strong>:</p>
+<ul>
+<li><p>Proficiency in Julia programming and familiarity with its compiler and runtime systems</p>
+</li>
+<li><p>Interest in and/or experience with LSP and developer tools like JET.jl and Revise.jl</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Difficulty</strong>: Hard</p>
+</li>
+<li><p><strong>Contact</strong>: <a href="https://github.com/aviatesk">Shuhei Kadowaki</a></p>
+</li>
+</ul>
+<h3 id="automation_of_testing_performance_benchmarking_350_hours"><a href="#automation_of_testing_performance_benchmarking_350_hours" class="header-anchor">Automation of testing / performance benchmarking &#40;350 hours&#41;</a></h3>
+<p>The Nanosoldier.jl project &#40;and related <a href="https://github.com/JuliaCI/BaseBenchmarks.jl">https://github.com/JuliaCI/BaseBenchmarks.jl</a>&#41; tests for performance impacts of some changes. However, there remains many areas that are not covered &#40;such as compile time&#41; while other areas are over-covered &#40;greatly increasing the duration of the test for no benefit&#41; and some tests may not be configured appropriately for statistical power. Furthermore, the current reports are very primitive and can only do a basic pair-wise comparison, while graphs and other interactive tooling would be more valuable. Thus, there would be many great projects for a summer contributor to tackle here&#33;</p>
+<ul>
+<li><p><strong>Expected Outcomes</strong>: Improvement of Julia&#39;s automated testing/benchmarking framework.</p>
+</li>
+<li><p><strong>Skills</strong>: Interest in and/or experience with CI systems.</p>
+</li>
+<li><p><strong>Difficulty</strong>: Medium</p>
+</li>
+<li><p><strong>Contact:</strong> <a href="https://github.com/vtjnash">Jameson Nash</a>, <a href="https://github.com/maleadt">Tim Besard</a></p>
+</li>
+</ul>
 <h2 id="topopt_projects_summer_of_code"><a href="#topopt_projects_summer_of_code" class="header-anchor">TopOpt Projects – Summer of Code</a></h2>
 <p><a href="https://github.com/JuliaTopOpt/TopOpt.jl">TopOpt.jl</a> is a <a href="https://en.wikipedia.org/wiki/Topology_optimization">topology optimization</a> package written in pure Julia. Topology optimization is an exciting field at the intersection of shape representation, physics simulations and mathematical optimization, and the Julia language is a great fit for this field. To learn more about <code>TopOpt.jl</code>, check the following <a href="https://www.youtube.com/watch?v&#61;sBqdkxPXluU">JuliaCon talk</a>.</p>
 <p>The following is a tentative list of projects in topology optimization that you could be working on in the coming Julia Season of Contributions or Google Summer of Code. If you are interested in exploring any of these topics or if you have other interests related to topology optimization, please reach out to the main mentor <a href="https://github.com/mohamed82008">Mohamed Tarek</a> via email.</p>
