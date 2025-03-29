@@ -28,8 +28,7 @@ The main interest in this project is to implement algorithms that leverage the s
 
 **Expected Results.** It is expected to add efficient Julia implementations of a reachability algorithm for dynamical systems in [ReachabilityAnalysis](https://github.com/JuliaReach/ReachabilityAnalysis.jl) which leverages polynomial zonotopes. A successful project should:
 
-- Replicate the results from the article [Reachability Analysis for Linear Systems with Uncertain Parameters using Polynomial Zonotopes
-](https://dl.acm.org/doi/abs/10.1145/3575870.3587130).
+- Replicate the results from the article [Reachability Analysis for Linear Systems with Uncertain Parameters using Polynomial Zonotopes](https://dl.acm.org/doi/abs/10.1145/3575870.3587130).
 
 - The code shall be documented, tested, and evaluated extensively in benchmarks.
 
