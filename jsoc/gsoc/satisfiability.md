@@ -8,13 +8,26 @@ Satisfiability modulo theories (SMT) is a powerful logic programming tool used (
 
 [🔗 Satisfiability.jl](https://elsoroka.github.io/Satisfiability.jl/dev/) s a high-level interface that allows users to specify complex SMT formulas in pure, idiomatic Julia, and directly interfaces with solvers (e.g. Z3 or CVC5). Satisfiability.jl is **not** a solver; it is an interface to SMT solvers in the same sense that Convex.jl and Jump.jl are interfaces to numerical-optimization solvers. No experience with SMT solving algorithms is required for this project.
 
-Goal. Satisfiability.jl supports just 3 theories so far, and is missing a few major theories: Arrays, Floating-point Numbers, and Strings.
+This project aims to extend Satisfiability.jl, a Julia package that provides an native, direct interface to SMT (Satisfiability Modulo Theories) solvers via the SMT-LIB specification language. Currently, Satisfiability.jl supports only three theories, and this project will implement one major additional theory (Arrays, Floating-point Numbers, or Strings) to bring the package closer to supporting all SMT-LIB theories.
 
-This project aims to add support for one major SMT-LIB theory (either). This will bring us closer to our milestone of supporting all SMT-LIB theories, and allow Julia users to write more expressive constraints using these constructs to model more complex problems, and lay the groundwork for a maturing formal tools ecosystem in Julia.
+This work will enhance the Julia ecosystem for formal verification and constraint satisfaction, allowing researchers and developers to interact with SMT solvers directly in pure
 
-Stretch goals for this project could include adding the capability for Satisfiability.jl to automatically determine what [logics] an SMT expression includes, which will help users determine what solvers are capable of solving it.
+Approach
+- Consult the SMT-LIB standard to design a clean, idiomatic Julia API
+- Implement the selected theory with appropriate Julia types and operators
+- Create comprehensive tests to ensure correctness and usability
+- Write thorough documentation and examples to help users understand the new functionality
 
-Scope. This project is scoped as a 90-hour project over 12 weeks.
+Main goals
+- A fully implemented SMT-LIB theory with 100% test coverage
+- Documentation and examples demonstrating usage
+- An API design that feels natural in Julia and consistent with the package
+
+Stretch goals
+- Implementing a second theory
+- Automated logic detection
+- Improved parser for SMT solver output
+- Performance benchmarking
 
 **Skills:** Familiarity with automated reasoning/formal verification software such as Z3 or CVC5. Ideally, familiarity with the SMT-LIB language but this can be learned!
 
