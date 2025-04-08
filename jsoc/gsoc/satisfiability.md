@@ -2,7 +2,8 @@
 
 Extending Satisfiability.jl with more SMT-LIB theories and expanded capabilities.
 
-**Time Commitment:** 90h
+**Time Commitment:** 175h
+**Difficulty:** Medium
 
 Satisfiability modulo theories (SMT) is a powerful logic programming tool used (among other things) to formally verify programs and hardware for correctness and security. Currently, most solvers (that follow the SMT-LIB standard) require input to be specified in the SMT-LIB specification language, which is not really human-readable. 
 
