@@ -23,6 +23,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
 * [QuantumOptics](/jsoc/gsoc/quantumoptics) - Quantum dynamics and master equations
 * [Rimu.jl](/jsoc/gsoc/rimu) - Quantum Monte Carlo for physics and chemistry
+* [Satisfiability.jl](/jsoc/gsoc/satisfiability) - An Idiomatic, Native Julia Interface for SMT
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [Tooling](/jsoc/gsoc/tooling/) - Development of developer tools and development environments for Julia
 * [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.
