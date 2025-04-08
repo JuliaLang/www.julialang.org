@@ -1164,6 +1164,48 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 </ul>
 <p><strong>Mentors</strong>: <a href="https://github.com/mtsch">Matija Čufar</a>, <a href="https://github.com/joachimbrand">Joachim Brand</a></p>
 <p>If you are interested please get in touch with <a href="mailto:matijacufar@gmail.com">Matija</a> or <a href="mailto:j.brand@massey.ac.nz">Joachim</a>.</p>
+<h2 id="an_idiomatic_native_julia_interface_for_smt_2025"><a href="#an_idiomatic_native_julia_interface_for_smt_2025" class="header-anchor">An Idiomatic, Native Julia Interface for SMT 2025</a></h2>
+<p>Extending Satisfiability.jl with more SMT-LIB theories and expanded capabilities.</p>
+<p><strong>Time Commitment:</strong> 175h <strong>Difficulty:</strong> Medium</p>
+<p>Satisfiability modulo theories &#40;SMT&#41; is a powerful logic programming tool used &#40;among other things&#41; to formally verify programs and hardware for correctness and security. Currently, most solvers &#40;that follow the SMT-LIB standard&#41; require input to be specified in the SMT-LIB specification language, which is not really human-readable. </p>
+<p><a href="https://elsoroka.github.io/Satisfiability.jl/dev/">🔗 Satisfiability.jl</a> s a high-level interface that allows users to specify complex SMT formulas in pure, idiomatic Julia, and directly interfaces with solvers &#40;e.g. Z3 or CVC5&#41;. Satisfiability.jl is <strong>not</strong> a solver; it is an interface to SMT solvers in the same sense that Convex.jl and Jump.jl are interfaces to numerical-optimization solvers. No experience with SMT solving algorithms is required for this project.</p>
+<p>This project aims to extend Satisfiability.jl, a Julia package that provides an native, direct interface to SMT &#40;Satisfiability Modulo Theories&#41; solvers via the SMT-LIB specification language. Currently, Satisfiability.jl supports only three theories, and this project will implement one major additional theory &#40;Arrays, Floating-point Numbers, or Strings&#41; to bring the package closer to supporting all SMT-LIB theories.</p>
+<p>This work will enhance the Julia ecosystem for formal verification and constraint satisfaction, allowing researchers and developers to interact with SMT solvers directly in pure</p>
+<p>Approach</p>
+<ul>
+<li><p>Consult the SMT-LIB standard to design a clean, idiomatic Julia API</p>
+</li>
+<li><p>Implement the selected theory with appropriate Julia types and operators</p>
+</li>
+<li><p>Create comprehensive tests to ensure correctness and usability</p>
+</li>
+<li><p>Write thorough documentation and examples to help users understand the new functionality</p>
+</li>
+</ul>
+<p>Main goals</p>
+<ul>
+<li><p>A fully implemented SMT-LIB theory with 100&#37; test coverage</p>
+</li>
+<li><p>Documentation and examples demonstrating usage</p>
+</li>
+<li><p>An API design that feels natural in Julia and consistent with the package</p>
+</li>
+</ul>
+<p>Stretch goals</p>
+<ul>
+<li><p>Implementing a second theory</p>
+</li>
+<li><p>Automated logic detection</p>
+</li>
+<li><p>Improved parser for SMT solver output</p>
+</li>
+<li><p>Performance benchmarking</p>
+</li>
+</ul>
+<p><strong>Skills:</strong> Familiarity with automated reasoning/formal verification software such as Z3 or CVC5. Ideally, familiarity with the SMT-LIB language but this can be learned&#33;</p>
+<p><strong>Expected results:</strong> new features added to the package along with tests, documentation, and a few examples demonstrating new features.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/elsoroka/">Emi Soroka</a> and <a href="https://page.romeov.me/">Romeo Valentin</a>.</p>
+<p><strong>Contact:</strong> ping either mentor on the Julia slack.</p>
 <h2 id="tooling"><a href="#tooling" class="header-anchor">Tooling</a></h2>
 <h3 id="development_of_a_new_language_server_for_julia_350_hours"><a href="#development_of_a_new_language_server_for_julia_350_hours" class="header-anchor">Development of a new language server for Julia &#40;350 hours&#41;</a></h3>
 <p>The goal of this project is to develop a new language server for Julia, currently called <a href="https://github.com/aviatesk/JETLS.jl">JETLS</a>. This language server aims to enhance developer productivity by providing advanced static analysis and seamless integration with the Julia runtime. By leveraging tooling technologies like JET, Revise and JuliaLowering, JETLS aims to offer enhanced language features such as type-sensitive diagnostics and macro-aware code completions.</p>
