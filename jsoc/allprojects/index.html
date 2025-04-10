@@ -516,6 +516,37 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 </ul>
 <h3 id="how_to_contact_us"><a href="#how_to_contact_us" class="header-anchor">How to Contact Us</a></h3>
 <p>Probably the easiest way is to join our <a href="https://julialang.org/slack/">JuliaLang Slack</a> and join the <code>#generative-ai</code> channel. You can also reach out to us on <a href="https://julialang.zulipchat.com/#narrow/stream/423470-generative-ai">Julia Zulip</a> or post a GitHub Issue on our website <a href="https://github.com/JuliaGenAI/juliagenai.org">JuliaGenAI</a>.</p>
+<h2 id="juliageo_geospatial_processing_in_julia"><a href="#juliageo_geospatial_processing_in_julia" class="header-anchor">JuliaGeo: Geospatial processing in Julia</a></h2>
+<p>The <a href="https://github.com/JuliaGeo">JuliaGeo</a> collaboration </p>
+<h4 id="spherical_visualizations_of_geographic_data_with_geomakiejl"><a href="#spherical_visualizations_of_geographic_data_with_geomakiejl" class="header-anchor">Spherical visualizations of geographic data with &#40;Geo&#41;Makie.jl</a></h4>
+<p>Mentors: <a href="anshul.singhvi@juliahub.com">Anshul Singhvi &#40;JuliaHub&#41;</a>, Milan Klöwer &#40;Oxford&#41;</p>
+<p>Observations and simulations of the Earth produce vast amounts of data, complicating analysis.  Efficient data analysis often includes visualization, either in early stages to inspect features  in the data but also to produce publication-ready graphs and animations.  Given the &#40;approximately&#41; spherical shape of Earth, visualization software ideally supports data  and operations thereof in spherical coordinates. Some data may come in the form of point measurements  or polygons and gridded data is represented through large sets of polygons &#40;so-called grids&#41; covering  the sphere.  Many different grids are used for various reasons and purposes: regular and unstructured, based on triangles,  quadrilaterals or hexagons, some are equal-area others have two north poles, to give some examples.  In Julia, the JuliaGeo organisation together with MakieOrg and GeoMakie cover already a lot of this functionality.  But more needs to be done to allow for seamless visualisations of geographic data on the sphere.</p>
+<p>Quite a bit of foundational work needs to be done for spherical visualizations to be seamless.   Students will work on the GeoMakie.jl spherical axis, using the principles of spherical and Cartesian geometry  to create a smooth, interactive globe viewer.  Work may include:</p>
+<ul>
+<li><p>Spherical horizon culling for map tiles in 3D space, a la Google Maps</p>
+</li>
+<li><p>Switching from a three-dimensional globe to a two-dimensional projection &#40;again, a la Google Maps or Mapbox&#41;</p>
+</li>
+<li><p>Implementing a Cartopy-style projection interface in Julia, including known projection boundary polygons</p>
+</li>
+<li><p>Implementing a nice coordinate / geometry transformation composition interface to facilitate this, also like what Mapbox does.</p>
+</li>
+</ul>
+<p>Reach out to the mentors to learn more&#33;</p>
+<h4 id="implementing_new_algorithms_in_geometryopsjl"><a href="#implementing_new_algorithms_in_geometryopsjl" class="header-anchor">Implementing new algorithms in GeometryOps.jl</a></h4>
+<p><a href="https://github.com/JuliaGeo/GeometryOps.jl">GeometryOps.jl</a> is a new framework for geometry processing on the plane and the sphere. There are many algorithms that remain to be implemented &#40;e.g. &#91;concave hull&#93;, &#91;line merging&#93;, &#91;polygon validation&#93;&#41;, and you could also  propose an algorithm that you want to implement or improve&#33;</p>
+<p>Some other areas of interest are:</p>
+<ul>
+<li><p>Wrapping Google&#39;s <code>s2geometry</code> library in Julia, either by building a C API to s2geometry or s2geography, or by building a </p>
+</li>
+</ul>
+<p>WrapIt.jl or CxxWrap.jl wrapper for s2. </p>
+<ul>
+<li><p>Improving the operation interface for GeometryOps and creating a declarative &#40;a la CoordinateTransformations.jl,  e.g. <code>&#40;Segmentize&#40;Spherical&#40;&#41;, max_distance &#61; 1000&#41; * ConcaveHull&#40;threshold&#41; * Area&#40;&#41;&#41;&#40;geom&#41;</code>, which can pre-allocate  and apply the required preparations at once, instead of piecemeal.</p>
+</li>
+<li><p>Any other projects an interested student might want to pick up&#33;</p>
+</li>
+</ul>
 <h2 id="juliahealth_projects_summer_of_code"><a href="#juliahealth_projects_summer_of_code" class="header-anchor">JuliaHealth Projects – Summer of Code</a></h2>
 <p>JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. We believe that by working together and sharing our knowledge and expertise, we can create powerful tools and solutions that have the potential to transform healthcare.</p>
 <h3 id="observational_health_subecosystem_projects"><a href="#observational_health_subecosystem_projects" class="header-anchor">Observational Health Subecosystem Projects</a></h3>
