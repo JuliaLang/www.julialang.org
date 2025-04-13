@@ -4,10 +4,12 @@
   <div>
    <div>
     <h2 id="install_julia"> <a href="#install_julia">Install <img src="/assets/infra/logo.svg" class="julialogo inline-h2-julia-logo" alt="Julia"></img></h2></a>
+    <p>The recommended way to install Julia is by using <a href="https://github.com/JuliaLang/juliaup">juliaup</a> installer. This will install the <pre><code class="language-plaintext>juliaup</code></pre>  installation manager, which will automatically install julia and help keep it up to date. The command <code>juliaup</code> is also installed. To install different julia versions see `juliaup --help`. </p>
     <div class="container pt-sm-2">
       <div class="row" id="windows-instructions" style="display: none;">
         Install the latest Julia version (<a href="#current_stable_release">v{{stable_release}}</a>{{stable_release_date}}) from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
         <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
+        <p>It will install the app on a per-user basis that does not require admin privileges. For those without access to Windows Store, and for a system wide install, see <a href="https://github.com/JuliaLang/juliaup">juliaup</a> documentation.</p>
         <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>For Linux and MacOS instructions <a onclick="showOther()" href="javascript:void(0);">click here</a></div>
       </div>
       <div class="row" id="other-platforms-instructions" style="display: none;">
@@ -38,8 +40,6 @@
 
 Once installed `julia` will be available via the command line interface.
 
-This will install the [Juliaup](https://github.com/JuliaLang/juliaup) installation manager, which will automatically install julia and help keep it up to date. The command `juliaup` is also installed. To install different julia versions see `juliaup --help`.
-
 ---
 
 Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](https://julialang.org/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
@@ -53,7 +53,9 @@ Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia
 
 ### Manual Download
 
-Please see [platform specific instructions](/downloads/platform/) for further manual installation instructions. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
+If for some reasons [juliaup](https://github.com/JuliaLang/juliaup) doesn't work for you, Julia can also be installed by a manual download. Please see [platform specific instructions](/downloads/platform/) for further manual installation instructions. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
+
+Note for Mac users: There can be an [issue](https://discourse.julialang.org/t/julia-wont-open-after-updating-macos-julia-can-t-be-opened-because-julia-is-not-allowed/126199) with manually downloaded Julia on the latest macOS versions. Use [juliaup](https://github.com/JuliaLang/juliaup).
 
 ~~~
 <h4 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h4>
