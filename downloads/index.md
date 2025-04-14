@@ -89,11 +89,9 @@ Please see [platform specific instructions](/downloads/platform/) for further ma
       <td> Generic Linux on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
       <td>
         <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{stable_release}}-linux-x86_64.tar.gz">glibc</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{stable_release}}-linux-x86_64.tar.gz.asc">GPG</a>)
-        <!--,
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{stable_release}}-linux-x86_64.tar.gz.asc">GPG</a>),
         <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz">musl</a><sup>[<a href=#musl-fn>1</a>]</sup>
         (<a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz.asc">GPG</a>)
-        -->
       </td>
       <td> <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{stable_release_short}}/julia-{{stable_release}}-linux-i686.tar.gz">glibc</a>
         (<a href="https://julialang-s3.julialang.org/bin/linux/x86/{{stable_release_short}}/julia-{{stable_release}}-linux-i686.tar.gz.asc">GPG</a>)
@@ -421,11 +419,12 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td rowspan="2"> FreeBSD </td>
-      <td rowspan="2"> 13.2+ </td>
+      <td> 13.4+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
+      <td> 14.1+ </td>
       <td> ARMv8 (64-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
