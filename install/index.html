@@ -47,24 +47,15 @@ crossorigin=""/>
 <script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
-   <title>Tooling - Summer of Code</title>   
+   <title>Download Julia</title>   
 
-  
-  <style>
-	  .container ul li p {margin-bottom: 0;}
-		.container ol li p {margin-bottom: 0;}
-		.container ul ul {margin: .4em 0 .4em 0;}
-		.container ul ol {margin: .4em 0 .4em 0;}
-		.container ol ul {margin: .4em 0 .4em 0;}
-		.container ol ol {margin: .4em 0 .4em 0;}
-  </style>
   
 
   <!-- Specific style for blog pages (except the /blob/index) -->
   
 
   <!-- OGP Metadata -->
-	<meta property="og:title" content="Tooling - Summer of Code">
+	<meta property="og:title" content="Download Julia">
 <meta property="og:description" content="">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
@@ -122,44 +113,56 @@ crossorigin=""/>
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsoc/tooling.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/install/index.md" title="Edit this page on GitHub" class="edit-float">
 </a>
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="tooling_-_summer_of_code"><a href="#tooling_-_summer_of_code" class="header-anchor">Tooling - Summer of Code</a></h1>
-<h2 id="development_of_a_new_language_server_for_julia_350_hours"><a href="#development_of_a_new_language_server_for_julia_350_hours" class="header-anchor">Development of a new language server for Julia &#40;350 hours&#41;</a></h2>
-<p>The goal of this project is to develop a new language server for Julia, currently called <a href="https://github.com/aviatesk/JETLS.jl">JETLS</a>. This language server aims to enhance developer productivity by providing advanced static analysis and seamless integration with the Julia runtime. By leveraging tooling technologies like JET, Revise and JuliaLowering, JETLS aims to offer enhanced language features such as type-sensitive diagnostics and macro-aware code completions.</p>
-<p>The project is currently in the very early stages of prototyping. We&#39;ve implemented the basic JSON message communication system and the protocol, but the core functionalities of the language server, including its analysis routines and incremental state management system, is still pretty primitive. The plan is to have the core functionalities of the language server more solid by the summer when GSoC 2025 starts, through working on implementing &quot;diagnostics&quot; and &quot;completion&quot; features. During GSoC, we expect to combine these core features with new tooling technologies like JuliaLowering.jl to implement new language server features, such as &quot;go to definition&quot; and &quot;outline.&quot;</p>
-<p>Also, as preparation, we hope that by the time GSoC starts, you&#39;ll have gained some knowledge about the implementation of JETLS.jl and tools like <a href="https://github.com/aviatesk/JET.jl">JET.jl</a>, <a href="https://github.com/timholy/Revise.jl">Revise.jl</a> and <a href="https://github.com/c42f/JuliaLowering.jl/pulls">JuliaLowering.jl</a>.</p>
+<div class="container main"><h1 id="installing_julia"><a href="#installing_julia" class="header-anchor">Installing Julia</a></h1>
+<p>The recommended way to install Julia is to install <a href="https://github.com/JuliaLang/juliaup"><code>juliaup</code></a> which is a small, self-contained binary that will automatically install the latest stable <code>julia</code> binary and help keep it up to date. It also supports installing and using different versions of Julia simultaneously. 
+<div id="windows-instructions" style="display: none;">
+  Install <code>juliaup</code> from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
+  <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
+  <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>For Linux and MacOS instructions <a onclick="showUNIX()" href="javascript:void(0);">click here</a></div>
+</div>
+<div id="unix-instructions" style="display: none;">
+  Install <code>juliaup</code> by running this in your terminal:
+  <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
+  <div class="install-platform-note"><span id="platform-subnote-unix">It looks like you're using a Unix-type system. </span>For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a></div>
+</div>
+<script>
+  function showWindows() {
+    document.getElementById('windows-instructions').style.display = 'block';
+    document.getElementById('unix-instructions').style.display = 'none';
+  }
+  function showUNIX() {
+    document.getElementById('windows-instructions').style.display = 'none';
+    document.getElementById('unix-instructions').style.display = 'block';
+  }
+  var isWindows = navigator.platform.indexOf('Win') > -1;
+  if (isWindows) {
+    document.getElementById('platform-subnote-unix').style.display = 'none';
+    showWindows();
+  } else {
+    document.getElementById('platform-subnote-windows').style.display = 'none';
+    showUNIX();
+  }
+</script>
+</p>
+<p>This will install the latest stable version of Julia, which can be launched from a command-line by typing <code>julia</code> as well as the <code>juliaup</code> tool. To install different julia versions see <code>juliaup --help</code>.</p>
+<p>Please star us <a href="https://github.com/JuliaLang/julia">on GitHub</a>. If you use Julia in your research, please <a href="/research/">cite us</a>. If possible, do consider <a href="https://github.com/sponsors/julialang">sponsoring</a> us.</p>
+<p>If you want to manually download and install specific Julia versions, see the <a href="/downloads/">Downloads</a> page. You can also find out more details about <a href="/downloads/#supported_platforms">supported platforms</a>.</p>
+<h3 id="ip_address_retention_policy"><a href="#ip_address_retention_policy" class="header-anchor">IP Address Retention Policy</a></h3>
+<p>Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <a href="https://pkg.julialang.org">https://pkg.julialang.org</a>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 31 days.</p>
+<h3 id="official_domains"><a href="#official_domains" class="header-anchor">Official domains</a></h3>
+<p>The following domains are official and used by open source Julia infrastructure for serving content and resources:</p>
 <ul>
-<li><p><strong>Expected Outcomes</strong>: A functional language server that significantly improves the developer experience for Julia users, with enhanced language capabilities including type-sensitive diagnostics and macro-aware code completions.</p>
+<li><p><code>julialang.org</code> and all subdomains</p>
 </li>
-<li><p><strong>Skills Required</strong>:</p>
-<ul>
-<li><p>Proficiency in Julia programming and familiarity with its compiler and runtime systems</p>
-</li>
-<li><p>Interest in and/or experience with LSP and developer tools like JET.jl and Revise.jl</p>
+<li><p><code>julialang.net</code> and all subdomains</p>
 </li>
 </ul>
-</li>
-<li><p><strong>Difficulty</strong>: Hard</p>
-</li>
-<li><p><strong>Contact</strong>: <a href="https://github.com/aviatesk">Shuhei Kadowaki</a></p>
-</li>
-</ul>
-<h2 id="automation_of_testing_performance_benchmarking_350_hours"><a href="#automation_of_testing_performance_benchmarking_350_hours" class="header-anchor">Automation of testing / performance benchmarking &#40;350 hours&#41;</a></h2>
-<p>The Nanosoldier.jl project &#40;and related <a href="https://github.com/JuliaCI/BaseBenchmarks.jl">https://github.com/JuliaCI/BaseBenchmarks.jl</a>&#41; tests for performance impacts of some changes. However, there remains many areas that are not covered &#40;such as compile time&#41; while other areas are over-covered &#40;greatly increasing the duration of the test for no benefit&#41; and some tests may not be configured appropriately for statistical power. Furthermore, the current reports are very primitive and can only do a basic pair-wise comparison, while graphs and other interactive tooling would be more valuable. Thus, there would be many great projects for a summer contributor to tackle here&#33;</p>
-<ul>
-<li><p><strong>Expected Outcomes</strong>: Improvement of Julia&#39;s automated testing/benchmarking framework.</p>
-</li>
-<li><p><strong>Skills</strong>: Interest in and/or experience with CI systems.</p>
-</li>
-<li><p><strong>Difficulty</strong>: Medium</p>
-</li>
-<li><p><strong>Contact:</strong> <a href="https://github.com/vtjnash">Jameson Nash</a>, <a href="https://github.com/maleadt">Tim Besard</a></p>
-</li>
-</ul>
+<p>If you are using Julia behind a firewall that blocks access to these, you may have trouble downloading and installing Julia packages. If this is the case, please ask your sysadmin to add these domains to the firewall allow list. Traffic can be limited to HTTPS &#40;TCP port 443&#41;.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->

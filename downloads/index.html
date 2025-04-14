@@ -84,10 +84,10 @@ crossorigin=""/>
       <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                  <a class="nav-link" href="/downloads/">Download</a>
+                  <a class="nav-link" href="/install/">Install</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="/learning/">Learn</a>
@@ -127,52 +127,8 @@ crossorigin=""/>
 
 
 <!-- Content appended here -->
-<div class="container main">
-  <div>
-   <div>
-    <h2 id="install_julia"> <a href="#install_julia">Install <img src="/assets/infra/logo.svg" class="julialogo inline-h2-julia-logo" alt="Julia"></img></h2></a>
-    <div class="container pt-sm-2">
-      <div class="row" id="windows-instructions" style="display: none;">
-        Install the latest Julia version (<a href="#current_stable_release">v1.11.5</a>April 4, 2025) from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
-        <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
-        <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>For Linux and MacOS instructions <a onclick="showOther()" href="javascript:void(0);">click here</a></div>
-      </div>
-      <div class="row" id="other-platforms-instructions" style="display: none;">
-        Install the latest Julia version (<a href="#current_stable_release">v1.11.5</a>April 4, 2025) by running this in your terminal:
-        <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
-        <div class="install-platform-note"><span id="platform-subnote-other">It looks like you're using a Unix/Linux-type system. </span>For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a></div>
-      </div>
-    </div>
-    <script>
-      function showWindows() {
-        document.getElementById('windows-instructions').style.display = 'block';
-        document.getElementById('other-platforms-instructions').style.display = 'none';
-      }
-      function showOther() {
-        document.getElementById('windows-instructions').style.display = 'none';
-        document.getElementById('other-platforms-instructions').style.display = 'block';
-      }
-      var isWindows = navigator.platform.indexOf('Win') > -1;
-      if (isWindows) {
-        document.getElementById('platform-subnote-other').style.display = 'none';
-        showWindows();
-      } else {
-        document.getElementById('platform-subnote-windows').style.display = 'none';
-        showOther();
-      }
-    </script>
-
-<p>Once installed <code>julia</code> will be available via the command line interface.</p>
-<p>This will install the <a href="https://github.com/JuliaLang/juliaup">Juliaup</a> installation manager, which will automatically install julia and help keep it up to date. The command <code>juliaup</code> is also installed. To install different julia versions see <code>juliaup --help</code>.</p>
-<hr />
-<p>Please star us <a href="https://github.com/JuliaLang/julia">on GitHub</a>. If you use Julia in your research, please <a href="https://julialang.org/research/">cite us</a>. If possible, do consider <a href="https://github.com/sponsors/julialang">sponsoring</a> us.</p>
-
-   </div>
-  </div>
-
-<hr />
-<h3 id="manual_download"><a href="#manual_download" class="header-anchor">Manual Download</a></h3>
-<p>Please see <a href="/downloads/platform/">platform specific instructions</a> for further manual installation instructions. If the official binaries do not work for you, please <a href="https://github.com/JuliaLang/julia/issues">file an issue in the Julia project</a>.</p>
+<div class="container main"><h1 id="manual_downloads"><a href="#manual_downloads" class="header-anchor">Manual Downloads</a></h1>
+<p><strong>This page is not for most users:</strong> See <a href="/install/">Install</a> for how to install Julia the recommended way using <code>juliaup</code>. Please see <a href="/downloads/platform/">platform specific instructions</a> for further manual installation instructions. If the official binaries do not work for you, please <a href="https://github.com/JuliaLang/julia/issues">file an issue in the Julia project</a>.</p>
 
 <h4 id=current_stable_release><a href="#current_stable_release">Current stable release: v1.11.5 (April 4, 2025)</a></h4>
 
@@ -572,17 +528,6 @@ crossorigin=""/>
 <p>All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using <a href="/assets/juliareleases.asc">this key</a>.</p>
 <h3 id="json_release_feed"><a href="#json_release_feed" class="header-anchor">JSON release feed</a></h3>
 <p>The info above is also available as a <a href="https://julialang-s3.julialang.org/bin/versions.json">JSON file</a> &#40;<a href="https://julialang-s3.julialang.org/bin/versions-schema.json">schema</a>&#41;. It may take up to two hours after the release of a new version for it to be included in the JSON file.</p>
-<h3 id="ip_address_retention_policy"><a href="#ip_address_retention_policy" class="header-anchor">IP address retention policy</a></h3>
-<p>Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <a href="https://pkg.julialang.org">https://pkg.julialang.org</a>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 31 days.</p>
-<h3 id="official_domains"><a href="#official_domains" class="header-anchor">Official domains</a></h3>
-<p>The following domains are official and used by open source Julia infrastructure for serving content and resources:</p>
-<ul>
-<li><p><code>julialang.org</code> and all subdomains</p>
-</li>
-<li><p><code>julialang.net</code> and all subdomains</p>
-</li>
-</ul>
-<p>If you are using Julia behind a firewall that blocks access to these, you may have trouble downloading and installing Julia packages. If this is the case, please ask your sysadmin to add these domains to the firewall allow list. Traffic can be limited to HTTPS &#40;TCP port 443&#41;.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
@@ -663,8 +608,8 @@ crossorigin=""/>
         <li><a href="/community/sponsors/">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a></li>
-        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="/install/">Install</a></li>
+        <li><a href="/downloads/">Manual Downloads</a></li>
         <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
         <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
         <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
