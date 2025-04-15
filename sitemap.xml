@@ -1022,12 +1022,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/learning/code-examples/index.html</loc>
-    <lastmod>2025-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2021/01/precompile_tutorial/index.html</loc>
     <lastmod>2025-04-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -1245,12 +1239,6 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/05/extensible-broadcast-fusion/index.html</loc>
-    <lastmod>2025-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://julialang.org/learning/tryjulia/index.html</loc>
     <lastmod>2025-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
