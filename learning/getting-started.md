@@ -12,7 +12,7 @@ People used to think that you had to choose between a programming language that 
 
 ## Installing
 
-The first thing to do is [download Julia](/downloads/). Pre-built versions are available from our website. Download the version for your operating system. We strongly recommend using the official binaries, which are self-contained and require no additional dependencies. Once you download Julia, and run the installer (Windows/Mac -- on linux you just untar the downloaded file), you will get a `julia` binary in the _bin_ directory where you installed Julia. Running that program will leave you in a textual prompt, which is usually called a REPL - Read-Eval-Print-Loop.
+The first thing to do is [install Julia](/install/). The recommended way to install is using the `juliaup` program, which will install the latest `julia` for you and help you keep it up to date. You can download and install individual Julia binaries, but `juliaup` is much easier. We strongly discourage using Julia binaries shipped by various distros---these are often broken and outdated. Once you install `juliaup` you will get a `julia` binary that you can run from a terminal or command prompt, which will leave you in a textual prompt, which is usually called a REPL - Read-Eval-Print-Loop.
 
 ![Julia REPL](/assets/images/julia-repl.png)
 
