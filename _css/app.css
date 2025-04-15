@@ -13,8 +13,7 @@
   background-color: #fff;
   border-bottom: 0;
 }
-#main-menu .nav-item.active,
-#main-menu .nav-item:hover {
+#main-menu .nav-item.active {
   border-bottom-color: #ca3c32;
 }
 .navbar-light .navbar-nav .nav-link {
