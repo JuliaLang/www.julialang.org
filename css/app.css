@@ -421,6 +421,9 @@ h4.card-title {
   text-shadow: 1px 1px 2px #0a0a0a;
 }
 
+a.header-anchor {
+  text-decoration: none;
+}
 
 .link {
   color: #4D64AE;
