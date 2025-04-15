@@ -444,5 +444,5 @@ Windows 具有与任务密切相关的纤程，并且 Unix 系列系统也有多
 [relationalAI]: https://relational.ai/
 [GitHub]: https://github.com/JuliaLang/julia/issues
 [Discourse]: https://discourse.julialang.org/
-[downloads page]: /downloads/
+[install page]: /install/
 [master branch]: https://github.com/JuliaLang/julia

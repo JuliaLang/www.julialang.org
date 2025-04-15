@@ -16,7 +16,7 @@ Moreover, this is a summary of the video above. If you want to see more details,
 
 Before you begin developing a package, make sure you perform the following steps:
 
-1. [Install Julia](https://julialang.org/downloads/) on your local machine.
+1. [Install Julia](https://julialang.org/install/) on your local machine.
 2. Install an [IDE](/contribute/#tools) and configure it to work with Julia.
 3. [Understand how modules work in Julia](https://docs.julialang.org/en/v1/manual/modules/).
 4. [Create a GitHub account](https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account) if you don’t have one already.
