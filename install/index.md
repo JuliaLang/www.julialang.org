@@ -1,4 +1,4 @@
-@def title = "Download Julia"
+@def title = "Install Julia"
 
 # Installing Julia
 
