@@ -150,6 +150,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara), since 2018, in Japanese
 * [TU Dortmund / SFB 823](https://www.statistik.tu-dortmund.de/sfb823.html), Germany
     * One week introductory course into Julia with applications in statistics and economics ([Tileman Conring](https://www.statistik.tu-dortmund.de/conring.html)): Spring 2018
+* Technical University of Munich (TUM)
+   * CITHN2006, Numerical Linear Algebra for Computational Science and Information Engineering (Dr. [Nicolas Venkovic](https://venkovic.github.io)), Winter 2024-25, Summer 2025
 * Universidad Adolfo Ibáñez, Chile
    * ING747, Integer programming, Fall 2018-2019 (Diego Morán and Rodolfo Carvajal)
    * DIIIO06, Advanced linear optimization, Spring 2020 (Diego Morán)
