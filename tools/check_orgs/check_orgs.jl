@@ -19,7 +19,13 @@ function check_orgs()
     for org_match in orgs
         org = split(org_match.captures[1], "https://github.com/", keepempty=false)[1]
         org = split(org, "http://github.com/", keepempty=false)[1]
-        members, page_data = GitHub.members(Owner(org), auth=myauth, public_only=true)
+        members = -1
+        try
+            members, page_data = GitHub.members(Owner(org), auth=myauth, public_only=true)
+        catch e
+            err_msg = sprint(showerror, e)
+            println("Error processing organization '$org':\n$err_msg")
+        end
         if length(members) < 2
             println(" - $org $(length(members)) members")
             num_below += 1
