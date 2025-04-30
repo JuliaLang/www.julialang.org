@@ -75,7 +75,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 
 ### Scientific Domains
 
-* [BioJulia](https://github.com/BioJulia) – [Biology, bioinformatics, computational biology](https://biojulia.net) ([Gitter](https://gitter.im/BioJulia/home))
+* [BioJulia](https://github.com/BioJulia) – [Biology, bioinformatics, computational biology](https://biojulia.dev) ([Gitter](https://gitter.im/BioJulia/home))
 * [Climate Modeling Alliance (CliMA)](https://github.com/CliMA) - An alliance of scientists, engineers and applied mathematicians, dedicated to pioneering a new, data-informed approach to climate modeling
 * [EcoJulia](https://github.com/EcoJulia) – Ecology
 * [JuliaActuary](https://github.com/JuliaActuary) – Actuarial Science
