@@ -104,7 +104,6 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 ### Astronomy/Space
 
 * [JuliaAstro](https://github.com/JuliaAstro) – [Astronomy](https://juliaastro.github.io/)
-* [JuliaAstrodynamics](https://github.com/JuliaAstrodynamics)
 * [juliahci](https://github.com/juliahci) – High-contrast imaging
 * [JuliaSpace](https://github.com/JuliaSpace)
 
