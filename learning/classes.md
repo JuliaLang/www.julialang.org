@@ -281,5 +281,8 @@ If you know of other classes using Julia for teaching, please consider [updating
 * TH Köln (University of Applied Sciences), Institute of Automotive Engineering
     * Introduction to Scientific Computing (Prof. Georg Engelmann), since Fall 2023
     * Numerical Methods in Engineering (Prof. Georg Engelmann), since Spring 2023
+ * The George Washington University, USA
+    * Biostatistical Application for Public Health (Postgraduate) [Assoc Prof Jay Klopper](https://blogs.gwu.edu/juanklopper), since Fall 2024
+
 @@
 Have a Julia class you want added to this list? Please [open an issue or pull request](https://github.com/JuliaLang/www.julialang.org/issues).
