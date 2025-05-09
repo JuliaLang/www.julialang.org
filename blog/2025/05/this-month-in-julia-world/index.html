@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>This Month in Julia World</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="This Month in Julia World">
+<meta property="og:description" content="Community Newsletter for April 2025">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/">
+          <img src="/assets/infra/logo.svg" alt="JuliaLang Logo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>This Month in Julia World
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 1 May 2025 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Stefan Krastanov </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2025/05/this-month-in-julia-world.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.</p>
+<p>For recent news on Julia and interesting conversations with community members, check out the <a href="https://juliadispatch.fm/">JuliaDispatch</a> podcast &#40;on many platforms, including <a href="https://www.youtube.com/@JuliaDispatch/">youtube</a> and <a href="https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws">spotify</a>&#41;. Highlights from the newsletter get discussed &#40;with more context&#41; during some episodes.</p>
+<p>JuliaCon Local Paris 2025:</p>
+<ul>
+<li><p>The call for proposals is still open until May 15th&#33; <a href="https://juliacon.org/local/paris2025/cfp/">Submit your talk, tutorial or poster while you can</a>.</p>
+</li>
+<li><p>Tickets are now available&#33; <a href="https://juliacon.org/local/paris2025/tickets/">Get yours here</a>&#33;</p>
+</li>
+</ul>
+<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<ul>
+<li><p>Julia 1.11.5 and 1.12-beta2 have been released.</p>
+</li>
+<li><p>The API for the compiler’s lowering has been reworked &#91;<a href="https://github.com/JuliaLang/julia/pull/58147">1</a>, <a href="https://github.com/JuliaLang/julia/pull/58207">2</a>&#93;, paving the way for experimental use of <a href="https://github.com/c42f/JuliaLowering.jl">JuliaLowering.jl</a> as the default lowering implementation. JuliaLowering is intended to improve code provenance in Julia, which will have a big impact on future developer tooling. See the <a href="https://www.youtube.com/watch?v&#61;I6-zV0SPpFA">JuliaCon 2024 video</a>. A recent <a href="https://discourse.julialang.org/t/understanding-bindings-in-julialowering-jl/126941">discussion on discourse</a> also delves deeper in the inner workings of JuliaLowering. JuliaLowering is also an important part of the experimental <a href="https://github.com/c42f/JuliaLowering.jl/pull/10">JET-based language server</a>, which would provide much better dev feedback in IDEs.</p>
+</li>
+<li><p>The <a href="https://github.com/JuliaLang/StyledStrings.jl/issues/61">StyledStrings standard library committed piracy</a> against Base and was type unstable. This led to invalidations and contributed to the higher latency of Julia 1.11 and 1.12 compared to 1.10. The latency impact has now been <a href="https://github.com/JuliaLang/julia/issues/57998">deemed untenable</a>, so work is ongoing to fix the piracy and invalidations &#91;<a href="https://github.com/JuliaLang/julia/pull/58112">1</a>, <a href="https://github.com/JuliaLang/julia/pull/56194">2</a>, <a href="https://github.com/JuliaLang/julia/pull/58134">3</a>&#93;</p>
+</li>
+<li><p>The discussion on optional modules has bubbled up again &#91;<a href="https://github.com/JuliaLang/julia/pull/58051">1</a>, <a href="https://github.com/JuliaLang/julia/issues/55516">2</a>&#93;. This is related to the older discussion of <a href="https://github.com/JuliaLang/julia/issues/48163">precompile-only packages</a> as well as package extensions, all mechanisms to reduce the number of dependencies, and thereby improve precompile times and latency.</p>
+</li>
+<li><p>There have been many posts about the increasing load latency since the release of Julia 1.10 &#91;<a href="https://discourse.julialang.org/t/startup-time-of-1000-packages-53-slower-in-julia-1-12-vs-1-10/128343/">1</a>, <a href="https://discourse.julialang.org/t/slower-times-to-ttfx-for-gmt-in-1-11-and-even-more-in-nightly/126350">2</a>, <a href="https://github.com/JuliaLang/julia/issues/58201">3</a>, <a href="https://github.com/JuliaLang/julia/issues/57436">4</a>, <a href="https://github.com/JuliaLang/julia/issues/57970">5</a>, <a href="https://github.com/JuliaLang/julia/issues/58163">6</a>&#93;. This issue is well known to the compiler team who are looking into it. One particularly nice outcome of this is the creation of a repository of “representative examples of a package’s use” for benchmarking Julia’s performance on load, compilation, and more. There is even a <a href="https://discourse.julialang.org/t/startup-time-of-1000-packages-53-slower-in-julia-1-12-vs-1-10/128343/51?u&#61;krastanov">simple webpage for direct submission of such code snippets</a>.</p>
+</li>
+<li><p>Detailed new documentation on the <a href="https://github.com/JuliaLang/julia/pull/58253/files">“world age” mechanism in julia</a>.</p>
+</li>
+<li><p>Further progress on <a href="https://github.com/JuliaLang/julia/pull/58142">support for LLVM v20</a> is near.</p>
+</li>
+<li><p>Unexpectedly, a few ‘optimised’ methods in Base have been found to be slower than the naive implementations, providing rare opportunities to optimise code simply by deleting stuff &#91;<a href="https://github.com/JuliaLang/julia/pull/50509">1</a>, <a href="https://github.com/JuliaLang/julia/pull/58280">2</a>, <a href="https://github.com/JuliaLang/julia/pull/58267">3</a>&#93;.</p>
+</li>
+<li><p>A talk for non-julian audiences on the <a href="https://www.youtube.com/watch?v&#61;LluyXFj9YDI">recent progress on static compilation</a> at PyData Global by Jeff.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/why-are-statically-sized-arrays-immutable/128331">Why are static arrays immutable?</a> - a short discourse post in which Oscar and Mason give very informative short answers about stack and heap allocations in julia and other languages.</p>
+</li>
+</ul>
+<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<ul>
+<li><p><a href="https://discourse.julialang.org/t/ann-testpicker-interactive-tool-for-testing-based-on-fzf-and-bat/128273/3">TestPicker.jl</a> - a neat dev tool for interactively running a subset of tests matching a fuzzy search.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-borrowchecker-jl-a-borrow-checker-for-julia/127897">BorrowChecker.jl</a> - a runtime borrow checker &#40;similar to Rusts compile borrow checker&#41; that can be disabled in release code, but kept enabled during development and testing to detect bugs and structural issues in your library code.</p>
+</li>
+<li><p>The Pluto notebook is getting AI coding assistance features. They are taking a very cautious approach of putting in only limited-scope features of high value right now, e.g. <a href="https://github.com/fonsp/Pluto.jl/pull/3201">automatically fixing syntax errors</a>.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-askai-your-direct-ai-support-in-repl/128042">AskAI.jl</a> for interactive queries to LLMs and executing code returned by them.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-rxinferserver-python-sdk-fast-inference-from-python-and-more/127969">RxInferServer and a Python SDK</a>: remote execution of probabilistic modules and support for consumers from other languages.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-zerodimensionalarrays-jl-zero-dimensional-arrays-references-boxes/128002">ZeroDimensionalArrays.jl</a> - tiny package, implementing several similar types, each being a zero-dimensional array, as a semantically neater alternative to the many meanings <code>Base.Ref</code> has.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-pawsometracker-jl/127929">PawsomeTracker.jl</a> for target tracking in videos.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-structuralvibration-jl/127978">StructuralVibration.jl</a> released recently for work on modeling various problems in mechanics.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-announcing-cliquetrees-jl-tree-decompositions-in-julia/128808">ClickeTrees.jl</a> - tree decomposition tools</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-smallcollections-jl-fast-small-vectors-sets-and-dictionaries/128787">SmallCollections.jl</a> - fast small vectors, sets and dictionaries</p>
+</li>
+</ul>
+<p>Abstract Math ecosystem:</p>
+<ul>
+<li><p><a href="https://discourse.julialang.org/t/ann-liegroups-jl/128294">LieGroups.jl</a> - an interface to work with and define Lie groups as well as a library of Lie groups</p>
+</li>
+</ul>
+<p>Numerical Math ecosystem:</p>
+<ul>
+<li><p><a href="https://discourse.julialang.org/t/ann-convolutioninterpolations-jl-smooth-multi-dimensional-high-order-of-accuracy-interpolation/128003">ConvolutionInterpolations.jl</a>: Smooth multi-dimensional high order of accuracy interpolation.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-breakers-jl/127874">Breakers.jl</a> for binning continuous data, a pure Julia partial implementation of the R classInt library, that handles fisher, kmeans, quantile and equal breaks of a vector &#40;potentially containing missing values&#41;.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-numericaldistributions-jl-user-defined-distributions/128025">NumericalDistributions.jl</a>: a Distributions.jl-compatible tool for defining custom probability distributions from arbitrary numerical functions.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/numerical-linear-algebra-class-in-julia-tum/128661">Numerical Linear Algebra class in Julia at TUM</a></p>
+</li>
+</ul>
+<p>Notes from other ecosystems:</p>
+<ul>
+<li><p><a href="https://github.com/HEPLean/PhysLean">PhysLean</a>: Digitizing physics in Lean 4 – formalizing calculations, theorems, and proofs&#33;</p>
+</li>
+<li><p><a href="https://news.ycombinator.com/item?id&#61;43777731">CubeCL</a>: the Rust version of KernelAbstractions</p>
+</li>
+</ul>
+<p>Events:</p>
+<ul>
+<li><p>The QNumerics summer school on numerical methods in quantum information science is <a href="https://qnumerics.org/">open for registration</a>.</p>
+</li>
+</ul>
+<p>See also: <a href="https://pnavaro.github.io/NouvellesJulia/">French community newsletter</a>, <a href="https://julialang.org/community/#events">community calendar</a>, <a href="https://hackmd.io/@LilithHafner/HJaw__uMp">minutes of triage meetings</a></p>
+<p>You can engage in the discussion of this newsletter on <a href="https://discourse.julialang.org/c/community/news/66">Discourse</a></p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/install/">Install</a></li>
+        <li><a href="/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/community/stewards/">Stewards</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/libs/groups.js"></script>
+    <script src="/libs/map.js"></script>
+  </body>
+</html>
