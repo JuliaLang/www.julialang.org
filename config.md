@@ -15,7 +15,7 @@ author = ""
 # `downloads/oldreleases.jl`
 stable_release = "1.11.5"
 stable_release_short = "1.11"
-stable_release_date = "April 4, 2025"
+stable_release_date = "April 14, 2025"
 lts_release = "1.10.9"
 lts_release_short = "1.10"
 lts_release_date = "March 10, 2025"
@@ -25,9 +25,9 @@ hasplotly = false
 
 # If the following lines are commented, the "upcoming release" section
 # in `downloads/index.md` will not be shown.
-upcoming_release = "1.12.0-beta2"
+upcoming_release = "1.12.0-beta3"
 upcoming_release_short = "1.12"
-upcoming_release_date = "April 25, 2025"
+upcoming_release_date = "May 12, 2025"
 +++
 
 <!--
