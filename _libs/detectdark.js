@@ -16,7 +16,7 @@ function check_scheme() {
         console.log("darkreader non-dark mode detected");
         var julialogo = "logo.svg";
     }
-    var imgElements = document.getElementsByClassName('julialogo');
+    var imgElements = document.getElementsByClassName('navbarjulialogo');
     for (var i = 0; i < imgElements.length; i++) {
         imgElements[i].src = changeFilePath(imgElements[i].src, julialogo);
     }
