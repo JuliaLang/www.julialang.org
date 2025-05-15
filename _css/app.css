@@ -25,6 +25,7 @@
   color: #ca3c32;
 }
 .navbar-brand {
+  min-width: 80px;
   margin-left: 0.25rem;
   margin-right: 0;
   padding-bottom: 1rem;
