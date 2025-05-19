@@ -46,7 +46,7 @@ Julia installs all its files in a single directory. Deleting the directory where
 
 ## Windows
 
-Julia is available for Windows 7 and later for both 32-bit and 64-bit versions.
+Note that some of the Windows versions and Julia versions mentioned below are no longer supported. See [supported platforms](/downloads/#supported_platforms) for supported Windows and Julia versions.
 
 **We highly recommend running Julia using a modern terminal, such as installing the [Windows Terminal from the Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701).**
 
