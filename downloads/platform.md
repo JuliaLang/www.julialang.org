@@ -46,7 +46,7 @@ Julia installs all its files in a single directory. Deleting the directory where
 
 ## Windows
 
-The following lists instructiions for supported and unsupported versions of Windows. See [supported platforms](/downloads/#supported_platforms) for supported Windows versions.
+The following lists instructions for supported and unsupported versions of Windows. See [supported platforms](/downloads/#supported_platforms) for supported Windows versions.
 
 **We highly recommend running Julia using a modern terminal, such as installing the [Windows Terminal from the Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701).**
 
