@@ -13,7 +13,6 @@
 * [A Comprehensive Tutorial to Learn Data Science with Julia from Scratch](https://www.analyticsvidhya.com/blog/2017/10/comprehensive-tutorial-learn-data-science-julia-from-scratch/) by [Mohd Sanad Zaki Rizvi](https://www.analyticsvidhya.com/blog/author/mohdsanadzakirizvigmail-com/)
 * [Julia language: a concise tutorial](https://syl1.gitbook.io/julia-language-a-concise-tutorial/) by Antonello Lobianco. A basic introduction that includes the main packages.
 * [Basics of Projects Example](https://github.com/robbyriverside/ModulePlay) by Rob Farrow. Fast start for using Julia Project and associated tools.
-* [Just the Julia you need to get started in Data Science and ML](https://mynerva.io/courses/register/) by Raj Rao -- use code **JULIACON2020** to access after registering. 
 * [Programación básica en Julia](https://hedero.webs.upv.es/julia-basico/) and [Claves para programar en Julia](https://hedero.webs.upv.es/julia-claves/) by Helios De Rosario. Two guides in Spanish to get started on Julia.
 * [Practical introduction to Julia for modelling and data analysis in biodiversity and earth sciences](https://github.com/vboussange/WSLJuliaWorkshop2023) by [Victor Boussange](https://vboussange.github.io) and [Mauro Werder](https://maurow.bitbucket.io).
 * [Julia Programming Tutorial For Beginners](https://www.datacamp.com/tutorial/julia-programming-tutorial-for-beginners) by Bekhruz Tuychiev (DataCamp).
