@@ -36,9 +36,9 @@ The recommended way to install Julia is to install [`juliaup`](https://github.co
 
 This will install the latest stable version of Julia, as well as the `juliaup` tool. Start Julia from the command-line by typing `julia`. To install different Julia versions, see `juliaup --help`.
 
-Please star us on [GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
+If you need to manually download and install specific Julia versions, see the [Downloads](/downloads/) page.
 
-See the [Downloads](/downloads/) page to manually download and install specific versions of Julia.
+Please star us on [GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
 
 ### Official domains
 
