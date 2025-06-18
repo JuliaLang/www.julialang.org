@@ -7,7 +7,7 @@ The recommended way to install Julia is to install [`juliaup`](https://github.co
 <div id="windows-instructions" style="display: none;">
   Install <code>juliaup</code> from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
   <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
-  <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>For Linux and MacOS instructions <a onclick="showUNIX()" href="javascript:void(0);">click here</a></div>
+  <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>If you cannot access the Microsoft Store, try the experimental <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. For Linux and MacOS instructions <a onclick="showUNIX()" href="javascript:void(0);">click here</a></div>
 </div>
 <div id="unix-instructions" style="display: none;">
   Install <code>juliaup</code> by running this in your terminal:
