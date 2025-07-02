@@ -395,7 +395,7 @@ Julia also supports a variety of hardware accelerators, by means of external pac
       <th> Support Tier </th>
     </tr>
     <tr>
-      <td rowspan="2"> <a href="https://juliagpu.org/cuda">NVIDIA GPUs using CUDA</a> </td>
+      <td rowspan="2"> <a href="https://juliagpu.org/backends/cuda">NVIDIA GPUs using CUDA</a> </td>
       <td> Linux (64-bit) </td>
       <td rowspan="2"> NVIDIA driver for CUDA 11.0+ </td>
       <td> <font color="green">Tier 1</font> </td>
@@ -405,13 +405,13 @@ Julia also supports a variety of hardware accelerators, by means of external pac
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td> <a href="https://juliagpu.org/metal">Apple GPUs using Metal</a> </td>
+      <td> <a href="https://juliagpu.org/backends/metal">Apple GPUs using Metal</a> </td>
       <td> Apple Silicon </td>
       <td> macOS 13+ </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td rowspan="2"> <a href="https://juliagpu.org/oneapi">Intel GPUs with oneAPI</a> </td>
+      <td rowspan="2"> <a href="https://juliagpu.org/backends/oneapi">Intel GPUs with oneAPI</a> </td>
       <td> Linux (64-bit) </td>
       <td> 6.2+ </td>
       <td> <font color="orange">Tier 2</font> </td>
@@ -422,7 +422,7 @@ Julia also supports a variety of hardware accelerators, by means of external pac
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
-      <td rowspan="2"> <a href="https://juliagpu.org/rocm">AMD GPUs using ROCm</a> </td>
+      <td rowspan="2"> <a href="https://juliagpu.org/backends/rocm">AMD GPUs using ROCm</a> </td>
       <td> Linux (64-bit) </td>
       <td rowspan="2"> ROCM 5.3+ </td>
       <td> <font color="crimson">Tier 3</font> </a> </td>
