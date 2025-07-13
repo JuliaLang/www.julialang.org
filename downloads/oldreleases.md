@@ -26,6 +26,128 @@ All releases and pre-releases are [tagged in git](https://github.com/JuliaLang/j
   <tbody>
 
   <tr>
+    <th scope="row" rowspan=15>v1.12.0-beta4, on 2025-06-05T20:40:20Z</th>
+
+    <td>Linux (glibc)</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.0-beta4-linux-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.0-beta4-linux-x86_64.tar.gz.asc">asc</a>)</td>
+    <td>cead6a6ff3464af359258579a3ff6fb1d6f65aa93cb7b32b00691c23752f1cd7</td>
+  </tr>
+
+  <tr>
+    <td>Linux (glibc)</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/x86/1.12/julia-1.12.0-beta4-linux-i686.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.12/julia-1.12.0-beta4-linux-i686.tar.gz.asc">asc</a>)</td>
+    <td>748eabeb5a31b9eb096b641010d1a0a9bf63283f58425734660c1056ba790e55</td>
+  </tr>
+
+  <tr>
+    <td>Linux (glibc)</td>
+    <td>aarch64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.12/julia-1.12.0-beta4-linux-aarch64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.12/julia-1.12.0-beta4-linux-aarch64.tar.gz.asc">asc</a>)</td>
+    <td>e8ae058e3534a979de94688786f546060bbc676ac06035cd4350fbc53a1ddc21</td>
+  </tr>
+
+  <tr>
+    <td>Linux (musl)</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/musl/x64/1.12/julia-1.12.0-beta4-musl-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/musl/x64/1.12/julia-1.12.0-beta4-musl-x86_64.tar.gz.asc">asc</a>)</td>
+    <td>d4cc9c70e5b661ed10572b3ff83fb1d5a3e91324bc2dae5f3be3272ad4fcacea</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.0-beta4-mac64.dmg">dmg</a></td>
+    <td>85b9c77abc41730643f15b6e8ff14ebe049b793d080e518b4d52cb205ff051ce</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>aarch64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.0-beta4-macaarch64.dmg">dmg</a></td>
+    <td>98654c5231cc654ff093e79028eeecbb3a88750f9bf43bee6ff3134dc5ca23fa</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.0-beta4-mac64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.0-beta4-mac64.tar.gz.asc">asc</a>)</td>
+    <td>aedfbcb424cbbc7672edb83ee5261932a4cb9db5e76cc20be029d6eb6a792f58</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>aarch64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.0-beta4-macaarch64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.0-beta4-macaarch64.tar.gz.asc">asc</a>)</td>
+    <td>7b9ad5d326abd6d31a4c63567397e0e3ab549f8a4133d35a1249ee7bdc58e575</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>x86_64</td>
+    <td>installer</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.0-beta4-win64.exe">exe</a></td>
+    <td>29e74fb4621ffdf635999f0f9ac53c5b3bddf87eddc09dec032f049d0879b7b5</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>installer</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.0-beta4-win32.exe">exe</a></td>
+    <td>9b9eb0bccdc260f224f7ccfd51df9eb4d770fd46caf591507bcef9f0d8ab03e1</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.0-beta4-win64.zip">zip</a></td>
+    <td>3d6a2b4a59b60ae6cfb85b74d2761c4572fd8530e81b9a7422ec1e73542c66aa</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.0-beta4-win32.zip">zip</a></td>
+    <td>7637f0bea7ee3c9320f77db77078d655e25e8320db680f8dfa8f2ef40f5d2659</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.0-beta4-win64.tar.gz">tar.gz</a></td>
+    <td>6a02e74fed84e887ce765906acf93f2aedd11e11f60c8f05711419f54ba6f386</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.0-beta4-win32.tar.gz">tar.gz</a></td>
+    <td>352e13be321023a62c49b326223e1c6b48459f282d9c6154cf17b406c6ccac63</td>
+  </tr>
+
+  <tr>
+    <td>FreeBSD</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.12/julia-1.12.0-beta4-freebsd-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.12/julia-1.12.0-beta4-freebsd-x86_64.tar.gz.asc">asc</a>)</td>
+    <td>c522413b0e6e31dcef5354796c17988740a5a97a76168046a46239916a1c115b</td>
+  </tr>
+
+  <tr>
     <th scope="row" rowspan=15>v1.12.0-beta3, on 2025-05-12T23:12:08Z</th>
 
     <td>Linux (glibc)</td>
