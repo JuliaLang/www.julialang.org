@@ -113,6 +113,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaFewBody](https://github.com/JuliaFewBody) - Few-body systems physics in Julia
 * [JuliaHEP](https://github.com/JuliaHEP) - High-Energy Physics related projects.
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
+* [JuliaQCD](https://github.com/JuliaQCD) – Lattice QCD in Julia
 * [JuliaWaveScattering](https://github.com/JuliaWaveScattering) – Linear wave equations (acoustic, elastic, electromagnetic, quantum)
 * [JuliaQuantum](https://github.com/JuliaQuantum) – Quantum science and technology
 * [JuliaQuantumControl](https://github.com/JuliaQuantumControl) — Framework for open-loop quantum optimal control
