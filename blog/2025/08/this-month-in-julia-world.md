@@ -29,6 +29,8 @@ JuliaCon happened two weeks ago. [Here is the full list of talks](https://pretal
 * “[Whats new in AMDGPU.jl](https://pretalx.com/juliacon-2025/talk/9QRAXE/)” and “[What is new and improved in CUDA.jl](https://pretalx.com/juliacon-2025/talk/VTVVMG/)”
 * [Pkg’s new SAT-based version resolver](https://pretalx.com/juliacon-2025/talk/Y7NPFM/) – soon-to-come improvements to how version resolving works in Pkg, permitting much more flexible configurations and goals (e.g. oldest possible package version that fulfills compat bounds)
 
+And if JuliaCon Global left you wanting more, don’t forget to book your tickets for JuliaCon Local Paris (October 2nd & 3rd, right after PyData Paris). The early bird pricing expires in 10 days and they are starting to announce some very cool plenary speakers, including familiar faces. Ticket link: https://pretix.eu/pydata/juliaconparis25/
+
 “Internals” Fora and Core Repos (Slack/Zulip/Discourse/Github):
 
 * Just as `@__MODULE__` refers to the enclosing module object, the internal variable `var"#self#"` can be used to refer to the enclosing function object. [This PR](https://github.com/JuliaLang/julia/pull/58940) creates an alias `@__FUNCTION__` for this variable to match the naming conventions of existing reflection macros (`@__MODULE__`, `@__FILE__`, etc.). It had to deal with an interesting amount of edge cases as discussed in linked PRs and Issues.
@@ -62,7 +64,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 * A [commercial game](https://discourse.julialang.org/t/im-creating-the-worlds-first-commercial-game-written-in-julia/130412) is being developed in Julia.
 * MPI (the standard tool for efficient communication during computation on supercomputing clusters) now has [much faster integration](https://discourse.julialang.org/t/faster-mpi-integration-in-dagger/130784) into [Dagger.jl](http://dagger.jl)
 * A story on how to build an [e-ink dashboard powered by Julia](https://discourse.julialang.org/t/building-a-julia-powered-e-ink-dashboard-a-dev-log/130709).
-* [Gasthon.jl](https://discourse.julialang.org/t/ann-gaston-v2-0-released/130358) is a convenient way to access gnuplot from julia.
+* [Gaston.jl](https://discourse.julialang.org/t/ann-gaston-v2-0-released/130358) is a convenient way to access gnuplot from julia.
 * [FixedSizeArrays: What Arrays should have been](https://discourse.julialang.org/t/ann-fixedsizearrays-jl-what-array-probably-should-have-been/129724/37) – providing the compiler with more size information and promising to not change size of an array, enables more optimizations.
 
 Numerical Math ecosystem:
