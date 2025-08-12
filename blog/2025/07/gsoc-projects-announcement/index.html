@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Announcing Google Summer of Code 2025 selected projects</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Announcing Google Summer of Code 2025 selected projects">
+<meta property="og:description" content="Announcing Google Summer of Code 2025 selected projects">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/">
+          <img src="/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Announcing Google Summer of Code 2025 selected projects
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 17 July 2025 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Julia GSoC admin team </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2025/07/gsoc-projects-announcement.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<h1 id="announcing_google_summer_of_code_2025_selected_projects"><a href="#announcing_google_summer_of_code_2025_selected_projects" class="header-anchor">Announcing Google Summer of Code 2025 selected projects</a></h1>
+<p>— Orestis Ousoultzoglou on behalf of <a href="https://julialang.org/jsoc/admins/">the admin team</a></p>
+<p>The Julia Project is <a href="https://summerofcode.withgoogle.com/programs/2025/organizations/the-julia-language">participating</a> in <a href="https://summerofcode.withgoogle.com/">Google Summer of Code &#40;GSoC&#41;</a> again this year. GSoC is a global program organized by Google that is designed to bring new contributors to the world of open-source.</p>
+<p>Earlier this year, we published a list of <a href="https://julialang.org/jsoc/projects/">GSoC project ideas</a>, and started discussing these projects with potential GSoC applicants on our <a href="https://julialang.slack.com/archives/C67L30Z3L">Slack</a>. We had many interesting discussions with the potential contributors, and even saw some of them making non-trivial contributions, even before GSoC officially started&#33;</p>
+<p>After the initial discussions, GSoC applicants prepared and submitted their project proposals. We received a whopping 85 proposals this year&#33; We are happy to see that there was so much interest in our projects.</p>
+<p>A team of mentors primarily composed of Julialang contributors then thoroughly examined the submitted proposals. GSoC required us to produce a ranked list of the best proposals, which was a challenging task in itself since this is an umbrella organization with many priorities&#33; The admin team considered factors such as prior conversations with the given applicant, the quality of their proposal, the importance of the proposed project for the Julia ecosystem and its wider community, but also the availability of mentors, who are often volunteers and thus have limited time available for mentoring.</p>
+<p>As is usual in GSoC, even though some project topics received multiple proposals, we had to pick only one proposal per project topic. We also had to choose between great proposals targeting different work to avoid overloading a single mentor with multiple projects.</p>
+<p>In the end, we narrowed the list down to a smaller number of the best proposals that we could still realistically support with our available mentor pool. We submitted this list and eagerly awaited how many of them would be accepted into GSoC.</p>
+<h2 id="selected_projects"><a href="#selected_projects" class="header-anchor">Selected projects</a></h2>
+<p>On the 8th of May, Google has announced the accepted projects. We are happy to share that <strong>14</strong> proposals were accepted by Google for Google Summer of Code 2025. That&#39;s a lot of projects, which makes us super excited about GSoC 2025&#33;</p>
+<p>Below you can find the list of accepted proposals &#40;in no particular order&#41;, along with the names of their authors and the assigned mentor&#40;s&#41;:</p>
+<ul>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/lTdvJXDe">Extending Reachability Analysis with Matrix Zonotopes in Reachability Analysis.jl</a></strong> by Alessandro Carraro, mentored by Christian Schilling and Marcelo Forets</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/9M7UdqlC">Sharing is Caring: Improving the Julia GPU Stack Portability</a></strong> by Christian Guinard, mentored by Valentin Churavy and Tim Besard</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/pVuVXJ5N">Improving the Performance of GNNs Using Sparse Linear Algebra</a></strong> by Davide Ferre&#39;, mentored by Carlo Lucibello</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/T5qvWEvO">Integrating Agents.jl with Reinforcement Learning Techniques</a></strong> by Giorgio Bertone, mentored by Giorgos Datseris and Adriano Meligrana</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/vEtdXncS">Implementing a Graph-State Backend for QuantumClifford.jl</a></strong> by Kanyang Ying, mentored by Stefan Krastanov and Andrew Kille</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/xpSEgu5b">Supporting Patient Level Prediction Pipelines within JuliaHealth</a></strong> by Kosuri Lakshmi Indu, mentored by Jacob Zelko</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/rIUlYnPe">Ab-Initio Quantum Chemistry with Rimu.jl</a></strong> by Chuhao Li, mentored by Joachim Brand, Daniel Kats, and Elke Pahl</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/WgOorFxH">R interface for JuliaBUGS</a></strong> by Mateus Maia, mentored by Xianda Sun and Robert Goudie</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/KGUrSI9I">Improving search functionality for Documenter.jl</a></strong> by Mohd Rahban Ghani, mentored by Morten Piibeleht and Hetarth Shah</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/gy5J7ewY">Time series forecasting at scales</a></strong> by Priyansh Jain, mentored by Andrii Babii</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/4ecMbDwU">Browser-Based Graphical Interface for JuliaBUGS</a></strong> by Shravanpuri Goswami, mentored by Xianda Sun</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/aCA4KJ3B">Efficient RMA Integration and Graph Partitioning for Scalable Task Execution in MPI-based Dagger.jl</a></strong> by Yan Guimarães, mentored by Julian Samaroo and Tom Felipe</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/9PZY6C2m">Development of a New Language Server for Julia</a></strong> by Yuchi Yamaguchi, mentored by Shuhei Kadowaki</p>
+</li>
+<li><p><strong><a href="https://summerofcode.withgoogle.com/programs/2025/projects/0MEiJ7Ty">A Digital Twin approach for Advanced Supervoxel Visualization for Multi-Image View in Imaging</a></strong> by Divyansh Goyal, mentored by Jakub Mitura</p>
+</li>
+</ul>
+<p><strong>Congratulations to all applicants whose project was selected&#33;</strong> The mentors are looking forward to working with you on these exciting projects to improve the Julia ecosystem. You can expect to hear from us soon, so that we can start coordinating the work on your GSoC projects.</p>
+<p>We would also like to thank all the applicants whose proposal was sadly not accepted, for their interactions with the Julia community and contributions to various Julia projects. Even if your proposal was not accepted, we would be happy if you would consider contributing to the projects that got you interested, even outside GSoC&#33; Our <a href="https://julialang.org/jsoc/projects/">project idea list</a> is still actual and could serve as a general entry point for contributors that would like to work on projects that would aid the Julia ecosystem. You can always <a href="https://julialang.org/community/">reach out to us</a> and we&#39;ll make sure to help you in any way we can.</p>
+<p>There is also a good chance we&#39;ll participate in GSoC next year as well &#40;though we can&#39;t promise anything at this moment&#41;, so we hope to receive your proposals again in the future&#33;</p>
+<p>The accepted GSoC projects will run for several months. After GSoC 2025 finishes &#40;in autumn of 2025&#41;, we will publish a blog post in which we will summarize the outcome of the accepted projects.</p>
+<hr />
+<p>We&#39;ve reached out to the GSoC 2025 contributors, and some of them wanted to communicate what they&#39;ll be working on to the outside world:</p>
+<p>Christian Guinard:</p>
+<blockquote>
+<p>&quot;My project involves incorporating specialized GPU kernels into the shared GPUArrays.jl backend using KernelAbstractions.jl to enable high-performance operations in all GPU backends while only writing them once. I will also be expanding tests and banchmarks to ensure no performance or functional regressions from this transition. I&#39;ve been helping maintain Metal.jl for that past while now and I&#39;m excited to contribute to the wider JuliaGPU project&#33;&quot;</p>
+</blockquote>
+<p>Shravan Goswami:</p>
+<blockquote>
+<p>I&#39;m working on a browser-based tool for <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a> that lets users draw probabilistic models and generate code from DAGs. The goal is to make it easier to work with Bayesian models in Julia, especially for beginners. I made an initial prototype during the community bonding period.</p>
+</blockquote>
+<blockquote>
+<p>This is my first GSoC, but I actually applied in 2023 and wasn’t selected. Since then, I’ve learned a lot, and the Julia community has been a big part of that. Julia has given me a lot—not just in terms of skills, but also through the support and guidance I’ve received from the people here. I’ll be sharing my journey throughout the summer on my blog: <a href="https://shravangoswami.com/">https://shravangoswami.com/</a>. Here’s the first post about getting selected: <a href="https://shravangoswami.com/blog/GSoC-2025-The-Journey-Begins/">https://shravangoswami.com/blog/GSoC-2025-The-Journey-Begins/</a></p>
+</blockquote>
+<p>Rahban Ghani:</p>
+<blockquote>
+<p>The project I am working on is improving the search functionality for Documenter.jl. I am writing  benchmarks for search relevance and then I will improve it by enhancing the tokenizer, making sure search index is getting the correct inputs and many other different techniques.</p>
+</blockquote>
+<blockquote>
+<p>My involvement with the community so far has been phenomenal. Everybody here is super kind and helpful. There have been numerous instances where I was stuck somewhere and the Julia community came to the rescue</p>
+</blockquote>
+<p>Kosuri Lakshmi Indu:</p>
+<blockquote>
+<p>My project title goes by &quot;<strong>Supporting Patient-Level Prediction Pipelines within JuliaHealth</strong>&quot;. The goal is to make patient-level prediction &#40;PLP&#41; workflows more efficient and reproducible by developing a standardized Tables.jl interface for OMOP CDM, along with a cohort feasibility assessment tool. These tools will help automate data preprocessing, simplify cohort construction and connect smoothly with the JuliaHealth ecosystem.</p>
+</blockquote>
+<blockquote>
+<p>My interest in healthcare and research naturally led me to JuliaHealth. I first got involved by working on a pipeline to predict diabetes onset in hypertensive patients, which gave me hands-on experience with Julia and the challenges of working with observational health data, all under the mentorship of Jacob S. Zelko &#40;<a href="https://julialang.slack.com/team/US64J0NPQ">@TheCedarPrince</a>&#41;, who guided me through each step and made the learning experience incredible. With his continued support, I went on to publish a blog series on Patient-Level Prediction &#40;PLP&#41; in Julia on the JuliaHealthBlog and so far the feedback and encouragement from the community has been great.</p>
+</blockquote>
+<blockquote>
+<p>Yep that&#39;s it and am looking forward to an exciting and productive coding period ahead&#33;</p>
+</blockquote>
+<blockquote>
+<p><strong>P.S.</strong> When I first joined the Julia Slack, you were the first person to welcome and guide me, just wanted to say thank you for making the space feel so warm and approachable right from the beginning&#33;</p>
+</blockquote>
+<p>Kanyang Ying:</p>
+<blockquote>
+<p>In a nutshell, my project will basically implement an alternative simulation backend for QuantumClifford.jl to speedup simulation for certain types of quantum circuit.</p>
+</blockquote>
+<p>Alessandro Carraro:</p>
+<blockquote>
+<p>Hi, I am Alessandro&#33; I&#39;m currently working on extending the ReachabilityAnalysis.jl package by adding new algorithms that use matrix zonotopes as a matrix set representation. It&#39;s been a really fun and interesting project so far as there’s a nice mix of understanding the maths and thinking about how to design the code efficiently in a Julian way. I&#39;ve also really enjoyed being part of the Julia community. Everyone’s been super welcoming, and my mentors have been very supportive and helpful.</p>
+</blockquote>
+<p>Davide Ferre&#39;:</p>
+<blockquote>
+<p>This summer I’ll be working on improving GPU support for sparse operations in Julia, with the goal of making Graph Neural Networks more efficient via GraphNeuralNetworks.jl and CUDA.jl. These improvements should help reduce memory overhead and accelerate message-passing operations in GNNs. I’m really excited to contribute to the Julia ecosystem in an area that ties closely to my PhD research on neural networks and graphs.</p>
+</blockquote>
+<p>Yuchi Yamaguchi:</p>
+<blockquote>
+<p>I’m Yuchi &#40;https://github.com/abap34&#41;, an undergraduate student in Computer Science at the Institute of Science Tokyo. My main research focus is programming languages, but I also work in machine learning, statistics, and mathematical optimization — all areas where Julia truly shines. I&#39;ve been using Julia for over 6 years.</p>
+</blockquote>
+<blockquote>
+<p>For Google Summer of Code, I’m working on the project “Development of a New Language Server for Julia.” This is a very exciting project to build a brand-new Language Server that provides powerful analysis by leveraging Julia’s latest compiler infrastructure. The new language server effectively use tools like JET &#40;developed by my mentor Shuhei Kadowaki, who is also leading this project&#41;, JuliaSyntax.jl and JuliaLowering.jl. This will allow us to develop a Language Server that can detect potential bugs more effectively, report precise and fast diagnostics, and remain highly maintainable.</p>
+</blockquote>
+<blockquote>
+<p>I believe the new Language Server can significantly help developers write safer and higher-performance code. It will also improve my own experience of writing Julia, which is probably the biggest motivation for me to work on this project&#33; My proposal focuses on implementing a variety of core features and improving performance, but I&#39;m eager to contribute whatever make the Language Server practically useful as soon as possible :&#41;</p>
+</blockquote>
+<blockquote>
+<p>Lastly, I want to thank my mentor Shuhei Kadowaki and the whole team for their ongoing support&#33;</p>
+</blockquote>
+<p>Mateus Maia:</p>
+<blockquote>
+<p>Hello&#33; I’m Mateus, a Research Associate in Statistics at the University of Glasgow. As part of GSoC 2025, I’ll be working on developing an <strong>R interface for JuliaBUGS</strong>, under the umbrella of the Turing.jl project.</p>
+</blockquote>
+<blockquote>
+<p>The goal of this project is to make <strong>JuliaBUGS</strong>—a modern implementation of the BUGS language in Julia—available to the large community of R users who already rely on BUGS-based tools such as R2WinBUGS, R2OpenBUGS, and rjags. This new interface will allow users to access JuliaBUGS directly from R, combining the familiarity of existing BUGS workflows with Julia’s performance and advanced features like automatic differentiation and Hamiltonian Monte Carlo. It also opens the door to integrating powerful R-based visualization and diagnostics tools &#40;like <code>bayesplot</code>, <code>posterior</code>, and <code>coda</code>&#41; into Julia-based workflows.</p>
+</blockquote>
+<blockquote>
+<p>The project will use <code>JuliaCall</code> to facilitate the R–Julia connection and will include extensive documentation, examples, and a user-friendly design to help onboard users with minimal friction. While my background is mostly in Bayesian modeling with R—where I’ve developed and maintained several R packages—I’ve recently been exploring Julia’s capabilities and see this project as a great opportunity to contribute meaningfully to the community. I’m looking forward to engaging more with the Julia ecosystem and helping expand its accessibility, particularly for statisticians and applied researchers coming from R.</p>
+</blockquote>
+<p>Yan Guimarães:</p>
+<blockquote>
+<p>My name is Yan Guimarães, and I&#39;m working on optimizing MPI integration in Dagger, which involves enhancing the communication methods between ranks to achieve better performance in task distribution. I&#39;m loving my experience with the Julia project this summer. At the beginning of this year, I had no idea I would be working with the Julia community, especially in parallel computing. I am surprised by how much I have grown my knowledge, not just in parallel computation, but also in code improvement, how computers work, and the significant impact of having great mentors on the learning process. I can only share positive feelings about my experience in the Google Summer of Code within the Julia community.</p>
+</blockquote>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/install/">Install</a></li>
+        <li><a href="/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/community/stewards/">Stewards</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/libs/groups.js"></script>
+    <script src="/libs/map.js"></script>
+  </body>
+</html>

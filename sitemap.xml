@@ -764,6 +764,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/blog/2025/07/gsoc-projects-announcement/index.html</loc>
+    <lastmod>2025-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/diversity/ideas/index.html</loc>
     <lastmod>2025-08-12</lastmod>
     <changefreq>monthly</changefreq>
