@@ -1,4 +1,4 @@
-@def title = "This Month in Julia World"
+@def title = "This Month in Julia World (May 2025)"
 @def authors = "Stefan Krastanov"
 @def published = "1 June 2025"
 @def rss_pubdate = Date(2025, 6, 1)
