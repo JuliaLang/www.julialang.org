@@ -163,7 +163,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
     </div>
     <br>
 
-    <p>We conduct the Julia User & Developer Survey right before JuliaCon every year and present the findings at JuliaCon. The survey has now been conducted two years in a row:</p>
+    <p>We conduct the Julia User & Developer Survey right before JuliaCon every year and present the findings at JuliaCon. The survey has now been conducted several years in a row:</p>
         <ul>
             <li> 2025: <a href="/assets/2025-julia-user-developer-survey.pdf">Slides</a>
             <li> 2024: <a href="/assets/2024-julia-user-developer-survey.pdf">Slides</a>, and <a href="https://www.youtube.com/live/qru5G5Yp77E?t=11628s">JuliaCon 2024 talk</a>
