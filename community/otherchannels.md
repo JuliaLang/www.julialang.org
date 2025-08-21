@@ -1,10 +1,23 @@
-## Other channels
+## Various online Julia communities
 
-We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. There is a [Julia subreddit](https://www.reddit.com/r/Julia/) for casual discussion on Reddit. The JuliaCN community has a QQ group: 316628299
+# The most active Julia communities
 
-The Julia Language is also present and active on the following platforms in order to engage the widest audience possible:
+* [Discourse](https://discourse.julialang.org)
+* [Github](https://github.com/JuliaLang/julia)
+* [Slack](https://julialang.org/slack/)
+* [Zulip](https://julialang.zulipchat.com/register/)
 
-* **[LinkedIn](https://www.linkedin.com/company/the-julia-language/)**
-* **[Facebook](https://www.facebook.com/julialanguage)**
-* **[Pinterest](https://www.pinterest.com/JuliaLanguage/)**
-* **[Instagram](https://www.instagram.com/Julia.language/)**
+# The complete list of Julia communities
+
+* [Reddit](https://www.reddit.com/r/Julia/)
+* [Discord](https://discord.gg/mm2kYjB)
+* [Youtube](https://www.youtube.com/user/JuliaLanguage)
+* [Forem](https://forem.julialang.org)
+* [LinkedIn](https://www.linkedin.com/company/the-julia-language/)
+* [X/Twitter](https://x.com/JuliaLanguage)
+* [Gitter](https://gitter.im/JuliaLang/julia)
+* [Meetup](https://www.meetup.com/topics/julia/)
+* [Facebook](https://www.facebook.com/julialanguage)
+* [Pinterest](https://www.pinterest.com/JuliaLanguage/)
+* [Instagram](https://www.instagram.com/Julia.language/)
+* QQ: 316628299
