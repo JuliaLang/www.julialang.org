@@ -29,7 +29,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 <!--
       Containers: Community Channels
  -->
- <div class="container-fluid alt-color packages">
+ <div class="container-fluid alt-color">
    <br><br>
    <div class="row">
      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
@@ -103,7 +103,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
  <!--
       Containers: Events
  -->
-  <div class="container pt-sm-2">
+  <div class="container pt-sm-2 alt-color">
    <br><br>
    <div class="container">
      <div class="row">
@@ -131,7 +131,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 <!--
     Containers: Julia User and Developer Survey
   -->
-<div class="container-fluid alt-color packages">
+<div class="container-fluid">
   <br><br>
   <div class="container">
     <div class="row">
@@ -161,36 +161,10 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
   <br>
 </div>
 
- <!--
-      Containers: Localization
- -->
- <div class="container pt-sm-2">
-  <br><br>
-   <div class="container">
-     <div class="row">
-       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-       <div class="col-lg-4 col-md-6 language-features section-heading">
-         <h2 class="lead secondary-heading" id="localization">
-          <a href="#localization" class="link">Localization</a>
-         </h2>
-       </div>
-       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-     </div>
-
-     <br>
-
-     <p>Julia’s official documentation is in English, but many groups work to translate and localize the documentation along with other resources. See the various <a href="localization/">localization efforts</a>.</p>
-
-     <br>
-
-   </div>
- </div>
-<br>
-
 <!--
     Containers: Julia GitHub Organizations
   -->
-<div class="container-fluid alt-color packages">
+<div class="container-fluid alt-color">
   <br><br>
   <div class="container">
     <div class="row">
@@ -216,7 +190,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 <!--
    Containers: Working Groups
  -->
-<div class="container-fluid alt-color packages">
+<div class="container-fluid packages">
  <br><br>
  <div class="container">
    <div class="row">
