@@ -596,12 +596,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.netlify.app/previews/PR2346/community/localization/index.html</loc>
-    <lastmod>2025-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.netlify.app/previews/PR2346/blog/2018/04/tetris-and-you/index.html</loc>
     <lastmod>2025-08-21</lastmod>
     <changefreq>monthly</changefreq>
