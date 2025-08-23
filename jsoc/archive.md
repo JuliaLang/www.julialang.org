@@ -7,7 +7,7 @@ Take a look to our [Julia Seasons of Contributions Page](/jsoc) and contribute y
 
 ## GSoC 2025
 
-We thank Google for their ongoing support. Fourteen contributors are currently working on impactful projects. [View Projects](https://summerofcode.withgoogle.com/archive/2022/organizations/the-julia-language)
+We thank Google for their ongoing support. Fourteen contributors are currently working on impactful projects. [View Projects](https://summerofcode.withgoogle.com/programs/2025/organizations/the-julia-language)
 
 ## GSoC 2024
 
@@ -74,5 +74,3 @@ GSOC 2014 were mentors for JSOC 2015.
 - **Mike Innes** - [Julia + Light Table](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/one_more_minute/5724160613416960)
 - **Shashi Gowda** - [IJulia Interactive Widgets](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/g0/5113880120393728)
 @@
-
-
