@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+*  James V Lambers, Amber Sumner Mooney, Vivian A Montiforte, and James Quinlan, [Explorations in Numerical Analysis and Machine Learning with Julia](https://www.worldscientific.com/worldscibooks/10.1142/14443#t=aboutBook). World Scientific, October 2025.
 * Antonello Lobianco. [Julia Quick Syntax Reference, 2nd ed.](https://doi.org/10.1007/979-8-8688-0965-1). Apress, January 2025.
 * Andreas Varga, [Solving Fault Diagnosis Problems - Linear Synthesis Techniques with Julia Code Examples](https://link.springer.com/book/10.1007/978-3-031-35767-1), Vol. 482 of Studies in Systems, Decision and Control, Springer Nature Switzerland, 2024. The computational examples presented in the book use functions of the [FaultDetectionTools.jl](https://github.com/andreasvarga/FaultDetectionTools.jl) and [DescriptorSystems.jl](https://github.com/andreasvarga/DescriptorSystems.jl) packages and are available [here](https://github.com/andreasvarga/FaultDetectionTools.jl/tree/master/Examples).
 * Bartłomiej Łukaszuk, [Romeo and Julia, where Romeo is Basic Statistics](https://b-lukaszuk.github.io/RJ_BS_eng/), [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), 2023.
