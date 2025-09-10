@@ -1,0 +1,238 @@
++++
+mintoclevel = 2
+maxtoclevel = 3
+title = "Julia 1.12 Highlights"
+authors = "The Julia contributors"
+published = "10 September 2025"
+rss_pubdate = Date(2025, 09, 08)
+rss = """Highlights of the Julia 1.11 release."""
++++
+
+Julia version 1.12 has finally been released. We want to thank all the contributors to this release and all the testers who helped find regressions and issues in the pre-releases. Without you, this release would not have been possible.
+
+The full list of changes can be found in the [NEWS file](https://github.com/JuliaLang/julia/blob/release-1.12/NEWS.md), but here we'll give a more in-depth overview of some of the release highlights.
+
+
+\toc
+
+## New `--trim` feature
+*Jeff Bezanson* , *Cody Tapscott*, *Gabriel Baraldi*
+
+## Redefinition of constants (structs)
+*Keno Fischer*, *Tim Holy*
+
+## New tracing flags and macros for inspecting what Julia compiles
+*Ian Butterworth*, *Nathan Daly*
+
+`--trace-compile-timing` is a new command-line flag that augments `--trace-compile` by printing how long each compiled method took (in milliseconds) before the corresponding `precompile(...)` line. This makes it easier to spot costly compilations.
+
+In addition, two macros for ad-hoc tracing without restarting Julia has been added:
+
+* `@trace_compile expr` runs `expr` with `--trace-compile=stderr --trace-compile-timing` enabled, emitting timed `precompile(...)` entries only for that call.
+* `@trace_dispatch expr` runs `expr` with `--trace-dispatch=stderr` enabled, reporting methods that are dynamically dispatched.
+
+**Examples**
+
+```julia
+julia> @trace_compile @eval rand(2,2) * rand(2,2)
+#=   79.9 ms =# precompile(Tuple{typeof(Base.rand), Int64, Int64})
+#=    4.4 ms =# precompile(Tuple{typeof(Base.:(*)), Array{Float64, 2}, Array{Float64, 2}})
+2×2 Matrix{Float64}:
+ 0.302276  0.14341
+ 0.738941  0.396414
+
+julia> f(x) = x
+
+julia> @trace_dispatch map(f, Any[1,2,3])
+precompile(Tuple{Type{Array{Int64, 1}}, UndefInitializer, Tuple{Int64}})
+precompile(Tuple{typeof(Base.collect_to_with_first!), Array{Int64, 1}, Int64, Base.Generator{Array{Any, 1}, typeof(Main.f)}, Int64})
+3-element Vector{Int64}:
+ 1
+ 2
+ 3
+
+```
+
+## One interactive thread by defayult
+*Gabriel Baraldi*
+
+## `OncePerX`
+*Jameson Nash*
+
+Certain initialization patterns need to run only once, depending on scope: per process, per thread, or per task. To make this easier and safer, Julia now provides three built-in types:
+
+* `OncePerProcess{T}`: runs an initializer exactly once per process, returning the same value for all future calls.
+* `OncePerThread{T}`: runs an initializer once for each thread ID. Subsequent calls on the same thread return the same value.
+* `OncePerTask{T}`: runs an initializer once per task, reusing the same value within that task.
+
+These replace common hand-rolled solutions such as using `__init__`, `nthreads()`, or `task_local_storage()` directly.
+
+A simple example of `OncePerProcess`:
+
+```julia
+julia> const global_state = Base.OncePerProcess{Vector{UInt32}}() do
+           println("Making lazy global value...done.")
+           return [Libc.rand()]
+       end;
+
+julia> a = global_state();
+Making lazy global value...done.
+
+julia> a === global_state()
+true
+```
+
+**Use cases:**
+
+* `OncePerProcess`: caches, global constants, or initialization that should happen once per Julia process (even across precompilation).
+* `OncePerThread`: per-thread state needed for interoperability with C libraries or specialized threading models.
+* `OncePerTask`: lightweight task-local state without manually managing `task_local_storage`.
+
+These types provide a safer, composable way to express “initialize once” semantics in concurrent Julia code.
+
+
+## Building Julia and LLVM using the Binary Optimization and Layout Tool (BOLT).
+*Zentrik*
+
+
+[BOLT](https://github.com/llvm/llvm-project/tree/main/bolt) is a post-link optimizer from LLVM that improves runtime performance by reordering functions and basic blocks, splitting hot and cold code, and folding identical functions. Julia now supports building BOLT-optimized versions of **libLLVM**, **libjulia-internal**, and **libjulia-codegen**.
+
+These optimizations reduce compilation and execution time in common workloads. For example, the all-inference benchmarks improve by about **10%**, an LLVM-heavy workload shows a similar **\~10%** gain, and building `corecompiler.ji` improves by **13–16%** with BOLT. When combined with PGO and LTO, total improvements of up to **\~23%** have been observed.
+
+To build a BOLT-optimized Julia, run the following commands from `contrib/bolt/`:
+
+```bash
+make stage1
+make copy_originals
+make bolt_instrument
+make finish_stage1
+make merge_data
+make bolt
+```
+
+The optimized binaries will be available in the `optimized.build` directory. An analogous workflow exists in `contrib/pgo-lto-bolt/` for combining BOLT with PGO+LTO.
+
+BOLT currently works only on Linux **x86\_64** and **aarch64**, and the resulting `.so` files must not be stripped. Some `readelf` warnings may appear during testing but are considered harmless.
+
+
+
+## The `@atomic` macro family now supports reference assignment syntax
+*Marek Kaluba*
+
+The `@atomic` macro family now supports **indexing** (e.g. `m[i]`, `m[i,j]`) in addition to field access. This makes it possible to perform atomic fetch, set, modify, swap, compare-and-swap, and set-once directly on array-like references. The macros expand to new APIs: `getindex_atomic`, `setindex_atomic!`, `modifyindex_atomic!`, `swapindex_atomic!`, `replaceindex_atomic!`, and `setindexonce_atomic!`. Vararg and `CartesianIndex` indexing are supported.
+
+For example:
+
+```julia
+mem = AtomicMemory{Int}(undef, 2)
+
+@atomic mem[1] = 2                 # atomic set
+x = @atomic mem[1]                 # atomic fetch
+@atomic :monotonic mem[1] += 1     # atomic modify with order
+old = @atomicswap mem[1] = 4       # atomic swap (returns old)
+res = @atomicreplace mem[1] 4 => 10  # (old=4, success=true)
+ok  = @atomiconce mem[2] = 7         # set once (Bool)
+```
+
+
+
+## New option --task-metrics=yes to enable the collection of per-task timing information
+*Nick Robinson*, *Kiran Pamnany*, *Nathan Daly*
+
+## New Pkg features
+*Kristoffer Carlsson*
+
+### Workspace
+
+A workspace is a set of project files that all share the same manifest.
+Each project in a workspace can include its own dependencies, compatibility information, and even function as a full package.
+
+When the package manager resolves dependencies, it considers the requirements and compatibility of all the projects in the workspace. The compatible versions identified during this process are recorded in a single manifest file.
+
+A workspace is defined in the base project by giving a list of the projects in it:
+
+```toml
+[workspace]
+projects = ["test", "docs", "benchmarks", "PrivatePackage"]
+```
+
+This structure is particularly beneficial for developers using a monorepo approach, where a large number of unregistered packages may be involved. It is also useful for adding documentation or benchmarks to a package by including additional dependencies beyond those of the package itself. Test-specific dependencies are now recommended to be specified using the workspace approach (a project file in the `test` directory that is part of the workspace defined by the package project file).
+
+Workspaces can also be nested: a project that itself defines a workspace can also be part of another workspace. In this case, the workspaces are “merged,” with a single manifest being stored alongside the “root project” (the project that is not included in another workspace).
+
+### Apps
+
+An app is a Julia package that can be run directly from the terminal, similar to a standalone program.
+Each app provides an entry point via `@main` and can define its own default Julia flags and executable name.
+
+When an app is installed, it gets put into `.julia/bin` and by adding that to your `PATH` it allows you to launch it by name together with any arguments or options.
+
+A Julia app is defined in the `Project.toml` file using an `[apps]` section:
+
+```toml
+[apps]
+reverse = {} # empty dictionary is for additional metadat
+```
+
+with a corresponding entry point in the package module:
+
+```julia
+# src/MyReverseApp.jl
+module MyReverseApp
+
+function (@main)(ARGS)
+    for arg in ARGS
+        print(stdout, reverse(arg), " ")
+    end
+end
+
+end # module
+```
+
+After installation, the app can be run directly in the terminal:
+
+```sh
+$ reverse some input string
+emos tupni gnirts
+```
+
+This makes apps useful for building CLI tools or packaging Julia functionality as user-facing executables. Multiple apps can be defined per package by using submodules, and each app can specify default Julia flags (e.g. `--threads=4`) for performance or debugging.
+
+See the full documentation for more information: https://pkgdocs.julialang.org/dev/apps/
+
+## Generated LLVM IR now uses pointer types instead of passing pointers as integers
+*Tim Besard*
+
+`Ptr{T}` now lowers to **actual LLVM pointer types** in generated IR (i.e. `ptr` with opaque pointers, or `i8*`), instead of integers like `i64`. This simplifies low-level interop: `llvmcall` no longer needs `ptrtoint`/`inttoptr` shims, and many intrinsics can be called via `ccall` using `Ptr` directly.
+
+**What changes for you**
+
+* **Inline LLVM (`llvmcall`)**: update IR to use `ptr`/`i8*` for pointer arguments/returns, and remove redundant `ptrtoint`/`inttoptr` casts. Old IR that treats pointers as integers is still accepted but emits a **deprecation warning**.
+* **Pointer arithmetic**: `add_ptr` / `sub_ptr` now operate on real pointers:
+  `add_ptr(::Ptr{T}, ::UInt)` and `sub_ptr(::Ptr{T}, ::UInt)` (lowered to GEP).
+* **`ccall` convenience**: passing/returning `Ptr{T}` maps to LLVM pointer types directly, enabling more intrinsic calls without custom `llvmcall` glue.
+
+**Example (before → after)**
+
+```llvm
+; BEFORE (deprecated): integer pointer
+define i64 @f(i64 %p) {
+  %q = inttoptr i64 %p to i8*
+  ; ...
+  %r = ptrtoint i8* %q to i64
+  ret i64 %r
+}
+
+; AFTER: real pointer
+define ptr @f(ptr %p) {
+  ; ...
+  ret ptr %p
+}
+```
+
+This change also unlocks minor optimization opportunities in generated code since pointers no longer bounce through integer casts.
+
+
+## Acknowledgement
+
+The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
