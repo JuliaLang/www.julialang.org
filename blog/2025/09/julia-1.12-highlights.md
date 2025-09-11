@@ -53,7 +53,7 @@ precompile(Tuple{typeof(Base.collect_to_with_first!), Array{Int64, 1}, Int64, Ba
 
 ```
 
-## One interactive thread by defayult
+## One interactive thread by default
 *Gabriel Baraldi*
 
 ## `OncePerX`
