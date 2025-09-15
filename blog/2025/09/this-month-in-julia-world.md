@@ -46,7 +46,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 * [Julia for Research Software Engineering](https://discourse.julialang.org/t/julia-for-research-software-engineering/131528) is a recent talk by Mosè and Valentin in a larger series on scientific software.
 * [BufIO.jl is a new low-level abstraction for input/output interfaces in Julia](https://discourse.julialang.org/t/ann-bufio-new-i-o-interfaces-for-julia/132347), created by Jakob after he spent a few years documenting many of the frustrations of the current Base IO. This is a very valuable prototype that can lead to much more robust buffer and stream interface for Julia.
 * [BonitoBook.jl](https://discourse.julialang.org/t/ann-bonitobook-jl/131442) is an interesting new take on reactive notebooks in the Julia ecosystem, with deep integration with Makie.
-* A short tutorial on how sum types (think Moshi/SumTypes/LightSumTypes) can be used to define dynamic C APIs that can be compiled with `--trim`, for elegant C interfaces to your Julia libraries.
+* A [short tutorial](https://discourse.julialang.org/t/guide-using-sum-types-to-define-dynamic-c-apis-for-julia-1-12-trim/132111) on how sum types (think Moshi/SumTypes/LightSumTypes) can be used to define dynamic C APIs that can be compiled with `--trim`, for elegant C interfaces to your Julia libraries.
 * [Introduction to Julia for R users](https://nrennie.rbind.io/blog/introduction-julia-r-users/)
 * [IJulia.jl 1.30 is released](https://discourse.julialang.org/t/ann-ijulia-1-30-0/131811), with significant usability improvements when running julia notebooks in Jupyter.
 * [LuaNova.jl](https://discourse.julialang.org/t/ann-luanova-jl-easy-lua-julia-integration/132324) released, providing easy Lua-Julia integration.
