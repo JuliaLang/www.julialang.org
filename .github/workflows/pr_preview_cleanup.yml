@@ -5,9 +5,9 @@ on:
     types: [closed]
 
 concurrency:
-  # Same group concurrency as the `docs.yml` workflow, because they both
-  # git-push to the same branch, so we want to avoid clashes.
-  group: docs-pushing
+  # Same group concurrency as the `deploy.yml` workflow, because they both
+  # git-push to the `gh-preview` branch, so we want to avoid clashes.
+  group: global-lock-ghpreview-pushing
 
 jobs:
   doc-preview-cleanup:
