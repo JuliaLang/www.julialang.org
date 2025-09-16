@@ -6,6 +6,10 @@ on:
   pull_request:
     branches:
       - main
+concurrency:
+  # Same group concurrency as the `pr_preview_cleanup.yml` workflow, because they both
+  # git-push to the `gh-preview` branch, so we want to avoid clashes.
+  group: global-lock-ghpreview-pushing
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
