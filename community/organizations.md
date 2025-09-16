@@ -28,7 +28,6 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaImages](https://github.com/JuliaImages) – Julia packages for image processing
 * [JuliaPackaging](https://github.com/JuliaPackaging) – Tooling for Julia's binary packages and dependencies
 * [JuliaPluto](https://github.com/JuliaPluto) – Packages related to the [Pluto.jl](https://github.com/fonsp/Pluto.jl) notebook
-* [JuliaPraxis](https://github.com/JuliaPraxis) – Best practices ([Gitter](https://gitter.im/JuliaPraxis))
 * [JuliaPy](https://github.com/JuliaPy) – Software that connects the Julia and Python languages.
 * [JuliaStrings](https://github.com/JuliaStrings)
 * [Julia Testing](https://github.com/JuliaTesting) – Testing tools for the Julia language
