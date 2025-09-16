@@ -13,12 +13,12 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaCon](https://github.com/JuliaCon) – The Julia Conference
 * [JuliaAcademy](https://github.com/JuliaAcademy) – The definitive source for learning all things Julia.
 * [JuliaCommunity](https://github.com/JuliaCommunity) – Organizing Julia Community Initiatives
-* [Julia Lab](https://github.com/JuliaLabs) - Julia Lab at MIT CSAIL
+* [Julia Lab](https://github.com/JuliaLabs) – Julia Lab at MIT CSAIL
 
 ### General
 
 * [Holy Lab](https://github.com/HolyLab)
-* [InPhyT](https://github.com/InPhyT) - Research group developing data management pipelines and complex systems modeling frameworks in Julia
+* [InPhyT](https://github.com/InPhyT) – Research group developing data management pipelines and complex systems modeling frameworks in Julia
 * [Julia-i18n](https://github.com/Julia-i18n) – Internationalization (i18n) and localization (L10n) for Julians ([Twitter](https://twitter.com/julia_i18n), [Gitter](https://gitter.im/Julia-i18n/julia-i18n))
 * [JuliaAudio](https://github.com/JuliaAudio)
 * [JuliaCollections](https://github.com/JuliaCollections) – Collections, Data Structures, and Algorithms for Julia
@@ -31,9 +31,9 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaPraxis](https://github.com/JuliaPraxis) – Best practices ([Gitter](https://gitter.im/JuliaPraxis))
 * [JuliaPy](https://github.com/JuliaPy) – Software that connects the Julia and Python languages.
 * [JuliaStrings](https://github.com/JuliaStrings)
-* [Julia Testing](https://github.com/JuliaTesting) - Testing tools for the Julia language
+* [Julia Testing](https://github.com/JuliaTesting) – Testing tools for the Julia language
 * [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
-* [Julia Visual Studio Code](https://github.com/julia-vscode) - The Julia extension for Visual Studio Code provides rich support for the Julia programming language
+* [Julia Visual Studio Code](https://github.com/julia-vscode) – The Julia extension for Visual Studio Code provides rich support for the Julia programming language
 * [JunoLab](https://github.com/JunoLab) – The Juno IDE for Atom
 
 ### Computing
@@ -47,16 +47,16 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not-Julia
 * [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
 * [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](https://github.com/JuliaParallel)
-* [JuliaPerf](https://github.com/JuliaPerf) - Performance tools
-* [JuliaSIMD](https://github.com/JuliaSIMD) - SIMD vectorization in Julia
+* [JuliaPerf](https://github.com/JuliaPerf) – Performance tools
+* [JuliaSIMD](https://github.com/JuliaSIMD) – SIMD vectorization in Julia
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
-* [JuliaWGPU](https://github.com/JuliaWGPU) - WGPU (WebGPU) graphics and compute packages
+* [JuliaWGPU](https://github.com/JuliaWGPU) – WGPU (WebGPU) graphics and compute packages
 
 ### Mathematics
 
 * [AlgebraicJulia](https://github.com/AlgebraicJulia) – Applied Category Theory
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](https://www.juliadiff.org/)
-* [JuliaFirstOrder](https://github.com/JuliaFirstOrder) - First-order optimization and proximal algorithms
+* [JuliaFirstOrder](https://github.com/JuliaFirstOrder) – First-order optimization and proximal algorithms
 * [JuliaFunctional](https://github.com/JuliaFunctional/) – Support for Functional Programming
 * [JuliaGeometry](https://github.com/JuliaGeometry) – Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
@@ -72,16 +72,16 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 * [JuMP-dev (formerly JuliaOpt)](http://jump.dev) – JuMP is a modeling language and supporting packages for mathematical optimization in Julia
 * [SciML (formerly JuliaDiffEq)](https://github.com/SciML) – [Open source software for scientific machine learning](https://sciml.ai) ([Gitter](https://gitter.im/JuliaDiffEq/Lobby))
-* [trixi-framework](https://github.com/trixi-framework) - [The Trixi framework is a collaborative scientific effort to provide open source tools for adaptive high-order numerical simulations of hyperbolic PDEs in Julia. Besides the core algorithms, the framework also includes mesh and visualization tools. Moreover, it includes utilities such as Julia wrappers of mature libraries written in other programming languages.](https://trixi-framework.github.io/)
+* [trixi-framework](https://github.com/trixi-framework) – [The Trixi framework is a collaborative scientific effort to provide open source tools for adaptive high-order numerical simulations of hyperbolic PDEs in Julia. Besides the core algorithms, the framework also includes mesh and visualization tools. Moreover, it includes utilities such as Julia wrappers of mature libraries written in other programming languages.](https://trixi-framework.github.io/)
 
 ### Scientific Domains
 
 * [BioJulia](https://github.com/BioJulia) – [Biology, bioinformatics, computational biology](https://biojulia.dev) ([Gitter](https://gitter.im/BioJulia/home))
-* [Climate Modeling Alliance (CliMA)](https://github.com/CliMA) - An alliance of scientists, engineers and applied mathematicians, dedicated to pioneering a new, data-informed approach to climate modeling
+* [Climate Modeling Alliance (CliMA)](https://github.com/CliMA) – An alliance of scientists, engineers and applied mathematicians, dedicated to pioneering a new, data-informed approach to climate modeling
 * [EcoJulia](https://github.com/EcoJulia) – Ecology
 * [JuliaActuary](https://github.com/JuliaActuary) – Actuarial Science
 * [JuliaApproximation](https://github.com/JuliaApproximation)
-* [JuliaClimate](https://github.com/JuliaClimate) - Climate data management and simulation modeling tools in Julia
+* [JuliaClimate](https://github.com/JuliaClimate) – Climate data management and simulation modeling tools in Julia
 * [JuliaControl](https://github.com/JuliaControl) – Control Systems Design in Julia
 * [JuliaCrypto](https://github.com/JuliaCrypto) – Cryptography made easy in Julia
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
@@ -89,15 +89,15 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaEarth](https://github.com/JuliaEarth) –  Fostering statistics research in Earth sciences
 * [JuliaEpi](https://github.com/JuliaEpi) –  Computational epidemiology in Julia
 * [JuliaFEM](https://github.com/JuliaFEM) –  Finite Element Method
-* [JuliaGPs](https://github.com/JuliaGaussianProcesses) - Gaussian Processes
+* [JuliaGPs](https://github.com/JuliaGaussianProcesses) – Gaussian Processes
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
 * [JuliaHealth](https://github.com/JuliaHealth) – [medicine, health care, public health](https://juliahealth.org/)
-* [JuliaIBM](https://github.com/JuliaIBPM) - Immersed boundary methods and other tools for solving partial differential equations
+* [JuliaIBM](https://github.com/JuliaIBPM) – Immersed boundary methods and other tools for solving partial differential equations
 * [JuliaMolSim](https://github.com/JuliaMolSim) – Molecular Simulation in Materials Science and Chemistry
-* [Julia POMDP](https://github.com/JuliaPOMDP) - POMDP packages for Julia
+* [Julia POMDP](https://github.com/JuliaPOMDP) – POMDP packages for Julia
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
 * [JuliaReach](https://github.com/JuliaReach) – [Reachability analysis, set propagation techniques, hybrid systems](https://juliareach.github.io/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
-* [JuliaRobotics](https://github.com/JuliaRobotics) -  A collection of robotics-related packages that focus on robot control, simulation, navigation, and visualization
+* [JuliaRobotics](https://github.com/JuliaRobotics) –  A collection of robotics-related packages that focus on robot control, simulation, navigation, and visualization
 * [JuliaTelecom](https://github.com/JuliaTelecom) – [Telecommunications](https://github.com/JuliaTelecom/SiteMap)
 * [ModiaSim](https://github.com/ModiaSim) – Physical systems modelling/simulation with differential & algebraic equations
 * [JuliaMusic](https://github.com/JuliaMusic) – Computational Musicology
@@ -110,21 +110,21 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 
 ### Physics/Quantum mechanics
 
-* [JuliaAtoms](https://github.com/JuliaAtoms) - Atomic physics in Julia
-* [JuliaFewBody](https://github.com/JuliaFewBody) - Few-body systems physics in Julia
-* [JuliaHEP](https://github.com/JuliaHEP) - High-Energy Physics related projects.
+* [JuliaAtoms](https://github.com/JuliaAtoms) – Atomic physics in Julia
+* [JuliaFewBody](https://github.com/JuliaFewBody) – Few-body systems physics in Julia
+* [JuliaHEP](https://github.com/JuliaHEP) – High-Energy Physics related projects.
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaQCD](https://github.com/JuliaQCD) – Lattice QCD in Julia
 * [JuliaWaveScattering](https://github.com/JuliaWaveScattering) – Linear wave equations (acoustic, elastic, electromagnetic, quantum)
 * [JuliaQuantum](https://github.com/JuliaQuantum) – Quantum science and technology
 * [JuliaQuantumControl](https://github.com/JuliaQuantumControl) — Framework for open-loop quantum optimal control
 * [qojulia](https://github.com/qojulia) – QuantumOptics.jl related projects
-* [QuantumBFS](https://github.com/QuantumBFS) - A group of quantum developers around Bao Fu Si (Temple)
+* [QuantumBFS](https://github.com/QuantumBFS) – A group of quantum developers around Bao Fu Si (Temple)
 
 ### Data Science
 
-* [FluxML](https://github.com/FluxML) - Machine Learning and Differentiable Programming Framework
-* [JuliaAI](https://github.com/JuliaAI) - Home for repositories in the MLJ (Machine Learning in Julia) project
+* [FluxML](https://github.com/FluxML) – Machine Learning and Differentiable Programming Framework
+* [JuliaAI](https://github.com/JuliaAI) – Home for repositories in the MLJ (Machine Learning in Julia) project
 * [JuliaData](https://github.com/JuliaData) – Data manipulation, storage, and I/O in Julia
 * [JuliaDatabases](https://github.com/JuliaDatabases) – Various database drivers for Julia
 * [JuliaImages](https://github.com/JuliaImages) – Image Processing
@@ -146,14 +146,14 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 
 ### Miscellaneous
 
-* [DynareJulia](https://github.com/DynareJulia) - A platform for the solution, simulation, and estimation of dynamic stochastic general equilibrium economic models
-* [JuliaCN](https://github.com/JuliaCN) - An open-source organization for Julia localization in Chinese
-* [JuliaEPFL](https://github.com/JuliaEPFL) - Julia enthusiasts at and around École polytechnique fédérale de Lausanne (Switzerland)
+* [DynareJulia](https://github.com/DynareJulia) – A platform for the solution, simulation, and estimation of dynamic stochastic general equilibrium economic models
+* [JuliaCN](https://github.com/JuliaCN) – An open-source organization for Julia localization in Chinese
+* [JuliaEPFL](https://github.com/JuliaEPFL) – Julia enthusiasts at and around École polytechnique fédérale de Lausanne (Switzerland)
 * [JuliaGaming](https://github.com/JuliaGaming) – Open source games built in the Julia Programming Language.
-* [JuliaKorea](https://github.com/juliakorea) - Julia Korea organization
+* [JuliaKorea](https://github.com/juliakorea) – Julia Korea organization
 * [JuliaLangSlack](https://github.com/JuliaLangSlack) – Projects built to enable the Julia Lang community Slack workspace
-* [JuliaStaging](https://github.com/JuliaStaging) - Utilities to analyze, generate and evaluate Julia code for multi-stage scenarios
-* [JuliaSymbolics](https://github.com/JuliaSymbolics) - A fast and modern CAS for a fast and modern language
-* [JuliaTokyo](https://github.com/JuliaTokyo) - Yet another Julialang community.
+* [JuliaStaging](https://github.com/JuliaStaging) – Utilities to analyze, generate and evaluate Julia code for multi-stage scenarios
+* [JuliaSymbolics](https://github.com/JuliaSymbolics) – A fast and modern CAS for a fast and modern language
+* [JuliaTokyo](https://github.com/JuliaTokyo) – Yet another Julialang community.
 * [Julia-Streamers](https://github.com/Julia-Streamers) – The official organization for the Julia Streaming community!
-* [QuantEcon](https://github.com/QuantEcon) - Open source code for quantitative economic modeling
+* [QuantEcon](https://github.com/QuantEcon) – Open source code for quantitative economic modeling
