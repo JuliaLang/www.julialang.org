@@ -1106,6 +1106,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/blog/2025/09/this-month-in-julia-world/index.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/downloads/oldreleases/index.html</loc>
     <lastmod>2025-09-16</lastmod>
     <changefreq>monthly</changefreq>
