@@ -1,0 +1,33 @@
+name: Doc Preview Cleanup
+
+on:
+  pull_request:
+    types: [closed]
+
+concurrency:
+  # Same group concurrency as the `docs.yml` workflow, because they both
+  # git-push to the same branch, so we want to avoid clashes.
+  group: docs-pushing
+
+jobs:
+  doc-preview-cleanup:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true # don't do this if PR is closed/reopened, b/c this is common way of re-triggering CI
+    permissions:
+      contents: write # Needed to be able to push to `gh-preview` branch
+    steps:
+      - name: Checkout gh-preview branch
+        uses: actions/checkout@v5
+        with:
+          ref: gh-preview
+      - name: Delete preview and history + push changes
+        run: |
+          preview_directory=previews/PR${{ github.event.number }}
+          if [[ -d "${preview_directory}" ]]; then
+            git config user.name "${{github.actor}}"
+            git config user.email "${{github.actor_id}}+${{github.actor}}@users.noreply.github.com"
+            git rm -rf "${preview_directory}"
+            git commit -m 'Cleanup docs for PR #${{ github.event.number }}'
+            git branch gh-preview-new $(echo "Delete history" | git commit-tree HEAD^{tree})
+            git push --force origin gh-preview-new:gh-preview
+          fi
