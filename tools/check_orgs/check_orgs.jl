@@ -13,7 +13,7 @@ function check_orgs()
 
     orgs = eachmatch(r"(?<url>https?://github\.com/[^/\s]+(?=\)))", conts)
 
-    println("Finding orgs with fewer than 2 public memers that are listed in https://julialang.org/community/organizations/")
+    println("Finding orgs with fewer than 2 public members that are listed in https://julialang.org/community/organizations/")
 
     num_below = 0
     for org_match in orgs
