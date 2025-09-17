@@ -37,7 +37,6 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 
 ### Computing
 
-* [JuliaActors](https://github.com/JuliaActors) – Concurrent Programming with the Actor Model
 * [JuliaArrays](https://github.com/JuliaArrays) – Custom array types (and utilities for building array types)
 * [JuliaBerry](https://github.com/JuliaBerry) – [Julia resources for the Raspberry Pi](https://juliaberry.github.io/)
 * [JuliaCI](https://github.com/JuliaCI) – Continuous Integration Support for Julia packages
