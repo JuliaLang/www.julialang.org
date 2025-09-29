@@ -214,7 +214,7 @@ See the full documentation for more information: https://pkgdocs.julialang.org/d
 
 **Example (before → after)**
 
-```llvm
+```
 ; BEFORE (deprecated): integer pointer
 define i64 @f(i64 %p) {
   %q = inttoptr i64 %p to i8*
