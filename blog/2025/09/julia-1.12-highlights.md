@@ -21,6 +21,45 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 ## Redefinition of constants (structs)
 *Keno Fischer*, *Tim Holy*
 
+Bindings now participate in the "world age" mechanism previously used for methods. This has the effect that constants and structs can be properly redefined. As an example:
+
+```julia
+# Define a struct and a method on that struct:
+julia> struct Foo
+          a::Int
+       end
+
+julia> g(f::Foo) = f.a^2
+g (generic function with 1 method)
+
+julia> g(Foo(2))
+4
+
+# Redefine the struct (julia pre-1.12 would error here)
+julia> struct Foo
+          a::Int
+          b::Int
+       end
+
+# Note that functions need to be redefined to work on the new `Foo`
+julia> g(Foo(1,2))
+ERROR: MethodError: no method matching g(::Foo)
+The function `g` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  g(::@world(Foo, 39296:39300)) # <- This is syntax for accessing the binding in an older "world"
+   @ Main REPL[2]:1
+
+julia> g(f::Foo) = f.a^2 + f.b^2
+g (generic function with 2 methods)
+
+julia> g(Foo(2,3))
+13
+```
+
+There is also work in progress in Revise.jl to automatically redefine functions on replaced bindings.
+This should significantly reduce the number of times you have to restart Julia while iterating on some piece of code.
+
 ## New tracing flags and macros for inspecting what Julia compiles
 *Ian Butterworth*, *Nathan Daly*
 
