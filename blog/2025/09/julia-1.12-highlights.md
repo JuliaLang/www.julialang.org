@@ -239,6 +239,16 @@ This makes apps useful for building CLI tools or packaging Julia functionality a
 
 See the full documentation for more information: https://pkgdocs.julialang.org/dev/apps/
 
+### Status highlights when dependencies have different loaded versions
+
+`Pkg.status()` now highlights when a dependency's loaded version differs from what the current environment would load. This helps identify situations where you may be running code against an outdated or mismatched version of a package—particularly useful when switching between environments or after modifying dependencies.
+
+When a package is already loaded from a different version or path than what the current environment specifies, Pkg will display a yellow `[loaded: vX.Y.Z]` indicator next to the package name:
+
+<img src="/assets/blog/2025-1.12-highlights/pkg-status-loaded-version.png" alt="Pkg.status showing loaded version highlight">
+
+This visual cue makes it easier to spot when you need to restart Julia to pick up the correct package versions, reducing debugging time and confusion in iterative development workflows.
+
 ## Generated LLVM IR now uses pointer types instead of passing pointers as integers
 *Tim Besard*
 
