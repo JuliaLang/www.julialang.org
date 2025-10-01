@@ -453,13 +453,26 @@ img.ecosystem-image {
 }
 
 .page-heading {
+  position: relative;
   color: #fff;
   padding: 2rem;
+  min-height: 350px;
   background-color: #1a1a33;
-  background-image: url('../assets/infra/backsplash-animated.svg');
-  background-repeat: repeat-x;
-  background-size: auto 100%;
-  background-position: center;
+  overflow: hidden;
+}
+
+.animated-banner-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.page-heading-content {
+  position: relative;
+  z-index: 1;
 }
 
 .page-heading .main-heading {
