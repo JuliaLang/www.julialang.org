@@ -281,6 +281,67 @@ define ptr @f(ptr %p) {
 
 This change also unlocks minor optimization opportunities in generated code since pointers no longer bounce through integer casts.
 
+## Reproducing RNG state in testsets
+*Mosè Giordano*
+
+Many developers may have experience with occasional failures when running tests of their packages which were observed only on remote machines, and wished to be able to reproduce the the same run, for debugging purposes.
+The GitHub Actions workflow [`julia-actions/julia-runtest`](https://github.com/julia-actions/julia-runtest) recently started printing to the log the full options used to invoke the Julia process which runs the tests, which lets developers use the same compiler options (e.g. bounds checking, code coverage, deprecation warnings, etc.) as the CI runs.
+However there are occasional failures which don't depend on compiler options, but may depend on the state of the global random number generator (RNG), if for example the input data of the tests is generated with functions like [`rand`](https://docs.julialang.org/en/v1/stdlib/Random/#Base.rand) and [`randn`](https://docs.julialang.org/en/v1/stdlib/Random/#Base.randn), without passing an explicit RNG object, instead relying on the global one.
+The [`Test.@testset`](https://docs.julialang.org/en/v1/stdlib/Test/#Test.@testset) macro has had for a long time the feature of automatically controlling the global RNG, but until now its state was never displayed.
+Starting from Julia v1.12, a failure inside a `@testset` causes the RNG of the outermost test set to be printed to screen, which then you can also set in a new test set to exactly reproduce the same run.
+
+As an example, consider the following test which would fail with a 0.1% probability:
+```julia-repl
+julia> using Test
+
+julia> @testset begin
+           @test rand() > 0.1
+       end;
+test set: Test Failed at REPL[2]:2
+  Expression: rand() > 0.001
+   Evaluated: 0.00036328334842516963 > 0.001
+
+Stacktrace:
+ [1] top-level scope
+   @ REPL[2]:2
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1776 [inlined]
+ [3] macro expansion
+   @ REPL[2]:2 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary: | Fail  Total  Time
+test set      |    1      1  1.5s
+RNG of the outermost testset: Random.Xoshiro(0xd02e9404e1026b37, 0xca5ae9c15acf6752, 0x976a327d42433534, 0xb5b1305af1734f3a, 0x1c2aa037d6e7d5c7)
+ERROR: Some tests did not pass: 0 passed, 1 failed, 0 errored, 0 broken.
+```
+Normally, it'd require several attempts to reproduce a similar failure, but now the RNG is printed to screen and you can reproduce the run in a new session by setting the `rng` option of `@testset` to the value printed in the failed test:
+```julia-repl
+julia> using Test, Random
+
+julia> @testset rng=Random.Xoshiro(0xd02e9404e1026b37, 0xca5ae9c15acf6752, 0x976a327d42433534, 0xb5b1305af1734f3a, 0x1c2aa037d6e7d5c7) begin
+           @test rand() > 0.001
+       end;
+test set: Test Failed at REPL[2]:2
+  Expression: rand() > 0.001
+   Evaluated: 0.00036328334842516963 > 0.001
+
+Stacktrace:
+ [1] top-level scope
+   @ REPL[2]:2
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1776 [inlined]
+ [3] macro expansion
+   @ REPL[2]:2 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary: | Fail  Total  Time
+test set      |    1      1  1.4s
+RNG of the outermost testset: Xoshiro(0xd02e9404e1026b37, 0xca5ae9c15acf6752, 0x976a327d42433534, 0xb5b1305af1734f3a, 0x1c2aa037d6e7d5c7)
+ERROR: Some tests did not pass: 0 passed, 1 failed, 0 errored, 0 broken.
+```
+
+While there are still many other classes of intermittent failures that aren't captured by the global RNG, being able to reproduce its state inside failing test sets should help debugging more issues during package development.
 
 ## Acknowledgement
 
