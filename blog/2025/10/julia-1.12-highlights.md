@@ -210,7 +210,7 @@ A Julia app is defined in the `Project.toml` file using an `[apps]` section:
 
 ```toml
 [apps]
-reverse = {} # empty dictionary is for additional metadat
+reverse = {} # empty dictionary is for additional metadata
 ```
 
 with a corresponding entry point in the package module:
