@@ -455,9 +455,11 @@ img.ecosystem-image {
 .page-heading {
   color: #fff;
   padding: 2rem;
-  background-image: url('../assets/infra/backsplash-min-0.5.svg');
+  background-color: #1a1a33;
+  background-image: url('../assets/infra/backsplash-animated.svg');
   background-repeat: repeat-x;
   background-size: auto 100%;
+  background-position: center;
 }
 
 .page-heading .main-heading {
