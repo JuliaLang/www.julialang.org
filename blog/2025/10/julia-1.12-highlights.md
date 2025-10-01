@@ -3,9 +3,9 @@ mintoclevel = 2
 maxtoclevel = 3
 title = "Julia 1.12 Highlights"
 authors = "The Julia contributors"
-published = "10 September 2025"
-rss_pubdate = Date(2025, 09, 08)
-rss = """Highlights of the Julia 1.11 release."""
+published = "10 October 2025"
+rss_pubdate = Date(2025, 10, 10)
+rss = """Highlights of the Julia 1.12 release."""
 +++
 
 Julia version 1.12 has finally been released. We want to thank all the contributors to this release and all the testers who helped find regressions and issues in the pre-releases. Without you, this release would not have been possible.
