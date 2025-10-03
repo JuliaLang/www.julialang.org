@@ -318,7 +318,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td rowspan="3"> Windows </td>
+      <td rowspan="4"> Windows </td>
       <td rowspan="3"> 10+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
