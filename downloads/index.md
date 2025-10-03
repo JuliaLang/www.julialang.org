@@ -314,7 +314,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td> 11.4+ </td>
-      <td> Rosetta 2 </td>
+      <td> Rosetta 2 (x86 on ARM emulation) </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
@@ -329,6 +329,11 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td> WSL 2 (Ubuntu LTS) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> 11+ </td>
+      <td> Prism (x86 on ARM emulation) </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
