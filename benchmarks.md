@@ -2,6 +2,8 @@
 
 These micro-benchmarks, while not comprehensive, do test compiler performance on a range of common code patterns, such as function calls, string parsing, sorting, numerical loops, random number generation, recursion, and array operations.
 
+The benchmark results here while a bit dated are the most comprehensive, covering the most number of languages. For a more up to date benchmark with a smaller set of languages, see the [Microbenchmarks site](https://julialang.github.io/Microbenchmarks.jl/dev/)
+
 It is important to note that the benchmark codes are not written for absolute maximal performance (the fastest code to compute `recursion_fibonacci(20)` is the constant literal `6765`). Instead, the benchmarks are written to test the performance of identical algorithms and code patterns implemented in each language. For example, the Fibonacci benchmarks all use the same (inefficient) doubly-recursive algorithm, and the pi summation benchmarks use the same for-loop. The “algorithm” for matrix multiplication is to call the most obvious built-in/standard random-number and matmul routines (or to directly call BLAS if the language does not provide a high-level matmul), except where a matmul/BLAS call is not possible (such as in JavaScript).
 
 ![Benchmark results](/assets/images/benchmarks.svg)
@@ -14,6 +16,5 @@ These micro-benchmark results were obtained on a single core (serial execution) 
 
 ## Other Relevant Benchmarks
 
-- DataFrames: [https://duckdblabs.github.io/db-benchmark/](https://duckdblabs.github.io/db-benchmark/)
 - Graphs: [https://www.timlrx.com/blog/benchmark-of-popular-graph-network-packages-v2](https://www.timlrx.com/blog/benchmark-of-popular-graph-network-packages-v2)
 - CSV and Pandas: [https://www.queryverse.org/benchmarks/](https://www.queryverse.org/benchmarks/)
