@@ -18,6 +18,36 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 ## New `--trim` feature
 *Jeff Bezanson*, *Cody Tapscott*, *Gabriel Baraldi*
 
+`julia` now has a new experimental`--trim` feature, when compiling a system image with this mode julia will trim statically unreachable code leading to significantly better compile times and binary sizes. To use it you also need to pass the `--experimental` flag when building the system image. 
+
+In order to use it, any code that is reachable from the entrypoints must not have any dynamic dispatches otherwise the trimming will be unsafe and it will error during compilation.
+
+The expected way of using it is via the `JuliaC.jl` package, which provides a CLI and a programmatic API. 
+
+For example a simple package with an `@main` function:
+```julia
+module AppProject
+
+function @main(ARGS)
+    println(Core.stdout, "Hello World!")
+    return 0
+end
+
+end
+```
+
+```bash
+juliac --output-exe app_test_exe --bundle build --trim=safe --experimental ./AppProject
+```
+
+```bash
+./build/bin/app_test_exe
+Hello World!
+
+ls -lh build/bin/app_test_exe
+-rwxr-xr-x@ 1 gabrielbaraldi  staff   1.1M Oct  6 17:22 ./build/bin/app_test_exe*
+```
+
 ## Redefinition of constants (structs)
 *Keno Fischer*, *Tim Holy*
 
