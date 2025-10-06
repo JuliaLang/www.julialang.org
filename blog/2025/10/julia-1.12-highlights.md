@@ -16,7 +16,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 \toc
 
 ## New `--trim` feature
-*Jeff Bezanson* , *Cody Tapscott*, *Gabriel Baraldi*
+*Jeff Bezanson*, *Cody Tapscott*, *Gabriel Baraldi*
 
 ## Redefinition of constants (structs)
 *Keno Fischer*, *Tim Holy*
@@ -136,7 +136,7 @@ These types provide a safer, composable way to express “initialize once” sem
 
 [BOLT](https://github.com/llvm/llvm-project/tree/main/bolt) is a post-link optimizer from LLVM that improves runtime performance by reordering functions and basic blocks, splitting hot and cold code, and folding identical functions. Julia now supports building BOLT-optimized versions of **libLLVM**, **libjulia-internal**, and **libjulia-codegen**.
 
-These optimizations reduce compilation and execution time in common workloads. For example, the all-inference benchmarks improve by about **10%**, an LLVM-heavy workload shows a similar **\~10%** gain, and building `corecompiler.ji` improves by **13–16%** with BOLT. When combined with PGO and LTO, total improvements of up to **\~23%** have been observed.
+These optimizations reduce compilation and execution time in common workloads. For example, the all-inference benchmarks improve by about **10%**, an LLVM-heavy workload shows a similar **~10%** gain, and building `corecompiler.ji` improves by **13–16%** with BOLT. When combined with PGO and LTO, total improvements of up to **~23%** have been observed.
 
 To build a BOLT-optimized Julia, run the following commands from `contrib/bolt/`:
 
@@ -151,7 +151,7 @@ make bolt
 
 The optimized binaries will be available in the `optimized.build` directory. An analogous workflow exists in `contrib/pgo-lto-bolt/` for combining BOLT with PGO+LTO.
 
-BOLT currently works only on Linux **x86\_64** and **aarch64**, and the resulting `.so` files must not be stripped. Some `readelf` warnings may appear during testing but are considered harmless.
+BOLT currently works only on Linux **x86\_64** and **aarch64**, and the resulting `.so` files must not be stripped. Some `readelf` warnings may appear during testing but are considered harmless..
 
 
 
@@ -284,7 +284,7 @@ This change also unlocks minor optimization opportunities in generated code sinc
 ## Reproducing RNG state in testsets
 *Mosè Giordano*
 
-Many developers may have experience with occasional failures when running tests of their packages which were observed only on remote machines, and wished to be able to reproduce the the same run, for debugging purposes.
+Many developers may have experience with occasional failures when running tests of their packages which were observed only on remote machines, and wished to be able to reproduce the same run, for debugging purposes.
 The GitHub Actions workflow [`julia-actions/julia-runtest`](https://github.com/julia-actions/julia-runtest) recently started printing to the log the full options used to invoke the Julia process which runs the tests, which lets developers use the same compiler options (e.g. bounds checking, code coverage, deprecation warnings, etc.) as the CI runs.
 However there are occasional failures which don't depend on compiler options, but may depend on the state of the global random number generator (RNG), if for example the input data of the tests is generated with functions like [`rand`](https://docs.julialang.org/en/v1/stdlib/Random/#Base.rand) and [`randn`](https://docs.julialang.org/en/v1/stdlib/Random/#Base.randn), without passing an explicit RNG object, instead relying on the global one.
 The [`Test.@testset`](https://docs.julialang.org/en/v1/stdlib/Test/#Test.@testset) macro has had for a long time the feature of automatically controlling the global RNG, but until now its state was never displayed.
@@ -295,7 +295,7 @@ As an example, consider the following test which would fail with a 0.1% probabil
 julia> using Test
 
 julia> @testset begin
-           @test rand() > 0.1
+           @test rand() > 0.001
        end;
 test set: Test Failed at REPL[2]:2
   Expression: rand() > 0.001
