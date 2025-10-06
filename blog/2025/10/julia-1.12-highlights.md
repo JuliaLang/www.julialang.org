@@ -151,7 +151,7 @@ make bolt
 
 The optimized binaries will be available in the `optimized.build` directory. An analogous workflow exists in `contrib/pgo-lto-bolt/` for combining BOLT with PGO+LTO.
 
-BOLT currently works only on Linux **x86\_64** and **aarch64**, and the resulting `.so` files must not be stripped. Some `readelf` warnings may appear during testing but are considered harmless..
+BOLT currently works only on Linux **x86\_64** and **aarch64**, and the resulting `.so` files must not be stripped. Some `readelf` warnings may appear during testing but are considered harmless.
 
 
 
