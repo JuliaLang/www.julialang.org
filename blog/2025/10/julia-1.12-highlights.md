@@ -95,6 +95,32 @@ precompile(Tuple{typeof(Base.collect_to_with_first!), Array{Int64, 1}, Int64, Ba
 ## One interactive thread by default
 *Gabriel Baraldi*
 
+## Threads settings respect CPU affinity
+*Mosè Giordano*
+
+Julia now respects CPU affinity settings, such as those set via `cpuset`/`taskset`/`cgroups`, etc.
+The same also applies to the default number of BLAS threads, which now follows the same logic.
+This can also be observed when running Julia inside Docker.
+Currently, you have
+
+```console
+$ docker run --cpus=4 --rm -ti julia:1.11 julia --threads=auto -e '@show Threads.nthreads(); using LinearAlgebra; @show BLAS.get_num_threads()'
+Threads.nthreads() = 22
+BLAS.get_num_threads() = 11
+```
+
+When starting Julia with `--threads=auto`, [`Threads.nthreads()`](https://docs.julialang.org/en/v1/base/multi-threading/#Base.Threads.nthreads) is equal to the total number of CPUs on the system instead of the only 4 CPUs reserved by Docker.
+Likewise, the number of BLAS threads, which can be obtained with [`BLAS.get_num_threads()`](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.BLAS.get_num_threads) and on x86-64 systems is by default half the number of available cores, is 11 instead of 2.
+With Julia v1.12 this is fixed, and the number of both Julia and BLAS threads will respect the number of CPUs reserved by Docker:
+
+```console
+% docker run --cpus=4 --rm -ti julia:1.12.0-rc3 julia --threads=auto -e '@show Threads.nthreads(); using LinearAlgebra; @show BLAS.get_num_threads()'
+Threads.nthreads() = 4
+BLAS.get_num_threads() = 2
+```
+
+The new behavior is also important to avoid oversubscription out-of-the-box when running Julia on HPC systems where schedulers set CPU affinity when using shared resources.
+
 ## `OncePerX`
 *Jameson Nash*
 
