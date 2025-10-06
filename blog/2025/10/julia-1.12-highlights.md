@@ -93,7 +93,20 @@ precompile(Tuple{typeof(Base.collect_to_with_first!), Array{Int64, 1}, Int64, Ba
 ```
 
 ## One interactive thread by default
-*Gabriel Baraldi*
+*Gabriel Baraldi*, *Ian Butterworth*
+
+Julia now starts with one interactive thread by default (in addition to the default thread). This means that by default Julia runs with the threading configuration of 1 default thread, 1 interactive thread.
+
+The interactive thread pool is where the REPL and other interactive operations run. By separating these from the default thread pool (where `@spawn` and `@threads` schedule work when no threadpool is specified), the REPL can perform operations like autocomplete queries in parallel with user code execution, leading to a more responsive interactive experience.
+
+**Key behaviors:**
+
+* **Default**: Julia starts with `-t1,1` (1 default + 1 interactive thread)
+* **Explicit `-t1`**: If you explicitly request 1 thread with `-t1`, Julia will give you exactly that—no additional interactive thread will be added (resulting in `-t1,0`)
+* **Multiple threads**: `-t2` or `-tauto` will give you the requested default threads plus 1 interactive thread
+* **Manual control**: You can always specify both pools explicitly, e.g., `-t4,2` for 4 default and 2 interactive threads
+
+This change improves the out-of-the-box experience while maintaining backwards compatibility for users who explicitly request single-threaded execution.
 
 ## Threads settings respect CPU affinity
 *Mosè Giordano*
