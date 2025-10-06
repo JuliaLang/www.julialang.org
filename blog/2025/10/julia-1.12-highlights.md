@@ -243,9 +243,13 @@ ok  = @atomiconce mem[2] = 7         # set once (Bool)
 ```
 
 
-
 ## New option --task-metrics=yes to enable the collection of per-task timing information
-*Nick Robinson*, *Kiran Pamnany*, *Nathan Daly*
+
+Two new per-task metrics can be enabled by starting Julia with `--task-metrics=yes` or by calling `Base.Experimental.task_metrics(true)`. Enabling or disabling task metrics with `Base.Experimental.task_metrics` only affects new tasks, not existing ones. The metrics are:
+
+- `Base.Experimental.task_running_time_ns(t::Task)`: the time for which `t` was actually running. This is currently inclusive of GC time, compilation time, and any spin time.
+- `Base.Experimental.task_wall_time_ns(t::Task)`: the time from the scheduler becoming aware of `t` until `t` is complete.
+
 
 ## New Pkg features
 *Kristoffer Carlsson*
