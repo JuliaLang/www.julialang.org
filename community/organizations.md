@@ -36,7 +36,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JunoLab](https://github.com/JunoLab) – The Juno IDE for Atom
 
 ### Computing
-
+* [Julia Actions](https://github.com/julia-actions) - GitHub Actions for Julia
 * [JuliaArrays](https://github.com/JuliaArrays) – Custom array types (and utilities for building array types)
 * [JuliaBerry](https://github.com/JuliaBerry) – [Julia resources for the Raspberry Pi](https://juliaberry.github.io/)
 * [JuliaCI](https://github.com/JuliaCI) – Continuous Integration Support for Julia packages
