@@ -95,7 +95,7 @@ This should significantly reduce the number of times you have to restart Julia w
 
 `--trace-compile-timing` is a new command-line flag that augments `--trace-compile` by printing how long each compiled method took (in milliseconds) before the corresponding `precompile(...)` line. This makes it easier to spot costly compilations.
 
-In addition, two macros for ad-hoc tracing without restarting Julia has been added:
+In addition, two macros for ad-hoc tracing without restarting Julia have been added:
 
 * `@trace_compile expr` runs `expr` with `--trace-compile=stderr --trace-compile-timing` enabled, emitting timed `precompile(...)` entries only for that call.
 * `@trace_dispatch expr` runs `expr` with `--trace-dispatch=stderr` enabled, reporting methods that are dynamically dispatched.
