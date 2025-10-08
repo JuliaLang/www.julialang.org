@@ -157,7 +157,7 @@ Likewise, the number of BLAS threads, which can be obtained with [`BLAS.get_num_
 With Julia v1.12 this is fixed, and the number of both Julia and BLAS threads will respect the number of CPUs reserved by Docker:
 
 ```console
-% docker run --cpus=4 --rm -ti julia:1.12.0-rc3 julia --threads=auto -e '@show Threads.nthreads(); using LinearAlgebra; @show BLAS.get_num_threads()'
+% docker run --cpus=4 --rm -ti julia:1.12 julia --threads=auto -e '@show Threads.nthreads(); using LinearAlgebra; @show BLAS.get_num_threads()'
 Threads.nthreads() = 4
 BLAS.get_num_threads() = 2
 ```
