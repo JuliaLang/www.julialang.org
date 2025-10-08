@@ -14,6 +14,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/blog/2025/10/julia-1.12-highlights/index.html</loc>
+    <lastmod>2025-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2019/09/release-process-zh-cn/index.html</loc>
     <lastmod>2025-10-08</lastmod>
     <changefreq>monthly</changefreq>

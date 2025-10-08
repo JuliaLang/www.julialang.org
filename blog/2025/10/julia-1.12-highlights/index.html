@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Julia 1.12 Highlights</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Julia 1.12 Highlights">
+<meta property="og:description" content="Highlights of the Julia 1.12 release.">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/">
+          <img src="/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Julia 1.12 Highlights
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 8 October 2025 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">The Julia contributors </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2025/10/julia-1.12-highlights.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<p>Julia version 1.12 has finally been released. We want to thank all the contributors to this release and all the testers who helped find regressions and issues in the pre-releases. Without you, this release would not have been possible.</p>
+<p>The full list of changes can be found in the <a href="https://github.com/JuliaLang/julia/blob/release-1.12/NEWS.md">NEWS file</a>, but here we&#39;ll give a more in-depth overview of some of the release highlights.</p>
+<div class="franklin-toc"><ol><li><a href="#new_--trim_feature">New <code>--trim</code> feature</a></li><li><a href="#redefinition_of_constants_structs">Redefinition of constants &#40;structs&#41;</a></li><li><a href="#new_tracing_flags_and_macros_for_inspecting_what_julia_compiles">New tracing flags and macros for inspecting what Julia compiles</a></li><li><a href="#new_multi-threading_features">New multi-threading features</a><ol><li><a href="#one_interactive_thread_by_default">One interactive thread by default</a></li><li><a href="#threads_settings_respect_cpu_affinity">Threads settings respect CPU affinity</a></li><li><a href="#onceperx"><code>OncePerX</code></a></li></ol></li><li><a href="#building_julia_and_llvm_using_the_binary_optimization_and_layout_tool_bolt">Building Julia and LLVM using the Binary Optimization and Layout Tool &#40;BOLT&#41;.</a></li><li><a href="#the_atomic_macro_family_now_supports_reference_assignment_syntax">The <code>@atomic</code> macro family now supports reference assignment syntax</a></li><li><a href="#new_option_task-metricsyes_to_enable_the_collection_of_per-task_timing_information">New option –task-metrics&#61;yes to enable the collection of per-task timing information</a></li><li><a href="#new_pkg_features">New Pkg features</a><ol><li><a href="#workspace">Workspace</a></li><li><a href="#apps">Apps</a></li><li><a href="#status_highlights_when_dependencies_have_different_loaded_versions">Status highlights when dependencies have different loaded versions</a></li></ol></li><li><a href="#generated_llvm_ir_now_uses_pointer_types_instead_of_passing_pointers_as_integers">Generated LLVM IR now uses pointer types instead of passing pointers as integers</a></li><li><a href="#reproducing_rng_state_in_testsets">Reproducing RNG state in testsets</a></li><li><a href="#acknowledgement">Acknowledgement</a></li></ol></div>
+<h2 id="new_--trim_feature"><a href="#new_--trim_feature" class="header-anchor">New <code>--trim</code> feature</a></h2>
+<p><em>Jeff Bezanson</em>, <em>Cody Tapscott</em>, <em>Gabriel Baraldi</em></p>
+<p><code>julia</code> now has a new experimental<code>--trim</code> feature, when compiling a system image with this mode julia will trim statically unreachable code leading to significantly better compile times and binary sizes. To use it you also need to pass the <code>--experimental</code> flag when building the system image. </p>
+<p>In order to use it, any code that is reachable from the entrypoints must not have any dynamic dispatches otherwise the trimming will be unsafe and it will error during compilation.</p>
+<p>The expected way of using it is via the <code>JuliaC.jl</code> package, which provides a CLI and a programmatic API. </p>
+<p>For example a simple package with an <code>@main</code> function:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">module</span> AppProject
+
+<span class="hljs-keyword">function</span> <span class="hljs-meta">@main</span>(<span class="hljs-literal">ARGS</span>)
+    println(Core.<span class="hljs-literal">stdout</span>, <span class="hljs-string">&quot;Hello World!&quot;</span>)
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">end</span></code></pre>
+<pre><code class="bash hljs">juliac --output-exe app_test_exe --bundle build --trim=safe --experimental ./AppProject</code></pre>
+<pre><code class="bash hljs">./build/bin/app_test_exe
+Hello World!
+
+<span class="hljs-built_in">ls</span> -lh build/bin/app_test_exe
+-rwxr-xr-x@ 1 gabrielbaraldi  staff   1.1M Oct  6 17:22 ./build/bin/app_test_exe*</code></pre>
+<h2 id="redefinition_of_constants_structs"><a href="#redefinition_of_constants_structs" class="header-anchor">Redefinition of constants &#40;structs&#41;</a></h2>
+<p><em>Keno Fischer</em>, <em>Tim Holy</em></p>
+<p>Bindings now participate in the &quot;world age&quot; mechanism previously used for methods. This has the effect that constants and structs can be properly redefined. As an example:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Define a struct and a method on that struct:</span>
+julia&gt; <span class="hljs-keyword">struct</span> Foo
+          a::<span class="hljs-built_in">Int</span>
+       <span class="hljs-keyword">end</span>
+
+julia&gt; g(f::Foo) = f.a^<span class="hljs-number">2</span>
+g (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
+
+julia&gt; g(Foo(<span class="hljs-number">2</span>))
+<span class="hljs-number">4</span>
+
+<span class="hljs-comment"># Redefine the struct (julia pre-1.12 would error here)</span>
+julia&gt; <span class="hljs-keyword">struct</span> Foo
+          a::<span class="hljs-built_in">Int</span>
+          b::<span class="hljs-built_in">Int</span>
+       <span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Note that functions need to be redefined to work on the new `Foo`</span>
+julia&gt; g(Foo(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
+ERROR: <span class="hljs-built_in">MethodError</span>: no method matching g(::Foo)
+The <span class="hljs-keyword">function</span> <span class="hljs-string">`g`</span> exists, but no method is defined <span class="hljs-keyword">for</span> this combination of argument types.
+
+Closest candidates are:
+  g(::<span class="hljs-meta">@world</span>(Foo, <span class="hljs-number">39296</span>:<span class="hljs-number">39300</span>)) <span class="hljs-comment"># &lt;- This is syntax for accessing the binding in an older &quot;world&quot;</span>
+   @ Main REPL[<span class="hljs-number">2</span>]:<span class="hljs-number">1</span>
+
+julia&gt; g(f::Foo) = f.a^<span class="hljs-number">2</span> + f.b^<span class="hljs-number">2</span>
+g (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">2</span> methods)
+
+julia&gt; g(Foo(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))
+<span class="hljs-number">13</span></code></pre>
+<p>There is also work in progress in Revise.jl to automatically redefine functions on replaced bindings. This should significantly reduce the number of times you have to restart Julia while iterating on some piece of code.</p>
+<h2 id="new_tracing_flags_and_macros_for_inspecting_what_julia_compiles"><a href="#new_tracing_flags_and_macros_for_inspecting_what_julia_compiles" class="header-anchor">New tracing flags and macros for inspecting what Julia compiles</a></h2>
+<p><em>Ian Butterworth</em>, <em>Nathan Daly</em></p>
+<p><code>--trace-compile-timing</code> is a new command-line flag that augments <code>--trace-compile</code> by printing how long each compiled method took &#40;in milliseconds&#41; before the corresponding <code>precompile&#40;...&#41;</code> line. This makes it easier to spot costly compilations.</p>
+<p>In addition, two macros for ad-hoc tracing without restarting Julia have been added:</p>
+<ul>
+<li><p><code>@trace_compile expr</code> runs <code>expr</code> with <code>--trace-compile&#61;stderr --trace-compile-timing</code> enabled, emitting timed <code>precompile&#40;...&#41;</code> entries only for that call.</p>
+</li>
+<li><p><code>@trace_dispatch expr</code> runs <code>expr</code> with <code>--trace-dispatch&#61;stderr</code> enabled, reporting methods that are dynamically dispatched.</p>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-meta">@trace_compile</span> <span class="hljs-meta">@eval</span> rand(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>) * rand(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)
+<span class="hljs-comment">#=   79.9 ms =#</span> precompile(<span class="hljs-built_in">Tuple</span>{typeof(Base.rand), <span class="hljs-built_in">Int64</span>, <span class="hljs-built_in">Int64</span>})
+<span class="hljs-comment">#=    4.4 ms =#</span> precompile(<span class="hljs-built_in">Tuple</span>{typeof(Base.:(*)), <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>, <span class="hljs-number">2</span>}, <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>, <span class="hljs-number">2</span>}})
+<span class="hljs-number">2</span>×<span class="hljs-number">2</span> <span class="hljs-built_in">Matrix</span>{<span class="hljs-built_in">Float64</span>}:
+ <span class="hljs-number">0.302276</span>  <span class="hljs-number">0.14341</span>
+ <span class="hljs-number">0.738941</span>  <span class="hljs-number">0.396414</span>
+
+julia&gt; f(x) = x
+
+julia&gt; <span class="hljs-meta">@trace_dispatch</span> map(f, <span class="hljs-built_in">Any</span>[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+precompile(<span class="hljs-built_in">Tuple</span>{<span class="hljs-built_in">Type</span>{<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>, <span class="hljs-number">1</span>}}, <span class="hljs-built_in">UndefInitializer</span>, <span class="hljs-built_in">Tuple</span>{<span class="hljs-built_in">Int64</span>}})
+precompile(<span class="hljs-built_in">Tuple</span>{typeof(Base.collect_to_with_first!), <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>, <span class="hljs-number">1</span>}, <span class="hljs-built_in">Int64</span>, Base.Generator{<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Any</span>, <span class="hljs-number">1</span>}, typeof(Main.f)}, <span class="hljs-built_in">Int64</span>})
+<span class="hljs-number">3</span>-element <span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Int64</span>}:
+ <span class="hljs-number">1</span>
+ <span class="hljs-number">2</span>
+ <span class="hljs-number">3</span></code></pre>
+<h2 id="new_multi-threading_features"><a href="#new_multi-threading_features" class="header-anchor">New multi-threading features</a></h2>
+<h3 id="one_interactive_thread_by_default"><a href="#one_interactive_thread_by_default" class="header-anchor">One interactive thread by default</a></h3>
+<p><em>Gabriel Baraldi</em>, <em>Ian Butterworth</em></p>
+<p>Julia now starts with one interactive thread by default &#40;in addition to the default thread&#41;. This means that by default Julia runs with the threading configuration of 1 default thread, 1 interactive thread.</p>
+<p>The interactive thread pool is where the REPL and other interactive operations run. By separating these from the default thread pool &#40;where <code>@spawn</code> and <code>@threads</code> schedule work when no threadpool is specified&#41;, the REPL can perform operations like autocomplete queries in parallel with user code execution, leading to a more responsive interactive experience.</p>
+<p><strong>Key behaviors:</strong></p>
+<ul>
+<li><p><strong>Default</strong>: Julia starts with <code>-t1,1</code> &#40;1 default &#43; 1 interactive thread&#41;</p>
+</li>
+<li><p><strong>Explicit <code>-t1</code></strong>: If you explicitly request 1 thread with <code>-t1</code>, Julia will give you exactly that—no additional interactive thread will be added &#40;resulting in <code>-t1,0</code>&#41;</p>
+</li>
+<li><p><strong>Multiple threads</strong>: <code>-t2</code> or <code>-tauto</code> will give you the requested default threads plus 1 interactive thread</p>
+</li>
+<li><p><strong>Manual control</strong>: You can always specify both pools explicitly, e.g., <code>-t4,2</code> for 4 default and 2 interactive threads</p>
+</li>
+</ul>
+<p>This change improves the out-of-the-box experience while maintaining backwards compatibility for users who explicitly request single-threaded execution.</p>
+<h3 id="threads_settings_respect_cpu_affinity"><a href="#threads_settings_respect_cpu_affinity" class="header-anchor">Threads settings respect CPU affinity</a></h3>
+<p><em>Mosè Giordano</em></p>
+<p>Julia now respects CPU affinity settings, such as those set via <code>cpuset</code>/<code>taskset</code>/<code>cgroups</code>, etc. The same also applies to the default number of BLAS threads, which now follows the same logic. This can also be observed when running Julia inside Docker. Currently, you have</p>
+<pre><code class="console hljs"><span class="hljs-meta">$ </span><span class="language-bash">docker run --cpus=4 --<span class="hljs-built_in">rm</span> -ti julia:1.11 julia --threads=auto -e <span class="hljs-string">&#x27;@show Threads.nthreads(); using LinearAlgebra; @show BLAS.get_num_threads()&#x27;</span></span>
+Threads.nthreads() = 22
+BLAS.get_num_threads() = 11</code></pre>
+<p>When starting Julia with <code>--threads&#61;auto</code>, <a href="https://docs.julialang.org/en/v1/base/multi-threading/#Base.Threads.nthreads"><code>Threads.nthreads&#40;&#41;</code></a> is equal to the total number of CPUs on the system instead of the only 4 CPUs reserved by Docker. Likewise, the number of BLAS threads, which can be obtained with <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.BLAS.get_num_threads"><code>BLAS.get_num_threads&#40;&#41;</code></a> and on x86-64 systems is by default half the number of available cores, is 11 instead of 2. With Julia v1.12 this is fixed, and the number of both Julia and BLAS threads will respect the number of CPUs reserved by Docker:</p>
+<pre><code class="console hljs"><span class="hljs-meta">% </span><span class="language-bash">docker run --cpus=4 --<span class="hljs-built_in">rm</span> -ti julia:1.12 julia --threads=auto -e <span class="hljs-string">&#x27;@show Threads.nthreads(); using LinearAlgebra; @show BLAS.get_num_threads()&#x27;</span></span>
+Threads.nthreads() = 4
+BLAS.get_num_threads() = 2</code></pre>
+<p>The new behavior is also important to avoid oversubscription out-of-the-box when running Julia on HPC systems where schedulers set CPU affinity when using shared resources.</p>
+<h3 id="onceperx"><a href="#onceperx" class="header-anchor"><code>OncePerX</code></a></h3>
+<p><em>Jameson Nash</em></p>
+<p>Certain initialization patterns need to run only once, depending on scope: per process, per thread, or per task. To make this easier and safer, Julia now provides three built-in types:</p>
+<ul>
+<li><p><code>OncePerProcess&#123;T&#125;</code>: runs an initializer exactly once per process, returning the same value for all future calls.</p>
+</li>
+<li><p><code>OncePerThread&#123;T&#125;</code>: runs an initializer once for each thread ID. Subsequent calls on the same thread return the same value.</p>
+</li>
+<li><p><code>OncePerTask&#123;T&#125;</code>: runs an initializer once per task, reusing the same value within that task.</p>
+</li>
+</ul>
+<p>These replace common hand-rolled solutions such as using <code>__init__</code>, <code>nthreads&#40;&#41;</code>, or <code>task_local_storage&#40;&#41;</code> directly.</p>
+<p>A simple example of <code>OncePerProcess</code>:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">const</span> global_state = Base.OncePerProcess{<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">UInt32</span>}}() <span class="hljs-keyword">do</span>
+           println(<span class="hljs-string">&quot;Making lazy global value...done.&quot;</span>)
+           <span class="hljs-keyword">return</span> [Libc.rand()]
+       <span class="hljs-keyword">end</span>;
+
+julia&gt; a = global_state();
+Making lazy <span class="hljs-keyword">global</span> value...done.
+
+julia&gt; a === global_state()
+<span class="hljs-literal">true</span></code></pre>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li><p><code>OncePerProcess</code>: caches, global constants, or initialization that should happen once per Julia process &#40;even across precompilation&#41;.</p>
+</li>
+<li><p><code>OncePerThread</code>: per-thread state needed for interoperability with C libraries or specialized threading models.</p>
+</li>
+<li><p><code>OncePerTask</code>: lightweight task-local state without manually managing <code>task_local_storage</code>.</p>
+</li>
+</ul>
+<p>These types provide a safer, composable way to express “initialize once” semantics in concurrent Julia code.</p>
+<h2 id="building_julia_and_llvm_using_the_binary_optimization_and_layout_tool_bolt"><a href="#building_julia_and_llvm_using_the_binary_optimization_and_layout_tool_bolt" class="header-anchor">Building Julia and LLVM using the Binary Optimization and Layout Tool &#40;BOLT&#41;.</a></h2>
+<p><em>Zentrik</em></p>
+<p><a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a> is a post-link optimizer from LLVM that improves runtime performance by reordering functions and basic blocks, splitting hot and cold code, and folding identical functions. Julia now supports building BOLT-optimized versions of <strong>libLLVM</strong>, <strong>libjulia-internal</strong>, and <strong>libjulia-codegen</strong>.</p>
+<p>These optimizations reduce compilation and execution time in common workloads. For example, the all-inference benchmarks improve by about <strong>10&#37;</strong>, an LLVM-heavy workload shows a similar <strong>~10&#37;</strong> gain, and building <code>corecompiler.ji</code> improves by <strong>13–16&#37;</strong> with BOLT. When combined with PGO and LTO, total improvements of up to <strong>~23&#37;</strong> have been observed.</p>
+<p>To build a BOLT-optimized Julia, run the following commands from <code>contrib/bolt/</code>:</p>
+<pre><code class="bash hljs">make stage1
+make copy_originals
+make bolt_instrument
+make finish_stage1
+make merge_data
+make bolt</code></pre>
+<p>The optimized binaries will be available in the <code>optimized.build</code> directory. An analogous workflow exists in <code>contrib/pgo-lto-bolt/</code> for combining BOLT with PGO&#43;LTO.</p>
+<p>BOLT currently works only on Linux <strong>x86&#95;64</strong> and <strong>aarch64</strong>, and the resulting <code>.so</code> files must not be stripped. Some <code>readelf</code> warnings may appear during testing but are considered harmless.</p>
+<h2 id="the_atomic_macro_family_now_supports_reference_assignment_syntax"><a href="#the_atomic_macro_family_now_supports_reference_assignment_syntax" class="header-anchor">The <code>@atomic</code> macro family now supports reference assignment syntax</a></h2>
+<p><em>Marek Kaluba</em></p>
+<p>The <code>@atomic</code> macro family now supports <strong>indexing</strong> &#40;e.g. <code>m&#91;i&#93;</code>, <code>m&#91;i,j&#93;</code>&#41; in addition to field access. This makes it possible to perform atomic fetch, set, modify, swap, compare-and-swap, and set-once directly on array-like references. The macros expand to new APIs: <code>getindex_atomic</code>, <code>setindex_atomic&#33;</code>, <code>modifyindex_atomic&#33;</code>, <code>swapindex_atomic&#33;</code>, <code>replaceindex_atomic&#33;</code>, and <code>setindexonce_atomic&#33;</code>. Vararg and <code>CartesianIndex</code> indexing are supported.</p>
+<p>For example:</p>
+<pre><code class="julia hljs">mem = AtomicMemory{<span class="hljs-built_in">Int</span>}(<span class="hljs-literal">undef</span>, <span class="hljs-number">2</span>)
+
+<span class="hljs-meta">@atomic</span> mem[<span class="hljs-number">1</span>] = <span class="hljs-number">2</span>                 <span class="hljs-comment"># atomic set</span>
+x = <span class="hljs-meta">@atomic</span> mem[<span class="hljs-number">1</span>]                 <span class="hljs-comment"># atomic fetch</span>
+<span class="hljs-meta">@atomic</span> :monotonic mem[<span class="hljs-number">1</span>] += <span class="hljs-number">1</span>     <span class="hljs-comment"># atomic modify with order</span>
+old = <span class="hljs-meta">@atomicswap</span> mem[<span class="hljs-number">1</span>] = <span class="hljs-number">4</span>       <span class="hljs-comment"># atomic swap (returns old)</span>
+res = <span class="hljs-meta">@atomicreplace</span> mem[<span class="hljs-number">1</span>] <span class="hljs-number">4</span> =&gt; <span class="hljs-number">10</span>  <span class="hljs-comment"># (old=4, success=true)</span>
+ok  = <span class="hljs-meta">@atomiconce</span> mem[<span class="hljs-number">2</span>] = <span class="hljs-number">7</span>         <span class="hljs-comment"># set once (Bool)</span></code></pre>
+<h2 id="new_option_task-metricsyes_to_enable_the_collection_of_per-task_timing_information"><a href="#new_option_task-metricsyes_to_enable_the_collection_of_per-task_timing_information" class="header-anchor">New option –task-metrics&#61;yes to enable the collection of per-task timing information</a></h2>
+<p>Two new per-task metrics can be enabled by starting Julia with <code>--task-metrics&#61;yes</code> or by calling <code>Base.Experimental.task_metrics&#40;true&#41;</code>. Enabling or disabling task metrics with <code>Base.Experimental.task_metrics</code> only affects new tasks, not existing ones. The metrics are:</p>
+<ul>
+<li><p><code>Base.Experimental.task_running_time_ns&#40;t::Task&#41;</code>: the time for which <code>t</code> was actually running. This is currently inclusive of GC time, compilation time, and any spin time.</p>
+</li>
+<li><p><code>Base.Experimental.task_wall_time_ns&#40;t::Task&#41;</code>: the time from the scheduler becoming aware of <code>t</code> until <code>t</code> is complete.</p>
+</li>
+</ul>
+<h2 id="new_pkg_features"><a href="#new_pkg_features" class="header-anchor">New Pkg features</a></h2>
+<p><em>Kristoffer Carlsson</em></p>
+<h3 id="workspace"><a href="#workspace" class="header-anchor">Workspace</a></h3>
+<p>A workspace is a set of project files that all share the same manifest. Each project in a workspace can include its own dependencies, compatibility information, and even function as a full package.</p>
+<p>When the package manager resolves dependencies, it considers the requirements and compatibility of all the projects in the workspace. The compatible versions identified during this process are recorded in a single manifest file.</p>
+<p>A workspace is defined in the base project by giving a list of the projects in it:</p>
+<pre><code class="toml hljs"><span class="hljs-section">[workspace]</span>
+<span class="hljs-attr">projects</span> = [<span class="hljs-string">&quot;test&quot;</span>, <span class="hljs-string">&quot;docs&quot;</span>, <span class="hljs-string">&quot;benchmarks&quot;</span>, <span class="hljs-string">&quot;PrivatePackage&quot;</span>]</code></pre>
+<p>This structure is particularly beneficial for developers using a monorepo approach, where a large number of unregistered packages may be involved. It is also useful for adding documentation or benchmarks to a package by including additional dependencies beyond those of the package itself. Test-specific dependencies are now recommended to be specified using the workspace approach &#40;a project file in the <code>test</code> directory that is part of the workspace defined by the package project file&#41;.</p>
+<p>Workspaces can also be nested: a project that itself defines a workspace can also be part of another workspace. In this case, the workspaces are “merged,” with a single manifest being stored alongside the “root project” &#40;the project that is not included in another workspace&#41;.</p>
+<h3 id="apps"><a href="#apps" class="header-anchor">Apps</a></h3>
+<p>An app is a Julia package that can be run directly from the terminal, similar to a standalone program. Each app provides an entry point via <code>@main</code> and can define its own default Julia flags and executable name.</p>
+<p>When an app is installed, it gets put into <code>.julia/bin</code> and by adding that to your <code>PATH</code> it allows you to launch it by name together with any arguments or options.</p>
+<p>A Julia app is defined in the <code>Project.toml</code> file using an <code>&#91;apps&#93;</code> section:</p>
+<pre><code class="toml hljs"><span class="hljs-section">[apps]</span>
+<span class="hljs-attr">reverse</span> = {} <span class="hljs-comment"># empty dictionary is for additional metadata</span></code></pre>
+<p>with a corresponding entry point in the package module:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># src/MyReverseApp.jl</span>
+<span class="hljs-keyword">module</span> MyReverseApp
+
+<span class="hljs-keyword">function</span> (<span class="hljs-meta">@main</span>)(<span class="hljs-literal">ARGS</span>)
+    <span class="hljs-keyword">for</span> arg <span class="hljs-keyword">in</span> <span class="hljs-literal">ARGS</span>
+        print(<span class="hljs-literal">stdout</span>, reverse(arg), <span class="hljs-string">&quot; &quot;</span>)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">end</span> <span class="hljs-comment"># module</span></code></pre>
+<p>After installation, the app can be run directly in the terminal:</p>
+<pre><code class="sh hljs">$ reverse some input string
+emos tupni gnirts</code></pre>
+<p>This makes apps useful for building CLI tools or packaging Julia functionality as user-facing executables. Multiple apps can be defined per package by using submodules, and each app can specify default Julia flags &#40;e.g. <code>--threads&#61;4</code>&#41; for performance or debugging.</p>
+<p>See the full documentation for more information: https://pkgdocs.julialang.org/dev/apps/</p>
+<h3 id="status_highlights_when_dependencies_have_different_loaded_versions"><a href="#status_highlights_when_dependencies_have_different_loaded_versions" class="header-anchor">Status highlights when dependencies have different loaded versions</a></h3>
+<p><code>Pkg.status&#40;&#41;</code> now highlights when a dependency&#39;s loaded version differs from what the current environment would load. This helps identify situations where you may be running code against an outdated or mismatched version of a package—particularly useful when switching between environments or after modifying dependencies.</p>
+<p>When a package is already loaded from a different version or path than what the current environment specifies, Pkg will display a yellow <code>&#91;loaded: vX.Y.Z&#93;</code> indicator next to the package name:</p>
+<p><img src="/assets/blog/2025-1.12-highlights/pkg-status-loaded-version.png" alt="Pkg.status showing loaded version highlight" /></p>
+<p>This visual cue makes it easier to spot when you need to restart Julia to pick up the correct package versions, reducing debugging time and confusion in iterative development workflows.</p>
+<h2 id="generated_llvm_ir_now_uses_pointer_types_instead_of_passing_pointers_as_integers"><a href="#generated_llvm_ir_now_uses_pointer_types_instead_of_passing_pointers_as_integers" class="header-anchor">Generated LLVM IR now uses pointer types instead of passing pointers as integers</a></h2>
+<p><em>Tim Besard</em></p>
+<p><code>Ptr&#123;T&#125;</code> now lowers to <strong>actual LLVM pointer types</strong> in generated IR &#40;i.e. <code>ptr</code> with opaque pointers, or <code>i8*</code>&#41;, instead of integers like <code>i64</code>. This simplifies low-level interop: <code>llvmcall</code> no longer needs <code>ptrtoint</code>/<code>inttoptr</code> shims, and many intrinsics can be called via <code>ccall</code> using <code>Ptr</code> directly.</p>
+<p><strong>What changes for you</strong></p>
+<ul>
+<li><p><strong>Inline LLVM &#40;<code>llvmcall</code>&#41;</strong>: update IR to use <code>ptr</code>/<code>i8*</code> for pointer arguments/returns, and remove redundant <code>ptrtoint</code>/<code>inttoptr</code> casts. Old IR that treats pointers as integers is still accepted but emits a <strong>deprecation warning</strong>.</p>
+</li>
+<li><p><strong>Pointer arithmetic</strong>: <code>add_ptr</code> / <code>sub_ptr</code> now operate on real pointers: <code>add_ptr&#40;::Ptr&#123;T&#125;, ::UInt&#41;</code> and <code>sub_ptr&#40;::Ptr&#123;T&#125;, ::UInt&#41;</code> &#40;lowered to GEP&#41;.</p>
+</li>
+<li><p><strong><code>ccall</code> convenience</strong>: passing/returning <code>Ptr&#123;T&#125;</code> maps to LLVM pointer types directly, enabling more intrinsic calls without custom <code>llvmcall</code> glue.</p>
+</li>
+</ul>
+<p><strong>Example &#40;before → after&#41;</strong></p>
+<pre><code class="julia hljs">; BEFORE (deprecated): integer pointer
+define i64 <span class="hljs-meta">@f</span>(i64 %p) {
+  %q = inttoptr i64 %p to i8*
+  ; ...
+  %r = ptrtoint i8* %q to i64
+  ret i64 %r
+}
+
+; AFTER: real pointer
+define ptr <span class="hljs-meta">@f</span>(ptr %p) {
+  ; ...
+  ret ptr %p
+}</code></pre>
+<p>This change also unlocks minor optimization opportunities in generated code since pointers no longer bounce through integer casts.</p>
+<h2 id="reproducing_rng_state_in_testsets"><a href="#reproducing_rng_state_in_testsets" class="header-anchor">Reproducing RNG state in testsets</a></h2>
+<p><em>Mosè Giordano</em></p>
+<p>Many developers may have experience with occasional failures when running tests of their packages which were observed only on remote machines, and wished to be able to reproduce the same run, for debugging purposes. The GitHub Actions workflow <a href="https://github.com/julia-actions/julia-runtest"><code>julia-actions/julia-runtest</code></a> recently started printing to the log the full options used to invoke the Julia process which runs the tests, which lets developers use the same compiler options &#40;e.g. bounds checking, code coverage, deprecation warnings, etc.&#41; as the CI runs. However there are occasional failures which don&#39;t depend on compiler options, but may depend on the state of the global random number generator &#40;RNG&#41;, if for example the input data of the tests is generated with functions like <a href="https://docs.julialang.org/en/v1/stdlib/Random/#Base.rand"><code>rand</code></a> and <a href="https://docs.julialang.org/en/v1/stdlib/Random/#Base.randn"><code>randn</code></a>, without passing an explicit RNG object, instead relying on the global one. The <a href="https://docs.julialang.org/en/v1/stdlib/Test/#Test.@testset"><code>Test.@testset</code></a> macro has had for a long time the feature of automatically controlling the global RNG, but until now its state was never displayed. Starting from Julia v1.12, a failure inside a <code>@testset</code> causes the RNG of the outermost test set to be printed to screen, which then you can also set in a new test set to exactly reproduce the same run.</p>
+<p>As an example, consider the following test which would fail with a 0.1&#37; probability:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-keyword">using</span> Test
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@testset</span> <span class="hljs-keyword">begin</span>
+           <span class="hljs-meta">@test</span> rand() &gt; <span class="hljs-number">0.001</span>
+       <span class="hljs-keyword">end</span>;
+</span>test set: Test Failed at REPL[2]:2
+  Expression: rand() &gt; 0.001
+   Evaluated: 0.00036328334842516963 &gt; 0.001
+
+Stacktrace:
+ [1] top-level scope
+   @ REPL[2]:2
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1776 [inlined]
+ [3] macro expansion
+   @ REPL[2]:2 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary: | Fail  Total  Time
+test set      |    1      1  1.5s
+RNG of the outermost testset: Random.Xoshiro(0xd02e9404e1026b37, 0xca5ae9c15acf6752, 0x976a327d42433534, 0xb5b1305af1734f3a, 0x1c2aa037d6e7d5c7)
+ERROR: Some tests did not pass: 0 passed, 1 failed, 0 errored, 0 broken.</code></pre>
+<p>Normally, it&#39;d require several attempts to reproduce a similar failure, but now the RNG is printed to screen and you can reproduce the run in a new session by setting the <code>rng</code> option of <code>@testset</code> to the value printed in the failed test:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-keyword">using</span> Test, Random
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@testset</span> rng=Random.Xoshiro(<span class="hljs-number">0xd02e9404e1026b37</span>, <span class="hljs-number">0xca5ae9c15acf6752</span>, <span class="hljs-number">0x976a327d42433534</span>, <span class="hljs-number">0xb5b1305af1734f3a</span>, <span class="hljs-number">0x1c2aa037d6e7d5c7</span>) <span class="hljs-keyword">begin</span>
+           <span class="hljs-meta">@test</span> rand() &gt; <span class="hljs-number">0.001</span>
+       <span class="hljs-keyword">end</span>;
+</span>test set: Test Failed at REPL[2]:2
+  Expression: rand() &gt; 0.001
+   Evaluated: 0.00036328334842516963 &gt; 0.001
+
+Stacktrace:
+ [1] top-level scope
+   @ REPL[2]:2
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1776 [inlined]
+ [3] macro expansion
+   @ REPL[2]:2 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary: | Fail  Total  Time
+test set      |    1      1  1.4s
+RNG of the outermost testset: Xoshiro(0xd02e9404e1026b37, 0xca5ae9c15acf6752, 0x976a327d42433534, 0xb5b1305af1734f3a, 0x1c2aa037d6e7d5c7)
+ERROR: Some tests did not pass: 0 passed, 1 failed, 0 errored, 0 broken.</code></pre>
+<p>While there are still many other classes of intermittent failures that aren&#39;t captured by the global RNG, being able to reproduce its state inside failing test sets should help debugging more issues during package development.</p>
+<h2 id="acknowledgement"><a href="#acknowledgement" class="header-anchor">Acknowledgement</a></h2>
+<p>The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author&#40;s&#41; and do not necessarily reflect the views of the National Aeronautics and Space Administration.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/install/">Install</a></li>
+        <li><a href="/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/community/stewards/">Stewards</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/libs/groups.js"></script>
+    <script src="/libs/map.js"></script>
+  </body>
+</html>
