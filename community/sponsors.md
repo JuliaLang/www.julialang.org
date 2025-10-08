@@ -40,10 +40,6 @@ A number of organizations and funding agencies are or have provided direct fundi
 
 ### Current funding
 
-- [NASA](nasa.gov) is funding efforts towards the creation of high quality released under award number 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
-
-- Over the years, [Intel](intel.com) has provided significant funding continuing to support a small development contract for maintenance of Julia on Intel platforms and accelerators.
-
 - Julia receives individual donations from a larger number of individuals through [GitHub sponsors](https://github.com/sponsors/JuliaLang) and [NumFocus](https://numfocus.org/project/julia)
 
 In addition, there are a large number of organizations funding research primarily conducted in Julia or funding
