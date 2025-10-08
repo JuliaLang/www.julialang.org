@@ -13,9 +13,9 @@ author = ""
 # Templating of the Downloads
 # NOTE: When updating for a new release, make sure to also rerun
 # `downloads/oldreleases.jl`
-stable_release = "1.11.7"
-stable_release_short = "1.11"
-stable_release_date = "September 8, 2025"
+stable_release = "1.12.0"
+stable_release_short = "1.12"
+stable_release_date = "October 7, 2025"
 lts_release = "1.10.10"
 lts_release_short = "1.10"
 lts_release_date = "June 27, 2025"
@@ -25,9 +25,9 @@ hasplotly = false
 
 # If the following lines are commented, the "upcoming release" section
 # in `downloads/index.md` will not be shown.
-upcoming_release = "1.12.0-rc3"
-upcoming_release_short = "1.12"
-upcoming_release_date = "September 26, 2025"
+# upcoming_release = "1.12.0-rc3"
+# upcoming_release_short = "1.12"
+# upcoming_release_date = "September 26, 2025"
 +++
 
 <!--
