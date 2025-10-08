@@ -122,7 +122,9 @@ precompile(Tuple{typeof(Base.collect_to_with_first!), Array{Int64, 1}, Int64, Ba
 
 ```
 
-## One interactive thread by default
+## New multi-threading features
+
+### One interactive thread by default
 *Gabriel Baraldi*, *Ian Butterworth*
 
 Julia now starts with one interactive thread by default (in addition to the default thread). This means that by default Julia runs with the threading configuration of 1 default thread, 1 interactive thread.
@@ -138,7 +140,7 @@ The interactive thread pool is where the REPL and other interactive operations r
 
 This change improves the out-of-the-box experience while maintaining backwards compatibility for users who explicitly request single-threaded execution.
 
-## Threads settings respect CPU affinity
+### Threads settings respect CPU affinity
 *Mosè Giordano*
 
 Julia now respects CPU affinity settings, such as those set via `cpuset`/`taskset`/`cgroups`, etc.
@@ -164,7 +166,7 @@ BLAS.get_num_threads() = 2
 
 The new behavior is also important to avoid oversubscription out-of-the-box when running Julia on HPC systems where schedulers set CPU affinity when using shared resources.
 
-## `OncePerX`
+### `OncePerX`
 *Jameson Nash*
 
 Certain initialization patterns need to run only once, depending on scope: per process, per thread, or per task. To make this easier and safer, Julia now provides three built-in types:
