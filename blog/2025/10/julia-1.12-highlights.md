@@ -247,7 +247,11 @@ ok  = @atomiconce mem[2] = 7         # set once (Bool)
 ## New wall-time profiler
 *Diogo Correia Netto, Nick Robinson*
 
-A coroutine sampling profiler (wall-time profiler) was introduced in Julia 1.12, allowing users to more easily identify I/O bottlenecks and synchronization primitives that are sources of contention in the system (e.g., a channel or lock that's blocking many tasks).
+A task sampling profiler (wall-time profiler) was introduced in Julia 1.12, allowing users to more easily identify I/O bottlenecks and synchronization primitives that are sources of contention in the system (e.g., a channel or lock that's blocking many tasks).
+
+The main difference, compared to the existing CPU profiler, is that instead of sampling
+threads and thus only sampling tasks that are running, a wall-time task profiler samples tasks
+independently of their scheduling state.
 
 Consider the example below, in which many tasks are blocked on a channel while a single task pushes items to the channel.
 
@@ -293,10 +297,6 @@ After opening the profile with PProf, we obtain the following flame-graph. It sh
 on channels (a single one, in our example).
 
 ![Wall-time profiler channel example](/assets/blog/2025-1.12-highlights/wall-time-profiler-channel-example.png).
-
-The main difference, compared to the existing CPU profiler, is that instead of sampling
-threads and thus only sampling tasks that are running, a wall-time task profiler samples tasks
-independently of their scheduling state.
 
 See https://docs.julialang.org/en/v1/manual/profile/#Wall-time-Profiler for more details.
 
