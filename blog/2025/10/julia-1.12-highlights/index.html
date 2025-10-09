@@ -162,7 +162,7 @@ crossorigin=""/>
 <div class="container main">
 <p>Julia version 1.12 has finally been released. We want to thank all the contributors to this release and all the testers who helped find regressions and issues in the pre-releases. Without you, this release would not have been possible.</p>
 <p>The full list of changes can be found in the <a href="https://github.com/JuliaLang/julia/blob/release-1.12/NEWS.md">NEWS file</a>, but here we&#39;ll give a more in-depth overview of some of the release highlights.</p>
-<div class="franklin-toc"><ol><li><a href="#new_--trim_feature">New <code>--trim</code> feature</a></li><li><a href="#redefinition_of_constants_structs">Redefinition of constants &#40;structs&#41;</a></li><li><a href="#new_tracing_flags_and_macros_for_inspecting_what_julia_compiles">New tracing flags and macros for inspecting what Julia compiles</a></li><li><a href="#new_multi-threading_features">New multi-threading features</a><ol><li><a href="#one_interactive_thread_by_default">One interactive thread by default</a></li><li><a href="#threads_settings_respect_cpu_affinity">Threads settings respect CPU affinity</a></li><li><a href="#onceperx"><code>OncePerX</code></a></li></ol></li><li><a href="#building_julia_and_llvm_using_the_binary_optimization_and_layout_tool_bolt">Building Julia and LLVM using the Binary Optimization and Layout Tool &#40;BOLT&#41;.</a></li><li><a href="#the_atomic_macro_family_now_supports_reference_assignment_syntax">The <code>@atomic</code> macro family now supports reference assignment syntax</a></li><li><a href="#new_option_task-metricsyes_to_enable_the_collection_of_per-task_timing_information">New option –task-metrics&#61;yes to enable the collection of per-task timing information</a></li><li><a href="#new_pkg_features">New Pkg features</a><ol><li><a href="#workspace">Workspace</a></li><li><a href="#apps">Apps</a></li><li><a href="#status_highlights_when_dependencies_have_different_loaded_versions">Status highlights when dependencies have different loaded versions</a></li></ol></li><li><a href="#generated_llvm_ir_now_uses_pointer_types_instead_of_passing_pointers_as_integers">Generated LLVM IR now uses pointer types instead of passing pointers as integers</a></li><li><a href="#reproducing_rng_state_in_testsets">Reproducing RNG state in testsets</a></li><li><a href="#acknowledgement">Acknowledgement</a></li></ol></div>
+<div class="franklin-toc"><ol><li><a href="#new_--trim_feature">New <code>--trim</code> feature</a></li><li><a href="#redefinition_of_constants_structs">Redefinition of constants &#40;structs&#41;</a></li><li><a href="#new_tracing_flags_and_macros_for_inspecting_what_julia_compiles">New tracing flags and macros for inspecting what Julia compiles</a></li><li><a href="#new_multi-threading_features">New multi-threading features</a><ol><li><a href="#one_interactive_thread_by_default">One interactive thread by default</a></li><li><a href="#threads_settings_respect_cpu_affinity">Threads settings respect CPU affinity</a></li><li><a href="#onceperx"><code>OncePerX</code></a></li></ol></li><li><a href="#building_julia_and_llvm_using_the_binary_optimization_and_layout_tool_bolt">Building Julia and LLVM using the Binary Optimization and Layout Tool &#40;BOLT&#41;.</a></li><li><a href="#the_atomic_macro_family_now_supports_reference_assignment_syntax">The <code>@atomic</code> macro family now supports reference assignment syntax</a></li><li><a href="#new_wall-time_profiler">New wall-time profiler</a></li><li><a href="#new_option_task-metricsyes_to_enable_the_collection_of_per-task_timing_information">New option –task-metrics&#61;yes to enable the collection of per-task timing information</a></li><li><a href="#new_pkg_features">New Pkg features</a><ol><li><a href="#workspace">Workspace</a></li><li><a href="#apps">Apps</a></li><li><a href="#status_highlights_when_dependencies_have_different_loaded_versions">Status highlights when dependencies have different loaded versions</a></li></ol></li><li><a href="#generated_llvm_ir_now_uses_pointer_types_instead_of_passing_pointers_as_integers">Generated LLVM IR now uses pointer types instead of passing pointers as integers</a></li><li><a href="#reproducing_rng_state_in_testsets">Reproducing RNG state in testsets</a></li><li><a href="#acknowledgement">Acknowledgement</a></li></ol></div>
 <h2 id="new_--trim_feature"><a href="#new_--trim_feature" class="header-anchor">New <code>--trim</code> feature</a></h2>
 <p><em>Jeff Bezanson</em>, <em>Cody Tapscott</em>, <em>Gabriel Baraldi</em></p>
 <p><code>julia</code> now has a new experimental<code>--trim</code> feature, when compiling a system image with this mode julia will trim statically unreachable code leading to significantly better compile times and binary sizes. To use it you also need to pass the <code>--experimental</code> flag when building the system image. </p>
@@ -331,6 +331,49 @@ x = <span class="hljs-meta">@atomic</span> mem[<span class="hljs-number">1</span
 old = <span class="hljs-meta">@atomicswap</span> mem[<span class="hljs-number">1</span>] = <span class="hljs-number">4</span>       <span class="hljs-comment"># atomic swap (returns old)</span>
 res = <span class="hljs-meta">@atomicreplace</span> mem[<span class="hljs-number">1</span>] <span class="hljs-number">4</span> =&gt; <span class="hljs-number">10</span>  <span class="hljs-comment"># (old=4, success=true)</span>
 ok  = <span class="hljs-meta">@atomiconce</span> mem[<span class="hljs-number">2</span>] = <span class="hljs-number">7</span>         <span class="hljs-comment"># set once (Bool)</span></code></pre>
+<h2 id="new_wall-time_profiler"><a href="#new_wall-time_profiler" class="header-anchor">New wall-time profiler</a></h2>
+<p><em>Diogo Correia Netto, Nick Robinson</em></p>
+<p>A task sampling profiler &#40;wall-time profiler&#41; was introduced in Julia 1.12, allowing users to more easily identify I/O bottlenecks and synchronization primitives that are sources of contention in the system &#40;e.g., a channel or lock that&#39;s blocking many tasks&#41;.</p>
+<p>The main difference, compared to the existing CPU profiler, is that instead of sampling threads and thus only sampling tasks that are running, a wall-time task profiler samples tasks independently of their scheduling state.</p>
+<p>Consider the example below, in which many tasks are blocked on a channel while a single task pushes items to the channel.</p>
+<pre><code class="Julia hljs"><span class="hljs-keyword">using</span> Base.Threads
+<span class="hljs-keyword">using</span> Profile
+<span class="hljs-keyword">using</span> PProf
+
+ch = <span class="hljs-built_in">Channel</span>(<span class="hljs-number">1</span>)
+
+<span class="hljs-keyword">const</span> N_SPAWNED_TASKS = (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">10</span>)
+<span class="hljs-keyword">const</span> WAIT_TIME_NS = <span class="hljs-number">10_000_000</span>
+
+<span class="hljs-keyword">function</span> spawn_a_bunch_of_tasks_waiting_on_channel()
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:N_SPAWNED_TASKS
+        Threads.<span class="hljs-meta">@spawn</span> <span class="hljs-keyword">begin</span>
+            take!(ch)
+        <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">function</span> busywait()
+    t0 = time_ns()
+    <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>
+        <span class="hljs-keyword">if</span> time_ns() - t0 &gt; WAIT_TIME_NS
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">function</span> main()
+    spawn_a_bunch_of_tasks_waiting_on_channel()
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:N_SPAWNED_TASKS
+        put!(ch, i)
+        busywait()
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+Profile.<span class="hljs-meta">@profile_walltime</span> main()</code></pre>
+<p>After opening the profile with PProf, we obtain the following flame-graph. It shows a long bar assigned to <code>take&#33;</code>, indicating that many tasks in the system are blocked on channels &#40;a single one, in our example&#41;.</p>
+<p><img src="/assets/blog/2025-1.12-highlights/wall-time-profiler-channel-example.png" alt="Wall-time profiler channel example" />.</p>
+<p>See https://docs.julialang.org/en/v1/manual/profile/#Wall-time-Profiler for more details.</p>
 <h2 id="new_option_task-metricsyes_to_enable_the_collection_of_per-task_timing_information"><a href="#new_option_task-metricsyes_to_enable_the_collection_of_per-task_timing_information" class="header-anchor">New option –task-metrics&#61;yes to enable the collection of per-task timing information</a></h2>
 <p>Two new per-task metrics can be enabled by starting Julia with <code>--task-metrics&#61;yes</code> or by calling <code>Base.Experimental.task_metrics&#40;true&#41;</code>. Enabling or disabling task metrics with <code>Base.Experimental.task_metrics</code> only affects new tasks, not existing ones. The metrics are:</p>
 <ul>
