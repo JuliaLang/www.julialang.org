@@ -5,9 +5,10 @@
 The recommended way to install Julia is to install [`juliaup`](https://github.com/JuliaLang/juliaup) which is a small, self-contained binary that will automatically install the latest stable `julia` binary and help keep it up to date. It also supports installing and using different versions of Julia simultaneously.
 ~~~
 <div id="windows-instructions" style="display: none;">
-  Install <code>juliaup</code> from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
+  Install <code>juliaup</code> using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can also get <code>juliaup</code> by running this in the command prompt:
   <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
-  <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>If you cannot access the Microsoft Store, try the experimental <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. For Linux and MacOS instructions <a onclick="showUNIX()" href="javascript:void(0);">click here</a></div>
+  <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>
+  For Linux and MacOS instructions <a onclick="showUNIX()" href="javascript:void(0);">click here</a></div>
 </div>
 <div id="unix-instructions" style="display: none;">
   Install <code>juliaup</code> by running this in your terminal:
@@ -54,5 +55,3 @@ If you are using Julia behind a firewall that blocks access to these, you may ha
 IF YOU'RE THINKING ABOUT REMOVING THIS NOTE, DON'T. ACCORDING TO OUR LAWYERS, THIS NEEDS TO BE HERE TO COMPLY WITH THE GDPR.
 -->
 Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public [IP address](https://en.wikipedia.org/wiki/IP_address) to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <https://pkg.julialang.org>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 31 days.
-
-
