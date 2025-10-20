@@ -59,4 +59,11 @@ const groups = [
         lon: 12.599143,
         homepage: 'https://www.meetup.com/copenhagen-julia-meetup-group',
     },
+    {
+        name: 'JuliaLangJa',
+        lat: 35.684115230694495,
+        lon: 139.77453110558406,
+        homepage: 'https://julialangja.github.io/',
+        github: 'https://github.com/JuliaLangJa',
+    },
 ];
