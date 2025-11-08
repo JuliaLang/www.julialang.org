@@ -100,6 +100,7 @@
     border-radius: 4px;
     font-size: 1rem; }
     .admonition-note {
+      margin: 1em 0;
       background-color: #3d6e91;
       border-color: #209cee; }
       .admonition-note > .admonition-title {
@@ -108,6 +109,7 @@
       .admonition-note > .admonition-body {
         color: rgba(0, 0, 0, 0.7); }
     .admonition-warn {
+      margin: 1em 0;
       background-color: #fff3c5;
       border-color: #ffdd57; }
       .admonition.warn > .admonition-title {
