@@ -1,6 +1,6 @@
 @def title = "Download Julia"
 
-# Manual Downloads
+# Manual Downloads (Not recommended for typical installations)
 
 \note{| Not recommended for typical installations}{See [Install](/install/) for how to install Julia the recommended way using `juliaup`. Please see [platform specific instructions](/downloads/platform/) for further manual installation instructions. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).}
 
