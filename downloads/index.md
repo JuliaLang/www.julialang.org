@@ -2,7 +2,7 @@
 
 # Manual Downloads (Not recommended for typical installations)
 
-\note{`juliaup` is the proper way to install julia, not these downloads}{See the [installation instructions](/install/) on using `juliaup` to install Julia. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).}
+\note{juliaup is the proper way to install julia, not these downloads}{See the [installation instructions](/install/) on using `juliaup` to install Julia. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).}
 
 ~~~
 <h4 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h4>
