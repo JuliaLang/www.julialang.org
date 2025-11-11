@@ -1,8 +1,8 @@
 @def title = "Download Julia"
 
-# Manual Downloads
+# Manual Downloads (Not recommended for typical installations)
 
-**This page is not for most users:** See [Install](/install/) for how to install Julia the recommended way using `juliaup`. Please see [platform specific instructions](/downloads/platform/) for further manual installation instructions. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
+\note{juliaup is the proper way to install julia, not these downloads}{See the [installation instructions](/install/) on using `juliaup` to install Julia. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).}
 
 ~~~
 <h4 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h4>

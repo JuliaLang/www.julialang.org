@@ -35,14 +35,14 @@ Add here global latex commands to use throughout your pages.
 -->
 \newcommand{\note}[2]{
 @@admonition-note
-@@admonition-title Note #1 @@
+@@admonition-title Note: #1 @@
 @@admonition-body #2 @@
 @@
 }
 
 \newcommand{\warn}[2]{
 @@admonition-warn
-@@admonition-title Warning #1 @@
+@@admonition-title Warning: #1 @@
 @@admonition-body #2 @@
 @@
 }
