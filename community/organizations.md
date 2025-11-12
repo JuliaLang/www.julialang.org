@@ -84,7 +84,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaCrypto](https://github.com/JuliaCrypto) – Cryptography made easy in Julia
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
 * [JuliaDynamics](https://github.com/JuliaDynamics) – [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
-* [JuliaEarth](https://github.com/JuliaEarth) –  Fostering statistics research in Earth sciences
+* [JuliaEarth](https://github.com/JuliaEarth) –  Geospatial data science and geostatistical modeling in Earth sciences
 * [JuliaEpi](https://github.com/JuliaEpi) –  Computational epidemiology in Julia
 * [JuliaFEM](https://github.com/JuliaFEM) –  Finite Element Method
 * [JuliaGPs](https://github.com/JuliaGaussianProcesses) – Gaussian Processes
