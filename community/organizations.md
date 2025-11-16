@@ -141,7 +141,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaGL](https://github.com/JuliaGL) – OpenGL API and ecosystem ([Gitter](https://gitter.im/JuliaGL/meta))
 * [JuliaGraphics](https://github.com/JuliaGraphics) – Drawing, Colors, GUIs
 * [JuliaPlots](https://github.com/JuliaPlots) – [Data visualization](https://juliaplots.github.io/)
-
+* [MakieOrg](https://github.com/MakieOrg/) – [The Makie plotting ecosystem](https://makie.org/website/)
 
 ### Miscellaneous
 
