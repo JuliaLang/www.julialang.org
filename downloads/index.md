@@ -424,7 +424,7 @@ Julia also supports a variety of hardware accelerators, by means of external pac
     <tr>
       <td> Windows (64-bit) </td>
       <td> WSL2 </td>
-      <td> <font color="crimson">Tier 3</font> </td>
+      <td> <font color="crimson">Tier 2</font> </td>
     </tr>
     <tr>
       <td rowspan="2"> <a href="https://juliagpu.org/backends/rocm">AMD GPUs using ROCm</a> </td>
