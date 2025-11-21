@@ -2,27 +2,28 @@
 mintoclevel = 2
 maxtoclevel = 3
 title = "Launching the Julia Security Working Group"
-authors = "Matt Bauman ([@mbauman])"
-published = "20 November 2025"
-rss_pubdate = Date(2025, 11, 20)
+authors = "Matt Bauman ([@mbauman], JuliaHub)"
+published = "23 November 2025"
+rss_pubdate = Date(2025, 11, 23)
 rss = """Launching the Julia Security Working Group"""
 +++
 
 There's been a lot of security work in the Julia ecosystem recently, and those of us pushing
 on this effort have informally self-organized around a slack channel ([#security-dev]) and a
-handful of repositories and pull requests. We are past due in officially listing our efforts
-as a working group! With this blog post, we are announcing the creation of the Julia Security
-Working Group (JLSEC) — an official community effort to improve the security tooling of the
+handful of repositories and pull requests. We are past due in officially organizing our efforts
+into a working group! With this blog post, we are announcing the creation of the Julia Security
+Working Group (JLSEC): an official community effort to improve the security tooling of the
 Julia package ecosystem.
 
 Join us! We'll have our inaugural working group call on Friday, December 5 at noon
-US Eastern. If that date doesn't work for you, drop by the [Slack #security-dev channel][#security-dev]
-and let us know!
+US Eastern. One of the first orders of business will be establishing a regular
+(every-other-week) standing meeting, so if you'd like to join but that time doesn't
+generally work for you, drop by the [Slack #security-dev channel][#security-dev] and
+let us know!
 
-It's worth taking the opportunity here to discuss all that's happened to catalyze
-this working group — not only is it a great occassion to celebrate all this work,
-but it helps describe the scope of this working group and points to the many places
-where folks can get involved.
+This is also a great opportunity to gather together all the work we have already done
+to help catalyze this working group. It helps describe the scope and (even better!)
+points to some of the many places where folks — you! — can look to get involved.
 
 \toc
 
@@ -83,10 +84,11 @@ are also many challenges at this global level.
 
 ### The first Julia package security advisories
 
-Prior to June (2025), there simply weren't any advisories for any Julia package<attr title="see the JLL section below">*</attr>.
+Prior to June (2025), there simply weren't any advisories for any Julia package.
 This didn't mean there _weren't issues!_ We filed the first advisories against
 a handful of packages as GitHub Security Advisories on their repository security
-pages, thanks in part to JuliaHub's security program and **[@aviks]**. For example,
+pages, thanks in part to [JuliaHub's security program][trust.juliahub.com] and
+Avik Sengupta (**[@aviks]**). For example,
 the [security tab on HTTP.jl][HTTP-security] now lists multiple advisories like
 [GHSA-4g68-4pxg-mw93]. Those `GHSA-` identifiers act like CVEs, but they are issued
 directly by GitHub. The HTTP.jl maintainers then asked GitHub support to review
@@ -96,29 +98,30 @@ corresponding CVE identifier (as an _alias_): [CVE-2025-52479].
 Now put yourselves in the shoes of an automated vulnerability scanner. You
 have an SBOM that has includes Julia's HTTP package at version v1.10.15. How do
 you connect _either_ that CVE or the GHSA to Julia's package? The CVE doesn't
-have structured package/version data, and the GHSA _doesn't actually appear_ in
-GitHub's global advisory database because Julia is not (yet) a "reviewed ecosystem"
-(yes, even though GitHub staff reviewed the advisory and filed the CVE as a CNA).
-You'd have to scan the security pages of _every_ registered package to piece
-this together!
+have structured package/version data, and _neither_ the GHSA nor the CVE appear in
+GitHub's global advisory database. You'd have to scan the security pages of all
+10,000 packages or do NLP/LLM processing of the hundreds of thousands of CVEs
+to piece this together!
 
 This is precisely one of the reasons behind:
 
 ### The [SecurityAdvisories.jl] database
 
-Prior to these recent efforts, we were unable to issue or even gather together
-such Julia advisories. Having a dedicated database of Julia-specific advisories
-allows our package ecosystem to more effectively participate in the global advisory
-universe:
-* Only a registered CVE Naming Authority (CNA) can reserve and issue CVE identifiers.
-  It is challenging and opaque to determine how to best issue a new CVE advisory.
-* While GitHub's GHSA can act as a CNA and issue CVEs through their GitHub-based security
-  advisories, Julia is not (yet) an officially GitHub-supported ecosystem. So while
-  repositories can generate advisories with GHSA ids, they are not available in GitHub's
-  global advisory database and simply aren't discoverable. They aren't even _fetchable_
-  by API without knowing their issuing repository.
-* We also have many registered packages in our ecosystem that are not GitHub-hosted;
-  these too may need to issue advisories.
+Prior to these recent efforts, we were unable to issue or even gather together such
+Julia package advisories. Having a dedicated database of advisories allows our package
+ecosystem to more effectively participate in the global advisory universe:
+* It enables the direct authorshop and publication of Julia-related advisories with
+  well-defined semantics around its package and version data. There are many limitations
+  with using the existing multi-ecosystem databases:
+    * CVEs don't (natively) have structured package/version data and publications are gated
+      by registered CVE Naming Authorities (CNAs). The "enrichment" of CVEs with structured
+      package/version information is opaque, gated, and often proprietary.
+    * GitHub-based packages can issue _repository_ GHSAs, and GitHub can act as a CNA and
+      assign CVE aliases (as was done for HTTP.jl above), but Julia is not (yet) an officially
+      supported ecosystem for GitHub's _global_ database. That's why the HTTP advisories
+      don't show up there; they aren't even _fetchable_ by thier ID alone. It'd be great to
+      someday be an official ecosystem, but we also have many registered packages that are
+      not GitHub-hosted; these too may need to issue advisories.
 * There may be _existing_ CVE advisories that pertain to a Julia package, but the
   only way to explicitly state that the Julia package is affected (and at which
   versions) is by issuing an "alias" or "downstream" advisory.
@@ -139,19 +142,20 @@ within their respective package ecosystems. For example, advisories with the pre
 `RUSTSEC-`, `PYSEC-` and `GO-` pertain to the Rust, Python, and Go ecosystems,
 respectively.
 
-Julia's SecurityAdvisories.jl database exclusively issues `JLSEC-` identifiers,
-with its advisories distributed in a standardized open source vulnerability
-(OSV) schema. The `JLSEC-` prefix is officially supported as of osv-schema v1.7.4,
-with tooling support to lint and validate our advisories, including checks to
-ensure that they refer to a package (and version!) that is registered in General.
+The [SecurityAdvisories.jl] database exclusively issues advisories with our own
+dedicated `JLSEC-*` identifiers and structures them according to the standardized
+[Open Source Vulnerability (OSV) schema][osv-schema]. The `JLSEC-` prefix is officially
+registered and supported as of osv-schema v1.7.4, with tooling support to lint and
+validate our advisories, including checks to ensure that they refer to a package
+(and version!) that is registered in General.
 
 #### Redistribution on osv.dev
 
 The [osv.dev] initiative aggregates together many open source advisory ecosystems
-in one place. As a first-class OSV ecosystem, Julia's SecurityAdvisories.jl database
-is now imported (and validated! and redistributed!) by osv.dev.  This simple integration
-will hopefully facilitate further adoption by downstream tools that are already using
-osv.dev as an advisory source.
+in one place. As an OSV-native advisory database, SecurityAdvisories.jl fits right in!
+The Julia ecosystem advisories are now imported (and validated! and redistributed!)
+by osv.dev. This simple integration will hopefully facilitate further adoption by
+downstream tools that are already using osv.dev as an advisory source.
 
 #### Advisory publication and maintenance
 
@@ -171,8 +175,8 @@ components that have themselves reported CVEs. The trouble is that a vulnerabili
 scanner won't know that, for example, [OpenBLAS_jll] v0.3.17+2 built and redistributed
 the upstream OpenBLAS v0.3.17. Or more challenging, that [NetCDF_jll] v401.900.300+0 is
 really `netcdf` v4.9.3. Or even more challenging, that [MbedTLS_jll] v2.28.1010+0 is
-really `mbed_tls` v2.28.10 with _backported patches_ which address four CVEs that are
-outstanding on that no-longer-maintained v2 series.
+really `mbed_tls` v2.28.10 with _backported patches_ which address four CVEs that were
+still outstanding on that no-longer-maintained and end-of-life v2 series.
 
 There are hundreds if not thousands of upstream advisories that also apply to JLLs.
 SecurityAdvisories.jl can issue `JLSEC-` advisories to relay this information, but
@@ -186,7 +190,7 @@ can semi-automatically suggest the publication of such "relaying" advisories.
 
 This is where there are many opportunities for improvement across three or four levels:
 * Improve [BinaryBuilder.jl]'s ability to directly record this component information
-* Improve [GeneralMetadata.jl]'s recording of historical JLL component data
+* Improve [GeneralMetadata.jl]'s recording of the historical (JLL) component data, enable arbitrary (non-JLL) artifact tracking, and even add component licensing information
 * Improve [SecurityAdvisories.jl]'s automations to make it clearer when a proposed upstream advisory is correct
 * Help review and maintain the proposed upstream advisories on SecurityAdvisories.jl
 
@@ -196,12 +200,10 @@ With a first-class advisory database and SBOM support, we can now ask automated
 vulnerability scanners to implement support for reporting on any outstanding
 advisories against Julia packages. Or — in the case of an open source tool — we
 can propose such changes ourselves. That's exactly what I've been doing with
-[trivy]; they are close to merging a sequence of pull requests to enable this:
+[trivy]; they are close to merging a sequence of my pull requests that enable
+adding vulnerability information in its SBOMs and reports like this:
 
 ```txt
-2025-11-13T17:04:35Z	INFO	[julia] Detecting vulnerabilities...
-2025-11-13T17:04:35Z	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/dev/docs/scanner/vulnerability#severity-selection for details.
-
 Report Summary
 
 ┌───────────────┬───────┬─────────────────┬─────────┐
@@ -271,6 +273,7 @@ repositories, or in our upcoming meeting!
 [packageurl-python]: https://github.com/package-url/packageurl-python
 [purl-ask]: https://github.com/JuliaLang/SecurityAdvisories.jl/issues/145
 
+[trust.juliahub.com]: https://trust.juliahub.com
 [cve.org]: https://www.cve.org
 [CVE-2025-52479]: https://nvd.nist.gov/vuln/detail/CVE-2025-52479
 [CVE-2025-52483]: https://nvd.nist.gov/vuln/detail/CVE-2025-52483
