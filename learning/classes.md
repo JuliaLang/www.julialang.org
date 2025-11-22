@@ -234,6 +234,9 @@ If you know of other classes using Julia for teaching, please consider [updating
     * COT 4501, Numerical Analysis: A Computational Approach ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Spring 2022
 * University of Glasgow, School of Mathematics and Statistics
     * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](https://www.gla.ac.uk/postgraduate/taught/dataanalytics/)), September 2017
+* University of Michigan
+    * ECE 551 [Matrix Methods for Signal Processing, Data Analysis and Machine Learning](https://ece.engin.umich.edu/academics/course-information/course-descriptions/ece-551), ([Prof. Jeff Fessler](https://web.eecs.umich.edu/~fessler/course/551))
+    * ROB 101 [Computational Linear Algebra](https://robotics.umich.edu/academics/courses/course-offerings/rob-101-fall-2022)
 * University of Oregon
     * EC607, [Core Macroeconomics III](https://github.com/gionikola/spring2021_core_macro_lab) ([Prof. David Evans](http://econevans.com/))
     * EC607, [Computational Economics](https://github.com/dgevans/EC-607-Computational-Economics) ([Prof. David Evans](http://econevans.com/))
