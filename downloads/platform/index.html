@@ -134,10 +134,10 @@ crossorigin=""/>
 <h2 id="cross-platform_installer"><a href="#cross-platform_installer" class="header-anchor">Cross-platform installer</a></h2>
 <p>An installer and version manager for Julia called <a href="https://github.com/JuliaLang/juliaup">juliaup</a> can be installed <a href="https://github.com/JuliaLang/juliaup#mac-and-linux">via the command line</a> on Linux and Mac and is available in the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> for Windows. It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.</p>
 <h2 id="linux_and_freebsd"><a href="#linux_and_freebsd" class="header-anchor">Linux and FreeBSD</a></h2>
-<p>It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named <code>julia-1.12.1</code>.</p>
+<p>It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named <code>julia-1.12.2</code>.</p>
 
-<pre><code class="shell hljs">wget https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.1-linux-x86_64.tar.gz
-tar zxvf julia-1.12.1-linux-x86_64.tar.gz</code></pre>
+<pre><code class="shell hljs">wget https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.2-linux-x86_64.tar.gz
+tar zxvf julia-1.12.2-linux-x86_64.tar.gz</code></pre>
 
 <h3 id="running_julia"><a href="#running_julia" class="header-anchor">Running Julia</a></h3>
 <p>The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the <code>julia</code> executable. The directory where Julia is installed is referred to as <code>&lt;Julia directory&gt;</code>.</p>
@@ -173,7 +173,7 @@ tar zxvf julia-1.12.1-linux-x86_64.tar.gz</code></pre>
 </li>
 </ol>
 <h4 id="adding_julia_to_path_for_older_releases"><a href="#adding_julia_to_path_for_older_releases" class="header-anchor">Adding Julia to path for older releases</a></h4>
-<p>For older &#40;&lt;&#61; Julia 1.5.4&#41; downloads, note the installation directory at the time of installation. The installation directory should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.12.1</code>, <em>please note this path</em>.</p>
+<p>For older &#40;&lt;&#61; Julia 1.5.4&#41; downloads, note the installation directory at the time of installation. The installation directory should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.12.2</code>, <em>please note this path</em>.</p>
 <p>Then add the Julia executable directory to PATH by performing the following steps.</p>
 <h5 id="adding_julia_to_path_on_windows_10"><a href="#adding_julia_to_path_on_windows_10" class="header-anchor">Adding Julia to PATH on Windows 10,</a></h5>
 <ol>
@@ -181,7 +181,7 @@ tar zxvf julia-1.12.1-linux-x86_64.tar.gz</code></pre>
 </li>
 <li><p>Under either the &quot;User Variables&quot; or &quot;System Variables&quot; section, find the row with &quot;Path&quot;, and click edit.</p>
 </li>
-<li><p>The &quot;Edit environment variable&quot; UI will appear. Here, click &quot;New&quot;, and paste in the directory noted from the installation stage. This should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.12.1\bin</code>.</p>
+<li><p>The &quot;Edit environment variable&quot; UI will appear. Here, click &quot;New&quot;, and paste in the directory noted from the installation stage. This should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.12.2\bin</code>.</p>
 </li>
 <li><p>Click OK. You can now run Julia from the command line, by typing <code>julia</code>&#33;</p>
 </li>
@@ -194,7 +194,7 @@ tar zxvf julia-1.12.1-linux-x86_64.tar.gz</code></pre>
 </li>
 <li><p>In the Edit System Variables window, move the cursor to the end of the field.</p>
 </li>
-<li><p>If there is no semicolon at the end, add it and paste in the path to the <code>bin</code> folder within the installation directory noted earlier. This path should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.12.1\bin</code>.</p>
+<li><p>If there is no semicolon at the end, add it and paste in the path to the <code>bin</code> folder within the installation directory noted earlier. This path should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.12.2\bin</code>.</p>
 </li>
 <li><p>Click OK. You can now run Julia from the command line, by typing <code>julia</code>&#33;</p>
 </li>
@@ -210,7 +210,7 @@ tar zxvf julia-1.12.1-linux-x86_64.tar.gz</code></pre>
 <h3 id="uninstallation__2"><a href="#uninstallation__2" class="header-anchor">Uninstallation</a></h3>
 <p>Uninstallation is preferably performed by using the Windows uninstaller. The directory in <code>&#37;HOME&#37;/.julia</code> can then be deleted if you want to remove all traces of Julia &#40;this includes user installed packages&#41;.</p>
 <h2 id="macos"><a href="#macos" class="header-anchor">macOS</a></h2>
-<p>On macOS, a <code>julia-1.12.1-mac64.dmg</code> file is provided, which contains <code>Julia-1.12.app</code>. Installation is the same as any other Mac software: drag the <code>Julia-1.12.app</code> to Applications Folder&#39;s Shortcut. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard &#40;possibly earlier versions as well&#41; and 32-bit but neither are fully supported.</p>
+<p>On macOS, a <code>julia-1.12.2-mac64.dmg</code> file is provided, which contains <code>Julia-1.12.app</code>. Installation is the same as any other Mac software: drag the <code>Julia-1.12.app</code> to Applications Folder&#39;s Shortcut. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard &#40;possibly earlier versions as well&#41; and 32-bit but neither are fully supported.</p>
 <p>You can launch Julia by opening the Julia app <a href="https://www.howtogeek.com/409411/how-to-launch-applications-on-your-mac/">like any other application</a>.</p>
 <h3 id="optional_add_julia_to_path"><a href="#optional_add_julia_to_path" class="header-anchor">Optional: Add Julia to PATH</a></h3>
 <p>If you want to launch Julia from the command line, first <a href="https://www.howtogeek.com/682770/how-to-open-the-terminal-on-a-mac/">open a new terminal window</a>, then run the following snippet from your <a href="https://superuser.com/questions/144666/what-is-the-difference-between-shell-console-and-terminal">shell</a> &#40;e.g., using the Terminal app, not inside the Julia prompt&#41;.</p>
