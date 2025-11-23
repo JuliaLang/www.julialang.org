@@ -41,7 +41,7 @@ This will install the latest stable version of Julia, as well as the `juliaup` t
 
 [`juliaup`](https://github.com/JuliaLang/juliaup) is the recommended way to install Julia. It automatically installs the latest stable `julia` binary and helps keep it up to date. It also supports installing and using different versions of Julia simultaneously. To install different Julia versions, see `juliaup --help`.
 
-If you need to manually download and install specific Julia versions, see the [Manual Downloads](/downloads/manual-downloads/) page.
+If you need to manually download and install specific Julia versions, see the [Manual Downloads](/downloads/manual-downloads/) page. Julia supports all the major operating systems, but specific versions and architectures have different [tiers of support](/downloads/support).
 
 ## Next steps
 
