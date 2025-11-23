@@ -47,7 +47,7 @@ Join the [community](/community). Check out the [learning resources](/learning).
 
 If you need to manually download and install specific Julia versions, see the [Manual Downloads](/downloads/manual-downloads/) page. Julia supports all the major operating systems, but specific versions and architectures have different [tiers of support](/downloads/support).
 
-### Official domains
+## Official domains
 
 The following domains are official and used by open source Julia infrastructure for serving content and resources:
 
