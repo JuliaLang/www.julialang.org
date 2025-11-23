@@ -26,6 +26,7 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | [Pkg][pkg]                       | `#pkg-dev`          | Occasional Tuesdays at 2:15pm ET         | [Kristoffer Carlsson][Kristoffer-Carlsson], [Fredrik Ekre][Fredrik-Ekre] |
 | Release management               | `#releases`         | [none]                                   | [Kristoffer Carlsson][Kristoffer-Carlsson], [Alex Arslan][Alex-Arslan]   |
 | REPL                             | `#repl`             | [none]                                   | [Timothy Chapman][Timothy Chapman]                                       |
+| Security                         | `#security-dev`     | Every other Friday at 12pm ET            | [Matt Bauman][Matt-Bauman]                                               |
 
 The machine learning and REPL working groups can respectively also be found on
 the `#ml-contributors` and `#repl` streams on the [Julia Zulip][zulip].
@@ -89,3 +90,4 @@ Each of these groups is organized around a common area of interest with a commun
 [Tan-Zhi-Xuan]: https://github.com/ztangent
 [Timothy Chapman]: https://github.com/tecosaur
 [Rachel-Kurchin]: https://github.com/rkurchin
+[Matt-Bauman]: https://github.com/mbauman
