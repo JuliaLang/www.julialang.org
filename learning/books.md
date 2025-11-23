@@ -28,6 +28,7 @@
 * Bogumił Kamiński and Paweł Prałat. [Train Your Brain - Challenging Yet Elementary Mathematics](https://www.ryerson.ca/train-your-brain/), December 2020; a free on-line [Julia language companion](https://math.ryerson.ca/~pralat/train-your-brain.pdf) is available for download.
 * Ahan Sengupta [The Little Book of Julia Algorithms](https://www.amazon.com/Little-Book-Julia-Algorithms-programming/dp/1838173609/). SAV Publishing, September 2020.
 * Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, June 2020.
+* Giray Ökten. [Probability and Simulation](https://link.springer.com/book/10.1007/978-3-030-56070-6). Springer, June 2020.
 * Tom Kwong. [Hands-on Design Patterns and Best Practices with Julia](https://www.packtpub.com/application-development/hands-design-patterns-julia-10).  Packt Publishing, January 2020.
 * Tanmay Bakshi. [Tanmay Teaches Julia for Beginners: A Springboard to Machine Learning for All Ages](https://www.mheducation.co.uk/tanmay-teaches-julia-for-beginners-a-springboard-to-machine-learning-for-all-ages-9781260456639-emea). McGraw Hill, November 2019.
 * Bogumił Kamiński and Przemysław Szufel. [Julia プログラミングクックブック](https://www.oreilly.co.jp/books/9784873118895/). Japanese translation for Julia 1.2 by Hidemoto Nakada. Orairījapan, Tōkyo, October 2019.
