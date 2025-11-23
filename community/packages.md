@@ -13,7 +13,7 @@ There are services that can help navigate the package ecosystem:
 Julia has an official package manager along with its own infrastructure to build binaries and libraries:
 
 @@tight-list
-* [Pkg.jl](https://github.com/JuliaLang/Pkg.jl) is the Julia package manager. It has extensive [documentation](https\://pkgdocs.julialang.org/v1/) for managing packages and developing them as well.
+* [Pkg.jl](https://github.com/JuliaLang/Pkg.jl) is the Julia package manager. It has extensive [documentation](https://pkgdocs.julialang.org/v1/) for managing packages and developing them as well.
 * [Julia Package Download Statistics](https://juliapkgstats.com/) - Package download statistics based on the [announcement](https://discourse.julialang.org/t/announcing-package-download-stats/69073/38).
 * [BinaryBuilder](https://binarybuilder.org) - Build native binaries with over 45 well maintained toolchains for major platforms. Refer to the [BinaryBuilder.jl documentation](https://docs.binarybuilder.org/stable/) for details.
 * [Yggdrasil](https://github.com/JuliaPackaging/Yggdrasil) - Recipes for building and distributing binaries and libraries in the Julia ecosystem
