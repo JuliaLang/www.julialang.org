@@ -20,11 +20,6 @@
 The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding and/or mentoring developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in.
 
 ~~~
-   <br>
-</div>
-~~~
-
-~~~
 <!--
       Containers: Google Summer of Code (GSoC)
  -->
@@ -110,11 +105,6 @@ Questions about NumFOCUS Small Development Grants? [Check out the NumFOCUS websi
 The JSoC program admins have a few responsibilities including, but not limited too, reviewing contributor applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final contributor selections and more.
 
 [Find out more about our program admins](/jsoc/admins/).
-
-~~~
- </div>
-<br>
-~~~
 
 ~~~
 <!--
