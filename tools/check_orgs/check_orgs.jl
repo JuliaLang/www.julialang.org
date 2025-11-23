@@ -9,7 +9,7 @@ function check_orgs()
 
     fpath = joinpath(dirname(dirname(@__DIR__)), "community", "organizations.md")
     conts = String(read(fpath))
-    occursin("## Julia GitHub Organizations", conts) || error("not reading the correct file $fpath")
+    occursin("## Julia Organizations", conts) || error("not reading the correct file $fpath")
 
     orgs = eachmatch(r"(?<url>https?://github\.com/[^/\s]+(?=\)))", conts)
 

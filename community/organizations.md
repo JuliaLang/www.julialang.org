@@ -1,4 +1,4 @@
-## Julia GitHub Organizations
+## Julia Organizations
 
 Something unique about the Julia Language is the way [the community self organizes into GitHub Organizations](https://youtu.be/cLFfTE2KWrk?t=644). This allows for a higher degree of collaboration and structure that ultimately enables each of these communities to be self sustaining.
 
