@@ -4,13 +4,13 @@
 
 ~~~
 <div id="windows-instructions" style="display: none;">
-  Install <code>juliaup</code> using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can also get <code>juliaup</code> by running this in the command prompt:<br><br>
+  Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt:<br><br>
   <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s masstore</code></pre>
   <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you are using Windows. </span>
   For Linux and MacOS instructions <a onclick="showUNIX()" href="javascript:void(0);">click here</a>.</div>
 </div>
 <div id="unix-instructions" style="display: none;">
-  Install <code>juliaup</code> by running the following in your terminal:<br><br>
+  Install Julia by running the following in your terminal:<br><br>
   <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
   <div class="install-platform-note"><span id="platform-subnote-unix">It looks like you are using a Unix-type system. </span>
   For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a>.</div>
@@ -39,7 +39,7 @@ This will install the latest stable version of Julia, as well as the `juliaup` t
 
 ## About juliaup
 
-`juliaup` is the recommended way to install Julia. It automatically installs the latest stable `julia` binary and helps keep it up to date. It also supports installing and using different versions of Julia simultaneously. To install different Julia versions, see `juliaup --help`.
+[`juliaup`](https://github.com/JuliaLang/juliaup) is the recommended way to install Julia. It automatically installs the latest stable `julia` binary and helps keep it up to date. It also supports installing and using different versions of Julia simultaneously. To install different Julia versions, see `juliaup --help`.
 
 If you need to manually download and install specific Julia versions, see the [Manual Downloads](/downloads/manual-downloads/) page.
 
