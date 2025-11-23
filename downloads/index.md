@@ -39,7 +39,7 @@ This will install the latest stable version of Julia, as well as the `juliaup` t
 
 ## Next steps
 
-Join the [community](/community). Check out the [learning resources](/learn). Do star us on [GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
+Join the [community](/community). Check out the [learning resources](/learning). Do star us on [GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
 
 ## About juliaup
 
