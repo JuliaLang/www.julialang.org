@@ -17,8 +17,6 @@
    <br>
 ~~~
 
-The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding and/or mentoring developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in.
-
 ~~~
    <br>
 </div>
@@ -86,6 +84,7 @@ The total allocated funding from NumFOCUS is around USD 20,000 - 50,000 in previ
 This total amount is adjusted depending on the number and quality of proposals.
 
 Questions about NumFOCUS Small Development Grants? [Check out the NumFOCUS website Small Grants section for more details](https://numfocus.org/programs/small-development-grants)!
+~~~
 
 ~~~
   <br>
