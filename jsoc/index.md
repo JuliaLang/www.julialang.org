@@ -73,23 +73,6 @@ You can see previous Summer of Code projects at the [Archive page](/jsoc/archive
 ~~~
 
 ~~~
- <!--
-      Containers: Google Season of Docs (GSoD)
- -->
-  <div class="container pt-sm-2">
-   <br><br>
-     <div class="row">
-       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-       <div class="col-lg-4 col-md-6 language-features section-heading">
-         <h2 class="lead secondary-heading" id="google_season_of_docs_gsod">
-          <a href="#google_season_of_docs_gsod" class="link">Google Season of Docs (GSoD)</a>
-         </h2>
-       </div>
-       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-     </div>
-
-     <br>
-~~~
 ![NumFocus Logo](https://user-images.githubusercontent.com/35577566/114047420-87487880-983e-11eb-83f1-2820cfe17942.png)
 
 Semi-quarterly NumFOCUS puts out a call for small development grants.
@@ -128,7 +111,7 @@ Questions about NumFOCUS Small Development Grants? [Check out the NumFOCUS websi
      <br>
 ~~~
 
-The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing contributor applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final contributor selections and more.
+The JSoC program admins have a few responsibilities including, but not limited too, reviewing contributor applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final contributor selections and more.
 
 [Find out more about our program admins](/jsoc/admins/).
 
