@@ -90,39 +90,6 @@ You can see previous Summer of Code projects at the [Archive page](/jsoc/archive
 
      <br>
 ~~~
-![Google Season of Docs](https://user-images.githubusercontent.com/35577566/114047222-5e27e800-983e-11eb-86fd-c8df3490634d.png)
-
-The Julia organization is applying to participate in [Google's Season of Docs](https://developers.google.com/season-of-docs).
-Google Season of Docs is a chance for technical writers to contribute to the open source ecosystem.
-
-If this sounds like something you would be interested in, head over to the [Projects page](/jsoc/gsod/projects/) to see a list of all the available technical writing projects.
-
-~~~
- </div>
-<br>
-~~~
-
-~~~
-<!--
-    Containers: NumFOCUS Small Development Grants
-  -->
-<!--<div class="container-fluid alt-color packages">-->
- <div class="container pt-sm-2">
-  <br><br>
-    <div class="row">
-      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
-      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
-        <h2 class="lead secondary-heading" id="numfocus_small_development_grants">
-          <a href="#numfocus_small_development_grants" class="ecosystem">
-            NumFOCUS Small Development Grants
-          </a>
-        </h2>
-      </div>
-      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
-    </div>
-    <br>
-~~~
-
 ![NumFocus Logo](https://user-images.githubusercontent.com/35577566/114047420-87487880-983e-11eb-83f1-2820cfe17942.png)
 
 Semi-quarterly NumFOCUS puts out a call for small development grants.
@@ -134,26 +101,6 @@ Since only one application can be put in for the Julia project, an internal sele
 Usually, around USD 5,000 - 10,000 is available per proposal.
 The total allocated funding from NumFOCUS is around USD 20,000 - 50,000 in previous cycles, meaning that not every project will be able to receive a grant.
 This total amount is adjusted depending on the number and quality of proposals.
-
-Important dates for upcoming Small Development Grants in 2022:
-
-Round 1
-- Call for Proposals Announcement: February 4, 2022
-- Proposal Submission Deadline: March 4, 2022
-- Committee Selection Deadline: March 18, 2022
-- Notification to Applicants Deadline: April 15, 2022
-
-Round 2
-- Call for Proposals Announcement: May 6, 2022
-- Proposal Submission Deadline: June 3, 2022
-- Committee Selection Deadline: June 17, 2022
-- Notification to Applicants Deadline: July 15, 2022
-
-Round 3
-- Call for Proposals Announcement: August 5, 2022
-- Proposal Submission Deadline: September 2, 2022
-- Committee Selection Deadline: September 16, 2022
-- Notification to Applicants Deadline: October 14, 2022
 
 Questions about NumFOCUS Small Development Grants? [Check out the NumFOCUS website Small Grants section for more details](https://numfocus.org/programs/small-development-grants)!
 
