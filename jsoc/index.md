@@ -17,6 +17,8 @@
    <br>
 ~~~
 
+The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding and/or mentoring developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in.
+
 ~~~
    <br>
 </div>
