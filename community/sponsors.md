@@ -10,7 +10,7 @@ The following organizations have employed Julia core developers whose full-time 
 - [Relational AI](https://relational.ai/) uses Julia heavily in their product offerings and employs several developers focusing on core Julia development, particularly around improvements to GC and observability.
 - [MIT's Julia Lab](https://julia.mit.edu/) was the original home of many Julia core developers.
 
-Note that while these organizations are employing Julia core developers, decision making authority within the project rests solely with individual core developers and not their employers. For more information, see the <a href="/governance/">governance</a> page.
+Note that while these organizations are employing Julia core developers, decision making authority within the project rests solely with individual core developers and not their employers. For more information, see the [governance](/governance) page.
 
 ## Infrastructure
 
