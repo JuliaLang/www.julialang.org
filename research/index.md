@@ -1,7 +1,6 @@
 # Research
 
-Research on Julia is carried out at the Julia Lab at MIT and at many universities worldwide.
-If you use Julia in your research, we request citing the following paper:
+Research on Julia is carried out at the [Julia Lab at MIT](https://julia.mit.edu) and at many universities worldwide. If you use Julia in your research, we request citing the following paper:
 
 Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. (2017) SIAM Review, 59: 65–98. doi: [10.1137/141000671](https://dx.doi.org/10.1137/141000671). [pdf](/assets/research/julia-fresh-approach-BEKS.pdf).
 
@@ -12,6 +11,7 @@ Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Ste
 Researchers contributing to Julia have been awarded various prizes:
 
 @@tight-list
+* [2025: Julia Community Prizes](https://juliacon.org/2025/prize/): Claire Foster and Stefan Krastanov
 * [2024: Julia Community Prizes](https://juliacon.org/2024/prize/): Guillaume Dalle, the Makie team (Simon Danisch, Julius Krumbiegel, Frederic Freyer, & Anshul Singhvi) and the JuMP team (Oscar Dowson, Benoît Legat, & Miles Lubin)
 * [2023: Julia Community Prizes](https://juliacon.org/2023/prize/): Valentin Churavy, William Moses, Ian Butterworth, Kristoffer Carlsson, and Yingbo Ma
 * [2022: Julia Community Prizes](https://juliacon.org/2022/prize/): Morten Piibeleht, Michael Hatherly, Fredrik Ekre, and Mauro Werder, Frames White, and Shuhei Kadowaki
@@ -32,11 +32,6 @@ Researchers contributing to Julia have been awarded various prizes:
 
 ## Publications
 
-Google Scholar provides a list of papers [citing Julia](https://scholar.google.com/scholar?cites=12373977815425691465&as_sdt=40000005&sciodt=0,22&hl=en). A contributed list of citations used to be maintained, which is now [archived](publications-archive).
+Google Scholar provides a list of papers [citing Julia](https://scholar.google.com/scholar?cites=12373977815425691465&as_sdt=40000005&sciodt=0,22&hl=en).
 
-In order to make Julia packages and projects easy to cite, the
-community has settled on a standard location and format for
-bibliographic information.
-Please add a `CITATION.bib` file (BibTeX format) in the top-level directory of your package or repo.
-The key for the bib entry should be &lt;PackageName.jl&gt;-&lt;year&gt;-&lt;letter&gt; (Use a letter if you have multiple citations in same year).
-For example, see the [CITATION.bib](https://github.com/JuliaLang/julia/blob/master/CITATION.bib) file in the Julia repo.
+In order to make Julia packages and projects easy to cite, the community has settled on a standard location and format for bibliographic information. Please add a `CITATION.bib` file (BibTeX format) in the top-level directory of your package or repo. The key for the bib entry should be &lt;PackageName.jl&gt;-&lt;year&gt;-&lt;letter&gt; (Use a letter if you have multiple citations in same year). For example, see the [CITATION.bib](https://github.com/JuliaLang/julia/blob/master/CITATION.bib) file in the Julia repo.
