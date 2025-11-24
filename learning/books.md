@@ -1,7 +1,10 @@
 ## Books
 
+Have a Julia book you want added to this list? Please [submit a pull request](https://github.com/JuliaLang/www.julialang.org/blob/main/learning/books.md).
+
 @@tight-list
-*  James V Lambers, Amber Sumner Mooney, Vivian A Montiforte, and James Quinlan, [Explorations in Numerical Analysis and Machine Learning with Julia](https://www.worldscientific.com/worldscibooks/10.1142/14443#t=aboutBook). World Scientific, October 2025.
+* Mykel J. Kochenderfer, Sydney M. Katz, Anthony L. Corso, and Robert J. Moss, [Algorithms for Validation](https://algorithmsbook.com/validation/), Forthcoming.
+* James V Lambers, Amber Sumner Mooney, Vivian A Montiforte, and James Quinlan, [Explorations in Numerical Analysis and Machine Learning with Julia](https://www.worldscientific.com/worldscibooks/10.1142/14443#t=aboutBook). World Scientific, October 2025.
 * Antonello Lobianco. [Julia Quick Syntax Reference, 2nd ed.](https://doi.org/10.1007/979-8-8688-0965-1). Apress, January 2025.
 * Andreas Varga, [Solving Fault Diagnosis Problems - Linear Synthesis Techniques with Julia Code Examples](https://link.springer.com/book/10.1007/978-3-031-35767-1), Vol. 482 of Studies in Systems, Decision and Control, Springer Nature Switzerland, 2024. The computational examples presented in the book use functions of the [FaultDetectionTools.jl](https://github.com/andreasvarga/FaultDetectionTools.jl) and [DescriptorSystems.jl](https://github.com/andreasvarga/DescriptorSystems.jl) packages and are available [here](https://github.com/andreasvarga/FaultDetectionTools.jl/tree/master/Examples).
 * Martin Vuk, [Numerical Mathematics with Julia programming language (in Slovenian)](http://zalozba.fri.uni-lj.si/vuk2024.pdf), Založba UL FRI, Ljubljana, 2024. Code examples from the book are available [here](https://gitlab.com/nummat/nummat-knjiga).
@@ -61,5 +64,3 @@ _Julia 1.0 was released on 8 August 2018_
 * Malcolm Sherrington. [Mastering Julia](https://www.packtpub.com/application-development/mastering-julia). Packt Publishing, 2015.
 * Bruce Tate, Ian Dees, Frederic Daoud, and Jack Moffit. [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks). The Pragmatic Programmers, December 2014.
 @@
-
-Have a Julia book you want added to this list? Please [open an issue or pull request](https://github.com/JuliaLang/www.julialang.org/issues).

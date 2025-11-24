@@ -2,7 +2,7 @@
 
 Julia is now being used in several universities and online courses.
 This list is by no means complete or even comprehensive - it is based on submissions made to the website.
-If you know of other classes using Julia for teaching, please consider [updating this list](https://github.com/JuliaLang/www.julialang.org/edit/main/learning/classes.md).
+If you know of other classes using Julia for teaching, please consider submitting a pull request to [update this list](https://github.com/JuliaLang/www.julialang.org/edit/main/learning/classes.md).
 
 ## MOOCs (Massively Online Open Courses)
 
