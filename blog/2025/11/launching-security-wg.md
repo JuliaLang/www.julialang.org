@@ -3,8 +3,8 @@ mintoclevel = 2
 maxtoclevel = 3
 title = "Launching the Julia Security Working Group"
 authors = "Matt Bauman (JuliaHub)"
-published = "23 November 2025"
-rss_pubdate = Date(2025, 11, 23)
+published = "24 November 2025"
+rss_pubdate = Date(2025, 11, 24)
 rss = """Launching the Julia Security Working Group"""
 +++
 
