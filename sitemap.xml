@@ -122,12 +122,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/talkjulialang/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/jsoc/gsoc/molly/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -219,12 +213,6 @@
 </url>
 <url>
     <loc>https://julialang.org/learning/notebooks/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://julialang.org/diversity/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -746,12 +734,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/hackathons/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2020/02/gci-summary/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -759,12 +741,6 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/07/gsoc-projects-announcement/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://julialang.org/diversity/ideas/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -860,12 +836,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/hackathons/pasthackathons/firsthackathon/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -926,6 +896,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/diversity/index.html</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/jsoc/allprojects/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -945,12 +921,6 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/archive/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://julialang.org/research/publications-archive/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1148,12 +1118,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/diversity/current/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -1346,12 +1310,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/hackathons/pasthackathons/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2017/03/cudanative/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -1436,13 +1394,13 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/manual/</loc>
+    <loc>https://julialang.org/utf8proc/</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/install/index/</loc>
+    <loc>https://julialang.org/blog/2017/12/ml%26pl-zh_tw/</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1455,12 +1413,6 @@
 </url>
 <url>
     <loc>https://julialang.org/hacktoberfest/</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://julialang.org/gh/index/</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1484,13 +1436,19 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/packages/index/</loc>
+    <loc>https://julialang.org/ecosystems/</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/ecosystems/</loc>
+    <loc>https://julialang.org/gh/</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/install/</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1514,13 +1472,13 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/utf8proc/</loc>
+    <loc>https://julialang.org/manual/</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/blog/2017/12/ml%26pl-zh_tw/</loc>
+    <loc>https://julialang.org/packages/</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
