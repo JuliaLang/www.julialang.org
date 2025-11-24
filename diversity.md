@@ -10,9 +10,10 @@ We believe that maintaining and promoting diversity and inclusion is the only wa
 
 Below you will find links to the breakdown of our past, current, and ideas for future diversity and inclusion initiatives. If you have any ideas, feedback, or the like, feel free to send and email to `diversity@julialang.org` or drop by the [#diversity channel on Slack](https://julialang.org/slack/).
 
-
-Find out more about our [current initiatives](/diversity/current/)
-
-Find out more about our ideas for [future initiatives](/diversity/ideas/)
-
 __We would like to give a special thank you to all of the Julia Community members working tirelessly on these various Diversity and Inclusion initiates. These individuals are taking time away from their technical work in order to help promote a more inclusive and equitable community, and for that, we are in their debt.__
+
+## Ideas to promote Diversity and Inclusion
+
+The current team working on D&I are hyper focused on ensuring our current projects have a measurable impact. This means that we cannot work on everything at the same time. While there are some great ideas presented here, we ultimately have to pick and choose what we think strategically will move the needle in the short and long term for the Julia Language Community given our constrained resources.
+
+If you are interested in helping out or leading any of the below initiatives, please free to send and email to `diversity@julialang.org` or drop by the [#diversity channel on Slack](http://julialang.org/slack/).
