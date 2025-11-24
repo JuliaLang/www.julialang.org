@@ -110,7 +110,7 @@ This is precisely one of the reasons behind:
 Prior to these recent efforts, we were unable to issue or even gather together such
 Julia package advisories. Having a dedicated database of advisories allows our package
 ecosystem to more effectively participate in the global advisory universe:
-* It enables the direct authorshop and publication of Julia-related advisories with
+* It enables the direct authorship and publication of Julia-related advisories with
   well-defined semantics around its package and version data. There are many limitations
   with using the existing multi-ecosystem databases:
     * CVEs don't (natively) have structured package/version data and publications are gated
