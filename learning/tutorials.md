@@ -1,5 +1,6 @@
 ## Tutorials
-@@tight-lis
+
+@@tight-list
 * [Introduction to Julia for mathematics undergraduates](https://sje30.github.io/catam-julia/).  An introduction to Julia, with case studies, suitable for undergraduate students with a mathematics background.
 * [Julia Programming: A Hands-On Tutorial](https://www.matecdev.com/posts/julia-tutorial-science-engineering.html), and [Numerical Computing in Julia](https://www.matecdev.com/posts/julia-numerical-computing.html) by [Martín D. Maas](https://github.com/mdmaas). Introductory material about Julia, focusing on its use in Science and Engineering.
 * [Zero2Hero intensive workshop](https://www.youtube.com/watch?v=Fi7Pf2NveH0) by [George Datseris](https://github.com/Datseris). An intensive workshop targeting an audience familiar with programming that wants to transition to Julia and use Julia like a pro.
