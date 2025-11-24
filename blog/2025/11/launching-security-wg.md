@@ -2,14 +2,14 @@
 mintoclevel = 2
 maxtoclevel = 3
 title = "Launching the Julia Security Working Group"
-authors = "Matt Bauman ([@mbauman], JuliaHub)"
+authors = "Matt Bauman (JuliaHub)"
 published = "23 November 2025"
 rss_pubdate = Date(2025, 11, 23)
 rss = """Launching the Julia Security Working Group"""
 +++
 
 There's been a lot of security work in the Julia ecosystem recently, and those of us pushing
-on this effort have informally self-organized around a slack channel ([#security-dev]) and a
+on this effort have informally self-organized around a slack channel (`#security-dev`) and a
 handful of repositories and pull requests. We are past due in officially organizing our efforts
 into a working group! With this blog post, we are announcing the creation of the Julia Security
 Working Group (JLSEC): an official community effort to improve the security tooling of the
@@ -59,9 +59,9 @@ consistently refer to a particular ecosystem's HTTP package without getting conf
 
 As of October (2025; thanks again to Ryan's efforts), Julia is an [officially designated
 type][purl-types] within the schema, allowing you to specify HTTP.jl more officially as
-    pkg:julia/HTTP?uuid=cd3eb016-35fb-5094-929b-558a96fad6f3
+- `pkg:julia/HTTP?uuid=cd3eb016-35fb-5094-929b-558a96fad6f3`
 or even with a version like:
-    pkg:julia/HTTP@1.10.16&uuid=cd3eb016-35fb-5094-929b-558a96fad6f3
+- `pkg:julia/HTTP@1.10.16&uuid=cd3eb016-35fb-5094-929b-558a96fad6f3`
 
 Both Trivy and PkgToSoftwareBOM.jl generate SBOMs with these PURL identifiers. A
 wonderful place to get involved here could be in the development of a pure-Julia
@@ -105,7 +105,7 @@ to piece this together!
 
 This is precisely one of the reasons behind:
 
-### The [SecurityAdvisories.jl] database
+### The SecurityAdvisories.jl database
 
 Prior to these recent efforts, we were unable to issue or even gather together such
 Julia package advisories. Having a dedicated database of advisories allows our package
@@ -119,7 +119,7 @@ ecosystem to more effectively participate in the global advisory universe:
     * GitHub-based packages can issue _repository_ GHSAs, and GitHub can act as a CNA and
       assign CVE aliases (as was done for HTTP.jl above), but Julia is not (yet) an officially
       supported ecosystem for GitHub's _global_ database. That's why the HTTP advisories
-      don't show up there; they aren't even _fetchable_ by thier ID alone. It'd be great to
+      don't show up there; they aren't even _fetchable_ by their ID alone. It'd be great to
       someday be an official ecosystem, but we also have many registered packages that are
       not GitHub-hosted; these too may need to issue advisories.
 * There may be _existing_ CVE advisories that pertain to a Julia package, but the
@@ -164,26 +164,27 @@ you can either create a GHSA (which a GitHub action can then import), or you can
 propose a new JLSEC advisory directly. See the repository's [CONTRIBUTING.md][SA-contrib]
 for more details on advisory authorship.
 
-### [GeneralMetadata.jl]: JLL and Artifact Component analysis
+### GeneralMetadata.jl: JLL and Artifact Component analysis
 
-Remember that asterisk in the "no advisories against Julia packages" above? It's not
-entirely true. The Julia package ecosystem consists of nearly 10,000 pure Julia
-packages, but there are also about 1500 packages that _redistribute_ upstream
-libraries _from other ecosystems_, mostly as "JLLs". While there hadn't been direct
-advisories published against any of the pure Julia packages, many JLLs contain upstream
-components that have themselves reported CVEs. The trouble is that a vulnerability
-scanner won't know that, for example, [OpenBLAS_jll] v0.3.17+2 built and redistributed
-the upstream OpenBLAS v0.3.17. Or more challenging, that [NetCDF_jll] v401.900.300+0 is
-really `netcdf` v4.9.3. Or even more challenging, that [MbedTLS_jll] v2.28.1010+0 is
-really `mbed_tls` v2.28.10 with _backported patches_ which address four CVEs that were
+While there weren't advisories published against any _Julia_ packages prior to June
+2025, there are many software libraries and executables from _other language ecosystems_
+that we rely upon. These pre-built binaries are provided as **Artifacts** that the
+package manager knows how to download, most commonly as dedicated packages themselves
+known as ["JLLs"][binarybuilder.org]. There are over 1500 of these JLLs in the General
+registry, and each provides and redistributes an upstream component — something that may
+itself have published a security advisory. The trouble is that a vulnerability
+scanner won't know that, for example, [OpenBLAS\_jll][OpenBLAS-jll] v0.3.17+2 built and redistributed
+the upstream [`OpenBLAS`] v0.3.17. Or more challenging, that [NetCDF\_jll][NetCDF-jll] v401.900.300+0 is
+really [`netcdf`] v4.9.3. Or even more challenging, that [MbedTLS\_jll][MbedTLS-jll] v2.28.1010+0 is
+really [`mbed-tls`] v2.28.10 with _backported security patches_ to address four CVEs that were
 still outstanding on that no-longer-maintained and end-of-life v2 series.
 
 There are hundreds if not thousands of upstream advisories that also apply to JLLs.
 SecurityAdvisories.jl can issue `JLSEC-` advisories to relay this information, but
 we first must know what the upstream components _are_! This is the purview of the new
 [GeneralMetadata.jl] repository in the JuliaRegistries org. It aims to automatically
-(insofar as it is possible) identify which sources (and at which versions) were used
-in the builing of all the JLLs.
+(insofar as it is possible) identify what sources and which versions were used in the
+building of all the registered JLLs.
 
 Armed with this component information, GitHub actions on SecurityAdvisories.jl
 can semi-automatically suggest the publication of such "relaying" advisories.
@@ -238,22 +239,25 @@ This is yet another place to get involved — trivy is just one tool and there 
 
 For both security and general maintenance, it's very helpful for packages to keep
 their dependencies up to date. GitHub packages have long used a custom GitHub action,
-CompatHelper.jl, but GitHub has first-class dependency management support through
-dependabot. (**[@IanButterworth]**) spearheaded work with GitHub's dependabot team to add
-beta support for Julia packages. Benefits over CompatHelper include: showing release
-notes/changelogs for the new version in the PR, updating checked-in manifests and
-warning when it cannot be updated, CI running automatically (without close-open),
-not having to worry about workflows being silently turned off after a few months
-of repo inactivity. And it should eventually integrate with the above security
-advisory efforts. See [examples of PRs][dependabot-prs] and [example setups][dependabot-examples].
-It is in a testing period and feedback would be much appreciated.
+CompatHelper.jl, but GitHub itself has first-class dependency management support through
+dependabot for some package ecosystems. (**[@IanButterworth]**) spearheaded work with
+GitHub's dependabot team to add beta support for Julia packages. Some benefits over CompatHelper
+include: showing release notes/changelogs for the new version in the PR, updating checked-in
+manifests and warning when it cannot be updated, CI running automatically (without close-open),
+and not having to worry about workflows being silently turned off after a few months
+of repo inactivity. We hope for it to eventually integrate with the above security advisory
+efforts to power security updates, too. See [examples of PRs][dependabot-prs] and
+[example setups][dependabot-examples]. It is in a testing period and feedback would be much appreciated.
 
 # Join us!
 
-Lots has happened over the last six months, but there are many ways to get involved!
-Don't hesitate to ask questions and join in on the slack channel, any of the above
-repositories, or in our upcoming meeting!
-
+What I've listed here is far from a complete roundup of all the recent security work
+around the Julia ecosystem, and that's precisely one of the reasons for forming this
+working group. If any of these efforts (or even better: a security effort I haven't
+mentioned here) match up with work you've been doing or are interested in doing, please
+join us! The inaugural call on Friday December 5 will be geared towards scoping some of
+the ongoing efforts and priorities of the group, and we'll continue many more discussions
+on [slack][#security-dev]. Don't hesitate to share your ideas, ask questions, and pitch in!
 
 
 
@@ -283,11 +287,16 @@ repositories, or in our upcoming meeting!
 
 [SecurityAdvisories.jl]: https://github.com/JuliaLang/SecurityAdvisories.jl
 [SA-contrib]: https://github.com/JuliaLang/SecurityAdvisories.jl/blob/main/CONTRIBUTING.md
+[osv-schema]: https://ossf.github.io/osv-schema/
 [osv.dev]: https://osv.dev
-[OpenBLAS_jll]: https://github.com/JuliaBinaryWrappers/OpenBLAS_jll.jl
-[NetCDF_jll]: https://github.com/JuliaBinaryWrappers/NetCDF_jll.jl
-[MbedTLS_jll]: https://github.com/JuliaBinaryWrappers/MbedTLS_jll.jl
+[OpenBLAS-jll]: https://github.com/JuliaBinaryWrappers/OpenBLAS_jll.jl
+[NetCDF-jll]: https://github.com/JuliaBinaryWrappers/NetCDF_jll.jl
+[MbedTLS-jll]: https://github.com/JuliaBinaryWrappers/MbedTLS_jll.jl
+[`OpenBLAS`]: http://www.openmathlib.org/OpenBLAS/docs/
+[`netcdf`]: https://www.unidata.ucar.edu/software/netcdf
+[`mbed-tls`]: https://mbed-tls.readthedocs.io/en/latest/
 [GeneralMetadata.jl]: https://github.com/JuliaRegistries/GeneralMetadata.jl
 [BinaryBuilder.jl]: https://github.com/JuliaPackaging/BinaryBuilder.jl
+[binarybuilder.org]: https://binarybuilder.org
 [dependabot-prs]: https://github.com/IanButterworth/CSV.jl/pull/6
 [dependabot-examples]: https://github.com/IanButterworth/CSV.jl/blob/master/.github/dependabot.yml
