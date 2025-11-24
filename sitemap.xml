@@ -800,6 +800,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/research/index.html</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -855,12 +861,6 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/07/juliacon2021/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://julialang.org/research/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
