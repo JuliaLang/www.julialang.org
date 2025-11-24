@@ -212,12 +212,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/learning/notebooks/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2020/08/julia-1.5-highlights/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -267,12 +261,6 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/09/gsoc-2020-wrapup/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://julialang.org/learning/mooc/index.html</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1460,6 +1448,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/learning/mooc/</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/license/</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -1467,6 +1461,12 @@
 </url>
 <url>
     <loc>https://julialang.org/google0224049e6b9f9407/</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/learning/notebooks/</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
