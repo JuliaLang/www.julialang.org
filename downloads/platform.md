@@ -8,21 +8,12 @@ The instructions here refer to the latest stable release of Julia. If you are
 using the LTS version or an older version, please substitute the appropriate
 version number in the instructions.
 
-## Cross-platform installer
+## Cross-platform installer: `juliaup`
 
 An installer and version manager for Julia called [juliaup](https://github.com/JuliaLang/juliaup) can be installed [via the command line](https://github.com/JuliaLang/juliaup#mac-and-linux) on Linux and Mac and is available in the [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN) for Windows.
 It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.
 
 ## Linux and FreeBSD
-
-It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named ~~~<code>julia-{{stable_release}}</code>~~~.
-
-~~~
-<pre><code class="language-shell">wget https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{ stable_release }}-linux-x86_64.tar.gz
-tar zxvf julia-{{ stable_release }}-linux-x86_64.tar.gz</code></pre>
-~~~
-
-### Running Julia
 
 The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the `julia` executable. The directory where Julia is installed is referred to as `<Julia directory>`.
 
@@ -46,7 +37,7 @@ Julia installs all its files in a single directory. Deleting the directory where
 
 ## Windows
 
-Note that some of the Windows versions and Julia versions mentioned below are no longer supported. See [supported platforms](/downloads/#supported_platforms) for supported Windows and Julia versions.
+Note that some of the Windows versions and Julia versions mentioned below are no longer supported. See [supported platforms](/downloads/support) for supported Windows and Julia versions.
 
 **We highly recommend running Julia using a modern terminal, such as installing the [Windows Terminal from the Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701).**
 

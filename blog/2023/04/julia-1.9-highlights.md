@@ -348,7 +348,7 @@ sync with the parent or peer manifests.
 
 ## Apple Silicon Achieves Tier 1 Status
 
-With all tests successfully passing and continuous integration (CI) established for Apple Silicon, the [platform's status](https://julialang.org/downloads/#supported_platforms) has been upgraded from Tier 2 to Tier 1.
+With all tests successfully passing and continuous integration (CI) established for Apple Silicon, the [platform's status](https://julialang.org/downloads/support) has been upgraded from Tier 2 to Tier 1.
 
 ## LLVM Update to v14
 
@@ -390,4 +390,3 @@ julia> @btime sumsimd(x) setup=(x=randn(Float64, 1_000_000))
 ```
 
 Milan Klöwer presented an application of using half-precision for a shallow water simulation run on A64FX in his JuliaCon 2021 talk [*3.6x speedup on A64FX by squeezing ShallowWaters.jl into Float16*](https://www.youtube.com/watch?v=btHfZr2C0GA).
-
