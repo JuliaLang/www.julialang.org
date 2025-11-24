@@ -47,7 +47,7 @@ crossorigin=""/>
 <script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
-   <title>Lang.NEXT Announcement</title>   
+   <title>Supported platforms</title>   
 
   
   <style>
@@ -62,25 +62,10 @@ crossorigin=""/>
 
   <!-- Specific style for blog pages (except the /blob/index) -->
   
-  <style>
-    .main { font-family: Georgia; }
-    .main pre {
-  	  margin-left: auto;
-  	  margin-right: auto;
-    }
-    .main { width: 100%; font-size: 100%; }
-    .main code { font-size: 90%; }
-    .main pre code { font-size: 90%; }
-    @media (min-width: 940px) {
-      .main { width: 800px; }
-      .container.blog-title { width: 800px;}
-    }
-  </style>
-  
 
   <!-- OGP Metadata -->
-	<meta property="og:title" content="Lang.NEXT Announcement">
-<meta property="og:description" content=" Lang.NEXT Announcement | Jeff and I will be giving a [presentation on Julia](https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia) at the upcoming [Lang.NEXT conference](https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012), a gathering of "programming language design experts and enthusiasts" featuring "talks, ... ">
+	<meta property="og:title" content="Supported platforms">
+<meta property="og:description" content="">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
 
@@ -107,7 +92,7 @@ crossorigin=""/>
               <li class="nav-item ">
                   <a class="nav-link" href="/learning/">Learn</a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item ">
                   <a class="nav-link" href="/blog/">Blog</a>
               </li>
               <li class="nav-item ">
@@ -135,45 +120,160 @@ crossorigin=""/>
 <br><br>
 
 
-<div class="container blog-title">
-  <h1>Lang.NEXT Announcement
-    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
-      <i class="fa fa-rss-square rss-icon"></i>
-    </a>
-  </h1>
-  <h3>
-   <span style="font-weight: lighter;"> 24 March 2012 </span>
-	|
-	
-	 <span style="font-weight: bold;"></span> 
-  <!-- assumption that only one of the two is defined -->
-   <span style="font-weight: bold;"><a href="https://karpinski.org/">Stefan Karpinski</a> </span> 
-  </h3>
-</div>
 
 
-
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2012/03/lang-next-talk-announcement.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/downloads/support.md" title="Edit this page on GitHub" class="edit-float">
 </a>
 
 
 <!-- Content appended here -->
-<div class="container main"><p>Jeff and I will be giving a <a href="https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia">presentation on Julia</a> at the upcoming <a href="https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012">Lang.NEXT conference</a>, a gathering of &quot;programming language design experts and enthusiasts&quot; featuring &quot;talks, panels and discussion on leading programming language work from industry and research.&quot; We are honored and excited to have been invited to speak at an event alongside so many programming language luminaries.</p>
-<p><strong>Abstract:</strong></p>
-<p>Julia is a dynamic language in the tradition of Lisp, Perl, Python and Ruby. It aims to advance  expressiveness and convenience for scientific and technical computing beyond that of environments like Matlab and NumPy, while simultaneously closing the performance gap with compiled languages like C, C&#43;&#43;, Fortran and Java.</p>
-<p>Most high-performance dynamic language implementations have taken an existing interpreted language and worked to accelerate its execution. In creating Julia, we have reconsidered the basic language design, taking into account the capabilities of modern JIT compilers and the specific needs of technical computing. Our design includes:</p>
-<ul>
-<li><p>Multiple dispatch as the core language paradigm.</p>
-</li>
-<li><p>Exposing a sophisticated type system including parametric dependent types.</p>
-</li>
-<li><p>Dynamic type inference to generate fast code from programs with no declarations.</p>
-</li>
-<li><p>Aggressive specialization of generated code for types encountered at run-time.</p>
-</li>
-</ul>
-<p>Julia feels light and natural for data exploration and algorithm prototyping, but has performance that lets you deploy your prototypes.</p>
-<p><strong>Update:</strong> You can see the slides for our talk <a href="/assets/images/lang.next.pdf">here</a>. Video of the presentation is available <a href="https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia">here</a>.</p>
+<div class="container main"><h1 id="supported_platforms"><a href="#supported_platforms" class="header-anchor">Supported platforms</a></h1>
+<p>Julia supports all the major operating systems. Different OSes and architectures have varying <a href="/downloads/support#support_tiers">tiers of support</a>.</p>
+<div class="row"><div class="col-12"><table class="downloads table table-hover ">
+  <tbody>
+    <tr>
+      <th> Operating System </th>
+      <th> OS Version </th>
+      <th> Architecture </th>
+      <th> Support Tier </th>
+    </tr>
+    <tr>
+      <td rowspan="3"> macOS </td>
+      <td> 10.14+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> 11.4+ </td>
+      <td> ARMv8 (64-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> 11.4+ </td>
+      <td> Rosetta 2 (x86 on ARM emulation) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="4"> Windows </td>
+      <td rowspan="3"> 10+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> i686 (32-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> WSL 2 (Ubuntu LTS) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> 11+ </td>
+      <td> Prism (x86 on ARM emulation) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="6"> Linux (Glibc) </td>
+      <td rowspan="5"> 2.6.24+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> i686 (32-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> ARMv8 (64-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> ARMv7 (32-bit) </td>
+      <td> <font color="black">Tier 4</font> </td>
+    </tr>
+    <tr>
+      <td> PowerPC LE (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td> 6.4+ </td>
+      <td> RISC-V (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="1"> Linux (Musl) </td>
+      <td rowspan="1"> 2.6.39+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> FreeBSD </td>
+      <td> 13.4+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> 14.1+ </td>
+      <td> ARMv8 (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+  </tbody>
+</table></div></div>
+<p>Julia also supports a variety of hardware accelerators, by means of external packages.</p>
+<div class="row"><div class="col-12"><table class="downloads table table-hover ">
+  <tbody>
+    <tr>
+      <th> Hardware Accelerator </th>
+      <th> Platform </th>
+      <th> Requirements </th>
+      <th> Support Tier </th>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/backends/cuda">NVIDIA GPUs using CUDA</a> </td>
+      <td> Linux (64-bit) </td>
+      <td rowspan="2"> NVIDIA driver for CUDA 11.0+ </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> <a href="https://juliagpu.org/backends/metal">Apple GPUs using Metal</a> </td>
+      <td> Apple Silicon </td>
+      <td> macOS 13+ </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/backends/oneapi">Intel GPUs with oneAPI</a> </td>
+      <td> Linux (64-bit) </td>
+      <td> 6.2+ </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> WSL2 </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/backends/rocm">AMD GPUs using ROCm</a> </td>
+      <td> Linux (64-bit) </td>
+      <td rowspan="2"> ROCM 5.3+ </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
+    </tr>
+  </tbody>
+</table></div></div>
+<h2 id="support_tiers"><a href="#support_tiers" class="header-anchor">Support tiers</a></h2>
+<div class="row"><div class="col-12"><ul>
+<li> <font color="green">Tier 1</font>: Julia is guaranteed to build from source and pass all tests on these platforms when built with the default options. Official binaries are always available and CI is run on every commit to ensure support is actively maintained.
+<li> <font color="orange">Tier 2</font>: Julia is guaranteed to build from source using the default build options, but may or may not pass all tests. Official binaries are available on a case-by-case basis.
+<li> <font color="crimson">Tier 3</font>: Julia may or may not build. If it does, it is unlikely to pass tests. Binaries may be available in some cases. When they are, they should be considered experimental. Ongoing support is dependent on community efforts.
+<li> Tier 4: Julia built at some point in the past, but is known not to build currently.
+</ul></div></div>
+<hr />
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->

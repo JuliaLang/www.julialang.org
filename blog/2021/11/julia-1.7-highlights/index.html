@@ -99,8 +99,8 @@ crossorigin=""/>
       </button>
       <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item  ">
-                  <a class="nav-link" href="/install/">Install</a>
+              <li class="nav-item">
+                  <a class="nav-link" href="/downloads/">Download</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="https://docs.julialang.org">Docs</a>
@@ -523,7 +523,7 @@ julia (v1.6)&gt; @btime cat([a ; b], c, dims = 4);
 <h2 id="support_for_apple_silicon"><a href="#support_for_apple_silicon" class="header-anchor">Support for Apple Silicon</a></h2>
 <p><em>Keno Fischer</em>, <em>Elliot Saba</em>, <em>Mosè Giordano</em></p>
 <p>Julia v1.7 is also the first release which runs on Apple Silicon, for example the M1 family of ARM CPUs.  Planning for this feature actually <a href="https://github.com/JuliaLang/julia/issues/36617">started</a> more than one year ago, shortly after Apple announcement of their new chips.  The road to this landmark was initially complicated by the lack of a Fortran compiler for the new platform, which is necessary to build one of the Julia binary dependencies, namely OpenBLAS.  Of course, Julia <a href="https://developer.r-project.org/Blog/public/2020/11/02/will-r-work-on-apple-silicon/index.html">was not</a> the only open source project for numerical computing affected by this issue, which was finally solved by the availability of <a href="https://github.com/iains/gcc-darwin-arm64">a fork of GCC</a> developed by Iain Sandoe.</p>
-<p>While we are now able to provide pre-built Julia binaries for this platform, its support is currently considered <a href="https://julialang.org/downloads/#currently_supported_platforms">tier 3</a>, which means that it is experimental and <a href="https://github.com/JuliaLang/julia/labels/apple&#37;20silicon">specific bugs are to be expected</a>.  The <a href="https://julialang.org/blog/2021/08/julia-user-developer-survey/">Julia User &amp; Developer Survey 2021</a> showed that 5&#37; of Julia users were already running Julia on this platform before an official stable version for it was released&#33;  Remember that also the x86-64 &#40;Intel&#41; binaries of Julia can run on these machines, thanks to the Rosetta 2 compatibility layer, albeit with a reduced performance.</p>
+<p>While we are now able to provide pre-built Julia binaries for this platform, its support is currently considered <a href="https://julialang.org/downloads/support">tier 3</a>, which means that it is experimental and <a href="https://github.com/JuliaLang/julia/labels/apple&#37;20silicon">specific bugs are to be expected</a>.  The <a href="https://julialang.org/blog/2021/08/julia-user-developer-survey/">Julia User &amp; Developer Survey 2021</a> showed that 5&#37; of Julia users were already running Julia on this platform before an official stable version for it was released&#33;  Remember that also the x86-64 &#40;Intel&#41; binaries of Julia can run on these machines, thanks to the Rosetta 2 compatibility layer, albeit with a reduced performance.</p>
 <h2 id="conclusion"><a href="#conclusion" class="header-anchor">Conclusion</a></h2>
 <p>Please enjoy the release, and as always <a href="https://github.com/JuliaLang/julia/issues">let us know</a> if you encounter any problems or have any suggestions. We hope to be back in a few months to report on even more progress in version 1.8&#33;</p>
 </div><br><br>

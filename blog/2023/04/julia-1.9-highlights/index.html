@@ -99,8 +99,8 @@ crossorigin=""/>
       </button>
       <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item  ">
-                  <a class="nav-link" href="/install/">Install</a>
+              <li class="nav-item">
+                  <a class="nav-link" href="/downloads/">Download</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="https://docs.julialang.org">Docs</a>
@@ -337,7 +337,7 @@ julia&gt; pkgdir(DelimitedFiles)
 <p><em>Jacob Quinn, Nick Robinson</em></p>
 <p>Pkg will now support a <code>manifest &#61; &quot;path/to/Manifest.toml&quot;</code> field, which simplifies the package management experience for projects that are organized with smaller sub-packages in the same repository. While Base loading previously supported specifying a custom <code>manifest</code> in the <code>Project.toml</code> file, Pkg.jl was unaware and didn&#39;t take this configuration into account. With this change, &quot;monorepo&quot; style projects can have their sub-projects &#40;internal packages&#41; specify a root-level manifest to &quot;share&quot; dependency resolution and versions. This greatly simplifies Pkg operations on sub-projects because they don&#39;t need their <em>own</em> Manifest.toml files that can quickly get out of sync with the parent or peer manifests.</p>
 <h2 id="apple_silicon_achieves_tier_1_status"><a href="#apple_silicon_achieves_tier_1_status" class="header-anchor">Apple Silicon Achieves Tier 1 Status</a></h2>
-<p>With all tests successfully passing and continuous integration &#40;CI&#41; established for Apple Silicon, the <a href="https://julialang.org/downloads/#supported_platforms">platform&#39;s status</a> has been upgraded from Tier 2 to Tier 1.</p>
+<p>With all tests successfully passing and continuous integration &#40;CI&#41; established for Apple Silicon, the <a href="https://julialang.org/downloads/support">platform&#39;s status</a> has been upgraded from Tier 2 to Tier 1.</p>
 <h2 id="llvm_update_to_v14"><a href="#llvm_update_to_v14" class="header-anchor">LLVM Update to v14</a></h2>
 <p><em>Valentin Churavy, Mosè Giordano</em></p>
 <p>LLVM is the underlying compiler infrastructure that Julia&#39;s compiler builds upon. With Julia 1.9 we update the version used to <a href="https://releases.llvm.org/14.0.0/docs/ReleaseNotes.html">v14.0.6</a>.</p>

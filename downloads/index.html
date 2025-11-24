@@ -47,7 +47,7 @@ crossorigin=""/>
 <script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
-   <title>Download Julia</title>   
+   <title>Installing Julia</title>   
 
   
   <style>
@@ -64,7 +64,7 @@ crossorigin=""/>
   
 
   <!-- OGP Metadata -->
-	<meta property="og:title" content="Download Julia">
+	<meta property="og:title" content="Installing Julia">
 <meta property="og:description" content="">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
@@ -83,8 +83,8 @@ crossorigin=""/>
       </button>
       <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item  active">
-                  <a class="nav-link" href="/install/">Install</a>
+              <li class="nav-item">
+                  <a class="nav-link" href="/downloads/">Download</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="https://docs.julialang.org">Docs</a>
@@ -127,330 +127,56 @@ crossorigin=""/>
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="manual_downloads_not_recommended_for_typical_installations"><a href="#manual_downloads_not_recommended_for_typical_installations" class="header-anchor">Manual Downloads &#40;Not recommended for typical installations&#41;</a></h1>
-<div class="admonition-note"><div class="admonition-title">Note:  juliaup is the proper way to install julia, not these downloads</div>
-<div class="admonition-body">See the <a href="/install/">installation instructions</a> on using <code>juliaup</code> to install Julia. If the official binaries do not work for you, please <a href="https://github.com/JuliaLang/julia/issues">file an issue in the Julia project</a>.</div></div>
+<div class="container main"><h1 id="installing_julia"><a href="#installing_julia" class="header-anchor">Installing Julia</a></h1>
 
-<h4 id=current_stable_release><a href="#current_stable_release">Current stable release: v1.12.2 (November 20, 2025)</a></h4>
+<div id="windows-instructions" style="display: none;">
+  Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt:<br><br>
+  <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s masstore</code></pre>
+  <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you are using Windows. </span>
+  For Linux and MacOS instructions <a onclick="showUNIX()" href="javascript:void(0);">click here</a>.</div>
+</div>
+<div id="unix-instructions" style="display: none;">
+  Install Julia by running the following in your terminal:<br><br>
+  <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
+  <div class="install-platform-note"><span id="platform-subnote-unix">It looks like you are using a Unix-type system. </span>
+  For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a>.</div>
+</div>
+<script>
+  function showWindows() {
+    document.getElementById('windows-instructions').style.display = 'block';
+    document.getElementById('unix-instructions').style.display = 'none';
+  }
+  function showUNIX() {
+    document.getElementById('windows-instructions').style.display = 'none';
+    document.getElementById('unix-instructions').style.display = 'block';
+  }
+  var isWindows = navigator.platform.indexOf('Win') > -1;
+  if (isWindows) {
+    document.getElementById('platform-subnote-unix').style.display = 'none';
+    showWindows();
+  } else {
+    document.getElementById('platform-subnote-windows').style.display = 'none';
+    showUNIX();
+  }
+</script>
 
-<p><a href="https://github.com/JuliaLang/julia/blob/v1.12.2/NEWS.md">Release notes</a> | <a href="https://github.com/JuliaLang/julia/releases/tag/v1.12.2">GitHub tag</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.12.2.sha256">SHA256 checksums</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.12.2.md5">MD5 checksums</a></p>
-<div class="row"><div class="col-12"><table class="downloads table table-hover table-bordered">
-  <tbody>
-    <tr>
-      <th> Platform</th>
-      <th> 64-bit</th>
-      <th> 32-bit</th>
-    </tr>
-    <tr>
-      <td> Windows <a href="/downloads/platform/#windows">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.2-win64.exe">installer</a>, <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.2-win64.zip">portable</a> </td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.2-win32.exe">installer</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.2-win32.zip">portable</a> </td> </td>
-    </tr>
-    <tr>
-      <td> macOS (Apple Silicon) <a href="/downloads/platform/#macos">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.2-macaarch64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.2-macaarch64.tar.gz">.tar.gz</a> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> macOS (Intel x86) <a href="/downloads/platform/#macos">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.2-mac64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.2-mac64.tar.gz">.tar.gz</a> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> Generic Linux on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
-      <td>
-        <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.2-linux-x86_64.tar.gz">glibc</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.2-linux-x86_64.tar.gz.asc">GPG</a>)<!--,
-        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz">musl</a><sup>[<a href=#musl-fn>1</a>]</sup>
-        (<a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz.asc">GPG</a>)-->
-      </td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.12/julia-1.12.2-linux-i686.tar.gz">glibc</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.12/julia-1.12.2-linux-i686.tar.gz.asc">GPG</a>)
-      </td>
-    </tr>
-    <tr>
-      <td> Generic Linux on ARM <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.12/julia-1.12.2-linux-aarch64.tar.gz">.tar.gz</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.12/julia-1.12.2-linux-aarch64.tar.gz.asc">GPG</a>)
-      </td>
-      <td> <!-- <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz">ARMv7-a hard float</a>
-                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
-      </td>
-      </td>
-    </tr>
-    <!--
-    <tr>
-      <td> Generic Linux on PowerPC <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{stable_release_short}}/julia-{{stable_release}}-linux-ppc64le.tar.gz">little endian</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{stable_release_short}}/julia-{{stable_release}}-linux-ppc64le.tar.gz.asc">GPG</a>)
-      </td>
-      <td>
-      </td>
-    </tr>
-    -->
-    <tr>
-      <td> Generic FreeBSD on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.12/julia-1.12.2-freebsd-x86_64.tar.gz">.tar.gz</a>
-        (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.12/julia-1.12.2-freebsd-x86_64.tar.gz.asc">GPG</a>)
-      </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-<table>
-  <tbody>
-    <tr>
-      <th> Source </th>
-      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.12.2/julia-1.12.2.tar.gz">Tarball</a>
-        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.12.2/julia-1.12.2.tar.gz.asc">GPG</a>)
-      </td>
-      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.12.2/julia-1.12.2-full.tar.gz">Tarball with dependencies</a>
-        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.12.2/julia-1.12.2-full.tar.gz.asc">GPG</a>)
-      </td>
-      <td> <a href="https://github.com/JuliaLang/julia/tree/v1.12.2">GitHub</a> </td>
-    </tr>
-  </tbody>
-</table></div></div>
-<p>Almost everyone should be downloading and using the latest stable release of Julia. Great care is taken not to break compatibility with older Julia versions, so older code should continue to work with the latest stable Julia release. You should <em>only</em> be using the long-term support &#40;LTS&#41; version of Julia if you work at an organization where implementing or certifying upgrades is prohibitively expensive and there is no need for new language features or packages. See this description of <a href="https://julialang.org/blog/2019/08/release-process/#risk_tolerance_personas">&quot;Risk Personas&quot;</a> for more detail on who should be using what versions of Julia based on their risk tolerance. See this blog post on <a href="https://julialang.org/blog/2019/08/release-process/">Julia&#39;s Release Process</a> for more information on different kinds of releases.</p>
-
-<h4 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v1.10.10 (June 27, 2025)</a></h4>
-
-<p><a href="https://github.com/JuliaLang/julia/blob/v1.10.10/NEWS.md">Release notes</a> | <a href="https://github.com/JuliaLang/julia/releases/tag/v1.10.10">GitHub tag</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.10.10.sha256">SHA256 checksums</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.10.10.md5">MD5 checksums</a></p>
-<div class="row"><div class="col-12"><table class="downloads table table-hover table-bordered">
-  <tbody>
-    <tr>
-      <th> Platform</th>
-      <th> 64-bit</th>
-      <th> 32-bit</th>
-    </tr>
-    <tr>
-      <td> Windows <a href="/downloads/platform/#windows">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.10/julia-1.10.10-win64.exe">installer</a>, <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.10/julia-1.10.10-win64.zip">portable</a> </td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.10/julia-1.10.10-win32.exe">installer</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.10/julia-1.10.10-win32.zip">portable</a> </td> </td>
-    </tr>
-    <tr>
-      <td> macOS (Apple Silicon) <a href="/downloads/platform/#macos">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.10/julia-1.10.10-macaarch64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.10/julia-1.10.10-macaarch64.tar.gz">.tar.gz</a> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> macOS (Intel x86) <a href="/downloads/platform/#macos">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.10/julia-1.10.10-mac64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.10/julia-1.10.10-mac64.tar.gz">.tar.gz</a> </td></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> Generic Linux on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
-      <td>
-        <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.10-linux-x86_64.tar.gz">glibc</a>
-          (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.10-linux-x86_64.tar.gz.asc">GPG</a>),
-        <a href="https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.10-musl-x86_64.tar.gz">musl</a><sup>[<a href=#musl-fn>1</a>]</sup>
-        (<a href="https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.10-musl-x86_64.tar.gz.asc">GPG</a>)
-      </td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.10-linux-i686.tar.gz">glibc</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.10-linux-i686.tar.gz.asc">GPG</a>)
-      </td>
-    </tr>
-    <tr>
-      <td> Generic Linux on ARM <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.10-linux-aarch64.tar.gz">.tar.gz</a>
-          (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.10-linux-aarch64.tar.gz.asc">GPG</a>)
-      </td>
-      <td> <!-- <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{lts_release_short}}/julia-{{lts_release}}-linux-armv7l.tar.gz">ARMv7-a hard float</a>
-          (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{lts_release_short}}/julia-{{lts_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
-      </td>
-    </tr>
-    <tr>
-      <td> Generic Linux on PowerPC <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.10/julia-1.10.10-linux-ppc64le.tar.gz">little endian</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.10/julia-1.10.10-linux-ppc64le.tar.gz.asc">GPG</a>)
-      </td>
-      <td>
-      </td>
-    </tr>
-    <tr>
-      <td> Generic FreeBSD on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
-      <td> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.10/julia-1.10.10-freebsd-x86_64.tar.gz">.tar.gz</a>
-          (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.10/julia-1.10.10-freebsd-x86_64.tar.gz.asc">GPG</a>)
-      </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-<table>
-  <tbody>
-    <tr>
-      <th> Source </th>
-      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.10.10/julia-1.10.10.tar.gz">Tarball</a>
-            (<a href="https://github.com/JuliaLang/julia/releases/download/v1.10.10/julia-1.10.10.tar.gz.asc">GPG</a>)
-      </td>
-      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.10.10/julia-1.10.10-full.tar.gz">Tarball with dependencies</a>
-        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.10.10/julia-1.10.10-full.tar.gz.asc">GPG</a>)
-      </td>
-      <td> <a href="https://github.com/JuliaLang/julia/tree/v1.10.10">GitHub</a> </td>
-    </tr>
-  </tbody>
-</table></div></div>
- </p>
-<p><a id="musl-fn" class="anchor"></a> 
-<sup>[1]</sup>
- Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.</p>
-<h3 id="please_do_not_use_the_version_of_julia_shipped_by_linux_or_bsd_package_managers"><a href="#please_do_not_use_the_version_of_julia_shipped_by_linux_or_bsd_package_managers" class="header-anchor">Please do not use the version of &quot;Julia&quot; shipped by Linux or BSD package managers</a></h3>
-<p>Many Linux/BSD/Unix package managers ship broken and/or significantly out of date versions of Julia. Please use juliaup or download the official binaries instead.</p>
-<h3 id="supported_platforms"><a href="#supported_platforms" class="header-anchor">Supported platforms</a></h3>
-<p>Different OSes and architectures have varying <a href="/downloads/#support_tiers_for_the_latest_stable_release_of_julia">tiers of support</a>.</p>
-<div class="row"><div class="col-12"><table class="downloads table table-hover ">
-  <tbody>
-    <tr>
-      <th> Operating System </th>
-      <th> OS Version </th>
-      <th> Architecture </th>
-      <th> Support Tier </th>
-    </tr>
-    <tr>
-      <td rowspan="3"> macOS </td>
-      <td> 10.14+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> 11.4+ </td>
-      <td> ARMv8 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> 11.4+ </td>
-      <td> Rosetta 2 (x86 on ARM emulation) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="4"> Windows </td>
-      <td rowspan="3"> 10+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> i686 (32-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> WSL 2 (Ubuntu LTS) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td> 11+ </td>
-      <td> Prism (x86 on ARM emulation) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="6"> Linux (Glibc) </td>
-      <td rowspan="5"> 2.6.24+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> i686 (32-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> ARMv8 (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td> ARMv7 (32-bit) </td>
-      <td> <font color="black">Tier 4</font> </td>
-    </tr>
-    <tr>
-      <td> PowerPC LE (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-    <tr>
-      <td> 6.4+ </td>
-      <td> RISC-V (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="1"> Linux (Musl) </td>
-      <td rowspan="1"> 2.6.39+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="2"> FreeBSD </td>
-      <td> 13.4+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td> 14.1+ </td>
-      <td> ARMv8 (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-  </tbody>
-</table></div></div>
-<p>Julia also supports a variety of hardware accelerators, by means of external packages.</p>
-<div class="row"><div class="col-12"><table class="downloads table table-hover ">
-  <tbody>
-    <tr>
-      <th> Hardware Accelerator </th>
-      <th> Platform </th>
-      <th> Requirements </th>
-      <th> Support Tier </th>
-    </tr>
-    <tr>
-      <td rowspan="2"> <a href="https://juliagpu.org/backends/cuda">NVIDIA GPUs using CUDA</a> </td>
-      <td> Linux (64-bit) </td>
-      <td rowspan="2"> NVIDIA driver for CUDA 11.0+ </td>
-      <td> <font color="green">Tier 1</font> </td>
-    </tr>
-    <tr>
-      <td> Windows (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td> <a href="https://juliagpu.org/backends/metal">Apple GPUs using Metal</a> </td>
-      <td> Apple Silicon </td>
-      <td> macOS 13+ </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="2"> <a href="https://juliagpu.org/backends/oneapi">Intel GPUs with oneAPI</a> </td>
-      <td> Linux (64-bit) </td>
-      <td> 6.2+ </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
-      <td> Windows (64-bit) </td>
-      <td> WSL2 </td>
-      <td> <font color="crimson">Tier 3</font> </td>
-    </tr>
-    <tr>
-      <td rowspan="2"> <a href="https://juliagpu.org/backends/rocm">AMD GPUs using ROCm</a> </td>
-      <td> Linux (64-bit) </td>
-      <td rowspan="2"> ROCM 5.3+ </td>
-      <td> <font color="crimson">Tier 3</font> </a> </td>
-    </tr>
-    <tr>
-      <td> Windows (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </a> </td>
-    </tr>
-  </tbody>
-</table></div></div>
-<h4 id="support_tiers_for_the_latest_stable_release_of_julia"><a href="#support_tiers_for_the_latest_stable_release_of_julia" class="header-anchor">Support tiers for the latest stable release of Julia</a></h4>
-<div class="row"><div class="col-12"><ul>
-<li> <font color="green">Tier 1</font>: Julia is guaranteed to build from source and pass all tests on these platforms when built with the default options. Official binaries are always available and CI is run on every commit to ensure support is actively maintained.
-<li> <font color="orange">Tier 2</font>: Julia is guaranteed to build from source using the default build options, but may or may not pass all tests. Official binaries are available on a case-by-case basis.
-<li> <font color="crimson">Tier 3</font>: Julia may or may not build. If it does, it is unlikely to pass tests. Binaries may be available in some cases. When they are, they should be considered experimental. Ongoing support is dependent on community efforts.
-<li> Tier 4: Julia built at some point in the past, but is known not to build currently.
-</ul></div></div>
-<hr />
-<h3 id="older_releases"><a href="#older_releases" class="header-anchor">Older Releases</a></h3>
-<p>Older releases of Julia for all platforms are available on the <a href="/downloads/oldreleases/">Older releases page</a>. Only the LTS and Stable releases are maintained.</p>
-<h3 id="nightly_builds"><a href="#nightly_builds" class="header-anchor">Nightly Builds</a></h3>
-<p>Builds of the current unstable development version of Julia are available on the <a href="/downloads/nightlies/">nightlies page</a>. While the name suggests that they are built every night, they are actually built after each commit to master. However, at times due to broken builds or CI infrastructure issues, nightlies may not be produced. These are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current stable release version of Julia.</p>
-<h3 id="download_verification"><a href="#download_verification" class="header-anchor">Download verification</a></h3>
-<p>All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using <a href="/assets/juliareleases.asc">this key</a>.</p>
-<h3 id="json_release_feed"><a href="#json_release_feed" class="header-anchor">JSON release feed</a></h3>
-<p>The info above is also available as a <a href="https://julialang-s3.julialang.org/bin/versions.json">JSON file</a> &#40;<a href="https://julialang-s3.julialang.org/bin/versions-schema.json">schema</a>&#41;. It may take up to two hours after the release of a new version for it to be included in the JSON file.</p>
+<p>This will install the latest stable version of Julia, as well as the <code>juliaup</code> tool. Start Julia from the command-line by typing <code>julia</code>.</p>
+<h2 id="next_steps"><a href="#next_steps" class="header-anchor">Next steps</a></h2>
+<p>Join the <a href="/community">community</a>. Check out the <a href="/learning">learning resources</a>. Do star us on <a href="https://github.com/JuliaLang/julia">GitHub</a>. If you use Julia in your research, please <a href="/research/">cite us</a>. If possible, do consider <a href="https://github.com/sponsors/julialang">sponsoring</a> us.</p>
+<h2 id="about_juliaup"><a href="#about_juliaup" class="header-anchor">About juliaup</a></h2>
+<p><a href="https://github.com/JuliaLang/juliaup"><code>juliaup</code></a> is the recommended way to install Julia. It automatically installs the latest stable <code>julia</code> binary and helps keep it up to date. It also supports installing and using different versions of Julia simultaneously. To install different Julia versions, see <code>juliaup --help</code>.</p>
+<p>If you need to manually download and install specific Julia versions, see the <a href="/downloads/manual-downloads/">Manual Downloads</a> page. Julia supports all the major operating systems, but specific versions and architectures have different <a href="/downloads/support">tiers of support</a>.</p>
+<h2 id="official_domains"><a href="#official_domains" class="header-anchor">Official domains</a></h2>
+<p>The following domains are official and used by open source Julia infrastructure for serving content and resources:</p>
+<ul>
+<li><p><code>julialang.org</code> and all subdomains</p>
+</li>
+<li><p><code>julialang.net</code> and all subdomains</p>
+</li>
+</ul>
+<p>If you are using Julia behind a firewall that blocks access to these, you may have trouble downloading and installing Julia packages. If this is the case, please ask your sysadmin to add these domains to the firewall allow list. Traffic can be limited to HTTPS &#40;TCP port 443&#41;.</p>
+<h3 id="ip_address_retention_policy"><a href="#ip_address_retention_policy" class="header-anchor">IP Address Retention Policy</a></h3>
+<p>Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <a href="https://pkg.julialang.org">https://pkg.julialang.org</a>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 31 days.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->

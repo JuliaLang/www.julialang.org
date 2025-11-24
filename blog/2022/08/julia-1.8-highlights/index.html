@@ -99,8 +99,8 @@ crossorigin=""/>
       </button>
       <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item  ">
-                  <a class="nav-link" href="/install/">Install</a>
+              <li class="nav-item">
+                  <a class="nav-link" href="/downloads/">Download</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="https://docs.julialang.org">Docs</a>
@@ -370,7 +370,7 @@ Thread <span class="hljs-number">4</span> <span class="hljs-built_in">Task</span
 <p>For those wishing for more background about precompilation, <a href="https://julialang.org/blog/2021/01/precompile_tutorial/">this blog post</a> and/or the SnoopCompile documentation may be useful.</p>
 <h2 id="improved_support_for_apple_silicon"><a href="#improved_support_for_apple_silicon" class="header-anchor">Improved support for Apple Silicon</a></h2>
 <p>Previously Julia 1.7 offered the <a href="https://julialang.org/blog/2021/11/julia-1.7-highlights/#support_for_apple_silicon">first experimental preview</a> of native builds of Julia on Apple Silicon. While this generally worked for basic usage, users experienced frequent segmentation faults, negatively affecting the experience. These problems were due to how Julia internally uses LLVM to generate and link the code for this platform and were eventually solved in Julia 1.8 by <a href="https://github.com/JuliaLang/julia/pull/43664">moving to a more modern linker</a>, which has better support for ARM CPUs on macOS. However, this fix required upgrading to LLVM 13, a change which cannot be backported to the v1.7 series. Therefore 1.7 will always be affected by frequent crashes on Apple Silicon.</p>
-<p>With 1.8, Apple Silicon becomes become a <a href="https://julialang.org/downloads/#supported_platforms">Tier 2 supported platform</a> and is now covered by Continuous Integration &#40;CI&#41; on dedicated Apple Silicon machines.</p>
+<p>With 1.8, Apple Silicon becomes become a <a href="https://julialang.org/downloads/support">Tier 2 supported platform</a> and is now covered by Continuous Integration &#40;CI&#41; on dedicated Apple Silicon machines.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
