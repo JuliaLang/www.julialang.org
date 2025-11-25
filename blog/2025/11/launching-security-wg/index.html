@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Launching the Julia Security Working Group</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Launching the Julia Security Working Group">
+<meta property="og:description" content="Launching the Julia Security Working Group">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/">
+          <img src="/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Launching the Julia Security Working Group
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 25 November 2025 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Matt Bauman (JuliaHub) </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2025/11/launching-security-wg.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<p>There&#39;s been a lot of security work in the Julia ecosystem recently, and those of us pushing on this effort have informally self-organized around a slack channel &#40;<code>#security-dev</code>&#41; and a handful of repositories and pull requests. We are past due in officially organizing our efforts into a working group&#33; With this blog post, we are announcing the creation of the Julia Security Working Group &#40;JLSEC&#41;: an official community effort to improve the security tooling of the Julia package ecosystem.</p>
+<p>Join us&#33; We&#39;ll have our inaugural working group call on Friday, December 5 at noon US Eastern. One of the first orders of business will be establishing a regular &#40;every-other-week&#41; standing meeting, so if you&#39;d like to join but that time doesn&#39;t generally work for you, drop by the <a href="https://julialang.org/slack/">Slack #security-dev channel</a> and let us know&#33;</p>
+<p>This is also a great opportunity to gather together all the work we have already done to help catalyze this working group. It helps describe the scope and &#40;even better&#33;&#41; points to some of the many places where folks — you&#33; — can look to get involved.</p>
+<div class="franklin-toc"><ol><li><a href="#sbom_support_for_julia_projects_libraries_and_applications">SBOM support for Julia projects, libraries, and applications</a><ol><li><a href="#purl_support_for_julia_packages">PURL support for Julia packages</a></li></ol></li><li><a href="#security_advisories_for_julia_packages">Security advisories for Julia packages</a><ol><li><a href="#the_first_julia_package_security_advisories">The first Julia package security advisories</a></li><li><a href="#the_securityadvisoriesjl_database">The SecurityAdvisories.jl database</a></li><li><a href="#generalmetadatajl_jll_and_artifact_component_analysis">GeneralMetadata.jl: JLL and Artifact Component analysis</a></li></ol></li><li><a href="#vulnerability_scanning">Vulnerability scanning</a></li><li><a href="#github_dependabot_support">GitHub Dependabot support</a></li></ol></div>
+<h2 id="sbom_support_for_julia_projects_libraries_and_applications"><a href="#sbom_support_for_julia_projects_libraries_and_applications" class="header-anchor">SBOM support for Julia projects, libraries, and applications</a></h2>
+<p>Software Bills of Materials &#40;SBOMs&#41; form the backbone of many security analyses; before you can make any statement a particular Julia package or project you must first know what it contains. For us Julians, it&#39;s obvious that the Manifest.toml <em>is</em> our SBOM, and you can use the excellent <a href="https://github.com/SamuraiAku/PkgToSoftwareBOM.jl">PkgToSoftwareBOM.jl</a> by <strong><a href="https://github.com/SamuraiAku">@SamuraiAku</a></strong> within Julia itself to generate a standard SPDX JSON &#40;by way of <a href="https://github.com/SamuraiAku/SPDX.jl">SPDX.jl</a>&#41;. There are other formats and schemas for SBOMs, but SPDX is a very common one</p>
+<p>Many IT and security teams work in heterogeneous environments, so there are dozens of third-party tools that support <em>many</em> language ecosystems and can scan through polyglot projects or entire images. Very few, however, have implemented the support that&#39;s required for them to understand Julia&#39;s <code>Manifest.toml</code>. Last year &#40;2024&#41;, Ryan Benasutti &#40;<strong><a href="https://github.com/Octogonapus">@Octogonapus</a></strong>&#41; added Julia SBOM support to <a href="https://trivy.dev">trivy</a>, an open source security tool that supports both SPDX and CycloneDX formats.</p>
+<p>There are many other tools, both proprietary and open source, and one great way for folks wanting to get involved in these efforts could be in helping implement Julia support across other open source tooling.</p>
+<h3 id="purl_support_for_julia_packages"><a href="#purl_support_for_julia_packages" class="header-anchor">PURL support for Julia packages</a></h3>
+<p>One challenge in a multi-language context is understanding what a particular name like &quot;HTTP&quot; references; Rust, Python, and Julia all have http packages &#40;and some ecosystems aren&#39;t case-sensitive&#41;. While we have a strong convention of using the <code>.jl</code> suffix when talking about packages &#40;and even naming their repositories&#41;, the name in the Manifest &#40;and what you type when you <code>import</code> or <code>Pkg.add</code>&#41; is truly just <code>HTTP</code>. The <a href="https://package-url.github.io/packageurl.org/docs/purl-spec/purl-spec-documentation">PURL spec</a> is a strong effort at standardizing the way to consistently refer to a particular ecosystem&#39;s HTTP package without getting confused.</p>
+<p>As of October &#40;2025; thanks again to Ryan&#39;s efforts&#41;, Julia is an <a href="https://package-url.github.io/packageurl.org/docs/purl-spec/purl-spec-purl-types#registered-purl-types">officially designated type</a> within the schema, allowing you to specify HTTP.jl more officially as</p>
+<ul>
+<li><p><code>pkg:julia/HTTP?uuid&#61;cd3eb016-35fb-5094-929b-558a96fad6f3</code></p>
+</li>
+</ul>
+<p>or even with a version like:</p>
+<ul>
+<li><p><code>pkg:julia/HTTP@1.10.16&amp;uuid&#61;cd3eb016-35fb-5094-929b-558a96fad6f3</code></p>
+</li>
+</ul>
+<p>Both Trivy and PkgToSoftwareBOM.jl generate SBOMs with these PURL identifiers. A wonderful place to get involved here could be in the development of a pure-Julia PURL.jl package like <a href="https://github.com/package-url/packageurl-go">Go</a> or <a href="https://github.com/package-url/packageurl-python">Python</a>&#39;s &#40;the lead maintainer there even <a href="https://github.com/JuliaLang/SecurityAdvisories.jl/issues/145">asked us for one</a>&#33;&#41;.</p>
+<h2 id="security_advisories_for_julia_packages"><a href="#security_advisories_for_julia_packages" class="header-anchor">Security advisories for Julia packages</a></h2>
+<p>Knowing what&#39;s inside a particular project is only the first step in a security review. The next step is to start asking if any of the dependencies have critical vulnerabilities or other security issues. The industry-standard mechanism for alerting about serious security issues is through <strong>advisories</strong>, most commonly as <a href="https://www.cve.org">CVEs</a>. These identifiers allow folks to very precisely name and discuss particular problems, and security tooling can help flag software packages that have unpatched vulnerabilities. One challenge is that the CVE ecosystem is <em>industry wide</em>, and the advisories themselves just contain a block of plaintext. There are many efforts to augment &#40;or &quot;enrich&quot;&#41; the CVE advisories with more precise and structured metadata &#40;including package ecosystems and versions&#41;, but there are also many challenges at this global level.</p>
+<h3 id="the_first_julia_package_security_advisories"><a href="#the_first_julia_package_security_advisories" class="header-anchor">The first Julia package security advisories</a></h3>
+<p>Prior to June &#40;2025&#41;, there simply weren&#39;t any advisories for any Julia package. This didn&#39;t mean there <em>weren&#39;t issues&#33;</em> We filed the first advisories against a handful of packages as GitHub Security Advisories on their repository security pages, thanks in part to <a href="https://trust.juliahub.com">JuliaHub&#39;s security program</a> and Avik Sengupta &#40;<strong><a href="https://github.com/aviks">@aviks</a></strong>&#41;. For example, the <a href="https://github.com/JuliaWeb/HTTP.jl/security">security tab on HTTP.jl</a> now lists multiple advisories like <a href="https://github.com/JuliaWeb/HTTP.jl/security/advisories/GHSA-4g68-4pxg-mw93">GHSA-4g68-4pxg-mw93</a>. Those <code>GHSA-</code> identifiers act like CVEs, but they are issued directly by GitHub. The HTTP.jl maintainers then asked GitHub support to review these particular issues and — as GitHub is a CVE naming authority — issue a corresponding CVE identifier &#40;as an <em>alias</em>&#41;: <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-52479">CVE-2025-52479</a>.</p>
+<p>Now put yourselves in the shoes of an automated vulnerability scanner. You have an SBOM that has includes Julia&#39;s HTTP package at version v1.10.15. How do you connect <em>either</em> that CVE or the GHSA to Julia&#39;s package? The CVE doesn&#39;t have structured package/version data, and <em>neither</em> the GHSA nor the CVE appear in GitHub&#39;s global advisory database. You&#39;d have to scan the security pages of all 10,000 packages or do NLP/LLM processing of the hundreds of thousands of CVEs to piece this together&#33;</p>
+<p>This is precisely one of the reasons behind:</p>
+<h3 id="the_securityadvisoriesjl_database"><a href="#the_securityadvisoriesjl_database" class="header-anchor">The SecurityAdvisories.jl database</a></h3>
+<p>Prior to these recent efforts, we were unable to issue or even gather together such Julia package advisories. Having a dedicated database of advisories allows our package ecosystem to more effectively participate in the global advisory universe:</p>
+<ul>
+<li><p>It enables the direct authorship and publication of Julia-related advisories with well-defined semantics around its package and version data. There are many limitations with using the existing multi-ecosystem databases:</p>
+<ul>
+<li><p>CVEs don&#39;t &#40;natively&#41; have structured package/version data and publications are gated by registered CVE Naming Authorities &#40;CNAs&#41;. The &quot;enrichment&quot; of CVEs with structured package/version information is opaque, gated, and often proprietary.</p>
+</li>
+<li><p>GitHub-based packages can issue <em>repository</em> GHSAs, and GitHub can act as a CNA and assign CVE aliases &#40;as was done for HTTP.jl above&#41;, but Julia is not &#40;yet&#41; an officially supported ecosystem for GitHub&#39;s <em>global</em> database. That&#39;s why the HTTP advisories don&#39;t show up there; they aren&#39;t even <em>fetchable</em> by their ID alone. It&#39;d be great to someday be an official ecosystem, but we also have many registered packages that are not GitHub-hosted; these too may need to issue advisories.</p>
+</li>
+</ul>
+</li>
+<li><p>There may be <em>existing</em> CVE advisories that pertain to a Julia package, but the only way to explicitly state that the Julia package is affected &#40;and at which versions&#41; is by issuing an &quot;alias&quot; or &quot;downstream&quot; advisory.</p>
+</li>
+<li><p>Most fundamentally, it grants the Julia community full ownership and control of the advisories that pertain to our ecosystem.</p>
+</li>
+</ul>
+<p>Building a database of advisories comes with a number of challenges, not least of which is the structure and schema.</p>
+<h4 id="the_jlsec-_advisory_prefix_and_osv-schema_specification"><a href="#the_jlsec-_advisory_prefix_and_osv-schema_specification" class="header-anchor">The <code>JLSEC-</code> advisory prefix and OSV-schema specification</a></h4>
+<p>The <code>CVE-</code> prefix is not special beyond its well established name-cred and decades of use. There are <em>many</em> other advisory ecosystems &#40;like <code>GHSA-</code>&#41;, all of which collaborate together and can bring more specific &#40;and structured&#41; data to bear, often within a more limited purview. Many other well-established languages have their <em>own</em> advisory prefix that allows them to very specifically only address issues within their respective package ecosystems. For example, advisories with the prefixes <code>RUSTSEC-</code>, <code>PYSEC-</code> and <code>GO-</code> pertain to the Rust, Python, and Go ecosystems, respectively.</p>
+<p>The <a href="https://github.com/JuliaLang/SecurityAdvisories.jl">SecurityAdvisories.jl</a> database exclusively issues advisories with our own dedicated <code>JLSEC-*</code> identifiers and structures them according to the standardized <a href="https://ossf.github.io/osv-schema/">Open Source Vulnerability &#40;OSV&#41; schema</a>. The <code>JLSEC-</code> prefix is officially registered and supported as of osv-schema v1.7.4, with tooling support to lint and validate our advisories, including checks to ensure that they refer to a package &#40;and version&#33;&#41; that is registered in General.</p>
+<h4 id="redistribution_on_osvdev"><a href="#redistribution_on_osvdev" class="header-anchor">Redistribution on osv.dev</a></h4>
+<p>The <a href="https://osv.dev">osv.dev</a> initiative aggregates together many open source advisory ecosystems in one place. As an OSV-native advisory database, SecurityAdvisories.jl fits right in&#33; The Julia ecosystem advisories are now imported &#40;and validated&#33; and redistributed&#33;&#41; by osv.dev. This simple integration will hopefully facilitate further adoption by downstream tools that are already using osv.dev as an advisory source.</p>
+<h4 id="advisory_publication_and_maintenance"><a href="#advisory_publication_and_maintenance" class="header-anchor">Advisory publication and maintenance</a></h4>
+<p>The creation of advisories for package maintainers should be very straightforward: you can either create a GHSA &#40;which a GitHub action can then import&#41;, or you can propose a new JLSEC advisory directly. See the repository&#39;s <a href="https://github.com/JuliaLang/SecurityAdvisories.jl/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for more details on advisory authorship.</p>
+<h3 id="generalmetadatajl_jll_and_artifact_component_analysis"><a href="#generalmetadatajl_jll_and_artifact_component_analysis" class="header-anchor">GeneralMetadata.jl: JLL and Artifact Component analysis</a></h3>
+<p>While there weren&#39;t advisories published against any <em>Julia</em> packages prior to June 2025, there are many software libraries and executables from <em>other language ecosystems</em> that we rely upon. These pre-built binaries are provided as <strong>Artifacts</strong> that the package manager knows how to download, most commonly as dedicated packages themselves known as <a href="https://binarybuilder.org">&quot;JLLs&quot;</a>. There are over 1500 of these JLLs in the General registry, and each provides and redistributes an upstream component — something that may itself have published a security advisory. The trouble is that a vulnerability scanner won&#39;t know that, for example, <a href="https://github.com/JuliaBinaryWrappers/OpenBLAS_jll.jl">OpenBLAS&#95;jll</a> v0.3.17&#43;2 built and redistributed the upstream <a href="http://www.openmathlib.org/OpenBLAS/docs/"><code>OpenBLAS</code></a> v0.3.17. Or more challenging, that <a href="https://github.com/JuliaBinaryWrappers/NetCDF_jll.jl">NetCDF&#95;jll</a> v401.900.300&#43;0 is really <a href="https://www.unidata.ucar.edu/software/netcdf"><code>netcdf</code></a> v4.9.3. Or even more challenging, that <a href="https://github.com/JuliaBinaryWrappers/MbedTLS_jll.jl">MbedTLS&#95;jll</a> v2.28.1010&#43;0 is really <a href="https://mbed-tls.readthedocs.io/en/latest/"><code>mbed-tls</code></a> v2.28.10 with <em>backported security patches</em> to address four CVEs that were still outstanding on that no-longer-maintained and end-of-life v2 series.</p>
+<p>There are hundreds if not thousands of upstream advisories that also apply to JLLs. SecurityAdvisories.jl can issue <code>JLSEC-</code> advisories to relay this information, but we first must know what the upstream components <em>are</em>&#33; This is the purview of the new <a href="https://github.com/JuliaRegistries/GeneralMetadata.jl">GeneralMetadata.jl</a> repository in the JuliaRegistries org. It aims to automatically &#40;insofar as it is possible&#41; identify what sources and which versions were used in the building of all the registered JLLs.</p>
+<p>Armed with this component information, GitHub actions on SecurityAdvisories.jl can semi-automatically suggest the publication of such &quot;relaying&quot; advisories.</p>
+<p>This is where there are many opportunities for improvement across three or four levels:</p>
+<ul>
+<li><p>Improve <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl">BinaryBuilder.jl</a>&#39;s ability to directly record this component information</p>
+</li>
+<li><p>Improve <a href="https://github.com/JuliaRegistries/GeneralMetadata.jl">GeneralMetadata.jl</a>&#39;s recording of the historical &#40;JLL&#41; component data, enable arbitrary &#40;non-JLL&#41; artifact tracking, and even add component licensing information</p>
+</li>
+<li><p>Improve <a href="https://github.com/JuliaLang/SecurityAdvisories.jl">SecurityAdvisories.jl</a>&#39;s automations to make it clearer when a proposed upstream advisory is correct</p>
+</li>
+<li><p>Help review and maintain the proposed upstream advisories on SecurityAdvisories.jl</p>
+</li>
+</ul>
+<h2 id="vulnerability_scanning"><a href="#vulnerability_scanning" class="header-anchor">Vulnerability scanning</a></h2>
+<p>With a first-class advisory database and SBOM support, we can now ask automated vulnerability scanners to implement support for reporting on any outstanding advisories against Julia packages. Or — in the case of an open source tool — we can propose such changes ourselves. That&#39;s exactly what I&#39;ve been doing with <a href="https://trivy.dev">trivy</a>; they are close to merging a sequence of my pull requests that enable adding vulnerability information in its SBOMs and reports like this:</p>
+<pre><code class="txt hljs">Report Summary
+
+┌───────────────┬───────┬─────────────────┬─────────┐
+│    Target     │ Type  │ Vulnerabilities │ Secrets │
+├───────────────┼───────┼─────────────────┼─────────┤
+│ Manifest.toml │ julia │        2        │    -    │
+└───────────────┴───────┴─────────────────┴─────────┘
+Legend:
+- &#x27;-&#x27;: Not scanned
+- &#x27;0&#x27;: Clean (no security findings detected)
+
+
+Manifest.toml (julia)
+
+Total: 2 (UNKNOWN: 1, LOW: 0, MEDIUM: 1, HIGH: 0, CRITICAL: 0)
+
+┌─────────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────┬──────────────────────────────────────────────────────────────┐
+│   Library   │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version │                            Title                             │
+├─────────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ HTTP        │ CVE-2025-61689 │ UNKNOWN  │ fixed  │ 1.10.17           │ 1.10.19       │ Header injection/Response splitting via header construction. │
+│             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2025-61689                   │
+├─────────────┼────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ MbedTLS_jll │ CVE-2025-27810 │ MEDIUM   │        │ 2.28.6+0          │ 2.28.10+0     │ Mbed TLS before 2.28.10 and 3.x before 3.6.3, in some cases  │
+│             │                │          │        │                   │               │ of...                                                        │
+│             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2025-27810                   │
+└─────────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘</code></pre>
+<p>This is yet another place to get involved — trivy is just one tool and there are indeed many.</p>
+<h2 id="github_dependabot_support"><a href="#github_dependabot_support" class="header-anchor">GitHub Dependabot support</a></h2>
+<p>For both security and general maintenance, it&#39;s very helpful for packages to keep their dependencies up to date. GitHub packages have long used a custom GitHub action, CompatHelper.jl, but GitHub itself has first-class dependency management support through dependabot for some package ecosystems. &#40;<strong><a href="https://github.com/IanButterworth">@IanButterworth</a></strong>&#41; spearheaded work with GitHub&#39;s dependabot team to add beta support for Julia packages. Some benefits over CompatHelper include: showing release notes/changelogs for the new version in the PR, updating checked-in manifests and warning when it cannot be updated, CI running automatically &#40;without close-open&#41;, and not having to worry about workflows being silently turned off after a few months of repo inactivity. We hope for it to eventually integrate with the above security advisory efforts to power security updates, too. See <a href="https://github.com/IanButterworth/CSV.jl/pull/6">examples of PRs</a> and <a href="https://github.com/IanButterworth/CSV.jl/blob/master/.github/dependabot.yml">example setups</a>. It is in a testing period and feedback would be much appreciated.</p>
+<h1 id="join_us"><a href="#join_us" class="header-anchor">Join us&#33;</a></h1>
+<p>What I&#39;ve listed here is far from a complete roundup of all the recent security work around the Julia ecosystem, and that&#39;s precisely one of the reasons for forming this working group. If any of these efforts &#40;or even better: a security effort I haven&#39;t mentioned here&#41; match up with work you&#39;ve been doing or are interested in doing, please join us&#33; The inaugural call on Friday December 5 will be geared towards scoping some of the ongoing efforts and priorities of the group, and we&#39;ll continue many more discussions on <a href="https://julialang.org/slack/">slack</a>. Don&#39;t hesitate to share your ideas, ask questions, and pitch in&#33;</p>
+<p>    </p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/downloads">Install</a></li>
+        <li><a href="/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/community/stewards/">Stewards</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2025 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/libs/groups.js"></script>
+    <script src="/libs/map.js"></script>
+  </body>
+</html>

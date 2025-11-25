@@ -296,6 +296,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/blog/2025/11/launching-security-wg/index.html</loc>
+    <lastmod>2025-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2020/08/invalidations/index.html</loc>
     <lastmod>2025-11-25</lastmod>
     <changefreq>monthly</changefreq>
