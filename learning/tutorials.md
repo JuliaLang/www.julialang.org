@@ -1,5 +1,7 @@
 ## Tutorials
 
+Have a Julia tutorial you want added to this list? Please [submit a pull request](https://github.com/JuliaLang/www.julialang.org/edit/main/learning/tutorials.md).
+
 @@tight-list
 * [Introduction to Julia for mathematics undergraduates](https://sje30.github.io/catam-julia/).  An introduction to Julia, with case studies, suitable for undergraduate students with a mathematics background.
 * [Julia Programming: A Hands-On Tutorial](https://www.matecdev.com/posts/julia-tutorial-science-engineering.html), and [Numerical Computing in Julia](https://www.matecdev.com/posts/julia-numerical-computing.html) by [Martín D. Maas](https://github.com/mdmaas). Introductory material about Julia, focusing on its use in Science and Engineering.
@@ -19,6 +21,3 @@
 * [Julia Programming Tutorial For Beginners](https://www.datacamp.com/tutorial/julia-programming-tutorial-for-beginners) by Bekhruz Tuychiev (DataCamp).
 * [Grundlagen der Programmiersprache Julia](http://dx.doi.org/10.13140/RG.2.2.26626.86721) and [Statistik mit Julia](http://dx.doi.org/10.13140/RG.2.2.19915.98086) by Georg Kindermann. Two guides in German to get started on Julia and Statistics with Julia.
 @@
-
-
-Have a Julia tutorial you want added to this list? Please [open an issue or pull request](https://github.com/JuliaLang/www.julialang.org/issues).
