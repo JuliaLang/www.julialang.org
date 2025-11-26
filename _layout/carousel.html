@@ -250,6 +250,37 @@ main.jl  test.jl  utils.jl
   sum(f, itr) – Sum the results of calling f on each element of itr.</code></pre>
         </div>
       </div>
+      <!-- Slide 13: Introspection -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-purple">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Code Introspection (simplified)</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span>f(x, y) = x + y
+
+<span class="repl-prompt">julia&gt; </span>@code_warntype f(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+MethodInstance <span class="hljs-keyword">for</span> f(::<span class="hljs-built_in">Int64</span>, ::<span class="hljs-built_in">Int64</span>)
+Arguments
+  x::<span class="hljs-built_in">Int64</span>
+  y::<span class="hljs-built_in">Int64</span>
+Body::<span class="hljs-built_in">Int64</span>
+│   %1 = (x + y)::<span class="hljs-built_in">Int64</span>
+└──      <span class="hljs-keyword">return</span> %1
+
+<span class="repl-prompt">julia&gt; </span>@code_llvm f(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+define i64 @julia_f(...) {
+   %0 = add i64 %"y::Int64", %"x::Int64"
+   ret i64 %0
+}
+
+<span class="repl-prompt">julia&gt; </span>@code_native f(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+   add   x0, x1, x0
+   ret</code></pre>
+        </div>
+      </div>
   </div>
   <button class="carousel-arrow carousel-arrow-right" aria-label="Next slide">&#8250;</button>
 </div>
