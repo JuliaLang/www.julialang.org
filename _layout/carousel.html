@@ -2,8 +2,25 @@
 <div class="code-carousel-container">
   <button class="carousel-arrow carousel-arrow-left" aria-label="Previous slide">&#8249;</button>
   <div class="code-carousel">
-      <!-- Slide 1: Display Customization -->
+      <!-- Slide 1: Multiple Dispatch -->
       <div class="carousel-slide active">
+        <div class="code-showcase julia-blue">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Multiple Dispatch</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $x!"</span>
+
+<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Number</span>) = <span class="hljs-string">"Hello, #$x!"</span>
+
+<span class="repl-prompt">julia> </span>greet(<span class="hljs-string">"world"</span>), greet(<span class="hljs-number">42</span>)
+(<span class="hljs-string">"Hello, world!"</span>, <span class="hljs-string">"Hello, #42!"</span>)</code></pre>
+        </div>
+      </div>
+      <!-- Slide 2: Display Customization -->
+      <div class="carousel-slide">
         <div class="code-showcase julia-red">
           <div class="code-header">
             <span class="code-dot red"></span>
@@ -19,23 +36,6 @@
 
 <span class="repl-prompt">julia> </span>Nutshell(<span class="hljs-string">"Julia"</span>)
 🥜 Julia 🥜</code></pre>
-        </div>
-      </div>
-      <!-- Slide 2: Multiple Dispatch -->
-      <div class="carousel-slide">
-        <div class="code-showcase julia-blue">
-          <div class="code-header">
-            <span class="code-dot red"></span>
-            <span class="code-dot yellow"></span>
-            <span class="code-dot green"></span>
-            <span class="code-title">Multiple Dispatch</span>
-          </div>
-          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $x!"</span>
-
-<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Number</span>) = <span class="hljs-string">"Hello, #$x!"</span>
-
-<span class="repl-prompt">julia> </span>greet(<span class="hljs-string">"world"</span>), greet(<span class="hljs-number">42</span>)
-(<span class="hljs-string">"Hello, world!"</span>, <span class="hljs-string">"Hello, #42!"</span>)</code></pre>
         </div>
       </div>
       <!-- Slide 3: Unicode Support -->
