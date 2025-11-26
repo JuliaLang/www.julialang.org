@@ -12,8 +12,8 @@
             <span class="code-title">Display Customization</span>
           </div>
           <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> Nutshell{T}
-       contents::T
-   <span class="hljs-keyword">end</span>
+           contents::T
+       <span class="hljs-keyword">end</span>
 
 <span class="repl-prompt">julia> </span>Base.show(io::IO, n::Nutshell) = print(io, <span class="hljs-string">"🥜 "</span>, n.contents, <span class="hljs-string">" 🥜"</span>)
 
@@ -195,8 +195,8 @@ Expr
             <span class="code-title">Defaults & Keyword Args</span>
           </div>
           <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-keyword">function</span> greet(name, greeting=<span class="hljs-string">"Hello"</span>; punctuation=<span class="hljs-string">"!"</span>)
-       <span class="hljs-string">"$greeting, $name$punctuation"</span>
-   <span class="hljs-keyword">end</span>
+           <span class="hljs-string">"$greeting, $name$punctuation"</span>
+       <span class="hljs-keyword">end</span>
 
 <span class="repl-prompt">julia&gt; </span>greet(<span class="hljs-string">"Julia"</span>)
 <span class="hljs-string">"Hello, Julia!"</span>
@@ -215,10 +215,10 @@ Expr
             <span class="code-title">Multi-threading</span>
           </div>
           <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-keyword">function</span> fib(n)
-       n &lt; <span class="hljs-number">2</span> &amp;&amp; <span class="hljs-keyword">return</span> n
-       t = Threads.@spawn fib(n - <span class="hljs-number">2</span>)
-       <span class="hljs-keyword">return</span> fib(n - <span class="hljs-number">1</span>) + fetch(t)
-   <span class="hljs-keyword">end</span>
+           n &lt; <span class="hljs-number">2</span> &amp;&amp; <span class="hljs-keyword">return</span> n
+           t = Threads.@spawn fib(n - <span class="hljs-number">2</span>)
+           <span class="hljs-keyword">return</span> fib(n - <span class="hljs-number">1</span>) + fetch(t)
+       <span class="hljs-keyword">end</span>
 
 <span class="repl-prompt">julia&gt; </span>fib(<span class="hljs-number">10</span>)
 <span class="hljs-number">55</span>
