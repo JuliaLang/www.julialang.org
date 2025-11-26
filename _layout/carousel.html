@@ -1,0 +1,256 @@
+<!-- Code Carousel -->
+<div class="code-carousel-container">
+  <button class="carousel-arrow carousel-arrow-left" aria-label="Previous slide">&#8249;</button>
+  <div class="code-carousel">
+      <!-- Slide 1: Display Customization -->
+      <div class="carousel-slide active">
+        <div class="code-showcase julia-red">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Display Customization</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> Nutshell{T}
+       contents::T
+   <span class="hljs-keyword">end</span>
+
+<span class="repl-prompt">julia> </span>Base.show(io::IO, n::Nutshell) = print(io, <span class="hljs-string">"🥜 "</span>, n.contents, <span class="hljs-string">" 🥜"</span>)
+
+<span class="repl-prompt">julia> </span>Nutshell(<span class="hljs-string">"Julia"</span>)
+🥜 Julia 🥜</code></pre>
+        </div>
+      </div>
+      <!-- Slide 2: Multiple Dispatch -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-blue">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Multiple Dispatch</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $x!"</span>
+
+<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Number</span>) = <span class="hljs-string">"Hello, #$x!"</span>
+
+<span class="repl-prompt">julia> </span>greet(<span class="hljs-string">"world"</span>), greet(<span class="hljs-number">42</span>)
+(<span class="hljs-string">"Hello, world!"</span>, <span class="hljs-string">"Hello, #42!"</span>)</code></pre>
+        </div>
+      </div>
+      <!-- Slide 3: Unicode Support -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-green">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Unicode & Math</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>α, β = <span class="hljs-number">0.5</span>, <span class="hljs-number">0.3</span>
+
+<span class="repl-prompt">julia> </span>f(x) = α*x + β
+
+<span class="repl-prompt">julia> </span>∑(v) = reduce(+, v)
+
+<span class="repl-prompt">julia> </span>∑(f.(1:5))
+<span class="hljs-number">9.0</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 4: Comprehensions -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-purple">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Comprehensions</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>[x^<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">5</span>]
+<span class="hljs-number">5</span>-element Vector{<span class="hljs-built_in">Int64</span>}:
+  <span class="hljs-number">1</span>
+  <span class="hljs-number">4</span>
+  <span class="hljs-number">9</span>
+ <span class="hljs-number">16</span>
+ <span class="hljs-number">25</span>
+
+<span class="repl-prompt">julia> </span>Dict(c => i <span class="hljs-keyword">for</span> (i,c) <span class="hljs-keyword">in</span> enumerate(<span class="hljs-string">"julia"</span>))
+Dict{<span class="hljs-built_in">Char</span>, <span class="hljs-built_in">Int64</span>} with <span class="hljs-number">5</span> entries:
+  <span class="hljs-string">'u'</span> => <span class="hljs-number">2</span>
+  <span class="hljs-string">'a'</span> => <span class="hljs-number">5</span>
+  <span class="hljs-string">'i'</span> => <span class="hljs-number">4</span>
+  <span class="hljs-string">'j'</span> => <span class="hljs-number">1</span>
+  <span class="hljs-string">'l'</span> => <span class="hljs-number">3</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 5: Broadcasting -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-red">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Broadcasting</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>A = [<span class="hljs-number">1</span> <span class="hljs-number">2</span>; <span class="hljs-number">3</span> <span class="hljs-number">4</span>]
+<span class="hljs-number">2</span>×<span class="hljs-number">2</span> Matrix{<span class="hljs-built_in">Int64</span>}:
+ <span class="hljs-number">1</span>  <span class="hljs-number">2</span>
+ <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
+
+<span class="repl-prompt">julia> </span>sin.(A) .+ <span class="hljs-number">1</span>
+<span class="hljs-number">2</span>×<span class="hljs-number">2</span> Matrix{<span class="hljs-built_in">Float64</span>}:
+ <span class="hljs-number">1.84147</span>  <span class="hljs-number">1.9093</span>
+ <span class="hljs-number">1.14112</span>  <span class="hljs-number">0.243198</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 6: Piping & Composition -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-blue">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Piping & Composition</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-number">1</span>:<span class="hljs-number">5</span> |&gt; sum |&gt; sqrt
+<span class="hljs-number">3.872983346207417</span>
+
+<span class="repl-prompt">julia&gt; </span>(sqrt ∘ sum)(<span class="hljs-number">1</span>:<span class="hljs-number">5</span>)
+<span class="hljs-number">3.872983346207417</span>
+
+<span class="repl-prompt">julia&gt; </span>map(exp ∘ abs, [<span class="hljs-number">-1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">-3</span>])
+[<span class="hljs-number">2.718</span>, <span class="hljs-number">7.389</span>, <span class="hljs-number">20.086</span>]</code></pre>
+        </div>
+      </div>
+      <!-- Slide 7: Destructuring -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-green">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Destructuring</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>(a, b, c) = <span class="hljs-number">1</span>:<span class="hljs-number">3</span>
+
+<span class="repl-prompt">julia> </span>a, c
+(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
+
+<span class="repl-prompt">julia> </span>head, tail... = [<span class="hljs-string">"first"</span>, <span class="hljs-string">"second"</span>, <span class="hljs-string">"third"</span>]
+
+<span class="repl-prompt">julia> </span>head, tail
+(<span class="hljs-string">"first"</span>, [<span class="hljs-string">"second"</span>, <span class="hljs-string">"third"</span>])</code></pre>
+        </div>
+      </div>
+      <!-- Slide 8: Macros -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-purple">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Metaprogramming</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>ex = :(<span class="hljs-number">1</span> + <span class="hljs-number">2</span> * <span class="hljs-number">3</span>)
+:(1 + 2 * 3)
+
+<span class="repl-prompt">julia> </span><span class="hljs-keyword">typeof</span>(ex)
+Expr
+
+<span class="repl-prompt">julia> </span>eval(ex)
+<span class="hljs-number">7</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 9: Package Installation -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-blue">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Easy Package Install</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span><span class="hljs-keyword">using</span> DataFrames
+ │ Package DataFrames not found, but a package named DataFrames is available from a registry.
+ │ Install package?
+ │   <span class="repl-pkg">(myproject) pkg></span> add DataFrames
+ └ (y/n/o) [y]: y
+
+<span class="repl-prompt">julia> </span>df = DataFrame(name=[<span class="hljs-string">"Alice"</span>, <span class="hljs-string">"Bob"</span>], age=[<span class="hljs-number">25</span>, <span class="hljs-number">30</span>])
+<span class="hljs-number">2</span>×<span class="hljs-number">2</span> DataFrame
+ Row │ name    age
+     │ String  Int64
+─────┼───────────────
+   1 │ Alice      25
+   2 │ Bob        30</code></pre>
+        </div>
+      </div>
+      <!-- Slide 10: Function Arguments -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-purple">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Defaults & Keyword Args</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-keyword">function</span> greet(name, greeting=<span class="hljs-string">"Hello"</span>; punctuation=<span class="hljs-string">"!"</span>)
+       <span class="hljs-string">"$greeting, $name$punctuation"</span>
+   <span class="hljs-keyword">end</span>
+
+<span class="repl-prompt">julia&gt; </span>greet(<span class="hljs-string">"Julia"</span>)
+<span class="hljs-string">"Hello, Julia!"</span>
+
+<span class="repl-prompt">julia&gt; </span>greet(<span class="hljs-string">"world"</span>, <span class="hljs-string">"Hi"</span>; punctuation=<span class="hljs-string">"."</span>)
+<span class="hljs-string">"Hi, world."</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 11: Threading -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-red">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Multi-threading</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-keyword">function</span> fib(n)
+       n &lt; <span class="hljs-number">2</span> &amp;&amp; <span class="hljs-keyword">return</span> n
+       t = Threads.@spawn fib(n - <span class="hljs-number">2</span>)
+       <span class="hljs-keyword">return</span> fib(n - <span class="hljs-number">1</span>) + fetch(t)
+   <span class="hljs-keyword">end</span>
+
+<span class="repl-prompt">julia&gt; </span>fib(<span class="hljs-number">10</span>)
+<span class="hljs-number">55</span>
+
+<span class="repl-prompt">julia&gt; </span>Threads.nthreads()
+<span class="hljs-number">8</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 12: REPL Modes -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-green">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Built-in REPL Modes</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-comment"># Press ] for package mode</span>
+<span class="repl-pkg">(@v{{stable_release_short}}) pkg&gt; </span>status
+Status `~/.julia/environments/v{{stable_release_short}}/Project.toml`
+  [6e4b80f9] BenchmarkTools v1.5.0
+
+<span class="repl-prompt">julia&gt; </span><span class="hljs-comment"># Press ; for shell mode</span>
+<span class="repl-shell">shell&gt; </span>ls *.jl
+main.jl  test.jl  utils.jl
+
+<span class="repl-prompt">julia&gt; </span><span class="hljs-comment"># Press ? for help mode</span>
+<span class="repl-help">help?&gt; </span>sum
+  sum(f, itr) – Sum the results of calling f on each element of itr.</code></pre>
+        </div>
+      </div>
+  </div>
+  <button class="carousel-arrow carousel-arrow-right" aria-label="Next slide">&#8250;</button>
+</div>
+<div class="carousel-dots"></div>
