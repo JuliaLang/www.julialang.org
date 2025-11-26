@@ -11,9 +11,9 @@
             <span class="code-dot green"></span>
             <span class="code-title">Multiple Dispatch</span>
           </div>
-          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $x!"</span>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $(x)!"</span>
 
-<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Number</span>) = <span class="hljs-string">"Hello, #$x!"</span>
+<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Number</span>) = <span class="hljs-string">"Hello, #$(x)!"</span>
 
 <span class="repl-prompt">julia> </span>greet(<span class="hljs-string">"world"</span>), greet(<span class="hljs-number">42</span>)
 (<span class="hljs-string">"Hello, world!"</span>, <span class="hljs-string">"Hello, #42!"</span>)</code></pre>
