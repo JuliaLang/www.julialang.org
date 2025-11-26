@@ -808,6 +808,35 @@ pre .bash-block::before {
   padding: 20px 0;
 }
 
+.code-carousel-container::before,
+.code-carousel-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.code-carousel-container::before {
+  left: 0;
+  background: linear-gradient(to right, #fff 0%, transparent 100%);
+}
+
+.code-carousel-container::after {
+  right: 0;
+  background: linear-gradient(to left, #fff 0%, transparent 100%);
+}
+
+/* Hide fade on narrow screens where side slides aren't visible */
+@media (max-width: 900px) {
+  .code-carousel-container::before,
+  .code-carousel-container::after {
+    display: none;
+  }
+}
+
 .code-carousel {
   position: relative;
   width: 750px;
