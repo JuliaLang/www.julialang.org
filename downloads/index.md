@@ -4,11 +4,11 @@
 
 ~~~
 <div id="windows-instructions" style="display: none;">
-  It appears you are using Windows. Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt. In case you are not using Windows, please follow the <a onclick="showUNIX()" href="javascript:void(0);">Linux and MacOS instructions</a>.<br><br>
+  It appears that you are using Windows. Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt. In case you are not using Windows, please follow the <a onclick="showUNIX()" href="javascript:void(0);">Linux and MacOS instructions</a>.<br><br>
   <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
 </div>
 <div id="unix-instructions" style="display: none;">
-  It appears you are using macOS or Linux. Install Julia by running the following in your terminal. In case you are using Windows, please follow these <a onclick="showWindows()" href="javascript:void(0);">instructions for Windows</a>.<br><br>
+  It appears that you are using macOS or Linux. Install Julia by running the following in your terminal. In case you are using Windows, please follow these <a onclick="showWindows()" href="javascript:void(0);">instructions for Windows</a>.<br><br>
   <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
 </div>
 <script>
