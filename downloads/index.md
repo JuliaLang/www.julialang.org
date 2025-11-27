@@ -4,16 +4,12 @@
 
 ~~~
 <div id="windows-instructions" style="display: none;">
-  Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt:<br><br>
+  It appears you are using Windows. Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt. In case you are not using Windows, please follow the <a onclick="showUNIX()" href="javascript:void(0);">Linux and MacOS instructions</a>.<br><br>
   <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
-  <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you are using Windows. </span>
-  For Linux and MacOS instructions <a onclick="showUNIX()" href="javascript:void(0);">click here</a>.</div>
 </div>
 <div id="unix-instructions" style="display: none;">
-  Install Julia by running the following in your terminal:<br><br>
+  It appears you are using macOS or Linux. Install Julia by running the following in your terminal. In case you are using Windows, please follow these <a onclick="showWindows()" href="javascript:void(0);">instructions for Windows</a>.<br><br>
   <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
-  <div class="install-platform-note"><span id="platform-subnote-unix">It looks like you are using a Unix-type system. </span>
-  For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a>.</div>
 </div>
 <script>
   function showWindows() {
@@ -26,10 +22,8 @@
   }
   var isWindows = navigator.platform.indexOf('Win') > -1;
   if (isWindows) {
-    document.getElementById('platform-subnote-unix').style.display = 'none';
     showWindows();
   } else {
-    document.getElementById('platform-subnote-windows').style.display = 'none';
     showUNIX();
   }
 </script>
@@ -39,7 +33,14 @@ This will install the latest stable version of Julia, as well as the `juliaup` t
 
 ## Next steps
 
-Join the [community](/community). Check out the [learning resources](/learning). Do star us on [GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
+@@tight-list
+* Join the [community](/community).
+* Check out the [learning resources](/learning).
+* Set up an [editor](/#editors).
+* Do star us on [GitHub](https://github.com/JuliaLang/julia).
+* If you use Julia in your research, please [cite us](/research/).
+* Do consider [sponsoring](https://github.com/sponsors/julialang) us.
+@@
 
 ## About juliaup
 
