@@ -1,4 +1,30 @@
-# Supported platforms
+## Supported Julia versions
+
+@@row @@col-8
+~~~
+<table class="downloads table table-hover table-bordered">
+  <tbody>
+    <tr>
+      <th> Release</th>
+      <th> Version</th>
+      <th> Latest version </th>
+    </tr>
+    <tr>
+      <td> Stable </td>
+      <td> {{stable_release_short}} </td>
+      <td> {{stable_release}} </td>
+    </tr>
+    <tr>
+      <td> Long Term Stable (LTS) </td>
+      <td> {{lts_release_short}}</td>
+      <td> {{lts_release}} </td>
+    </tr>
+    </tbody>
+</table>
+~~~
+@@ @@
+
+## Supported platforms
 
 Julia supports all the major operating systems. Different OSes and architectures have varying [tiers of support](/downloads/support#support_tiers).
 
