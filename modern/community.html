@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julia Community - Connect, Contribute, Collaborate</title>
+  <meta name="description" content="Join the vibrant Julia programming community. Find forums, chat channels, meetups, and ways to contribute.">
+  <link rel="icon" href="/assets/infra/julia.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            julia: {
+              purple: '#9558B2',
+              red: '#CB3C33',
+              green: '#389826',
+              blue: '#4063D8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/modern/" class="flex items-center gap-2">
+          <img src="/assets/infra/logo.svg" alt="Julia" class="h-8">
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/modern/#features" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Features</a>
+          <a href="/modern/#ecosystem" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Ecosystem</a>
+          <a href="/modern/community.html" class="text-sm font-medium text-julia-purple">Community</a>
+          <a href="https://docs.julialang.org" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Docs</a>
+          <a href="/blog/" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Blog</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="/modern/install.html" class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-julia-purple hover:bg-julia-purple/90 rounded-lg transition-colors">
+            Install Julia
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-16 bg-gradient-to-b from-green-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Join the Community</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Connect with thousands of Julia developers around the world</p>
+    </div>
+  </section>
+
+  <!-- Main Channels -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Get Involved</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Discourse -->
+        <a href="https://discourse.julialang.org" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-xl transition-all">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <img src="/assets/infra/discourse.svg" alt="Discourse" class="w-8 h-8">
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-julia-purple transition-colors">Discourse</h3>
+              <p class="text-gray-600 text-sm mb-3">Ask questions, discuss ideas, and share your work with the community.</p>
+              <span class="text-julia-purple text-sm font-medium">Visit Forum →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/JuliaLang/julia" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-gray-900 hover:shadow-xl transition-all">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <img src="/assets/infra/github.svg" alt="GitHub" class="w-8 h-8">
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-gray-700 transition-colors">GitHub</h3>
+              <p class="text-gray-600 text-sm mb-3">Browse source code, report issues, and contribute to Julia's development.</p>
+              <span class="text-gray-900 text-sm font-medium">View Repository →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Zulip -->
+        <a href="https://julialang.zulipchat.com" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-green hover:shadow-xl transition-all">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <img src="/assets/infra/zulip.svg" alt="Zulip" class="w-8 h-8">
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-julia-green transition-colors">Zulip</h3>
+              <p class="text-gray-600 text-sm mb-3">Real-time chat with developers. Great for quick questions and discussions.</p>
+              <span class="text-julia-green text-sm font-medium">Join Chat →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Slack -->
+        <a href="https://julialang.org/slack/" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-purple-500 hover:shadow-xl transition-all">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <img src="/assets/infra/slack.png" alt="Slack" class="w-8 h-8">
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-purple-500 transition-colors">Slack</h3>
+              <p class="text-gray-600 text-sm mb-3">Active Slack workspace with channels for various topics and domains.</p>
+              <span class="text-purple-500 text-sm font-medium">Get Invite →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/user/JuliaLanguage" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-red-500 hover:shadow-xl transition-all">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <img src="/assets/infra/youtube.svg" alt="YouTube" class="w-8 h-8">
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-red-500 transition-colors">YouTube</h3>
+              <p class="text-gray-600 text-sm mb-3">Watch tutorials, conference talks, and community presentations.</p>
+              <span class="text-red-500 text-sm font-medium">Watch Videos →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/company/the-julia-language" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-blue-600 hover:shadow-xl transition-all">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <img src="/assets/infra/linkedin.png" alt="LinkedIn" class="w-8 h-8">
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">LinkedIn</h3>
+              <p class="text-gray-600 text-sm mb-3">Follow for updates, job postings, and professional networking.</p>
+              <span class="text-blue-600 text-sm font-medium">Follow Us →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- JuliaCon -->
+  <section class="py-16 bg-gradient-to-br from-julia-purple to-julia-blue">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center text-white">
+        <h2 class="text-3xl font-bold mb-4">JuliaCon</h2>
+        <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+          The annual Julia conference brings together developers, researchers, and enthusiasts from around the world.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://juliacon.org" class="inline-flex items-center px-6 py-3 bg-white text-julia-purple font-medium rounded-xl hover:bg-gray-100 transition-colors">
+            JuliaCon 2025
+          </a>
+          <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6R5gUZLbSZCZTGJ0uncLBfi" class="inline-flex items-center px-6 py-3 bg-white/20 text-white font-medium rounded-xl hover:bg-white/30 transition-colors">
+            Past Recordings
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local Communities -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Local Communities</h2>
+      <p class="text-gray-600 mb-8">Find Julia users and meetups near you</p>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-gray-50 rounded-xl p-4 text-center">
+          <span class="text-2xl mb-2 block">🇺🇸</span>
+          <span class="font-medium text-gray-900">United States</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center">
+          <span class="text-2xl mb-2 block">🇪🇺</span>
+          <span class="font-medium text-gray-900">Europe</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center">
+          <span class="text-2xl mb-2 block">🇮🇳</span>
+          <span class="font-medium text-gray-900">India</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center">
+          <span class="text-2xl mb-2 block">🇧🇷</span>
+          <span class="font-medium text-gray-900">Brazil</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center">
+          <span class="text-2xl mb-2 block">🇨🇳</span>
+          <span class="font-medium text-gray-900">China</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center">
+          <span class="text-2xl mb-2 block">🇯🇵</span>
+          <span class="font-medium text-gray-900">Japan</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center">
+          <span class="text-2xl mb-2 block">🇦🇺</span>
+          <span class="font-medium text-gray-900">Australia</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center">
+          <span class="text-2xl mb-2 block">🌍</span>
+          <span class="font-medium text-gray-900">And more...</span>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="/community/organizations/" class="inline-flex items-center text-julia-purple font-medium hover:underline">
+          View all local communities
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contribute -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Contribute to Julia</h2>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="https://github.com/JuliaLang/julia/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-green hover:shadow-lg transition-all">
+          <div class="w-12 h-12 bg-julia-green/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-julia-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-julia-green transition-colors">Good First Issues</h3>
+          <p class="text-gray-600 text-sm">Beginner-friendly issues to help you get started with contributing.</p>
+        </a>
+
+        <a href="/contribute/" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-blue hover:shadow-lg transition-all">
+          <div class="w-12 h-12 bg-julia-blue/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-julia-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-julia-blue transition-colors">Contributor Guide</h3>
+          <p class="text-gray-600 text-sm">Learn how to set up your development environment and submit PRs.</p>
+        </a>
+
+        <a href="/jsoc/" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all">
+          <div class="w-12 h-12 bg-julia-purple/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-julia-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-julia-purple transition-colors">Google Summer of Code</h3>
+          <p class="text-gray-600 text-sm">Work on Julia projects over the summer with mentorship.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Sponsors</h2>
+        <p class="text-gray-600">Julia is supported by generous sponsors and contributors</p>
+      </div>
+      
+      <div class="flex flex-wrap justify-center items-center gap-8 opacity-60">
+        <span class="text-2xl font-bold text-gray-400">NumFOCUS</span>
+        <span class="text-2xl font-bold text-gray-400">MIT</span>
+        <span class="text-2xl font-bold text-gray-400">JuliaHub</span>
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="https://github.com/sponsors/julialang" class="inline-flex items-center px-6 py-3 bg-pink-500 text-white font-medium rounded-xl hover:bg-pink-600 transition-colors">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          Become a Sponsor
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code of Conduct -->
+  <section class="py-16 bg-gray-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl font-bold mb-4">Community Standards</h2>
+      <p class="text-gray-400 mb-6">
+        We are committed to providing a welcoming and inclusive environment for everyone. 
+        All community members are expected to follow our Code of Conduct.
+      </p>
+      <a href="/community/standards/" class="inline-flex items-center text-julia-purple hover:underline font-medium">
+        Read our Code of Conduct →
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-950 text-gray-400 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm">© 2025 JuliaLang. Released under the MIT License.</p>
+        <div class="flex items-center gap-6">
+          <a href="https://twitter.com/JuliaLanguage" class="hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+          </a>
+          <a href="https://github.com/JuliaLang/julia" class="hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/user/JuliaLanguage" class="hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

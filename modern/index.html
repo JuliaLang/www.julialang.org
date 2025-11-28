@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julia - The Fast, Dynamic Language for Technical Computing</title>
+  <meta name="description" content="Julia is a high-performance, high-level programming language for technical computing, with syntax familiar to users of other technical computing environments.">
+  <link rel="icon" href="/assets/infra/julia.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            julia: {
+              purple: '#9558B2',
+              red: '#CB3C33',
+              green: '#389826',
+              blue: '#4063D8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #9558B2, #CB3C33, #389826, #4063D8);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient 8s ease infinite;
+    }
+    @keyframes gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+    }
+    .code-block {
+      background: linear-gradient(135deg, #1e1e2e 0%, #2d2d3f 100%);
+    }
+    .glow {
+      box-shadow: 0 0 60px rgba(149, 88, 178, 0.15), 0 0 100px rgba(203, 60, 51, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/modern/" class="flex items-center gap-2">
+          <img src="/assets/infra/logo.svg" alt="Julia" class="h-8">
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#features" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Features</a>
+          <a href="#ecosystem" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Ecosystem</a>
+          <a href="/modern/community.html" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Community</a>
+          <a href="https://docs.julialang.org" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Docs</a>
+          <a href="/blog/" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Blog</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="https://github.com/JuliaLang/julia" class="text-gray-600 hover:text-gray-900 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="/modern/install.html" class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-julia-purple hover:bg-julia-purple/90 rounded-lg transition-colors">
+            Install v1.12
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-green-50"></div>
+    <div class="absolute top-20 left-10 w-72 h-72 bg-julia-purple/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-julia-green/10 rounded-full blur-3xl"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+          <span class="gradient-text">Fast.</span>
+          <span class="gradient-text">Dynamic.</span>
+          <span class="gradient-text">General.</span>
+        </h1>
+        <p class="text-xl sm:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+          A modern language for technical computing that combines the ease of Python with the speed of C.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/modern/install.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-julia-purple hover:bg-julia-purple/90 rounded-xl shadow-lg shadow-julia-purple/25 transition-all hover:shadow-xl hover:shadow-julia-purple/30">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Install Julia 1.12
+          </a>
+          <a href="https://docs.julialang.org" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            Documentation
+          </a>
+        </div>
+        <div class="mt-10 flex items-center justify-center gap-6 text-sm text-gray-500">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-julia-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            45M+ Downloads
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-julia-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            10,000+ Packages
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-julia-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            MIT Licensed
+          </span>
+        </div>
+      </div>
+
+      <!-- Code Preview -->
+      <div class="mt-16 max-w-3xl mx-auto">
+        <div class="code-block rounded-2xl p-6 glow">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <span class="ml-4 text-gray-400 text-sm">julia</span>
+          </div>
+          <pre class="text-sm sm:text-base overflow-x-auto"><code class="text-gray-300"><span class="text-julia-green"># Define a function - it's fast!</span>
+<span class="text-julia-blue">function</span> <span class="text-julia-purple">mandelbrot</span>(z)
+    c = z
+    <span class="text-julia-blue">for</span> n = <span class="text-yellow-300">1</span>:<span class="text-yellow-300">80</span>
+        <span class="text-julia-blue">if</span> abs(z) > <span class="text-yellow-300">2</span>
+            <span class="text-julia-blue">return</span> n - <span class="text-yellow-300">1</span>
+        <span class="text-julia-blue">end</span>
+        z = z^<span class="text-yellow-300">2</span> + c
+    <span class="text-julia-blue">end</span>
+    <span class="text-julia-blue">return</span> <span class="text-yellow-300">80</span>
+<span class="text-julia-blue">end</span>
+
+<span class="text-julia-green"># Julia is as fast as C, with Python's ease</span>
+<span class="text-julia-purple">@time</span> mandelbrot.(<span class="text-julia-purple">complex</span>.(<span class="text-yellow-300">-2</span>:<span class="text-yellow-300">0.001</span>:<span class="text-yellow-300">1</span>, (<span class="text-yellow-300">-1</span>:<span class="text-yellow-300">0.001</span>:<span class="text-yellow-300">1</span>)'))</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 lg:py-32 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Why Julia?</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Designed from the ground up for high performance scientific computing</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Fast -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-lg">
+          <div class="w-12 h-12 bg-julia-red/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-julia-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Blazingly Fast</h3>
+          <p class="text-gray-600 leading-relaxed">Compiles to efficient native code via LLVM. Julia programs approach C and Fortran speeds without sacrificing productivity.</p>
+        </div>
+
+        <!-- Dynamic -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-lg">
+          <div class="w-12 h-12 bg-julia-blue/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-julia-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Dynamic & Interactive</h3>
+          <p class="text-gray-600 leading-relaxed">Feels like a scripting language with excellent REPL support. Explore data and iterate on ideas with immediate feedback.</p>
+        </div>
+
+        <!-- Composable -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-lg">
+          <div class="w-12 h-12 bg-julia-purple/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-julia-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Multiple Dispatch</h3>
+          <p class="text-gray-600 leading-relaxed">Julia's core paradigm enables incredible code reuse. Packages compose naturally without explicit coordination.</p>
+        </div>
+
+        <!-- Reproducible -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-lg">
+          <div class="w-12 h-12 bg-julia-green/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-julia-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Reproducible</h3>
+          <p class="text-gray-600 leading-relaxed">Built-in package manager with reproducible environments. Share your exact setup across machines and platforms.</p>
+        </div>
+
+        <!-- General -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-lg">
+          <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">General Purpose</h3>
+          <p class="text-gray-600 leading-relaxed">Build web servers, CLIs, desktop apps, and embedded systems. Julia excels far beyond numerical computing.</p>
+        </div>
+
+        <!-- Open Source -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-lg">
+          <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Open Source</h3>
+          <p class="text-gray-600 leading-relaxed">MIT licensed with over 1,000 contributors. Join a welcoming community building the future of technical computing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benchmark Section -->
+  <section class="py-20 lg:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Performance that rivals C</h2>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+            Julia's JIT compiler generates optimized machine code. There's no interpreter overhead—your code runs at native speed.
+          </p>
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+            The <a href="https://arxiv.org/pdf/1801.10277.pdf" class="text-julia-purple hover:underline">Celeste.jl project</a> achieved 1.5 PetaFLOP/s on the Cori supercomputer—the first time a dynamic language reached petascale performance.
+          </p>
+          <a href="/benchmarks/" class="inline-flex items-center text-julia-purple font-medium hover:underline">
+            View benchmarks
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-8">
+          <img src="/assets/images/benchmarks.svg" alt="Julia Benchmark Results" class="w-full">
+          <p class="text-sm text-gray-500 mt-4 text-center">Benchmark times normalized to C (lower is better)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ecosystem Section -->
+  <section id="ecosystem" class="py-20 lg:py-32 bg-gradient-to-br from-purple-50 via-white to-blue-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">A Rich Ecosystem</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Over 10,000 packages for everything from machine learning to scientific computing</p>
+      </div>
+
+      <!-- Ecosystem Tabs -->
+      <div class="mb-8">
+        <div class="flex flex-wrap justify-center gap-2" id="ecosystem-tabs">
+          <button class="ecosystem-tab active px-5 py-2.5 rounded-full text-sm font-medium transition-all" data-tab="ml">Machine Learning</button>
+          <button class="ecosystem-tab px-5 py-2.5 rounded-full text-sm font-medium transition-all" data-tab="sci">Scientific Computing</button>
+          <button class="ecosystem-tab px-5 py-2.5 rounded-full text-sm font-medium transition-all" data-tab="data">Data Science</button>
+          <button class="ecosystem-tab px-5 py-2.5 rounded-full text-sm font-medium transition-all" data-tab="viz">Visualization</button>
+          <button class="ecosystem-tab px-5 py-2.5 rounded-full text-sm font-medium transition-all" data-tab="parallel">Parallel Computing</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+        <!-- Machine Learning -->
+        <div class="ecosystem-content active" id="content-ml">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Scalable Machine Learning</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                <a href="https://github.com/FluxML/Flux.jl" class="text-julia-purple hover:underline">Flux.jl</a> and <a href="https://github.com/LuxDL/Lux.jl" class="text-julia-purple hover:underline">Lux.jl</a> power deep learning with elegant, Julian syntax. <a href="https://github.com/JuliaAI/MLJ.jl" class="text-julia-purple hover:underline">MLJ.jl</a> provides a unified interface to traditional ML algorithms.
+              </p>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                <a href="https://turinglang.org" class="text-julia-purple hover:underline">Turing.jl</a> offers world-class probabilistic programming, while <a href="https://github.com/jonathan-laurent/AlphaZero.jl" class="text-julia-purple hover:underline">AlphaZero.jl</a> implements state-of-the-art reinforcement learning.
+              </p>
+            </div>
+            <div class="flex justify-center">
+              <img src="/assets/infra/cartpole.gif" alt="Reinforcement Learning" class="rounded-xl max-w-full h-auto">
+            </div>
+          </div>
+        </div>
+
+        <!-- Scientific Computing -->
+        <div class="ecosystem-content hidden" id="content-sci">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Scientific Computing Excellence</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                The <a href="https://sciml.ai" class="text-julia-purple hover:underline">SciML ecosystem</a> provides the most comprehensive suite of differential equation solvers in any language. <a href="https://jump.dev" class="text-julia-purple hover:underline">JuMP.jl</a> is the go-to for mathematical optimization.
+              </p>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Domain-specific ecosystems in <a href="https://github.com/BioJulia" class="text-julia-purple hover:underline">biology</a>, <a href="https://github.com/QuantEcon" class="text-julia-purple hover:underline">economics</a>, <a href="https://juliaastro.github.io" class="text-julia-purple hover:underline">astronomy</a>, and <a href="https://github.com/QuantumBFS" class="text-julia-purple hover:underline">quantum computing</a>.
+              </p>
+            </div>
+            <div class="flex justify-center">
+              <img src="/assets/infra/lorenz.gif" alt="Scientific Computing" class="rounded-xl max-w-full h-auto">
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Science -->
+        <div class="ecosystem-content hidden" id="content-data">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Modern Data Science</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                <a href="https://github.com/JuliaData/DataFrames.jl" class="text-julia-purple hover:underline">DataFrames.jl</a> provides powerful data manipulation. <a href="https://github.com/JuliaData/CSV.jl" class="text-julia-purple hover:underline">CSV.jl</a> is one of the fastest CSV parsers in any language.
+              </p>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Connect to databases via <a href="https://juliadatabases.org" class="text-julia-purple hover:underline">JuliaDatabases</a>, work with Arrow files, and process streaming data with <a href="https://github.com/joshday/OnlineStats.jl" class="text-julia-purple hover:underline">OnlineStats.jl</a>.
+              </p>
+            </div>
+            <div class="flex justify-center">
+              <img src="/assets/infra/onlinestats.gif" alt="Data Science" class="rounded-xl max-w-full h-auto">
+            </div>
+          </div>
+        </div>
+
+        <!-- Visualization -->
+        <div class="ecosystem-content hidden" id="content-viz">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Beautiful Visualizations</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                <a href="https://github.com/MakieOrg/Makie.jl" class="text-julia-purple hover:underline">Makie.jl</a> creates publication-quality plots and interactive visualizations. <a href="https://github.com/JuliaPlots/Plots.jl" class="text-julia-purple hover:underline">Plots.jl</a> offers a unified API across multiple backends.
+              </p>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                For grammar-of-graphics fans, try <a href="https://github.com/GiovineItalia/Gadfly.jl" class="text-julia-purple hover:underline">Gadfly.jl</a> or <a href="https://github.com/queryverse/VegaLite.jl" class="text-julia-purple hover:underline">VegaLite.jl</a>.
+              </p>
+            </div>
+            <div class="flex justify-center">
+              <img src="/assets/infra/waves.gif" alt="Visualization" class="rounded-xl max-w-full h-auto">
+            </div>
+          </div>
+        </div>
+
+        <!-- Parallel Computing -->
+        <div class="ecosystem-content hidden" id="content-parallel">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Parallel & GPU Computing</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Built-in multi-threading and distributed computing primitives. The <a href="https://juliagpu.org" class="text-julia-purple hover:underline">JuliaGPU ecosystem</a> supports CUDA, AMD, oneAPI, and Metal.
+              </p>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Scale from laptops to supercomputers with <a href="https://github.com/JuliaParallel/MPI.jl" class="text-julia-purple hover:underline">MPI.jl</a> and <a href="https://github.com/JuliaParallel/Dagger.jl" class="text-julia-purple hover:underline">Dagger.jl</a>.
+              </p>
+            </div>
+            <div class="flex justify-center">
+              <img src="/assets/infra/parallel-prefix.png" alt="Parallel Computing" class="rounded-xl max-w-full h-auto">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="https://juliahub.com/ui/Packages" class="inline-flex items-center px-6 py-3 text-base font-medium text-julia-purple bg-julia-purple/10 hover:bg-julia-purple/20 rounded-xl transition-colors">
+          Explore all packages
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interop Section -->
+  <section class="py-20 lg:py-32 bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Use Your Existing Code</h2>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto">Julia integrates seamlessly with the languages you already use</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+        <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors">
+          <div class="text-3xl font-bold text-julia-blue mb-2">Python</div>
+          <p class="text-sm text-gray-400">PythonCall.jl</p>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors">
+          <div class="text-3xl font-bold text-julia-green mb-2">R</div>
+          <p class="text-sm text-gray-400">RCall.jl</p>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors">
+          <div class="text-3xl font-bold text-julia-red mb-2">C/C++</div>
+          <p class="text-sm text-gray-400">Native FFI</p>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors">
+          <div class="text-3xl font-bold text-julia-purple mb-2">Fortran</div>
+          <p class="text-sm text-gray-400">Native FFI</p>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors">
+          <div class="text-3xl font-bold text-orange-400 mb-2">Java</div>
+          <p class="text-sm text-gray-400">JavaCall.jl</p>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors">
+          <div class="text-3xl font-bold text-pink-400 mb-2">MATLAB</div>
+          <p class="text-sm text-gray-400">MATLAB.jl</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Section -->
+  <section class="py-20 lg:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Developer Tools</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">First-class tooling for a productive development experience</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <a href="https://www.julia-vscode.org/" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all text-center">
+          <img src="/assets/infra/vscode.png" alt="VS Code" class="w-16 h-16 mx-auto mb-4">
+          <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">VS Code</h3>
+          <p class="text-sm text-gray-500 mt-1">Full-featured extension</p>
+        </a>
+        <a href="https://github.com/JuliaLang/IJulia.jl" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all text-center">
+          <img src="/assets/infra/jupyter.svg" alt="Jupyter" class="w-16 h-16 mx-auto mb-4">
+          <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">Jupyter</h3>
+          <p class="text-sm text-gray-500 mt-1">Interactive notebooks</p>
+        </a>
+        <a href="https://plutojl.org/" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all text-center">
+          <img src="/assets/infra/pluto_jl.svg" alt="Pluto.jl" class="w-16 h-16 mx-auto mb-4">
+          <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">Pluto.jl</h3>
+          <p class="text-sm text-gray-500 mt-1">Reactive notebooks</p>
+        </a>
+        <a href="https://github.com/timholy/Revise.jl" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all text-center">
+          <img src="/assets/infra/revise.png" alt="Revise.jl" class="w-16 h-16 mx-auto mb-4">
+          <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">Revise.jl</h3>
+          <p class="text-sm text-gray-500 mt-1">Hot code reloading</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Section -->
+  <section id="community" class="py-20 lg:py-32 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Join the Community</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Connect with Julia developers around the world</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="https://discourse.julialang.org/" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all">
+          <img src="/assets/infra/discourse.svg" alt="Discourse" class="w-12 h-12 mb-4">
+          <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">Discourse</h3>
+          <p class="text-sm text-gray-500 mt-2">Ask questions and share knowledge</p>
+        </a>
+        <a href="https://github.com/JuliaLang/julia" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all">
+          <img src="/assets/infra/github.svg" alt="GitHub" class="w-12 h-12 mb-4">
+          <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">GitHub</h3>
+          <p class="text-sm text-gray-500 mt-2">Contribute to Julia's development</p>
+        </a>
+        <a href="https://julialang.zulipchat.com/" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all">
+          <img src="/assets/infra/zulip.svg" alt="Zulip" class="w-12 h-12 mb-4">
+          <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">Zulip</h3>
+          <p class="text-sm text-gray-500 mt-2">Real-time developer chat</p>
+        </a>
+        <a href="https://www.youtube.com/user/JuliaLanguage" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all">
+          <img src="/assets/infra/youtube.svg" alt="YouTube" class="w-12 h-12 mb-4">
+          <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">YouTube</h3>
+          <p class="text-sm text-gray-500 mt-2">Tutorials and conference talks</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- JuliaCon Section -->
+  <section class="py-20 lg:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-br from-julia-purple to-julia-blue rounded-3xl p-8 lg:p-12 text-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">JuliaCon 2025</h2>
+            <p class="text-lg text-white/80 mb-6">
+              The annual Julia conference brings together developers, researchers, and enthusiasts from around the world to share the latest advances in technical computing.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="https://juliacon.org" class="inline-flex items-center px-6 py-3 bg-white text-julia-purple font-medium rounded-xl hover:bg-gray-100 transition-colors">
+                Learn more
+              </a>
+              <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6R5gUZLbSZCZTGJ0uncLBfi" class="inline-flex items-center px-6 py-3 bg-white/20 text-white font-medium rounded-xl hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Watch talks
+              </a>
+            </div>
+          </div>
+          <div class="lg:text-right">
+            <div class="inline-block bg-white/10 backdrop-blur rounded-2xl p-6">
+              <div class="text-6xl font-bold">2025</div>
+              <div class="text-white/80 mt-2">Pittsburgh, PA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 lg:py-32 bg-gray-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-6">Ready to get started?</h2>
+      <p class="text-xl text-gray-400 mb-10">
+        Download Julia and start building high-performance applications today.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/modern/install.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-gray-900 bg-white hover:bg-gray-100 rounded-xl transition-colors">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Download Julia 1.12
+        </a>
+        <a href="/modern/learn.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-julia-purple hover:bg-julia-purple/90 rounded-xl transition-colors">
+          Start learning
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-950 text-gray-400 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        <div class="lg:col-span-2">
+          <img src="/assets/infra/logo.svg" alt="Julia" class="h-8 mb-4">
+          <p class="text-sm leading-relaxed max-w-xs">
+            A fresh approach to technical computing. Fast, dynamic, and easy to use.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Download</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/modern/install.html" class="hover:text-white transition-colors">Current Release</a></li>
+            <li><a href="/downloads/nightlies/" class="hover:text-white transition-colors">Nightly Builds</a></li>
+            <li><a href="/downloads/oldreleases/" class="hover:text-white transition-colors">Old Releases</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Learn</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://docs.julialang.org" class="hover:text-white transition-colors">Documentation</a></li>
+            <li><a href="/modern/learn.html" class="hover:text-white transition-colors">Learning Resources</a></li>
+            <li><a href="/blog/" class="hover:text-white transition-colors">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Community</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://discourse.julialang.org" class="hover:text-white transition-colors">Discourse</a></li>
+            <li><a href="https://julialang.zulipchat.com" class="hover:text-white transition-colors">Zulip</a></li>
+            <li><a href="https://github.com/JuliaLang/julia" class="hover:text-white transition-colors">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm">© 2025 JuliaLang. Released under the MIT License.</p>
+        <div class="flex items-center gap-6">
+          <a href="https://twitter.com/JuliaLanguage" class="hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/the-julia-language" class="hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/user/JuliaLanguage" class="hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Ecosystem tabs functionality
+    document.querySelectorAll('.ecosystem-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.ecosystem-tab').forEach(t => t.classList.remove('active', 'bg-julia-purple', 'text-white'));
+        document.querySelectorAll('.ecosystem-tab').forEach(t => t.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200'));
+        tab.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+        tab.classList.add('active', 'bg-julia-purple', 'text-white');
+        
+        document.querySelectorAll('.ecosystem-content').forEach(c => c.classList.add('hidden'));
+        document.getElementById('content-' + tab.dataset.tab).classList.remove('hidden');
+      });
+    });
+
+    // Initialize first tab
+    document.querySelector('.ecosystem-tab.active').classList.add('bg-julia-purple', 'text-white');
+    document.querySelectorAll('.ecosystem-tab:not(.active)').forEach(t => {
+      t.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Navbar background on scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        nav.classList.add('shadow-sm');
+      } else {
+        nav.classList.remove('shadow-sm');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Julia - Tutorials, Books, and Resources</title>
+  <meta name="description" content="Learn Julia with tutorials, courses, books, and community resources. From beginners to advanced users.">
+  <link rel="icon" href="/assets/infra/julia.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            julia: {
+              purple: '#9558B2',
+              red: '#CB3C33',
+              green: '#389826',
+              blue: '#4063D8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/modern/" class="flex items-center gap-2">
+          <img src="/assets/infra/logo.svg" alt="Julia" class="h-8">
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/modern/#features" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Features</a>
+          <a href="/modern/#ecosystem" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Ecosystem</a>
+          <a href="/modern/#community" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Community</a>
+          <a href="https://docs.julialang.org" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Docs</a>
+          <a href="/blog/" class="text-sm font-medium text-gray-600 hover:text-julia-purple transition-colors">Blog</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="/modern/install.html" class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-julia-purple hover:bg-julia-purple/90 rounded-lg transition-colors">
+            Install Julia
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Learn Julia</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">From first steps to advanced topics, find the resources to master Julia</p>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Quick Start</h2>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="https://docs.julialang.org/en/v1/manual/getting-started/" class="group bg-gradient-to-br from-julia-purple/5 to-julia-blue/5 rounded-2xl p-6 border border-julia-purple/20 hover:border-julia-purple/40 transition-all">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-julia-purple rounded-xl flex items-center justify-center">
+              <span class="text-white text-xl font-bold">1</span>
+            </div>
+            <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">Getting Started</h3>
+          </div>
+          <p class="text-gray-600">Official guide to install Julia and run your first program.</p>
+        </a>
+
+        <a href="https://juliaacademy.com" class="group bg-gradient-to-br from-julia-blue/5 to-julia-green/5 rounded-2xl p-6 border border-julia-blue/20 hover:border-julia-blue/40 transition-all">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-julia-blue rounded-xl flex items-center justify-center">
+              <span class="text-white text-xl font-bold">2</span>
+            </div>
+            <h3 class="font-semibold text-gray-900 group-hover:text-julia-blue transition-colors">Julia Academy</h3>
+          </div>
+          <p class="text-gray-600">Free online courses covering Julia fundamentals and beyond.</p>
+        </a>
+
+        <a href="https://exercism.org/tracks/julia" class="group bg-gradient-to-br from-julia-green/5 to-julia-red/5 rounded-2xl p-6 border border-julia-green/20 hover:border-julia-green/40 transition-all">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-julia-green rounded-xl flex items-center justify-center">
+              <span class="text-white text-xl font-bold">3</span>
+            </div>
+            <h3 class="font-semibold text-gray-900 group-hover:text-julia-green transition-colors">Practice</h3>
+          </div>
+          <p class="text-gray-600">Solve exercises and get feedback from mentors on Exercism.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutorials -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Tutorials & Courses</h2>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl p-6 border border-gray-200">
+          <span class="inline-block px-3 py-1 bg-julia-green/10 text-julia-green text-xs font-medium rounded-full mb-4">Free</span>
+          <h3 class="font-semibold text-gray-900 mb-2">Julia Academy</h3>
+          <p class="text-gray-600 mb-4">Comprehensive video courses covering Julia basics, data science, and machine learning.</p>
+          <a href="https://juliaacademy.com" class="text-julia-purple font-medium hover:underline">Start Learning →</a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-gray-200">
+          <span class="inline-block px-3 py-1 bg-julia-green/10 text-julia-green text-xs font-medium rounded-full mb-4">Free</span>
+          <h3 class="font-semibold text-gray-900 mb-2">Think Julia</h3>
+          <p class="text-gray-600 mb-4">An introduction to programming using Julia, perfect for beginners with no prior experience.</p>
+          <a href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html" class="text-julia-purple font-medium hover:underline">Read Online →</a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-gray-200">
+          <span class="inline-block px-3 py-1 bg-julia-green/10 text-julia-green text-xs font-medium rounded-full mb-4">Free</span>
+          <h3 class="font-semibold text-gray-900 mb-2">Introduction to Computational Thinking</h3>
+          <p class="text-gray-600 mb-4">MIT course using Julia with interactive notebooks and real-world applications.</p>
+          <a href="https://computationalthinking.mit.edu" class="text-julia-purple font-medium hover:underline">Take the Course →</a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-gray-200">
+          <span class="inline-block px-3 py-1 bg-julia-green/10 text-julia-green text-xs font-medium rounded-full mb-4">Free</span>
+          <h3 class="font-semibold text-gray-900 mb-2">From Zero to Julia</h3>
+          <p class="text-gray-600 mb-4">A gentle introduction for scientists and engineers new to programming.</p>
+          <a href="https://techytok.com/from-zero-to-julia/" class="text-julia-purple font-medium hover:underline">Start Tutorial →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Books -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Books</h2>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+          <h3 class="font-semibold text-gray-900 mb-2">Julia for Data Analysis</h3>
+          <p class="text-sm text-gray-500 mb-3">by Bogumił Kamiński</p>
+          <p class="text-gray-600 text-sm mb-4">Master data wrangling, visualization, and analysis with Julia and DataFrames.jl.</p>
+          <a href="https://www.manning.com/books/julia-for-data-analysis" class="text-julia-purple text-sm font-medium hover:underline">View Book →</a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+          <h3 class="font-semibold text-gray-900 mb-2">Hands-On Design Patterns with Julia</h3>
+          <p class="text-sm text-gray-500 mb-3">by Tom Kwong</p>
+          <p class="text-gray-600 text-sm mb-4">Learn to write efficient, maintainable Julia code using proven design patterns.</p>
+          <a href="https://www.packtpub.com/product/hands-on-design-patterns-and-best-practices-with-julia/9781838648817" class="text-julia-purple text-sm font-medium hover:underline">View Book →</a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+          <h3 class="font-semibold text-gray-900 mb-2">Statistics with Julia</h3>
+          <p class="text-sm text-gray-500 mb-3">by Yoni Nazarathy & Hayden Klok</p>
+          <p class="text-gray-600 text-sm mb-4">Fundamentals for data science, ML, and AI with practical Julia examples.</p>
+          <a href="https://statisticswithjulia.org/" class="text-julia-purple text-sm font-medium hover:underline">View Book →</a>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="/learning/books/" class="inline-flex items-center text-julia-purple font-medium hover:underline">
+          View all books
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Tutorials -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Video Tutorials</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="https://www.youtube.com/user/JuliaLanguage" class="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
+          <div class="aspect-video bg-gradient-to-br from-julia-red to-julia-purple flex items-center justify-center">
+            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">Julia YouTube Channel</h3>
+            <p class="text-sm text-gray-500">Official tutorials and JuliaCon talks</p>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SCcFv3FvY_qjAmtTsNYHQE" class="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
+          <div class="aspect-video bg-gradient-to-br from-julia-blue to-julia-green flex items-center justify-center">
+            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">Julia Tutorials</h3>
+            <p class="text-sm text-gray-500">Step-by-step tutorial series</p>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6R5gUZLbSZCZTGJ0uncLBfi" class="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
+          <div class="aspect-video bg-gradient-to-br from-julia-purple to-julia-blue flex items-center justify-center">
+            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">JuliaCon 2025</h3>
+            <p class="text-sm text-gray-500">Conference talks and workshops</p>
+          </div>
+        </a>
+
+        <a href="https://www.twitch.tv/JuliaLanguage" class="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
+          <div class="aspect-video bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
+            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-gray-900 group-hover:text-julia-purple transition-colors">Julia on Twitch</h3>
+            <p class="text-sm text-gray-500">Live coding streams</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- By Topic -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Learn by Topic</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="https://sciml.ai" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-red hover:shadow-lg transition-all">
+          <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-julia-red transition-colors">Scientific Computing</h3>
+          <p class="text-gray-600 text-sm">Differential equations, optimization, and scientific machine learning.</p>
+        </a>
+
+        <a href="https://fluxml.ai" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-blue hover:shadow-lg transition-all">
+          <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-julia-blue transition-colors">Machine Learning</h3>
+          <p class="text-gray-600 text-sm">Deep learning with Flux.jl and Lux.jl.</p>
+        </a>
+
+        <a href="https://juliadata.org" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-green hover:shadow-lg transition-all">
+          <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-julia-green transition-colors">Data Science</h3>
+          <p class="text-gray-600 text-sm">DataFrames, data manipulation, and analysis.</p>
+        </a>
+
+        <a href="https://juliagpu.org" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-julia-purple hover:shadow-lg transition-all">
+          <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-julia-purple transition-colors">GPU Computing</h3>
+          <p class="text-gray-600 text-sm">CUDA, AMD, and Metal GPU programming.</p>
+        </a>
+
+        <a href="https://docs.makie.org" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-orange-500 hover:shadow-lg transition-all">
+          <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-orange-500 transition-colors">Visualization</h3>
+          <p class="text-gray-600 text-sm">Beautiful plots and interactive visualizations.</p>
+        </a>
+
+        <a href="https://jump.dev" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-pink-500 hover:shadow-lg transition-all">
+          <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-pink-500 transition-colors">Optimization</h3>
+          <p class="text-gray-600 text-sm">Mathematical optimization with JuMP.jl.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section class="py-16 bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl font-bold mb-4">Need Help?</h2>
+      <p class="text-gray-400 mb-8 max-w-xl mx-auto">Join the friendly Julia community. Ask questions, share projects, and learn from others.</p>
+      
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://discourse.julialang.org" class="inline-flex items-center px-6 py-3 bg-white text-gray-900 font-medium rounded-xl hover:bg-gray-100 transition-colors">
+          <img src="/assets/infra/discourse.svg" alt="" class="w-5 h-5 mr-2">
+          Discourse Forum
+        </a>
+        <a href="https://julialang.zulipchat.com" class="inline-flex items-center px-6 py-3 bg-julia-purple text-white font-medium rounded-xl hover:bg-julia-purple/90 transition-colors">
+          <img src="/assets/infra/zulip.svg" alt="" class="w-5 h-5 mr-2">
+          Zulip Chat
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-950 text-gray-400 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm">© 2025 JuliaLang. Released under the MIT License.</p>
+        <div class="flex items-center gap-6">
+          <a href="/privacy/" class="text-sm hover:text-white transition-colors">Privacy</a>
+          <a href="/license/" class="text-sm hover:text-white transition-colors">License</a>
+          <a href="https://github.com/JuliaLang/julia" class="hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
