@@ -130,16 +130,12 @@ crossorigin=""/>
 <div class="container main"><h1 id="installing_julia"><a href="#installing_julia" class="header-anchor">Installing Julia</a></h1>
 
 <div id="windows-instructions" style="display: none;">
-  Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt:<br><br>
+  It appears that you are using Windows. Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt. In case you are not using Windows, please follow the <a onclick="showUNIX()" href="javascript:void(0);">Linux and macOS instructions</a>.<br><br>
   <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
-  <div class="install-platform-note"><span id="platform-subnote-windows">It looks like you are using Windows. </span>
-  For Linux and MacOS instructions <a onclick="showUNIX()" href="javascript:void(0);">click here</a>.</div>
 </div>
 <div id="unix-instructions" style="display: none;">
-  Install Julia by running the following in your terminal:<br><br>
+  It appears that you are using macOS or Linux. Install Julia by running the following in your terminal. In case you are using Windows, please follow these <a onclick="showWindows()" href="javascript:void(0);">instructions for Windows</a>.<br><br>
   <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
-  <div class="install-platform-note"><span id="platform-subnote-unix">It looks like you are using a Unix-type system. </span>
-  For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a>.</div>
 </div>
 <script>
   function showWindows() {
@@ -152,17 +148,28 @@ crossorigin=""/>
   }
   var isWindows = navigator.platform.indexOf('Win') > -1;
   if (isWindows) {
-    document.getElementById('platform-subnote-unix').style.display = 'none';
     showWindows();
   } else {
-    document.getElementById('platform-subnote-windows').style.display = 'none';
     showUNIX();
   }
 </script>
 
 <p>This will install the latest stable version of Julia, as well as the <code>juliaup</code> tool. Start Julia from the command-line by typing <code>julia</code>.</p>
 <h2 id="next_steps"><a href="#next_steps" class="header-anchor">Next steps</a></h2>
-<p>Join the <a href="/community">community</a>. Check out the <a href="/learning">learning resources</a>. Do star us on <a href="https://github.com/JuliaLang/julia">GitHub</a>. If you use Julia in your research, please <a href="/research/">cite us</a>. If possible, do consider <a href="https://github.com/sponsors/julialang">sponsoring</a> us.</p>
+<div class="tight-list"><ul>
+<li><p>Join the <a href="/community">community</a>.</p>
+</li>
+<li><p>Check out the <a href="/learning">learning resources</a>.</p>
+</li>
+<li><p>Set up an <a href="/#editors">editor</a>.</p>
+</li>
+<li><p>Do star us on <a href="https://github.com/JuliaLang/julia">GitHub</a>.</p>
+</li>
+<li><p>If you use Julia in your research, please <a href="/research/">cite us</a>.</p>
+</li>
+<li><p>Do consider <a href="https://github.com/sponsors/julialang">sponsoring</a> us.</p>
+</li>
+</ul></div>
 <h2 id="about_juliaup"><a href="#about_juliaup" class="header-anchor">About juliaup</a></h2>
 <p><a href="https://github.com/JuliaLang/juliaup"><code>juliaup</code></a> is the recommended way to install Julia. It automatically installs the latest stable <code>julia</code> binary and helps keep it up to date. It also supports installing and using different versions of Julia simultaneously. To install different Julia versions, see <code>juliaup --help</code>.</p>
 <p>If you need to manually download and install specific Julia versions, see the <a href="/downloads/manual-downloads/">Manual Downloads</a> page. Julia supports all the major operating systems, but specific versions and architectures have different <a href="/downloads/support">tiers of support</a>.</p>
