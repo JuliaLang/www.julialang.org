@@ -13,8 +13,19 @@
     margin-bottom: 0;
 }
 
+.container.blog-title h1 {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 40ch;
+}
+
 .container h3 {
     margin-top: 0.8em;
+}
+
+.container.blog-title .rss-link {
+  margin-top: 9px;
+  font-size: 0.75em;
 }
 
 .container.blog-title h3 {
