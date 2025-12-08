@@ -149,9 +149,7 @@ Disclaimer: An LLM was used to convert the initial human-curated list of interes
 [33]: https://discourse.julialang.org/t/rfc-typstdocs-jl-julia-package-documentation-in-typst/134422 "RFC: TypstDocs.jl (Julia package documentation in typst) - Package Announcements - Julia Programming Language"
 [34]: https://discourse.julialang.org/t/ann-chensignatures-jl-path-signatures-in-julia/134361 "[ANN] ChenSignatures.jl — Path signatures in Julia - Package Announcements - Julia Programming Language"
 [35]: https://discourse.julialang.org/t/ann-fluxoptics-jl-inverse-optical-design-with-automatic-differentiation/134285 "[ANN] FluxOptics.jl - Inverse optical design with automatic differentiation - Package Announcements - Julia Programming Language"
-[36]: https://www.ouvrirlascience.fr/remise-des-prix-science-ouverte-du-logiciel-libre-de-recherche-edition-2025/ "
-        Ouvrir la Science - Remise des prix science ouverte du logiciel libre de recherche, édition 2025
-    "
+[36]: https://www.ouvrirlascience.fr/remise-des-prix-science-ouverte-du-logiciel-libre-de-recherche-edition-2025/ "Ouvrir la Science - Remise des prix science ouverte du logiciel libre de recherche, édition 2025"
 [37]: https://news.ycombinator.com/item?id=46023460 "Racket v9.0 | Hacker News"
 [38]: https://discourse.julialang.org/t/the-new-green-tea-garbage-collector-in-go/133612 "The new Green Tea Garbage Collector in Go - Offtopic - Julia Programming Language"
 [39]: https://lwn.net/SubscriberLink/1046084/4c048ee008e1c70e/ "Zig's new plan for asynchronous programs [LWN.net]"
