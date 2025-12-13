@@ -9,19 +9,19 @@
             <span class="code-dot red"></span>
             <span class="code-dot yellow"></span>
             <span class="code-dot green"></span>
-            <span class="code-title">Multiple Dispatch</span>
+            <span class="code-title">Functions</span>
           </div>
-          <pre class="code-content"><code class="language-julia">
-            <span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $(x)!"</span>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $(x)!"</span>
             <span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Number</span>) = <span class="hljs-string">"Nice to meet you, #$(x)!"</span>
             <span class="repl-prompt">julia> </span>greet(<span class="hljs-string">"world"</span>)
             <span class="hljs-string">"Hello, world!"</span>
-            <span class="repl-prompt">julia> </span>greet(<span class="hljs-number">42</span>
+            <span class="repl-prompt">julia> </span>greet(<span class="hljs-number">42</span>)
             <span class="hljs-string">"Nice to meet you, #42!"</span>
           </code></pre>
         </div>
       </div>
       <!-- Slide 2: Multiple Dispatch -->
+      <!-- Taken from https://www.youtube.com/watch?v=kc9HwsxE1OY, timestamp 7:47 -->
       <div class="carousel-slide active">
         <div class="code-showcase julia-blue">
           <div class="code-header">
@@ -30,9 +30,7 @@
             <span class="code-dot green"></span>
             <span class="code-title">Multiple Dispatch</span>
           </div>
-          <pre class="code-content"><code class="language-julia">
-            <!-- Taken from https://www.youtube.com/watch?v=kc9HwsxE1OY, timestamp 7:47 -->
-            <span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> <span class="hljs-built_in">Dog</span> <span class="hljs-keyword">end</span>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> <span class="hljs-built_in">Dog</span> <span class="hljs-keyword">end</span>
             <span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> <span class="hljs-built_in">Cat</span> <span class="hljs-keyword">end</span>
             <span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Dog</span>, y::<span class="hljs-built_in">Dog</span>) = <span class="hljs-string">"sniffs"</span>
             <span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Dog</span>, y::<span class="hljs-built_in">Cat</span>) = <span class="hljs-string">"chases"</span>
