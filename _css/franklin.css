@@ -13,24 +13,38 @@
     margin-bottom: 0;
 }
 
-.container.blog-title h1 {
+.container.blog-title .blog-title-wrapper {
   display: flex;
-  gap: 0.5rem;
-  max-width: 40ch;
+  align-items: flex-start;
+  width: 100%;
 }
 
-.container h3 {
-    margin-top: 0.8em;
+.container.blog-title .blog-title-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.container.blog-title .blog-title-right {
+  flex: 0 0 auto;
+  display: flex;
+  margin-left: 1rem;
 }
 
 .container.blog-title .rss-link {
-  margin-top: 9px;
-  font-size: 0.75em;
+  margin-top: 18px;
+  margin-right: 15px;
+  font-size: 1.5em;
+}
+
+.container.blog-title h1 {
+  font-size: 3em;
 }
 
 .container.blog-title h3 {
-    font-size: 18px;
-    margin-bottom: 1em;
+  margin-top: 0.3em;
+  margin-bottom: 1em;
+  font-size: 18px;
 }
 
 .author-info {

@@ -38,7 +38,7 @@
     .main pre code { font-size: 90%; }
     @media (min-width: 940px) {
       .main { width: 800px; }
-      .container.blog-title { width: 800px;}
+      .blog-title { width: 800px;}
     }
   </style>
   {{end}}{{end}}
@@ -56,21 +56,36 @@
 
 {{ispage /blog/*}}
 <div class="container blog-title">
-  {{isdef title}}<h1>{{fill title}}
-    <a type="application/rss+xml"
-      href="https://julialang.org/feed.xml"
-      class="rss-link">
-      <i class="fa fa-rss-square rss-icon"></i>
-    </a>
-  </h1>{{end}}
-  <h3>
-  {{isdef published}} <span style="font-weight: lighter;"> {{fill published}} </span>
-	|
-	{{end}}
-	{{isdef author}} <span style="font-weight: bold;">{{fill author}}{{author_twitter}}</span> {{end}}
-  <!-- assumption that only one of the two is defined -->
-  {{isdef authors}} <span style="font-weight: bold;">{{fill authors}} </span> {{end}}
-  </h3>
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        {{isdef title}}
+          <h1>{{fill title}}</h1>
+        {{end}}
+      </div>
+      <div class="blog-title-meta">
+        <h3>
+          {{isdef published}}
+            <span style="font-weight: lighter;">{{fill published}}</span> |
+          {{end}}
+          {{isdef author}}
+            <span style="font-weight: bold;">{{fill author}}{{author_twitter}}</span>
+          {{end}}
+          {{isdef authors}}
+            <span style="font-weight: bold;">{{fill authors}}</span>
+          {{end}}
+        </h3>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a type="application/rss+xml"
+         href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
 </div>
 {{end}}
 
