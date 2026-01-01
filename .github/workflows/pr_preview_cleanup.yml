@@ -17,7 +17,7 @@ jobs:
       contents: write # Needed to be able to push to `gh-preview` branch
     steps:
       - name: Checkout gh-preview branch
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: gh-preview
       - name: Delete preview and history + push changes
