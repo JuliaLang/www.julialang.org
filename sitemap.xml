@@ -992,12 +992,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/jsoc/gsoc/compiler/index.html</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2012/03/lang-next-talk-announcement/index.html</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
