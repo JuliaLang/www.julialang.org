@@ -5,7 +5,6 @@ This page lists a bunch of project ideas, meant to serve as starting points as y
 We have our project ideas organized below roughly by domain but you can also see a [single page with all our projects together](/jsoc/allprojects):
 
 @@tight-list
-* [Compiler](/jsoc/gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
 * [CliMA](/jsoc/gsoc/clima/) – a new open-source climate model that runs on GPUs.
 * [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.
 * [Ferrite FEM](/jsoc/gsoc/ferrite-fem/) - A modern finite element toolbox in Julia.
