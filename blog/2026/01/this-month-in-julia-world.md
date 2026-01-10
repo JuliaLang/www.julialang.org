@@ -30,7 +30,7 @@ Current status: Julia release is 1.12.4, Julia LTS is 1.10.10. The feature freez
 - Test macros in Base.Test are becoming more consistent, with [support for `broken=`, `skip=`, and `context=` keywords](https://github.com/JuliaLang/julia/pull/60543) being added to `@test_throws`, `@test_warn`, `@test_nowarn`, `@test_logs`, and `@test_deprecated`. Previously only `@test` supported these helpful testing utilities.
 - [Syntax versioning behavior in scripts and the REPL](https://github.com/JuliaLang/julia/pull/60400) is being formalized. This work defines how Julia should handle different syntax versions when code is evaluated in different contexts, important for maintaining compatibility as the language evolves.
 - [A low-level compiler optimization for setjmp](https://github.com/JuliaLang/julia/pull/60320) is being explored using LLVM's `preserve_none` calling convention. This is deep compiler work that could improve exception handling performance.
-- [JuliaSyntax received a performance optimization](https://github.com/JuliaLang/julia/pull/60403) by forcing specialization on a key parsing function, demonstrating how careful attention to compiler specialization decisions can improve performance even in already-fast code.
+- [JuliaSyntax received a performance optimization](https://github.com/JuliaLang/julia/pull/60403) by forcing specialization on a key parsing function. This particular change is fairly in the weeds, but it is very small and well-explained, so pedagogically it is a good example from which to learn about Julia compiler specialization heuristics.
 
 Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
