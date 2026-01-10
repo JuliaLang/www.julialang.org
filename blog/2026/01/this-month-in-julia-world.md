@@ -63,4 +63,4 @@ See also: [JuliaHub corporate blog](https://juliahub.com/blog), [French communit
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)
 
-Disclaimer: An LLM was used to convert the initial human-curated list of interesting links into narrative bullet points. The human editor then used these first bullet points drafts to flesh them out into their current state (occasionaly with only minimal changes, sometimes with significant rewriting). Please be aware of the [Julia Discourse policy on Generative AI content](https://discourse.julialang.org/t/updates-to-the-site-guidelines-especially-regarding-gen-ai/134315).
+Disclaimer: An LLM was used to convert the initial human-curated list of interesting links into narrative bullet points. The human editor then used these first bullet points drafts to flesh them out into their current state (occasionally with only minimal changes, sometimes with significant rewriting). Please be aware of the [Julia Discourse policy on Generative AI content](https://discourse.julialang.org/t/updates-to-the-site-guidelines-especially-regarding-gen-ai/134315).
