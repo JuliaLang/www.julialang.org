@@ -165,6 +165,36 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
+
+  details {
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--link);
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:hover {
+    opacity: 0.8;
+  }
+
+  details p {
+    margin: 10px 0 0;
+    color: var(--muted);
+  }
 </style>
 
 <div class="grid section-grid">
@@ -268,6 +298,11 @@
         <div class="os-separator">Other systems:</div>
       </div>
     </div>
+
+    <details>
+      <summary>Other Julia versions</summary>
+      <p>TODO: Add links to older Julia versions here.</p>
+    </details>
   </section>
 
   <section class="card" aria-labelledby="for-devs">
