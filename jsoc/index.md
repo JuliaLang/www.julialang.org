@@ -37,24 +37,27 @@ The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding 
    </div>
 
    <br>
-   <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" width="100%">
+   <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" width="50%">
    <br>
    <br>
 
 ~~~
 
 The Julia organization is a participant in Google Summer of Code.
-The Julia organization generally fields a large number of contributors (&gt;20) mentored by open source developers and university professors at leading institutions from all around the world.
+It generally fields a large number of contributors, (&gt;20) mentored by open source developers and university professors at leading institutions from all around the world.
 Contributors who are accepted into this prestigious program are paid a summer stipend to contribute to the open source tooling around Julia and its package ecosystem.
 
-If this sounds like something you would be interested in, head over to the [Projects page](/jsoc/projects/) to see a list of all the available projects. Check out the [application guidelines](/jsoc/guidelines/) once you have a project in mind.
+**Get Started**
+
+- Head over to the [**Projects page**](/jsoc/projects/) to see a list of all the available projects.
+- Check out the [**application guidelines**](/jsoc/guidelines/) once you have a project in mind.
 
 You can see previous Summer of Code projects at the [Archive page](/jsoc/archive/) and details around the mentoring process on the [Mentors page](/jsoc/mentors/).
 
 ## Hear from some of our past GSoC contributors
 
 ~~~
-<iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/8lSB666bigw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe height="500" src="https://www.youtube-nocookie.com/embed/8lSB666bigw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
 ~~~
