@@ -29,7 +29,7 @@
 </script>
 ~~~
 
-This will install the latest stable version of Julia, as well as the `juliaup` tool. Start Julia from the command-line by typing `julia`. See `juliaup --help` for how to onfigure installed versions.
+This will install the latest stable version of Julia, as well as the `juliaup` tool. Start Julia from the command-line by typing `julia`. See `juliaup --help` for how to configure installed versions.
 
 If you prefer to use manual installation see the [Manual Downloads](/downloads/manual-downloads/) page.
 
