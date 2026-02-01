@@ -9,6 +9,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.
 * [Ferrite FEM](/jsoc/gsoc/ferrite-fem/) - A modern finite element toolbox in Julia.
 * [Gabs](/jsoc/gsoc/gabs/) - A Gaussian quantum information simulator
+* [Geospatial tooling](/jsoc/gsoc/juliageo) - Geospatial data tooling (for analysis and visualization) in the [JuliaGeo](https://github.com/JuliaGeo) organization
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
 * [Herb](/jsoc/gsoc/herb/) - Let programs write themselves with program synthesis
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
