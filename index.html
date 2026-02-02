@@ -10,6 +10,22 @@
 </head>
 
 <body>
+  <!-- Don't delete this alert when hiding it. Comment it out so it can be re-enabled easily. -->
+  <div class="container-fluid" id="top-alert">
+    <div class="alert alert-dark alert-dismissible mb-0" role="alert">
+
+      <p class="text-center" style="margin-bottom: 0;">
+        <img src="/assets/infra/juliacon_logo.svg" alt="JuliaCon" height="24" style="vertical-align: middle; margin-right: 10px;">
+        <span style="font-size: 15px;">
+          <a href="https://juliacon.org/2026/cfp" style="font-weight: 600;">Submit your proposal</a> for <a href="https://juliacon.org/2026">JuliaCon Global 2026</a> — deadline <strong>February 28, 2026</strong>
+        </span>
+      </p>
+
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
 
   {{insert navbar.html}}
 
@@ -33,17 +49,6 @@
       </p>
     </div>
   </div>
-
-  <div class="container pt-sm-2">
-    <div class="row">
-      <div class="col-lg-4 col-md-3 language-features "><hr/></div>
-      <div class="col-lg-4 col-md-6 language-features section-heading">
-        <h2 class="lead secondary-heading">
-          <a href="https://juliacon.org/2026">JuliaCon Global 2026</a>: Call for proposals is open! Submit by <br> <a href="https://juliacon.org/2026/cfp"><strong>February 28, 2026</strong></a>
-        </h2>
-      </div>
-      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-    </div>
 
   <!--
        Containers: JULIA IN A NUTSHELL
@@ -652,12 +657,18 @@ end
 <script>
   $topAlert = $('#top-alert .alert');
   const alertText = $('#top-alert p').html().trim();
-  const alertClosed = JSON.parse(localStorage.getItem(alertText));
-  if (alertClosed) {
-    $topAlert.alert('close');
+  const alertDismissed = localStorage.getItem(alertText);
+  if (alertDismissed) {
+    const dismissedTime = parseInt(alertDismissed);
+    const oneHourInMs = 60 * 60 * 1000;
+    if (Date.now() - dismissedTime < oneHourInMs) {
+      $topAlert.alert('close');
+    } else {
+      localStorage.removeItem(alertText);
+    }
   }
   $topAlert.on('close.bs.alert', function () {
-    localStorage.setItem(alertText, true);
+    localStorage.setItem(alertText, Date.now().toString());
   });
 </script>
 <script src="/libs/carousel.js"></script>
