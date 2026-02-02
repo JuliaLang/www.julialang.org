@@ -657,12 +657,18 @@ end
 <script>
   $topAlert = $('#top-alert .alert');
   const alertText = $('#top-alert p').html().trim();
-  const alertClosed = JSON.parse(localStorage.getItem(alertText));
-  if (alertClosed) {
-    $topAlert.alert('close');
+  const alertDismissed = localStorage.getItem(alertText);
+  if (alertDismissed) {
+    const dismissedTime = parseInt(alertDismissed);
+    const oneHourInMs = 60 * 60 * 1000;
+    if (Date.now() - dismissedTime < oneHourInMs) {
+      $topAlert.alert('close');
+    } else {
+      localStorage.removeItem(alertText);
+    }
   }
   $topAlert.on('close.bs.alert', function () {
-    localStorage.setItem(alertText, true);
+    localStorage.setItem(alertText, Date.now().toString());
   });
 </script>
 <script src="/libs/carousel.js"></script>
