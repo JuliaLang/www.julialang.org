@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 #main-menu {
   background-color: #fff !important;
   padding: 0;
@@ -293,6 +297,111 @@
   padding: 20px;
 }
 
+.juliacon-section {
+  scroll-margin-top: 80px;
+  position: relative;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.juliacon-world-map {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: none;
+  opacity: 0.25;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.juliacon-section > *:not(.juliacon-world-map) {
+  position: relative;
+  z-index: 1;
+}
+
+.juliacon-description {
+  color: #6c757d;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-container {
+  position: relative;
+  box-shadow:
+    0 0 0 8px #f8f8f8,
+    0 0 0 12px #e0e0e0,
+    0 15px 40px rgba(0, 0, 0, 0.25),
+    inset 0 0 80px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  overflow: visible;
+  margin-bottom: 2rem;
+  background: #1a1a1a;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.video-container > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.15) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.juliacon-links {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.juliacon-links .btn {
+  margin: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .juliacon-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .juliacon-links .btn {
+    display: block;
+    width: 90%;
+    margin: 0.5rem auto;
+  }
+}
+
 .btn {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
@@ -555,9 +664,59 @@ blockquote p {
 #top-alert .alert {
   border-radius: 0;
   margin-bottom: 0.2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
 }
+
+#top-alert .world-map-bg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 120px;
+  opacity: 0.25;
+  z-index: 0;
+  transition: transform 0.3s ease;
+}
+
 #top-alert p {
   margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+#top-alert .juliacon-logo {
+  height: 24px;
+  vertical-align: -5px;
+  margin-right: 16px;
+}
+
+@media (max-width: 768px) {
+  #top-alert .world-map-bg {
+    transform: translateY(-50%) translateX(-100%);
+  }
+  #top-alert .alert {
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    text-align: left;
+  }
+  #top-alert p {
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: left;
+  }
+  #top-alert .juliacon-logo {
+    display: none !important;
+  }
+  #top-alert .watch-videos-link {
+    display: block;
+    margin-top: 0.35rem;
+    padding: 2px 0;
+  }
+  #top-alert .watch-videos-link::before {
+    display: none;
+  }
 }
 
 code, table.benchmarks tbody {
