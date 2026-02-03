@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 #main-menu {
   background-color: #fff !important;
   padding: 0;
