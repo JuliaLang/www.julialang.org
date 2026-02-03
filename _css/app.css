@@ -308,9 +308,9 @@ html {
 
 .juliacon-world-map {
   position: absolute;
-  top: 80%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: 100%;
   max-width: none;
   opacity: 0.25;
