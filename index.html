@@ -13,11 +13,13 @@
   <!-- Don't delete this alert when hiding it. Comment it out so it can be re-enabled easily. -->
   <div class="container-fluid" id="top-alert">
     <div class="alert alert-dark alert-dismissible mb-0" role="alert">
+      <img src="/assets/infra/world_map.png" alt="" class="world-map-bg" aria-hidden="true">
 
-      <p class="text-center" style="margin-bottom: 0;">
-        <img src="/assets/infra/juliacon_logo.svg" alt="JuliaCon" height="24" style="vertical-align: middle; margin-right: 10px;">
+      <p class="text-center" style="margin-bottom: 0; line-height: 1.6;">
+        <img src="/assets/infra/juliacon_logo.svg" alt="JuliaCon" class="juliacon-logo">
         <span style="font-size: 15px;">
-          <a href="https://juliacon.org/2026/cfp" style="font-weight: 600;">Submit your proposal</a> for <a href="https://juliacon.org/2026">JuliaCon Global 2026</a> — deadline <strong>February 28, 2026</strong>
+          <a href="https://juliacon.org/2026/cfp" style="font-weight: 600;">Submit your proposal</a> for <a href="https://juliacon.org/2026">JuliaCon Global 2026</a> — deadline <strong>February 28, 2026.</strong>
+          <a href="#juliacon-videos" class="watch-videos-link">Watch JuliaCon 2025 <span class="arrow-down">↓</span></a>
         </span>
       </p>
 
@@ -315,7 +317,8 @@ end
 <!--
        Containers: JULIA CON 2025
   -->
-  <div class="container">
+  <div class="container juliacon-section" id="juliacon-videos">
+    <img src="/assets/infra/world_map.png" alt="" class="juliacon-world-map" aria-hidden="true">
     <br><br>
     <div class="row">
       <div class="col-lg-4 col-md-3 language-features "><hr/></div>
@@ -325,11 +328,11 @@ end
       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
     </div>
 
-    <div class="row">
-       <div class="col-lg-8 col-md-8 video">
+    <div class="row justify-content-center">
+       <div class="col-lg-8 col-md-10 video">
         <meta name="description" content="Watch what unfolded at JuliaCon 2025 here. The latest developments, optimizations, and features happen right here, at JuliaCon."/>
-
-        <div class="embed-responsive embed-responsive-16by9"><div id="player"></div></div>
+        <p class="text-center juliacon-description">Watch talks from JuliaCon 2025, featuring the latest developments, optimizations, and innovations from the Julia community.</p>
+        <div class="embed-responsive embed-responsive-16by9 video-container"><div id="player"></div></div>
         <script type="text/javascript">
           var tag = document.createElement('script');
           tag.src = "https://www.youtube.com/iframe_api";
@@ -359,10 +362,10 @@ end
     </div>
 
     <div class="row">
-      <div class="col-12 text-center">
-        <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/user/JuliaLanguage">Julia Channel on YouTube</a>
-        <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SZOq4EH_nE_BFulBAKXkf1">JuliaCon 2025 videos</a>
-        <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/playlist?list=PLP8iPy9hna6TJMLEiZZiWAXlyGtOyJSL7">JuliaCon Local Paris 2025 videos</a>
+      <div class="col-12 text-center juliacon-links">
+        <a class="btn btn-primary" href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SZOq4EH_nE_BFulBAKXkf1">JuliaCon 2025 Playlist</a>
+        <a class="btn btn-primary" href="https://www.youtube.com/playlist?list=PLP8iPy9hna6TJMLEiZZiWAXlyGtOyJSL7">JuliaCon Local Paris</a>
+        <a class="btn btn-primary" href="https://www.youtube.com/user/JuliaLanguage">All Julia Videos</a>
       </div>
     </div>
     <br>
