@@ -559,9 +559,59 @@ blockquote p {
 #top-alert .alert {
   border-radius: 0;
   margin-bottom: 0.2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
 }
+
+#top-alert .world-map-bg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 120px;
+  opacity: 0.25;
+  z-index: 0;
+  transition: transform 0.3s ease;
+}
+
 #top-alert p {
   margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+#top-alert .juliacon-logo {
+  height: 24px;
+  vertical-align: -5px;
+  margin-right: 16px;
+}
+
+@media (max-width: 768px) {
+  #top-alert .world-map-bg {
+    transform: translateY(-50%) translateX(-100%);
+  }
+  #top-alert .alert {
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    text-align: left;
+  }
+  #top-alert p {
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: left;
+  }
+  #top-alert .juliacon-logo {
+    display: none !important;
+  }
+  #top-alert .watch-videos-link {
+    display: block;
+    margin-top: 0.35rem;
+    padding: 2px 0;
+  }
+  #top-alert .watch-videos-link::before {
+    display: none;
+  }
 }
 
 code, table.benchmarks tbody {
