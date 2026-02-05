@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2427/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2427/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2427/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2427/css/app.css">
+<link rel="stylesheet" href="/previews/PR2427/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2427/css/fonts.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2427/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2427/css/juliamono.css"></noscript>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2427/libs/buttons.js"></script>
+<script src="/previews/PR2427/libs/clipboard.min.js"></script>
+<script src="/previews/PR2427/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Technical preview: Native GPU programming with CUDAnative.jl</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Technical preview: Native GPU programming with CUDAnative.jl">
+<meta property="og:description" content=" Technical preview: Native GPU programming with CUDAnative.jl | could use Franklin's commands to allow this as variable?... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2427/">
+          <img src="/previews/PR2427/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2427/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2427/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2427/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2427/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2427/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2427/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>Technical preview: Native GPU programming with CUDAnative.jl</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <h3>
+          
+            <span style="font-weight: lighter;">14 March 2017</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;"><a href="https://github.com/maleadt">Tim Besard</a></span>
+          
+        </h3>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a type="application/rss+xml"
+         href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/03/cudanative.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>After 2 years of slow but steady development, we would like to announce the first preview release of native GPU programming capabilities for Julia. You can now write your CUDA kernels in Julia, albeit with some restrictions, making it possible to use Julia&#39;s high-level language features to write high-performance GPU code.</p>
+<p>The programming support we&#39;re demonstrating here today consists of the low-level building blocks, sitting at the same abstraction level of CUDA C. You should be interested if you know &#40;or want to learn&#41; how to program a parallel accelerator like a GPU, while dealing with tricky performance characteristics and communication semantics.</p>
+<p>You can easily add GPU support to your Julia installation &#40;see below for detailed instructions&#41; by installing <a href="https://github.com/JuliaGPU/CUDAnative.jl">CUDAnative.jl</a>. This package is built on top of experimental interfaces to the Julia compiler, and the purpose-built <a href="https://github.com/maleadt/LLVM.jl">LLVM.jl</a> and <a href="https://github.com/JuliaGPU/CUDAdrv.jl">CUDAdrv.jl</a> packages to compile and execute code. All this functionality is brand-new and thoroughly untested, so we need your help and feedback in order to improve and finalize the interfaces before Julia 1.0.</p>
+<div class="franklin-toc"><ol><li><a href="#how_to_get_started">How to get started</a></li><li><a href="#hello_world_vector_addition">&quot;Hello World&quot; Vector addition</a><ol><li><a href="#how_does_it_work">How does it work?</a></li><li><a href="#what_is_missing">What is missing?</a></li></ol></li><li><a href="#another_example_parallel_reduction">Another example: parallel reduction</a></li><li><a href="#try_it_out">Try it out&#33;</a><ol><li><a href="#i_want_to_help">I want to help</a></li></ol></li><li><a href="#thanks">Thanks</a></li></ol></div>
+<h2 id="how_to_get_started"><a href="#how_to_get_started" class="header-anchor">How to get started</a></h2>
+<p>CUDAnative.jl is tightly integrated with the Julia compiler and the underlying LLVM framework, which complicates version and platform compatibility. For this preview we only support Julia 0.6 built from source, on Linux or macOS. Luckily, installing Julia from source is well documented in the <a href="https://github.com/JuliaLang/julia/blob/master/README.md#source-download-and-compilation">main repository&#39;s README</a>. Most of the time it boils down to the following commands:</p>
+<pre><code class="bash hljs">$ git <span class="hljs-built_in">clone</span> https://github.com/JuliaLang/julia.git
+$ <span class="hljs-built_in">cd</span> julia
+$ git checkout v0.6.0-pre.alpha  <span class="hljs-comment"># or any later tag</span>
+$ make                           <span class="hljs-comment"># add -jN for N parallel jobs</span>
+$ ./julia</code></pre>
+<p>From the Julia REPL, installing CUDAnative.jl and its dependencies is just a matter of using the package manager. Do note that you need to be using the NVIDIA binary driver, and have the CUDA toolkit installed.</p>
+<pre><code class="julia hljs">Pkg.add(<span class="hljs-string">&quot;CUDAnative&quot;</span>)
+
+<span class="hljs-comment"># Optional: test the package</span>
+Pkg.test(<span class="hljs-string">&quot;CUDAnative&quot;</span>)</code></pre>
+<p>At this point, you can start writing kernels and execute them on the GPU using CUDAnative&#39;s <code>@cuda</code>&#33; Be sure to check out the <a href="https://github.com/JuliaGPU/CUDAnative.jl/tree/master/examples">examples</a>, or continue reading for a more textual introduction.</p>
+<h2 id="hello_world_vector_addition"><a href="#hello_world_vector_addition" class="header-anchor">&quot;Hello World&quot; Vector addition</a></h2>
+<p>A typical small demo of GPU programming capabilities &#40;think of it as the <em>GPU Hello World</em>&#41; is to perform a vector addition. The snippet below does exactly that using Julia and CUDAnative.jl:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> CUDAdrv, CUDAnative
+
+<span class="hljs-keyword">function</span> kernel_vadd(a, b, c)
+    <span class="hljs-comment"># from CUDAnative: (implicit) CuDeviceArray type,</span>
+    <span class="hljs-comment">#                  and thread/block intrinsics</span>
+    i = (blockIdx().x-<span class="hljs-number">1</span>) * blockDim().x + threadIdx().x
+    c[i] = a[i] + b[i]
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nothing</span>
+<span class="hljs-keyword">end</span>
+
+dev = CuDevice(<span class="hljs-number">0</span>)
+ctx = CuContext(dev)
+
+<span class="hljs-comment"># generate some data</span>
+len = <span class="hljs-number">512</span>
+a = rand(<span class="hljs-built_in">Int</span>, len)
+b = rand(<span class="hljs-built_in">Int</span>, len)
+
+<span class="hljs-comment"># allocate &amp; upload on the GPU</span>
+d_a = CuArray(a)
+d_b = CuArray(b)
+d_c = similar(d_a)
+
+<span class="hljs-comment"># execute and fetch results</span>
+<span class="hljs-meta">@cuda</span> (<span class="hljs-number">1</span>,len) kernel_vadd(d_a, d_b, d_c)    <span class="hljs-comment"># from CUDAnative.jl</span>
+c = <span class="hljs-built_in">Array</span>(d_c)
+
+<span class="hljs-keyword">using</span> Base.Test
+<span class="hljs-meta">@test</span> c == a + b
+
+destroy(ctx)</code></pre>
+<h3 id="how_does_it_work"><a href="#how_does_it_work" class="header-anchor">How does it work?</a></h3>
+<p>Most of this example does not rely on CUDAnative.jl, but uses functionality from CUDAdrv.jl. This package makes it possible to interact with CUDA hardware through user-friendly wrappers of CUDA&#39;s driver API. For example, it provides an array type <code>CuArray</code>, takes care of memory management, integrates with Julia&#39;s garbage collector, implements <code>@elapsed</code> using GPU events, etc. It is meant to form a strong foundation for all interactions with the CUDA driver, and does not require a bleeding-edge version of Julia. A slightly higher-level alternative is available under <a href="https://github.com/JuliaGPU/CUDArt.jl">CUDArt.jl</a>, building on the CUDA runtime API instead, but hasn&#39;t been integrated with CUDAnative.jl yet.</p>
+<p>Meanwhile, CUDAnative.jl takes care of all things related to native GPU programming. The most significant part of that is generating GPU code, and essentially consists of three phases:</p>
+<ol>
+<li><p><strong>interfacing with Julia</strong>: repurpose the compiler to emit GPU-compatible LLVM IR &#40;no calls to CPU libraries, simplified exceptions, ...&#41;</p>
+</li>
+<li><p><strong>interfacing with LLVM</strong> &#40;using LLVM.jl&#41;: optimize the IR, and compile to PTX</p>
+</li>
+<li><p><strong>interfacing with CUDA</strong> &#40;using CUDAdrv.jl&#41;: compile PTX to SASS, and upload it to the GPU</p>
+</li>
+</ol>
+<p>All this is hidden behind the call to <code>@cuda</code>, which generates code to compile our kernel upon first use. Every subsequent invocation will re-use that code, convert and upload arguments<sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup>, and finally launch the kernel. And much like we&#39;re used to on the CPU, you can introspect this code using runtime reflection:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># CUDAnative.jl provides alternatives to the @code_ macros,</span>
+<span class="hljs-comment"># looking past @cuda and converting argument types</span>
+julia&gt; CUDAnative.<span class="hljs-meta">@code_llvm</span> <span class="hljs-meta">@cuda</span> (<span class="hljs-number">1</span>,len) kernel_vadd(d_a, d_b, d_c)
+define void <span class="hljs-meta">@julia_kernel_vadd_68711</span> {
+    [LLVM IR]
+}
+
+<span class="hljs-comment"># ... but you can also invoke without @cuda</span>
+julia&gt; <span class="hljs-meta">@code_ptx</span> kernel_vadd(d_a, d_b, d_c)
+.visible .func julia_kernel_vadd_68729(...) {
+    [PTX CODE]
+}
+
+<span class="hljs-comment"># or manually specify types (this is error prone!)</span>
+julia&gt; code_sass(kernel_vadd, (CuDeviceArray{<span class="hljs-built_in">Float32</span>,<span class="hljs-number">2</span>},CuDeviceArray{<span class="hljs-built_in">Float32</span>,<span class="hljs-number">2</span>},CuDeviceArray{<span class="hljs-built_in">Float32</span>,<span class="hljs-number">2</span>}))
+code <span class="hljs-keyword">for</span> sm_20
+        <span class="hljs-built_in">Function</span> : julia_kernel_vadd_68481
+[SASS CODE]</code></pre>
+<sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup>
+<p>Another important part of CUDAnative.jl are the intrinsics: special functions and macros that provide functionality hard or impossible to express using normal functions. For example, the <code>&#123;thread,block,grid&#125;&#123;Idx,Dim&#125;</code> functions provide access to the size and index of each level of work. Local shared memory can be created using the <code>@cuStaticSharedMem</code> and <code>@cuDynamicSharedMem</code> macros, while <code>@cuprintf</code> can be used to display a formatted string from within a kernel function. Many <a href="https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/src/device/intrinsics.jl#L499-L807">math functions</a> are also available; these should be used instead of similar functions in the standard library.</p>
+<h3 id="what_is_missing"><a href="#what_is_missing" class="header-anchor">What is missing?</a></h3>
+<p>As I&#39;ve already hinted, we don&#39;t support all features of the Julia language yet. For example, it is currently impossible to call any function from the Julia C runtime library &#40;aka. <code>libjulia.so</code>&#41;. This makes dynamic allocations impossible, cripples exceptions, etc. As a result, large parts of the standard library are unavailable for use on the GPU. We will obviously try to improve this in the future, but for now the compiler will error when it encounters unsupported language features:</p>
+<pre><code class="julia hljs">julia&gt; nope() = println(<span class="hljs-number">42</span>)
+nope (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
+
+julia&gt; <span class="hljs-meta">@cuda</span> (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>) nope()
+ERROR: error compiling nope: emit_builtin_call <span class="hljs-keyword">for</span> REPL[<span class="hljs-number">1</span>]:<span class="hljs-number">1</span> requires the runtime language feature, which is disabled</code></pre>
+<p>Another big gap is documentation. Most of CUDAnative.jl mimics or copies <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">CUDA C</a>, while CUDAdrv.jl wraps the <a href="https://docs.nvidia.com/cuda/cuda-driver-api/">CUDA driver API</a>. But we haven&#39;t documented what parts of those APIs are covered, or how the abstractions behave, so you&#39;ll need to refer to the examples and tests in the CUDAnative and CUDAdrv repositories.</p>
+<h2 id="another_example_parallel_reduction"><a href="#another_example_parallel_reduction" class="header-anchor">Another example: parallel reduction</a></h2>
+<p>For a more complex example, let&#39;s have a look at a <a href="https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/reduce.cu">parallel reduction</a> for <a href="https://devblogs.nvidia.com/parallelforall/faster-parallel-reductions-kepler/">Kepler-generation GPUs</a>. This is a typical well-optimized GPU implementation, using fast communication primitives at each level of execution. For example, threads within a warp execute together on a SIMD-like core, and can share data through each other&#39;s registers. At the block level, threads are allocated on the same core but don&#39;t necessarily execute together, which means they need to communicate through core local memory. Another level up, only the GPU&#39;s DRAM memory is a viable communication medium.</p>
+<p>The <a href="https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/reduce.jl">Julia version of this algorithm</a> looks pretty similar to the CUDA original: this is as intended, because CUDAnative.jl is a counterpart to CUDA C. The new version is much more generic though, specializing both on the reduction operator and value type. And just like we&#39;re used to with regular Julia code, the <code>@cuda</code> macro will just-in-time compile and dispatch to the correct specialization based on the argument types.</p>
+<p>So how does it perform? Turns out, pretty good&#33; The chart below compares the performance of both the CUDAnative.jl and CUDA C implementations<sup id="fnref:2"><a href="#fndef:2" class="fnref">[2]</a></sup>, using BenchmarkTools.jl to <a href="https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/benchmark.jl">measure the execution time</a>. The small constant overhead &#40;note the logarithmic scale&#41; is due to a deficiency in argument passing, and will be fixed.</p>
+<p><img src="/previews/PR2427/assets/blog/2017-03-14-cudanative/performance.png" alt="Performance comparison of parallel reduction implementations." /></p>
+<p><table class="fndef" id="fndef:2">
+    <tr>
+        <td class="fndef-backref"><a href="#fnref:2">[2]</a></td>
+        <td class="fndef-content">The measurements include memory transfer time, which is why a CPU implementation was not included &#40;realistically, data would be kept on the GPU as long as possible, making it an unfair comparison&#41;.</td>
+    </tr>
+</table>
+ We also aim to be compatible with tools from the CUDA toolkit. For example, you can <a href="/previews/PR2427/assets/blog/nvvp.png">profile Julia kernels</a> using the NVIDIA Visual Profiler, or use <code>cuda-memcheck</code> to detect out-of-bound accesses</p>
+<pre><code class="julia hljs">$ cuda-memcheck julia examples/oob.jl
+========= CUDA-MEMCHECK
+========= Invalid __global__ write of size <span class="hljs-number">4</span>
+=========     at <span class="hljs-number">0x00000148</span> <span class="hljs-keyword">in</span> examples/oob.jl:<span class="hljs-number">14</span>:julia_memset_66041
+=========     by thread (<span class="hljs-number">10</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>) <span class="hljs-keyword">in</span> block (<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)
+=========     Address <span class="hljs-number">0x1020b000028</span> is out of bounds</code></pre>
+<p> Full debug information <a href="https://github.com/JuliaGPU/CUDAnative.jl/issues/31">is not available</a> yet, so <code>cuda-gdb</code> and friends will not work very well.</p>
+<h2 id="try_it_out"><a href="#try_it_out" class="header-anchor">Try it out&#33;</a></h2>
+<p>If you have experience with GPUs or CUDA development, or maintain a package which could benefit from GPU acceleration, please have a look or try out CUDAnative.jl&#33; We need all the feedback we can get, in order to prioritize development and finalize the infrastructure before Julia hits 1.0.</p>
+<h3 id="i_want_to_help"><a href="#i_want_to_help" class="header-anchor">I want to help</a></h3>
+<p>Even better&#33; There&#39;s many ways to contribute, for example by looking at the issues trackers of the individual packages making up this support:</p>
+<ul>
+<li><p><a href="https://github.com/JuliaGPU/CUDAnative.jl/issues">CUDAnative.jl</a></p>
+</li>
+<li><p><a href="https://github.com/JuliaGPU/CUDAdrv.jl/issues">CUDAdrv.jl</a></p>
+</li>
+<li><p><a href="https://github.com/maleadt/LLVM.jl/issues">LLVM.jl</a></p>
+</li>
+</ul>
+<p>Each of those packages are also in perpetual need of better API coverage, and documentation to cover and explain what has already been implemented.</p>
+<h2 id="thanks"><a href="#thanks" class="header-anchor">Thanks</a></h2>
+<p>This work would not have been possible without Viral Shah and Alan Edelman arranging my stay at MIT. I&#39;d like to thank everybody at Julia Central and around, it has been a blast&#33; I&#39;m also grateful to Bjorn De Sutter, and IWT Vlaanderen, for supporting my time at Ghent University.</p>
+<table class="fndef" id="fndef:1">
+    <tr>
+        <td class="fndef-backref"><a href="#fnref:1">[1]</a></td>
+        <td class="fndef-content">See the <a href="https://github.com/JuliaGPU/CUDAnative.jl/blob/5f6f53c58c909d00719191fbaf5a3a88cbea4ac9/test/perf/launch_overhead/README.md">README</a> for a note on how expensive this currently is.</td>
+    </tr>
+</table>
+
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/previews/PR2427/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2427/project">About</a></li>
+        <li><a href="/previews/PR2427/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2427/governance/">Governance</a></li>
+        <li><a href="/previews/PR2427/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2427/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2427/downloads">Install</a></li>
+        <li><a href="/previews/PR2427/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2427/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2427/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2427/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2427/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2427/community/">Community</a></li>
+        <li><a href="/previews/PR2427/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2427/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2427/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2427/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2427/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2427/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2025 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2427/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2427/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2427/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/previews/PR2427/libs/groups.js"></script>
+    <script src="/previews/PR2427/libs/map.js"></script>
+  </body>
+</html>

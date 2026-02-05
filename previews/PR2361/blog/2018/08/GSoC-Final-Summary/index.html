@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2361/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2361/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2361/css/app.css">
+<link rel="stylesheet" href="/previews/PR2361/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2361/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2361/libs/buttons.js"></script>
+<script src="/previews/PR2361/libs/clipboard.min.js"></script>
+<script src="/previews/PR2361/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>GSoC 2018: Reinforcement Learning and Generative models using Flux</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="GSoC 2018: Reinforcement Learning and Generative models using Flux">
+<meta property="og:description" content=" GSoC 2018: Reinforcement Learning and Generative models using Flux | In this post I'm going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of Flux.jl (https://github.com/FluxML), a machine learning library written in Julia (https://github.com/JuliaLang/julia). My project cover... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2361/">
+          <img src="/previews/PR2361/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2361/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2361/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2361/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2361/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2361/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2361/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>GSoC 2018: Reinforcement Learning and Generative models using Flux
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 6 August 2018 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"> <a href="https://github.com/tejank10">Tejan Karmali</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2018/08/GSoC-Final-Summary.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Hello, world&#33;</p>
+<p>In this post I&#39;m going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of <a href="https://github.com/FluxML">Flux.jl</a>, a machine learning library written in <a href="https://github.com/JuliaLang/julia">Julia</a>. My project covered Reinforcement Learning and computer vision models.</p>
+<p>The project is spread over these 4 codebases</p>
+<ol>
+<li><p><a href="https://github.com/tejank10/Flux-baselines">Flux-baselines</a></p>
+</li>
+<li><p><a href="https://github.com/tejank10/AlphaGo.jl">AlphaGo.jl</a></p>
+</li>
+<li><p><a href="https://github.com/tejank10/model-zoo/tree/GAN">GAN models</a></p>
+</li>
+<li><p><a href="https://github.com/tejank10/model-zoo/tree/DNI">DNI model</a></p>
+</li>
+</ol>
+<p>In the process, I could achieve most of my targets. I had to skip a few of them, and also made some unplanned models. Below, I discuss about these issues repository wise.</p>
+<h2 id="flux_baselines"><a href="#flux_baselines" class="header-anchor"><ol>
+<li><p>Flux Baselines</p>
+</li>
+</ol>
+</a></h2>
+<p><a href="https://github.com/tejank10/Flux-baselines">Flux-baselines</a> is a collection of various Deep Reinforcement Learning models. This includes Deep Q Networks, Actor-Critic and DDPG.</p>
+<p>Basic structure of an RL problem is as folows: There is an environment, let&#39;s say game of pong is our environment. The environment may contain many objects which interact with each other. In pong there are 3 objects: a ball and 2 paddles. The environment has a <em>state</em>. It is the current situation present in the environment in terms of various features of the objects in it. These features could be position, velocity, color etc. pertaining to the objects in the it. An actions needs to be chosed to play a move in the environment and obtain the next state. Actions will be chosen till the game ends. An RL model basically finds the actions that needs to be chosen.</p>
+<p>Over past few years, deep q learning has gained  lot of popularity. After the paper by Deep Mind about the Human level control sing reinforcement learning, there was no looking back. It combined the advanced in RL as well as deep learning to get an AI player which had superhuman performance. I made the basic <a href="https://github.com/tejank10/Flux-baselines/blob/master/dqn/dqn.jl">DQN</a> and <a href="https://github.com/tejank10/Flux-baselines/blob/master/dqn/double-dqn.jl">Double DQN</a> during the pre-GSoC phase, followed by <a href="https://github.com/tejank10/Flux-baselines/blob/master/dqn/duel-dqn.jl">Duel DQN</a> in the first week on GSoC.</p>
+<p>The idea used in the <a href="https://github.com/tejank10/Flux-baselines/blob/master/actor-critic/a2c.jl">A2C model</a> is different from the one in DQN. A2C falls in the class of &quot;Actor-Critic&quot; models. In AC models we have 2 neural networks, policy network and value network. policy network accepts the state of the game and returns a probability distribution over the action space. Value Nework takes the state and action chosen using policy network as input and determines how suitable is that action for that state.</p>
+<p><a href="https://github.com/tejank10/Flux-baselines/tree/master/ddpg">DDPG</a> is particularly useful when the actions which needs to be chosed are spread over a continuous space. one possible solution you may have in mind is that what if we discretize the action space? If we discretize it narrowly we end up with a large number of actions. If we discretize it sparsely then we lose important data.</p>
+
+<img src="https://raw.githubusercontent.com/tejank10/tejank10.github.io/master/assets/ddpg.png" alt="DDPG"/>
+
+<p>DDPG: Score vs Episodes</p>
+<p>Some of these models have been deployed on Flux&#39;s <a href="https://fluxml.ai/experiments">website</a>. <a href="https://fluxml.ai/experiments/cartPole/">CartPole example</a> has been trained on Deep Q Networks. An Atari-Pong example will also be added in a few days. It is trained on Duel-DQN. <a href="https://www.youtube.com/watch?v&#61;L3pqMUDVrT0">Here</a> is a demo of Pong trained using Flux.</p>
+<h4 id="targets_achieved"><a href="#targets_achieved" class="header-anchor">Targets achieved</a></h4>
+<ol>
+<li><p><a href="https://github.com/tejank10/Flux-baselines/blob/master/actor-critic/a2c.jl">Advantage Actor-Critic</a></p>
+</li>
+<li><p><a href="https://github.com/tejank10/Flux-baselines/blob/master/dqn/duel-dqn.jl">Duel DQN</a></p>
+</li>
+</ol>
+<h4 id="extra_mile"><a href="#extra_mile" class="header-anchor">Extra mile</a></h4>
+<ol>
+<li><p><a href="https://github.com/tejank10/Flux-baselines/tree/master/ddpg">DDPG</a></p>
+</li>
+<li><p><a href="https://github.com/tejank10/Flux-baselines/blob/master/dqn/prioritized-replay-dqn.jl">Prioritized DQN</a></p>
+</li>
+</ol>
+<h4 id="future_work"><a href="#future_work" class="header-anchor">Future Work</a></h4>
+<ol>
+<li><p>Add more variety of models, especially the ones which have come up in the last 18 months.</p>
+</li>
+<li><p>Create an interface to easily train and test any environment from <a href="https://github.com/JuliaML/OpenAIGym.jl">OpenAIGym.jl</a>.</p>
+</li>
+</ol>
+<h2 id="ol_start2_alphagojl"><a href="#ol_start2_alphagojl" class="header-anchor"><ol start="2">
+<li><p>AlphaGo.jl</p>
+</li>
+</ol>
+</a></h2>
+<p><a href="https://github.com/tejank10/AlphaGo.jl">AlphaGo.jl</a></p>
+<p>This mini-project of the GSoC phase 2 was the most challenging part. AlphaGo Zero is a breakthrough AI by Google DeepMind. It is an AI to play Go, which is considered to be one of most challeenging games in the world, mainly  due to number of states it can lead to. AlphaGo Zero defeated the best Go player in the world. AlphaFo.jl&#39;s objective is achieve the results produced by AlphaGo Zero algorithm over Go, and achieve similar results on any zero-sum game.</p>
+<p>Now, we have a package to train AlphaGo zero model in Julia&#33; And it is really simple to train the model. We just have to pass the training parameters, the environment on which we want to train the model and then play with it. For more info in the AlphaGo.jl refer to the <a href="https://tejank10.github.io/jekyll/update/2018/07/08/GSoC-Phase-2.html">blog post</a>.</p>
+<h4 id="targets_achieved__2"><a href="#targets_achieved__2" class="header-anchor">Targets achieved</a></h4>
+<ol>
+<li><p>Game of Go</p>
+</li>
+<li><p>Monte Carlo tree search</p>
+</li>
+</ol>
+<h4 id="targets_couldnt_achieve"><a href="#targets_couldnt_achieve" class="header-anchor">Targets couldn&#39;t achieve</a></h4>
+<ol>
+<li><p>Couldn&#39;t train the model well</p>
+</li>
+</ol>
+<h4 id="extra_mile__2"><a href="#extra_mile__2" class="header-anchor">Extra mile</a></h4>
+<ol>
+<li><p>Game of Gomoku to test the algorithm &#40;since it is easier game&#41;</p>
+</li>
+</ol>
+<h4 id="future_work__2"><a href="#future_work__2" class="header-anchor">Future Work</a></h4>
+<ol>
+<li><p>Train a model on any game</p>
+</li>
+<li><p>AlphaChess</p>
+</li>
+</ol>
+<h2 id="ol_start3_generative_adversarial_networks"><a href="#ol_start3_generative_adversarial_networks" class="header-anchor"><ol start="3">
+<li><p>Generative Adversarial Networks</p>
+</li>
+</ol>
+</a></h2>
+<p><a href="https://github.com/tejank10/model-zoo/tree/GAN/vision/mnist">Generative Adversarial Networks</a></p>
+<p>GANs have been extremely suceessful in learning the underlying representation of any data. By doing so, it can reproduce some fake data. For example the GANs trained on MNIST Human handwritten digits dataset can produce some fake images which look very similar to those in the MNIST. These neural nets have great application in image editing. It can remove certain features from the image, add some new ones; depending on the dataset. The GANs contain of two networks: generator and discriminator. Generator&#39;s objective os to generate fake images awhereas the discriminator&#39;s objective is to differentiate between the fake images generated by the generator and the real images in the  dataset.</p>
+
+<img src="https://raw.githubusercontent.com/tejank10/tejank10.github.io/master/assets/lsgan.gif" alt="LSGAN" width="170px"/>
+<img src="https://raw.githubusercontent.com/tejank10/tejank10.github.io/master/assets/dcgan.gif" alt="DCGAN" width="170px"/>
+<img src="https://raw.githubusercontent.com/tejank10/tejank10.github.io/master/assets/giphy.gif" alt="WGAN" width="170px"/>
+<img src="https://raw.githubusercontent.com/tejank10/tejank10.github.io/master/assets/made.gif" alt="MADE" width="170px"/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LSGAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DCGAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WGAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MADE
+
+<h4 id="targets_achieved__3"><a href="#targets_achieved__3" class="header-anchor">Targets achieved</a></h4>
+<ol>
+<li><p><a href="https://github.com/FluxML/Flux.jl/pull/311"><code>ConvTranspose</code> layer</a></p>
+</li>
+<li><p><a href="https://github.com/tejank10/model-zoo/blob/GAN/vision/mnist/dcgan.jl">DCGAN</a></p>
+</li>
+</ol>
+<h4 id="extra_mile__3"><a href="#extra_mile__3" class="header-anchor">Extra mile</a></h4>
+<ol>
+<li><p><a href="https://github.com/tejank10/model-zoo/blob/GAN/vision/mnist/lsgan.jl">LSGAN</a></p>
+</li>
+<li><p><a href="https://github.com/tejank10/model-zoo/blob/GAN/vision/mnist/wgan.jl">WGAN</a></p>
+</li>
+</ol>
+<h4 id="future_work__3"><a href="#future_work__3" class="header-anchor">Future Work</a></h4>
+<ol>
+<li><p>More models of GAN like infoGAN, BEGAN, CycleGAN</p>
+</li>
+<li><p>Some cool animations with GANs</p>
+</li>
+<li><p>Data pipeline for training and producing images with dataset, and GAN type as input.</p>
+</li>
+</ol>
+<h2 id="ol_start4_decoupled_neural_interface"><a href="#ol_start4_decoupled_neural_interface" class="header-anchor"><ol start="4">
+<li><p>Decoupled Neural Interface</p>
+</li>
+</ol>
+</a></h2>
+<p><a href="https://github.com/tejank10/model-zoo/tree/DNI/vision/mnist/dni.jl">Decoupled Neural Interface</a> is a new technique to train the model. It does not use the backpropagation from the output layer right upto the input layer. Instead it uses a trick to &quot;estimate&quot; the gradient. It has a small linear layer neural network to predict the gradients, instead of running the backpropagation rather than finding the true gradients. The advantage of such a model is that it can be parallelized. This technique results in slight dip in the accuracy, but we have improved speed if we have parallelized the layers in the network.</p>
+
+<img src="https://raw.githubusercontent.com/tejank10/tejank10.github.io/master/assets/loss.png" alt="loss" width="362.5px"/>
+<img src="https://raw.githubusercontent.com/tejank10/tejank10.github.io/master/assets/acc.png" alt="loss" width="362.5px"/>
+
+<h4 id="targets_achieved__4"><a href="#targets_achieved__4" class="header-anchor">Targets achieved</a></h4>
+<ul>
+<li><p><a href="https://github.com/tejank10/model-zoo/tree/DNI/vision/mnist/dni.jl">DNI model</a></p>
+</li>
+</ul>
+<h2 id="conclusion"><a href="#conclusion" class="header-anchor">Conclusion</a></h2>
+<p>During the past three months, I learn a lot about Reinforcement Learning and AlphaGo in particular. I experienced training an RL model for days, finally saw it working well&#33; I encountered the issues faced in training the models and learnt to overcome them. All in all, as an aspiring ML engineer these three months have been the most productive months. I am glad that I could meet most of my objectives. I have worked on some extra models to make up for the objectives I could not meet.</p>
+<h2 id="acknowledgements"><a href="#acknowledgements" class="header-anchor">Acknowledgements</a></h2>
+<p>I really would like to thank my mentor <a href="https://github.com/MikeInnes">Mike Innes</a> for guiding me throughout the project, and <a href="https://github.com/jekbradbury">James Bradbury</a> for his valuable inputs for improving the code in the Reinforcement Learning models. I also would like to thank <a href="https://github.com/roboneet">Neethu Mariya Joy</a> for deploying the trained models on the web. And last but not the least, The Julia Project and NumFOCUS: for sponsoring me and all other JSoC students for JuliaCon&#39;18 London.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2361/project">About</a></li>
+        <li><a href="/previews/PR2361/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2361/governance/">Governance</a></li>
+        <li><a href="/previews/PR2361/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2361/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2361/install/">Install</a></li>
+        <li><a href="/previews/PR2361/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2361/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2361/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2361/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2361/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2361/community/">Community</a></li>
+        <li><a href="/previews/PR2361/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2361/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2361/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2361/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2361/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2361/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2361/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2361/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2361/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/previews/PR2361/libs/groups.js"></script>
+    <script src="/previews/PR2361/libs/map.js"></script>
+  </body>
+</html>
