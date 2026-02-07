@@ -2,7 +2,30 @@
 <div class="code-carousel-container">
   <button class="carousel-arrow carousel-arrow-left" aria-label="Previous slide">&#8249;</button>
   <div class="code-carousel">
-      <!-- Slide 1: Multiple Dispatch -->
+      <!-- Slide 1: Straightforward syntax -->
+      <!-- Specifically, shows how to define and call two methods for one generic function -->
+      <div class="carousel-slide active">
+        <div class="code-showcase julia-blue">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Straightforward syntax</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $(x)!"</span>
+
+<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Number</span>) = <span class="hljs-string">"Nice to meet you, number $(x)!"</span>
+
+<span class="repl-prompt">julia> </span>greet(<span class="hljs-string">"world"</span>)
+<span class="hljs-string">"Hello, world!"</span>
+
+<span class="repl-prompt">julia> </span>greet(<span class="hljs-number">42</span>)
+<span class="hljs-string">"Nice to meet you, number 42!"</span>
+          </code></pre>
+        </div>
+      </div>
+      <!-- Slide 2: Multiple Dispatch -->
+      <!-- Taken from https://www.youtube.com/watch?v=kc9HwsxE1OY, timestamp 7:47 -->
       <div class="carousel-slide active">
         <div class="code-showcase julia-blue">
           <div class="code-header">
@@ -11,15 +34,24 @@
             <span class="code-dot green"></span>
             <span class="code-title">Multiple Dispatch</span>
           </div>
-          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $(x)!"</span>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> <span class="hljs-built_in">Dog</span> <span class="hljs-keyword">end</span>
 
-<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Number</span>) = <span class="hljs-string">"Hello, #$(x)!"</span>
+<span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> <span class="hljs-built_in">Cat</span> <span class="hljs-keyword">end</span>
 
-<span class="repl-prompt">julia> </span>greet(<span class="hljs-string">"world"</span>), greet(<span class="hljs-number">42</span>)
-(<span class="hljs-string">"Hello, world!"</span>, <span class="hljs-string">"Hello, #42!"</span>)</code></pre>
+<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Dog</span>, y::<span class="hljs-built_in">Dog</span>) = <span class="hljs-string">"sniffs"</span>
+
+<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Dog</span>, y::<span class="hljs-built_in">Cat</span>) = <span class="hljs-string">"chases"</span>
+
+<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Cat</span>, y::<span class="hljs-built_in">Dog</span>) = <span class="hljs-string">"hisses"</span>
+
+<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Cat</span>, y::<span class="hljs-built_in">Cat</span>) = <span class="hljs-string">"slinks"</span>
+
+<span class="repl-prompt">julia> </span>greet(<span class="hljs-built_in">Dog</span>(), <span class="hljs-built_in">Cat</span>())
+<span class="hljs-string">"chases"</span>
+          </code></pre>
         </div>
       </div>
-      <!-- Slide 2: Display Customization -->
+      <!-- Slide 3: Display Customization -->
       <div class="carousel-slide">
         <div class="code-showcase julia-red">
           <div class="code-header">
@@ -38,7 +70,7 @@
 🥜 Julia 🥜</code></pre>
         </div>
       </div>
-      <!-- Slide 3: Unicode Support -->
+      <!-- Slide 4: Unicode Support -->
       <div class="carousel-slide">
         <div class="code-showcase julia-green">
           <div class="code-header">
@@ -57,7 +89,7 @@
 <span class="hljs-number">9.0</span></code></pre>
         </div>
       </div>
-      <!-- Slide 4: Comprehensions -->
+      <!-- Slide 5: Comprehensions -->
       <div class="carousel-slide">
         <div class="code-showcase julia-purple">
           <div class="code-header">
@@ -83,7 +115,7 @@ Dict{<span class="hljs-built_in">Char</span>, <span class="hljs-built_in">Int64<
   <span class="hljs-string">'l'</span> => <span class="hljs-number">3</span></code></pre>
         </div>
       </div>
-      <!-- Slide 5: Broadcasting -->
+      <!-- Slide 6: Broadcasting -->
       <div class="carousel-slide">
         <div class="code-showcase julia-red">
           <div class="code-header">
@@ -103,7 +135,7 @@ Dict{<span class="hljs-built_in">Char</span>, <span class="hljs-built_in">Int64<
  <span class="hljs-number">1.14112</span>  <span class="hljs-number">0.243198</span></code></pre>
         </div>
       </div>
-      <!-- Slide 6: Piping & Composition -->
+      <!-- Slide 7: Piping & Composition -->
       <div class="carousel-slide">
         <div class="code-showcase julia-blue">
           <div class="code-header">
@@ -122,7 +154,7 @@ Dict{<span class="hljs-built_in">Char</span>, <span class="hljs-built_in">Int64<
 [<span class="hljs-number">2.718</span>, <span class="hljs-number">7.389</span>, <span class="hljs-number">20.086</span>]</code></pre>
         </div>
       </div>
-      <!-- Slide 7: Destructuring -->
+      <!-- Slide 8: Destructuring -->
       <div class="carousel-slide">
         <div class="code-showcase julia-green">
           <div class="code-header">
@@ -142,7 +174,7 @@ Dict{<span class="hljs-built_in">Char</span>, <span class="hljs-built_in">Int64<
 (<span class="hljs-string">"first"</span>, [<span class="hljs-string">"second"</span>, <span class="hljs-string">"third"</span>])</code></pre>
         </div>
       </div>
-      <!-- Slide 8: Macros -->
+      <!-- Slide 9: Macros -->
       <div class="carousel-slide">
         <div class="code-showcase julia-purple">
           <div class="code-header">
@@ -161,7 +193,7 @@ Expr
 <span class="hljs-number">7</span></code></pre>
         </div>
       </div>
-      <!-- Slide 9: Package Installation -->
+      <!-- Slide 10: Package Installation -->
       <div class="carousel-slide">
         <div class="code-showcase julia-blue">
           <div class="code-header">
@@ -185,7 +217,7 @@ Expr
    2 │ Bob        30</code></pre>
         </div>
       </div>
-      <!-- Slide 10: Function Arguments -->
+      <!-- Slide 11: Function Arguments -->
       <div class="carousel-slide">
         <div class="code-showcase julia-purple">
           <div class="code-header">
@@ -205,7 +237,7 @@ Expr
 <span class="hljs-string">"Hi, world."</span></code></pre>
         </div>
       </div>
-      <!-- Slide 11: Threading -->
+      <!-- Slide 12: Threading -->
       <div class="carousel-slide">
         <div class="code-showcase julia-red">
           <div class="code-header">
@@ -227,7 +259,7 @@ Expr
 <span class="hljs-number">8</span></code></pre>
         </div>
       </div>
-      <!-- Slide 12: REPL Modes -->
+      <!-- Slide 13: REPL Modes -->
       <div class="carousel-slide">
         <div class="code-showcase julia-green">
           <div class="code-header">
@@ -250,7 +282,7 @@ main.jl  test.jl  utils.jl
   sum(f, itr) – Sum the results of calling f on each element of itr.</code></pre>
         </div>
       </div>
-      <!-- Slide 13: Introspection -->
+      <!-- Slide 14: Introspection -->
       <div class="carousel-slide">
         <div class="code-showcase julia-purple">
           <div class="code-header">
