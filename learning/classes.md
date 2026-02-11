@@ -166,6 +166,8 @@ If you know of other classes using Julia for teaching, please consider submittin
    * DIIIO06, Advanced linear optimization, Spring 2020 (Diego Morán)
 * Universidad Alberto Hurtado, Chile
     * [Métodos Cuantitativos, Introducción a la Programación con Julia](https://mauriciotejada.com/programacionjulia), Magister en Economía (Prof. [Mauricio Tejada](https://mauriciotejada.com))
+* Universidade de Brasília
+   * IQD0003 - Introduction to programming (Prof. Alexandre Umpierre) Fall 2022, Spring 2023, Fall 2023
 * Université Bretagne Sud
     * ANR2201 - Result Analysis (Prof. Marc Sevaux), since 2018
     * INOE301 - Scheduling (Dr. Alexandru Olteanu), since 2018
