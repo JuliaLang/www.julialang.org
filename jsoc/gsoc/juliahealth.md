@@ -150,7 +150,122 @@ Any cross-validation with PyRadiomics is purely for benchmarking purposes.
 - Lambin, P., et al. "Radiomics: extracting more information from medical images using advanced feature analysis." European Journal of Cancer, 2012.
 
 
+# KLAY-Core: High-Performance Neurosymbolic Constraint Layers for Trustworthy Medical AI
 
+**Difficulty:** Hard / Ambitious  
+**Duration:** 350 hours (22 weeks)  
+**Mentor:** Jakub Mitura  
+**Technology Stack:** Julia, Lux.jl, NNlib.jl, ChainRules.jl, LogExpFunctions.jl
+
+## Description
+
+Deep learning in medical diagnostics suffers from a well-known trust gap. Models often behave as black boxes and may produce physiologically implausible predictions — for example simultaneously predicting cachexia and obesity. This lack of interpretability and clinical consistency limits adoption of AI systems in healthcare environments.
+
+Neurosymbolic artificial intelligence (NeSy) addresses this limitation by integrating structured logical knowledge directly into neural models. However, many existing approaches struggle with numerical stability, scalability, and GPU efficiency when deployed in realistic clinical settings.
+
+KLAY-Core is a high-performance logical constraint layer designed for Lux.jl. It enables domain experts and developers to encode clinical knowledge as differentiable logical constraints integrated directly into neural network architectures.
+
+Using the Knowledge Layers (KLAY) architecture, the project introduces static linearization of logical circuits (d-DNNF) into optimized tensor buffers. Circuit evaluation is reduced to sequences of NNlib.scatter operations and tensor indexing, significantly improving GPU parallel efficiency while ensuring physiologically consistent predictions.
+
+## Main Goals and Implementation
+
+### Medical Logic Compiler and d-DNNF Bridge (Julia-Native)
+
+The project follows a "compile once, evaluate often" paradigm for efficient integration of symbolic knowledge into neural models.
+
+**Yggdrasil and JLL Integration**
+
+High-performance symbolic compilers (e.g., d4, SDD) will be distributed as precompiled binaries via Yggdrasil and JLL packages. This guarantees a fully Julia-native workflow without requiring Python environments or local C++ toolchain configuration.
+
+**Level-Order Flattening**
+
+A dedicated algorithm groups logical graph nodes into layers based on structural height. This converts hierarchical logical circuits into flat GPU-friendly buffers, eliminating recursion and enabling efficient parallel execution.
+
+**Solving the Derivative Bottleneck**
+
+Custom adjoints (rrule) implemented using ChainRules.jl ensure backward-pass efficiency comparable to standard neural layers while avoiding excessive memory overhead typical of recursive automatic differentiation.
+
+### User Interface – The @clinical_rule Macro
+
+To reduce usability barriers for clinicians and developers, the package introduces a domain-specific DSL macro supporting full Boolean logic and weighted relationships where w ∈ [0,1].
+
+Unlike Python-based frameworks such as Dolphin, which rely on object-oriented logic definitions, KLAY-Core offers a declarative macro interface integrated directly with the Julia compiler. This improves readability, auditability, and interdisciplinary collaboration between clinicians and AI engineers.
+
+**Supported Logical Operators:**
+- AND (`&`) — logical conjunction
+- OR (`|`) — logical alternative
+- NOT (`!`) — logical negation
+- Implication (`->`) — logical implication
+
+**Constraint Types:**
+
+*Hard Constraints (w = 1.0):* Strict logical rules ensuring physiological consistency.
+
+*Soft Constraints (w < 1.0):* Probabilistic correlations or clinical risk relationships.
+
+### KLAY-Core Engine for Lux.jl
+
+**Explicit Layer Design**
+
+Implementation of an AbstractExplicitLayer where circuit structure is stored in the layer state while constraint strengths remain trainable parameters. This supports determinism, transparency, and reproducibility required in medical AI systems.
+
+**Log-Space Numerical Stability**
+
+Logical gates are evaluated in logarithmic space using logsumexp (OR) and summation (AND), preventing numerical instability and vanishing-gradient effects.
+
+## Comparison with Existing Solutions
+
+| Feature | KLAY-Core (Julia) | Dolphin (Python/PyTorch) | DeepProbLog / LTN | Juice.jl (Julia) |
+|---|---|---|---|---|
+| GPU Parallelism | Native scatter-reduce | Standard PyTorch ops | Mostly sequential | Limited optimized kernels |
+| Integration | Native Lux.jl | Wrapper-style integration | Python–C++ bridges | Independent library |
+| Ecosystem | JLL / Yggdrasil | Pip / Conda environments | Mixed dependencies | Native Julia ecosystem |
+| Interface | High-level DSL macro | Python API definitions | Logic-heavy syntax | Low-level graph APIs |
+| Gradient Stability | Custom rrule | Standard AD | Potential instability | Variable stability |
+
+**Competitive Edge:** KLAY-Core combines Julia's performance, macro system, and binary artifact ecosystem with a modern explicit deep learning framework (Lux.jl). Rather than functioning as an external wrapper, it becomes an integral neural network component, simplifying deployment, improving reproducibility, and reducing operational complexity in clinical AI environments.
+
+## Project Timeline (22 Weeks)
+
+- **Phase 1 (Weeks 1–4):** Development of the @clinical_rule DSL and Yggdrasil/JLL integration.
+- **Phase 2 (Weeks 5–9):** Flattening logical circuits into recursion-free GPU buffers.
+- **Phase 3 (Weeks 10–13):** Custom rrule differentiation and log-space stability optimization.
+- **Phase 4 (Weeks 14–17):** Validation using the Heart Failure Prediction Dataset with focus on: Accuracy, Brier Score, Expected Calibration Error (ECE), AUROC, and Constraint violation rates.
+- **Phase 5 (Weeks 18–20):** Performance benchmarking against Dolphin, DeepProbLog, and Juice.jl.
+- **Phase 6 (Weeks 21–22):** Final documentation, testing, and publication in the Julia General Registry.
+
+## References
+- Alam, S., et al. (2026). Constraint-aware neurosymbolic uncertainty quantification with Bayesian deep learning for scientific discovery. arXiv preprint (arXiv:2601.12442).
+- Chicco, D., & Jurman, G. (2020). Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making, 20, 16.
+- Dang, M., et al. (2021). JUICE: A Julia package for logic and probabilistic circuits. In Proceedings of the AAAI Conference on Artificial Intelligence, 35(14).
+- Fedesoriano. (2021). Heart failure prediction dataset [Dataset]. Kaggle.
+- Lagniez, J.-M., & Marquis, P. (2017). An improved decision-DNNF compiler (d4). In Proceedings of the 26th International Joint Conference on Artificial Intelligence (IJCAI 2017).
+- Maene, J., & Derkinderen, V. (2024). KLAY: Accelerating arithmetic circuits for neurosymbolic AI. arXiv preprint (arXiv:2410.11415).
+- Manhaeve, R., Demeester, T., Rocktäschel, T., & De Raedt, L. (2018). DeepProbLog: Neural probabilistic logic programming. In Advances in Neural Information Processing Systems (NeurIPS 2018).
+- Pal, A. (2023). Lux: Explicit parameterization of deep neural networks in Julia [Software]. Zenodo.
+
+
+# Capsule Networks for 3D Medical Imaging Segmentation in Julia
+
+**Difficulty:** Hard  
+**Duration:** 350 hours  
+**Mentor:** Jakub Mitura  
+**Technologies:** Julia, Lux.jl, MedPipe3D.jl, KernelAbstractions.jl, CUDA.jl, MLUtils.jl, MoonCake.jl
+
+## Deliverables
+
+- 3D Capsule Network layer primitives (dynamic routing, locally-constrained routing) as reusable Lux.jl modules
+- Two full architectures: 3D SegCaps and 3D SegCaps-UNet hybrid
+- Custom GPU-accelerated routing kernels via KernelAbstractions.jl
+- End-to-end training/evaluation pipeline integrated with MedPipe3D.jl
+- Comprehensive benchmarks (Dice, HD95, cross-task transfer) across all 10 Medical Segmentation Decathlon tasks vs. 3D U-Net baseline
+- Documentation, pretrained weights, and reproducible experiment scripts contributed to JuliaHealth
+
+## Description
+
+This project implements 3D Capsule Network (CapsNet) architectures within the Julia ecosystem using Lux.jl and MedPipe3D.jl for volumetric medical image segmentation. The core work involves building a SegCaps (Segmentation Capsules) layer abstraction supporting dynamic routing-by-agreement, extending it to 3D convolution capsules with equivariance-preserving pose matrices. We will implement two key variants: (1) a 3D SegCaps U-Net hybrid that replaces encoder/decoder conv blocks with capsule layers while retaining skip connections, and (2) an efficient locally-constrained routing variant to manage the quadratic computational cost of full capsule coupling in volumetric data. Custom CUDA kernels via KernelAbstractions.jl will accelerate the routing procedure, and the full pipeline—preprocessing, training, and evaluation—will integrate with MedPipe3D.jl's NIFTI/DICOM I/O and metric infrastructure.
+
+The central hypothesis is that capsule networks' explicit encoding of part-whole spatial hierarchies and viewpoint-equivariant pose vectors yields superior cross-domain generalization compared to standard CNNs, which rely on max-pooling and thus discard spatial relationships. We will rigorously benchmark 3D SegCaps against a 3D U-Net baseline across all 10 tasks of the Medical Segmentation Decathlon (covering CT and MRI across brain, liver, lung, pancreas, etc.), measuring not only per-task Dice/HD95 but critically cross-task transfer: models pretrained on one organ/modality and fine-tuned on another. We expect capsule routing to better preserve geometric structure across domains, improving few-shot adaptation. All code, pretrained weights, and reproducible experiment scripts will be contributed to the JuliaHealth ecosystem under MIT license.
 
 
 # Enhancing MedPipe3D: Building a Comprehensive Medical Imaging Pipeline in Julia
@@ -161,7 +276,7 @@ MedPipe3D was created to improve integration between other parts of the small ec
 **Mentor:** Jakub Mitura [email: jakub.mitura14@gmail.com]
 
 ## Project Difficulty and Timeline
-**Difficulty:** Medium  
+**Difficulty:** Hard  
 **Duration:** 12 weeks
 
 ## Required Skills and Background
@@ -270,7 +385,3 @@ While various medical image visualization tools exist, there is currently no sof
 ![MRI and CT Supervoxels with same anatomical regions highlighted](../../assets/contribute/gsoc/supervoxel_two.png)
 
 Overall, this project aims to contribute to the advancement of medical imaging technology, ultimately benefiting both the scientific community and patient care. Additionally, it will serve as a support tool for digital twin projects, enhancing the reliability of image registration and subsequent measurements.
-
-
-
-
