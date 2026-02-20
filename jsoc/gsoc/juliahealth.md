@@ -250,7 +250,7 @@ Logical gates are evaluated in logarithmic space using logsumexp (OR) and summat
 **Difficulty:** Hard  
 **Duration:** 350 hours  
 **Mentor:** Jakub Mitura  
-**Technologies:** Julia, Lux.jl, MedPipe3D.jl, KernelAbstractions.jl, CUDA.jl, MLUtils.jl, MoonCake.jl
+**Technology Stack:** Julia, Lux.jl, MedPipe3D.jl, KernelAbstractions.jl, CUDA.jl, MLUtils.jl, MoonCake.jl
 
 ## Deliverables
 
