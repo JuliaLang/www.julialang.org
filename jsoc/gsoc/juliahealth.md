@@ -261,13 +261,66 @@ Logical gates are evaluated in logarithmic space using logsumexp (OR) and summat
 - Comprehensive benchmarks (Dice, HD95, cross-task transfer) across all 10 Medical Segmentation Decathlon tasks vs. 3D U-Net baseline
 - Documentation, pretrained weights, and reproducible experiment scripts contributed to JuliaHealth
 
+## Success Criteria and Timeline
+
+This project is scoped for a 350-hour GSoC timeframe (approximately 12–13 weeks). The following milestones and success criteria outline the expected progression.
+
+**Community Bonding (pre-coding period)**
+- Finalize detailed project plan and milestones with mentors.
+- Familiarize with Lux.jl, MedPipe3D.jl, KernelAbstractions.jl, and existing MedPipe3D pipelines.
+- Set up development environment, GPU access, and reproduction of a baseline 3D U-Net on a subset of the Medical Segmentation Decathlon.
+
+**Weeks 1–3: Core Capsule Primitives and 3D Extensions**
+- Implement and test core capsule network building blocks in Lux.jl:
+  - Squash nonlinearity, routing coefficients, and routing-by-agreement loops.
+  - Pose and activation representations suitable for 3D convolutional capsules.
+- Extend these primitives to 3D convolution capsules (pose matrices, shared transformation matrices).
+- Unit tests validating tensor shapes, numerical stability, and differentiability.
+- Success criterion: Stable forward and backward passes for 3D capsule layers on synthetic 3D data.
+
+**Weeks 4–6: SegCaps Architectures and Integration**
+- Design and implement:
+  - A 3D SegCaps encoder–decoder architecture.
+  - A 3D SegCaps–UNet hybrid that replaces CNN blocks with capsule blocks while retaining skip connections.
+- Integrate architectures with MedPipe3D.jl data loading and preprocessing (NIFTI/DICOM I/O, patching/tiling).
+- Implement basic training scripts (single-task training on 1–2 Decathlon tasks).
+- Success criterion: End-to-end training runs to convergence on at least one Decathlon task, with validation metrics logged.
+
+**Weeks 7–9: Efficient Routing and GPU Optimization**
+- Implement locally-constrained routing strategies to reduce computational cost and memory usage for volumetric data.
+- Prototype and benchmark custom GPU-accelerated routing kernels using KernelAbstractions.jl.
+- Profile training to identify and remove performance bottlenecks (e.g., memory layout, batching strategy).
+- Success criterion: Capsule models train with acceptable throughput (within 2–3× of 3D U-Net) on a modern GPU and fit into GPU memory for standard Decathlon volumes.
+
+**Weeks 10–11: Benchmarking and Cross-Task Transfer**
+- Train and evaluate 3D SegCaps and SegCaps–UNet models across all 10 Medical Segmentation Decathlon tasks.
+- Implement cross-task transfer experiments (pretrain on one organ/modality, fine-tune on another).
+- Compare performance against a strong 3D U-Net baseline using Dice, HD95, and cross-task transfer performance.
+- Success criterion: Complete benchmark tables/plots and clear analysis of where capsule models help or hurt relative to U-Net.
+
+**Week 12+: Documentation, Polish, and Upstreaming**
+- Clean and document code, ensuring idiomatic Julia and Lux.jl usage.
+- Write user-facing documentation and examples (e.g., minimal training script, configuration templates).
+- Prepare pretrained weights, experiment configuration files, and reproducibility instructions (including random seeds and environment description).
+- Submit pull requests to relevant JuliaHealth repositories and iterate based on maintainer feedback.
+- Success criterion: Merged contributions into JuliaHealth repositories plus a project report summarizing methods, experiments, and lessons learned.
+
 ## Description
 
 This project implements 3D Capsule Network (CapsNet) architectures within the Julia ecosystem using Lux.jl and MedPipe3D.jl for volumetric medical image segmentation. The core work involves building a SegCaps (Segmentation Capsules) layer abstraction supporting dynamic routing-by-agreement, extending it to 3D convolution capsules with equivariance-preserving pose matrices. We will implement two key variants: (1) a 3D SegCaps U-Net hybrid that replaces encoder/decoder conv blocks with capsule layers while retaining skip connections, and (2) an efficient locally-constrained routing variant to manage the quadratic computational cost of full capsule coupling in volumetric data. Custom CUDA kernels via KernelAbstractions.jl will accelerate the routing procedure, and the full pipeline—preprocessing, training, and evaluation—will integrate with MedPipe3D.jl's NIFTI/DICOM I/O and metric infrastructure.
 
 The central hypothesis is that capsule networks' explicit encoding of part-whole spatial hierarchies and viewpoint-equivariant pose vectors yields superior cross-domain generalization compared to standard CNNs, which rely on max-pooling and thus discard spatial relationships. We will rigorously benchmark 3D SegCaps against a 3D U-Net baseline across all 10 tasks of the Medical Segmentation Decathlon (covering CT and MRI across brain, liver, lung, pancreas, etc.), measuring not only per-task Dice/HD95 but critically cross-task transfer: models pretrained on one organ/modality and fine-tuned on another. We expect capsule routing to better preserve geometric structure across domains, improving few-shot adaptation. All code, pretrained weights, and reproducible experiment scripts will be contributed to the JuliaHealth ecosystem under MIT license.
 
+## References
 
+- Sabour, S., Frosst, N., & Hinton, G. E. (2017). *Dynamic Routing Between Capsules*. Advances in Neural Information Processing Systems (NeurIPS). [https://arxiv.org/abs/1710.09829](https://arxiv.org/abs/1710.09829)
+- Hinton, G. E., Sabour, S., & Frosst, N. (2018). *Matrix Capsules with EM Routing*. International Conference on Learning Representations (ICLR). [https://openreview.net/forum?id=HJWLfGWRb](https://openreview.net/forum?id=HJWLfGWRb)
+- LaLonde, R., & Bagci, U. (2018). *Capsules for Object Segmentation*. (SegCaps). [https://arxiv.org/abs/1804.04241](https://arxiv.org/abs/1804.04241)
+- Simpson, A. L., Antonelli, M., Bakas, S., et al. (2019). *A Large Annotated Medical Image Dataset for the Development and Evaluation of Segmentation Algorithms*. (Medical Segmentation Decathlon). [http://medicaldecathlon.com/](http://medicaldecathlon.com/) / [https://arxiv.org/abs/1902.09063](https://arxiv.org/abs/1902.09063)
+- Çiçek, Ö., Abdulkadir, A., Lienkamp, S. S., Brox, T., & Ronneberger, O. (2016). *3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation*. Medical Image Computing and Computer-Assisted Intervention (MICCAI). [https://arxiv.org/abs/1606.06650](https://arxiv.org/abs/1606.06650)
+- Lux.jl: A deep learning library for Julia. [https://github.com/JuliaAI/Lux.jl](https://github.com/JuliaAI/Lux.jl)
+- MedPipe3D.jl: A modular 3D medical imaging pipeline in Julia. [https://github.com/JuliaHealth/MedPipe3D.jl](https://github.com/JuliaHealth/MedPipe3D.jl)
+- KernelAbstractions.jl: A vendor-neutral GPU programming model for Julia. [https://github.com/JuliaGPU/KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl)
 # Enhancing MedPipe3D: Building a Comprehensive Medical Imaging Pipeline in Julia
 
 ## Description
