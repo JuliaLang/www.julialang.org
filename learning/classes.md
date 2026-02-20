@@ -205,6 +205,8 @@ If you know of other classes using Julia for teaching, please consider submittin
 * Universidade Nove de Julho (UNINOVE), Brazil
     * [Ciência de Dados e Computação Científica com Julia](https://storopoli.github.io/Computacao-Cientifica/) ([Jose Storopoli](https://storopoli.io)), since 2021, 2022
     * [Bayesian Statistics](https://github.com/storopoli/Bayesian-Statistics) ([Jose Storopoli](https://storopoli.io)), since 2022
+* Universidadde de Brasília, Brazil
+    * IQD0003, Fall 2022, Spring 2023, Fall 2023 
 * University at Buffalo
     * [IE 572](https://www.chkwon.net/teaching/#ie-572-linear-programming/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 * University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016
