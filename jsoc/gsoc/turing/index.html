@@ -15,7 +15,8 @@
 	<link rel="icon" href="/assets/infra/julia.ico">
 
   <!-- Franklin stylesheets for generated pages -->
-  
+   <link rel="stylesheet" href="/libs/katex/katex.min.css">
+      
   
 
 	<!-- NOTE: specific stylesheets -->
@@ -50,7 +51,7 @@ crossorigin=""/>
 <script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
-   <title>Turing Projects - Summer of Code</title>   
+   <title>Turing Projects - Google Summer of Code 2026</title>   
 
   
   <style>
@@ -67,7 +68,7 @@ crossorigin=""/>
   
 
   <!-- OGP Metadata -->
-	<meta property="og:title" content="Turing Projects - Summer of Code">
+	<meta property="og:title" content="Turing Projects - Google Summer of Code 2026">
 <meta property="og:description" content="">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
@@ -130,37 +131,55 @@ crossorigin=""/>
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="turing_projects_-_summer_of_code"><a href="#turing_projects_-_summer_of_code" class="header-anchor">Turing Projects - Summer of Code</a></h1>
+<div class="container main"><h1 id="turing_projects_-_google_summer_of_code_2026"><a href="#turing_projects_-_google_summer_of_code_2026" class="header-anchor">Turing Projects - Google Summer of Code 2026</a></h1>
 <p><a href="https://turinglang.org/">Turing.jl</a> is a universal probabilistic programming language embedded in Julia. Turing allows the user to write statistical models in standard Julia syntax, and provides a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics, and data science. Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added.</p>
-<p>Below are the projects we have in mind for GSoC 2025. If you are interested in working on any of them, or want to propose your own Turing.jl-related GSoC project, please reach out to Markus Hauru &#40;@mhauru&#41; on Julia&#39;s <a href="https://julialang.org/slack/">Slack</a> or <a href="https://discourse.julialang.org/">Discourse</a>.</p>
-<h2 id="mooncakejl_performance_optimization"><a href="#mooncakejl_performance_optimization" class="header-anchor">Mooncake.jl Performance Optimization</a></h2>
-<p>Difficulty: Medium</p>
-<p>Duration: 350 hours</p>
-<p>Description: <a href="https://github.com/compintell/Mooncake.jl/">Mooncake.jl</a> is a reverse-mode AD package written entirely in Julia, which addresses many of limitations of the popular <a href="https://github.com/JuliaDiff/ReverseDiff.jl">ReverseDiff.jl</a> and <a href="https://github.com/FluxML/Zygote.jl">Zygote.jl</a> libraries. While the library is typically fast, performance is not tested as systematically as it could be, meaning that there are probably a range of performance bugs waiting to be uncovered. Additionally, there are a range of known performance limitations which need to be addressed. This project aims to resolve known performance problems, to find new ones, and fix them too&#33;</p>
-<p>Skills: familiarity with Julia programming, how to make Julia code performant, and a strong desire to make existing Julia code more performant&#33; An understanding of AD is helpful, but not essential.</p>
-<h2 id="r_and_python_interfaces_for_juliabugs"><a href="#r_and_python_interfaces_for_juliabugs" class="header-anchor">R and Python Interfaces for JuliaBUGS</a></h2>
-<p>Difficulty: Medium</p>
-<p>Duration: 175 hours or 350 hours</p>
-<p><a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS</a> is a Julia implementation of the <a href="https://en.wikipedia.org/wiki/WinBUGS">BUGS</a> probabilistic programming language. It emphasizes interoperability and modularity. JuliaBUGS gives users familiar with BUGS access to Hamiltonian Monte Carlo &#40;HMC&#41;, Automatic Differentiation &#40;AD&#41;, and Julia’s powerful scientific computing tools. This Google Summer of Code &#40;GSoC&#41; project aims to create easy-to-use R and Python interfaces for JuliaBUGS.</p>
-<p>Project Tasks:</p>
+<p>For GSoC 2026 we offer projects from core AD work to scalable inference and user-facing tools.</p>
+<p>If a project interests you, contact the mentors listed below or open a discussion on the relevant GitHub repo. Please drop a short introduction message in the <a href="https://julialang.slack.com/archives/CCYDC34A0"><code>#turing</code></a> channel on the <a href="https://julialang.org/slack/">Julia Slack</a> and feel free to ping <a href="https://github.com/shravanngoswamii">Shravan Goswami</a> there, he is a past GSoC contributor and currently active in <a href="https://github.com/TuringLang/">TuringLang</a>. Mentors will be happy to discuss project details, scope, and expectations, and you can find mentor contacts at <a href="https://turinglang.org/team/">Turing team page</a>.</p>
+<p>Also cross-posted on <a href="https://turinglang.org/news/">Turing Blog</a>.</p>
+<h2 id="mentor_contacts_on_julia_slack"><a href="#mentor_contacts_on_julia_slack" class="header-anchor">Mentor Contacts on Julia Slack</a></h2>
+<table><tr><th align="right">Mentor</th><th align="right">Slack Contact</th></tr><tr><td align="right">Hong Ge</td><td align="right"><a href="https://julialang.slack.com/team/UCRDHV7PB">Slack</a></td></tr><tr><td align="right">Xianda Sun</td><td align="right"><a href="https://julialang.slack.com/team/U03AV5JMJ8N">Slack</a></td></tr></table>
+<h2 id="new_abstractmcmc-based_gibbs_sampler_for_turingjl_and_juliabugsjl"><a href="#new_abstractmcmc-based_gibbs_sampler_for_turingjl_and_juliabugsjl" class="header-anchor">New AbstractMCMC-based Gibbs Sampler for Turing.jl and JuliaBUGS.jl</a></h2>
+<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a> and <a href="https://github.com/sunxd3">Xianda Sun</a></p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p>Gibbs sampling is one of the most widely used inference strategies in Bayesian computation, but Turing.jl&#39;s current Gibbs implementation is tightly coupled to its internals and difficult to extend.</p>
+<p>This project is about designing a clean, composable Gibbs sampler built on top of the <a href="https://github.com/TuringLang/AbstractMCMC.jl">AbstractMCMC.jl</a> interface so that it works perfectly across both Turing.jl and <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a>. Work will include:</p>
 <ul>
-<li><p><em>Interface Design</em>: Develop R and Python packages similar to existing and widely used R packages like R2OpenBUGS and rjags, making it easy for users to adopt.</p>
+<li><p>Agreeing on a minimal AbstractMCMC-compatible interface for conditional samplers.</p>
 </li>
-<li><p><em>Interoperability Development</em>: Use Julia&#39;s existing packages &#40;<a href="https://github.com/JuliaInterop/JuliaCall">JuliaCall</a> and <a href="https://github.com/JuliaPy/PythonCall.jl">PythonCall</a>&#41; to create the interfaces. This will allow smooth data transfer and function calls between Julia, R, and Python.</p>
+<li><p>Implementing the new Gibbs combinator and verifying correctness on standard models.</p>
 </li>
-<li><p><em>Integration with Tools &#40;Large Project&#41;</em>: Integrate these new interfaces seamlessly with popular Bayesian visualization and diagnostics tools—such as bayesplot, posterior, and coda in R, and ArviZ in Python.</p>
+<li><p>Migrating existing Turing.jl Gibbs usage to the new interface.</p>
 </li>
-<li><p><em>Documentation and Tutorials &#40;Large Project&#41;</em>: Create clear and practical documentation, including tutorials, to support users in understanding and effectively using the interfaces.</p>
+<li><p>Ensuring JuliaBUGS.jl can plug in its own conditional samplers without modification.</p>
 </li>
 </ul>
-<p>Participants will gain hands-on experience in Bayesian statistics, software engineering, computational methods, and developing software that works across multiple programming languages. This will prepare them well for future academic and professional opportunities.</p>
-<h2 id="jaxprs_in_julia"><a href="#jaxprs_in_julia" class="header-anchor">Jaxprs in Julia</a></h2>
-<p>Difficulty: Hard</p>
-<p>Duration: TBD</p>
-<p>The Turing.jl team is looking for a student to implement a lightweight Julia library to work with <a href="https://docs.jax.dev/en/latest/jaxpr.html">Jaxprs</a>. If this could be you, get in touch and we can discuss the details.</p>
+<h2 id="stateful_hand-written_rules_and_thread_support_in_mooncakejl"><a href="#stateful_hand-written_rules_and_thread_support_in_mooncakejl" class="header-anchor">Stateful Hand-Written Rules and Thread Support in Mooncake.jl</a></h2>
+<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a> and <a href="https://github.com/sunxd3">Xianda Sun</a></p>
+<p><strong>Project difficulty</strong>: Medium to Hard</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p><a href="https://github.com/chalk-lab/Mooncake.jl">Mooncake.jl</a> is a source-to-source reverse-mode AD package for Julia. Two open issues currently limit its performance and applicability in real-world workloads.</p>
+<p>The first is that every hand-written <code>rrule&#33;&#33;</code> must allocate scratch memory on every call &#40;<a href="https://github.com/chalk-lab/Mooncake.jl/issues/403">issue #403</a>&#41;. Derived rules already avoid this by carrying persistent state between calls, but hand-written rules have no such mechanism. The fix is a <code>StatefulRRule</code> struct that holds a <code>Stack</code> of saved state, constructed via a <code>build_primitive_rrule</code> function. Rule authors implement <code>stateful_rrule&#33;&#33;</code>, which receives the current state &#40;or <code>nothing</code> on the first call&#41; and returns updated state alongside the usual outputs – stack push/pop is handled automatically. The work is to &#40;1&#41; add a test that fails when a primal is allocation-free but its <code>rrule&#33;&#33;</code> is not, &#40;2&#41; audit all existing hand-written rules with that test, and &#40;3&#41; convert the offenders.</p>
+<p>The second is that Mooncake currently errors on any code using <code>Threads.@threads</code> &#40;<a href="https://github.com/chalk-lab/Mooncake.jl/issues/570">issue #570</a>&#41;. Even a race-condition-free primal can produce race conditions on the reverse pass – two threads may concurrently increment the same tangent element, so increments must be atomic. Additionally, rule caches &#40;the stacks inside <code>OpaqueClosure</code>s&#41; must be Task-specific; sharing them across Tasks causes pushes and pops to interleave incorrectly. The work involves writing rules for the <code>ccall</code>s that enter and exit threaded regions, ensuring atomic tangent updates, and making rule caches Task-local without relying on <code>threadid&#40;&#41;</code>.</p>
+<h2 id="pigeonsjl_integration_with_turing_and_juliabugs_via_abstractmcmc"><a href="#pigeonsjl_integration_with_turing_and_juliabugs_via_abstractmcmc" class="header-anchor">Pigeons.jl Integration with Turing and JuliaBUGS via AbstractMCMC</a></h2>
+<p><strong>Mentors</strong>: <a href="https://github.com/sunxd3">Xianda Sun</a></p>
+<p><strong>Project difficulty</strong>: Medium to Hard</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p><a href="https://github.com/Julia-Tempering/Pigeons.jl">Pigeons.jl</a> implements parallel tempering and related algorithms that are particularly effective for multimodal and high-dimensional posteriors. This project has two related goals that together make Pigeons a first-class citizen of the TuringLang ecosystem.</p>
+<p>The first part is documentation and examples. Turing.jl models can already be used as targets for Pigeons, but the combination is under-documented. The contributor will produce reproducible tutorials that walk through common use cases – multimodal posteriors, hierarchical models, models with difficult geometry – and compare Pigeons against HMC/NUTS on the same problems. These will be published on the Turing website and any integration rough edges found along the way will be fixed.</p>
+<p>The second part is implementing the efficient Gibbs sampler from <a href="https://arxiv.org/abs/2410.03630">arXiv:2410.03630</a> in <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a>. The paper shows that by exploiting the structure of the compute graph &#40;rather than the graphical model&#41;, the time per sweep of a full-scan Gibbs sampler on GLMs can be reduced from <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>d</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(d^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mclose">)</span></span></span></span> in the number of parameters <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span> – making high-dimensional GLMs feasible where traditional Gibbs is not, and outperforming HMC on effective samples per unit time in many regimes. JuliaBUGS already exposes the graph structure this approach relies on. The implementation must be correct and performant, validated against standard benchmarks with comparisons to both traditional Gibbs and HMC.</p>
+<h2 id="contributor-proposed_project"><a href="#contributor-proposed_project" class="header-anchor">Contributor-proposed Project</a></h2>
+<p><strong>Mentors</strong>: Community</p>
+<p>If you have an idea not listed here, propose it. Submit a short proposal with motivation, a concise plan, expected deliverables, and a timeline. Maintainers and mentors will review and help turn it into a plan. Be prepared to discuss scope with mentors early.</p>
+<p>To discuss proposals and next steps, contact <a href="https://julialang.slack.com/team/U04UZB5U740">Shravan Goswami</a> on the <a href="https://julialang.org/slack/">Julia Slack</a>.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
+    
+        
+
+
+
     
     
 
