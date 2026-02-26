@@ -371,6 +371,10 @@
 </script>
 ~~~
 
+This will install the latest stable version of Julia, as well as the `juliaup` tool. Start Julia from the command-line by typing `julia`. See `juliaup --help` for how to configure installed versions.
+
+If you prefer to use manual installation using a GUI-based installer, see the [Manual Downloads](/downloads/manual-downloads/) page.
+
 ## Next steps
 
 @@tight-list
@@ -381,6 +385,14 @@
 * If you use Julia in your research, please [cite us](/research/).
 * Do consider [sponsoring](https://github.com/sponsors/julialang) us.
 @@
+
+## About juliaup
+
+[`juliaup`](https://github.com/JuliaLang/juliaup) is the recommended way to install Julia. It automatically installs the latest stable `julia` binary and helps keep it up to date. It also supports installing and using different versions of Julia simultaneously. To install different Julia versions, see `juliaup --help`.
+
+## Support tiers
+
+Julia supports all the major operating systems, but specific versions and architectures have different [tiers of support](/downloads/support).
 
 ## Official domains
 
