@@ -8,6 +8,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [CliMA](/jsoc/gsoc/clima/) – a new open-source climate model that runs on GPUs.
 * [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.
 * [Ferrite FEM](/jsoc/gsoc/ferrite-fem/) - A modern finite element toolbox in Julia.
+* [FreeBird.jl](/jsoc/gsoc/freebird/) - Enhanced sampling toolbox for materials discovery.
 * [Gabs](/jsoc/gsoc/gabs/) - A Gaussian quantum information simulator
 * [Geospatial tooling](/jsoc/gsoc/juliageo) - Geospatial data tooling (for analysis and visualization) in the [JuliaGeo](https://github.com/JuliaGeo) organization
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
