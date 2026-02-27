@@ -22,7 +22,7 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | High-performance computing (HPC) | `#hpc`              | Fourth Tuesday of each month at 2pm ET, and second Thursday of each month at 14:00 CET | [Valentin Churavy][Valentin-Churavy], [Mosè Giordano][Mosè-Giordano] |
 | [JuliaMolSim]                    | `#juliamolsim`      | Third Monday of each month at 12:15 ET   | [Rachel Kurchin][Rachel-Kurchin]                                         |
 | Machine learning                 | `#machine-learning` | Every other Tuesday at 12pm ET           | [Kyle Daruwalla][Kyle-Daruwalla], [Lorenz Ohly][Lorenz-Ohly]             |
-| Multithreading                   | `#multithreading`   | First Wednesday of each month at 10am ET | [Jameson Nash][Jameson-Nash]                                             |
+| Multithreading                   | `#multithreading`   | [none]                                   | [Jameson Nash][Jameson-Nash]                                             |
 | [Pkg][pkg]                       | `#pkg-dev`          | Occasional Tuesdays at 2:15pm ET         | [Kristoffer Carlsson][Kristoffer-Carlsson], [Fredrik Ekre][Fredrik-Ekre] |
 | Release management               | `#releases`         | [none]                                   | [Kristoffer Carlsson][Kristoffer-Carlsson], [Alex Arslan][Alex-Arslan]   |
 | REPL                             | `#repl`             | [none]                                   | [Timothy Chapman][Timothy Chapman]                                       |
