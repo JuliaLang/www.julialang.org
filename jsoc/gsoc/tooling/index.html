@@ -132,17 +132,20 @@ crossorigin=""/>
 <!-- Content appended here -->
 <div class="container main"><h1 id="tooling_-_summer_of_code"><a href="#tooling_-_summer_of_code" class="header-anchor">Tooling - Summer of Code</a></h1>
 <h2 id="development_of_a_new_language_server_for_julia_350_hours"><a href="#development_of_a_new_language_server_for_julia_350_hours" class="header-anchor">Development of a new language server for Julia &#40;350 hours&#41;</a></h2>
-<p>The goal of this project is to develop a new language server for Julia, currently called <a href="https://github.com/aviatesk/JETLS.jl">JETLS</a>. This language server aims to enhance developer productivity by providing advanced static analysis and seamless integration with the Julia runtime. By leveraging tooling technologies like JET, Revise and JuliaLowering, JETLS aims to offer enhanced language features such as type-sensitive diagnostics and macro-aware code completions.</p>
-<p>The project is currently in the very early stages of prototyping. We&#39;ve implemented the basic JSON message communication system and the protocol, but the core functionalities of the language server, including its analysis routines and incremental state management system, is still pretty primitive. The plan is to have the core functionalities of the language server more solid by the summer when GSoC 2025 starts, through working on implementing &quot;diagnostics&quot; and &quot;completion&quot; features. During GSoC, we expect to combine these core features with new tooling technologies like JuliaLowering.jl to implement new language server features, such as &quot;go to definition&quot; and &quot;outline.&quot;</p>
-<p>Also, as preparation, we hope that by the time GSoC starts, you&#39;ll have gained some knowledge about the implementation of JETLS.jl and tools like <a href="https://github.com/aviatesk/JET.jl">JET.jl</a>, <a href="https://github.com/timholy/Revise.jl">Revise.jl</a> and <a href="https://github.com/c42f/JuliaLowering.jl/pulls">JuliaLowering.jl</a>.</p>
+<p>The goal of this project is to develop a new language server for Julia, currently called <a href="https://github.com/aviatesk/JETLS.jl">JETLS</a>, that enhances developer productivity through advanced static analysis and seamless integration with the Julia runtime.</p>
+<p>JETLS has made significant progress and now implements a broad set of core LSP features. Type-sensitive diagnostics are powered by <a href="https://github.com/aviatesk/JET.jl">JET.jl</a>, which uses <a href="https://github.com/JuliaDebug/JuliaInterpreter.jl">JuliaInterpreter.jl</a> to load and analyze code. Features like code completion, workspace symbols, find references, and rename are built by running <a href="https://github.com/JuliaLang/julia/tree/master/JuliaLowering">JuliaLowering.jl</a> as a post-analysis step on top of the module context that JET/JuliaInterpreter has established.</p>
+<p>The next major milestone is to feed JuliaLowering-generated code directly into JET&#39;s analysis, rather than running JuliaLowering as a post-processing step. This deeper integration, combined with <a href="https://github.com/timholy/Revise.jl">Revise.jl</a> for incremental analysis, will enable advanced features such as type-on-hover, inlay type hints, and argument-type-aware completions, as well as more precise diagnostic locations &#40;currently reported at line granularity rather than column-precise positions&#41;.</p>
+<p>During GSoC, we expect the contributor to work on these deeper integrations and implement the advanced language features that depend on them. As preparation, we hope that by the time GSoC starts, you have studied the implementations of JETLS.jl and related tools: <a href="https://github.com/aviatesk/JET.jl">JET.jl</a>, <a href="https://github.com/JuliaDebug/JuliaInterpreter.jl">JuliaInterpreter.jl</a>, <a href="https://github.com/timholy/Revise.jl">Revise.jl</a>, and <a href="https://github.com/JuliaLang/julia/tree/master/JuliaLowering">JuliaLowering.jl</a>.</p>
 <ul>
-<li><p><strong>Expected Outcomes</strong>: A functional language server that significantly improves the developer experience for Julia users, with enhanced language capabilities including type-sensitive diagnostics and macro-aware code completions.</p>
+<li><p><strong>Expected Outcomes</strong>: Advanced language server features built on top of full JuliaLowering/JET/Revise integration, such as type-on-hover, inlay type hints, and argument-type-aware completions.</p>
 </li>
 <li><p><strong>Skills Required</strong>:</p>
 <ul>
 <li><p>Proficiency in Julia programming and familiarity with its compiler and runtime systems</p>
 </li>
-<li><p>Interest in and/or experience with LSP and developer tools like JET.jl and Revise.jl</p>
+<li><p>Deep understanding of Julia&#39;s compiler internals, including lowering, type inference, and abstract interpretation as implemented in JET.jl, JuliaInterpreter.jl, and JuliaLowering.jl</p>
+</li>
+<li><p>Interest in and/or experience with LSP and developer tooling</p>
 </li>
 </ul>
 </li>
