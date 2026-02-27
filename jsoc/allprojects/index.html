@@ -263,6 +263,32 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 </li>
 </ul>
 <p><strong>Mentors</strong>: <a href="https://github.com/koehlerson">Maximilian Köhler</a> and <a href="https://github.com/termi-official">Dennis Ogiermann</a></p>
+<h2 id="freebirdjl"><a href="#freebirdjl" class="header-anchor">FreeBird.jl</a></h2>
+<p><a href="https://github.com/wexlergroup/FreeBird.jl">FreeBird.jl</a> is a Julia package of enhanced sampling methods, such as nested sampling, Wang-Landau sampling, Metropolis Monte Carlo, for accelerating materials discovery through statistical mechanics. It is designed to be an extensible platform for computationally studying phase equilibria across a diverse range of atomistic and molecular systems, with easy extension to other phenomena.</p>
+<h3 id="molecular_dynamics_nested_sampling_in_freebirdjl_with_mollyjl"><a href="#molecular_dynamics_nested_sampling_in_freebirdjl_with_mollyjl" class="header-anchor">Molecular Dynamics Nested Sampling in FreeBird.jl with Molly.jl</a></h3>
+<p><strong>Difficulty</strong>: Easy to medium</p>
+<p><strong>Project size</strong>: 175 hours</p>
+<p><strong>Problem</strong>: Nested sampling &#40;NS&#41; for materials is a novel computational algorithm that efficiently explores the phase space &#40;position and momentum&#41; and configuration space of an atomistic system, estimates partition function and detects phase transitions. The nested sampling algorithm requires continuous generation of new atomistic configurations under a monotonously decreasing energy limit. Currently in FreeBird.jl, it is done via a chian of Monte Carlo &#40;MC&#41; random walks. Molecular dynamics &#40;MD&#41; is a proven alternative to MC for a potentially better performance, especially when running on GPUs. In this project, we will integrate the Julia MD package, <a href="https://github.com/JuliaMolSim/Molly.jl">Molly.jl</a>, as the MD backend of NS in FreeBird.jl.</p>
+<p><strong>Expected outcome</strong>: </p>
+<ul>
+<li><p>To implement an easy conversion between FreeBird.jl&#39;s walker system and Molly&#39;s atoms objects.</p>
+</li>
+<li><p>To implement a dispatch of the NS function using Molly.jl&#39;s MD as a configuration generator.</p>
+</li>
+<li><p>To enable MD-NS energy evaluations using classical and machine learning interatomic potentials, as well as force fields.</p>
+</li>
+<li><p>To improve FreeBird.jl&#39;s test suits and documentations related to this project.</p>
+</li>
+</ul>
+<p><strong>Recommended skills</strong>:</p>
+<ul>
+<li><p>Prior exposure or strong interest in computational chemistry and/or materials science</p>
+</li>
+<li><p>Prior Julia coding experience</p>
+</li>
+</ul>
+<p><strong>Mentors</strong>: <a href="https://github.com/yangmr04">Ray Yang</a> &#40;primary&#41;, <a href="https://github.com/jgreener64">Joe Greener</a>, <a href="https://github.com/rwexler">Robert Wexler</a></p>
+<p><strong>Contact</strong>: Feel free to reach out to Ray Yang via <a href="mailto:my@ainest.ee">email</a>, #juliamolsim on the Julia Slack, or at the JuliaMolSim &#91;Zulip&#40;https://juliamolsim.zulipchat.com&#41;&#93;.</p>
 <h2 id="simulations_of_gaussian_quantum_information"><a href="#simulations_of_gaussian_quantum_information" class="header-anchor">Simulations of Gaussian quantum information</a></h2>
 <p>Quantum harmonic oscillators are important modalities for quantum computation and quantum networking. A class of them, known as Gaussian bosonic systems, are efficient to simulate on a classical computer. Although such systems do not provide quantum computational advantage, they are present in most protocols and algorithms in continuous variable quantum information. <a href="https://github.com/apkille/Gabs.jl">Gabs.jl</a> is a Julia library designed to enable fast simulations of Gaussian bosonic circuits and serve as a sandbox for quantum hardware and protocol design.</p>
 <h3 id="efficient_classical_simulations_of_linear_combinations_of_gaussian_quantum_states"><a href="#efficient_classical_simulations_of_linear_combinations_of_gaussian_quantum_states" class="header-anchor">Efficient classical simulations of linear combinations of Gaussian quantum states</a></h3>
