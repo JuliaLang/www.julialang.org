@@ -11,46 +11,39 @@ Projects in finite element visualization are also possible with [FerriteViz.jl](
 
 
 
-## Fluid-Structure Interaction Example
-
-**Difficulty**: Easy-Medium (depending on your specific background)
-
-**Project size**: 150-300 hours
-
-**Problem**: [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl) is designed with the possibility to define partial differential equations on subdomains.
-This makes it well-suited for interface-coupled multi-physics problems, as for example fluid-structure interaction problems.
-However, we currently do not have an example showing this capability in our documentation.
-We also do not provide all necessary utilities for interface-coupled problems.
-
-**Minimum goal**: The minimal goal of this project is to create a functional and documented linear fluid-structure interaction example coupling linear elasticity with a stokes flow in a simple setup.
-The code should come with proper test coverage.
-
-**Extended goal**: With this minimally functional example it is possible to extend the project into different directions, e.g. optimized solvers or nonlinear fluid-structure interaction.
-
-**Recommended skills**:
-- Basic knowledge the finite element method
-- Basic knowledge about solids or fluids
-- The ability (or eagerness to learn) to write fast code
-
-**Mentors**: [Dennis Ogiermann](https://github.com/termi-official) and [Fredrik Ekre](https://github.com/fredrikekre/)
-
-
-
-## Investigation of Performant Assembly Strategies
+## Arbitrary Order Interpolations in 3D
 
 **Difficulty**: Medium
 
 **Project size**: 250-350 hours
 
-**Problem**: [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl) has an outstanding performance in single-threaded finite element simulations due to elaborate elimination of redundant workloads.
-However, we recently identified that the way the single-threaded assembly works makes parallel assembly memory bound, rendering the implementation for "cheap" assembly loops not scalable on a wide range of systems.
-This problem will also translate to high-order schemes, where the single-threaded strategy as is prevents certain common optimization strategies (e.g. sum factorization).
+**Problem**: [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl) supports arbitrary order interpolations in 1D and 2D. However, for 3D problems the order for the interpolations is right now limited to interpolations with at most a single dof per face. The difficulty here is of geometric nature. Faces in typical finite element meshes typically have a non-trivial relative orientation, and therefore the facet dofs of the neighboring elements do not match spatially.
 
-**Minimum goal**: As a first step towards better parallel assembly performance it is the investion of different assembly strategies.
-Local and global matrix-free schemes are a possibility to explore here.
-The code has to be properly benchmarked and tested to identify different performance problems.
+**Minimum goal**: A minimal goal would be to add the necessary infrastructure to support the adjustment of the dof location for high order Lagrange polynomial interpolation on all 3D elements interpolations during the dof assignment phase.
 
-**Extended goal**: With this minimally functional example it is possible to extend the project into different directions, e.g. optimized matrix-free solvers or GPU assembly.
+**Extended goal**: With this minimally functional example it is possible to extend the project into different directions, e.g. high-order H(div) and H(curl) elements or optimizing the CellCache for these higher order elements by exploiting the tensor-product structure.
+
+**Recommended skills**:
+- Basic knowledge the finite element method
+- Good geometric thinking
+- The ability (or eagerness to learn) to write fast code
+
+**Mentors**: [Fredrik Ekre](https://github.com/fekre) and [Dennis Ogiermann](https://github.com/termi-official)
+
+
+
+## Proper Subdomain Support for FerriteDistributed.jl
+
+**Difficulty**: Hard
+
+**Project size**: 350 hours
+
+**Problem**: [FerriteDistributed.jl](https://github.com/ferrite-fem/FerriteDistributed.jl) is the MPI variant of Ferrite allowing scalable distributed assembly. However, it has been initially developed during the Ferrite v1.0 release window, right before proper subdomain has been added to Ferrite. Therefore, right now the upgrade to Ferrite v1 is primarily blocked by adding proper support for subdomains through the newly introduced SubDofHandler.
+
+
+**Minimum goal**: At the very least a DistributedSubDofHandler must be added. Therefore the internal communication infrastructure must be upgraded to properly subdomains instead of the full domain.
+
+**Extended goal**: Probably the most useful extended goal right now is to refactor the internal communication infrastructure to better integrate with MPI.jl, as we do not use the full potential of MPI.jl yet. Alternatively, we would like to also allow users to use other distributed memory backends to be used, as for example Reactant.jl.
 
 **Recommended skills**:
 - Basic knowledge the finite element method
