@@ -360,12 +360,206 @@ crossorigin=""/>
 <li><p>Lambin, P., et al. &quot;Radiomics: extracting more information from medical images using advanced feature analysis.&quot; European Journal of Cancer, 2012.</p>
 </li>
 </ul>
-<h1 id="enhancing_medpipe3d_building_a_comprehensive_medical_imaging_pipeline_in_julia"><a href="#enhancing_medpipe3d_building_a_comprehensive_medical_imaging_pipeline_in_julia" class="header-anchor">Enhancing MedPipe3D: Building a Comprehensive Medical Imaging Pipeline in Julia</a></h1>
+<h1 id="klay-core_high-performance_neurosymbolic_constraint_layers_for_trustworthy_medical_ai"><a href="#klay-core_high-performance_neurosymbolic_constraint_layers_for_trustworthy_medical_ai" class="header-anchor">KLAY-Core: High-Performance Neurosymbolic Constraint Layers for Trustworthy Medical AI</a></h1>
+<p><strong>Difficulty:</strong> Hard / Ambitious   <strong>Duration:</strong> 350 hours &#40;22 weeks&#41;   <strong>Mentor:</strong> Jakub Mitura   <strong>Technology Stack:</strong> Julia, Lux.jl, NNlib.jl, ChainRules.jl, LogExpFunctions.jl</p>
 <h2 id="description__2"><a href="#description__2" class="header-anchor">Description</a></h2>
+<p>Deep learning in medical diagnostics suffers from a well-known trust gap. Models often behave as black boxes and may produce physiologically implausible predictions — for example simultaneously predicting cachexia and obesity. This lack of interpretability and clinical consistency limits adoption of AI systems in healthcare environments.</p>
+<p>Neurosymbolic artificial intelligence &#40;NeSy&#41; addresses this limitation by integrating structured logical knowledge directly into neural models. However, many existing approaches struggle with numerical stability, scalability, and GPU efficiency when deployed in realistic clinical settings.</p>
+<p>KLAY-Core is a high-performance logical constraint layer designed for Lux.jl. It enables domain experts and developers to encode clinical knowledge as differentiable logical constraints integrated directly into neural network architectures.</p>
+<p>Using the Knowledge Layers &#40;KLAY&#41; architecture, the project introduces static linearization of logical circuits &#40;d-DNNF&#41; into optimized tensor buffers. Circuit evaluation is reduced to sequences of NNlib.scatter operations and tensor indexing, significantly improving GPU parallel efficiency while ensuring physiologically consistent predictions.</p>
+<h2 id="main_goals_and_implementation"><a href="#main_goals_and_implementation" class="header-anchor">Main Goals and Implementation</a></h2>
+<h3 id="medical_logic_compiler_and_d-dnnf_bridge_julia-native"><a href="#medical_logic_compiler_and_d-dnnf_bridge_julia-native" class="header-anchor">Medical Logic Compiler and d-DNNF Bridge &#40;Julia-Native&#41;</a></h3>
+<p>The project follows a &quot;compile once, evaluate often&quot; paradigm for efficient integration of symbolic knowledge into neural models.</p>
+<p><strong>Yggdrasil and JLL Integration</strong></p>
+<p>High-performance symbolic compilers &#40;e.g., d4, SDD&#41; will be distributed as precompiled binaries via Yggdrasil and JLL packages. This guarantees a fully Julia-native workflow without requiring Python environments or local C&#43;&#43; toolchain configuration.</p>
+<p><strong>Level-Order Flattening</strong></p>
+<p>A dedicated algorithm groups logical graph nodes into layers based on structural height. This converts hierarchical logical circuits into flat GPU-friendly buffers, eliminating recursion and enabling efficient parallel execution.</p>
+<p><strong>Solving the Derivative Bottleneck</strong></p>
+<p>Custom adjoints &#40;rrule&#41; implemented using ChainRules.jl ensure backward-pass efficiency comparable to standard neural layers while avoiding excessive memory overhead typical of recursive automatic differentiation.</p>
+<h3 id="user_interface_the_clinical_rule_macro"><a href="#user_interface_the_clinical_rule_macro" class="header-anchor">User Interface – The @clinical_rule Macro</a></h3>
+<p>To reduce usability barriers for clinicians and developers, the package introduces a domain-specific DSL macro supporting full Boolean logic and weighted relationships where w ∈ &#91;0,1&#93;.</p>
+<p>Unlike Python-based frameworks such as Dolphin, which rely on object-oriented logic definitions, KLAY-Core offers a declarative macro interface integrated directly with the Julia compiler. This improves readability, auditability, and interdisciplinary collaboration between clinicians and AI engineers.</p>
+<p><strong>Supported Logical Operators:</strong></p>
+<ul>
+<li><p>AND &#40;<code>&amp;</code>&#41; — logical conjunction</p>
+</li>
+<li><p>OR &#40;<code>|</code>&#41; — logical alternative</p>
+</li>
+<li><p>NOT &#40;<code>&#33;</code>&#41; — logical negation</p>
+</li>
+<li><p>Implication &#40;<code>-&gt;</code>&#41; — logical implication</p>
+</li>
+</ul>
+<p><strong>Constraint Types:</strong></p>
+<p><em>Hard Constraints &#40;w &#61; 1.0&#41;:</em> Strict logical rules ensuring physiological consistency.</p>
+<p><em>Soft Constraints &#40;w &lt; 1.0&#41;:</em> Probabilistic correlations or clinical risk relationships.</p>
+<h3 id="klay-core_engine_for_luxjl"><a href="#klay-core_engine_for_luxjl" class="header-anchor">KLAY-Core Engine for Lux.jl</a></h3>
+<p><strong>Explicit Layer Design</strong></p>
+<p>Implementation of an AbstractExplicitLayer where circuit structure is stored in the layer state while constraint strengths remain trainable parameters. This supports determinism, transparency, and reproducibility required in medical AI systems.</p>
+<p><strong>Log-Space Numerical Stability</strong></p>
+<p>Logical gates are evaluated in logarithmic space using logsumexp &#40;OR&#41; and summation &#40;AND&#41;, preventing numerical instability and vanishing-gradient effects.</p>
+<h2 id="comparison_with_existing_solutions"><a href="#comparison_with_existing_solutions" class="header-anchor">Comparison with Existing Solutions</a></h2>
+<table><tr><th align="right">Feature</th><th align="right">KLAY-Core &#40;Julia&#41;</th><th align="right">Dolphin &#40;Python/PyTorch&#41;</th><th align="right">DeepProbLog / LTN</th><th align="right">Juice.jl &#40;Julia&#41;</th></tr><tr><td align="right">GPU Parallelism</td><td align="right">Native scatter-reduce</td><td align="right">Standard PyTorch ops</td><td align="right">Mostly sequential</td><td align="right">Limited optimized kernels</td></tr><tr><td align="right">Integration</td><td align="right">Native Lux.jl</td><td align="right">Wrapper-style integration</td><td align="right">Python–C&#43;&#43; bridges</td><td align="right">Independent library</td></tr><tr><td align="right">Ecosystem</td><td align="right">JLL / Yggdrasil</td><td align="right">Pip / Conda environments</td><td align="right">Mixed dependencies</td><td align="right">Native Julia ecosystem</td></tr><tr><td align="right">Interface</td><td align="right">High-level DSL macro</td><td align="right">Python API definitions</td><td align="right">Logic-heavy syntax</td><td align="right">Low-level graph APIs</td></tr><tr><td align="right">Gradient Stability</td><td align="right">Custom rrule</td><td align="right">Standard AD</td><td align="right">Potential instability</td><td align="right">Variable stability</td></tr></table>
+<p><strong>Competitive Edge:</strong> KLAY-Core combines Julia&#39;s performance, macro system, and binary artifact ecosystem with a modern explicit deep learning framework &#40;Lux.jl&#41;. Rather than functioning as an external wrapper, it becomes an integral neural network component, simplifying deployment, improving reproducibility, and reducing operational complexity in clinical AI environments.</p>
+<h2 id="project_timeline_22_weeks"><a href="#project_timeline_22_weeks" class="header-anchor">Project Timeline &#40;22 Weeks&#41;</a></h2>
+<ul>
+<li><p><strong>Phase 1 &#40;Weeks 1–4&#41;:</strong> Development of the @clinical_rule DSL and Yggdrasil/JLL integration.</p>
+</li>
+<li><p><strong>Phase 2 &#40;Weeks 5–9&#41;:</strong> Flattening logical circuits into recursion-free GPU buffers.</p>
+</li>
+<li><p><strong>Phase 3 &#40;Weeks 10–13&#41;:</strong> Custom rrule differentiation and log-space stability optimization.</p>
+</li>
+<li><p><strong>Phase 4 &#40;Weeks 14–17&#41;:</strong> Validation using the Heart Failure Prediction Dataset with focus on: Accuracy, Brier Score, Expected Calibration Error &#40;ECE&#41;, AUROC, and Constraint violation rates.</p>
+</li>
+<li><p><strong>Phase 5 &#40;Weeks 18–20&#41;:</strong> Performance benchmarking against Dolphin, DeepProbLog, and Juice.jl.</p>
+</li>
+<li><p><strong>Phase 6 &#40;Weeks 21–22&#41;:</strong> Final documentation, testing, and publication in the Julia General Registry.</p>
+</li>
+</ul>
+<h2 id="references__2"><a href="#references__2" class="header-anchor">References</a></h2>
+<ul>
+<li><p>Alam, S., et al. &#40;2026&#41;. Constraint-aware neurosymbolic uncertainty quantification with Bayesian deep learning for scientific discovery. arXiv preprint &#40;arXiv:2601.12442&#41;.</p>
+</li>
+<li><p>Chicco, D., &amp; Jurman, G. &#40;2020&#41;. Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making, 20, 16.</p>
+</li>
+<li><p>Dang, M., et al. &#40;2021&#41;. JUICE: A Julia package for logic and probabilistic circuits. In Proceedings of the AAAI Conference on Artificial Intelligence, 35&#40;14&#41;.</p>
+</li>
+<li><p>Fedesoriano. &#40;2021&#41;. Heart failure prediction dataset &#91;Dataset&#93;. Kaggle.</p>
+</li>
+<li><p>Lagniez, J.-M., &amp; Marquis, P. &#40;2017&#41;. An improved decision-DNNF compiler &#40;d4&#41;. In Proceedings of the 26th International Joint Conference on Artificial Intelligence &#40;IJCAI 2017&#41;.</p>
+</li>
+<li><p>Maene, J., &amp; Derkinderen, V. &#40;2024&#41;. KLAY: Accelerating arithmetic circuits for neurosymbolic AI. arXiv preprint &#40;arXiv:2410.11415&#41;.</p>
+</li>
+<li><p>Manhaeve, R., Demeester, T., Rocktäschel, T., &amp; De Raedt, L. &#40;2018&#41;. DeepProbLog: Neural probabilistic logic programming. In Advances in Neural Information Processing Systems &#40;NeurIPS 2018&#41;.</p>
+</li>
+<li><p>Pal, A. &#40;2023&#41;. Lux: Explicit parameterization of deep neural networks in Julia &#91;Software&#93;. Zenodo.</p>
+</li>
+</ul>
+<h1 id="capsule_networks_for_3d_medical_imaging_segmentation_in_julia"><a href="#capsule_networks_for_3d_medical_imaging_segmentation_in_julia" class="header-anchor">Capsule Networks for 3D Medical Imaging Segmentation in Julia</a></h1>
+<p><strong>Difficulty:</strong> Hard   <strong>Duration:</strong> 350 hours   <strong>Mentor:</strong> Jakub Mitura   <strong>Technology Stack:</strong> Julia, Lux.jl, MedPipe3D.jl, KernelAbstractions.jl, CUDA.jl, MLUtils.jl, MoonCake.jl</p>
+<h2 id="deliverables__2"><a href="#deliverables__2" class="header-anchor">Deliverables</a></h2>
+<ul>
+<li><p>3D Capsule Network layer primitives &#40;dynamic routing, locally-constrained routing&#41; as reusable Lux.jl modules</p>
+</li>
+<li><p>Two full architectures: 3D SegCaps and 3D SegCaps-UNet hybrid</p>
+</li>
+<li><p>Custom GPU-accelerated routing kernels via KernelAbstractions.jl</p>
+</li>
+<li><p>End-to-end training/evaluation pipeline integrated with MedPipe3D.jl</p>
+</li>
+<li><p>Comprehensive benchmarks &#40;Dice, HD95, cross-task transfer&#41; across all 10 Medical Segmentation Decathlon tasks vs. 3D U-Net baseline</p>
+</li>
+<li><p>Documentation, pretrained weights, and reproducible experiment scripts contributed to JuliaHealth</p>
+</li>
+</ul>
+<h2 id="success_criteria_and_timeline__2"><a href="#success_criteria_and_timeline__2" class="header-anchor">Success Criteria and Timeline</a></h2>
+<p>This project is scoped for a 350-hour GSoC timeframe &#40;approximately 12–13 weeks&#41;. The following milestones and success criteria outline the expected progression.</p>
+<p><strong>Community Bonding &#40;pre-coding period&#41;</strong></p>
+<ul>
+<li><p>Finalize detailed project plan and milestones with mentors.</p>
+</li>
+<li><p>Familiarize with Lux.jl, MedPipe3D.jl, KernelAbstractions.jl, and existing MedPipe3D pipelines.</p>
+</li>
+<li><p>Set up development environment, GPU access, and reproduction of a baseline 3D U-Net on a subset of the Medical Segmentation Decathlon.</p>
+</li>
+</ul>
+<p><strong>Weeks 1–3: Core Capsule Primitives and 3D Extensions</strong></p>
+<ul>
+<li><p>Implement and test core capsule network building blocks in Lux.jl:</p>
+<ul>
+<li><p>Squash nonlinearity, routing coefficients, and routing-by-agreement loops.</p>
+</li>
+<li><p>Pose and activation representations suitable for 3D convolutional capsules.</p>
+</li>
+</ul>
+</li>
+<li><p>Extend these primitives to 3D convolution capsules &#40;pose matrices, shared transformation matrices&#41;.</p>
+</li>
+<li><p>Unit tests validating tensor shapes, numerical stability, and differentiability.</p>
+</li>
+<li><p>Success criterion: Stable forward and backward passes for 3D capsule layers on synthetic 3D data.</p>
+</li>
+</ul>
+<p><strong>Weeks 4–6: SegCaps Architectures and Integration</strong></p>
+<ul>
+<li><p>Design and implement:</p>
+<ul>
+<li><p>A 3D SegCaps encoder–decoder architecture.</p>
+</li>
+<li><p>A 3D SegCaps–UNet hybrid that replaces CNN blocks with capsule blocks while retaining skip connections.</p>
+</li>
+</ul>
+</li>
+<li><p>Integrate architectures with MedPipe3D.jl data loading and preprocessing &#40;NIFTI/DICOM I/O, patching/tiling&#41;.</p>
+</li>
+<li><p>Implement basic training scripts &#40;single-task training on 1–2 Decathlon tasks&#41;.</p>
+</li>
+<li><p>Success criterion: End-to-end training runs to convergence on at least one Decathlon task, with validation metrics logged.</p>
+</li>
+</ul>
+<p><strong>Weeks 7–9: Efficient Routing and GPU Optimization</strong></p>
+<ul>
+<li><p>Implement locally-constrained routing strategies to reduce computational cost and memory usage for volumetric data.</p>
+</li>
+<li><p>Prototype and benchmark custom GPU-accelerated routing kernels using KernelAbstractions.jl.</p>
+</li>
+<li><p>Profile training to identify and remove performance bottlenecks &#40;e.g., memory layout, batching strategy&#41;.</p>
+</li>
+<li><p>Success criterion: Capsule models train with acceptable throughput &#40;within 2–3× of 3D U-Net&#41; on a modern GPU and fit into GPU memory for standard Decathlon volumes.</p>
+</li>
+</ul>
+<p><strong>Weeks 10–11: Benchmarking and Cross-Task Transfer</strong></p>
+<ul>
+<li><p>Train and evaluate 3D SegCaps and SegCaps–UNet models across all 10 Medical Segmentation Decathlon tasks.</p>
+</li>
+<li><p>Implement cross-task transfer experiments &#40;pretrain on one organ/modality, fine-tune on another&#41;.</p>
+</li>
+<li><p>Compare performance against a strong 3D U-Net baseline using Dice, HD95, and cross-task transfer performance.</p>
+</li>
+<li><p>Success criterion: Complete benchmark tables/plots and clear analysis of where capsule models help or hurt relative to U-Net.</p>
+</li>
+</ul>
+<p><strong>Week 12&#43;: Documentation, Polish, and Upstreaming</strong></p>
+<ul>
+<li><p>Clean and document code, ensuring idiomatic Julia and Lux.jl usage.</p>
+</li>
+<li><p>Write user-facing documentation and examples &#40;e.g., minimal training script, configuration templates&#41;.</p>
+</li>
+<li><p>Prepare pretrained weights, experiment configuration files, and reproducibility instructions &#40;including random seeds and environment description&#41;.</p>
+</li>
+<li><p>Submit pull requests to relevant JuliaHealth repositories and iterate based on maintainer feedback.</p>
+</li>
+<li><p>Success criterion: Merged contributions into JuliaHealth repositories plus a project report summarizing methods, experiments, and lessons learned.</p>
+</li>
+</ul>
+<h2 id="description__3"><a href="#description__3" class="header-anchor">Description</a></h2>
+<p>This project implements 3D Capsule Network &#40;CapsNet&#41; architectures within the Julia ecosystem using Lux.jl and MedPipe3D.jl for volumetric medical image segmentation. The core work involves building a SegCaps &#40;Segmentation Capsules&#41; layer abstraction supporting dynamic routing-by-agreement, extending it to 3D convolution capsules with equivariance-preserving pose matrices. We will implement two key variants: &#40;1&#41; a 3D SegCaps U-Net hybrid that replaces encoder/decoder conv blocks with capsule layers while retaining skip connections, and &#40;2&#41; an efficient locally-constrained routing variant to manage the quadratic computational cost of full capsule coupling in volumetric data. Custom CUDA kernels via KernelAbstractions.jl will accelerate the routing procedure, and the full pipeline—preprocessing, training, and evaluation—will integrate with MedPipe3D.jl&#39;s NIFTI/DICOM I/O and metric infrastructure.</p>
+<p>The central hypothesis is that capsule networks&#39; explicit encoding of part-whole spatial hierarchies and viewpoint-equivariant pose vectors yields superior cross-domain generalization compared to standard CNNs, which rely on max-pooling and thus discard spatial relationships. We will rigorously benchmark 3D SegCaps against a 3D U-Net baseline across all 10 tasks of the Medical Segmentation Decathlon &#40;covering CT and MRI across brain, liver, lung, pancreas, etc.&#41;, measuring not only per-task Dice/HD95 but critically cross-task transfer: models pretrained on one organ/modality and fine-tuned on another. We expect capsule routing to better preserve geometric structure across domains, improving few-shot adaptation. All code, pretrained weights, and reproducible experiment scripts will be contributed to the JuliaHealth ecosystem under MIT license.</p>
+<h2 id="references__3"><a href="#references__3" class="header-anchor">References</a></h2>
+<ul>
+<li><p>Sabour, S., Frosst, N., &amp; Hinton, G. E. &#40;2017&#41;. <em>Dynamic Routing Between Capsules</em>. Advances in Neural Information Processing Systems &#40;NeurIPS&#41;. <a href="https://arxiv.org/abs/1710.09829">https://arxiv.org/abs/1710.09829</a></p>
+</li>
+<li><p>Hinton, G. E., Sabour, S., &amp; Frosst, N. &#40;2018&#41;. <em>Matrix Capsules with EM Routing</em>. International Conference on Learning Representations &#40;ICLR&#41;. <a href="https://openreview.net/forum?id&#61;HJWLfGWRb">https://openreview.net/forum?id&#61;HJWLfGWRb</a></p>
+</li>
+<li><p>LaLonde, R., &amp; Bagci, U. &#40;2018&#41;. <em>Capsules for Object Segmentation</em>. &#40;SegCaps&#41;. <a href="https://arxiv.org/abs/1804.04241">https://arxiv.org/abs/1804.04241</a></p>
+</li>
+<li><p>Simpson, A. L., Antonelli, M., Bakas, S., et al. &#40;2019&#41;. <em>A Large Annotated Medical Image Dataset for the Development and Evaluation of Segmentation Algorithms</em>. &#40;Medical Segmentation Decathlon&#41;. <a href="http://medicaldecathlon.com/">http://medicaldecathlon.com/</a> / <a href="https://arxiv.org/abs/1902.09063">https://arxiv.org/abs/1902.09063</a></p>
+</li>
+<li><p>Çiçek, Ö., Abdulkadir, A., Lienkamp, S. S., Brox, T., &amp; Ronneberger, O. &#40;2016&#41;. <em>3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation</em>. Medical Image Computing and Computer-Assisted Intervention &#40;MICCAI&#41;. <a href="https://arxiv.org/abs/1606.06650">https://arxiv.org/abs/1606.06650</a></p>
+</li>
+<li><p>Lux.jl: A deep learning library for Julia. <a href="https://github.com/JuliaAI/Lux.jl">https://github.com/JuliaAI/Lux.jl</a></p>
+</li>
+<li><p>MedPipe3D.jl: A modular 3D medical imaging pipeline in Julia. <a href="https://github.com/JuliaHealth/MedPipe3D.jl">https://github.com/JuliaHealth/MedPipe3D.jl</a></p>
+</li>
+<li><p>KernelAbstractions.jl: A vendor-neutral GPU programming model for Julia. <a href="https://github.com/JuliaGPU/KernelAbstractions.jl">https://github.com/JuliaGPU/KernelAbstractions.jl</a></p>
+</li>
+</ul>
+<h1 id="enhancing_medpipe3d_building_a_comprehensive_medical_imaging_pipeline_in_julia"><a href="#enhancing_medpipe3d_building_a_comprehensive_medical_imaging_pipeline_in_julia" class="header-anchor">Enhancing MedPipe3D: Building a Comprehensive Medical Imaging Pipeline in Julia</a></h1>
+<h2 id="description__4"><a href="#description__4" class="header-anchor">Description</a></h2>
 <p>MedPipe3D was created to improve integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. Currently, it needs to be expanded and adapted to serve as the basis for a fully functional medical imaging pipeline.</p>
 <p><strong>Mentor:</strong> Jakub Mitura &#91;email: jakub.mitura14@gmail.com&#93;</p>
 <h2 id="project_difficulty_and_timeline"><a href="#project_difficulty_and_timeline" class="header-anchor">Project Difficulty and Timeline</a></h2>
-<p><strong>Difficulty:</strong> Medium   <strong>Duration:</strong> 12 weeks</p>
+<p><strong>Difficulty:</strong> Hard   <strong>Duration:</strong> 12 weeks</p>
 <h2 id="required_skills_and_background"><a href="#required_skills_and_background" class="header-anchor">Required Skills and Background</a></h2>
 <ul>
 <li><p>Strong knowledge of the Julia programming language is required.</p>
@@ -428,128 +622,6 @@ crossorigin=""/>
 <h2 id="why_implementation_of_these_features_is_important"><a href="#why_implementation_of_these_features_is_important" class="header-anchor">Why Implementation of These Features is Important</a></h2>
 <p>Implementing these features is crucial for advancing medical imaging technology. Enhanced logging with TensorBoard integration will allow for better insight into model training. Performance improvements ensure reliable and efficient processing of large datasets. Improved documentation and memory management make the tools more accessible and usable for medical professionals, facilitating better integration into clinical workflows. Supporting tabular data alongside imaging allows for comprehensive analysis, combining clinical and imaging data to improve diagnostic accuracy and patient outcomes.</p>
 <p>For each point, the mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it &#40;that just need to be integrated&#41;.</p>
-<h1 id="project_title_a_digital_twin_approach_for_advanced_supervoxel_visualization_for_multi-image_view_in_medical_imaging"><a href="#project_title_a_digital_twin_approach_for_advanced_supervoxel_visualization_for_multi-image_view_in_medical_imaging" class="header-anchor">Project Title: A Digital Twin Approach for Advanced Supervoxel Visualization for Multi-Image View in Medical Imaging</a></h1>
-<h2 id="general_idea"><a href="#general_idea" class="header-anchor">General Idea</a></h2>
-<p>This project aims to develop visualization and interaction software for advanced supervoxel visualization on multi-image views. Building on the experiences from MedEye3D, the project will focus on creating a tool that allows users to interact with and visualize supervoxels across different imaging modalities &#40;e.g., CT and MRI&#41; simultaneously. The software will highlight corresponding supervoxels in different images when the user hovers over them, facilitating reliable analysis even in the presence of natural elastic deformations.</p>
-<h2 id="potential_outcomes__2"><a href="#potential_outcomes__2" class="header-anchor">Potential Outcomes</a></h2>
-<ul>
-<li><p><strong>Enhanced Visualization:</strong> A software tool that provides side-by-side views of different imaging studies, displaying supervoxel borders and highlighting corresponding supervoxels across images.</p>
-</li>
-<li><p><strong>Improved Interaction:</strong> An interactive interface allowing users to manually correct supervoxel associations by clicking and highlighting supervoxels in both images.</p>
-</li>
-<li><p><strong>Control Points Annotation:</strong> Support for annotating and displaying control points to aid in registration and user orientation.</p>
-</li>
-<li><p><strong>User Feedback Integration:</strong> Mechanisms for users to indicate incorrect supervoxel associations, improving the reliability of the tool.</p>
-</li>
-</ul>
-<h2 id="success_criteria_and_time_needed__2"><a href="#success_criteria_and_time_needed__2" class="header-anchor">Success Criteria and Time Needed</a></h2>
-<ul>
-<li><p><strong>Software Development:</strong> &#91;10 Weeks&#93;</p>
-<ul>
-<li><p>Develop the core visualization tool with side-by-side image views.</p>
-</li>
-<li><p>Implement supervoxel border display and highlighting functionality.</p>
-</li>
-<li><p>Integrate control points annotation and display features.</p>
-</li>
-</ul>
-</li>
-<li><p><strong>User Interaction Features:</strong> &#91;6 Weeks&#93;</p>
-<ul>
-<li><p>Develop interactive features for manual correction of supervoxel associations.</p>
-</li>
-<li><p>Implement user feedback mechanisms for indicating incorrect associations.</p>
-</li>
-</ul>
-</li>
-<li><p><strong>Testing and Validation:</strong> &#91;2 Weeks&#93;</p>
-<ul>
-<li><p>Conduct extensive testing with sample medical imaging data.</p>
-</li>
-<li><p>Validate the tool&#39;s accuracy and reliability in highlighting corresponding supervoxels.</p>
-</li>
-</ul>
-</li>
-<li><p><strong>Documentation and User Training:</strong> &#91;2 Weeks&#93;</p>
-<ul>
-<li><p>Create comprehensive documentation for the software.</p>
-</li>
-<li><p>Develop training materials and conduct user training sessions.</p>
-</li>
-</ul>
-</li>
-<li><p><strong>Final Review and Deployment:</strong> &#91;2 Weeks&#93;</p>
-<ul>
-<li><p>Review the project outcomes and make necessary adjustments.</p>
-</li>
-<li><p>Deploy the software for use by the scientific community.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>The total estimated time for the project is approximately 22 weeks. Success will be measured by the tool&#39;s ability to accurately highlight corresponding supervoxels, ease of use, and positive feedback from users in the medical imaging community.</p>
-<h2 id="technical_requirements_and_expected_expertise"><a href="#technical_requirements_and_expected_expertise" class="header-anchor">Technical Requirements and Expected Expertise</a></h2>
-<ul>
-<li><p>Strong programming skills in Julia/C&#43;&#43;</p>
-</li>
-<li><p>Experience with medical imaging libraries &#40;ITK, SimpleITK, NIfTI&#41;</p>
-</li>
-<li><p>Familiarity with GUI development &#40;preferably ModernGL.jl&#41;</p>
-</li>
-<li><p>Understanding of 3D visualization techniques</p>
-</li>
-<li><p>Basic knowledge of medical image processing concepts</p>
-</li>
-<li><p>Experience with version control &#40;Git&#41;</p>
-</li>
-</ul>
-<h2 id="tools_and_technologies"><a href="#tools_and_technologies" class="header-anchor">Tools and Technologies</a></h2>
-<ul>
-<li><p><strong>Primary Language:</strong> Julia</p>
-</li>
-<li><p><strong>GUI Framework:</strong> ModernGL.jl/ Vulkan.jl</p>
-</li>
-<li><p><strong>Image Processing:</strong> ITK/SimpleITK</p>
-</li>
-<li><p><strong>Visualization:</strong> OpenGL</p>
-</li>
-<li><p><strong>Building upon:</strong> MedEye3D framework</p>
-</li>
-</ul>
-<h2 id="user_interaction_examples"><a href="#user_interaction_examples" class="header-anchor">User Interaction Examples</a></h2>
-<ul>
-<li><p><strong>Hovering Over Supervoxels:</strong> When the user hovers the mouse over a supervoxel in one image &#40;e.g., CT scan&#41;, the corresponding supervoxel in the other image &#40;e.g., MRI scan&#41; will be highlighted automatically.</p>
-</li>
-<li><p><strong>Manual Correction:</strong> If the user identifies an incorrect supervoxel association, they can click on the supervoxel in one image to freeze it, then manually find and click the correct supervoxel in the other image to establish the correct association.</p>
-</li>
-<li><p><strong>Control Points:</strong> Users can annotate control points by clicking on corresponding anatomical areas in both images. These points will be saved and displayed to assist in image registration and orientation.</p>
-</li>
-</ul>
-<h2 id="importance_and_impact__2"><a href="#importance_and_impact__2" class="header-anchor">Importance and Impact</a></h2>
-<p>This project is significant because it addresses the challenges of non-rigid registration in medical imaging, which is crucial for accurate diagnosis and treatment planning. By providing a reliable tool for visualizing and interacting with supervoxels across different imaging modalities, the project has the potential to:</p>
-<ul>
-<li><p>Enhance the accuracy of image registration and subsequent measurements.</p>
-</li>
-<li><p>Reduce the time required for manual registration by radiologists and nuclear medicine specialists.</p>
-</li>
-<li><p>Enable the development of new algorithms and methods in the medical imaging field.</p>
-</li>
-<li><p>Improve clinical decision-making by providing more reliable imaging data.</p>
-</li>
-</ul>
-<p>While various medical image visualization tools exist, there is currently no software solution that specifically addresses supervoxel-based visualization across multiple imaging modalities with interactive correction capabilities. This project builds upon MedEye3D as an independent extension, enhancing its capabilities with new features for supervoxel visualization and interaction.</p>
-<h2 id="visual_examples"><a href="#visual_examples" class="header-anchor">Visual Examples</a></h2>
-<ol>
-<li><p>2 Different Patient&#39;s MRI and CT Studies on Transversal plane with supervoxels</p>
-</li>
-</ol>
-<p><img src="../../assets/contribute/gsoc/supervoxel_one.png" alt="MRI and CT Supervoxels" /></p>
-<ol start="2">
-<li><p>Highlighting the same anatomical region in both images with supervoxel display</p>
-</li>
-</ol>
-<p><img src="../../assets/contribute/gsoc/supervoxel_two.png" alt="MRI and CT Supervoxels with same anatomical regions highlighted" /></p>
-<p>Overall, this project aims to contribute to the advancement of medical imaging technology, ultimately benefiting both the scientific community and patient care. Additionally, it will serve as a support tool for digital twin projects, enhancing the reliability of image registration and subsequent measurements.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
