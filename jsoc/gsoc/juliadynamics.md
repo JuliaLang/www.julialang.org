@@ -22,7 +22,6 @@ Possible features to implement are:
 
 @@tight-list
 - GPU and/or HPC support in Agents.jl by integrating existing ABM packages (Vanaha.jl or CellBasedModels.jl) into Agents.jl API.
-- Integrating Agents.jl with ReinforcementLearning.jl
 - Differentiation / parameter fitting of ABMs in Agents.jl by utilizing StochasticAD.jl or similar frameworks. 
 @@
 
@@ -30,7 +29,7 @@ Possible features to implement are:
 
 **Recommended Skills**: Familiarity with agent based modelling, Agents.jl and Julia's Type System, 
 and achieving high-end computational performance within Julia.
-Research background in complex systems, sociology, agent based modelling, or nonlinear dynamics is not required but would be advantageous.
+Familiarity with complex systems or nonlinear dynamics is not required but would be a positive.
 
 **Expected Results**: Well-documented, well-tested useful new features for Agents.jl.
 
