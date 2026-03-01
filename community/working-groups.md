@@ -19,6 +19,7 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | [Dagger][dagger]                 | `#distributed`      | Every other Thursday at 10am ET          | [Julian Samaroo][Julian-Samaroo], [Krystian Guliński][Krystian-Guliński] |
 | [Documentation tooling][wg-docs] | `#documentation`    | Last Tuesday of every month at 18:00 UTC | [Morten Piibeleht][Morten-Piibeleht], [Fredrik Ekre][Fredrik-Ekre]       |
 | [GPU][gpu]                       | `#gpu`              | Every other Monday at 11am ET            | [Tim Besard][Tim-Besard], [Valentin Churavy][Valentin-Churavy]           |
+| Health and Medicine | `#health-and-medicine`     | Last Thursday of every month at 12pm ET            | [Jacob S. Zelko][Jacob-Zelko]                                               |
 | High-performance computing (HPC) | `#hpc`              | Fourth Tuesday of each month at 2pm ET, and second Thursday of each month at 14:00 CET | [Valentin Churavy][Valentin-Churavy], [Mosè Giordano][Mosè-Giordano] |
 | [JuliaMolSim]                    | `#juliamolsim`      | Third Monday of each month at 12:15 ET   | [Rachel Kurchin][Rachel-Kurchin]                                         |
 | Machine learning                 | `#machine-learning` | Every other Tuesday at 12pm ET           | [Kyle Daruwalla][Kyle-Daruwalla], [Lorenz Ohly][Lorenz-Ohly]             |
@@ -27,7 +28,6 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | Release management               | `#releases`         | [none]                                   | [Kristoffer Carlsson][Kristoffer-Carlsson], [Alex Arslan][Alex-Arslan]   |
 | REPL                             | `#repl`             | [none]                                   | [Timothy Chapman][Timothy Chapman]                                       |
 | Security                         | `#security-dev`     | Every other Friday at 12pm ET            | [Matt Bauman][Matt-Bauman]                                               |
-| Health and Medicine | `#health-and-medicine`     | Last Thursday of every month at 12pm ET            | [Jacob S. Zelko][Jacob-Zelko]                                               |
 
 The machine learning and REPL working groups can respectively also be found on
 the `#ml-contributors` and `#repl` streams on the [Julia Zulip][zulip].
