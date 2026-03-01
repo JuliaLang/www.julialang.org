@@ -66,4 +66,10 @@ const groups = [
         homepage: 'https://julialangja.github.io/',
         github: 'https://github.com/JuliaLangJa',
     },
+    {
+        name: 'Julia User Group Pittsburgh',
+        lat: 40.4387,
+        lon: 79.9972,
+        homepage: 'https://events.cmu.edu/event/29322-julia-programming-user-meeting',
+    },
 ];
