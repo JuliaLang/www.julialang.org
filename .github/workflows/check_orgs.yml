@@ -1,0 +1,33 @@
+name: Check publicly listed organizations
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - community/organizations.md
+  push:
+    paths:
+      - community/organizations.md
+jobs:
+  check_orgs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: 1.9
+
+      - uses: julia-actions/julia-buildpkg@v1
+        with:
+          project: tools/check_orgs
+          precompile: yes
+
+      - name: Check for any listed orgs with fewer than 2 public members
+        run: julia --project=. --color=yes check_orgs.jl
+        working-directory: tools/check_orgs
+        env:
+          GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}

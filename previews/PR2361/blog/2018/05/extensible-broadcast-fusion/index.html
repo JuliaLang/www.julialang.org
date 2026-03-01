@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2361/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2361/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2361/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2361/css/app.css">
+<link rel="stylesheet" href="/previews/PR2361/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2361/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2361/libs/buttons.js"></script>
+<script src="/previews/PR2361/libs/clipboard.min.js"></script>
+<script src="/previews/PR2361/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Extensible broadcast fusion</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Extensible broadcast fusion">
+<meta property="og:description" content=" Extensible broadcast fusion | Julia version 0.7 brings with it an exciting new feature: the ability to customize broadcast... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2361/">
+          <img src="/previews/PR2361/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2361/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2361/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2361/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2361/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2361/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2361/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Extensible broadcast fusion
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 11 May 2018 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"><a href="https://github.com/mbauman">Matt Bauman (JuliaHub)</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2018/05/extensible-broadcast-fusion.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Julia version 0.7 brings with it an exciting new feature: the ability to customize broadcast fusion&#33; This recently-merged change is the culmination of a long iterative design process that involved many members of the community. We have converged on a highly extensible interface that should satisfy many use-cases. In this blog post I&#39;ll explain why this is a big deal by reviewing some of the key features and just scratch the surface of all that is possible with this new design. I&#39;m quite certain that our enterprising community will come up with many more clever ways to exploit this new structure in the future.</p>
+<p><a href="https://docs.julialang.org/en/v1/manual/arrays/#Broadcasting">Broadcasting</a> is a core feature of Julia: it allows you to compactly and efficiently express an elementwise operation over containers and scalars by annotating operators and function calls with a <code>.</code>. In cases where the sizes don&#39;t match, broadcasting will virtually extend missing dimensions or &quot;singleton&quot; dimensions &#40;which contain only one value&#41; by repeating them to fill the outer shape. For example, the expression <code>&#40;&#91;1, 2, 3&#93; .&#43; &#91;10 20 30
+40&#93;&#41; ./ 10</code> combines a 3-element column vector, a 1x4 matrix, and a scalar to compute a 3x4 result. I imagine this as &quot;extruding&quot; the vector across the columns of the one-row matrix and spreading the division by 10 across the entire result:</p>
+<pre><code class="julia hljs">julia&gt; ([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] .+ [<span class="hljs-number">10</span> <span class="hljs-number">20</span> <span class="hljs-number">30</span> <span class="hljs-number">40</span>]) ./ <span class="hljs-number">10</span>
+<span class="hljs-number">3</span>×<span class="hljs-number">4</span> <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">2</span>}:
+ <span class="hljs-number">1.1</span>  <span class="hljs-number">2.1</span>  <span class="hljs-number">3.1</span>  <span class="hljs-number">4.1</span>
+ <span class="hljs-number">1.2</span>  <span class="hljs-number">2.2</span>  <span class="hljs-number">3.2</span>  <span class="hljs-number">4.2</span>
+ <span class="hljs-number">1.3</span>  <span class="hljs-number">2.3</span>  <span class="hljs-number">3.3</span>  <span class="hljs-number">4.3</span></code></pre>
+<p>Since version 0.6, Julia has executed this expression by <a href="/previews/PR2361/blog/2017/01/moredots">&quot;fusing&quot;</a> the two operations into a single kernel. That is, instead of first constructing an integer matrix resulting from the addition &#40;<code>&#91;11 21 31 41; 12 22 ...&#93;</code>&#41; and then subsequently using a second loop to divide each element by 10, Julia does both the addition and division for each element at the same time, making just one pass through the output array and skipping intermediate array&#40;s&#41; entirely. This fusion optimization happens as a syntax-level transformation so it is guaranteed to occur and easy to reason about. Version 0.7 adds an extensible API on top of this feature that allows arrays to customize precisely how this operates.</p>
+<p>Julia now uses a first-class data structure to &quot;lazily&quot; represent a fused broadcast expression before executing it. If you&#39;re not a package developer this may not mean all that much to you, but you&#39;ll still reap the many rewards. In Base Julia and its standard libraries alone, this means:</p>
+<ul>
+<li><p><a href="https://docs.julialang.org/en/latest/base/arrays/#Base.BitArray"><code>BitArray</code>s</a> can identify cases where they can operate on 64 boolean elements at once, yielding huge performance gains — often two orders of magnitude or more&#33; For an easy example, I&#39;ll just use random data with a simple <code>A</code> and not <code>B</code> predicate:</p>
+</li>
+</ul>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> BenchmarkTools, Random
+       srand(<span class="hljs-number">0</span>)
+       A = bitrand(<span class="hljs-number">10</span>^<span class="hljs-number">6</span>)
+       B = bitrand(<span class="hljs-number">10</span>^<span class="hljs-number">6</span>)
+       <span class="hljs-meta">@benchmark</span> $A .&amp; .!$B
+BenchmarkTools.Trial:
+  memory estimate:  <span class="hljs-number">122.23</span> KiB
+  allocs estimate:  <span class="hljs-number">3</span>
+  ----------
+  minimum time:     <span class="hljs-number">7.891</span> μs (<span class="hljs-number">0.00</span>% GC)
+  median time:      <span class="hljs-number">13.152</span> μs (<span class="hljs-number">0.00</span>% GC)
+  mean time:        <span class="hljs-number">17.826</span> μs (<span class="hljs-number">9.62</span>% GC)
+  maximum time:     <span class="hljs-number">591.497</span> μs (<span class="hljs-number">95.73</span>% GC)
+  ----------
+  samples:          <span class="hljs-number">10000</span>
+  evals/sample:     <span class="hljs-number">1</span></code></pre>
+<p>Compare this to previously on 0.6:</p>
+<pre><code class="julia hljs">BenchmarkTools.Trial:
+  memory estimate:  <span class="hljs-number">126.45</span> KiB
+  allocs estimate:  <span class="hljs-number">6</span>
+  ----------
+  minimum time:     <span class="hljs-number">3.615</span> ms (<span class="hljs-number">0.00</span>% GC)
+  median time:      <span class="hljs-number">3.741</span> ms (<span class="hljs-number">0.00</span>% GC)
+  mean time:        <span class="hljs-number">3.764</span> ms (<span class="hljs-number">0.18</span>% GC)
+  maximum time:     <span class="hljs-number">7.744</span> ms (<span class="hljs-number">50.18</span>% GC)
+  ----------
+  samples:          <span class="hljs-number">1328</span>
+  evals/sample:     <span class="hljs-number">1</span></code></pre>
+<p>That&#39;s upwards of a <strong>450x performance gain</strong>.</p>
+<ul>
+<li><p>Broadcasted operations over ranges can now simply re-compute a new range instead of working element-wise if it&#39;s possible. For example, the expression <code>&#40;&#40;1:10000&#41; .&#43; 20&#41; .* 7</code> doesn&#39;t need to allocate a vector for 10,000 elements — it doesn&#39;t even need to do 10,000 computations. It can instead operate in terms of the start, stop, and step and return a new range that represents the result: <code>147:7:70140</code>. This new feature allows them to <strong>transform <em>O&#40;N&#41;</em> computations into <em>O&#40;1&#41;</em></strong>. On version 0.6, ranges were in this strange place where <code>&#40;1:10000&#41; &#43; 20</code> implemented the fast <em>O&#40;1&#41;</em> computation of a new range, but all other array types had deprecated addition with numbers in favor of explicit <code>.&#43;</code> broadcasting for clearer semantics and improved performance. Thanks to this new API, ranges can now identify these cases and fully support broadcasting in an efficient manner.</p>
+</li>
+<li><p>The <a href="https://docs.julialang.org/en/latest/stdlib/LinearAlgebra/#Special-matrices-1">structured matrices</a> in the <a href="https://docs.julialang.org/en/latest/stdlib/LinearAlgebra/#Linear-Algebra-1"><code>LinearAlgebra</code> standard library</a> no longer return sparse arrays as the result of a broadcasted operation. They&#39;ll now either maintain an appropriate structure or return a dense array. For example:</p>
+</li>
+</ul>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> LinearAlgebra
+       d = Diagonal(<span class="hljs-number">1</span>:<span class="hljs-number">3</span>)
+<span class="hljs-number">3</span>×<span class="hljs-number">3</span> Diagonal{<span class="hljs-built_in">Int64</span>,<span class="hljs-built_in">UnitRange</span>{<span class="hljs-built_in">Int64</span>}}:
+ <span class="hljs-number">1</span>  ⋅  ⋅
+ ⋅  <span class="hljs-number">2</span>  ⋅
+ ⋅  ⋅  <span class="hljs-number">3</span>
+
+julia&gt; d ./ <span class="hljs-number">10</span>
+<span class="hljs-number">3</span>×<span class="hljs-number">3</span> Diagonal{<span class="hljs-built_in">Float64</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">1</span>}}:
+ <span class="hljs-number">0.1</span>   ⋅    ⋅
+  ⋅   <span class="hljs-number">0.2</span>   ⋅
+  ⋅    ⋅   <span class="hljs-number">0.3</span>
+
+julia&gt; t = d .+ LowerTriangular(rand(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
+<span class="hljs-number">3</span>×<span class="hljs-number">3</span> LowerTriangular{<span class="hljs-built_in">Float64</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">2</span>}}:
+ <span class="hljs-number">1.5446</span>     ⋅         ⋅
+ <span class="hljs-number">0.529211</span>  <span class="hljs-number">2.26095</span>    ⋅
+ <span class="hljs-number">0.533674</span>  <span class="hljs-number">0.373702</span>  <span class="hljs-number">3.88408</span>
+
+julia&gt; t .+ <span class="hljs-number">100</span>
+<span class="hljs-number">3</span>×<span class="hljs-number">3</span> <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">2</span>}:
+ <span class="hljs-number">101.327</span>  <span class="hljs-number">100.0</span>    <span class="hljs-number">100.0</span>
+ <span class="hljs-number">100.85</span>   <span class="hljs-number">102.138</span>  <span class="hljs-number">100.0</span>
+ <span class="hljs-number">100.575</span>  <span class="hljs-number">100.129</span>  <span class="hljs-number">103.839</span></code></pre>
+<p>Previously, Julia 0.6 would have returned a <code>SparseMatrixCSC</code> for <code>d ./ 10</code> and an <code>Array</code> for <code>d .&#43; LowerTriangular&#40;rand&#40;3,3&#41;&#41;</code>.</p>
+<ul>
+<li><p>Finally, broadcasting at the global scope is now pre-compilable, and you can use dot-broadcast inside generated functions. This wasn&#39;t a huge limitation in the past, but it did surprise folks timing an in-place broadcast like <code>@time y .*&#61; 2</code> and seeing thousands of allocations:</p>
+</li>
+</ul>
+<pre><code class="julia hljs"><span class="hljs-comment"># Previously:</span>
+julia&gt; y = rand(<span class="hljs-number">1000</span>);
+
+julia&gt; <span class="hljs-meta">@time</span> y .*= <span class="hljs-number">2</span>;
+  <span class="hljs-number">0.032775</span> seconds (<span class="hljs-number">17.43</span> k allocations: <span class="hljs-number">947.671</span> KiB)
+
+julia&gt; <span class="hljs-meta">@time</span> y .*= <span class="hljs-number">2</span>;
+  <span class="hljs-number">0.020790</span> seconds (<span class="hljs-number">4.27</span> k allocations: <span class="hljs-number">233.457</span> KiB)
+
+<span class="hljs-comment"># Now on Julia 0.7:</span>
+julia&gt; y = rand(<span class="hljs-number">1000</span>);
+
+julia&gt; <span class="hljs-meta">@time</span> y .*= <span class="hljs-number">2</span>;
+  <span class="hljs-number">0.060494</span> seconds (<span class="hljs-number">90.41</span> k allocations: <span class="hljs-number">5.529</span> MiB)
+
+julia&gt; <span class="hljs-meta">@time</span> y .*= <span class="hljs-number">2</span>;
+  <span class="hljs-number">0.000020</span> seconds (<span class="hljs-number">6</span> allocations: <span class="hljs-number">208</span> bytes)</code></pre>
+<p>I&#39;ll now dive deeper into exactly how this new API works.</p>
+<h3 id="the_representation_of_a_fused_broadcast"><a href="#the_representation_of_a_fused_broadcast" class="header-anchor">The representation of a fused broadcast</a></h3>
+<p>You can see precisely how a fused broadcast is represented with <a href="https://docs.julialang.org/en/latest/base/base/#Base.Meta.@lower"><code>Meta.@lower</code></a>, but in simpler terms the expression <code>&#40;&#91;1, 2, 3&#93; .&#43; &#91;10 20 30 40&#93;&#41; ./ 10</code> is effectively a syntax transformation for:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> .Broadcast: materialize, broadcasted
+       bc = broadcasted(/, broadcasted(+, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">10</span> <span class="hljs-number">20</span> <span class="hljs-number">30</span> <span class="hljs-number">40</span>]), <span class="hljs-number">10</span>)
+       materialize(bc)
+<span class="hljs-number">3</span>×<span class="hljs-number">4</span> <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">2</span>}:
+ <span class="hljs-number">1.1</span>  <span class="hljs-number">2.1</span>  <span class="hljs-number">3.1</span>  <span class="hljs-number">4.1</span>
+ <span class="hljs-number">1.2</span>  <span class="hljs-number">2.2</span>  <span class="hljs-number">3.2</span>  <span class="hljs-number">4.2</span>
+ <span class="hljs-number">1.3</span>  <span class="hljs-number">2.3</span>  <span class="hljs-number">3.3</span>  <span class="hljs-number">4.3</span></code></pre>
+<p>In this case, that <code>bc</code> object is an instance of a <code>Broadcasted</code> struct. It just holds onto the function and its arguments — and its arguments may include other nested <code>Broadcasted</code> structs. The <code>materialize</code> function does a bit of pre-processing and then calls <code>copy&#40;bc&#41;</code>, which allocates the result and then finally loops over the result and executes the functions.</p>
+<p>Each step along the way is extensible, leveraging the power of Julia&#39;s multiple dispatch, inlining and argument specialization for near-zero overhead. With this basic framework in mind, you can begin to see how the built-in and standard library arrays are able to implement all those new features mentioned above:</p>
+<ul>
+<li><p>When broadcasting into a <code>BitArray</code>, it can first introspect the functions and their arguments in the expression tree to see if it can operate at the level of the packed 64-bit chunks as <code>UInt64</code>s instead of working bit-by-bit. It can even convert boolean-only operators like <code>&#33;</code> to their equivalent bitwise operators like <code>~</code>.</p>
+</li>
+<li><p>Ranges are able to &quot;opt-out&quot; of fusion by defining specialized <code>Broadcast.broadcasted</code> methods that immediately return those re-computed ranges. This means that they do not fuse multiple operations at all, but in exchange they get an <em>O&#40;1&#41;</em> algorithm.</p>
+</li>
+<li><p>When <code>LinearAlgebra</code>&#39;s structured matrices are asked to allocate the result, their specialized <code>broadcast_similar</code> methods can walk through the <code>Broadcasted</code> expression tree and identify if any structure will remain.</p>
+</li>
+<li><p>Fused broadcast expressions no longer construct an anonymous function behind your back; they just construct new instances of a Julia data structure that simply call functions that are already defined. This is what allows them to be precompiled and work in generated functions.</p>
+</li>
+</ul>
+<h3 id="looking_to_the_future"><a href="#looking_to_the_future" class="header-anchor">Looking to the future</a></h3>
+<p>Of course, this is all <a href="https://docs.julialang.org/en/v1/manual/interfaces/#man-interfaces-broadcasting">documented and available to packages</a>. There&#39;s no secret sauce that we&#39;re hoarding for ourselves. It&#39;ll be exciting to see how the many creative minds in the package ecosystem manage to take advantage of all this new functionality. Some of the places where I see this yielding a significant benefit include machine learning applications and computation on GPUs.</p>
+<p>Historically, some of the machine learning libraries have put in place <a href="https://github.com/MikeInnes/TakingBroadcastSeriously.jl">hacks</a> to allow their arrays to opt-out of fusion. The new broadcasting API instead allows them to opt-out of fusion with a first-class and fully supported mechanism that is much simpler to implement. Further, many deep learning techniques are heavily dependent upon differentiation; in some cases introspecting a broadcasted kernel will allow them to use an exact analytical result instead of computing differentials.</p>
+<p>Finally, fusing a complicated broadcast expression into a single kernel has already been a huge boon to the performance of arrays on GPUs. Most GPU programming packages won&#39;t necessarily need to introspect or customize the broadcasted expression, but they&#39;re looking to the future to a potential extension that would allow fusing <em>a reduction</em> with the broadcasted expression. While not possible yet, the bulk of the machinery is in place to operate directly upon the <code>Broadcasted</code> lazy wrapper instead of allocating the intermediate array in an expression like <code>sum&#40;X.^2 .&#43; Y.^2&#41;</code>.</p>
+<p>       </p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/previews/PR2361/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2361/project">About</a></li>
+        <li><a href="/previews/PR2361/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2361/governance/">Governance</a></li>
+        <li><a href="/previews/PR2361/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2361/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2361/install/">Install</a></li>
+        <li><a href="/previews/PR2361/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2361/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2361/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2361/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2361/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2361/community/">Community</a></li>
+        <li><a href="/previews/PR2361/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2361/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2361/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2361/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2361/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2361/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2361/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2361/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2361/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/previews/PR2361/libs/groups.js"></script>
+    <script src="/previews/PR2361/libs/map.js"></script>
+  </body>
+</html>

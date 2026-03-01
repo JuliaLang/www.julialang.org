@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2369/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2369/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2369/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2369/css/app.css">
+<link rel="stylesheet" href="/previews/PR2369/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2369/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2369/libs/buttons.js"></script>
+<script src="/previews/PR2369/libs/clipboard.min.js"></script>
+<script src="/previews/PR2369/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Profiling tool wins and woes</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Profiling tool wins and woes">
+<meta property="og:description" content=" Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. ![Instruments.app bad result](/assets/blog/2019-09-16-profilers/profile-instruments-bad.png)">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2369/">
+          <img src="/previews/PR2369/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2369/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2369/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2369/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2369/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2369/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2369/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Profiling tool wins and woes
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 16 September 2019 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"><a href="https://github.com/vtjnash/">Jameson Nash</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2019/09/profilers.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: <a href="http://www.brendangregg.com/flamegraphs.html">brendangregg&#39;s often cloned flamegraphs tool</a> was created in 2011&#33; So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.</p>
+<h2 id="learn_more"><a href="#learn_more" class="header-anchor">Learn more&#33;</a></h2>
+<p>If you want to learn how they are supposed to work, I suggest looking at other resources first, such as:</p>
+<ul>
+<li><p>Julia Evans on learning to be a wizard: <a href="https://wizardzines.com/zines/perf/">https://wizardzines.com/zines/perf/</a></p>
+</li>
+<li><p>Julia Evans taking a sabbatical to write a profiler tool: <a href="https://jvns.ca/categories/ruby-profiler/">https://jvns.ca/categories/ruby-profiler/</a></p>
+</li>
+<li><p>Brendan Gregg on perf: <a href="https://www.brendangregg.com/perf.html">https://www.brendangregg.com/perf.html</a></p>
+</li>
+<li><p>Brendan Gregg on flamegraphs: <a href="http://www.brendangregg.com/flamegraphs.html">http://www.brendangregg.com/flamegraphs.html</a></p>
+</li>
+</ul>
+<p>Then come back here to dive deeper&#33;</p>
+<h2 id="deep_dive_into_deeper_stacks"><a href="#deep_dive_into_deeper_stacks" class="header-anchor">Deep Dive into Deeper Stacks</a></h2>
+<p>I wanted to look into a couple profilers to see how they would handle recursion. This is a tricky area, both in getting compilers to output useful benchmarks, and in getting profiling tools to summarize the interpretation of it. And since I work on Julia, I can try to fix problems I find there, making the world a better place&#33; For the other tools I tested, I&#39;m hoping this collection of observations may help those projects learn ways to improve from other projects. So if it seems I&#39;m just enjoying finding problems, that&#39;s true, but I also am also actively making fixes and improvements through this effort.</p>
+<h2 id="unit_under_test"><a href="#unit_under_test" class="header-anchor">Unit Under Test</a></h2>
+<p>We&#39;re going to use recursive Fibonacci as our test function, since it&#39;s dead simple to write in most languages, but we don&#39;t see compilers getting &quot;too clever&quot; and eliminating the recursion. Here&#39;s the basic formulation we&#39;ll use:</p>
+<pre><code class="julia hljs">fib(n) :
+    n &gt; <span class="hljs-number">1</span> =&gt; fib(n - <span class="hljs-number">1</span>) + fib(n - <span class="hljs-number">2</span>)
+    <span class="hljs-keyword">else</span>  =&gt; <span class="hljs-number">1</span></code></pre>
+<p>Furthermore, we&#39;ll also try making each of those recursive calls actually indirect through another function to give a slightly more complex backtrace:</p>
+<pre><code class="julia hljs">fib_r(n) : fib(n)</code></pre>
+<h2 id="profiling_c_code"><a href="#profiling_c_code" class="header-anchor">Profiling C code</a></h2>
+<p>First, let&#39;s look at a sample C program:</p>
+<pre><code class="c hljs"><span class="hljs-type">int</span> <span class="hljs-title function_">fib</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">fib_r</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> {
+    <span class="hljs-keyword">return</span> fib(n);
+}
+<span class="hljs-type">int</span> <span class="hljs-title function_">fib</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> {
+    <span class="hljs-keyword">return</span> n &gt; <span class="hljs-number">1</span> ? fib_r(n - <span class="hljs-number">1</span>) + fib_r(n - <span class="hljs-number">2</span>) : <span class="hljs-number">1</span>;
+}
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> {
+    <span class="hljs-keyword">return</span> fib(<span class="hljs-number">40</span>);
+}</code></pre>
+<p>On my macOS machine, this takes on the order of one second, so that&#39;s usually a good number of samples. I&#39;m going to use a few options to prevent certain stack optimizations, and otherwise let the compiler do it&#39;s best. The <code>-fno-optimize-sibling-calls</code> option prohibits the compiler from using a tailcall, which ensures <code>fib_r</code> stays in the stacktrace recording and that <code>fib</code> can&#39;t be partially optimized into a loop. The <code>-fno-inline</code> is there to help preserve the predictability of the record.</p>
+<pre><code class="bash hljs">$ clang -Wall -Werror -pedantic -std=c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c -o fib
+$ time ./fib
+real    0m0.723s
+user    0m0.717s
+sys     0m0.003s
+$ instruments -t <span class="hljs-string">&quot;Time Profiler&quot;</span> ./fib
+Instruments Trace Complete: instrumentscli0.trace
+$ open instrumentscli0.trace</code></pre>
+<p>In <code>Instruments.app</code>, this does quite well, except for one peculiar combination of options.</p>
+<p><img src="/previews/PR2369/assets/blog/2019-09-16-profilers/profile-instruments-bad.png" alt="Instruments.app bad result" /></p>
+<p>I don&#39;t know how it computed those numbers, but note that the total runtime was 738 ms, so all those numbers that are some multiple of that &#40;1.47 s, 1.15 s, 230 ms&#41; are wrong.</p>
+<p>But in any other mode, we can see that it&#39;s on the right track:</p>
+<p><img src="/previews/PR2369/assets/blog/2019-09-16-profilers/profile-instruments-good.png" alt="Instruments.app good result" /></p>
+<p>The only problem I can identify here is that all of the self-weights are zero in this view. In the source code view, the lines are properly annotated with counts.</p>
+<p>On Linux, with the <code>perf</code> tool, this is pretty similar to use:</p>
+<pre><code class="bash hljs">$ gcc -Wall -Werror -pedantic -std=c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c
+$ perf record --call-graph dwarf ./a.out
+[ perf record: Woken up 153 <span class="hljs-built_in">times</span> to write data ]
+[ perf record: Captured and wrote 38.221 MB perf.data (4748 samples) ]</code></pre>
+<p>But I couldn&#39;t get this to generate a satisfactory report. I think the fault is with the dwarf implementation, so it seems you should be careful when using it to make decisions.</p>
+<pre><code class="bash hljs">$ perf report --stdio --call-graph=none
+<span class="hljs-comment"># Total Lost Samples: 0</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Samples: 4K of event &#x27;cycles:uppp&#x27;</span>
+<span class="hljs-comment"># Event count (approx.): 3344003009</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Children      Self  Command  Shared Object     Symbol</span>
+<span class="hljs-comment"># ........  ........  .......  ................  ..................................</span>
+<span class="hljs-comment">#</span>
+    64.22%    64.22%  a.out    a.out             [.] fib
+    43.30%    35.77%  a.out    a.out             [.] fib_r
+     8.75%     0.00%  a.out    [unknown]         [.] 0x00007ffc2454634f
+     7.52%     0.00%  a.out    a.out             [.] _start
+     7.52%     0.00%  a.out    a.out             [.] main</code></pre>
+<p>I tried various options including <code>-gdwarf-2</code>, <code>-gdwarf-4</code>, <code>-fno-omit-frame-pointer</code><sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup>, and switching to <code>clang</code>. None of those helped much. With FPO disabled, the clang results were much better than with gcc &#40;both improved&#41;, but clang&#39;s output was also a smidgen slower running, so that might be a contributing factor &#40;more overhead&#41;.</p>
+<p>But combining the compiler option <code>-fno-omit-frame-pointer</code> with the perf option <code>--call-graph fp</code> worked.</p>
+<pre><code class="bash hljs">$ perf report --stdio --call-graph=none
+<span class="hljs-comment"># Total Lost Samples: 0</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Samples: 4K of event &#x27;cycles:uppp&#x27;</span>
+<span class="hljs-comment"># Event count (approx.): 2752040208</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Children      Self  Command  Shared Object     Symbol</span>
+<span class="hljs-comment"># ........  ........  .......  ................  ..........................</span>
+<span class="hljs-comment">#</span>
+    99.99%    65.02%  a.out    a.out             [.] fib
+    99.99%    34.97%  a.out    a.out             [.] fib_r
+    99.99%     0.00%  a.out    a.out             [.] main
+    99.99%     0.00%  a.out    libc-2.27.so      [.] __libc_start_main
+    99.99%     0.00%  a.out    [unknown]         [.] 0x077e258d4c544155</code></pre>
+<p>Here we see it&#39;s got the right children &#40;total&#41; and self weights&#33;</p>
+<p>There&#39;s also a bunch of other options for <code>--call-graph</code>, but all of them spewed vast amounts of &#40;mis&#41;information, so I&#39;ve opted not to try to fit that in here.</p>
+<h2 id="profiling_julialang_code"><a href="#profiling_julialang_code" class="header-anchor">Profiling JuliaLang code</a></h2>
+<p>Now let&#39;s see how JuliaLang &#40;v1.3&#41; does:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@noinline</span> <span class="hljs-keyword">function</span> fib(n)
+         <span class="hljs-keyword">return</span> n &gt; <span class="hljs-number">1</span> ? fib_r(n - <span class="hljs-number">1</span>) + fib_r(n - <span class="hljs-number">2</span>) : <span class="hljs-number">1</span>
+       <span class="hljs-keyword">end</span>
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@noinline</span> fib_r(n) = fib(n)
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> fib(<span class="hljs-number">40</span>)
+</span>  0.738735 seconds (3.16 k allocations: 176.626 KiB)
+165580141
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-keyword">using</span> Profile
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@profile</span> fib(<span class="hljs-number">40</span>)
+</span>165580141
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> Profile.print(format=:flat, sortedby=:count)
+</span> Count File      Line Function
+    12 int.jl      52 -
+    14 int.jl      53 +
+   212 boot.jl    330 eval
+  5717 REPL[2]      1 fib_r
+  6028 REPL[1]      2 fib
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> count(==(<span class="hljs-number">0</span>), Profile.fetch())
+</span>585</code></pre>
+<p>So that&#39;s pretty bad—we appear to have about 212 samples, going by the counts on the <code>eval</code> function at the top of the stack. And we&#39;re told that about 2000&#37; of the time was in <code>fib</code>. Clearly not true. What happened here? We computed that <code>fib</code> &#40;and <code>fib_r</code>&#41; each appeared an average of 10-20 times in every backtrace, so we over-represent them in our flat-format output. OK, so first thing to do is to fix that: each frame should only be counted once towards each output line.</p>
+<p>But there&#39;s also the recursive option, which doesn&#39;t suffer from this particular issue. So how does it fare:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> Profile.print(format=:tree)
+</span>260 REPL[1]:2; fib(::Int64)
+112 REPL[1]:1; fib_r(::Int64)
+212 task.jl:333; REPL.var&quot;##26#27&quot;
+ 212 REPL.jl:118; macro expansion
+  212 REPL.jl:86; eval_user_input
+   212 boot.jl:330; eval
+  ╎ 210 REPL[1]:2; fib
+  ╎  210 REPL[1]:1; fib_r
+  ╎   210 REPL[1]:2; fib
+  ╎    210 REPL[1]:1; fib_r
+  ╎     210 REPL[1]:2; fib
+  ╎    ╎ 210 REPL[1]:1; fib_r
+  ╎    ╎  210 REPL[1]:2; fib
+  ╎    ╎   210 REPL[1]:1; fib_r
+  ╎    ╎    210 REPL[1]:2; fib
+  ╎    ╎     210 REPL[1]:1; fib_r
+  ╎    ╎    ╎ 210 REPL[1]:2; fib
+  ╎    ╎    ╎  210 REPL[1]:1; fib_r
+  ╎    ╎    ╎   210 REPL[1]:2; fib
+  ╎    ╎    ╎    210 REPL[1]:1; fib_r
+  ╎    ╎    ╎     210 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎ 210 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎  210 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎   210 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    210 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎     210 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎ 210 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎  210 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎   210 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    210 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎     210 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎ 210 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎  210 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎   210 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    210 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎     210 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎ 210 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎  210 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎   209 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    208 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎     208 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 208 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  208 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   208 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    208 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     206 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 205 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  203 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   201 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    199 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     199 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 196 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  194 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   190 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    187 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     1   REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     175 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 170 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  4   REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  151 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   143 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    2   REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    120 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     109 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 85 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  76 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   56 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    48 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     3  REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     28 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 26 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  10 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   7 REPL[1]:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    2 REPL[1]:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    1 int.jl:52; -
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  1  int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  1  int.jl:52; -
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   1  int.jl:52; -
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 1  int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 4  int.jl:52; -
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    5   int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    2   int.jl:52; -
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  2   int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  2   int.jl:52; -
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     1   int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   1   int.jl:52; -
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 1   int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    1   int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  2   int.jl:53; +</code></pre>
+<p>We also see this has issues with identifying the stack in many cases &#40;almost 40&#37; failed&#33;&#41;, similar to <code>perf</code>. One way to improve that &#40;reducing to ~10&#37; failure rate&#41; is to disable the omit-frame-pointer option, like we did before. Currently this requires this source code change:</p>
+<pre><code class="diff hljs"><span class="hljs-comment">diff --git a/src/jitlayers.cpp b/src/jitlayers.cpp</span>
+<span class="hljs-comment">index cf339d8a4b..f6e9c08e2c 100644</span>
+<span class="hljs-comment">--- a/src/jitlayers.cpp</span>
+<span class="hljs-comment">+++ b/src/jitlayers.cpp</span>
+<span class="hljs-meta">@@ -3,9 +3,7 @@</span>
+ #include &quot;llvm-version.h&quot;
+ #include &quot;platform.h&quot;
+ #include &quot;options.h&quot;
+<span class="hljs-deletion">-#if defined(_OS_WINDOWS_) || defined(_OS_FREEBSD_)</span>
+ #  define JL_DISABLE_FPO
+<span class="hljs-deletion">-#endif</span>
+
+ #include &lt;iostream&gt;
+ #include &lt;sstream&gt;</code></pre>
+<p>But otherwise, this seems fairly accurate, but yikes, what an arrow&#33; I needed over 40 frames this way, and that makes this pretty hard to interpret. Spiky frame-graphs like this can be quite misleading to look at since it&#39;s the sum of the widths that&#39;s important, but the most visually compelling areas &#40;the spikes&#41; are an orthogonal axis. And so this layout can make it really hard to see where the time is being spent in aggregate, especially with recursion causing the height of the important widths to shift vertically.</p>
+<p>Julia implements several options, including <code>noisefloor</code>, <code>mincount</code> and <code>maxdepth</code>, to help with many situations, but they do nothing for this example. The <code>mincount</code> option &#40;also present in <code>Instruments.app</code> for min and max # samples; and in <code>perf</code> as a min percent threshold&#41; drops any line that doesn&#39;t meet that threshold. The <code>maxdepth</code> option &#40;aka <code>print_limit</code> in <code>perf</code>&#41; cuts off the tree after some recursion limit. The <code>noisefloor</code> option is similar to <code>mincount</code>, but operates as a relative fraction of the noise estimate in the parent frame, instead of a constant threshold &#40;I&#39;m not aware of a similar option in other tools&#41;. This can help hide frames from the tree that contribute little to the immediate performance. This is based on the value engineering principle of focusing on the largest contributors first and the <a href="https://github.com/JuliaLang/julia/pull/18043">statistical measure of sampling noise</a> given as <code>child &lt; noisefloor*sqrt&#40;parent&#41;</code>. For many problems, these options can be greatly beneficial to quickly isolate the biggest contributors.</p>
+<p>However, none of these option are helpful for our tree above. We need more tools in our toolbox&#33;</p>
+<p>Let&#39;s now examine how we can try to consolidate the recursive frames somehow. One option is the flat reports we looked at earlier.</p>
+<p>Here&#39;s that same flat report above with the counts corrected &#40;in Julia v1.4-dev&#41;, and some extra information also now compiled for it:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> Profile.print(format=:flat, sortedby=:counts)
+</span> Count  Overhead File      Line Function
+   228         2 ./boot.jl  330 eval
+     2         2 ./int.jl    52 -
+    25        25 ./int.jl    53 +
+   321       155 ./REPL[2]    1 fib_r
+   514       426 ./REPL[1]    2 fib
+Total snapshots: 610</code></pre>
+<p>That&#39;s better, and now the information matches the tree&#33; But unlike the tree view, this flat view doesn&#39;t show context. Some of those functions are very common, like <code>&#43;</code>, and it might not be sufficient to see them in aggregate like this. Can we combine the benefits of both views somehow?</p>
+<h2 id="better_recursion_handling"><a href="#better_recursion_handling" class="header-anchor">Better recursion handling</a></h2>
+<p>Let&#39;s now look at some different approaches some tools take to flatten this recursion to make it easier to find insights.</p>
+<p>First, the Instruments.app tool we&#39;ve looked at above has an option to collapse recursive calls, which will take a callstack with one repeated entry and replace it with one entry that takes the sum of that recursion. This has no effect on our example code, since there&#39;s two entries being repeated. While this mode can simplify the stack view and make it easier to explore, it doesn&#39;t provide us with additional insight into the code.</p>
+<p>There&#39;s another visualization-only tool called Speedscope which has <a href="https://github.com/jlfwong/speedscope/pull/68">an option to do this</a>. It imports profile files created by many other tools and languages, so we&#39;ll import the earlier <code>perf</code> file and see how it does against our lineup:</p>
+<p><img src="/previews/PR2369/assets/blog/2019-09-16-profilers/profile-speedscope.png" alt="Speedscope bad result" /></p>
+<p>Looks about right&#33; Only one silly nit: it claims the sum of all frames identical to the highlighted frame &#40;just itself&#41; took 367.38 ms &#40;good&#41;, but that the highlighted frame alone took 1.05 s &#40;oops, the tool must be computing the count of the wrong summary information&#41;. But otherwise, this seems to show about the right information we&#39;ve come to expect.</p>
+<p>Let&#39;s look closer at what it&#39;s doing using their <a href="https://www.speedscope.app/#profileURL&#61;https://raw.githubusercontent.com/jlfwong/speedscope/master/sample/profiles/stackcollapse/recursion.txt">stackcollapse recursion sample</a> with left-heavy view and &#39;r&#39;ecursion-flattened view shows one solution. Here we see that it simply drops any repeated frames when examining the call tree. This works out fine for our simple <code>fib</code> example, but shows some artifacts when we look at their sample data. Notice how the blue frame &#40;c&#41; is always charged to the green frame &#40;b&#41;, even though half of the calls actually came from the red frame &#40;a&#41;?</p>
+<p>When I showed this post to my friend, he suggested I also include his <a href="https://github.com/vchuravy/PProf.jl">PProf.jl</a> package here &#40;a JuliaLang front end for the <a href="https://github.com/google/pprof">pprof</a> visualization tool&#41;. This was a good suggestion, as it provides several alternative graphical representations. First, it can produce a callgrind format graphic:</p>
+<p><img src="/previews/PR2369/assets/blog/2019-09-16-profilers/profile-pprof.png" alt="PProf" /></p>
+<p>This is nice&#33; We get to visualize the static functions call tree simultaneously with the weight each function contributes to the time. However, this format can be a bit limited on the total quantity of information it can fit, so it might not always help. The <code>pprof</code> tool automatically filters out smaller frames to aid the user in seeing the important ones, and provides several options for adding and removing functions from the view.</p>
+<p>In addition, the <code>pprof</code> tool has a sandwich text report that summarizes the caller and callee list around each profile sample:</p>
+<pre><code class="bash hljs">Type: events
+Showing nodes accounting <span class="hljs-keyword">for</span> 632, 100% of 632 total
+----------------------------------------------------------+-------------
+      flat  flat%   <span class="hljs-built_in">sum</span>%        cum   cum%   calls calls% + context
+----------------------------------------------------------+-------------
+                                               273 52.20% |   fib REPL:-1
+                                               273 52.20% |   fib_r REPL:1
+       417 65.98% 65.98%        523 82.75%                | fib REPL:2
+                                               273 52.20% |   fib_r REPL:1
+----------------------------------------------------------+-------------
+                                               273 72.03% |   fib REPL:2
+       178 28.16% 94.15%        379 59.97%                | fib_r REPL:1
+                                               273 72.03% |   fib REPL:2
+                                                33  8.71% |   + ./int.jl:2
+                                                 1  0.26% |   - ./int.jl:2
+----------------------------------------------------------+-------------
+                                                33   100% |   + ./int.jl:2 (inline)
+        33  5.22% 99.37%         33  5.22%                | + ./int.jl:53
+----------------------------------------------------------+-------------
+                                                 1   100% |   - ./int.jl:2 (inline)
+         1  0.16% 99.53%          1  0.16%                | - ./int.jl:52
+----------------------------------------------------------+-------------</code></pre>
+<p>Let&#39;s combine all those ideas to make a new option for our Julia plain-text tree view: flattened recursion. Here&#39;s the docstring for the new argument to <code>Profile.print</code>:</p>
+<ul>
+<li><p><code>recur</code> – Controls the recursion handling in <code>:tree</code> format. <code>:off</code> &#40;default&#41; prints the tree as normal. <code>:flat</code> instead compresses any recursion &#40;by ip&#41;, showing the approximate effect of converting any self-recursion into an iterator. <code>:flatc</code> does the same but also includes collapsing of C frames &#40;may do odd things around <code>jl_apply</code>&#41;.</p>
+</li>
+</ul>
+<p>So this will no longer be a literal interpretation of the stack, but will show a particular linearization where each recursive call was re-written as a loop. This has a few secondary implications. It means that we may now see counts that sum to greater than their parent. For example, 100&#37; &#40;236/236&#41; of the time inside the parent <code>fib</code> was spent inside the child <code>fib_r</code>, and additionally, 4&#37; &#40;9/236&#41; were recorded as being part of a direct call to <code>fib</code> from <code>fib</code> &#40;an artifact caused by unreliable stack recording&#41;. Additionally, if you recall the definition of <code>fib</code> above, <code>fib</code> has two distinct calls to <code>fib_r</code>. Since the goal was to rearrange recursive calls, and not recursive lines, we expect to see those two calls reflected exactly in the profile shape too. However, there&#39;s no distinction made between <em>which</em> call each was from &#40;unless you also pass <code>collapse&#61;false</code><sup id="fnref:2"><a href="#fndef:2" class="fnref">[2]</a></sup>&#41;.</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> Profile.print(format=:tree, recur=:flat)
+</span>94  ./REPL[1]:1; fib_r(::Int64)
+260 ./REPL[2]:2; fib(::Int64)
+275 ./task.jl:333; (::REPL.var&quot;##26#27&quot;{REPL.REPLBackend})()
+ 275 ./REPL.jl:118; macro expansion
+  275 ./REPL.jl:86; eval_user_input(::Any, ::REPL.REPLBackend)
+   275 ./boot.jl:330; eval(::Module, ::Any)
+  ╎ 273 ./REPL[2]:2; fib(::Int64)
+  ╎  273 ./REPL[1]:1; fib_r(::Int64)
+  ╎   273 ./REPL[2]:2; fib(::Int64)
+  ╎    49 ./REPL[1]:1; fib_r(::Int64)
+  ╎    1  ./REPL[2]:2; fib(::Int64)
+  ╎    39 ./int.jl:53; +
+  ╎    3  ./int.jl:52; -
+  ╎  1   ./REPL[2]:2; fib(::Int64)
+Total snapshots: 629</code></pre>
+<p>I think this looks cool, and vaguely even shows how I would conceptualize the functions in my head. This is available right now only on <a href="https://github.com/JuliaLang/julia/tree/jn/profile-recurflat">my jn/profile-recurflat</a> branch, but should be a PR soon, and show up in the JuliaLang v1.4 release.</p>
+<h2 id="final_thoughts"><a href="#final_thoughts" class="header-anchor">Final thoughts</a></h2>
+<p>There&#39;s many more tools for examining profile exploration tools that I haven&#39;t mentioned, including the venerable <a href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a> and <a href="https://docs.junolab.org/stable/man/juno_frontend.html#Profiler-1">Juno.jl</a>. And there&#39;s other tools too for working on performance questions, such as the simple <a href="https://docs.julialang.org/en/v1/base/base/#Base.@time">@time</a> and the batteries-included <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> . Those will often then lead to needing to do deeper exploration of the code. For that next step, consider using <a href="https://github.com/JuliaDebug/Cthulhu.jl">Cthulhu.jl</a> and <a href="https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/">learning more about other kinds of debugging</a>.</p>
+<p>And finally, we&#39;re working on a <a href="https://github.com/JuliaLang/julia/pull/31534">memory profiler</a> for JuliaLang to let you explore questions of memory consumption, similar to the time-duration-consumed questions explored above. So watch for more updates to come&#33;</p>
+<hr />
+<p><table class="fndef" id="fndef:1">
+    <tr>
+        <td class="fndef-backref"><a href="#fnref:1">[1]</a></td>
+        <td class="fndef-content">When writing this, I forget to also test the <code>--fasynchronous-unwind-tables</code> flag to <code>gcc</code>, which is supposed to be exact. However, it seemed not to make a difference to <code>perf</code>. My understanding is that this flag was already the default on x86-64. To confirm this, I tested the inverse flag &#40;<code>-fno-asynchronous-unwind-tables</code>&#41; and noted that this did make the result even worse.</td>
+    </tr>
+</table>
+ <table class="fndef" id="fndef:2">
+    <tr>
+        <td class="fndef-backref"><a href="#fnref:2">[2]</a></td>
+        <td class="fndef-content">The <code>collapse&#61;false</code> option controls whether to merge the profile by line number or to keep them distinct by instruction pointer. One useful code-maintence trick is to try to ensure each line does relatively little, so that line numbers are a precise source of information. This doesn&#39;t need to be taken to the extreme, as I do below as an example &#40;nearly writing out a <a href="https://en.m.wikipedia.org/wiki/Three-address_code">3AC</a> manually&#41;, since several of these statements will likely get optimized and moved anyways. But sometimes it can be invaluable to see if one <code>fib_r</code> call was more expensive than the other in our example, or to know <em>which</em> array was being indexed just from the stacktrace, etc.</td>
+    </tr>
+</table>
+</p>
+<pre><code class="julia-repl hljs">@noinline function fib(n)
+    if n &gt; 1
+        n -= 1
+        x1 = fib_r(n)
+        n -= 1
+        x2 = fib_r(n)
+        y = x1 + x2
+    else
+        y = 1
+    end
+    return y
+end</code></pre>
+<p>Post-note: There was also an off-by-one lookup error in Profile.jl too that will soon be resolved. This is almost never an issue, but we can sometimes notice it as bogus information showing some frame that should never have been reached. For example, we can profile a call to the expensive <code>cpuid</code> instruction, and see that there&#39;s a bogus frame that makes it appear we used some code that happened to be located outside the target function was somehow getting used.</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> testf() = <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>:<span class="hljs-number">10</span>^<span class="hljs-number">7</span>; <span class="hljs-keyword">ccall</span>(:jl_cpuid, <span class="hljs-built_in">Cvoid</span>, (<span class="hljs-built_in">Ref</span>{<span class="hljs-built_in">NTuple</span>{<span class="hljs-number">4</span>,<span class="hljs-built_in">Int32</span>}}, <span class="hljs-built_in">Int32</span>), (<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>), <span class="hljs-number">0</span>); <span class="hljs-keyword">end</span>
+</span><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@profile</span> testf()
+</span><span class="hljs-meta">julia&gt;</span><span class="language-julia"> Profile.print(C=<span class="hljs-literal">true</span>)
+</span>201 ./REPL[2]:1; testf()
+ 199 ./REPL[1]:1; cpuid
+  3   ./processor_x86.cpp:8; jl_cpuid
+  192 ./processor_x86.cpp:12; jl_cpuid
+  1   ./libjulia.1.4.dylib:?; _GLOBAL__sub_I_runtime_ccall.cpp</code></pre>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/previews/PR2369/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2369/project">About</a></li>
+        <li><a href="/previews/PR2369/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2369/governance/">Governance</a></li>
+        <li><a href="/previews/PR2369/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2369/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2369/install/">Install</a></li>
+        <li><a href="/previews/PR2369/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2369/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2369/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2369/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2369/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2369/community/">Community</a></li>
+        <li><a href="/previews/PR2369/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2369/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2369/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2369/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2369/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2369/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2369/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2369/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2369/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/previews/PR2369/libs/groups.js"></script>
+    <script src="/previews/PR2369/libs/map.js"></script>
+  </body>
+</html>

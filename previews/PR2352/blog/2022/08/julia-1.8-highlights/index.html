@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2352/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2352/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2352/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2352/css/app.css">
+<link rel="stylesheet" href="/previews/PR2352/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2352/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2352/libs/buttons.js"></script>
+<script src="/previews/PR2352/libs/clipboard.min.js"></script>
+<script src="/previews/PR2352/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Julia 1.8 Highlights</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Julia 1.8 Highlights">
+<meta property="og:description" content="Highlights of the Julia 1.8 release.">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2352/">
+          <img src="/previews/PR2352/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2352/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2352/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2352/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2352/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2352/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2352/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Julia 1.8 Highlights
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 18 August 2022 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Jeff Bezanson, Jameson Nash, Ian Butterworth, Kristoffer Carlsson, Shuhei Kadowaki, Elliot Saba, Mosè Giordano, Simeon Schaub, Tim Holy, Keno Fischer </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2022/08/julia-1.8-highlights.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<p>After 3 betas and 4 release candidates, Julia version 1.8 has finally been released. We would like to thank all the contributors to this release and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.</p>
+<p>The full list of changes can be found in the <a href="https://github.com/JuliaLang/julia/blob/release-1.8/NEWS.md">NEWS file</a>, but here we&#39;ll give a more in-depth overview of some of the release highlights.</p>
+<div class="franklin-toc"><ol><li><a href="#const_on_fields_in_mutable_structs"><code>const</code> on fields in <code>mutable structs</code></a></li><li><a href="#call_site_inline">Call site <code>@inline</code></a></li><li><a href="#typed_globals">Typed globals</a></li><li><a href="#new_default_scheduler_for_threads">New default scheduler for <code>@threads</code></a></li><li><a href="#profiling">Profiling</a><ol><li><a href="#new_allocation_profiler">New allocation profiler</a></li><li><a href="#updates_to_cpu_profiling">Updates to CPU profiling</a></li></ol></li><li><a href="#packages">Packages</a><ol><li><a href="#package_load_timing">Package load timing</a></li><li><a href="#pkg_status_update_with_upgradable_package_indicator">Pkg status update with upgradable package indicator</a></li><li><a href="#pkg_support_for_sysimages">Pkg support for sysimages</a></li></ol></li><li><a href="#improved_precompilation">Improved precompilation</a></li><li><a href="#improved_support_for_apple_silicon">Improved support for Apple Silicon</a></li></ol></div>
+<h2 id="const_on_fields_in_mutable_structs"><a href="#const_on_fields_in_mutable_structs" class="header-anchor"><code>const</code> on fields in <code>mutable structs</code></a></h2>
+<p><em>Jameson Nash</em></p>
+<p>Julia now supports annotating individual fields of a <code>mutable struct</code> with <code>const</code> annotations as:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">mutable struct</span> T
+    x::<span class="hljs-built_in">Int</span>
+    <span class="hljs-keyword">const</span> y::<span class="hljs-built_in">Float64</span>
+<span class="hljs-keyword">end</span></code></pre>
+<p>which causes the field <code>y</code> to be constant &#40;and thus cannot be reassigned after creation of the type&#41;. This can be used to enforce invariants but the compiler can also take advantage of it to improve the generated code.</p>
+<h2 id="call_site_inline"><a href="#call_site_inline" class="header-anchor">Call site <code>@inline</code></a></h2>
+<p><em>Shuhei Kadowaki</em></p>
+<p>Before Julia 1.8, the <code>@inline</code> macro could only be used on method definitions and the function would be inlined at all call sites of that method. However, it can be useful to make the choice for a given call site if a function should be inlined. Therefore, it is now possible to also apply the <code>@inline</code> macro to a given callsite as <code>@inline f&#40;x&#41;</code> which will tell the compiler to inline the method at that specific call.</p>
+<h2 id="typed_globals"><a href="#typed_globals" class="header-anchor">Typed globals</a></h2>
+<p><em>Simeon Schaub</em></p>
+<p>Non-constant global variables in Julia come with a performance penalty because the compiler cannot reason about their type since they during runtime can be reassigned to another object of some other type. In Julia 1.8, it is now possible to specify the type of a non-constant global variable using the <code>x::T</code> syntax where <code>T</code> is the type of the global. Trying to re-assign the variable to an object of another type errors:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> x::<span class="hljs-built_in">Int</span> = <span class="hljs-number">0</span>
+</span>0
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> x = <span class="hljs-string">&quot;string&quot;</span>
+</span>ERROR: MethodError: Cannot `convert` an object of type String to an object of type Int64
+...</code></pre>
+<p>Type annotating global variables removes much &#40;but not all&#41; of the cost of using non-constant global variables.</p>
+<h2 id="new_default_scheduler_for_threads"><a href="#new_default_scheduler_for_threads" class="header-anchor">New default scheduler for <code>@threads</code></a></h2>
+<p><em>Takafumi Arakaki</em>, <em>Ian Butterworth</em> , <em>Jeff Bezanson</em></p>
+<p>Julia has had <code>@threads</code> macro for parallelizing a <code>for</code> loop even before the generic parallel task runtime was introduced in Julia 1.3. Due to this historical reason, <code>@threads</code> has been providing a static scheduling to avoid breaking programs accidentally relying on this strict behavior &#40;see <a href="https://docs.julialang.org/en/v1.8-dev/base/multi-threading/#Base.Threads.@threads"><code>:static</code> scheduling in the documentation</a>&#41;. Thus, to work nicely with the rest of the multitasking system, <a href="https://github.com/JuliaLang/julia/pull/35646">the <code>:static</code> scheduler was introduced in Julia 1.5</a> to help people prepare for changing the default scheduling behavior in the future; which is now&#33;  In Julia 1.8, programs written with <code>@threads</code> can fully leverage the dynamic and composable task scheduler.</p>
+<p>To illustrate the improvement, consider the following program that simulates CPU-intensive work-load that requires <code>seconds</code> seconds to complete:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-keyword">function</span> busywait(seconds)
+            tstart = time_ns()
+            <span class="hljs-keyword">while</span> (time_ns() - tstart) / <span class="hljs-number">1e9</span> &lt; seconds
+            <span class="hljs-keyword">end</span>
+        <span class="hljs-keyword">end</span>;</span></code></pre>
+<p>Before Julia 1.8, <code>@threads</code> always uses all worker threads. As such, <code>@threads</code> do not complete until all previous tasks are complete:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> <span class="hljs-keyword">begin</span>
+            Threads.<span class="hljs-meta">@spawn</span> busywait(<span class="hljs-number">5</span>)
+            Threads.<span class="hljs-meta">@threads</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:Threads.nthreads()
+                busywait(<span class="hljs-number">1</span>)
+            <span class="hljs-keyword">end</span>
+        <span class="hljs-keyword">end</span>
+</span>6.003001 seconds (16.33 k allocations: 899.255 KiB, 0.25% compilation time)</code></pre>
+<p>The run-time is about 6 seconds. It means that one task internally created for <code>@threads</code> waits for the task <code>busywait&#40;5&#41;</code> to complete.</p>
+<p>However, in Julia 1.8, we have</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> <span class="hljs-keyword">begin</span>
+            Threads.<span class="hljs-meta">@spawn</span> busywait(<span class="hljs-number">5</span>)
+            Threads.<span class="hljs-meta">@threads</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:Threads.nthreads()
+                busywait(<span class="hljs-number">1</span>)
+            <span class="hljs-keyword">end</span>
+        <span class="hljs-keyword">end</span>
+</span>2.012056 seconds (16.05 k allocations: 883.919 KiB, 0.66% compilation time)</code></pre>
+<p>It takes 2 seconds since one of the non-occupied threads can run two of the 1-second iterations to complete the for loop.</p>
+<h2 id="profiling"><a href="#profiling" class="header-anchor">Profiling</a></h2>
+<h3 id="new_allocation_profiler"><a href="#new_allocation_profiler" class="header-anchor">New allocation profiler</a></h3>
+<p><em>Pete Vilter</em>, <em>Nathan Daly</em></p>
+<p>Unnecessary heap allocations can seriously degrade performance, and existing tools for tracking them down &#40;namely <code>@time</code> and <code>--track-allocation</code>&#41; didn&#39;t quite provide the fine-grained detail, nice visualization, and ease of use we were looking for. So we created the allocation profiler &#40;<code>Profile.Allocs</code>&#41;, which captures heap allocations with the type, size, and stack trace of each, such that they can be easily visualized with <a href="https://github.com/JuliaPerf/PProf.jl">PProf.jl</a> and as seen below, with the Julia extension for VS Code.</p>
+<table><tr><th align="center"><img src="/previews/PR2352/assets/blog/2022-1.8-highlights/vscode_allocs.png" alt="" /></th></tr><tr><td align="center">The Julia extension for VS Code provides easy access to illustrated allocation profiling via <code>@profview_allocs</code></td></tr></table>
+<p>Happy allocation hunting&#33;</p>
+<h3 id="updates_to_cpu_profiling"><a href="#updates_to_cpu_profiling" class="header-anchor">Updates to CPU profiling</a></h3>
+<p><em>Ian Butterworth</em></p>
+<h4 id="thread_task_profiling"><a href="#thread_task_profiling" class="header-anchor">Thread &amp; task profiling</a></h4>
+<p>CPU profiling is now collected with metadata for each sample, including thread id and task id, meaning that profiling reports can be generated for specific threads or tasks, or groups thereof.</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">function</span> myfunc()
+           A = rand(<span class="hljs-number">200</span>, <span class="hljs-number">200</span>, <span class="hljs-number">400</span>)
+           maximum(A)
+       <span class="hljs-keyword">end</span>
+myfunc (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
+
+julia&gt; myfunc() <span class="hljs-comment"># run once to force compilation</span>
+<span class="hljs-number">0.9999999942189138</span>
+
+julia&gt; <span class="hljs-meta">@profile</span> myfunc()
+<span class="hljs-number">0.9999998811170847</span></code></pre>
+<p>The default print option remains the same, showing all threads and tasks grouped &#40;stacktraces have been cut short for brevity&#41;</p>
+<pre><code class="julia hljs">julia&gt; Profile.print()
+Overhead ╎ [+additional indent] Count File:Line; <span class="hljs-built_in">Function</span>
+=========================================================
+...
+   ╎    ╎    ╎  <span class="hljs-number">70</span>  REPL[<span class="hljs-number">13</span>]:<span class="hljs-number">2</span>; myfunc()
+   ╎    ╎    ╎   <span class="hljs-number">70</span>  ...lialang/julia-release-<span class="hljs-number">1</span>-dot-<span class="hljs-number">8</span>/usr/share/julia/stdlib/v1<span class="hljs-number">.8</span>/Random/src/Random.jl:<span class="hljs-number">278</span>; rand
+                 ...
+   ╎    ╎    ╎  <span class="hljs-number">16</span>  REPL[<span class="hljs-number">13</span>]:<span class="hljs-number">3</span>; myfunc()
+   ╎    ╎    ╎   <span class="hljs-number">16</span>  <span class="hljs-meta">@Base</span>/reducedim.jl:<span class="hljs-number">994</span>; maximum
+                 ...
+   ╎<span class="hljs-number">258</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">634</span>; task_done_hook(t::<span class="hljs-built_in">Task</span>)
+   ╎ <span class="hljs-number">258</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">930</span>; wait()
+<span class="hljs-number">258</span>╎  <span class="hljs-number">258</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">921</span>; poptask(W::Base.InvasiveLinkedListSynchronized{<span class="hljs-built_in">Task</span>})
+Total snapshots: <span class="hljs-number">344.</span> Utilization: <span class="hljs-number">25</span>% across all threads and tasks. Use the <span class="hljs-string">`groupby`</span> kwarg to <span class="hljs-keyword">break</span> down by thread and/or task</code></pre>
+<p>Now using the <code>groupby</code> kwarg to group the samples by thread id &#40;nthreads &#61; 4&#41;</p>
+<pre><code class="julia hljs">julia&gt; Profile.print(groupby=:thread)
+Overhead ╎ [+additional indent] Count File:Line; <span class="hljs-built_in">Function</span>
+=========================================================
+Thread <span class="hljs-number">1</span> Total snapshots: <span class="hljs-number">86.</span> Utilization: <span class="hljs-number">100</span>%
+...
+  ╎    ╎    ╎  <span class="hljs-number">70</span> REPL[<span class="hljs-number">13</span>]:<span class="hljs-number">2</span>; myfunc()
+  ╎    ╎    ╎   <span class="hljs-number">70</span> ...ulialang/julia-release-<span class="hljs-number">1</span>-dot-<span class="hljs-number">8</span>/usr/share/julia/stdlib/v1<span class="hljs-number">.8</span>/Random/src/Random.jl:<span class="hljs-number">278</span>; rand
+                ...
+  ╎    ╎    ╎  <span class="hljs-number">16</span> REPL[<span class="hljs-number">13</span>]:<span class="hljs-number">3</span>; myfunc()
+  ╎    ╎    ╎   <span class="hljs-number">16</span> <span class="hljs-meta">@Base</span>/reducedim.jl:<span class="hljs-number">994</span>; maximum
+                ...
+
+Thread <span class="hljs-number">2</span> Total snapshots: <span class="hljs-number">86.</span> Utilization: <span class="hljs-number">0</span>%
+  ╎<span class="hljs-number">86</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">634</span>; task_done_hook(t::<span class="hljs-built_in">Task</span>)
+  ╎ <span class="hljs-number">86</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">930</span>; wait()
+<span class="hljs-number">85</span>╎  <span class="hljs-number">86</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">921</span>; poptask(W::Base.InvasiveLinkedListSynchronized{<span class="hljs-built_in">Task</span>})
+
+Thread <span class="hljs-number">3</span> Total snapshots: <span class="hljs-number">86.</span> Utilization: <span class="hljs-number">0</span>%
+  ╎<span class="hljs-number">86</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">634</span>; task_done_hook(t::<span class="hljs-built_in">Task</span>)
+  ╎ <span class="hljs-number">86</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">930</span>; wait()
+<span class="hljs-number">85</span>╎  <span class="hljs-number">86</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">921</span>; poptask(W::Base.InvasiveLinkedListSynchronized{<span class="hljs-built_in">Task</span>})
+
+Thread <span class="hljs-number">4</span> Total snapshots: <span class="hljs-number">86.</span> Utilization: <span class="hljs-number">0</span>%
+  ╎<span class="hljs-number">86</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">634</span>; task_done_hook(t::<span class="hljs-built_in">Task</span>)
+  ╎ <span class="hljs-number">86</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">930</span>; wait()
+<span class="hljs-number">85</span>╎  <span class="hljs-number">86</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">921</span>; poptask(W::Base.InvasiveLinkedListSynchronized{<span class="hljs-built_in">Task</span>})</code></pre>
+<p>Note that each thread now shows a utilization percentage, showing that the only Julia thread that was notably active during the sampling was thread 1.</p>
+<p>External profile viewers now also support thread and task selection.</p>
+<table><tr><th align="center"><img src="/previews/PR2352/assets/blog/2022-1.8-highlights/thread_profile_profileview.png" alt="" /></th><th align="center"><img src="/previews/PR2352/assets/blog/2022-1.8-highlights/thread_profile_vscode.png" alt="" /></th></tr><tr><td align="center">ProfileView.jl</td><td align="center">Julia extension for VS Code has a built-in <code>@profview</code> macro</td></tr></table>
+<h4 id="profiling_code_that_is_already_running"><a href="#profiling_code_that_is_already_running" class="header-anchor">Profiling code that is already running</a></h4>
+<p>1.8 also introduces the option to profile code that is already running. Say you have started some long-running code and progress appears to slow. At any time you see what&#39;s happening without interrupting by triggering a 1-second profile via sending <code>SIGINFO</code> on BSDs including MacOS, or <code>SIGUSR1</code> on Linux &#40;not supported on Windows&#41;. MacOS &amp; FreeBSD have the added convenience of sending <code>SIGINFO</code> via <code>ctrl-t</code>.</p>
+<p>First, an immediate stacktrace will print, followed by the report after the profile sampling at the next yield point.</p>
+<p>Here, the signal is sent shortly after executing the <code>sleep</code>. &#40;stacktraces have been cut short for brevity&#41;</p>
+<pre><code class="julia hljs">julia&gt; getpid()
+<span class="hljs-number">123456</span>
+
+julia&gt; sleep(<span class="hljs-number">5</span>)
+<span class="hljs-comment"># hit ctrl-t on MacOS or FreeBSD</span>
+<span class="hljs-comment"># or run `kill -s SIGUSR1 123456` for Linux, `kill -s SIGINFO 123456` for macOS/BSD in another terminal</span>
+load: <span class="hljs-number">2.82</span>  cmd: julia <span class="hljs-number">32246</span> waiting <span class="hljs-number">37.66</span>u <span class="hljs-number">8.33</span>s
+
+======================================================================================
+Information request received. A stacktrace will print followed by a <span class="hljs-number">1.0</span>-second profile
+======================================================================================
+
+signal (<span class="hljs-number">29</span>): Information request: <span class="hljs-number">29</span>
+__psynch_cvwait at /usr/lib/system/libsystem_kernel.dylib (unknown line)
+_pthread_cond_wait at /usr/lib/system/libsystem_pthread.dylib (unknown line)
+uv_cond_wait at /Applications/Julia-<span class="hljs-number">1.8</span>.app/Contents/Resources/julia/lib/julia/libjulia-internal<span class="hljs-number">.1</span><span class="hljs-number">.8</span>.dylib (unknown line)
+ijl_task_get_next at /Applications/Julia-<span class="hljs-number">1.8</span>.app/Contents/Resources/julia/lib/julia/libjulia-internal<span class="hljs-number">.1</span><span class="hljs-number">.8</span>.dylib (unknown line)
+poptask at ./task.jl:<span class="hljs-number">921</span>
+wait at ./task.jl:<span class="hljs-number">930</span>
+...
+
+==============================================================
+Profile collected. A report will print at the next yield point
+==============================================================
+
+Overhead ╎ [+additional indent] Count File:Line; <span class="hljs-built_in">Function</span>
+=========================================================
+Thread <span class="hljs-number">1</span> <span class="hljs-built_in">Task</span> <span class="hljs-number">0x000000010944c010</span> Total snapshots: <span class="hljs-number">650.</span> Utilization: <span class="hljs-number">0</span>%
+...
+   ╎    ╎    ╎  <span class="hljs-number">650</span> <span class="hljs-meta">@Base</span>/asyncevent.jl:<span class="hljs-number">240</span>; sleep(sec::<span class="hljs-built_in">Int64</span>)
+                ...
+
+Thread <span class="hljs-number">2</span> <span class="hljs-built_in">Task</span> <span class="hljs-number">0x00000001095487f0</span> Total snapshots: <span class="hljs-number">650.</span> Utilization: <span class="hljs-number">0</span>%
+   ╎<span class="hljs-number">650</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">634</span>; task_done_hook(t::<span class="hljs-built_in">Task</span>)
+   ╎ <span class="hljs-number">650</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">930</span>; wait()
+<span class="hljs-number">649</span>╎  <span class="hljs-number">650</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">921</span>; poptask(W::Base.InvasiveLinkedListSynchronized{<span class="hljs-built_in">Task</span>})
+
+Thread <span class="hljs-number">3</span> <span class="hljs-built_in">Task</span> <span class="hljs-number">0x000000010944c550</span> Total snapshots: <span class="hljs-number">650.</span> Utilization: <span class="hljs-number">0</span>%
+...
+   ╎     <span class="hljs-number">650</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">930</span>; wait()
+<span class="hljs-number">649</span>╎    ╎ <span class="hljs-number">650</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">921</span>; poptask(W::Base.InvasiveLinkedListSynchronized{<span class="hljs-built_in">Task</span>})
+
+Thread <span class="hljs-number">4</span> <span class="hljs-built_in">Task</span> <span class="hljs-number">0x00000001095486a0</span> Total snapshots: <span class="hljs-number">650.</span> Utilization: <span class="hljs-number">0</span>%
+   ╎<span class="hljs-number">650</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">634</span>; task_done_hook(t::<span class="hljs-built_in">Task</span>)
+   ╎ <span class="hljs-number">650</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">930</span>; wait()
+<span class="hljs-number">649</span>╎  <span class="hljs-number">650</span> <span class="hljs-meta">@Base</span>/task.jl:<span class="hljs-number">921</span>; poptask(W::Base.InvasiveLinkedListSynchronized{<span class="hljs-built_in">Task</span>})</code></pre>
+<h2 id="packages"><a href="#packages" class="header-anchor">Packages</a></h2>
+<h3 id="package_load_timing"><a href="#package_load_timing" class="header-anchor">Package load timing</a></h3>
+<p><em>Ian Butterworth</em></p>
+<p>A new tool has been added to provide insight into the way that loading dependencies contribute to the load time of a package.</p>
+<p>The macro is <code>InteractiveUtils.@time_imports</code> and it is directly available in the REPL.</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-meta">@time_imports</span> <span class="hljs-keyword">using</span> CSV
+     <span class="hljs-number">50.7</span> ms  Parsers <span class="hljs-number">17.52</span>% compilation time
+      <span class="hljs-number">0.2</span> ms  DataValueInterfaces
+      <span class="hljs-number">1.6</span> ms  DataAPI
+      <span class="hljs-number">0.1</span> ms  IteratorInterfaceExtensions
+      <span class="hljs-number">0.1</span> ms  TableTraits
+     <span class="hljs-number">17.5</span> ms  Tables
+     <span class="hljs-number">26.8</span> ms  PooledArrays
+    <span class="hljs-number">193.7</span> ms  SentinelArrays <span class="hljs-number">75.12</span>% compilation time
+      <span class="hljs-number">8.6</span> ms  InlineStrings
+     <span class="hljs-number">20.3</span> ms  WeakRefStrings
+      <span class="hljs-number">2.0</span> ms  TranscodingStreams
+      <span class="hljs-number">1.4</span> ms  Zlib_jll
+      <span class="hljs-number">1.8</span> ms  CodecZlib
+      <span class="hljs-number">0.8</span> ms  Compat
+     <span class="hljs-number">13.1</span> ms  FilePathsBase <span class="hljs-number">28.39</span>% compilation time
+   <span class="hljs-number">1681.2</span> ms  CSV <span class="hljs-number">92.40</span>% compilation time</code></pre>
+<p>Any compilation time will be highlighted as a percentage of load time, and if any of that compile time is <a href="https://julialang.org/blog/2020/08/invalidations/">re-compiling invalidated methods</a>, that will be highlighted as a percentage of compile time.</p>
+<h3 id="pkg_status_update_with_upgradable_package_indicator"><a href="#pkg_status_update_with_upgradable_package_indicator" class="header-anchor">Pkg status update with upgradable package indicator</a></h3>
+<p><em>Ian Butterworth</em>, <em>Kristoffer Carlsson</em></p>
+<p>Packages in Julia tend to declare compatibility constraints on versions of their dependencies. This is done to ensure that you end up with a set of versions that should work well with each other. However, this means that sometimes the package manager might not give you the very latest version of all packages. Another reason why you might not have the latest version of a package is when new versions have been released since you last updated. This can sometimes be confusing when you for example hit a bug that has been fixed on a later version or when the documentation of the package is not in sync with what you are running locally.</p>
+<p>Therefore, the package manager will now show a small indicator when installing packages or when using the status output &#40;<code>pkg&gt; st</code>&#41; for packages that are not on the latest version. It will also try to predict if the package has a chance to be updated &#40;<code>pkg&gt; up</code>&#41; or if some other packages in your environment are &quot;holding it back&quot; &#40;have compatibility constraints that prevent the package from updating&#41;.</p>
+<p>There is also a new flag <code>--outdated</code> that can be passed to the status printing to see what the latest versions are and what packages&#39; compat is holding other packages back from updating.</p>
+<p><img src="/previews/PR2352/assets/blog/2022-1.8-highlights/pkg_upgrade.png" alt="" /></p>
+<p>Above, we can see that both Plots and NanMath are not on their latest version and Plots and RecipesPipeline are blocking NanMath from upgrading.</p>
+<h3 id="pkg_support_for_sysimages"><a href="#pkg_support_for_sysimages" class="header-anchor">Pkg support for sysimages</a></h3>
+<p><em>Kristoffer Carlsson</em></p>
+<p>Using the package PackageCompiler.jl it is possible to create a &quot;sysimage&quot; &#40;a prebaked serialized file&#41; with packages that can significantly improve the load time of these packages. A drawback to this is that when using a custom sysimage with packages, the version of those packages are &quot;frozen&quot; so that no matter what package version is installed in your environment, you will still end up loading the version that is in the sysimage. Explicitly, if you have version 0.1 of a package in the sysimage and you add version 0.2 with the package manager, you will still use version 0.1.</p>
+<p>In 1.8, the package manager understands when a custom sysimage is used and will not install packages for you at different versions than what is in the loaded sysimage.</p>
+<h2 id="improved_precompilation"><a href="#improved_precompilation" class="header-anchor">Improved precompilation</a></h2>
+<p><em>Tim Holy</em></p>
+<p>Julia precompiles packages by saving your module definitions in a second format &#40;cache files with extension <code>.ji</code>&#41; that can be loaded more quickly than the raw source files. These cache files include the modules, types, methods, global variables, and other objects in the package. To reduce the time for first execution of package methods, developers have long had the option to also save some of the outcomes of type-inference: one can add explicit <code>precompile</code> directives or insert a small workload that triggers compilation of the methods.</p>
+<p>Unfortunately, older Julia versions ended up throwing away a lot of this compiled code: type-inferred code was saved only for methods defined in the package, and for all other methods it was discarded. This meant that if your package needed a method in <code>Base</code> or another package that had not previously been inferred for the specific types needed by your package, you were out of luck–that method/type combination would always be freshly re-inferred in each new Julia session. Moreover, precompilation occasionally triggered a runtime performance hit: when Julia&#39;s compiler needed type-inferred code that had been discarded, it handled the omission by inserting an indirect invocation into the low-level CPU instructions that it compiles for your method. While this provided an opportunity to re-infer the methods for the required types, the indirect invocation allocated memory and reduced performance for all subsequent uses of the method.</p>
+<p>Julia 1.8 addresses both of these limitations by automatically saving all type-inferred code that links back to your package: either methods owned by your package or any newly-inferred code that can be proven by the compiler to be called by methods in your package. More specifically, all code that is linked to your package by a chain of successful type-inference will be cached; Julia only discards type-inference results for methods in other packages that were only called by runtime dispatch. This inference-chain requirement ensures that compilation that is performed to <em>build</em> your package, but which is not needed to <em>run</em> it &#40;e.g., code used only for metaprogramming or generating data&#41;, does not unnecessarily bloat the <code>.ji</code> files.</p>
+<p>With Julia 1.8, for workloads with &quot;predictable&quot; types, you can often entirely eliminate type-inference as a source of latency. The amount of savings depends on how much of the overall latency was due to type-inference; in tests with a dozen or so different packages, we have observed reductions in the time for an initial workload ranging from a few percent to 20-fold. Users of <a href="https://timholy.github.io/SnoopCompile.jl/stable/">SnoopCompile</a>&#39;s analysis tools will also find that the results of adding precompilation are much more predictable: for dispatch-trees that trace back to methods owned by your package, adding precompilation will eliminate all of their inference time. Thus, you can eliminate the worst offenders with the confidence that your intervention will have the intended effect.</p>
+<p>For those wishing for more background about precompilation, <a href="https://julialang.org/blog/2021/01/precompile_tutorial/">this blog post</a> and/or the SnoopCompile documentation may be useful.</p>
+<h2 id="improved_support_for_apple_silicon"><a href="#improved_support_for_apple_silicon" class="header-anchor">Improved support for Apple Silicon</a></h2>
+<p>Previously Julia 1.7 offered the <a href="https://julialang.org/blog/2021/11/julia-1.7-highlights/#support_for_apple_silicon">first experimental preview</a> of native builds of Julia on Apple Silicon. While this generally worked for basic usage, users experienced frequent segmentation faults, negatively affecting the experience. These problems were due to how Julia internally uses LLVM to generate and link the code for this platform and were eventually solved in Julia 1.8 by <a href="https://github.com/JuliaLang/julia/pull/43664">moving to a more modern linker</a>, which has better support for ARM CPUs on macOS. However, this fix required upgrading to LLVM 13, a change which cannot be backported to the v1.7 series. Therefore 1.7 will always be affected by frequent crashes on Apple Silicon.</p>
+<p>With 1.8, Apple Silicon becomes become a <a href="https://julialang.org/downloads/#supported_platforms">Tier 2 supported platform</a> and is now covered by Continuous Integration &#40;CI&#41; on dedicated Apple Silicon machines.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/previews/PR2352/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2352/project">About</a></li>
+        <li><a href="/previews/PR2352/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2352/governance/">Governance</a></li>
+        <li><a href="/previews/PR2352/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2352/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2352/install/">Install</a></li>
+        <li><a href="/previews/PR2352/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2352/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2352/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2352/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2352/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2352/community/">Community</a></li>
+        <li><a href="/previews/PR2352/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2352/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2352/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2352/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2352/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2352/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2352/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2352/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2352/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/previews/PR2352/libs/groups.js"></script>
+    <script src="/previews/PR2352/libs/map.js"></script>
+  </body>
+</html>
