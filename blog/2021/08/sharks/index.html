@@ -213,7 +213,7 @@ crossorigin=""/>
 <p>This post will demonstrate how to set up and simulate a model of a swimming dogfish shark using <a href="https://julialang.org/">Julia</a> and <a href="https://www.youtube.com/watch?v&#61;YsPkfZqbNSQ">WaterLily.jl</a>. This post is adapted from a <a href="https://github.com/fonsp/Pluto.jl">Pluto</a> notebook that you can get <a href="/assets/blog/2021-08-sharks/notebook.jl">here</a>.</p>
 <pre><code class="julia hljs"><span class="hljs-keyword">using</span> WaterLily, StaticArrays, PlutoUI, Interpolations, Plots, Images</code></pre>
 <p>We&#39;ll use a simple model of the shark based on Lighthill&#39;s pioneering <a href="https://doi.org/10.1017/S0022112060001110">paper on the swimming of slender fish</a>. It focuses on the &quot;backbone&quot; of the fish; idealizing the shape as a thickness distribution on either side of the center, and the motion as a lateral &#40;&quot;side-to-side&quot;&#41; traveling wave. Amazingly, this simple approach provides insight across a huge range of a swimming animals as illustrated in the image below. <a href="https://www.nature.com/articles/nphys3078">Image credit: Gazzola et al, Nature 2014</a></p>
-<p><img src="/assets/blog/2021-08-sharks/slenderfish.png" alt="" /></p>
+<p><img src="/assets/blog/2021-08-sharks/slenderfish.png" alt="Slender fish swimming model across different species" /></p>
 <h2 id="modeling_the_sharks_thickness_and_motion"><a href="#modeling_the_sharks_thickness_and_motion" class="header-anchor">Modeling the shark&#39;s thickness and motion</a></h2>
 <p>We&#39;ll define the thickness and motion distributions using interpolate to fit splines through a few points.</p>
 <pre><code class="julia hljs">fit = y -&gt; scale(
@@ -224,7 +224,7 @@ crossorigin=""/>
 <pre><code class="julia hljs">url2 = <span class="hljs-string">&quot;https://pterosaurheresies.files.wordpress.com/2020/01/squalus-acanthias-invivo588.jpg&quot;</span>
 filename2 = download(url2)
 dogfish = load(filename2)</code></pre>
-<p><img src="/assets/blog/2021-08-sharks/shark1.png" alt="" /></p>
+<p><img src="/assets/blog/2021-08-sharks/shark1.png" alt="Dogfish shark reference photo" /></p>
 <p>The bottom view shows the outline we&#39;re interested in, and adding a few points along the length defines the thickness distribution function <code>thk</code>.</p>
 <pre><code class="julia hljs">plot(dogfish)
 nose, len = (<span class="hljs-number">30</span>,<span class="hljs-number">224</span>), <span class="hljs-number">500</span>
@@ -238,7 +238,7 @@ plot!(
 	nose[<span class="hljs-number">1</span>] .+ len .* x,
 	[nose[<span class="hljs-number">2</span>] .- len .* thk.(x), nose[<span class="hljs-number">2</span>] .+ len .* thk.(x)],
 	color=:blue)</code></pre>
-<p><img src="/assets/blog/2021-08-sharks/shark2.svg" alt="" /></p>
+<p><img src="/assets/blog/2021-08-sharks/shark2.svg" alt="Shark thickness distribution fitted to dogfish outline" /></p>
 <p>Looking at <a href="https://youtu.be/nMa6lD2CQVI?t&#61;200">videos of swimming dogfish</a>, we can see a couple general features</p>
 <ul>
 <li><p>The motion of the front half of the body has a small amplitude &#40;around 20&#37; of the tail&#41;. This sets the amplitude envelope for the traveling wave.</p>
@@ -259,7 +259,7 @@ colors = palette(:cyclic_wrwbw_40_90_c42_n256)
 		  color=colors[floor(<span class="hljs-built_in">Int</span>,t*<span class="hljs-number">256</span>)])
 <span class="hljs-keyword">end</span>
 plot!(ylim=(-<span class="hljs-number">1.4</span>,<span class="hljs-number">1.4</span>), legend=<span class="hljs-literal">false</span>)</code></pre>
-<p><img src="/assets/blog/2021-08-sharks/wavelength.svg" alt="" /></p>
+<p><img src="/assets/blog/2021-08-sharks/wavelength.svg" alt="Traveling wave amplitude envelope over motion cycle" /></p>
 <h2 id="setting_up_the_simulation"><a href="#setting_up_the_simulation" class="header-anchor">Setting up the simulation</a></h2>
 <p>Now the thickness and motion are defined, but how will we apply these to a fluid simulation? <code>WaterLily</code> uses an <a href="https://eprints.soton.ac.uk/369635/">immersed boundary method</a> and <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> to embed a body into the flow. The upshot is that we don&#39;t need to do any meshing; all we need is a signed distance function &#40;SDF&#41; to the surface.</p>
 <p>Let&#39;s start by defining the SDF to the &quot;backbone&quot;, which is a line segment from <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn><mo>…</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=0\ldots 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span></span></span></span>. <a href="https://www.youtube.com/watch?v&#61;PMltMdi1Wzg">See this great video from Inigo Quilez for a derivation of this sdf.</a>. The plot below shows the sdf and the zero contour, which is ... just a line segment.</p>
@@ -277,7 +277,7 @@ T = <span class="hljs-number">0.5</span>
 grid = -<span class="hljs-number">1</span>:<span class="hljs-number">0.05</span>:<span class="hljs-number">2</span>
 contourf(grid, grid, segment_sdf, clim=(-<span class="hljs-number">1</span>,<span class="hljs-number">2</span>), linewidth=<span class="hljs-number">0</span>)
 contour!(grid, grid, segment_sdf, levels=[<span class="hljs-number">0</span>], color=:black)  <span class="hljs-comment"># zero contour</span></code></pre>
-<p><img src="/assets/blog/2021-08-sharks/contour.svg" alt="" /></p>
+<p><img src="/assets/blog/2021-08-sharks/contour.svg" alt="Contour plot of shark signed distance function" /></p>
 <p>With the basic SDF tested out, we are ready to set up the WaterLily simulation using the function <code>fish</code> defined below:</p>
 <ul>
 <li><p>The functions <code>thk</code> is passed in to create the <code>sdf</code> and the function <code>amp</code> is passed in to create the traveling wave <code>map</code>.</p>
@@ -320,7 +320,7 @@ cycle = range(<span class="hljs-number">0</span>, <span class="hljs-number">23</
 	contour(swimmer.flow.μ₀[:,:,<span class="hljs-number">1</span>]&#x27;,
 			aspect_ratio=:equal, legend=<span class="hljs-literal">false</span>, border=:none)
 <span class="hljs-keyword">end</span></code></pre>
-<p><img src="/assets/blog/2021-08-sharks/swimmer.gif" alt="" /></p>
+<p><img src="/assets/blog/2021-08-sharks/swimmer.gif" alt="Animation of shark body motion in fluid simulation" /></p>
 <h2 id="running_visualizing_and_measuring_the_simulation"><a href="#running_visualizing_and_measuring_the_simulation" class="header-anchor">Running visualizing and measuring the simulation</a></h2>
 <p>That animation of the motion looks great, so we are ready to run the flow simulator&#33;</p>
 <p>The <code>sim_step&#33;&#40;sim, t, remeasure&#61;true&#41;</code> function runs the simulator up to time <code>t</code>, remeasuring the body position every time step. &#40;<code>remeasure&#61;false</code> by default since it takes a little extra computational time and isn&#39;t needed for statics geometries.&#41;</p>
@@ -342,7 +342,7 @@ sim_time(swimmer)</code></pre>
 	sim_step!(swimmer, t, remeasure=<span class="hljs-literal">true</span>)
 	plot_vorticity(swimmer)
 <span class="hljs-keyword">end</span></code></pre>
-<p><img src="/assets/blog/2021-08-sharks/swimmer2.gif" alt="" /></p>
+<p><img src="/assets/blog/2021-08-sharks/swimmer2.gif" alt="Animation of vorticity in shark wake" /></p>
 <p>This is pretty &#40;CFD does stand for <em>Colorful Fluid Dynamics</em> after all&#41;, but also tells us something important about the flow. Notice that there are no eddies coming off the body anywhere other than the tail&#33; This is a sign of efficiency since energy is only used to create those trailing vortices.</p>
 <p>We can dig in and get some quantitative measurements from the simulation as well. The function <code>∮nds</code> takes a integral over the body surface. By passing in the pressure <code>p</code>, we can measure the thrust force and side force generated by the shark&#33;</p>
 <pre><code class="julia hljs"><span class="hljs-keyword">function</span> get_force(sim, t)
@@ -355,7 +355,7 @@ scatter(cycle./period, [first.(forces), last.(forces)],
 		labels=permutedims([<span class="hljs-string">&quot;thrust&quot;</span>, <span class="hljs-string">&quot;side&quot;</span>]),
 		xlabel=<span class="hljs-string">&quot;scaled time&quot;</span>,
 		ylabel=<span class="hljs-string">&quot;scaled force&quot;</span>)</code></pre>
-<p><img src="/assets/blog/2021-08-sharks/forces.svg" alt="" /></p>
+<p><img src="/assets/blog/2021-08-sharks/forces.svg" alt="Plot of thrust and side forces over a swimming cycle" /></p>
 <p>We can learn a lot from this simple plot. For example, the side-to-side force has the same frequency as the swimming motion itself while the thrust force has double the frequency, with a peak every time the tail passes through the centerline.</p>
 <h2 id="next_steps"><a href="#next_steps" class="header-anchor">Next steps</a></h2>
 <p>This simple model is a great start and it opens up a ton of avenues for improving the shark simulation and suggesting research questions:</p>

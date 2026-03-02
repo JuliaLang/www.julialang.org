@@ -283,7 +283,7 @@ crossorigin=""/>
 <p>When benchmarking the Flux Convolution Code, we figured out some of the major bottlenecks that were coming out of the <code>Backward Pass for Convolution Bias</code>. Hence the natural choice was to wrap the CUDNN Function which efficiently calculates the Gradient for Bias. Also, we were able to wrap a function for applying <code>activation</code> and <code>adding bias</code> at the same time. To use this function, <code>cudnnConvolutionBiasActivationFunction</code> we needed to wrap the Activation Forward and Backward Pass functions. Now lets see what kind of speed improvements we achieved with this update.</p>
 
 <p align = "center">
-    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/flux_internal_benchmarks.png" width="750">
+    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/flux_internal_benchmarks.png" width="750" alt="Flux internal benchmarks comparing layer performance">
 </p>
 
 <h3 id="fixing_the_api_of_new_metalhead_models"><a href="#fixing_the_api_of_new_metalhead_models" class="header-anchor">Fixing the API of new Metalhead models</a></h3>
@@ -302,7 +302,7 @@ trained(VGG11)
 <p>This package provides a simple API to generate <a href="https://en.wikipedia.org/wiki/DeepDream">dreams</a> on the desired image. You need to provide the image, choose what type of dream you want and which model to use. This package relies on Flux and Metalhead for its trained models.</p>
 
 <p align = "center">
-    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/deepdream.jpg" width="750" height="750">
+    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/deepdream.jpg" width="750" height="750" alt="Guided DeepDream generated image">
 </p>
 
 <p>The above image was generated using <code>guided deepdream</code>.</p>
@@ -317,7 +317,7 @@ trained(VGG11)
 <p>Below is a small example of style transfer on MonaLisa</p>
 
 <p align = "center">
-    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/styletransfer.jpg" width="750">
+    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/styletransfer.jpg" width="750" alt="Style transfer applied to Mona Lisa">
 </p>
 
 <h1 id="overview_of_the_work_done_in_gsoc_2018"><a href="#overview_of_the_work_done_in_gsoc_2018" class="header-anchor">Overview of the Work done in GSoC 2018</a></h1>
@@ -336,7 +336,7 @@ trained(VGG11)
 <p>Firstly, I should thank <strong>Google</strong> for organizing Google Summer of Code which gave me this excellent opportunity to work with the Open Source Community. Also, I thank <strong>NumFOCUS</strong> and <strong>JuliaLang</strong> for selecting me to work on this project. Next, I would thank my mentors <strong>Viral Shah</strong> and <strong>Mine Innes</strong> for their constant support and guiding me through my project. Finally, let me thank the brilliant <strong>JuliaLang Community</strong> for clearing my doubts and being an excellent source for learning.</p>
 
 <p align = "center">
-    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/gsoc_logo.png" width="700">
+    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/gsoc_logo.png" width="700" alt="Google Summer of Code logo">
 </p>
 
 </div><br><br>

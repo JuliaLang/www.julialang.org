@@ -209,13 +209,13 @@ crossorigin=""/>
 <!-- Content appended here -->
 <div class="container main">
 <p float="left" align="middle">
-  <img style="width:40%;padding:0;" src="/assets/blog/2019-05-02-MLJ/learningcurves.png"/>
-  <img style="width:40%;padding-left:15px;" src="/assets/blog/2019-05-02-MLJ/heatmap.png"/>
+  <img style="width:40%;padding:0;" src="/assets/blog/2019-05-02-MLJ/learningcurves.png" alt="MLJ learning curves"/>
+  <img style="width:40%;padding-left:15px;" src="/assets/blog/2019-05-02-MLJ/heatmap.png" alt="MLJ hyperparameter tuning heatmap"/>
 </p>
 
 <p float="left" align="middle">
-  <img style="width:40%;padding:0;" src="/assets/blog/2019-05-02-MLJ/wrapped_ridge.png"/>
-  <img style="width:40%;padding-left:15px;" src="/assets/blog/2019-05-02-MLJ/MLPackages.png"/>
+  <img style="width:40%;padding:0;" src="/assets/blog/2019-05-02-MLJ/wrapped_ridge.png" alt="MLJ wrapped ridge regression"/>
+  <img style="width:40%;padding-left:15px;" src="/assets/blog/2019-05-02-MLJ/MLPackages.png" alt="Julia ML packages ecosystem"/>
 </p>
 
 <div class="franklin-toc"><ol><li><a href="#introduction">Introduction</a></li><li><a href="#mlj_features">MLJ features</a></li><li><a href="#learning_networks">Learning networks</a></li><li><a href="#building_a_simple_network">Building a simple network</a></li><li><a href="#exporting_and_retraining">Exporting and retraining</a></li><li><a href="#just_write_the_math">Just &quot;Write the math&#33;&quot;</a></li><li><a href="#invitation_to_the_community">Invitation to the community</a></li></ol></div>
@@ -260,7 +260,7 @@ crossorigin=""/>
 <p>While a relatively small number of machine learning models currently implement the MLJ interface, work in progress aims to wrap models supported by the popular python framework, scikit-learn, as a temporary expedient. For a comparison of the MLJ&#39;s design with the Julia wrap <a href="https://github.com/cstjean/ScikitLearn.jl">ScikitLearn.jl</a>, see this <a href="https://github.com/alan-turing-institute/MLJ.jl/blob/master/docs/src/frequently_asked_questions.md">FAQ</a>.</p>
 <h2 id="learning_networks"><a href="#learning_networks" class="header-anchor">Learning networks</a></h2>
 <p>MLJ&#39;s model composition interface is flexible enough to implement, for example, the <a href="https://www.kdnuggets.com/2017/02/stacking-models-imropved-predictions.html">model stacks</a> popular in data science competitions. To treat examples of this kind, the interface design must account for the fact that information flow in prediction and training modes is different. This can be seen from the following schematic of a simple two-model stack, viewed as a network:</p>
-<p><img src="/assets/blog/2019-05-02-MLJ/two_model_stack.png" alt="" /></p>
+<p><img src="/assets/blog/2019-05-02-MLJ/two_model_stack.png" alt="Two-model stack network diagram" /></p>
 <h2 id="building_a_simple_network"><a href="#building_a_simple_network" class="header-anchor">Building a simple network</a></h2>
 <p>In MLJ, networks of models are built using a declarative syntax already familiar from basic use of the package. For example, the ordinary syntax for training a decision tree in MLJ, after one-hot encoding the categorical features, looks like this:</p>
 <pre><code class="julia hljs"><span class="hljs-keyword">using</span> MLJ

@@ -230,7 +230,7 @@ x = <span class="hljs-number">4</span>
 <p>根本的原因非常简单：机器学习研究对计算有极高的要求，那么简化建模语言就能让我们更轻松地加入针对于特定领域的优化与功能。训练模型需要语言对硬件有很好的支持，拥有良好的数值库，很低的解释器开销，并且支持多种并行方式。像 Python 这样的通用语言很难满足这些需求，而 TensorFlow 却能轻松胜任。</p>
 <p>话虽如此，有一个小问题不能忽略。卓有成效的优化依赖于能够简化问题的假设（机器学习模型里不会出现递归，也不需要自定义梯度，对吧？）。正是这些假设使得模型的优化更简单，也更易于部署到小型设备上。可惜研究员们沉醉于破坏这些假设的乐趣中，工程师们面对的模型也越来越复杂。一个模型现在会用到条件分支（不算什么，小菜一碟），循环（不怎么容易，但应该可以搞定），甚至<a href="https://arxiv.org/pdf/1503.00075.pdf">树的递归</a>（好吧，基本上做不到）。 在机器学习的很多分支中，包括<a href="https://blog.keras.io/the-future-of-deep-learning.html">神经网络</a>和<a href="https://eng.uber.com/pyro/">概率编程</a>，模型越来越像程序：有些模型可以推导<em>其它</em>程序（例如<a href="https://arxiv.org/pdf/1705.03633.pdf">程序生成器</a>和<a href="https://arxiv.org/abs/1605.06640">解释器</a>）；有些则包括像蒙特卡罗树搜索这样的不可导组件。在保证最高性能的同时提供充分的灵活性，这对运行时的构建提出了极高的挑战，然而两者的兼顾却是最强大的模型和突破性的成果所越来越倚重的。</p>
 
-<img src="/assets/images/sentiment-treebank.png"/>
+<img src="/assets/images/sentiment-treebank.png" alt="Stanford Sentiment Treebank visualization"/>
 <div class="desc">
   用机器学习处理复杂的树结构数据，如<a href="https://nlp.stanford.edu/sentiment/treebank.html">斯坦福情绪树库</a>，用到了可微的，递归的算法。
 </div>
@@ -253,7 +253,7 @@ x = <span class="hljs-number">4</span>
 
 <div style="text-align:center">
 <a href="https://xkcd.com/1838/">
-<img height="350px" src="https://imgs.xkcd.com/comics/machine_learning_2x.png"/>
+<img height="350px" src="https://imgs.xkcd.com/comics/machine_learning_2x.png" alt="XKCD comic: Machine Learning"/>
 </a>
 </div>
 <div class="desc">

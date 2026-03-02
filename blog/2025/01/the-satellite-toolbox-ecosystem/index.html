@@ -207,7 +207,7 @@ crossorigin=""/>
 
 <!-- Content appended here -->
 <div class="container main">
-<p><img src="/assets/blog/2024-SatelliteToolbox/logo-reduced.png" alt="" /></p>
+<p><img src="/assets/blog/2024-SatelliteToolbox/logo-reduced.png" alt="SatelliteToolbox.jl logo" /></p>
 <p>The <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> is an ecosystem of packages that enables the execution of a wide range of analysis tasks related to space missions in the Julia programming language. These tasks encompass the propagation of satellite orbits, the transformation of reference systems, the computation of atmospheric density, and numerous other functionalities.</p>
 <p>After a decade of uninterrupted development, the ecosystem has finally achieved the 1.0 milestone. This post shows the evolution of the ecosystem, from its initial conception to its current state, highlighting some notable use cases that this package has enabled.</p>
 <h2 id="the_beginning"><a href="#the_beginning" class="header-anchor">The Beginning</a></h2>
@@ -229,7 +229,7 @@ crossorigin=""/>
 <p>This was a major turning point for Julia’s adoption at INPE. The system became so efficient that we could simulate billions of seconds to check for all possible errors and design fail-safes to save the mission if something unexpected happens. I really believe that no other language or ecosystem could have given me such performance and simulation quality with the time and resources I had.</p>
 <p>The closure of this history occurred during the launch of Amazonia-1. After the separation, I used the satellite state vector as input to the simulator. My goal was to predict the satellite states during its first few orbits so I could design some tasks related to the AOCS &#40;like sensor calibration&#41;. The results were super accurate&#33; This allowed us to perform those tasks way faster and with much more confidence.</p>
 <p>The following figure shows the predicted satellite angular momentum compared to the actual angular momentum during some orbits. It’s amazing how well the simulator matched reality&#33; This result is only possible if the algorithms in <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> are super accurate&#33;</p>
-<p><img src="/assets/blog/2024-SatelliteToolbox/aocs_simulator_result-reduced.png" alt="" /></p>
+<p><img src="/assets/blog/2024-SatelliteToolbox/aocs_simulator_result-reduced.png" alt="AOCS simulator predicted vs actual satellite angular momentum" /></p>
 <h2 id="the_current_state_of_the_satellitetoolboxjl_ecosystem"><a href="#the_current_state_of_the_satellitetoolboxjl_ecosystem" class="header-anchor">The Current State of the SatelliteToolbox.jl Ecosystem</a></h2>
 <p>In 2023, I finally closed <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl/issues/1">the very first issue</a> opened in the <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> repository. I split that massive package into several smaller ones. This had two main effects. The system is now much more organized, but the maintenance burden is much higher. However, after so many years and with all the great tools we have for testing and registering packages, it was worth it.</p>
 <p>We’ve made all the internal packages and analysis algorithms at INPE work with the new versions. We use the <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> ecosystem every day for tasks like:</p>

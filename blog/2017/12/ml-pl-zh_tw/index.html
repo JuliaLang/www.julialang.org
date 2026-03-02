@@ -234,7 +234,7 @@ eval(z) // <span class="hljs-number">6</span></code></pre>
 <p>儘管這樣還是有個障礙，這些令人印象深刻的優化建立在簡化的假設上面&#40;ML 模型不會有遞迴或是需要特別計算梯度, 對吧？&#41;，而這些假設讓他比較容易去加入優化或是部署到小裝置上面。不幸的是，對於工程師來說模型得複雜度越來越高，而研究員又喜歡去違反這些假設。現在的模型需要條件分支（OK，很簡單可以修改）、重複的迴圈（不簡單但仍可能），或甚至<a href="https://arxiv.org/pdf/1503.00075.pdf">遞迴整個樹</a>（理論上不可能）。在很多機器學習的領域，包含<a href="https://blog.keras.io/the-future-of-deep-learning.html">神經網路</a>和<a href="https://eng.uber.com/pyro/">機率性程式設計</a>，模型變得越來越像程式，包括一類會去推論<em>其他</em>程式的程式（也就是<a href="https://arxiv.org/pdf/1705.03633.pdf">程式產生器</a>和<a href="https://arxiv.org/abs/1605.06640">直譯器</a>），以及不可微分的部分像是蒙地卡羅樹搜尋。這是個巨大的挑戰，來建構一個 runtime 具有完全的彈性同時達成最佳性能，然而不斷增加地多數強大的模型，以及不斷突破的結果需要兩者。</p>
 
 
-<img src="/assets/images/sentiment-treebank.png"/>
+<img src="/assets/images/sentiment-treebank.png" alt="Stanford Sentiment Treebank visualization"/>
 <div class="desc">
 使用 ML 在複雜的樹狀結構資料上（像是 <a href="https://nlp.stanford.edu/sentiment/treebank.html">Stanford Sentiment Treebank</a>）需要可微分的遞迴演算法。
 </div>
@@ -262,7 +262,7 @@ eval(z) // <span class="hljs-number">6</span></code></pre>
 
 <div style="text-align:center">
 <a href="https://xkcd.com/1838/">
-<img height="350px" src="https://imgs.xkcd.com/comics/machine_learning_2x.png"/>
+<img height="350px" src="https://imgs.xkcd.com/comics/machine_learning_2x.png" alt="XKCD comic: Machine Learning"/>
 </a>
 </div>
 <div class="desc">

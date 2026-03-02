@@ -151,7 +151,15 @@ html {
   color: #CA3C32;
 }
 #ecosystem-tab .nav-item a {
-  color: #686f77;
+  color: #545454;
+}
+#ecosystem-tab .nav-item a:hover {
+  color: #CA3C32;
+}
+#ecosystem-tab .nav-item a:focus-visible {
+  color: #CA3C32;
+  outline: 2px solid #CA3C32;
+  outline-offset: -2px;
 }
 #ecosystem-tab-content div.tab-pane {
   background-color: #fff;
@@ -238,7 +246,7 @@ html {
 }
 .blog .article-date {
   font-size: 12px;
-  color: #6f6f6f;
+  color: #545454;
 }
 .blog p {
   border-top: 1px solid #ccc;
@@ -928,7 +936,8 @@ pre .bash-block::before {
   transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus-visible {
   color: #CB3C33 !important;
 }
 
@@ -943,7 +952,8 @@ pre .bash-block::before {
   transition: all 0.3s ease;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
   width: 100%;
   left: 0;
 }
@@ -1260,7 +1270,8 @@ pre .bash-block::before {
   border-color: #CB3C33;
 }
 
-.btn-sponsor:hover {
+.btn-sponsor:hover,
+.btn-sponsor:focus-visible {
   background-color: #b93530;
   border-color: #b93530;
 }
@@ -1290,6 +1301,9 @@ pre .bash-block::before {
 
   .navbar-toggler:focus {
       box-shadow: none;
-      outline: none;
+  }
+  .navbar-toggler:focus-visible {
+      outline: 2px solid #CB3C33;
+      outline-offset: 2px;
   }
 }

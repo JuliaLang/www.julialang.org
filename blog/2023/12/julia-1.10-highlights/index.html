@@ -312,7 +312,7 @@ f(<span class="hljs-number">1</span>)</code></pre>
 <p><em>Cody Tapscott, Valentin Churavy, Prem Chintalapudi</em></p>
 <p>The Julia runtime has gained additional integration capabilities with the Tracy profiler as well as Intel&#39;s VTune profiler. The profilers are now capable of reporting notable events such as compilation, major and minor GCs, invalidation and memory counters, and more. Profiling support can be enabled while building Julia via the <code>WITH_TRACY&#61;1</code> and <code>WITH_ITTAPI&#61;1</code> <code>make</code> options. We aim to make these profilers usable without having to rebuild Julia in future Julia versions.</p>
 <p>Below is an example of using Tracy when profiling the Julia runtime.</p>
-<p><img src="/assets/blog/2023-1.10-highlights/tracy.png" alt="" /></p>
+<p><img src="/assets/blog/2023-1.10-highlights/tracy.png" alt="Tracy profiler showing Julia runtime events" /></p>
 <h2 id="upgrade_to_llvm_15"><a href="#upgrade_to_llvm_15" class="header-anchor">Upgrade to LLVM 15</a></h2>
 <p><em>Valentin Churavy, Gabriel Baraldi, Prem Chintalapudi</em></p>
 <p>We continue to track upstream LLVM and the Julia 1.10 release uses LLVM 15. This brings with it updated profiles for new processors and general modernizations.</p>

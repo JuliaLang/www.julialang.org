@@ -276,7 +276,7 @@ plot!(ns,noalloclv,label=<span class="hljs-string">&quot;mygemmturbo!&quot;</spa
 plot!(ns,allocgpu,label=<span class="hljs-string">&quot;* gpu&quot;</span>)
 plot!(ns,noallocgpu,label=<span class="hljs-string">&quot;mul! gpu&quot;</span>)
 savefig(<span class="hljs-string">&quot;microopts_blas3.png&quot;</span>)</code></pre>
-<p><img src="https://user-images.githubusercontent.com/1814174/162710865-10a9dc1e-eb14-433d-96c1-6ed9c8b55df7.png" alt="" /></p>
+<p><img src="https://user-images.githubusercontent.com/1814174/162710865-10a9dc1e-eb14-433d-96c1-6ed9c8b55df7.png" alt="Benchmark of BLAS3 matrix-matrix operations comparing CPU and GPU" /></p>
 <p>When we get to larger matrix-matrix operations, such as 100x100 * 100x100, we can effectively write off any overheads due to memory allocations. But we definitely see that there is a potential for some fairly significant performance gains in the lower end&#33; Notice too that these gains are realized by using the pure-Julia LoopVectorization.jl as the standard BLAS tools tend to have extra threading overhead in this region &#40;again, not optimizing as much in this region&#41;.</p>
 <p>If you have been riding the GPU gospel without looking into the details then this plot may be a shocker&#33; However, GPUs are designed as dumb slow chips with many cores, and thus they are only effective on very parallel operations, such as large matrix-matrix multiplications. It is from this point that assumption &#40;2&#41; is derived for large network operations. But again, in the case of small networks such GPU kernels will be outperformed by well-designed CPU kernels due to the lack of parallel opportunities.</p>
 <p>Matrix-matrix operations only occur when batching is able to be used &#40;where each column of the B matrix in A*B is a separate batch&#41;. In many cases in scientific machine learning, such as <a href="https://youtu.be/6hhF6Llv4sI?t&#61;342">the calculation of vector-Jacobian products in ODE adjoints</a>, this operation is a matrix-vector multiplication. These operations are smaller and only O&#40;n^2&#41;, and as you would guess these effects are amplified in this scenario:</p>
@@ -322,7 +322,7 @@ plot!(ns,noalloclv,label=<span class="hljs-string">&quot;mygemvturbo!&quot;</spa
 plot!(ns,allocgpu,label=<span class="hljs-string">&quot;* gpu&quot;</span>)
 plot!(ns,noallocgpu,label=<span class="hljs-string">&quot;mul! gpu&quot;</span>)
 savefig(<span class="hljs-string">&quot;microopts_blas2.png&quot;</span>)</code></pre>
-<p><img src="https://user-images.githubusercontent.com/1814174/162625320-310d633a-34bf-407e-8cc9-ec55ca895d83.png" alt="" /></p>
+<p><img src="https://user-images.githubusercontent.com/1814174/162625320-310d633a-34bf-407e-8cc9-ec55ca895d83.png" alt="Benchmark of BLAS2 matrix-vector operations comparing CPU and GPU" /></p>
 <p>And remember, the basic operations of a neural network are <code>sigma.&#40;W*x .&#43; b&#41;</code>, and thus there&#39;s also an O&#40;n&#41; element-wise operation. As you would guess, this operation becomes more significant as n gets smaller while requiring even more consideration for memory operations.</p>
 <pre><code class="julia hljs"><span class="hljs-keyword">using</span> LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
 
@@ -362,7 +362,7 @@ plot!(ns, noalloc, label=<span class="hljs-string">&quot;mybroadcastturbo!&quot;
 plot!(ns,allocgpu,label=<span class="hljs-string">&quot;= gpu&quot;</span>)
 plot!(ns,noallocgpu,label=<span class="hljs-string">&quot;.= gpu&quot;</span>)
 savefig(<span class="hljs-string">&quot;microopts_blas1.png&quot;</span>)</code></pre>
-<p><img src="https://user-images.githubusercontent.com/1814174/162710861-d70fb6de-7f54-47ff-bd11-054ebe85cc23.png" alt="" /></p>
+<p><img src="https://user-images.githubusercontent.com/1814174/162710861-d70fb6de-7f54-47ff-bd11-054ebe85cc23.png" alt="Benchmark of BLAS1 broadcast operations comparing CPU and GPU" /></p>
 <p>This already highly motivates a project focused on the performance for this case, but assumptions &#40;3&#41; and &#40;4&#41; point us to additionally look at the implementation of the backpropagation. The <a href="https://www.stochasticlifestyle.com/engineering-trade-offs-in-automatic-differentiation-from-tensorflow-and-pytorch-to-jax-and-julia/">trade-off between different machine learning libraries&#39; approaches to automatic differentiation has already been discussed at length</a>, but what the general discussions can miss is the extra opportunities afforded when really specializing on a domain. Take for example the use-case inside of neural ordinary differential equations &#40;neural ODEs&#41; and ODE adjoints. As mentioned above, in this use case the backwards pass is applied immediately after the forward pass. Thus, while <a href="https://github.com/SciML/DiffEqFlux.jl/blob/v1.8.1/src/fast_layers.jl#L38-L56">a handwritten adjoint to a neural network layer</a> can look like:</p>
 <pre><code class="julia hljs">ZygoteRules.<span class="hljs-meta">@adjoint</span> <span class="hljs-keyword">function</span> (f::FastDense)(x,p)
   W = ...

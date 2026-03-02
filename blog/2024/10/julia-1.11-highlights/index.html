@@ -237,7 +237,7 @@ crossorigin=""/>
 <h2 id="improved_tab_completion_and_hinting_in_the_repl"><a href="#improved_tab_completion_and_hinting_in_the_repl" class="header-anchor">Improved tab completion and hinting in the REPL</a></h2>
 <p><em>Ian Butterworth</em>, <em>Shuhei Kadowaki</em></p>
 <p>Tab completion has become more powerful in 1.11 and gained inline hinting when there is a singular completion available that can be completed with tab.</p>
-<p><img src="/assets/blog/2024-1.11-highlights/inline_complete.png" alt="" /></p>
+<p><img src="/assets/blog/2024-1.11-highlights/inline_complete.png" alt="Julia REPL inline tab completion hinting" /></p>
 <p>If you prefer not to have hinting enabled, disable it via your <code>startup.jl</code> with</p>
 <pre><code class="julia hljs">atreplinit() <span class="hljs-keyword">do</span> repl
     <span class="hljs-keyword">if</span> <span class="hljs-literal">VERSION</span> &gt;= <span class="hljs-string">v&quot;1.11.0-0&quot;</span>
