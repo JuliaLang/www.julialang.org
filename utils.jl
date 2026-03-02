@@ -240,7 +240,7 @@ function hfun_article_schema()
     pubdate_str = locvar(:published)
     isnothing(pubdate_str) && return ""
     date_iso = try
-        Dates.format(Date(pubdate_str, dateformat"d U Y"), "yyyy-mm-dd")
+        Dates.format(Date(pubdate_str, dateformat"d U Y"), "yyyy-mm-dd") * "T00:00:00+00:00"
     catch
         return ""
     end
