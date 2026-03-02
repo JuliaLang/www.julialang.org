@@ -222,6 +222,107 @@ function hfun_about_the_author()
     return html
 end
 
+"""
+    {{article_schema}}
+
+Generate a JSON-LD `BlogPosting` structured data block for blog posts.
+See https://developers.google.com/search/docs/data-types/article
+"""
+function hfun_article_schema()
+    title = locvar(:title)
+    isnothing(title) && return ""
+    descr = locvar(:rss_description)
+    isnothing(descr) && (descr = locvar(:rss))
+    isnothing(descr) && (descr = "")
+    descr = strip(descr)
+
+    # Parse the published date into ISO 8601
+    pubdate_str = locvar(:published)
+    isnothing(pubdate_str) && return ""
+    date_iso = try
+        Dates.format(Date(pubdate_str, dateformat"d U Y"), "yyyy-mm-dd")
+    catch
+        return ""
+    end
+
+    # Get image URL from meta or use default
+    image_url = "/assets/images/julia-open-graph.png"
+    meta = locvar(:meta)
+    if !isnothing(meta)
+        for m in meta
+            if m[2] == "og:image"
+                image_url = m[3]
+                break
+            end
+        end
+    end
+
+    # Build author list
+    author = locvar(:author)
+    authors = locvar(:authors)
+    author_names = if !isnothing(authors)
+        strip.(split(authors, ","))
+    elseif !isnothing(author)
+        [strip(author)]
+    else
+        String[]
+    end
+
+    # Build the author JSON entries
+    author_json = if length(author_names) == 1
+        """{"@type": "Person", "name": "$(author_names[1])"}"""
+    elseif length(author_names) > 1
+        entries = join(
+            ["""{"@type": "Person", "name": "$name"}""" for name in author_names],
+            ", "
+        )
+        "[$entries]"
+    else
+        """{"@type": "Organization", "name": "The Julia Language"}"""
+    end
+
+    website_url = strip(globvar(:website_url), '/')
+
+    # Get the page URL
+    page_url = "$website_url/$(Franklin.locvar(:fd_rpath))"
+    # Normalize: /blog/2024/05/post.md -> /blog/2024/05/post/
+    page_url = replace(page_url, r"\.md$" => "/")
+
+    # Ensure image URL is absolute
+    if startswith(image_url, "/")
+        image_url = "$website_url$image_url"
+    end
+
+    # Escape strings for JSON
+    esc(s) = replace(replace(s, "\\" => "\\\\"), "\"" => "\\\"")
+
+    return """
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "$(esc(title))",
+      "description": "$(esc(descr))",
+      "image": "$(esc(image_url))",
+      "datePublished": "$date_iso",
+      "author": $author_json,
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Julia Language",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "$website_url/assets/images/julia-open-graph.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "$(esc(page_url))"
+      }
+    }
+    </script>
+    """
+end
+
 function hfun_all_gsoc_projects()
 	base_dir = joinpath("jsoc", "gsoc")
 	all_projects = readdir(base_dir)

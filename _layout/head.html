@@ -46,6 +46,11 @@
   <!-- OGP Metadata -->
 	{{meta}}
 
+  <!-- Article structured data for blog posts -->
+  {{ispage /blog/*}}{{isnotpage /blog/index.html}}
+  {{article_schema}}
+  {{end}}{{end}}
+
 </head>
 
 <body>
