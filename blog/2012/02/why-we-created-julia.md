@@ -2,7 +2,7 @@
 @def rss_description = """ Why We Created Julia | In short, because we are greedy.... """
 @def published = "14 February 2012"
 @def title = "Why We Created Julia"
-@def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"
+@def authors = "Jeff Bezanson, Stefan Karpinski, Viral B. Shah, Alan Edelman"
 
 ~~~
 <a href="https://github.com/JeffBezanson/">Jeff Bezanson</a>
