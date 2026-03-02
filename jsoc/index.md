@@ -37,7 +37,7 @@ The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding 
    </div>
 
    <br>
-   <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" width="50%">
+   <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" width="50%" alt="Google Summer of Code">
    <br>
    <br>
 
