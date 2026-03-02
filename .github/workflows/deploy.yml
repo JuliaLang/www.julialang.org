@@ -86,6 +86,12 @@ jobs:
           ssh-key: true
           target-folder: "previews/PR${{ github.event.number }}"
 
+      - name: Fetch deployed site for cache diff
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git fetch origin gh-pages:gh-pages || true
+          git worktree add __old gh-pages || mkdir -p __old
+
       - name: Deploy (main)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@releases/v4
@@ -93,3 +99,18 @@ jobs:
           ssh-key: true
           branch: gh-pages
           folder: __site
+
+      - name: Purge changed URLs from Fastly
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          diff -rq __old __site 2>/dev/null \
+            | grep -E "^Files|^Only in __site" \
+            | sed -E 's|^Files __old/(.+) and .+$|\1|; s|^Only in __site/?(.*): (.+)$|\1/\2|' \
+            | sed 's|^/||' \
+            | while read -r file; do
+                url="https://julialang.org/${file}"
+                # Map index.html to directory URL
+                url="${url%index.html}"
+                echo "Purging: $url"
+                curl -s -o /dev/null -w "%{http_code} " -X PURGE "$url" || true
+              done
