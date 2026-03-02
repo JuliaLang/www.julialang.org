@@ -48,7 +48,7 @@ TensorFlow 以及其他相似的工具表示他們只是套件而已，但是他
 
 ~~~
 
-<img src="/assets/images/sentiment-treebank.png"/>
+<img src="/assets/images/sentiment-treebank.png" alt="Stanford Sentiment Treebank visualization"/>
 <div class="desc">
 使用 ML 在複雜的樹狀結構資料上（像是 <a href="https://nlp.stanford.edu/sentiment/treebank.html">Stanford Sentiment Treebank</a>）需要可微分的遞迴演算法。
 </div>
@@ -87,7 +87,7 @@ ML 工程師對傳統[軟體工程的問題](https://papers.nips.cc/paper/5656-h
 ~~~
 <div style="text-align:center">
 <a href="https://xkcd.com/1838/">
-<img height="350px" src="https://imgs.xkcd.com/comics/machine_learning_2x.png"/>
+<img height="350px" src="https://imgs.xkcd.com/comics/machine_learning_2x.png" alt="XKCD comic: Machine Learning"/>
 </a>
 </div>
 <div class="desc">

@@ -50,7 +50,7 @@ We'll use a simple model of the shark based on Lighthill's pioneering [paper on 
 It focuses on the "backbone" of the fish; idealizing the shape as a thickness distribution on either side of the center, and the motion as a lateral ("side-to-side") traveling wave. Amazingly, this simple approach provides insight across a huge range of a swimming animals as illustrated in the image below.
 [Image credit: Gazzola et al, Nature 2014](https://www.nature.com/articles/nphys3078)
 
-![]({{base}}slenderfish.png)
+![Slender fish swimming model across different species]({{base}}slenderfish.png)
 
 ## Modeling the shark's thickness and motion
 
@@ -76,7 +76,7 @@ filename2 = download(url2)
 dogfish = load(filename2)
 ```
 
-![]({{base}}shark1.png)
+![Dogfish shark reference photo]({{base}}shark1.png)
 
 The bottom view shows the outline we're interested in, and adding a few points along the length defines the thickness distribution function `thk`.
 
@@ -95,7 +95,7 @@ plot!(
 	color=:blue)
 ```
 
-![]({{base}}shark2.svg)
+![Shark thickness distribution fitted to dogfish outline]({{base}}shark2.svg)
 
 Looking at [videos of swimming dogfish](https://youtu.be/nMa6lD2CQVI?t=200), we can see a couple general features
 
@@ -121,7 +121,7 @@ end
 plot!(ylim=(-1.4,1.4), legend=false)
 ```
 
-![]({{base}}wavelength.svg)
+![Traveling wave amplitude envelope over motion cycle]({{base}}wavelength.svg)
 
 ## Setting up the simulation
 
@@ -153,7 +153,7 @@ contourf(grid, grid, segment_sdf, clim=(-1,2), linewidth=0)
 contour!(grid, grid, segment_sdf, levels=[0], color=:black)  # zero contour
 ```
 
-![]({{base}}contour.svg)
+![Contour plot of shark signed distance function]({{base}}contour.svg)
 
 With the basic SDF tested out, we are ready to set up the WaterLily simulation using the function `fish` defined below:
  - The functions `thk` is passed in to create the `sdf` and the function `amp` is passed in to create the traveling wave `map`.
@@ -200,7 +200,7 @@ We can test our geometry by plotting the immersed boundary function `μ₀`; whi
 end
 ```
 
-![]({{base}}swimmer.gif)
+![Animation of shark body motion in fluid simulation]({{base}}swimmer.gif)
 
 ## Running visualizing and measuring the simulation
 
@@ -236,7 +236,7 @@ end
 end
 ```
 
-![]({{base}}swimmer2.gif)
+![Animation of vorticity in shark wake]({{base}}swimmer2.gif)
 
 This is pretty (CFD does stand for _Colorful Fluid Dynamics_ after all), but also tells us something important about the flow.
 Notice that there are no eddies coming off the body anywhere other than the tail!
@@ -259,7 +259,7 @@ scatter(cycle./period, [first.(forces), last.(forces)],
 		ylabel="scaled force")
 ```
 
-![]({{base}}forces.svg)
+![Plot of thrust and side forces over a swimming cycle]({{base}}forces.svg)
 
 
 We can learn a lot from this simple plot.

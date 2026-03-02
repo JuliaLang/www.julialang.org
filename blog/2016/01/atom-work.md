@@ -5,7 +5,7 @@
 @def authors = "Mike Innes"
 
 ~~~
-<div align="center"><img src="https://github.com/JunoLab/atom-ink/raw/readme/demos/full.gif" /></div>
+<div align="center"><img src="https://github.com/JunoLab/atom-ink/raw/readme/demos/full.gif" alt="Juno IDE for Julia demo showing interactive features" /></div>
 ~~~
 
 > A PL designer used to be able to design some syntax and semantics for their language, implement a compiler, and then call it a day. –  Sean McDirmid
