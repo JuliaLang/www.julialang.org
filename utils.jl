@@ -256,17 +256,28 @@ function hfun_article_schema()
             end
         end
     end
+    # Resolve {{base}} if present (some posts use a `base` page variable in meta values)
+    base = locvar(:base)
+    if !isnothing(base)
+        image_url = replace(image_url, "{{base}}" => base)
+    end
+
+    # Strip HTML tags from a string (some older posts have <a> links in author)
+    striptags(s) = replace(s, r"<[^>]*>" => "")
 
     # Build author list
     author = locvar(:author)
     authors = locvar(:authors)
-    author_names = if !isnothing(authors)
-        strip.(split(authors, ","))
+    raw_authors = if !isnothing(authors)
+        authors
     elseif !isnothing(author)
-        [strip(author)]
+        author
     else
-        String[]
+        ""
     end
+    raw_authors = striptags(raw_authors)
+    # Split on comma or " and " to handle both "A, B" and "A and B" styles
+    author_names = filter!(!isempty, strip.(split(raw_authors, r"\s*,\s*|\s+and\s+")))
 
     # Build the author JSON entries
     author_json = if length(author_names) == 1
@@ -293,8 +304,14 @@ function hfun_article_schema()
         image_url = "$website_url$image_url"
     end
 
-    # Escape strings for JSON
-    esc(s) = replace(replace(s, "\\" => "\\\\"), "\"" => "\\\"")
+    # Escape strings for JSON (also strip any HTML tags and newlines)
+    function esc(s)
+        s = striptags(s)
+        s = replace(s, "\\" => "\\\\")
+        s = replace(s, "\"" => "\\\"")
+        s = replace(s, r"\s+" => " ")
+        strip(s)
+    end
 
     return """
     <script type="application/ld+json">
