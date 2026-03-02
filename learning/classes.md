@@ -311,8 +311,6 @@ _Courses last offered before 2020. These may still contain useful teaching mater
     * Invited [Advanced Julia Workshop](https://github.com/crstnbr/JuliaOulu20) (MSc. Carsten Bauer, University of Cologne), Spring 2020
 * University of Sydney
     * [MATH3076/3976](https://web.archive.org/web/20210308130503/https://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/), Mathematical Computing (Assoc. Prof. Sheehan Olver), Fall 2016
-* Université Paul Sabatier, Toulouse
-    * [Optimization in Machine Learning](https://www.irit.fr/cimi-machine-learning/node/15.html), (Prof. Peter Richtarik), Fall 2015
 * [Université de Liège](https://www.ulg.ac.be/)
     * [MATH0462](http://www.tcuvelier.be/teaching-2016-2017-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](https://people.montefiore.uliege.be/louveaux/)), Fall 2016
     * [MATH0461](https://www.programmes.uliege.be/cocoon/20192020/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](https://people.montefiore.uliege.be/louveaux/)), Fall 2016
@@ -322,6 +320,8 @@ _Courses last offered before 2020. These may still contain useful teaching mater
     * [IFT3245](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/), Simulation et modèles (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Fall 2017
     * [IFT3515](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3515/), Optimisation non linéaire (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2017-2018
     * [IFT6512](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-6512/), Programmation stochastique (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2018
+* Université Paul Sabatier, Toulouse
+    * [Optimization in Machine Learning](https://www.irit.fr/cimi-machine-learning/node/15.html), (Prof. Peter Richtarik), Fall 2015
 * Western University Canada
     * [CS 2101A](https://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza), Fall 2013
 @@
