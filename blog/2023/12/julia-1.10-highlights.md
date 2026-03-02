@@ -153,7 +153,7 @@ The Julia runtime has gained additional integration capabilities with the Tracy 
 
 Below is an example of using Tracy when profiling the Julia runtime.
 
-![](/assets/blog/2023-1.10-highlights/tracy.png)
+![Tracy profiler showing Julia runtime events](/assets/blog/2023-1.10-highlights/tracy.png)
 
 
 ## Upgrade to LLVM 15

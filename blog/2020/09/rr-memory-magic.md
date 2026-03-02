@@ -24,7 +24,7 @@ have made use of this capability to send us detailed bug reports. So far, everyt
 
 ~~~
 <center>
-<img id="meme" src="/assets/blog/2020-09-23-rr-memory/rr-meme.jpeg"/>
+<img id="meme" src="/assets/blog/2020-09-23-rr-memory/rr-meme.jpeg" alt="Meme about rr debugging"/>
 </center><br/>
 ~~~
 
@@ -490,7 +490,7 @@ encouraged the user to run memtest on their machine. And indeed, the next day I 
 screenshot:
 
 ~~~
-<img id="meme" src="/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg"/>
+<img id="meme" src="/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg" alt="Memtest86 screenshot showing faulty memory"/>
 ~~~
 
 The failures reported are exactly what we expected: A 0->1 bit flip in the low bit of the high

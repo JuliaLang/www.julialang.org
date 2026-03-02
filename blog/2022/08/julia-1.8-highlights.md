@@ -109,7 +109,7 @@ It takes 2 seconds since one of the non-occupied threads can run two of the 1-se
 Unnecessary heap allocations can seriously degrade performance, and existing tools for tracking them down (namely `@time` and `--track-allocation`) didn't quite provide the fine-grained detail, nice visualization, and ease of use we were looking for. So we created the allocation profiler (`Profile.Allocs`), which captures heap allocations with the type, size, and stack trace of each, such that they can be easily visualized with [PProf.jl](https://github.com/JuliaPerf/PProf.jl) and as seen below, with the Julia extension for VS Code.
 
 
-| ![](/assets/blog/2022-1.8-highlights/vscode_allocs.png)|
+| ![VS Code allocation profiling visualization](/assets/blog/2022-1.8-highlights/vscode_allocs.png)|
 | :--------: |
 | The Julia extension for VS Code provides easy access to illustrated allocation profiling via `@profview_allocs` |
 
@@ -186,7 +186,7 @@ Note that each thread now shows a utilization percentage, showing that the only 
 
 External profile viewers now also support thread and task selection.
 
-| ![](/assets/blog/2022-1.8-highlights/thread_profile_profileview.png)| ![](/assets/blog/2022-1.8-highlights/thread_profile_vscode.png) |
+| ![Thread profiling in ProfileView.jl](/assets/blog/2022-1.8-highlights/thread_profile_profileview.png)| ![Thread profiling in VS Code](/assets/blog/2022-1.8-highlights/thread_profile_vscode.png) |
 | :--------: | :--------: |
 | ProfileView.jl | Julia extension for VS Code has a built-in `@profview` macro |
 
@@ -297,7 +297,7 @@ Therefore, the package manager will now show a small indicator when installing p
 
 There is also a new flag `--outdated` that can be passed to the status printing to see what the latest versions are and what packages' compat is holding other packages back from updating.
 
-![](/assets/blog/2022-1.8-highlights/pkg_upgrade.png)
+![Pkg outdated package status output](/assets/blog/2022-1.8-highlights/pkg_upgrade.png)
 
 Above, we can see that both Plots and NanMath are not on their latest version and Plots and RecipesPipeline are blocking NanMath from upgrading.
 

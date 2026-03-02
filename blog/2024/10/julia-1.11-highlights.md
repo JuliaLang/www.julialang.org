@@ -70,7 +70,7 @@ with an empty file.
 
 Tab completion has become more powerful in 1.11 and gained inline hinting when there is a singular completion available that can be completed with tab.
 
-![](/assets/blog/2024-1.11-highlights/inline_complete.png)
+![Julia REPL inline tab completion hinting](/assets/blog/2024-1.11-highlights/inline_complete.png)
 
 If you prefer not to have hinting enabled, disable it via your `startup.jl` with
 ```julia
