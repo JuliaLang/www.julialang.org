@@ -265,6 +265,26 @@ function hfun_article_schema()
     # Strip HTML tags from a string (some older posts have <a> links in author)
     striptags(s) = replace(s, r"<[^>]*>" => "")
 
+    # Parse author entries, extracting name and optional URL from <a> tags.
+    # Returns a vector of (name, url_or_nothing) tuples.
+    function parse_authors(raw)
+        entries = Tuple{String,Union{String,Nothing}}[]
+        # Split on comma or " and " (but not inside tags)
+        for part in split(raw, r"\s*,\s*|\s+and\s+")
+            part = strip(part)
+            isempty(part) && continue
+            # Try to extract href and link text from <a> tag
+            m = match(r"<a\s+href=\"([^\"]+)\"[^>]*>([^<]+)</a>", part)
+            if m !== nothing
+                push!(entries, (strip(m[2]), strip(m[1])))
+            else
+                name = strip(striptags(part))
+                isempty(name) || push!(entries, (name, nothing))
+            end
+        end
+        entries
+    end
+
     # Build author list
     author = locvar(:author)
     authors = locvar(:authors)
@@ -275,19 +295,20 @@ function hfun_article_schema()
     else
         ""
     end
-    raw_authors = striptags(raw_authors)
-    # Split on comma or " and " to handle both "A, B" and "A and B" styles
-    author_names = filter!(!isempty, strip.(split(raw_authors, r"\s*,\s*|\s+and\s+")))
+    author_entries = parse_authors(raw_authors)
 
     # Build the author JSON entries
-    author_json = if length(author_names) == 1
-        """{"@type": "Person", "name": "$(author_names[1])"}"""
-    elseif length(author_names) > 1
-        entries = join(
-            ["""{"@type": "Person", "name": "$name"}""" for name in author_names],
-            ", "
-        )
-        "[$entries]"
+    function author_obj((name, url))
+        if url !== nothing
+            """{"@type": "Person", "name": "$name", "url": "$url"}"""
+        else
+            """{"@type": "Person", "name": "$name"}"""
+        end
+    end
+    author_json = if length(author_entries) == 1
+        author_obj(author_entries[1])
+    elseif length(author_entries) > 1
+        "[$(join(author_obj.(author_entries), ", "))]"
     else
         """{"@type": "Organization", "name": "The Julia Language"}"""
     end
