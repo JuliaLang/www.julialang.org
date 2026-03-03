@@ -15,6 +15,7 @@
 
 <script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
 
+{{if hasmap}}
 <!-- scripts for map rendering -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
 integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -26,5 +27,6 @@ crossorigin=""/>
 
 <!-- https://github.com/Leaflet/Leaflet.markercluster -->
 <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+{{end}}
 
 <script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
