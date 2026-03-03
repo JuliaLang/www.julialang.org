@@ -28,20 +28,20 @@
   </div>
 </div>
 
-<!-- Julia Tutorials -->
+<!-- Courses & Tutorials -->
 <div class="container-fluid alt-color packages">
   <br><br>
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
       <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
-        <h2 class="lead secondary-heading">Julia Tutorials</h2>
+        <h2 class="lead secondary-heading">Courses &amp; Tutorials</h2>
       </div>
       <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
     </div>
 
-    <p>We have created a non-exhaustive list of community provided Julia tutorials. Check them out to <a href="tutorials/">learn Julia through the lens of someone from the community</a>. Once you're familiar with the language itself, the blog <a href="https://modernjuliaworkflows.github.io/">ModernJuliaWorkflows</a> will teach you the secrets of productive Julia development.</p>
-    <p>There also exist a growing number of curated Julia courses in the form of video lecture series. These courses are freely available on <a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>. There are also a <a href="mooc/">few MOOCs</a> that have been created using Julia.</p>
+    <h3>Video Courses</h3>
+    <p>A growing number of curated Julia courses are freely available on <a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>.</p>
 
     <table class="table table-borderless">
       <tbody>
@@ -71,6 +71,9 @@
         </tr>
       </tbody>
     </table>
+
+    <h3>Written Tutorials</h3>
+    <p>Community members have created a wide range of <a href="tutorials/">written tutorials</a> covering Julia from beginner to advanced levels. Once you're familiar with the language, <a href="https://modernjuliaworkflows.github.io/">ModernJuliaWorkflows</a> will teach you the secrets of productive Julia development.</p>
   </div>
   <br><br>
 </div>
