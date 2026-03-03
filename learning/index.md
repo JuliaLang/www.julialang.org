@@ -43,14 +43,34 @@
     <p>We have created a non-exhaustive list of community provided Julia tutorials. Check them out to <a href="tutorials/">learn Julia through the lens of someone from the community</a>. Once you're familiar with the language itself, the blog <a href="https://modernjuliaworkflows.github.io/">ModernJuliaWorkflows</a> will teach you the secrets of productive Julia development.</p>
     <p>There also exist a growing number of curated Julia courses in the form of video lecture series. These courses are freely available on <a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>. There are also a <a href="mooc/">few MOOCs</a> that have been created using Julia.</p>
 
-    <ul>
-      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Qpx0MgGyElJ5qFlaIXYf1R">Julia for Nervous Beginners</a> &ndash; A course for people who are hesitant but curious about learning to write code in Julia. Taught by Dr Henri Laurie.</li>
-      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QuDTt11Xxonnfal91JhqjO">Julia for Data Science</a> &ndash; From zero knowledge of Julia's Data Science capabilities to training models and performing analysis. Taught by Dr Huda Nassar.</li>
-      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SGnG3FcHlYhdWWrZE7nNEx">Intro to DataFrames.jl</a> &ndash; In-memory tabular data in Julia using DataFrames.jl. Taught by Bogumi&#322; Kami&#324;ski.</li>
-      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Q58n470P1oo7WX1fNZxneG">Computational Modeling (COVID-19)</a> &ndash; Computational modeling in Julia with applications to the COVID-19 pandemic. Taught by Alan Edelman &amp; David Sanders.</li>
-      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QPqk4N8eBk0oXzLrLbOtTA">Decision Making Under Uncertainty</a> &ndash; Build and solve decision making problems using the POMDPs.jl ecosystem. Taught by Robert Moss.</li>
-      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6T56GkMHEdSrjCCheNuEwI0">Computational Thinking (MIT)</a> &ndash; MIT's open course 18.S191 on computational thinking using Julia, with interactive Pluto notebooks.</li>
-    </ul>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Qpx0MgGyElJ5qFlaIXYf1R">Julia for Nervous Beginners</a></td>
+          <td>A course for people who are hesitant but curious about learning to write code in Julia. Taught by Dr Henri Laurie.</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QuDTt11Xxonnfal91JhqjO">Julia for Data Science</a></td>
+          <td>From zero knowledge of Julia's Data Science capabilities to training models and performing analysis. Taught by Dr Huda Nassar.</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SGnG3FcHlYhdWWrZE7nNEx">Intro to DataFrames.jl</a></td>
+          <td>In-memory tabular data in Julia using DataFrames.jl. Taught by Bogumi&#322; Kami&#324;ski.</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Q58n470P1oo7WX1fNZxneG">Computational Modeling (COVID-19)</a></td>
+          <td>Computational modeling in Julia with applications to the COVID-19 pandemic. Taught by Alan Edelman &amp; David Sanders.</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QPqk4N8eBk0oXzLrLbOtTA">Decision Making Under Uncertainty</a></td>
+          <td>Build and solve decision making problems using the POMDPs.jl ecosystem. Taught by Robert Moss.</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6T56GkMHEdSrjCCheNuEwI0">Computational Thinking (MIT)</a></td>
+          <td>MIT's open course 18.S191 on computational thinking using Julia, with interactive Pluto notebooks.</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <br><br>
 </div>
