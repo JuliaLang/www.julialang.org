@@ -4,6 +4,7 @@
 @def title = "机器学习与编程语言 (Simplified Chinese)"
 @def authors = "By Mike Innes (JuliaHub), David Barber (UCL), Tim Besard (UGent), James Bradbury (Salesforce Research), Valentin Churavy (MIT), Simon Danisch (MIT), Alan Edelman (MIT), Stefan Karpinski (JuliaHub), Jon Malmaud (MIT), Jarrett Revels (MIT), Viral Shah (JuliaHub), Pontus Stenetorp (UCL) and Deniz Yuret (Koç University)"
 @def hascode = true
+@def pagelang = "zh-Hans"
 
 > 任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。[^greenspun]
 
@@ -13,7 +14,7 @@
 
 \toc
 
-## [儿童黑话](https://zh.wikipedia.org/zh-hk/兒童黑話)及其它隐匿语言
+## 儿童黑话及其它隐匿语言
 
 TensorFlow（TF）等框架[^tf][已被公认属于编程语言](https://dl.acm.org/citation.cfm?doid=3088525.3088527)，尽管它们在某些方面还有局限。这多少有些意料之外，毕竟大家 TF 编程时用的是 Python。然而琢磨一下就会发现，TF 只是让你用 Python 代码[构造了一个表达式树](https://www.tensorflow.org/programmers_guide/graphs)，这个表达式树是用其内部语言表示的，之后再进行计算。
 

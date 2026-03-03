@@ -3,6 +3,7 @@
 @def published = "8 August 2018"
 @def title = "Julia 1.0 Anunciando el release de Julia 1.0 (Spanish)"
 @def authors = "the Julia developers"
+@def pagelang = "es"
 
 ~~~
 Translations:  <a href="/blog/2018/08/one-point-zero-zh_cn/">Simplified Chinese</a>, <a href="/blog/2018/08/one-point-zero-zh_tw/">Traditional Chinese</a>, <a href="/blog/2018/08/one-point-zero-es/">Spanish</a>

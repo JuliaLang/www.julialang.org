@@ -11,7 +11,7 @@ climate model built in Julia and designed from the outset to leverage GPU
 acceleration and modern software engineering practices to overcome the
 limitations of traditional climate models.
 
-### `ClimaExplorer`: An Interactive Visualizer of Climate Model Outputs
+## `ClimaExplorer`: An Interactive Visualizer of Climate Model Outputs
 
 Visualizing simulation output is crucial for both scientific understanding and
 outreach. This project involves developing `ClimaExplorer`, an interactive

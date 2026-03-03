@@ -34,7 +34,9 @@ function hfun_meta()
     end
     io = IOBuffer()
     for m in meta
-        write(io, "<meta $(m[1])=\"$(m[2])\" content=\"$(m[3])\">\n")
+        # HTML-escape double quotes and newlines in content to produce valid attributes
+        escaped = replace(string(m[3]), "&" => "&amp;", "\"" => "&quot;", "\n" => " ")
+        write(io, "<meta $(m[1])=\"$(m[2])\" content=\"$(escaped)\">\n")
     end
     return String(take!(io))
 end
@@ -157,8 +159,10 @@ function hfun_redirect(url)
     s = """
     <!-- REDIRECT -->
     <!doctype html>
-    <html>
+    <html lang="en">
       <head>
+        <meta charset="utf-8">
+        <title>Redirecting…</title>
         <meta http-equiv="refresh" content="0; url=$(url[1])">
       </head>
     </html>
@@ -184,7 +188,7 @@ end
 function hfun_author_twitter()
     url = get_author_twitter()
     isempty(url) && return ""
-    return "<a href=\"$url\"><img src=\"/assets/infra/twitter.svg\"/ width=\"22px\" height=\"22px\" style=\"margin-left:2px\"></a>"
+    return "<a href=\"$url\"><img src=\"/assets/infra/twitter.svg\" alt=\"Twitter\" width=\"22\" height=\"22\" style=\"margin-left:2px\"></a>"
 end
 
 """

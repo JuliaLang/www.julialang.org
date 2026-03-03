@@ -3,6 +3,7 @@
 @def published = "8 August 2018"
 @def title = "Julia 1.0 正式發佈 (Traditional Chinese)"
 @def authors = "the Julia developers"
+@def pagelang = "zh-Hant"
 
 
 ~~~Translations:  <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>

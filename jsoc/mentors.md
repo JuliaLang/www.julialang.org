@@ -14,7 +14,7 @@ Mentors usually communicate with one another via a private `#jsoc-mentors` chann
 
 Mentors are encouraged to watch this video to give them a better idea how to be a great GSoC mentor:
 ~~~
-<iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/3J_eBuYxcyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="width:100%;border:none;" height="400" src="https://www.youtube-nocookie.com/embed/3J_eBuYxcyg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
 ## Project Selection Process
@@ -33,5 +33,5 @@ After that, the JSoC Admins allocate slots to fill up the spots given by Google.
 
 Find out more about how we base project selections:
 ~~~
-<iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/KJ9UL6DSsr0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="width:100%;border:none;" height="400" src="https://www.youtube-nocookie.com/embed/KJ9UL6DSsr0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~

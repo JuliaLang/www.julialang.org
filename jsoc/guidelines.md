@@ -15,7 +15,7 @@ so the more ways you have to show your commitment, the better.
 _If you have accessibility needs with respect to submitting your application, please email `community@julialang.org` to get further assistance with your application. We are committed to making this application process accommodating for everyone._
 
 ~~~
-<iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/YN7uGCg5vLg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="width:100%;border:none;" height="400" src="https://www.youtube-nocookie.com/embed/YN7uGCg5vLg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
 ## Application Instructions
@@ -88,7 +88,7 @@ In more detail, you may find it useful to consider the following questions:
 
 ## Tips and Tricks from former GSoC Contributors
 ~~~
-<iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/YPO9ew6EkkU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="width:100%;border:none;" height="400" src="https://www.youtube-nocookie.com/embed/YPO9ew6EkkU" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
 ## Words of Encouragement

@@ -115,7 +115,7 @@ meta = [
                     src="/assets/blog/2020-05-02-rr/replay.cast">
   </asciinema-player>
   </div>
-  <image id="arch_diagram" src="/assets/blog/2020-05-02-rr/arch.svg"/>
+  <img id="arch_diagram" src="/assets/blog/2020-05-02-rr/arch.svg" alt="Architecture diagram"/>
   </div>
   <script>
     document.getElementById('record_player').addEventListener('ended', function(e) {
@@ -219,7 +219,7 @@ reproduce the bug and create a trace. Even if the expert is still required to do
 the final diagnosis, doing so from an `rr` trace is orders of magnitude faster
 than from a plain bug report.
 
-# Chronomancy for dummies
+## Chronomancy for dummies
 
 A computer is fundamentally a deterministic machine. Given equivalent
 states as inputs, most instructions will produce a deterministic state
@@ -307,7 +307,7 @@ reasons), until the previous state is reached. However, to the end user, the
 illusion of going backwards in time is presented and an extremely useful mental
 model for debugging.
 
-# Performance considerations
+## Performance considerations
 
 While the previous section described the operating principle of `rr`, it does
 not do justice to the reason why `rr` works so well. That reason is simple:
@@ -359,7 +359,7 @@ with standard techniques). From the trace, we can not
 only reproduce such a core-dump, but every single of the trillions
 of intermediate states!
 
-# Hardware and Software limitations
+## Hardware and Software limitations
 
 As was already mentioned, `rr` currently only works on Linux. However, there
 are more restrictions. At the moment only x86 chips with Intel microarchitecture
@@ -432,7 +432,7 @@ vendor standards, but it isn't trivially small either. If any hardware vendor
 is interested in making this work, we'd be happy to talk to you (and as I
 mentioned, some of this is already in progress).
 
-# A word on privacy
+## A word on privacy
 
 By its nature, an `rr` trace will contain any file touched by the process during
 its lifetime. In particular, this may contain things like your julia history,
@@ -454,7 +454,7 @@ professional Julia support (e.g. through your employer, supercomputing center
 or similar), you may be able to request a mechanism to share traces generated
 through this feature privately.
 
-# Future outlook
+## Future outlook
 
 Being able to replay the traces is only the beginning. I like to say that
 with `rr`, debugging becomes a data analysis problem, since the answer to
@@ -473,7 +473,7 @@ super precise coverage testing, etc. In fact, having the recording enables
 some analysis techniques that would be prohibitively expensive to do in real
 time, but that is a topic for another time.
 
-## Conflict of Interest disclaimer / Funding Acknowledgement
+### Conflict of Interest disclaimer / Funding Acknowledgement
 
 Essentially all of the companies mentioned in this blog post have in the past provided
 financial or other support to the Julia project. In particular, Intel and IBM

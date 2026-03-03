@@ -5,7 +5,7 @@ A package contains modules, tests, and documentation. It extends core Julia func
 You can create a Julia package using the built-in package manager [PkgDev.jl](https://github.com/JuliaLang/PkgDev.jl) or the package [PkgTemplates.jl](https://juliaci.github.io/PkgTemplates.jl/stable/). This example uses `PkgTemplates.jl` and is inspired in the video below:
 
 ~~~
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
 In the video, Chris Rackauckas uses Travis as a Continuous Integration (CI) tool. For this tutorial, we use [GitHub Actions](https://github.com/features/actions) instead which is the current preferred method.
