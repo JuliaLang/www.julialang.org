@@ -166,7 +166,7 @@
         
       </div>
       <div class="blog-title-meta">
-        <h3>
+        <p style="font-size: 1.17em; margin-top: 0;">
           
             <span style="font-weight: lighter;">27 March 2016</span> |
           
@@ -176,13 +176,12 @@
           
             <span style="font-weight: bold;"> <a href="http://holylab.wustl.edu">Tim Holy</a></span>
           
-        </h3>
+        </p>
       </div>
     </div>
 
     <div class="blog-title-right">
-      <a type="application/rss+xml"
-         href="https://julialang.org/feed.xml"
+      <a href="https://julialang.org/feed.xml"
          class="rss-link">
         <i class="fa fa-rss-square rss-icon"></i>
       </a>
@@ -192,7 +191,7 @@
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/03/arrays-iteration.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/03/arrays-iteration.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 
 
@@ -240,7 +239,7 @@ eachindex&#40;A&#41;</code> construct.  This allows one to select an iterator th
 <p>Unfortunately, I suspect that if we want to add support for certain new operations or types &#40;specific examples below&#41;, it will force us to set the latter problem on fire.</p>
 <h1 id="challenging_examples"><a href="#challenging_examples" class="header-anchor">Challenging examples</a></h1>
 <p>Some possible new <code>AbstractArray</code> types pose novel challenges.</p>
-<h2 id="reshapedarrays_a_hrefhttpsgithubcomjulialangjuliapull1544915449"><a href="#reshapedarrays_a_hrefhttpsgithubcomjulialangjuliapull1544915449" class="header-anchor">ReshapedArrays &#40;<a href="https://github.com/JuliaLang/julia/pull/15449">#15449</a>&#41;</a></h2>
+<h2 id="reshapedarrays_15449"><a href="#reshapedarrays_15449" class="header-anchor">ReshapedArrays &#40;#15449&#41;</a></h2>
 <p>These are the front-and-center motivation for this post. These are motivated by a desire to ensure that <code>reshape&#40;A, dims&#41;</code> always returns a &quot;view&quot; of <code>A</code> rather than allocating a copy of <code>A</code>. &#40;Much of the urgency of this julep goes away if we decide to abandon this goal, in which case for consistency we should always return a copy of <code>A</code>.&#41; It&#39;s worth noting that besides an explicit <code>reshape</code>, we have some mechanisms for reshaping that currently cause a copy to be created, notably <code>A&#91;:&#93;</code> or <code>A&#91;:, :&#93;</code> applied to a 3D array.</p>
 <p>Similar to <code>SubArrays</code>, the main challenge for <code>ReshapedArrays</code> is getting good performance.  If <code>A</code> is a 3D array, and you reshape it to a 2D array <code>B</code>, then <code>B&#91;i,j&#93;</code> must be expanded to <code>A&#91;k,l,m&#93;</code>.  The problem is that computing the correct <code>k,l,m</code> might result in a call to <code>div</code>. So ReshapedArrays violate a crutch of our current ecosystem, in that indexing with <code>N</code> integers might not be the fastest way to access elements of <code>B</code>. From a performance perspective, this problem is substantial &#40;see <a href="https://github.com/JuliaLang/julia/pull/15449">#15449</a>, about five- to ten-fold&#41;.</p>
 <p>In simple cases, there&#39;s an easy way to circumvent this performance problem: define a new iterator type that &#40;internally&#41; iterates over the parent <code>A</code>&#39;s indexes directly.  In other words, create an iterator so that <code>B&#91;I&#93;</code> immediately expands to <code>A&#91;I&#39;&#93;</code>, and so that the latter has &quot;ideal&quot; performance.</p>

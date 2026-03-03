@@ -167,7 +167,7 @@
         
       </div>
       <div class="blog-title-meta">
-        <h3>
+        <p style="font-size: 1.17em; margin-top: 0;">
           
             <span style="font-weight: lighter;">28 August 2017</span> |
           
@@ -177,13 +177,12 @@
           
             <span style="font-weight: bold;">Sebastian Pfitzner</span>
           
-        </h3>
+        </p>
       </div>
     </div>
 
     <div class="blog-title-right">
-      <a type="application/rss+xml"
-         href="https://julialang.org/feed.xml"
+      <a href="https://julialang.org/feed.xml"
          class="rss-link">
         <i class="fa fa-rss-square rss-icon"></i>
       </a>
@@ -193,7 +192,7 @@
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/08/gsoc-docs-in-juno.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/08/gsoc-docs-in-juno.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 
 
@@ -220,7 +219,7 @@
 <p>That last point warrants some more information, because it&#39;s not as trivial as the other two to get at least somewhat right. The basic problem here is a &#40;fuzzy&#41; full text search, which is what each search engine out there in the depth of the internet tries to do. Naturally there are quite a few &#40;open source&#41; implementations out there already: solr, lunr &#40;which is used by <a href="https://docs.julialang.org">docs.julialang.org</a>&#41;, but also e.g. the FTS extension for SQL and many more.</p>
 <p>In the early days of the summer I was trying a couple of things to get this to work properly, but shelling out to Java or JavaScript seemed like overkill for the problem at hand, while SQL.jl was giving me quite a hard time <em>and</em> doesn&#39;t ship the FTS extension by default.</p>
 <p>A custom implementation did not seem too hard at first, but requires a <em>good</em> scoring function that, given a search query <code>needle</code>, maps a docstring to a number between 0 and 1:</p>
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>e</mi><mo>:</mo><mo stretchy="false">(</mo><mi>n</mi><mi>e</mi><mi>e</mi><mi>d</mi><mi>l</mi><mi>e</mi><mo separator="true">,</mo><mtext> </mtext><mi>d</mi><mi>o</mi><mi>c</mi><mi>s</mi><mi>t</mi><mi>r</mi><mo stretchy="false">)</mo><mo>↦</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex"> score: (needle, \, docstr) \mapsto [0, 1] </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mord mathdefault">c</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></span>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>e</mi><mo>:</mo><mo stretchy="false">(</mo><mi>n</mi><mi>e</mi><mi>e</mi><mi>d</mi><mi>l</mi><mi>e</mi><mo separator="true">,</mo><mtext> </mtext><mi>d</mi><mi>o</mi><mi>c</mi><mi>s</mi><mi>t</mi><mi>r</mi><mo stretchy="false">)</mo><mo>↦</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex"> score: (needle, \, docstr) \mapsto [0, 1] </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mord mathdefault">c</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></span>
 <p>At first I tried rolling my own string comparison function &#40;with mixed success&#41;, but then I stumbled upon the excellent <a href="https://github.com/matthieugomez/StringDistances.jl">StringDistances.jl</a> which does pretty much all I needed.</p>
 <p>The scoring function is applied to all relevant symbols in a threaded loop &#40;which gives a free 1.5x speedup on my machine&#41;; afterwards all applicable filters are applied and the top 20 results are returned.</p>
 <p>Filtering and searching takes about 0.1s on my machine, which means that it&#39;s almost negligible compared to the time necessary for retrieving the docstrings.</p>

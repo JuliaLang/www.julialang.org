@@ -166,7 +166,7 @@
         
       </div>
       <div class="blog-title-meta">
-        <h3>
+        <p style="font-size: 1.17em; margin-top: 0;">
           
             <span style="font-weight: lighter;">1 March 2016</span> |
           
@@ -176,13 +176,12 @@
           
             <span style="font-weight: bold;"><a href="https://users.soe.ucsc.edu/~lkuper/">Lindsey Kuper</a></span>
           
-        </h3>
+        </p>
       </div>
     </div>
 
     <div class="blog-title-right">
-      <a type="application/rss+xml"
-         href="https://julialang.org/feed.xml"
+      <a href="https://julialang.org/feed.xml"
          class="rss-link">
         <i class="fa fa-rss-square rss-icon"></i>
       </a>
@@ -192,7 +191,7 @@
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/03/parallelaccelerator.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/03/parallelaccelerator.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 
 
@@ -405,12 +404,12 @@ sys	<span class="hljs-number">0</span>m0<span class="hljs-number">.874</span>s</
 <h2 id="conclusion"><a href="#conclusion" class="header-anchor">Conclusion</a></h2>
 <p>In this post, we&#39;ve introduced <a href="https://github.com/IntelLabs/ParallelAccelerator.jl">ParallelAccelerator.jl</a>, a package for speeding up array-style Julia programs.  It works by identifying implicit parallel patterns in source code and compiling them to efficient, explicitly parallel executables, along the way getting rid of many of the usual overheads of high-level array-style programming.</p>
 <p>ParallelAccelerator is an open source project in its early stages, and we enthusiastically encourage comments, questions, <a href="https://github.com/IntelLabs/ParallelAccelerator.jl/issues">bug reports</a>, and contributions from the Julia community.  We welcome everyone&#39;s participation, and we are especially interested in how ParallelAccelerator can be used to speed up real-world Julia programs.</p>
-<p><a name="footnote1"></a>[1]  Starting with Julia 0.5, Julia will have its own native threading support, which means that ParallelAccelerator can target Julia&#39;s own native threads instead of generating C&#43;&#43; OpenMP code for parallelism.  We&#39;ve begun work on implementing a native-threading-based backend for ParallelAccelerator, but we still target C&#43;&#43; by default.</p>
-<p><a name="footnote2"></a>[2]  Detailed machine and benchmarking specifications: We use a machine with two Intel Xeon E5-2699 v3 processors &#40;2.3 GHz&#41; with 18 physical cores each and 128 GB RAM, running the CentOS 6.7 Linux distribution.  We use the Intel C&#43;&#43; Compiler &#40;ICC&#41; v15.0.2 with &quot;-O3&quot; for compilation of the generated C&#43;&#43; code.  The Julia version is 0.4.4-pre&#43;26.  The results shown are the average of three runs &#40;we run each version of a benchmark five times and discard the first and last runs&#41;.</p>
-<p><a name="footnote3"></a>[3]  In Julia, it is not possible to index into a comprehension&#39;s output array in the body of the comprehension.  &#40;The <code>avg</code> example indexes only into the input array, not the output array.&#41;  Therefore, it&#39;s not necessary to do any bounds checking on writes to the output array.  However, we still need to bounds-check reads from the input array &#40;for instance, in the <code>avg</code> example, if we&#39;d written <code>0.25*x&#91;i-2&#93;</code>, that would be out of bounds&#41;, so we cannot avoid all array bounds checking for comprehensions in the way that we can for map operations.</p>
-<p><a name="footnote4"></a>[4]  In practice, rather than applying successive Gaussian blurs to an image, we&#39;d probably apply a single, larger Gaussian blur, which, as <a href="https://en.wikipedia.org/wiki/Gaussian_blur">Wikipedia notes</a>, is at least as efficient computationally.  Nevertheless, we&#39;ll use it here as an example of a stencil computation that can be iterated.</p>
-<p><a name="footnote5"></a>[5] A more sophisticated implementation of Gaussian blur might do a fancier form of border handling, using only the pixels it has available at the borders.</p>
-<p><a name="footnote6"></a>[6]  The names &quot;Domain AST&quot; and &quot;Parallel AST&quot; are inspired by the Domain IR and Parallel IR of the <a href="https://ppl.stanford.edu/papers/pact11-brown.pdf">Delite compiler framework</a>.</p>
+<p><span id="footnote1"></span>[1]  Starting with Julia 0.5, Julia will have its own native threading support, which means that ParallelAccelerator can target Julia&#39;s own native threads instead of generating C&#43;&#43; OpenMP code for parallelism.  We&#39;ve begun work on implementing a native-threading-based backend for ParallelAccelerator, but we still target C&#43;&#43; by default.</p>
+<p><span id="footnote2"></span>[2]  Detailed machine and benchmarking specifications: We use a machine with two Intel Xeon E5-2699 v3 processors &#40;2.3 GHz&#41; with 18 physical cores each and 128 GB RAM, running the CentOS 6.7 Linux distribution.  We use the Intel C&#43;&#43; Compiler &#40;ICC&#41; v15.0.2 with &quot;-O3&quot; for compilation of the generated C&#43;&#43; code.  The Julia version is 0.4.4-pre&#43;26.  The results shown are the average of three runs &#40;we run each version of a benchmark five times and discard the first and last runs&#41;.</p>
+<p><span id="footnote3"></span>[3]  In Julia, it is not possible to index into a comprehension&#39;s output array in the body of the comprehension.  &#40;The <code>avg</code> example indexes only into the input array, not the output array.&#41;  Therefore, it&#39;s not necessary to do any bounds checking on writes to the output array.  However, we still need to bounds-check reads from the input array &#40;for instance, in the <code>avg</code> example, if we&#39;d written <code>0.25*x&#91;i-2&#93;</code>, that would be out of bounds&#41;, so we cannot avoid all array bounds checking for comprehensions in the way that we can for map operations.</p>
+<p><span id="footnote4"></span>[4]  In practice, rather than applying successive Gaussian blurs to an image, we&#39;d probably apply a single, larger Gaussian blur, which, as <a href="https://en.wikipedia.org/wiki/Gaussian_blur">Wikipedia notes</a>, is at least as efficient computationally.  Nevertheless, we&#39;ll use it here as an example of a stencil computation that can be iterated.</p>
+<p><span id="footnote5"></span>[5] A more sophisticated implementation of Gaussian blur might do a fancier form of border handling, using only the pixels it has available at the borders.</p>
+<p><span id="footnote6"></span>[6]  The names &quot;Domain AST&quot; and &quot;Parallel AST&quot; are inspired by the Domain IR and Parallel IR of the <a href="https://ppl.stanford.edu/papers/pact11-brown.pdf">Delite compiler framework</a>.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->

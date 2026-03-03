@@ -78,8 +78,7 @@
 <meta name="twitter:creator:id" content="194427250">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:title" content="Simulation of a swimming dogfish shark">
-<meta property="og:description" content="Simulation of a swimming dogfish shark
-">
+<meta property="og:description" content="Simulation of a swimming dogfish shark ">
 
 
   <!-- Article structured data for blog posts -->
@@ -170,21 +169,20 @@
         
       </div>
       <div class="blog-title-meta">
-        <h3>
+        <p style="font-size: 1.17em; margin-top: 0;">
           
             <span style="font-weight: lighter;">12 August 2021</span> |
           
           
-            <span style="font-weight: bold;">Gabriel D Weymouth<a href="https://twitter.com/intent/user?user_id=194427250"><img src="/assets/infra/twitter.svg"/ width="22px" height="22px" style="margin-left:2px"></a></span>
+            <span style="font-weight: bold;">Gabriel D Weymouth<a href="https://twitter.com/intent/user?user_id=194427250"><img src="/assets/infra/twitter.svg" alt="Twitter" width="22" height="22" style="margin-left:2px"></a></span>
           
           
-        </h3>
+        </p>
       </div>
     </div>
 
     <div class="blog-title-right">
-      <a type="application/rss+xml"
-         href="https://julialang.org/feed.xml"
+      <a href="https://julialang.org/feed.xml"
          class="rss-link">
         <i class="fa fa-rss-square rss-icon"></i>
       </a>
@@ -194,7 +192,7 @@
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2021/08/sharks.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2021/08/sharks.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 
 
@@ -240,7 +238,7 @@ amp = fit(envelope)</code></pre>
 <li><p>The wavelength of the traveling wave is a bit longer than the body length</p>
 </li>
 </ul>
-<p>In the code below, you can change the value of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> to control the wavelength of the traveling wave to see the impact it has on the backbone over the motion cycle.</p>
+<p>In the code below, you can change the value of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> to control the wavelength of the traveling wave to see the impact it has on the backbone over the motion cycle.</p>
 <pre><code class="julia hljs">λ = <span class="hljs-number">1.4</span>
 scatter(<span class="hljs-number">0</span>:<span class="hljs-number">0.2</span>:<span class="hljs-number">1</span>, envelope)
 colors = palette(:cyclic_wrwbw_40_90_c42_n256)
@@ -252,7 +250,7 @@ plot!(ylim=(-<span class="hljs-number">1.4</span>,<span class="hljs-number">1.4<
 <p><img src="/assets/blog/2021-08-sharks/wavelength.svg" alt="Traveling wave amplitude envelope over motion cycle" /></p>
 <h2 id="setting_up_the_simulation"><a href="#setting_up_the_simulation" class="header-anchor">Setting up the simulation</a></h2>
 <p>Now the thickness and motion are defined, but how will we apply these to a fluid simulation? <code>WaterLily</code> uses an <a href="https://eprints.soton.ac.uk/369635/">immersed boundary method</a> and <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> to embed a body into the flow. The upshot is that we don&#39;t need to do any meshing; all we need is a signed distance function &#40;SDF&#41; to the surface.</p>
-<p>Let&#39;s start by defining the SDF to the &quot;backbone&quot;, which is a line segment from <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn><mo>…</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=0\ldots 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span></span></span></span>. <a href="https://www.youtube.com/watch?v&#61;PMltMdi1Wzg">See this great video from Inigo Quilez for a derivation of this sdf.</a>. The plot below shows the sdf and the zero contour, which is ... just a line segment.</p>
+<p>Let&#39;s start by defining the SDF to the &quot;backbone&quot;, which is a line segment from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn><mo>…</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=0\ldots 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span></span></span></span>. <a href="https://www.youtube.com/watch?v&#61;PMltMdi1Wzg">See this great video from Inigo Quilez for a derivation of this sdf.</a>. The plot below shows the sdf and the zero contour, which is ... just a line segment.</p>
 <p>Simple adjustments to the SDF give us more control of the shape and position. By shifting the y offset as <code>y &#61; y-shift</code>, we can move the body laterally. And by subtracting a thickness from the distance as <code>sdf &#61; sdf-thickness</code>, we can give the line some width. This is all we need to model the shark.</p>
 <pre><code class="julia hljs">shift = <span class="hljs-number">0.5</span>
 T = <span class="hljs-number">0.5</span>

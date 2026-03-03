@@ -166,7 +166,7 @@
         
       </div>
       <div class="blog-title-meta">
-        <h3>
+        <p style="font-size: 1.17em; margin-top: 0;">
           
             <span style="font-weight: lighter;">10 September 2016</span> |
           
@@ -176,13 +176,12 @@
           
             <span style="font-weight: bold;">Kenta Sato</span>
           
-        </h3>
+        </p>
       </div>
     </div>
 
     <div class="blog-title-right">
-      <a type="application/rss+xml"
-         href="https://julialang.org/feed.xml"
+      <a href="https://julialang.org/feed.xml"
          class="rss-link">
         <i class="fa fa-rss-square rss-icon"></i>
       </a>
@@ -192,7 +191,7 @@
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/09/biojulia2016-mid.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/09/biojulia2016-mid.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 
 
@@ -298,7 +297,7 @@ BGZFStreams.BGZFStream{<span class="hljs-built_in">IOStream</span>}(&lt;mode=rea
 julia&gt; readstring(stream)
 <span class="hljs-string">&quot;bar&quot;</span></code></pre>
 
-<https://github.com/BioJulia/BGZFStreams.jl>
+<a href="https://github.com/BioJulia/BGZFStreams.jl">https://github.com/BioJulia/BGZFStreams.jl</a>
 
 <h2 id="sequence_demultiplexing_tool"><a href="#sequence_demultiplexing_tool" class="header-anchor">Sequence demultiplexing tool</a></h2>
 <p>Sequence demultiplexing is a technique to distinguish the origin of a sequence using its artificially-attached &quot;barcode&quot; sequence. This is often used at a preprocessing phase after <a href="https://www.illumina.com/technology/next-generation-sequencing/multiplexing-sequencing-assay.html">multiplexed sequencing</a>, a common technique to sequence multiple samples simultaneously.  A barcode sequence, however, may be corrupted due to sequencing error, and we need to find the best matching barcode from a barcode set.  The demultiplexer algorithm implemented in Bio.jl is based on a trie-like data structure, and efficiently finds the optimal barcode from the prefix of a given DNA sequence.</p>

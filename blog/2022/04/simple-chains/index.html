@@ -166,7 +166,7 @@
         
       </div>
       <div class="blog-title-meta">
-        <h3>
+        <p style="font-size: 1.17em; margin-top: 0;">
           
             <span style="font-weight: lighter;">14 April 2022</span> |
           
@@ -176,13 +176,12 @@
           
             <span style="font-weight: bold;">Chris Elrod, Niklas Korsbo, Chris Rackauckas</span>
           
-        </h3>
+        </p>
       </div>
     </div>
 
     <div class="blog-title-right">
-      <a type="application/rss+xml"
-         href="https://julialang.org/feed.xml"
+      <a href="https://julialang.org/feed.xml"
          class="rss-link">
         <i class="fa fa-rss-square rss-icon"></i>
       </a>
@@ -192,7 +191,7 @@
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2022/04/simple-chains.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2022/04/simple-chains.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 
 
@@ -203,11 +202,11 @@
 <h2 id="scientific_machine_learning_sciml_and_small_neural_networks"><a href="#scientific_machine_learning_sciml_and_small_neural_networks" class="header-anchor">Scientific Machine Learning &#40;SciML&#41; and &quot;Small&quot; Neural Networks</a></h2>
 <p>SimpleChains.jl is a library developed by <a href="https://pumas.ai/">Pumas-AI</a> and <a href="https://juliahub.com/">JuliaHub</a> in collaboration with <a href="https://www.roche.com/">Roche</a> and the <a href="https://www.pharmacy.umaryland.edu/centers/ctm/">University of Maryland, Baltimore</a>. The purpose of SimpleChains.jl is to be as fast as possible for small neural networks. SimpleChains.jl originated as a solution for the Pumas-AI&#39;s DeepPumas product for <a href="https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/">scientific machine learning &#40;SciML&#41;</a> in healthcare data analytics. As an illustration, small neural networks &#40;and other approximators, such as Fourier series or Chebyshev polynomial expansions&#41; can be combined with known semi-physiologic models to discover previously unknown mechanisms and prognostic factors. For a short introduction to how this is done, check out the following video by Niklas Korsbo:</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TFB_lt1KMto" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TFB_lt1KMto" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>This <a href="https://sciml.ai/roadmap/">SciML methodology</a> has been shown across many disciplines, from black hole dynamics to the development of earthquake safe buildings, to be a flexible method capable of discovering/guiding &#40;bio&#41;physical equations. Here&#39;s a recent talk which walks through the various use cases of SciML throughout the sciences:</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eSeY4K4bITI?start=668" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eSeY4K4bITI?start=668" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>For more details on the software and methods, <a href="https://arxiv.org/abs/2001.04385">see our paper on Universal Differential Equations for Scientific Machine Learning</a>.</p>
 <p>The unique aspects of how neural networks are used in these contexts make them rife for performance improvements through specialization. Specifically, in the context of machine learning, one normally relies on the following assumption: the neural networks are large enough that the O&#40;n^3&#41; cost of matrix-matrix multiplication &#40;or other kernels like convolutions&#41; dominates the the runtime. This is essentially the guiding principle behind most of the mechanics of a machine learning library:</p>
@@ -398,7 +397,7 @@ mul!(xbar,W&#x27;,cache)</code></pre>
 </li>
 </ol>
 <h2 id="simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example"><a href="#simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example" class="header-anchor">SimpleChains.jl in Action: 30x-ing PyTorch in Tiny Example</a></h2>
-<h4 id="note_all_of_the_code_shown_uses_simplechains_v022_for_updates_see_a_hrefhttpsgithubcompumasaisimplechainsjlthe_packages_documentation"><a href="#note_all_of_the_code_shown_uses_simplechains_v022_for_updates_see_a_hrefhttpsgithubcompumasaisimplechainsjlthe_packages_documentation" class="header-anchor">Note: All of the code shown uses SimpleChains v0.2.2. For updates, see <a href="https://github.com/PumasAI/SimpleChains.jl">the package&#39;s documentation</a></a></h4>
+<p><strong>Note:</strong> All of the code shown uses SimpleChains v0.2.2. For updates, see <a href="https://github.com/PumasAI/SimpleChains.jl">the package&#39;s documentation</a>.</p>
 <p>Let&#39;s first try a tiny example, where we map a 2x2 matrix to its matrix exponential; our training and test data:</p>
 <pre><code class="julia hljs"><span class="hljs-keyword">function</span> f(x)
   N = Base.isqrt(length(x))

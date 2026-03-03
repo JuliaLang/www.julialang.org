@@ -109,7 +109,7 @@
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/allprojects.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/allprojects.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 
 
@@ -118,7 +118,7 @@
 <p>This page is designed to improve discoverability of projects. You can, for example, search this page for specific keywords and find all of the relevant projects.</p>
 <h2 id="clima_a_new_open-source_climate_model_running_on_gpus"><a href="#clima_a_new_open-source_climate_model_running_on_gpus" class="header-anchor">CliMA: A New Open-Source Climate Model Running on GPUs</a></h2>
 <p>Climate models are complex codes that simulate Earth&#39;s climate system &#40;atmosphere, ocean, land, ice&#41;. These models demand immense computing power and present significant software engineering challenges, including managing massive datasets, ensuring numerical stability, optimizing performance, and coupling diverse components. The complexity and legacy nature of existing models hinder their ability to fully utilize modern computing infrastructure &#40;GPUs, machine learning, etc.&#41;. The Climate Modeling Alliance is developing CliMA, a new climate model built in Julia and designed from the outset to leverage GPU acceleration and modern software engineering practices to overcome the limitations of traditional climate models.</p>
-<h4 id="climaexplorer_an_interactive_visualizer_of_climate_model_outputs"><a href="#climaexplorer_an_interactive_visualizer_of_climate_model_outputs" class="header-anchor"><code>ClimaExplorer</code>: An Interactive Visualizer of Climate Model Outputs</a></h4>
+<h3 id="climaexplorer_an_interactive_visualizer_of_climate_model_outputs"><a href="#climaexplorer_an_interactive_visualizer_of_climate_model_outputs" class="header-anchor"><code>ClimaExplorer</code>: An Interactive Visualizer of Climate Model Outputs</a></h3>
 <p>Visualizing simulation output is crucial for both scientific understanding and outreach. This project involves developing <code>ClimaExplorer</code>, an interactive visualizer for the output of the CliMA Earth system model. <code>ClimaExplorer</code> will leverage the <a href="https://github.com/MakieOrg/Makie.jl">Makie</a> ecosystem and web technologies, providing a user-friendly interface for exploring complex climate data. This will enable researchers to more easily analyze and interpret simulation results, accelerating scientific discovery. Furthermore, the web-based component will facilitate broader dissemination of results to a wider audience.</p>
 <p><strong>Desired Skills:</strong> Familiarity with front-end web development &#40;HTML, JavaScript, and CSS&#41;, Julia, and <a href="https://github.com/MakieOrg/Makie.jl">Makie</a>.</p>
 <p><strong>Difficulty:</strong> Medium</p>
@@ -214,7 +214,7 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <p><strong>Mentor:</strong> <a href="https://github.com/brianguenter/FastDifferentiation.jl">BrianGuenter</a></p>
 <h3 id="integrate_fastdifferentiationjl_into_symbolicsjl"><a href="#integrate_fastdifferentiationjl_into_symbolicsjl" class="header-anchor">Integrate FastDifferentiation.jl into Symbolics.jl</a></h3>
 <p>FastDifferentiation.jl uses a new symbolic algorithm for automatic differentiation that can be orders of magnitude faster than conventional symbolic differentiation methods. Symoblics.jl could compute derivatives much faster using the FastDifferentiation algorithm. However implementation and data structure differences between the two systems make it difficult to add FastDifferentiation capabilities to Symbolics.jl.</p>
-<p>For example, Symbolics.jl allows you to define a function <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">q(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> and then to compute a symbolic derivative <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>q</mi><mo>˙</mo></mover><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\dot{q}(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.055550000000000016em;"><span class="mord">˙</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> without defining <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span>. Adding this capability to FastDifferentiation.jl requires a change in the graph representation of derivatives. </p>
+<p>For example, Symbolics.jl allows you to define a function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">q(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> and then to compute a symbolic derivative <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>q</mi><mo>˙</mo></mover><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\dot{q}(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.055550000000000016em;"><span class="mord">˙</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> without defining <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span>. Adding this capability to FastDifferentiation.jl requires a change in the graph representation of derivatives. </p>
 <p>The goal of this project is to first analyze the sources of the incompatibilities between the two systems and then to modify FastDifferentiation.jl, and perhaps Symbolics.jl, so that they interoperate.</p>
 <p>See <a href="https://github.com/brianguenter/Proposals">this</a> page for a more detailed description of tasks.</p>
 <p><strong>Medium difficulty, 175 hours.</strong></p>
@@ -305,22 +305,22 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <h2 id="graph_neural_networks"><a href="#graph_neural_networks" class="header-anchor">Graph Neural Networks</a></h2>
 <p>Graph Neural Networks &#40;GNN&#41; are deep learning models that are well adapted to data in the form of graphs with feature vectors associated with nodes and edges. GNNs are a growing area of research and find many applications in complex network analysis, relational reasoning, combinatorial optimization, molecule generation, and many other fields. </p>
 <p><a href="https://github.com/CarloLucibello/GraphNeuralNetworks.jl">GraphNeuralNetworks.jl</a> is a pure Julia package for GNNs equipped with many features. It implements common graph convolutional layers, with CUDA support and graph batching for fast parallel operations. There are several ways by which the package could be improved.</p>
-<h4 id="adding_models_and_examples"><a href="#adding_models_and_examples" class="header-anchor">Adding models and examples</a></h4>
+<h3 id="adding_models_and_examples"><a href="#adding_models_and_examples" class="header-anchor">Adding models and examples</a></h3>
 <p>As part of the documentation and for bootstrapping new projects, we want to add fully worked-out examples and applications of graph neural networks. We can start with entry-level tutorials and progressively introduce the reader to more advanced features. </p>
 <p><strong>Duration</strong>: 175h.  </p>
 <p><strong>Expected difficulty</strong>: easy.  </p>
 <p><strong>Expected outcome</strong>: A few pedagogical and more advanced examples of graph neural network applications.</p>
-<h4 id="adding_graph_datasets"><a href="#adding_graph_datasets" class="header-anchor">Adding graph datasets</a></h4>
+<h3 id="adding_graph_datasets"><a href="#adding_graph_datasets" class="header-anchor">Adding graph datasets</a></h3>
 <p>Provide Julia-friendly wrappers for common graph datasets in <a href="https://github.com/JuliaML/MLDatasets.jl"><code>MLDatasets.jl</code></a>. Create convenient interfaces for the Julia ML and data ecosystem. </p>
 <p><strong>Duration</strong>: 175h.  </p>
 <p><strong>Expected difficulty</strong>: easy.  </p>
 <p><strong>Expected outcome</strong>: A large collection of graph datasets easily available to the Julia ecosystem.</p>
-<h4 id="improving_performance_using_sparse_linear_algebra"><a href="#improving_performance_using_sparse_linear_algebra" class="header-anchor">Improving performance using sparse linear algebra </a></h4>
+<h3 id="improving_performance_using_sparse_linear_algebra"><a href="#improving_performance_using_sparse_linear_algebra" class="header-anchor">Improving performance using sparse linear algebra</a></h3>
 <p>Many graph convolutional layers can be expressed as non-materializing algebraic operations involving the adjacency matrix instead of the slower and more memory-consuming gather/scatter mechanism. We aim at extending as far as possible and in a gpu-friendly way these <em>fused</em> implementation. The project will involve fixing some outstanding issues in CUDA.jl that are blocking sparse adjacency matrix support on GPU.</p>
 <p><strong>Duration</strong>: 350h.</p>
 <p><strong>Expected difficulty</strong>: hard.</p>
 <p><strong>Expected outcome</strong>: A noticeable performance increase for many graph convolutional operations.</p>
-<h4 id="support_for_amdgpu_and_apple_silicon"><a href="#support_for_amdgpu_and_apple_silicon" class="header-anchor">Support for AMDGPU and Apple Silicon</a></h4>
+<h3 id="support_for_amdgpu_and_apple_silicon"><a href="#support_for_amdgpu_and_apple_silicon" class="header-anchor">Support for AMDGPU and Apple Silicon</a></h3>
 <p>We currently support scatter/gather operation only on CPU and CUDA hardware. We aim to extend this to AMDGPU and Apple Silicon leveraging KernelAbstractions.jl, AMDGPU.jl, and Metal.jl.</p>
 <p><strong>Duration</strong>: 175h.</p>
 <p><strong>Expected difficulty</strong>: medium.</p>
@@ -525,7 +525,7 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <p>Probably the easiest way is to join our <a href="https://julialang.org/slack/">JuliaLang Slack</a> and join the <code>#generative-ai</code> channel. You can also reach out to us on <a href="https://julialang.zulipchat.com/#narrow/stream/423470-generative-ai">Julia Zulip</a> or post a GitHub Issue on our website <a href="https://github.com/JuliaGenAI/juliagenai.org">JuliaGenAI</a>.</p>
 <h2 id="juliageo_geospatial_processing_in_julia"><a href="#juliageo_geospatial_processing_in_julia" class="header-anchor">JuliaGeo: Geospatial processing in Julia</a></h2>
 <p>The <a href="https://github.com/JuliaGeo">JuliaGeo</a> collaboration </p>
-<h4 id="spherical_visualizations_of_geographic_data_with_geomakiejl"><a href="#spherical_visualizations_of_geographic_data_with_geomakiejl" class="header-anchor">Spherical visualizations of geographic data with &#40;Geo&#41;Makie.jl</a></h4>
+<h3 id="spherical_visualizations_of_geographic_data_with_geomakiejl"><a href="#spherical_visualizations_of_geographic_data_with_geomakiejl" class="header-anchor">Spherical visualizations of geographic data with &#40;Geo&#41;Makie.jl</a></h3>
 <p>Mentors: <a href="anshul.singhvi@juliahub.com">Anshul Singhvi &#40;JuliaHub&#41;</a>, Milan Klöwer &#40;Oxford&#41;</p>
 <p>Observations and simulations of the Earth produce vast amounts of data, complicating analysis.  Efficient data analysis often includes visualization, either in early stages to inspect features  in the data but also to produce publication-ready graphs and animations.  Given the &#40;approximately&#41; spherical shape of Earth, visualization software ideally supports data  and operations thereof in spherical coordinates. Some data may come in the form of point measurements  or polygons and gridded data is represented through large sets of polygons &#40;so-called grids&#41; covering  the sphere.  Many different grids are used for various reasons and purposes: regular and unstructured, based on triangles,  quadrilaterals or hexagons, some are equal-area others have two north poles, to give some examples.  In Julia, the JuliaGeo organisation together with MakieOrg and GeoMakie cover already a lot of this functionality.  But more needs to be done to allow for seamless visualisations of geographic data on the sphere.</p>
 <p>Quite a bit of foundational work needs to be done for spherical visualizations to be seamless.   Students will work on the GeoMakie.jl spherical axis, using the principles of spherical and Cartesian geometry  to create a smooth, interactive globe viewer.  Work may include:</p>
@@ -540,7 +540,7 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 </li>
 </ul>
 <p>Reach out to the mentors to learn more&#33;</p>
-<h4 id="implementing_new_algorithms_in_geometryopsjl"><a href="#implementing_new_algorithms_in_geometryopsjl" class="header-anchor">Implementing new algorithms in GeometryOps.jl</a></h4>
+<h3 id="implementing_new_algorithms_in_geometryopsjl"><a href="#implementing_new_algorithms_in_geometryopsjl" class="header-anchor">Implementing new algorithms in GeometryOps.jl</a></h3>
 <p><a href="https://github.com/JuliaGeo/GeometryOps.jl">GeometryOps.jl</a> is a new framework for geometry processing on the plane and the sphere. There are many algorithms that remain to be implemented &#40;e.g. &#91;concave hull&#93;, &#91;line merging&#93;, &#91;polygon validation&#93;&#41;, and you could also  propose an algorithm that you want to implement or improve&#33;</p>
 <p>Some other areas of interest are:</p>
 <ul>
@@ -650,22 +650,14 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 </li>
 </ul>
 <h3 id="success_criteria_and_timeline"><a href="#success_criteria_and_timeline" class="header-anchor">Success Criteria and Timeline</a></h3>
-<h4 id="literature_review_and_setup_3_weeks"><a href="#literature_review_and_setup_3_weeks" class="header-anchor"><ol>
-<li><p>Literature Review and Setup &#40;3 Weeks&#41;</p>
-</li>
-</ol>
-</a></h4>
+<h4 id="phase_1_literature_review_and_setup_3_weeks"><a href="#phase_1_literature_review_and_setup_3_weeks" class="header-anchor">Phase 1: Literature Review and Setup &#40;3 Weeks&#41;</a></h4>
 <ul>
 <li><p>Review PyRadiomics documentation, MedImages.jl, KernelAbstractions.jl APIs, and AutoPET dataset structure.</p>
 </li>
 <li><p><strong>Success Criteria:</strong> Understanding of feature definitions, dataset access, and GPU kernel design.</p>
 </li>
 </ul>
-<h4 id="ol_start2_feature_implementation_6_weeks"><a href="#ol_start2_feature_implementation_6_weeks" class="header-anchor"><ol start="2">
-<li><p>Feature Implementation &#40;6 Weeks&#41;</p>
-</li>
-</ol>
-</a></h4>
+<h4 id="phase_2_feature_implementation_6_weeks"><a href="#phase_2_feature_implementation_6_weeks" class="header-anchor">Phase 2: Feature Implementation &#40;6 Weeks&#41;</a></h4>
 <ul>
 <li><p>Implement GLCM, GLSZM, GLRM, NGTDM, and GLDM matrices.</p>
 </li>
@@ -674,33 +666,21 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <li><p><strong>Success Criteria:</strong> GPU-accelerated implementation for 3D volumes.</p>
 </li>
 </ul>
-<h4 id="ol_start3_feature_extraction_pipeline_4_weeks"><a href="#ol_start3_feature_extraction_pipeline_4_weeks" class="header-anchor"><ol start="3">
-<li><p>Feature Extraction Pipeline &#40;4 Weeks&#41;</p>
-</li>
-</ol>
-</a></h4>
+<h4 id="phase_3_feature_extraction_pipeline_4_weeks"><a href="#phase_3_feature_extraction_pipeline_4_weeks" class="header-anchor">Phase 3: Feature Extraction Pipeline &#40;4 Weeks&#41;</a></h4>
 <ul>
 <li><p>Build a pipeline to process AutoPET lesions using MedImages.jl.</p>
 </li>
 <li><p><strong>Success Criteria:</strong> Extraction of 100&#43; features per lesion, support for batch processing.</p>
 </li>
 </ul>
-<h4 id="ol_start4_validation_3_weeks"><a href="#ol_start4_validation_3_weeks" class="header-anchor"><ol start="4">
-<li><p>Validation &#40;3 Weeks&#41;</p>
-</li>
-</ol>
-</a></h4>
+<h4 id="phase_4_validation_3_weeks"><a href="#phase_4_validation_3_weeks" class="header-anchor">Phase 4: Validation &#40;3 Weeks&#41;</a></h4>
 <ul>
 <li><p>Compare Julia feature extraction results with PyRadiomics.</p>
 </li>
 <li><p><strong>Success Criteria:</strong> Statistical equivalence &#40;e.g., t-test p &gt; 0.05&#41;, with documented discrepancies &lt;5&#37;.</p>
 </li>
 </ul>
-<h4 id="ol_start5_documentation_and_packaging_4_weeks"><a href="#ol_start5_documentation_and_packaging_4_weeks" class="header-anchor"><ol start="5">
-<li><p>Documentation and Packaging &#40;4 Weeks&#41;</p>
-</li>
-</ol>
-</a></h4>
+<h4 id="phase_5_documentation_and_packaging_4_weeks"><a href="#phase_5_documentation_and_packaging_4_weeks" class="header-anchor">Phase 5: Documentation and Packaging &#40;4 Weeks&#41;</a></h4>
 <ul>
 <li><p>Write documentation for the Julia-based radiomics library.</p>
 </li>
@@ -711,11 +691,7 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <li><p><strong>Success Criteria:</strong> The final working library is successfully available in the Julia ecosystem.</p>
 </li>
 </ul>
-<h4 id="ol_start6_reporting_2_weeks"><a href="#ol_start6_reporting_2_weeks" class="header-anchor"><ol start="6">
-<li><p>Reporting &#40;2 Weeks&#41;</p>
-</li>
-</ol>
-</a></h4>
+<h4 id="phase_6_reporting_2_weeks"><a href="#phase_6_reporting_2_weeks" class="header-anchor">Phase 6: Reporting &#40;2 Weeks&#41;</a></h4>
 <ul>
 <li><p>Document methodology, results, and benchmarking.</p>
 </li>
@@ -1096,10 +1072,10 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <p><strong>Mentors</strong>: <a href="https://github.com/mforets">Marcelo Forets</a>, <a href="https://github.com/schillic">Christian Schilling</a>.</p>
 <h2 id="machine_learning_projects"><a href="#machine_learning_projects" class="header-anchor">Machine Learning Projects</a></h2>
 <p><strong>Note: FluxML participates as a NumFOCUS sub-organization. Head to <a href="http://fluxml.ai/gsoc/">the FluxML GSoC page</a> for their idea list.</strong></p>
-<h4 id="reinforcement_learning_environments"><a href="#reinforcement_learning_environments" class="header-anchor">Reinforcement Learning Environments</a></h4>
+<h3 id="reinforcement_learning_environments"><a href="#reinforcement_learning_environments" class="header-anchor">Reinforcement Learning Environments</a></h3>
 <p>Time: 175h</p>
 <p>Develop a series of reinforcement learning environments, in the spirit of the <a href="https://gym.openai.com">OpenAI Gym</a>. Although we have wrappers for the gym available, it is hard to install &#40;due to the Python dependency&#41; and, since it&#39;s written in Python and C code, we can&#39;t do more interesting things with it &#40;such as differentiate through the environments&#41;.</p>
-<h5 id="expected_outcome"><a href="#expected_outcome" class="header-anchor">Expected Outcome</a></h5>
+<h4 id="expected_outcome"><a href="#expected_outcome" class="header-anchor">Expected Outcome</a></h4>
 <p>A pure-Julia version of selected environments that supports a similar API and visualisation options would be valuable to anyone doing RL with Flux.</p>
 <p>Mentors: <a href="https://github.com/DhairyaLGandhi/">Dhairya Gandhi</a>.</p>
 <h2 id="molecular_simulation"><a href="#molecular_simulation" class="header-anchor">Molecular Simulation</a></h2>
@@ -1478,7 +1454,7 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <p><strong>Project length</strong>: 350 hrs</p>
 <p><a href="https://github.com/Julia-Tempering/Pigeons.jl">Pigeons.jl</a> implements parallel tempering and related algorithms that are particularly effective for multimodal and high-dimensional posteriors. This project has two related goals that together make Pigeons a first-class citizen of the TuringLang ecosystem.</p>
 <p>The first part is documentation and examples. Turing.jl models can already be used as targets for Pigeons, but the combination is under-documented. The contributor will produce reproducible tutorials that walk through common use cases – multimodal posteriors, hierarchical models, models with difficult geometry – and compare Pigeons against HMC/NUTS on the same problems. These will be published on the Turing website and any integration rough edges found along the way will be fixed.</p>
-<p>The second part is implementing the efficient Gibbs sampler from <a href="https://arxiv.org/abs/2410.03630">arXiv:2410.03630</a> in <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a>. The paper shows that by exploiting the structure of the compute graph &#40;rather than the graphical model&#41;, the time per sweep of a full-scan Gibbs sampler on GLMs can be reduced from <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>d</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(d^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mclose">)</span></span></span></span> in the number of parameters <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span> – making high-dimensional GLMs feasible where traditional Gibbs is not, and outperforming HMC on effective samples per unit time in many regimes. JuliaBUGS already exposes the graph structure this approach relies on. The implementation must be correct and performant, validated against standard benchmarks with comparisons to both traditional Gibbs and HMC.</p>
+<p>The second part is implementing the efficient Gibbs sampler from <a href="https://arxiv.org/abs/2410.03630">arXiv:2410.03630</a> in <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a>. The paper shows that by exploiting the structure of the compute graph &#40;rather than the graphical model&#41;, the time per sweep of a full-scan Gibbs sampler on GLMs can be reduced from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>d</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(d^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mclose">)</span></span></span></span> in the number of parameters <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span> – making high-dimensional GLMs feasible where traditional Gibbs is not, and outperforming HMC on effective samples per unit time in many regimes. JuliaBUGS already exposes the graph structure this approach relies on. The implementation must be correct and performant, validated against standard benchmarks with comparisons to both traditional Gibbs and HMC.</p>
 <h3 id="contributor-proposed_project"><a href="#contributor-proposed_project" class="header-anchor">Contributor-proposed Project</a></h3>
 <p><strong>Mentors</strong>: Community</p>
 <p>If you have an idea not listed here, propose it. Submit a short proposal with motivation, a concise plan, expected deliverables, and a timeline. Maintainers and mentors will review and help turn it into a plan. Be prepared to discuss scope with mentors early.</p>

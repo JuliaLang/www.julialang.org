@@ -165,7 +165,7 @@
         
       </div>
       <div class="blog-title-meta">
-        <h3>
+        <p style="font-size: 1.17em; margin-top: 0;">
           
             <span style="font-weight: lighter;">30 April 2016</span> |
           
@@ -175,13 +175,12 @@
           
             <span style="font-weight: bold;">Kenta Sato</span>
           
-        </h3>
+        </p>
       </div>
     </div>
 
     <div class="blog-title-right">
-      <a type="application/rss+xml"
-         href="https://julialang.org/feed.xml"
+      <a href="https://julialang.org/feed.xml"
          class="rss-link">
         <i class="fa fa-rss-square rss-icon"></i>
       </a>
@@ -191,7 +190,7 @@
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/04/biojulia2016.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/04/biojulia2016.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 
 
@@ -233,7 +232,7 @@
 <p>Genome browsers enable to interactively visualize genetic features found in individuals and/or populations. For example, using the UCSC Genome Browser, you can investigate genetic regions along with sequence annotations <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db&#61;hg38&amp;lastVirtModeType&#61;default&amp;lastVirtModeExtraState&#61;&amp;virtModeType&#61;default&amp;virtMode&#61;0&amp;nonVirtPosition&#61;&amp;position&#61;chr9&#37;3A133206569-133324246&amp;hgsid&#61;491214673_Ob3A4L4zTLibsCuyq7xgazU3Goqg">around the ABO gene</a> in a window. Genome browser is one of the most common visualizations and hence lots of softwares have been developed but unfortunately there is no standardized interface. So, we will need to select a promising one that is an open source and supporting interactions with other softwares. The first candidate is <a href="https://jbrowse.org/">JBrowse</a>, which is built with modern JavaScript and HTML5 technologies. It also supports RESTful APIs and hence it can fetch data from a backend server via HTTP. I&#39;m planning to make an API server that responds to queries from a genome browser to interactively visualize in-memory data.</p>
 <p>Many databases distribute their data in some standardized file formats. As for genetic annotations and variants, GFF3 and VCF would be the most common formats. If you are using data from human or mouse, you should know various annotations are available from <a href="https://www.gencodegenes.org/">the GENCODE project</a>. It offers data in GTF or GFF3 file formats. NCBI provides human variation sets in VCF file formats <a href="https://www.ncbi.nlm.nih.gov/variation/docs/human_variation_vcf/">here</a>. These file formats are text, so you may think it is trivial to write parsers when you need them. It is partially true — if you don&#39;t care about completeness and performance. Parsing a text file format in a naive way &#40;for example, <code>split</code> a line by a tab character&#41; allocates many temporary objects and often leads to degrade performance, while careful tuning of a parser leads to complicated code that is hard to maintain. <a href="https://github.com/dcjones">@dcjones</a> challenged this problem and made a great work and made Julia support for <a href="https://www.colm.net/open-source/ragel/">Ragel</a>, which generates Julia code that executes a finite state machine. Daniel&#39;s talk of the JuliaCon 2015 is helpful to know about the details if you are interested:</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sQvNNj3MthQ" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sQvNNj3MthQ" style="border:none;" allowfullscreen></iframe>
 
 <p>Sometimes you may need only a part of data provided by a database. In such a case, web-based APIs are handy to fetch necessary data on demand. <a href="http://www.biomart.org/">BioMart Central Portal</a> offers a unified access point to a range of biological databases that is programmatically accessible via REST and SOAP APIs. Julian wrapper to BioMart will make it much easier to access data by automatically converting response to Julia objects. In the R language, the <a href="https://bioconductor.org/packages/release/bioc/html/biomaRt.html">biomaRt</a> package is one of the most downloaded packages in Bioconductor packages: <a href="https://www.bioconductor.org/packages/stats/">https://www.bioconductor.org/packages/stats/</a>.</p>
 <h2 id="try_biojulia"><a href="#try_biojulia" class="header-anchor">Try BioJulia&#33;</a></h2>
