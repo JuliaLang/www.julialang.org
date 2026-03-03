@@ -43,28 +43,14 @@
     <p>We have created a non-exhaustive list of community provided Julia tutorials. Check them out to <a href="tutorials/">learn Julia through the lens of someone from the community</a>. Once you're familiar with the language itself, the blog <a href="https://modernjuliaworkflows.github.io/">ModernJuliaWorkflows</a> will teach you the secrets of productive Julia development.</p>
     <p>There also exist a growing number of curated Julia courses in the form of video lecture series. These courses are freely available on <a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>. There are also a <a href="mooc/">few MOOCs</a> that have been created using Julia.</p>
 
-    <div class="row">
-      <div class="col-lg-4 col-md-6 feature">
-        <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Qpx0MgGyElJ5qFlaIXYf1R"><img src="assets/courses/nervous-beginners.png" alt="Julia for Nervous Beginners" class="img-fluid"></a>
-      </div>
-      <div class="col-lg-4 col-md-6 feature">
-        <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QuDTt11Xxonnfal91JhqjO"><img src="assets/courses/data-science.png" alt="Julia for Data Science" class="img-fluid"></a>
-      </div>
-      <div class="col-lg-4 col-md-6 feature">
-        <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SGnG3FcHlYhdWWrZE7nNEx"><img src="assets/courses/dataframes.png" alt="Intro to DataFrames.jl" class="img-fluid"></a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-4 col-md-6 feature">
-        <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Q58n470P1oo7WX1fNZxneG"><img src="assets/courses/covid-modeling.png" alt="Computational Modeling in Julia (COVID-19)" class="img-fluid"></a>
-      </div>
-      <div class="col-lg-4 col-md-6 feature">
-        <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QPqk4N8eBk0oXzLrLbOtTA"><img src="assets/courses/pomdps.png" alt="Decision Making Under Uncertainty with POMDPs.jl" class="img-fluid"></a>
-      </div>
-      <div class="col-lg-4 col-md-6 feature">
-        <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6T56GkMHEdSrjCCheNuEwI0"><img src="assets/courses/computational-thinking.png" alt="Computational Thinking (MIT 18.S191)" class="img-fluid"></a>
-      </div>
-    </div>
+    <ul>
+      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Qpx0MgGyElJ5qFlaIXYf1R">Julia for Nervous Beginners</a> &ndash; A course for people who are hesitant but curious about learning to write code in Julia. Taught by Dr Henri Laurie.</li>
+      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QuDTt11Xxonnfal91JhqjO">Julia for Data Science</a> &ndash; From zero knowledge of Julia's Data Science capabilities to training models and performing analysis. Taught by Dr Huda Nassar.</li>
+      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SGnG3FcHlYhdWWrZE7nNEx">Intro to DataFrames.jl</a> &ndash; In-memory tabular data in Julia using DataFrames.jl. Taught by Bogumi&#322; Kami&#324;ski.</li>
+      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Q58n470P1oo7WX1fNZxneG">Computational Modeling (COVID-19)</a> &ndash; Computational modeling in Julia with applications to the COVID-19 pandemic. Taught by Alan Edelman &amp; David Sanders.</li>
+      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QPqk4N8eBk0oXzLrLbOtTA">Decision Making Under Uncertainty</a> &ndash; Build and solve decision making problems using the POMDPs.jl ecosystem. Taught by Robert Moss.</li>
+      <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6T56GkMHEdSrjCCheNuEwI0">Computational Thinking (MIT)</a> &ndash; MIT's open course 18.S191 on computational thinking using Julia, with interactive Pluto notebooks.</li>
+    </ul>
   </div>
   <br><br>
 </div>
