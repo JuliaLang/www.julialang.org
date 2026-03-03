@@ -23,6 +23,9 @@ lts_release_date = "June 27, 2025"
 # plotly
 hasplotly = false
 
+# map (leaflet)
+hasmap = false
+
 # If the following lines are commented, the "upcoming release" section
 # in `downloads/index.md` will not be shown.
 upcoming_release = "1.13.0-beta2"

@@ -47,26 +47,28 @@ function add_marker(markers, group) {
     markers.addLayer(marker);
 }
 
-var map = L.map('map').setView([20, 15], 2);
+if (document.getElementById('map')) {
+    var map = L.map('map').setView([20, 15], 2);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    noWrap: true
-}).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        noWrap: true
+    }).addTo(map);
 
-var markers = L.markerClusterGroup({
-    iconCreateFunction: function(cluster) {
-        return new L.DivIcon({
-            html: '<div><span>' + cluster.getChildCount() + '</span></div>',
-            className: 'cluster',
-            iconSize: new L.Point(40, 40)
-        });
-    },
-    maxClusterRadius: 10
-});
+    var markers = L.markerClusterGroup({
+        iconCreateFunction: function(cluster) {
+            return new L.DivIcon({
+                html: '<div><span>' + cluster.getChildCount() + '</span></div>',
+                className: 'cluster',
+                iconSize: new L.Point(40, 40)
+            });
+        },
+        maxClusterRadius: 10
+    });
 
-for (const group of groups) {
-    add_marker(markers, group);
+    for (const group of groups) {
+        add_marker(markers, group);
+    }
+
+    map.addLayer(markers);
 }
-
-map.addLayer(markers)

@@ -1,8 +1,14 @@
+@def hasmap = true
+
 # Julia in the classroom
 
 Julia is now being used in several universities and online courses.
 This list is by no means complete or even comprehensive - it is based on submissions made to the website.
 If you know of other classes using Julia for teaching, please consider submitting a pull request to [update this list](https://github.com/JuliaLang/www.julialang.org/edit/main/learning/classes.md).
+
+~~~
+<div id="classes-map" style="height: 400px; margin-bottom: 20px;"></div>
+~~~
 
 ## MOOCs (Massively Online Open Courses)
 
