@@ -8,18 +8,17 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 * Antonello Lobianco. [Julia Quick Syntax Reference, 2nd ed.](https://doi.org/10.1007/979-8-8688-0965-1). Apress, January 2025.
 * Lee Phillips. [Practical Julia: A Hands-On Introduction for Scientific Minds](https://nostarch.com/practical-julia), No Starch Press, October 2023.
 * Erik Engheim. [Julia as a Second Language](https://www.manning.com/books/julia-as-a-second-language). Manning Publications, May 2023.
-* Logan Kilpatrick, Nolan Fortman. [Julia Crash Course 🚀: Learn the worlds fastest growing programming language](https://logankilpatrick.gumroad.com/l/juliacrashcourse), December 2022
 * Noel Kalicharan. [Julia - Bit by Bit](https://link.springer.com/book/10.1007/978-3-030-73936-2). Springer, 2021.
 * Sambit Kumar Dash. [Hands-on Julia Programming](https://in.bpbonline.com/products/hands-on-julia-programming), Bpb Publications, October 2021.
 * Erik Engheim. [Julia for Beginners](https://leanpub.com/julia-for-beginners), January 2021.
 * Tanmay Bakshi. [Tanmay Teaches Julia for Beginners: A Springboard to Machine Learning for All Ages](https://www.mheducation.co.uk/tanmay-teaches-julia-for-beginners-a-springboard-to-machine-learning-for-all-ages-9781260456639-emea). McGraw Hill, November 2019.
 * Ben Lauwens and Allen B. Downey. [Think Julia](https://www.oreilly.com/library/view/think-julia/9781492045021/). O&rsquo;Reilly Media, June 2019.
-* Ivo Balbaert. [Julia 1.0 Programming](https://www.packtpub.com/application-development/julia-10-programming-second-edition). Packt Publishing, September 2018.
-* Anshul Joshi and Rahul Lakhanpal. [Learning Julia](https://www.packtpub.com/application-development/learning-julia). Packt Publishing, November 2017.
+* Ivo Balbaert. [Julia 1.0 Programming](https://www.packtpub.com/en-us/product/julia-10-programming-9781788999090). Packt Publishing, September 2018.
+* Anshul Joshi and Rahul Lakhanpal. [Learning Julia](https://www.packtpub.com/en-us/product/learning-julia-9781785883279). Packt Publishing, November 2017.
 * Sandeep Nagar. [Beginning Julia Programming For Engineers and Scientists](https://doi.org/10.1007/978-1-4842-3171-5). Apress, 2017
 * Ivo Balbaert, Avik Sengupta, and Malcolm Sherrington. [Julia: High Performance Programming](https://www.oreilly.com/library/view/julia-high-performance/9781787125704/). Packt Publishing, 2016.
-* Ivo Balbaert. [Getting Started with Julia Programming Language](https://www.packtpub.com/application-development/getting-started-julia). Packt Publishing, 2015.
-* Malcolm Sherrington. [Mastering Julia](https://www.packtpub.com/application-development/mastering-julia). Packt Publishing, 2015.
+* Ivo Balbaert. [Getting Started with Julia Programming Language](https://www.packtpub.com/en-us/product/getting-started-with-julia-9781783284795). Packt Publishing, 2015.
+* Malcolm Sherrington. [Mastering Julia](https://www.packtpub.com/en-us/product/mastering-julia-9781783553310). Packt Publishing, 2015.
 * Bruce Tate, Ian Dees, Frederic Daoud, and Jack Moffit. [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks). The Pragmatic Programmers, December 2014.
 @@
 
@@ -27,13 +26,13 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 
 @@tight-list
 * Ahan Sengupta [The Little Book of Julia Algorithms](https://www.amazon.com/Little-Book-Julia-Algorithms-programming/dp/1838173609/). SAV Publishing, September 2020.
-* Tom Kwong. [Hands-on Design Patterns and Best Practices with Julia](https://www.packtpub.com/application-development/hands-design-patterns-julia-10).  Packt Publishing, January 2020.
+* Tom Kwong. [Hands-on Design Patterns and Best Practices with Julia](https://www.packtpub.com/en-us/product/hands-on-design-patterns-and-best-practices-with-julia-9781838648817).  Packt Publishing, January 2020.
 * Avik Sengupta. [Julia High Performance, 2nd Ed.](https://www.packtpub.com/product/julia-high-performance-second-edition/9781788298117). Packt Publishing, June  2019.
 * Bogumił Kamiński and Przemysław Szufel. [Julia プログラミングクックブック](https://www.oreilly.co.jp/books/9784873118895/). Japanese translation for Julia 1.2 by Hidemoto Nakada. Orairījapan, Tōkyo, October 2019.
-* Adrian Salceanu. [Julia Programming Projects](https://www.packtpub.com/big-data-and-business-intelligence/julia-programming-projects). Packt Publishing, December 2018.
-* Bogumił Kamiński and Przemysław Szufel. [Julia 1.0 Programming Cookbook](https://www.packtpub.com/application-development/julia-10-programming-cookbook). Packt Publishing, November 2018.
-* Jalem Raj Rohit. [Julia Cookbook](https://www.packtpub.com/application-development/julia-cookbook). Packt Publishing, September 2016.
-* Avik Sengupta. [Julia High Performance](https://www.packtpub.com/application-development/julia-high-performance). Packt Publishing, April 2016.
+* Adrian Salceanu. [Julia Programming Projects](https://www.packtpub.com/en-us/product/julia-programming-projects-9781788292740). Packt Publishing, December 2018.
+* Bogumił Kamiński and Przemysław Szufel. [Julia 1.0 Programming Cookbook](https://www.packtpub.com/en-us/product/julia-10-programming-cookbook-9781788998369). Packt Publishing, November 2018.
+* Jalem Raj Rohit. [Julia Cookbook](https://www.packtpub.com/en-us/product/julia-cookbook-9781785882012). Packt Publishing, September 2016.
+* Avik Sengupta. [Julia High Performance](https://www.packtpub.com/en-us/product/julia-high-performance-9781785880919). Packt Publishing, April 2016.
 @@
 
 ### Data Science & Machine Learning
@@ -41,13 +40,11 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 @@tight-list
 * Bogumił Kamiński. [Julia for Data Analysis](https://www.manning.com/books/julia-for-data-analysis), Manning Publications, December 2022
 * Diego Javier Zea. [Interactive Visualization and Plotting with Julia](https://www.packtpub.com/en-us/product/interactive-visualization-and-plotting-with-julia-9781801810517). Packt Publishing, August 2022.
-* Ahmad Chitsazzadeh. [Data Analysis with Julia Programming Language](https://mftbook.ir/product/data-analysis-with-julia), Tehran Dibagaran Publications, October 2022. The book is in Persian language that is also available as e-book at [fidibo.com](https://fidibo.com/book/141894-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AA%D8%AD%D9%84%DB%8C%D9%84-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-julia)
-* Jose Storopoli, Rik Huijzer and Lazaro Alonso. [Julia Data Science](https://juliadatascience.io), October 2021.
 * Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, June 2020.
 * Günter Faes. [Datenanalyse mit Julia: Einstieg in die Datenanalyse mit der Programmiersprache Julia](https://www.amazon.de/Datenanalyse-mit-Julia-Einstieg-Programmiersprache/dp/3749485089/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=Datenanalyse+mit+Julia&qid=1582912563&sr=8-3). Books on Demand, September 2019.
 * Paul D. McNicholas and Peter Tait. [Data Science with Julia](https://www.crcpress.com/Data-Science-with-Julia/McNicholas-Tait/p/book/9781138499980). Chapman and Hall/CRC, January 2019.
 * Zacharias Voulgaris. [Julia for Data Science](https://technicspub.com/julia-for-data-science/). Technics Publications, September 2016.
-* Anshul Joshi. [Julia for Data Science](https://www.packtpub.com/big-data-and-business-intelligence/julia-data-science). Packt Publishing, 2016.
+* Anshul Joshi. [Julia for Data Science](https://www.packtpub.com/en-us/product/julia-for-data-science-9781785289699). Packt Publishing, 2016.
 @@
 
 ### Statistics, Probability & Econometrics
@@ -94,5 +91,5 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 * Júlio Hoffimann, [Geospatial Data Science with Julia](https://juliaearth.github.io/geospatial-data-science-with-julia), Open Access, 2023.
 * Ivo Balbaert and Adrian Salceanu. [Web Development with Julia and Genie](https://www.packtpub.com/en-us/product/web-development-with-julia-and-genie-9781801811132). Packt Publishing, November 2022.
 * George Datseris, Ulrich Parlitz. [Nonlinear Dynamics: A Concise Introduction Interlaced with Code](https://github.com/JuliaDynamics/NonlinearDynamicsTextbook). Springer, 2022
-* Dmitrijs Cudihins. [Hands-on Computer Vision with Julia](https://www.packtpub.com/application-development/hands-computer-vision-julia). Packt Publishing, June 2018.
+* Dmitrijs Cudihins. [Hands-on Computer Vision with Julia](https://www.packtpub.com/en-us/product/hands-on-computer-vision-with-julia-9781788998796). Packt Publishing, June 2018.
 @@
