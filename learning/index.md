@@ -19,9 +19,8 @@
    <div class="row">
      <!-- 1 -->
      <div class="col-lg-4 col-md-6 feature">
-       <h3>Julia Academy</h3>
-       <p>Do you learn best by watching instructor led videos on programming? Check out
-         <a href="https://juliaacademy.com/courses?preview=logged_out">JuliaAcademy</a> which was prepared by core Julia developers in collaboration with JuliaHub.
+       <h3>Video Courses</h3>
+       <p>Do you learn best by watching instructor led videos on programming? Check out the free <a href="https://www.youtube.com/user/JuliaLanguage/playlists">Julia video courses on YouTube</a>, prepared by core Julia developers and community members.
        </p>
      </div>
      <!-- 2 -->
@@ -79,10 +78,36 @@
 
      <p>We have created a non-exhaustive list of community provided Julia tutorials. Check them out to <a href="tutorials/">learn Julia through the lens of someone from the community</a>. Once you're familiar with the language itself, the blog <a href="https://modernjuliaworkflows.github.io/">ModernJuliaWorkflows</a> will teach you the secrets of productive Julia development.
      </p>
-     <p>There also exist a growing number of curated Julia courses in the form of video lecture series. These courses are freely available on <a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>. You can also sign up through <a href="https://juliaacademy.com">JuliaAcademy</a> to track your progress, take quizzes, and get certificates.</p>
-     <a href="https://juliaacademy.com/courses">
-     <img src="assets/JA.svg" alt="JuliaAcademy" class="img-fluid">
-     </a>
+     <p>There also exist a growing number of curated Julia courses in the form of video lecture series. These courses are freely available on <a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>.</p>
+
+     <div class="row">
+       <div class="col-lg-3 col-md-6 feature">
+         <h3><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Qpx0MgGyElJ5qFlaIXYf1R">Julia for Nervous Beginners</a></h3>
+         <p>A course for people who are hesitant but curious about learning to write code in Julia. Taught by Dr Henri Laurie.</p>
+       </div>
+       <div class="col-lg-3 col-md-6 feature">
+         <h3><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QuDTt11Xxonnfal91JhqjO">Julia for Data Science</a></h3>
+         <p>From zero knowledge of Julia's Data Science capabilities to training models and performing analysis. Taught by Dr Huda Nassar.</p>
+       </div>
+       <div class="col-lg-3 col-md-6 feature">
+         <h3><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SGnG3FcHlYhdWWrZE7nNEx">Intro to DataFrames.jl</a></h3>
+         <p>In-memory tabular data in Julia using DataFrames.jl. Taught by Bogumi&#322; Kami&#324;ski.</p>
+       </div>
+       <div class="col-lg-3 col-md-6 feature">
+         <h3><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Q58n470P1oo7WX1fNZxneG">Computational Modeling (COVID-19)</a></h3>
+         <p>Computational modeling in Julia with applications to the COVID-19 pandemic. Taught by Alan Edelman &amp; David Sanders.</p>
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-lg-3 col-md-6 feature">
+         <h3><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QPqk4N8eBk0oXzLrLbOtTA">Decision Making Under Uncertainty</a></h3>
+         <p>Build and solve decision making problems using the POMDPs.jl ecosystem. Taught by Robert Moss.</p>
+       </div>
+       <div class="col-lg-3 col-md-6 feature">
+         <h3><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6T56GkMHEdSrjCCheNuEwI0">Computational Thinking (MIT)</a></h3>
+         <p>MIT's open course 18.S191 on computational thinking using Julia, with interactive Pluto notebooks.</p>
+       </div>
+     </div>
    </div>
  </div>
 <br>
