@@ -7,6 +7,7 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 @@tight-list
 * Antonello Lobianco. [Julia Quick Syntax Reference, 2nd ed.](https://doi.org/10.1007/979-8-8688-0965-1). Apress, January 2025.
 * Lee Phillips. [Practical Julia: A Hands-On Introduction for Scientific Minds](https://nostarch.com/practical-julia), No Starch Press, October 2023.
+* Erik Engheim. [Julia as a Second Language](https://www.manning.com/books/julia-as-a-second-language). Manning Publications, May 2023.
 * Logan Kilpatrick, Nolan Fortman. [Julia Crash Course 🚀: Learn the worlds fastest growing programming language](https://logankilpatrick.gumroad.com/l/juliacrashcourse), December 2022
 * Noel Kalicharan. [Julia - Bit by Bit](https://link.springer.com/book/10.1007/978-3-030-73936-2). Springer, 2021.
 * Sambit Kumar Dash. [Hands-on Julia Programming](https://in.bpbonline.com/products/hands-on-julia-programming), Bpb Publications, October 2021.
@@ -39,6 +40,7 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 
 @@tight-list
 * Bogumił Kamiński. [Julia for Data Analysis](https://www.manning.com/books/julia-for-data-analysis), Manning Publications, December 2022
+* Diego Javier Zea. [Interactive Visualization and Plotting with Julia](https://www.packtpub.com/en-us/product/interactive-visualization-and-plotting-with-julia-9781801810517). Packt Publishing, August 2022.
 * Ahmad Chitsazzadeh. [Data Analysis with Julia Programming Language](https://mftbook.ir/product/data-analysis-with-julia), Tehran Dibagaran Publications, October 2022. The book is in Persian language that is also available as e-book at [fidibo.com](https://fidibo.com/book/141894-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AA%D8%AD%D9%84%DB%8C%D9%84-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-julia)
 * Jose Storopoli, Rik Huijzer and Lazaro Alonso. [Julia Data Science](https://juliadatascience.io), October 2021.
 * Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, June 2020.
@@ -64,6 +66,7 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 @@tight-list
 * James V Lambers, Amber Sumner Mooney, Vivian A Montiforte, and James Quinlan, [Explorations in Numerical Analysis and Machine Learning with Julia](https://www.worldscientific.com/worldscibooks/10.1142/14443#t=aboutBook). World Scientific, October 2025.
 * Martin Vuk, [Numerical Mathematics with Julia programming language (in Slovenian)](http://zalozba.fri.uni-lj.si/vuk2024.pdf), Založba UL FRI, Ljubljana, 2024. Code examples from the book are available [here](https://gitlab.com/nummat/nummat-knjiga).
+* Clemens Heitzinger. [Algorithms with JULIA: Optimization, Machine Learning, and Differential Equations Using the JULIA Language](https://link.springer.com/book/10.1007/978-3-031-16560-3). Springer, 2022.
 * Marilena Mitrouli. [ΑΡΙΘΜΗΤΙΚΗ ΓΡΑΜΜΙΚΗ ΑΛΓΕΒΡΑ ΚΑΙ ΕΠΙΣΤΗΜΟΝΙΚΟΙ ΥΠΟΛΟΓΙΣΜΟΙ (Arithmetical Linear Algebra and Scientific Computations)](https://korfiatisbooks.gr/eshop/product/arithmitiki-grammiki-algevra-kai-epistimonikoi-ypologismoi/), ΕΚΠΑ, December 2022.
 * Tobin A. Driscoll, Richard J. Braun. [Fundamentals of Numerical Computation: Julia Edition](https://my.siam.org/Store/Product/viewproduct/?ProductId=41831895). SIAM-Society for Industrial and Applied Mathematics, 2022
 * C. T. Kelley, [Solving Nonlinear Equations with Iterative Methods. Solvers and Examples in Julia](https://my.siam.org/Store/Product/viewproduct/?ProductId=44313635), SIAM, 2022. The book comes with a package [SIAMFANLequations.jl](https://github.com/ctkelley/SIAMFANLEquations.jl) and a set of [Jupyter notebooks](https://github.com/ctkelley/NotebookSIAMFANL).
@@ -89,6 +92,7 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 * Andreas Varga, [Solving Fault Diagnosis Problems - Linear Synthesis Techniques with Julia Code Examples](https://link.springer.com/book/10.1007/978-3-031-35767-1), Vol. 482 of Studies in Systems, Decision and Control, Springer Nature Switzerland, 2024. The computational examples presented in the book use functions of the [FaultDetectionTools.jl](https://github.com/andreasvarga/FaultDetectionTools.jl) and [DescriptorSystems.jl](https://github.com/andreasvarga/DescriptorSystems.jl) packages and are available [here](https://github.com/andreasvarga/FaultDetectionTools.jl/tree/master/Examples).
 * Adeil Araújo and Meirivâni Oliveira, ["Julia with Physics: An Introduction" in Portuguese](https://www.seduc.ce.gov.br/wp-content/uploads/sites/37/2023/09/Ebook-02-Julia-com-Fisica.pdf), Seduc - CE, September 2023.
 * Júlio Hoffimann, [Geospatial Data Science with Julia](https://juliaearth.github.io/geospatial-data-science-with-julia), Open Access, 2023.
+* Ivo Balbaert and Adrian Salceanu. [Web Development with Julia and Genie](https://www.packtpub.com/en-us/product/web-development-with-julia-and-genie-9781801811132). Packt Publishing, November 2022.
 * George Datseris, Ulrich Parlitz. [Nonlinear Dynamics: A Concise Introduction Interlaced with Code](https://github.com/JuliaDynamics/NonlinearDynamicsTextbook). Springer, 2022
 * Dmitrijs Cudihins. [Hands-on Computer Vision with Julia](https://www.packtpub.com/application-development/hands-computer-vision-julia). Packt Publishing, June 2018.
 @@
