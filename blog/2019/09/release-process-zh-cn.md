@@ -3,6 +3,7 @@
 @def published = "7 September 2019"
 @def title = "Julia的版本发布流程"
 @def authors = "Stefan Karpinski (JuliaHub)"
+@def pagelang = "zh-Hans"
 
 从事软件开发的行家里手们对版本发布流程与节奏如此了若指掌，以至于他们将其精髓**内化**（internalize）并以为人人都懂得这些“浅显的道理”。
 可是事实恰好相反，外行一眼望去如同雾里看花。

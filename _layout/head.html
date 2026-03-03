@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{isdef pagelang}}{{fill pagelang}}{{else}}en{{end}}">
 <head>
 	<!-- parts for all pages -->
 	{{insert meta.html}}
@@ -14,7 +14,7 @@
 
   {{isdef title}} <title>{{fill title}}</title>   {{end}}
 
-  {{ispage /blog/* /jsoc/gsoc/* /contribute/* /downloads/* /community/*}}
+  {{ispage /blog/* /jsoc/gsoc/* /contribute/* /downloads/* /community/* /about/*}}
   <style>
 	  .container ul li p {margin-bottom: 0;}
 		.container ol li p {margin-bottom: 0;}
@@ -69,7 +69,7 @@
         {{end}}
       </div>
       <div class="blog-title-meta">
-        <h3>
+        <p style="font-size: 1.17em; margin-top: 0;">
           {{isdef published}}
             <span style="font-weight: lighter;">{{fill published}}</span> |
           {{end}}
@@ -79,13 +79,12 @@
           {{isdef authors}}
             <span style="font-weight: bold;">{{fill authors}}</span>
           {{end}}
-        </h3>
+        </p>
       </div>
     </div>
 
     <div class="blog-title-right">
-      <a type="application/rss+xml"
-         href="https://julialang.org/feed.xml"
+      <a href="https://julialang.org/feed.xml"
          class="rss-link">
         <i class="fa fa-rss-square rss-icon"></i>
       </a>
@@ -95,7 +94,7 @@
 {{end}}
 
 {{isnotpage /index.html /blog/index.html}}
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/{{fd_rpath}}" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/{{fd_rpath}}" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 {{end}}
 

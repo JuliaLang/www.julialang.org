@@ -3,6 +3,7 @@
 @def published = "14 February 2012"
 @def title = "为什么我们要创造Julia (Simplified Chinese)"
 @def authors = "Jeff Bezanson, Stefan Karpinski, Viral B. Shah, Alan Edelman"
+@def pagelang = "zh-Hans"
 
 ~~~
 <a href="https://github.com/JeffBezanson/">Jeff Bezanson</a>
@@ -37,11 +38,11 @@
 ~~~
 <p>
 作者：Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman
-</br>
+<br>
 译者：Roger
-</br>
+<br>
 翻译自：<a href="/blog/2012/02/why-we-created-julia/">Why we create Julia</a>
-</br>
+<br>
 参考自：<a href="https://www.douban.com/note/203945680/">豆瓣：为什么我们要创造Julia</a>
 </p>
 ~~~

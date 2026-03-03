@@ -85,30 +85,30 @@ This project aims to implement algorithms for extracting radiomic features from 
 
 ## Success Criteria and Timeline
 
-### 1. Literature Review and Setup (3 Weeks)
+### Phase 1: Literature Review and Setup (3 Weeks)
 - Review PyRadiomics documentation, MedImages.jl, KernelAbstractions.jl APIs, and AutoPET dataset structure.
 - **Success Criteria:** Understanding of feature definitions, dataset access, and GPU kernel design.
 
-### 2. Feature Implementation (6 Weeks)
+### Phase 2: Feature Implementation (6 Weeks)
 - Implement GLCM, GLSZM, GLRM, NGTDM, and GLDM matrices.
 - Validate outputs against PyRadiomics (>90% similarity in unit tests).
 - **Success Criteria:** GPU-accelerated implementation for 3D volumes.
 
-### 3. Feature Extraction Pipeline (4 Weeks)
+### Phase 3: Feature Extraction Pipeline (4 Weeks)
 - Build a pipeline to process AutoPET lesions using MedImages.jl.
 - **Success Criteria:** Extraction of 100+ features per lesion, support for batch processing.
 
-### 4. Validation (3 Weeks)
+### Phase 4: Validation (3 Weeks)
 - Compare Julia feature extraction results with PyRadiomics.
 - **Success Criteria:** Statistical equivalence (e.g., t-test p > 0.05), with documented discrepancies <5%.
 
-### 5. Documentation and Packaging (4 Weeks)
+### Phase 5: Documentation and Packaging (4 Weeks)
 - Write documentation for the Julia-based radiomics library.
 - Write automated tests for the proper functioning of the library.
 - Register the package in the Julia package registry.
 - **Success Criteria:** The final working library is successfully available in the Julia ecosystem.
 
-### 6. Reporting (2 Weeks)
+### Phase 6: Reporting (2 Weeks)
 - Document methodology, results, and benchmarking.
 - **Success Criteria:** Reproducible code, Jupyter notebooks, open-source repository.
 

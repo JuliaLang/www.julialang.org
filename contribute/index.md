@@ -121,8 +121,6 @@ Before you start contributing to the Julia ecosystem, you need the following too
     <br>
 ~~~
 
-## Contribution Pathways
-
 Your **first step** is to identify how you want to start contributing to the Julia ecosystem. For example, you can start by writing a blog post about how you used Julia to solve a problem. Then, you can create a new package or improve one that you have used. You can take multiple paths, some of which might cross.
 
 If you are a **complete beginner** to the Julia language or programming in general, then you can consider going through any of the resources that the community has created to [help you get started](https://julialang.org/learning/).
@@ -182,24 +180,24 @@ We are also open to any suggestions or ideas that you might have. You can sugges
 
 If you are still unsure how to get started, then you can have a look at the following list of ideas for your first contribution.
 
-#### Ask and answer questions
+### Ask and answer questions
 
 You can ask or answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/julia), [Discourse](https://discourse.julialang.org/), and [Zulip](https://julialang.zulipchat.com/). It not only helps to expand your knowledge but to spread the word about the Julia ecosystem.
 
 The following video contains information on how to ask questions on StackOverflow and how this can improve your learning (and understanding):
 
 ~~~
-<iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/gHuU7ewLep8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="width:100%;border:none;" height="450" src="https://www.youtube-nocookie.com/embed/gHuU7ewLep8" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
 
 If you know how to answer a question on StackOverflow or Discourse thats' an immediate chance to help!  Search for questions tagged [**[julia]**](https://stackoverflow.com/questions/tagged/julia) on StackOverflow or use a more specific term. Moreover, you can join the ´#stackoverflow-feed´ channel on the official [Julia Slack](https://julialang.org/slack/) to stay up-to-date on StackOverflow questions related to Julia.
 
-#### Edit the README file of a Julia package
+### Edit the README file of a Julia package
 
 A lot of documentation in the Julia-verse needs to be updated or fixed. You can help clean up documentation by correcting typos, fixing broken links, or replacing the mentions of outdated packages. To search for Julia packages and their README file or documentation, go to the [JuliaHub](https://juliahub.com/ui/Packages) website. Then, click the name of the package to discover its website, GitHub repository, and further details.
 
-#### Contribute to an existing Julia package
+### Contribute to an existing Julia package
 
 Some Julia organizations and packages are looking for help from the community. We have set up a curated list of Julia packages, organizations, and projects which have robust contributor guides. If you are interested in jumping in and contributing, then see the [Organizations and Packages](/contribute/opportunities) section.
 

@@ -213,7 +213,7 @@ end
 An an example for animations, I ported the Escher boids example by Ian Dunning from 2D to 3D and a screencast of the same can be found below.
 
 ~~~
-<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/Yul3iBkAVHs" frameborder="0" allowfullscreen></iframe></div>
+<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/Yul3iBkAVHs" style="border:none;" allowfullscreen></iframe></div>
 ~~~
 
 ## Future directions

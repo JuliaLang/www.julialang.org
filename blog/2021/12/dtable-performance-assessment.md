@@ -33,8 +33,8 @@ keys will be created.
 Along with an `index`, these chunks form a `GDTable`.
 
 ~~~
-<p align="center">
-  <img src="/assets/blog/2021-dtable/dtable_diagram.svg" />
+<p style="text-align: center;">
+  <img src="/assets/blog/2021-dtable/dtable_diagram.svg" alt="Diagram showing DTable and GDTable partitioning and groupby structure" />
 </p>
 ~~~
 
@@ -107,8 +107,8 @@ The data used for the experiments was prepared as follows:
 The diagram below summarizes the above specifications:
 
 ~~~
-<p align="center">
-  <img src="/assets/blog/2021-dtable/table_specs.svg" />
+<p style="text-align: center;">
+  <img src="/assets/blog/2021-dtable/table_specs.svg" alt="Table summarizing benchmark data specifications including column count, row count, value type, and chunk size" />
 </p>
 ~~~
 

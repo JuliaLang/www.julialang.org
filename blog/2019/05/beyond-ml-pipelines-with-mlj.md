@@ -48,7 +48,7 @@ composition.
 &#9758; Video from [London Julia User Group meetup in March 2019](https://www.youtube.com/watch?v=CfHkjNmj1eE) (skip to [demo at 21'39](https://youtu.be/CfHkjNmj1eE?t=21m39s)) &nbsp;
 
 ~~~
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CfHkjNmj1eE?start=1300" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CfHkjNmj1eE?start=1300" style="border:none;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></br>
 ~~~
 
 &#9758;  The MLJ [tutorials](https://alan-turing-institute.github.io/MLJTutorials/).

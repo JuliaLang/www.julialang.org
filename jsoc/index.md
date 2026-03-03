@@ -20,6 +20,7 @@
 The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding and/or mentoring developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in.
 
 ~~~
+ </div>
 <!--
       Containers: Google Summer of Code (GSoC)
  -->
@@ -37,7 +38,7 @@ The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding 
    </div>
 
    <br>
-   <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" width="50%" alt="Google Summer of Code">
+   <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" style="width:50%;" alt="Google Summer of Code">
    <br>
    <br>
 
@@ -57,7 +58,7 @@ You can see previous Summer of Code projects at the [Archive page](/jsoc/archive
 ## Hear from some of our past GSoC contributors
 
 ~~~
-<iframe height="500" src="https://www.youtube-nocookie.com/embed/8lSB666bigw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe height="500" src="https://www.youtube-nocookie.com/embed/8lSB666bigw" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
 ~~~
@@ -66,7 +67,20 @@ You can see previous Summer of Code projects at the [Archive page](/jsoc/archive
 ~~~
 
 ~~~
-![NumFocus Logo](https://user-images.githubusercontent.com/35577566/114047420-87487880-983e-11eb-83f1-2820cfe17942.png)
+<div class="container pt-sm-2">
+  <br><br>
+  <div class="row">
+    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    <div class="col-lg-4 col-md-6 language-features section-heading">
+      <h2 class="lead secondary-heading" id="numfocus">
+        <a href="#numfocus" class="link">NumFOCUS Small Development Grants</a>
+      </h2>
+    </div>
+    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+  </div>
+  <br>
+  <img src="https://user-images.githubusercontent.com/35577566/114047420-87487880-983e-11eb-83f1-2820cfe17942.png" alt="NumFOCUS Logo">
+~~~
 
 Semi-quarterly NumFOCUS puts out a call for small development grants.
 The Julia language organization puts out a call for proposals from the community for grant proposals.
@@ -79,7 +93,6 @@ The total allocated funding from NumFOCUS is around USD 20,000 - 50,000 in previ
 This total amount is adjusted depending on the number and quality of proposals.
 
 Questions about NumFOCUS Small Development Grants? [Check out the NumFOCUS website Small Grants section for more details](https://numfocus.org/programs/small-development-grants)!
-~~~
 
 ~~~
   <br>
@@ -110,6 +123,7 @@ The JSoC program admins have a few responsibilities including, but not limited t
 [Find out more about our program admins](/jsoc/admins/).
 
 ~~~
+ </div>
 <!--
     Containers: Get Help
   -->
