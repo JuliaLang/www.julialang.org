@@ -17,7 +17,7 @@
       <p class="text-center" style="margin-bottom: 0; line-height: 1.6;">
         <img src="/assets/infra/juliacon_logo.svg" alt="JuliaCon" class="juliacon-logo">
         <span style="font-size: 15px;">
-          <a href="https://juliacon.org/2026/cfp" style="font-weight: 600;">Submit your proposal</a> for <a href="https://juliacon.org/2026">JuliaCon Global 2026</a> — deadline <strong>February 28, 2026.</strong>
+          <a href="https://juliacon.org/2026" style="font-weight: 600;">JuliaCon Global 2026</a> is happening this year — visit <a href="https://juliacon.org/2026">juliacon.org/2026</a> for details.
           <a href="#juliacon-videos" class="watch-videos-link">Watch JuliaCon 2025 <span class="arrow-down">↓</span></a>
         </span>
       </p>
@@ -162,7 +162,7 @@
           <div class="container-fluid">
             <h4>Build, Deploy or Embed Your Code</h4>
             <p>
-              Julia makes it possible to build complete applications. Write web UIs with <a href="https://github.com/plotly/Dash.jl">Dash.jl</a> and <a href="https://github.com/GenieFramework/Genie.jl">Genie.jl</a> or native UIs with <a href="https://github.com/JuliaGtk/Gtk4.jl">Gtk4.jl</a>. Pull data from <a href="https://juliadatabases.org">a variety of databases</a>. Build shared libraries and executables with <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler</a>. Deploy on a webserver with <a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a> or embedded devices. Powerful shell integration make it easy to <a href="https://docs.julialang.org/en/v1/manual/running-external-programs/">managing other processes</a>.
+              Julia makes it possible to build complete applications. Write web UIs with <a href="https://github.com/plotly/Dash.jl">Dash.jl</a> and <a href="https://github.com/GenieFramework/Genie.jl">Genie.jl</a> or native UIs with <a href="https://github.com/JuliaGtk/Gtk4.jl">Gtk4.jl</a>. Pull data from <a href="https://juliadatabases.org">a variety of databases</a>. Build shared libraries and executables with <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler</a>. Deploy on a webserver with <a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a> or embedded devices. Powerful shell integration makes it easy to <a href="https://docs.julialang.org/en/v1/manual/running-external-programs/">manage other processes</a>.
             </p>
             <p>
               Julia has foreign function interfaces for
@@ -270,38 +270,6 @@
                 <h4>Data Visualization and Plotting</h4>
                 <p>Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static and dynamic interface. Some packages make a display and never change it, while others make updates in real-time.</p>
                 <p><a href="https://github.com/MakieOrg/Makie.jl">Makie.jl</a> is a sophisticated package for complex graphics and animations. <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="https://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a> and <a href="https://github.com/JuliaPlots/PlotlyJS.jl">PlotlyJS.jl</a>. Users who are used to "grammar of graphics" plotting APIs should take a look at <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a>. For those who do not wish to leave the comfort of the terminal, there is also <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Lorenz Attractor in Julia</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-<pre><code class="julia">
-function fill_twos!(a)
-  for i=1:length(a)
-    a[i] = 2
-  end
-end
-
-function fast_strange_twos(n)
-  a = Array(randbool() ? Int64 : Float64, n)
-  fill_twos!(a)
-  return a
-end
-</code></pre>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
               </div>
             </div>
           </div>
