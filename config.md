@@ -30,7 +30,7 @@ hasmap = false
 # in `downloads/index.md` will not be shown.
 upcoming_release = "1.13.0-beta2"
 upcoming_release_short = "1.13"
-upcoming_release_date = "February 4, 2026"
+upcoming_release_date = "2026"
 +++
 
 <!--
