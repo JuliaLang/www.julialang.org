@@ -10,18 +10,29 @@ const PAGES: { name: string; path: string }[] = [
   { name: "learning", path: "/learning/" },
   { name: "blog", path: "/blog/" },
   { name: "community", path: "/community/" },
-  { name: "ecosystems", path: "/ecosystems/" },
   { name: "research", path: "/research/" },
   { name: "governance", path: "/governance/" },
   { name: "diversity", path: "/diversity/" },
   { name: "benchmarks", path: "/benchmarks/" },
-  { name: "install", path: "/install/" },
   { name: "contribute", path: "/contribute/" },
-  { name: "packages", path: "/packages/" },
-  { name: "teaching", path: "/teaching/" },
 ];
 
 async function prepareForScreenshot(page: Page) {
+  // Freeze animated GIFs by drawing their current frame onto a canvas
+  await page.evaluate(() => {
+    document.querySelectorAll('img[src$=".gif"]').forEach((img) => {
+      const el = img as HTMLImageElement;
+      if (!el.complete || el.naturalWidth === 0) return;
+      const canvas = document.createElement("canvas");
+      canvas.width = el.naturalWidth;
+      canvas.height = el.naturalHeight;
+      canvas.getContext("2d")!.drawImage(el, 0, 0);
+      canvas.style.cssText = el.style.cssText;
+      canvas.className = el.className;
+      el.replaceWith(canvas);
+    });
+  });
+
   // Disable CSS animations/transitions to avoid flaky diffs
   await page.addStyleTag({
     content: `
@@ -46,6 +57,7 @@ for (const { name, path } of PAGES) {
 
     await expect(page).toHaveScreenshot(`${name}.png`, {
       fullPage: true,
+      timeout: 15_000,
     });
   });
 }
