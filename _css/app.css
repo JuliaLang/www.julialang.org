@@ -684,7 +684,7 @@ blockquote p {
 }
 
 code, table.benchmarks tbody {
-  font: 9pt Monaco, 'Consolas', monospace;
+  font-family: Monaco, 'Consolas', monospace;
 }
 
 code.has-jax {
