@@ -59,7 +59,7 @@ body {
 }
 
 #menu a{
-  color:white;
+  color: white;
   display: block;
 }
 
@@ -384,11 +384,11 @@ body {
 }
 
 .btn-outline-primary {
-	color: #0072ee;
+  color: #0072ee;
 }
 
 .btn-outline-danger {
-	color: #d91b35;
+  color: #d91b35;
 }
 
 .footer-copy {
@@ -434,12 +434,12 @@ body {
 }
 
 h4.card-title {
-	margin: 0;
-	font-size: 1rem;
+  margin: 0;
+  font-size: 1rem;
 }
 
 .card-header {
-	padding: 0;
+  padding: 0;
 }
 
 .tab-title {
@@ -452,10 +452,10 @@ h4.card-title {
 }
 
 .nav-tabs {
-    display:none;
+    display: none;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .nav-tabs {
       display: flex;
   }
@@ -465,11 +465,11 @@ h4.card-title {
   }
 
   .card .card-header {
-      display:none;
+      display: none;
   }
 
   .card .collapse{
-      display:block;
+      display: block;
   }
 
   .tab-title {
@@ -477,7 +477,7 @@ h4.card-title {
   }
 }
 
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   .tab-pane {
       display: block !important;
       opacity: 1;
@@ -490,7 +490,7 @@ h4.card-title {
   }
 }
 
-@media(max-width: 576px) {
+@media (max-width: 576px) {
   .docs {
     margin-top: 20px;
   }
@@ -590,17 +590,7 @@ h4 {
 }
 
 a {
-	color: #005bc0;
-}
-
-/* Remove dead table th rule — overridden by the more specific rule below */
-table > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #ddd;
-    text-transform: none;
-    background-color: #777;
-    color: white;
-    text-align: left;
+  color: #005bc0;
 }
 
 blockquote {
@@ -707,16 +697,16 @@ pre {
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-	.navbar-expand-lg .navbar-nav .nav-link {
-		padding-right: .1rem;
-		padding-left: .1rem;
-	}
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: .1rem;
+    padding-left: .1rem;
+  }
 }
 
 @media (max-width: 575px) {
-	.main-heading {
-		font-size: 36px;
-	}
+  .main-heading {
+    font-size: 36px;
+  }
 }
 
 caption {
@@ -775,43 +765,43 @@ table tr td {
     hyphens: auto;
 }
 
-@media only screen and (min-width: 970px){
+@media only screen and (min-width: 970px) {
   .edit-float {
     background-image: url("../assets/infra/edit_icon.svg");
     background-size: 18px 18px;
     background-repeat: no-repeat;
     background-position: center;
-  	position:fixed;
-  	width:45px;
-  	height:45px;
-  	bottom:40px;
-  	right:30px;
-  	background-color: #e6eeff;
-  	border-radius:40px;
-  	text-align:center;
-  	box-shadow: 2px 2px 3px #999;
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    bottom: 40px;
+    right: 30px;
+    background-color: #e6eeff;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
   }
 }
 
 .copy-button {
-	cursor: pointer;
-	border: 0;
-	font-size: 10px;
-	text-transform: uppercase;
-	font-weight: 500;
-	padding: 6px 10px 10px;
-	color: #795548;
-	background-color: transparent;
-	position: absolute;
-	top: 0;
-	right: 0;
+  cursor: pointer;
+  border: 0;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 6px 10px 10px;
+  color: #795548;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .copy-button:hover,
 .copy-button:focus,
 .copy-button:active {
-	outline: 0;
-	background-color: #eee9e6;
+  outline: 0;
+  background-color: #eee9e6;
 }
 
 .main-download-instructions {
@@ -872,7 +862,7 @@ pre .bash-block::before {
 
 .nav-link:hover,
 .nav-link:focus-visible {
-  color: #CB3C33 !important;
+  color: #CA3C32 !important;
 }
 
 .nav-link::after {
@@ -882,7 +872,7 @@ pre .bash-block::before {
   height: 2px;
   bottom: 0;
   left: 50%;
-  background-color: #CB3C33;
+  background-color: #CA3C32;
   transition: all 0.3s ease;
 }
 
@@ -1192,8 +1182,8 @@ pre .bash-block::before {
 }
 
 .btn-sponsor {
-  background-color: #CB3C33;
-  border-color: #CB3C33;
+  background-color: #CA3C32;
+  border-color: #CA3C32;
 }
 
 .btn-sponsor:hover,
@@ -1229,7 +1219,7 @@ pre .bash-block::before {
       box-shadow: none;
   }
   .navbar-toggler:focus-visible {
-      outline: 2px solid #CB3C33;
+      outline: 2px solid #CA3C32;
       outline-offset: 2px;
   }
 }

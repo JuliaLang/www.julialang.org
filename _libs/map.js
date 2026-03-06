@@ -8,7 +8,7 @@ function addIcon(service, account) {
 }
 
 function popupText(group) {
-    var s = `<b>${group.name}</b></br>`;
+    let s = `<b>${group.name}</b></br>`;
 
     if (group.homepage != null) {
         s += addIcon('homepage', group.homepage);
@@ -30,7 +30,7 @@ function popupText(group) {
 }
 
 function addMarker(markers, group) {
-    var marker = L.circleMarker([group.lat, group.lon], {
+    const marker = L.circleMarker([group.lat, group.lon], {
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5,
@@ -41,14 +41,14 @@ function addMarker(markers, group) {
 }
 
 if (document.getElementById('map')) {
-    var map = L.map('map').setView([20, 15], 2);
+    const map = L.map('map').setView([20, 15], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         noWrap: true
     }).addTo(map);
 
-    var markers = L.markerClusterGroup({
+    const markers = L.markerClusterGroup({
         iconCreateFunction: function(cluster) {
             return new L.DivIcon({
                 html: '<div><span>' + cluster.getChildCount() + '</span></div>',

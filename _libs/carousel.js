@@ -2,7 +2,7 @@
   const slides = document.querySelectorAll('.carousel-slide');
   const dotsContainer = document.querySelector('.carousel-dots');
 
-  if (slides.length === 0) return;
+  if (slides.length === 0 || !dotsContainer) return;
 
   let current = 0;
   const total = slides.length;

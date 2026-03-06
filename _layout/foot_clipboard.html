@@ -3,26 +3,26 @@
 <script>
 (function(){
 
-	var pre = document.getElementsByTagName('pre');
+	const pre = document.getElementsByTagName('pre');
 
-	for (var i = 0; i < pre.length; i++) {
-		var tag_name = pre[i].children[0].className;
-		var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
 		if ( isLanguage ) {
-			var button = document.createElement('button');
+			const button = document.createElement('button');
 			button.className = 'copy-button';
 			button.textContent = 'Copy';
 			pre[i].appendChild(button);
 		}
 	}
 
-	// Use modern clipboard API with ClipboardJS fallback
+	// Use modern clipboard API
 	document.addEventListener('click', function(e) {
 		if (!e.target.classList.contains('copy-button')) return;
-		var code = e.target.previousElementSibling;
+		const code = e.target.previousElementSibling;
 		if (!code) return;
 
-		var text = code.textContent;
+		const text = code.textContent;
 		if (navigator.clipboard) {
 			navigator.clipboard.writeText(text).then(function() {
 				e.target.textContent = 'Copied';
