@@ -6,13 +6,20 @@
 <link rel="dns-prefetch" href="https://kit.fontawesome.com">
 <link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
 
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
 <!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
 <link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
 <script async src="/libs/buttons.js"></script>
 {{if hasplotly}} <script src="/libs/plotly/plotly.min.js"></script> {{end}}
 

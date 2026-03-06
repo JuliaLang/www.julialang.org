@@ -643,8 +643,10 @@
 
 {{insert foot_general.html}}
 <link rel="stylesheet" href="/libs/highlight/github.min.css">
-<script src="/libs/highlight/highlight.min.js"></script>
+<script defer src="/libs/highlight/highlight.min.js"></script>
 <script>
+  // Dismiss the top alert if previously dismissed within the last hour.
+  // Uses direct DOM manipulation to work before Bootstrap JS loads (avoids layout shift).
   const topAlert = document.querySelector('#top-alert .alert');
   const alertText = document.querySelector('#top-alert p').innerHTML.trim();
   const alertDismissed = localStorage.getItem(alertText);
@@ -652,16 +654,18 @@
     const dismissedTime = parseInt(alertDismissed);
     const oneHourInMs = 60 * 60 * 1000;
     if (Date.now() - dismissedTime < oneHourInMs) {
-      const bsAlert = bootstrap.Alert.getOrCreateInstance(topAlert);
-      bsAlert.close();
+      topAlert.style.display = 'none';
     } else {
       localStorage.removeItem(alertText);
     }
   }
-  topAlert.addEventListener('close.bs.alert', function () {
-    localStorage.setItem(alertText, Date.now().toString());
+  // Attach the close listener after Bootstrap JS is available
+  document.addEventListener('DOMContentLoaded', function() {
+    topAlert.addEventListener('close.bs.alert', function () {
+      localStorage.setItem(alertText, Date.now().toString());
+    });
   });
 </script>
-<script src="/libs/carousel.js"></script>
+<script defer src="/libs/carousel.js"></script>
 </body>
 </html>
