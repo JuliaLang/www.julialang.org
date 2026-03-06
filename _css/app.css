@@ -526,6 +526,13 @@ a.header-anchor {
 img.ecosystem-image {
   float: left;
   margin-right: 20px;
+  width: 400px;
+}
+
+img.ecosystem-image-tall {
+  float: left;
+  margin-right: 20px;
+  height: 280px;
 }
 
 .page-heading {
@@ -637,8 +644,17 @@ blockquote p {
 
 #top-alert p {
   margin-bottom: 0;
+  line-height: 1.6;
   position: relative;
   z-index: 1;
+}
+
+#top-alert .alert-text {
+  font-size: 15px;
+}
+
+#top-alert .alert-text a:first-child {
+  font-weight: 600;
 }
 
 #top-alert .juliacon-logo {
