@@ -46,6 +46,18 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>
+  <script>
+  // Hide previously-dismissed alert immediately to prevent flash (runs before paint)
+  (function() {
+    var p = document.querySelector('#top-alert p');
+    if (!p) return;
+    var key = p.innerHTML.trim();
+    var ts = localStorage.getItem(key);
+    if (ts && (Date.now() - parseInt(ts)) < 3600000) {
+      document.getElementById('top-alert').style.display = 'none';
+    }
+  })();
+  </script>
 
   {{insert navbar.html}}
 
@@ -643,25 +655,15 @@
 
 {{insert foot_general.html}}
 <link rel="stylesheet" href="/libs/highlight/github.min.css">
-<script src="/libs/highlight/highlight.min.js"></script>
+<script defer src="/libs/highlight/highlight.min.js"></script>
 <script>
+  // Remember when user dismisses the alert (complements the early-hide script above)
   const topAlert = document.querySelector('#top-alert .alert');
-  const alertText = document.querySelector('#top-alert p').innerHTML.trim();
-  const alertDismissed = localStorage.getItem(alertText);
-  if (alertDismissed) {
-    const dismissedTime = parseInt(alertDismissed);
-    const oneHourInMs = 60 * 60 * 1000;
-    if (Date.now() - dismissedTime < oneHourInMs) {
-      const bsAlert = bootstrap.Alert.getOrCreateInstance(topAlert);
-      bsAlert.close();
-    } else {
-      localStorage.removeItem(alertText);
-    }
-  }
   topAlert.addEventListener('close.bs.alert', function () {
+    const alertText = document.querySelector('#top-alert p').innerHTML.trim();
     localStorage.setItem(alertText, Date.now().toString());
   });
 </script>
-<script src="/libs/carousel.js"></script>
+<script defer src="/libs/carousel.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 #main-menu {
@@ -39,6 +39,7 @@ body {
   padding-bottom: 1rem;
 }
 .navbar-brand img {
+  width: 133px;
   height: 50px;
   transition: transform 0.3s ease;
 }
@@ -1208,6 +1209,12 @@ pre .bash-block::before {
 .btn-sponsor:focus-visible {
   background-color: #b93530;
   border-color: #b93530;
+}
+
+/* Reserve space for GitHub buttons to prevent CLS when iframes load */
+.github-button {
+  min-height: 28px;
+  display: inline-block;
 }
 
 /* Improve mobile menu styles */
