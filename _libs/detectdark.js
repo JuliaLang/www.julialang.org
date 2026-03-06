@@ -8,28 +8,21 @@ function changeFilePath(originalPath, newFileName) {
     const modifiedPath = pathArray.join('/');
     return modifiedPath;
 }
-function updateLogo(isDark) {
-    var julialogo = isDark ? "logo-dark.svg" : "logo.svg";
+function check_scheme() {
+    if (targetNode.getAttribute(darkreader_field) == 'dark') {
+        console.log("darkreader dark mode detected");
+        var julialogo = "logo-dark.svg";
+    } else {
+        console.log("darkreader non-dark mode detected");
+        var julialogo = "logo.svg";
+    }
     var imgElements = document.getElementsByClassName('navbarjulialogo');
     for (var i = 0; i < imgElements.length; i++) {
         imgElements[i].src = changeFilePath(imgElements[i].src, julialogo);
     }
 }
-function check_scheme() {
-    // Check DarkReader extension first
-    if (targetNode.getAttribute(darkreader_field) == 'dark') {
-        updateLogo(true);
-        return;
-    }
-    // Check native OS dark mode preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        updateLogo(true);
-        return;
-    }
-    updateLogo(false);
-}
 
-// Callback function to execute when mutations are observed (DarkReader)
+// Callback function to execute when mutations are observed
 var callback = function (mutationsList, observer) {
     for (var mutation of mutationsList) {
         if (mutation.type === 'attributes' && mutation.attributeName === darkreader_field) {
@@ -40,11 +33,6 @@ var callback = function (mutationsList, observer) {
 
 document.addEventListener("DOMContentLoaded", function () {
     check_scheme();
-    // Watch for DarkReader changes
     var observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
-    // Watch for native OS dark mode changes
-    if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', check_scheme);
-    }
 });
