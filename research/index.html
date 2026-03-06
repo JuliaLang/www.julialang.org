@@ -4,7 +4,6 @@
 	<!-- parts for all pages -->
 	<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
 <meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
 <meta name="robots" content="max-image-preview:large">
@@ -13,6 +12,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@JuliaLanguage">
 <meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
 
 
@@ -33,14 +35,11 @@
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
-<link rel="stylesheet" href="/css/fonts.css">
 <!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
 <link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-<script async defer src="/libs/buttons.js"></script>
-<script defer src="/libs/clipboard.min.js"></script>
-<script src="/libs/detectdark.js"></script>
+<script async src="/libs/buttons.js"></script>
 
 
 <script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
@@ -127,7 +126,7 @@
 <p>Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. &#40;2017&#41; SIAM Review, 59: 65–98. doi: <a href="https://dx.doi.org/10.1137/141000671">10.1137/141000671</a>. <a href="/assets/research/julia-fresh-approach-BEKS.pdf">pdf</a>.</p>
 <h2 id="prizes_and_awards"><a href="#prizes_and_awards" class="header-anchor">Prizes and Awards</a></h2>
 <p>Researchers contributing to Julia have been awarded various prizes:</p>
-<div class="tight-list"><ul>
+<ul>
 <li><p><a href="https://juliacon.org/2025/prize/">2025: Julia Community Prizes</a>: Claire Foster and Stefan Krastanov</p>
 </li>
 <li><p><a href="https://juliacon.org/2024/prize/">2024: Julia Community Prizes</a>: Guillaume Dalle, the Makie team &#40;Simon Danisch, Julius Krumbiegel, Frederic Freyer, &amp; Anshul Singhvi&#41; and the JuMP team &#40;Oscar Dowson, Benoît Legat, &amp; Miles Lubin&#41;</p>
@@ -162,7 +161,7 @@
 </li>
 <li><p><a href="https://www.computer.org/web/awards/charles-babbage">2015: IEEE-CS Charles Babbage Award</a>: Alan Edelman</p>
 </li>
-</ul></div>
+</ul>
 <h2 id="publications"><a href="#publications" class="header-anchor">Publications</a></h2>
 <p>Google Scholar provides a list of papers <a href="https://scholar.google.com/scholar?cites&#61;12373977815425691465&amp;as_sdt&#61;40000005&amp;sciodt&#61;0,22&amp;hl&#61;en">citing Julia</a>.</p>
 <p>In order to make Julia packages and projects easy to cite, the community has settled on a standard location and format for bibliographic information. Please add a <code>CITATION.bib</code> file &#40;BibTeX format&#41; in the top-level directory of your package or repo. The key for the bib entry should be &lt;PackageName.jl&gt;-&lt;year&gt;-&lt;letter&gt; &#40;Use a letter if you have multiple citations in same year&#41;. For example, see the <a href="https://github.com/JuliaLang/julia/blob/master/CITATION.bib">CITATION.bib</a> file in the Julia repo.</p>
@@ -172,63 +171,43 @@
     
     
 
-    <!-- http://tutsplus.github.io/clipboard/ -->
+    <!-- Copy-to-clipboard for code blocks -->
 
 <script>
 (function(){
 
-	// Get the elements.
-	// - the 'pre' element.
-	// - the 'div' with the 'paste-content' id.
+	const pre = document.getElementsByTagName('pre');
 
-	var pre = document.getElementsByTagName('pre');
-
-	// Add a copy button in the 'pre' element.
-	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
-
-	for (var i = 0; i < pre.length; i++) {
-		var tag_name = pre[i].children[0].className
-            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
 		if ( isLanguage ) {
-			var button           = document.createElement('button');
-					button.className = 'copy-button';
-					button.textContent = 'Copy';
-
-					pre[i].appendChild(button);
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
 		}
-	};
+	}
 
-	// Run Clipboard
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
 
-	var copyCode = new Clipboard('.copy-button', {
-		target: function(trigger) {
-			return trigger.previousElementSibling;
-    }
-	});
-
-	// On success:
-	// - Change the "Copy" text to "Copied".
-	// - Swap it to "Copy" in 2s.
-	// - Lead user to the "contenteditable" area with Velocity scroll.
-
-	copyCode.on('success', function(event) {
-		event.clearSelection();
-		event.trigger.textContent = 'Copied';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 2000);
-
-	});
-
-	// On error (Safari):
-	// - Change the  "Press Ctrl+C to copy"
-	// - Swap it to "Copy" in 2s.
-
-	copyCode.on('error', function(event) {
-		event.trigger.textContent = 'Press "Ctrl + C" to copy';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 5000);
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
 	});
 
 })();
@@ -293,8 +272,6 @@
 </footer>
 
 <script src="/libs/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 
     
   </body>

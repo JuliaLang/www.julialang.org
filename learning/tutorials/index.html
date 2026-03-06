@@ -4,7 +4,6 @@
 	<!-- parts for all pages -->
 	<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
 <meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
 <meta name="robots" content="max-image-preview:large">
@@ -13,6 +12,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@JuliaLanguage">
 <meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
 
 
@@ -33,14 +35,11 @@
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
-<link rel="stylesheet" href="/css/fonts.css">
 <!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
 <link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-<script async defer src="/libs/buttons.js"></script>
-<script defer src="/libs/clipboard.min.js"></script>
-<script src="/libs/detectdark.js"></script>
+<script async src="/libs/buttons.js"></script>
 
 
 <script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
@@ -125,7 +124,7 @@
 <div class="container main"><h2 id="tutorials"><a href="#tutorials" class="header-anchor">Tutorials</a></h2>
 <p>Have a Julia tutorial you want added to this list? Please <a href="https://github.com/JuliaLang/www.julialang.org/edit/main/learning/tutorials.md">submit a pull request</a>.</p>
 <h3 id="getting_started"><a href="#getting_started" class="header-anchor">Getting Started</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p><a href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html">ThinkJulia</a>. A comprehensive introduction to programming using Julia.</p>
 </li>
 <li><p><a href="https://techytok.com/from-zero-to-julia/">From zero to Julia&#33;</a> by <a href="https://github.com/aurelio-amerio">Aurelio Amerio</a>. An expanding series of short tutorials about Julia, starting from the beginner level and going up to deal with the more advanced topics.</p>
@@ -142,9 +141,9 @@
 </li>
 <li><p><a href="https://github.com/robbyriverside/ModulePlay">Basics of Projects Example</a> by Rob Farrow. Fast start for using Julia Project and associated tools.</p>
 </li>
-</ul></div>
+</ul>
 <h3 id="science_engineering"><a href="#science_engineering" class="header-anchor">Science &amp; Engineering</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p><a href="https://sje30.github.io/catam-julia/">Introduction to Julia for mathematics undergraduates</a>. An introduction to Julia, with case studies, suitable for undergraduate students with a mathematics background.</p>
 </li>
 <li><p><a href="https://www.matecdev.com/posts/julia-tutorial-science-engineering.html">Julia Programming: A Hands-On Tutorial</a>, and <a href="https://www.matecdev.com/posts/julia-numerical-computing.html">Numerical Computing in Julia</a> by <a href="https://github.com/mdmaas">Martín D. Maas</a>. Introductory material about Julia, focusing on its use in Science and Engineering.</p>
@@ -153,86 +152,66 @@
 </li>
 <li><p><a href="https://github.com/vboussange/WSLJuliaWorkshop2023">Practical introduction to Julia for modelling and data analysis in biodiversity and earth sciences</a> by <a href="https://vboussange.github.io">Victor Boussange</a> and <a href="https://maurow.bitbucket.io">Mauro Werder</a>.</p>
 </li>
-</ul></div>
+</ul>
 <h3 id="data_science_economics"><a href="#data_science_economics" class="header-anchor">Data Science &amp; Economics</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p><a href="https://ucidatascienceinitiative.github.io/IntroToJulia/">A Deep Introduction to Julia for Data Science and Scientific Computing</a> by <a href="https://chrisrackauckas.com/">Chris Rackauckas</a></p>
 </li>
 <li><p><a href="https://julia.quantecon.org/">Programming in Julia &#40;Quantitative Economics&#41;</a> - by <a href="http://jesseperla.com">Jesse Perla</a>, <a href="http://www.tomsargent.com">Thomas J. Sargent</a>, and <a href="https://johnstachurski.net">John Stachurski</a>. Along with being a complete textbook with Julia code for macroeconomics, this also is a very good introduction to Julia.</p>
 </li>
 <li><p><a href="https://www.analyticsvidhya.com/blog/2017/10/comprehensive-tutorial-learn-data-science-julia-from-scratch/">A Comprehensive Tutorial to Learn Data Science with Julia from Scratch</a> by <a href="https://www.analyticsvidhya.com/blog/author/mohdsanadzakirizvigmail-com/">Mohd Sanad Zaki Rizvi</a></p>
 </li>
-</ul></div>
+</ul>
 <h3 id="non-english_tutorials"><a href="#non-english_tutorials" class="header-anchor">Non-English Tutorials</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p><a href="https://hedero.webs.upv.es/julia-basico/">Programación básica en Julia</a> and <a href="https://hedero.webs.upv.es/julia-claves/">Claves para programar en Julia</a> by Helios De Rosario. Two guides in Spanish to get started on Julia.</p>
 </li>
 <li><p><a href="http://dx.doi.org/10.13140/RG.2.2.26626.86721">Grundlagen der Programmiersprache Julia</a> and <a href="http://dx.doi.org/10.13140/RG.2.2.19915.98086">Statistik mit Julia</a> by Georg Kindermann. Two guides in German to get started on Julia and Statistics with Julia.</p>
 </li>
-</ul></div>
+</ul>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
     
     
 
-    <!-- http://tutsplus.github.io/clipboard/ -->
+    <!-- Copy-to-clipboard for code blocks -->
 
 <script>
 (function(){
 
-	// Get the elements.
-	// - the 'pre' element.
-	// - the 'div' with the 'paste-content' id.
+	const pre = document.getElementsByTagName('pre');
 
-	var pre = document.getElementsByTagName('pre');
-
-	// Add a copy button in the 'pre' element.
-	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
-
-	for (var i = 0; i < pre.length; i++) {
-		var tag_name = pre[i].children[0].className
-            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
 		if ( isLanguage ) {
-			var button           = document.createElement('button');
-					button.className = 'copy-button';
-					button.textContent = 'Copy';
-
-					pre[i].appendChild(button);
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
 		}
-	};
+	}
 
-	// Run Clipboard
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
 
-	var copyCode = new Clipboard('.copy-button', {
-		target: function(trigger) {
-			return trigger.previousElementSibling;
-    }
-	});
-
-	// On success:
-	// - Change the "Copy" text to "Copied".
-	// - Swap it to "Copy" in 2s.
-	// - Lead user to the "contenteditable" area with Velocity scroll.
-
-	copyCode.on('success', function(event) {
-		event.clearSelection();
-		event.trigger.textContent = 'Copied';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 2000);
-
-	});
-
-	// On error (Safari):
-	// - Change the  "Press Ctrl+C to copy"
-	// - Swap it to "Copy" in 2s.
-
-	copyCode.on('error', function(event) {
-		event.trigger.textContent = 'Press "Ctrl + C" to copy';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 5000);
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
 	});
 
 })();
@@ -297,8 +276,6 @@
 </footer>
 
 <script src="/libs/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 
     
   </body>

@@ -4,7 +4,6 @@
 	<!-- parts for all pages -->
 	<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
 <meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
 <meta name="robots" content="max-image-preview:large">
@@ -13,6 +12,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@JuliaLanguage">
 <meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
 
 
@@ -33,14 +35,11 @@
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
-<link rel="stylesheet" href="/css/fonts.css">
 <!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
 <link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-<script async defer src="/libs/buttons.js"></script>
-<script defer src="/libs/clipboard.min.js"></script>
-<script src="/libs/detectdark.js"></script>
+<script async src="/libs/buttons.js"></script>
 
 
 <script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
@@ -125,7 +124,7 @@
 <div class="container main"><h2 id="books"><a href="#books" class="header-anchor">Books</a></h2>
 <p>Have a Julia book you want added to this list? Please <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/learning/books.md">submit a pull request</a>.</p>
 <h3 id="general_julia"><a href="#general_julia" class="header-anchor">General Julia</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p>Antonello Lobianco. <a href="https://doi.org/10.1007/979-8-8688-0965-1">Julia Quick Syntax Reference, 2nd ed.</a>. Apress, January 2025.</p>
 </li>
 <li><p>Lee Phillips. <a href="https://nostarch.com/practical-julia">Practical Julia: A Hands-On Introduction for Scientific Minds</a>, No Starch Press, October 2023.</p>
@@ -156,9 +155,9 @@
 </li>
 <li><p>Bruce Tate, Ian Dees, Frederic Daoud, and Jack Moffit. <a href="https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks">Seven More Languages in Seven Weeks</a>. The Pragmatic Programmers, December 2014.</p>
 </li>
-</ul></div>
+</ul>
 <h3 id="recipes_patterns_performance"><a href="#recipes_patterns_performance" class="header-anchor">Recipes, Patterns &amp; Performance</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p>Ahan Sengupta <a href="https://www.amazon.com/Little-Book-Julia-Algorithms-programming/dp/1838173609/">The Little Book of Julia Algorithms</a>. SAV Publishing, September 2020.</p>
 </li>
 <li><p>Tom Kwong. <a href="https://www.packtpub.com/en-us/product/hands-on-design-patterns-and-best-practices-with-julia-9781838648817">Hands-on Design Patterns and Best Practices with Julia</a>.  Packt Publishing, January 2020.</p>
@@ -175,9 +174,9 @@
 </li>
 <li><p>Avik Sengupta. <a href="https://www.packtpub.com/en-us/product/julia-high-performance-9781785880919">Julia High Performance</a>. Packt Publishing, April 2016.</p>
 </li>
-</ul></div>
+</ul>
 <h3 id="data_science_machine_learning"><a href="#data_science_machine_learning" class="header-anchor">Data Science &amp; Machine Learning</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p>Bogumił Kamiński. <a href="https://www.manning.com/books/julia-for-data-analysis">Julia for Data Analysis</a>, Manning Publications, December 2022</p>
 </li>
 <li><p>Diego Javier Zea. <a href="https://www.packtpub.com/en-us/product/interactive-visualization-and-plotting-with-julia-9781801810517">Interactive Visualization and Plotting with Julia</a>. Packt Publishing, August 2022.</p>
@@ -192,9 +191,9 @@
 </li>
 <li><p>Anshul Joshi. <a href="https://www.packtpub.com/en-us/product/julia-for-data-science-9781785289699">Julia for Data Science</a>. Packt Publishing, 2016.</p>
 </li>
-</ul></div>
+</ul>
 <h3 id="statistics_probability_econometrics"><a href="#statistics_probability_econometrics" class="header-anchor">Statistics, Probability &amp; Econometrics</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p>Bartłomiej Łukaszuk, <a href="https://b-lukaszuk.github.io/RJ_BS_eng/">Romeo and Julia, where Romeo is Basic Statistics</a>, <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>, 2023.</p>
 </li>
 <li><p>Florian Heiss and Daniel Brunner, <a href="http://upfie.net/downloads/PDF/UJfIE_web.pdf">&quot;Using Julia for Introductory Econometrics&quot;</a>, Independently published, May 3, 2023.</p>
@@ -207,9 +206,9 @@
 </li>
 <li><p>Giray Ökten. <a href="https://link.springer.com/book/10.1007/978-3-030-56070-6">Probability and Simulation</a>. Springer, June 2020.</p>
 </li>
-</ul></div>
+</ul>
 <h3 id="scientific_computing_numerical_methods"><a href="#scientific_computing_numerical_methods" class="header-anchor">Scientific Computing &amp; Numerical Methods</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p>James V Lambers, Amber Sumner Mooney, Vivian A Montiforte, and James Quinlan, <a href="https://www.worldscientific.com/worldscibooks/10.1142/14443#t&#61;aboutBook">Explorations in Numerical Analysis and Machine Learning with Julia</a>. World Scientific, October 2025.</p>
 </li>
 <li><p>Martin Vuk, <a href="http://zalozba.fri.uni-lj.si/vuk2024.pdf">Numerical Mathematics with Julia programming language &#40;in Slovenian&#41;</a>, Založba UL FRI, Ljubljana, 2024. Code examples from the book are available <a href="https://gitlab.com/nummat/nummat-knjiga">here</a>.</p>
@@ -230,9 +229,9 @@
 </li>
 <li><p>Dominique Orban and Mario Arioli. <a href="https://dx.doi.org/10.1137/1.9781611974737">Iterative Solution of Symmetric Quasi-definite Linear Systems</a>. Society for Industrial and Applied Mathematics, April 2017.</p>
 </li>
-</ul></div>
+</ul>
 <h3 id="optimization_operations_research"><a href="#optimization_operations_research" class="header-anchor">Optimization &amp; Operations Research</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p>Mykel J. Kochenderfer, Sydney M. Katz, Anthony L. Corso, and Robert J. Moss, <a href="https://algorithmsbook.com/validation/">Algorithms for Validation</a>, Forthcoming.</p>
 </li>
 <li><p>Mykel J. Kochenderfer, Tim A. Wheeler, and Kyle H. Wray. <a href="https://algorithmsbook.com/">Algorithms for Decision Making</a>, December 2020.</p>
@@ -241,9 +240,9 @@
 </li>
 <li><p>Changhyun Kwon. <a href="https://www.chkwon.net/julia/">Julia Programming for Operations Research</a>. March 2019.</p>
 </li>
-</ul></div>
+</ul>
 <h3 id="domain_applications"><a href="#domain_applications" class="header-anchor">Domain Applications</a></h3>
-<div class="tight-list"><ul>
+<ul>
 <li><p>R. Gökhan Türeci, Hamdi Dağıstanlı, and İlkay Türk Çakır. <a href="https://link.springer.com/book/10.1007/978-3-031-84716-5">Julia Programming for Physics Applications</a>. Springer, May 2025.</p>
 </li>
 <li><p>Andreas Varga, <a href="https://link.springer.com/book/10.1007/978-3-031-35767-1">Solving Fault Diagnosis Problems - Linear Synthesis Techniques with Julia Code Examples</a>, Vol. 482 of Studies in Systems, Decision and Control, Springer Nature Switzerland, 2024. The computational examples presented in the book use functions of the <a href="https://github.com/andreasvarga/FaultDetectionTools.jl">FaultDetectionTools.jl</a> and <a href="https://github.com/andreasvarga/DescriptorSystems.jl">DescriptorSystems.jl</a> packages and are available <a href="https://github.com/andreasvarga/FaultDetectionTools.jl/tree/master/Examples">here</a>.</p>
@@ -258,70 +257,50 @@
 </li>
 <li><p>Dmitrijs Cudihins. <a href="https://www.packtpub.com/en-us/product/hands-on-computer-vision-with-julia-9781788998796">Hands-on Computer Vision with Julia</a>. Packt Publishing, June 2018.</p>
 </li>
-</ul></div>
+</ul>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
     
     
 
-    <!-- http://tutsplus.github.io/clipboard/ -->
+    <!-- Copy-to-clipboard for code blocks -->
 
 <script>
 (function(){
 
-	// Get the elements.
-	// - the 'pre' element.
-	// - the 'div' with the 'paste-content' id.
+	const pre = document.getElementsByTagName('pre');
 
-	var pre = document.getElementsByTagName('pre');
-
-	// Add a copy button in the 'pre' element.
-	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
-
-	for (var i = 0; i < pre.length; i++) {
-		var tag_name = pre[i].children[0].className
-            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
 		if ( isLanguage ) {
-			var button           = document.createElement('button');
-					button.className = 'copy-button';
-					button.textContent = 'Copy';
-
-					pre[i].appendChild(button);
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
 		}
-	};
+	}
 
-	// Run Clipboard
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
 
-	var copyCode = new Clipboard('.copy-button', {
-		target: function(trigger) {
-			return trigger.previousElementSibling;
-    }
-	});
-
-	// On success:
-	// - Change the "Copy" text to "Copied".
-	// - Swap it to "Copy" in 2s.
-	// - Lead user to the "contenteditable" area with Velocity scroll.
-
-	copyCode.on('success', function(event) {
-		event.clearSelection();
-		event.trigger.textContent = 'Copied';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 2000);
-
-	});
-
-	// On error (Safari):
-	// - Change the  "Press Ctrl+C to copy"
-	// - Swap it to "Copy" in 2s.
-
-	copyCode.on('error', function(event) {
-		event.trigger.textContent = 'Press "Ctrl + C" to copy';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 5000);
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
 	});
 
 })();
@@ -386,8 +365,6 @@
 </footer>
 
 <script src="/libs/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 
     
   </body>

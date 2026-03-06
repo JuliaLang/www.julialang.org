@@ -4,7 +4,6 @@
 	<!-- parts for all pages -->
 	<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
 <meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
 <meta name="robots" content="max-image-preview:large">
@@ -13,6 +12,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@JuliaLanguage">
 <meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
 
 
@@ -33,14 +35,11 @@
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
-<link rel="stylesheet" href="/css/fonts.css">
 <!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
 <link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-<script async defer src="/libs/buttons.js"></script>
-<script defer src="/libs/clipboard.min.js"></script>
-<script src="/libs/detectdark.js"></script>
+<script async src="/libs/buttons.js"></script>
 
 
 <script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
@@ -140,15 +139,15 @@ crossorigin=""/>
 <div id="classes-map" style="height: 400px; margin-bottom: 20px;"></div>
 
 <h2 id="moocs_massively_online_open_courses"><a href="#moocs_massively_online_open_courses" class="header-anchor">MOOCs &#40;Massively Online Open Courses&#41;</a></h2>
-<div class="tight-list"><ul>
+<ul>
 <li><p><a href="https://www.coursera.org/learn/julia-programming">Julia Scientific Programming</a> online course, &#40;Dr. Juan H Klopper, Dr. Henri Laurie&#41;</p>
 </li>
 <li><p><a href="https://computationalthinking.mit.edu/">MIT&#39;s Introduction to Computational Thinking &#40;with Julia&#41;</a> online course, &#40;Alan Edelman, David P. Sanders &amp; Charles E. Leiserson&#41;</p>
 </li>
-</ul></div>
+</ul>
 <h2 id="active_university_courses"><a href="#active_university_courses" class="header-anchor">Active university courses</a></h2>
 <p><em>Courses currently being offered or offered regularly since 2020.</em></p>
-<div class="tight-list"><ul>
+<ul>
 <li><p><a href="https://www.bme.hu/">Budapest University of Technology and Economics</a></p>
 <ul>
 <li><p>Applications of Differential Equations and Vector Analysis for Engineers II &#40;<a href="https://sites.google.com/site/brszilagyi/">Brigitta Szilágyi</a>&#41;</p>
@@ -617,10 +616,10 @@ crossorigin=""/>
 </li>
 </ul>
 </li>
-</ul></div>
+</ul>
 <h2 id="historical_university_courses"><a href="#historical_university_courses" class="header-anchor">Historical university courses</a></h2>
 <p><em>Courses last offered before 2020. These may still contain useful teaching materials.</em></p>
-<div class="tight-list"><ul>
+<ul>
 <li><p>AGH University of Science and Technology, Poland</p>
 <ul>
 <li><p><a href="https://web.archive.org/web/20200225113052/http://home.agh.edu.pl:80/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej">Signal processing in medical diagnostic systems</a> &#40;Tomasz Pieciak&#41;, Spring 2015</p>
@@ -965,70 +964,50 @@ crossorigin=""/>
 </li>
 </ul>
 </li>
-</ul></div>
+</ul>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
     
     
 
-    <!-- http://tutsplus.github.io/clipboard/ -->
+    <!-- Copy-to-clipboard for code blocks -->
 
 <script>
 (function(){
 
-	// Get the elements.
-	// - the 'pre' element.
-	// - the 'div' with the 'paste-content' id.
+	const pre = document.getElementsByTagName('pre');
 
-	var pre = document.getElementsByTagName('pre');
-
-	// Add a copy button in the 'pre' element.
-	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
-
-	for (var i = 0; i < pre.length; i++) {
-		var tag_name = pre[i].children[0].className
-            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
 		if ( isLanguage ) {
-			var button           = document.createElement('button');
-					button.className = 'copy-button';
-					button.textContent = 'Copy';
-
-					pre[i].appendChild(button);
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
 		}
-	};
+	}
 
-	// Run Clipboard
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
 
-	var copyCode = new Clipboard('.copy-button', {
-		target: function(trigger) {
-			return trigger.previousElementSibling;
-    }
-	});
-
-	// On success:
-	// - Change the "Copy" text to "Copied".
-	// - Swap it to "Copy" in 2s.
-	// - Lead user to the "contenteditable" area with Velocity scroll.
-
-	copyCode.on('success', function(event) {
-		event.clearSelection();
-		event.trigger.textContent = 'Copied';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 2000);
-
-	});
-
-	// On error (Safari):
-	// - Change the  "Press Ctrl+C to copy"
-	// - Swap it to "Copy" in 2s.
-
-	copyCode.on('error', function(event) {
-		event.trigger.textContent = 'Press "Ctrl + C" to copy';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 5000);
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
 	});
 
 })();
@@ -1093,8 +1072,6 @@ crossorigin=""/>
 </footer>
 
 <script src="/libs/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 
     
     <script src="/libs/groups.js"></script>

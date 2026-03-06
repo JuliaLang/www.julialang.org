@@ -4,7 +4,6 @@
 	<!-- parts for all pages -->
 	<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
 <meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
 <meta name="robots" content="max-image-preview:large">
@@ -13,6 +12,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@JuliaLanguage">
 <meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
 
 
@@ -34,14 +36,11 @@
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
-<link rel="stylesheet" href="/css/fonts.css">
 <!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
 <link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-<script async defer src="/libs/buttons.js"></script>
-<script defer src="/libs/clipboard.min.js"></script>
-<script src="/libs/detectdark.js"></script>
+<script async src="/libs/buttons.js"></script>
 
 
 <script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
@@ -216,23 +215,23 @@
 <span class="hljs-keyword">end</span></code></pre>
 <p>&#40;Of course, like all Julia code, to get good performance both of these snippets should be executed inside some function, not in global scope.&#41;   To see the details of a variety of performance experiments with this example code, follow along in the attached IJulia/Jupyter <code>X .&#61; ...</code> code has performance within 10&#37; of the hand-devectorized loop &#40;which itself is within 5&#37; of the speed of C code&#41;, except for very small arrays where there is a modest overhead &#40;e.g. 50&#37; overhead for a length-1 array <code>X</code>&#41;.</p>
 <p>In this blog post, we delve into some of the details of this new development, in order to answer questions that often arise when this feature is presented:</p>
-<div class="tight-list"><ol>
+<ol>
 <li><p>What is the overhead of traditional &quot;vectorized&quot; code?  Isn&#39;t vectorized code supposed to be fast already?</p>
 </li>
 <li><p>Why are all these dots necessary?  Couldn&#39;t Julia just optimize &quot;ordinary&quot; vector code?</p>
 </li>
 <li><p>Is this something unique to Julia, or can other languages do the same thing?</p>
 </li>
-</ol></div>
+</ol>
 <p>The short answers are:</p>
-<div class="tight-list"><ol>
+<ol>
 <li><p><a href="https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/">Ordinary vectorized code is fast, but not as fast as a hand-written loop</a> &#40;assuming loops are efficiently compiled, as in Julia&#41; because each vectorized operation generates a new temporary array and executes a separate loop, leading to a lot of overhead when multiple vectorized operations are combined.</p>
 </li>
 <li><p>The dots allow Julia to recognize the &quot;vectorized&quot; nature of the operations at a <em>syntactic</em> level &#40;before e.g. the type of <code>x</code> is known&#41;, and hence the loop fusion is a <em>syntactic guarantee</em>, not a compiler optimization that may or may not occur for carefully written code.  They also allow the <em>caller</em> to &quot;vectorize&quot; <em>any</em> function, rather than relying on the function author.  &#40;The <code>@.</code> macro lets you add dots to every operation in an expression, improving readability for expressions with lots of dots.&#41;</p>
 </li>
 <li><p>Other languages have implemented loop fusion for vectorized operations, but typically for only a small set of types and operations/functions that are known to the compiler or vectorization library.  Julia&#39;s ability to do it generically, even for <em>user-defined</em> array types and functions/operators, is unusual and relies in part on the syntax choices above and on its ability to efficiently compile higher-order functions.</p>
 </li>
-</ol></div>
+</ol>
 <p>Finally, we&#39;ll review why, since these dots actually correspond to <code>broadcast</code> operations, they can <strong>combine arrays and scalars, or combine containers of different shapes and kinds</strong>, and we&#39;ll compare <code>broadcast</code> and <code>map</code>.  Moreover, Julia 0.6 expanded and clarified the notion of a &quot;scalar&quot; for <code>broadcast</code>, so that it is <strong>not limited to numerical operations</strong>: you can use <code>broadcast</code> and fusing &quot;dot calls&quot; for many other tasks &#40;e.g. string processing&#41;.</p>
 <h2 id="isnt_vectorized_code_already_fast"><a href="#isnt_vectorized_code_already_fast" class="header-anchor">Isn&#39;t vectorized code already fast?</a></h2>
 <p>To explore this question &#40;also discussed <a href="https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/">in this blog post</a>&#41;, let&#39;s begin by rewriting the code above in a more traditional vectorized style, without so many dots, such as you might use in Julia 0.4 or in other languages &#40;most famously Matlab, Python/Numpy, or R&#41;.</p>
@@ -357,63 +356,43 @@ julia&gt; s .= replace.(lowercase.(s), <span class="hljs-string">r&quot;\s+&quot
 
     
 
-    <!-- http://tutsplus.github.io/clipboard/ -->
+    <!-- Copy-to-clipboard for code blocks -->
 
 <script>
 (function(){
 
-	// Get the elements.
-	// - the 'pre' element.
-	// - the 'div' with the 'paste-content' id.
+	const pre = document.getElementsByTagName('pre');
 
-	var pre = document.getElementsByTagName('pre');
-
-	// Add a copy button in the 'pre' element.
-	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
-
-	for (var i = 0; i < pre.length; i++) {
-		var tag_name = pre[i].children[0].className
-            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
 		if ( isLanguage ) {
-			var button           = document.createElement('button');
-					button.className = 'copy-button';
-					button.textContent = 'Copy';
-
-					pre[i].appendChild(button);
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
 		}
-	};
+	}
 
-	// Run Clipboard
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
 
-	var copyCode = new Clipboard('.copy-button', {
-		target: function(trigger) {
-			return trigger.previousElementSibling;
-    }
-	});
-
-	// On success:
-	// - Change the "Copy" text to "Copied".
-	// - Swap it to "Copy" in 2s.
-	// - Lead user to the "contenteditable" area with Velocity scroll.
-
-	copyCode.on('success', function(event) {
-		event.clearSelection();
-		event.trigger.textContent = 'Copied';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 2000);
-
-	});
-
-	// On error (Safari):
-	// - Change the  "Press Ctrl+C to copy"
-	// - Swap it to "Copy" in 2s.
-
-	copyCode.on('error', function(event) {
-		event.trigger.textContent = 'Press "Ctrl + C" to copy';
-		window.setTimeout(function() {
-			event.trigger.textContent = 'Copy';
-		}, 5000);
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
 	});
 
 })();
@@ -478,8 +457,6 @@ julia&gt; s .= replace.(lowercase.(s), <span class="hljs-string">r&quot;\s+&quot
 </footer>
 
 <script src="/libs/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
-<!--  -->
 
     
   </body>
