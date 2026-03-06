@@ -46,21 +46,17 @@ except for very small arrays where there is a modest overhead (e.g. 50% overhead
 
 In this blog post, we delve into some of the details of this new development, in order to answer questions that often arise when this feature is presented:
 
-@@tight-list
 1. What is the overhead of traditional "vectorized" code?  Isn't vectorized code supposed to be fast already?
 2. Why are all these dots necessary?  Couldn't Julia just optimize "ordinary" vector code?
 3. Is this something unique to Julia, or can other languages do the same thing?
-@@
 
 The short answers are:
 
 <!-- These numbered paragraphs must be soft-wrapped, without CRs  -->
 
-@@tight-list
 1. [Ordinary vectorized code is fast, but not as fast as a hand-written loop](https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/) (assuming loops are efficiently compiled, as in Julia) because each vectorized operation generates a new temporary array and executes a separate loop, leading to a lot of overhead when multiple vectorized operations are combined.
 2. The dots allow Julia to recognize the "vectorized" nature of the operations at a *syntactic* level (before e.g. the type of `x` is known), and hence the loop fusion is a *syntactic guarantee*, not a compiler optimization that may or may not occur for carefully written code.  They also allow the *caller* to "vectorize" *any* function, rather than relying on the function author.  (The `@.` macro lets you add dots to every operation in an expression, improving readability for expressions with lots of dots.)
 3. Other languages have implemented loop fusion for vectorized operations, but typically for only a small set of types and operations/functions that are known to the compiler or vectorization library.  Julia's ability to do it generically, even for *user-defined* array types and functions/operators, is unusual and relies in part on the syntax choices above and on its ability to efficiently compile higher-order functions.
-@@
 
 Finally, we'll review why, since these dots actually correspond to
 `broadcast` operations, they can **combine arrays and scalars, or combine containers

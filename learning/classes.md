@@ -12,16 +12,13 @@ If you know of other classes using Julia for teaching, please consider submittin
 
 ## MOOCs (Massively Online Open Courses)
 
-@@tight-list
 * [Julia Scientific Programming](https://www.coursera.org/learn/julia-programming) online course, (Dr. Juan H Klopper, Dr. Henri Laurie)
 * [MIT's Introduction to Computational Thinking (with Julia)](https://computationalthinking.mit.edu/) online course, (Alan Edelman, David P. Sanders & Charles E. Leiserson)
-@@
 
 ## Active university courses
 
 _Courses currently being offered or offered regularly since 2020._
 
-@@tight-list
 * [Budapest University of Technology and Economics](https://www.bme.hu/)
     * Applications of Differential Equations and Vector Analysis for Engineers II ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
 * [Central European University](https://economics.ceu.edu/)
@@ -197,13 +194,11 @@ _Courses currently being offered or offered regularly since 2020._
     * [XM_40017](https://studiegids.vu.nl/en/2023-2024/courses/XM_40017#/), Programming Large-Scale Parallel Systems (Prof. Dr. Ir. [H.E. Bal](https://research.vu.nl/en/persons/he-bal), Dr. [F. Verdugo Rojano](https://research.vu.nl/en/persons/francesc-verdugo-rojano)), Fall 2023
 * Washington University in St. Louis
     * [Advanced Scientific Computing (Bio5989)](https://github.com/timholy/AdvancedScientificComputing/tree/main) (Prof. [Tim Holy](https://neuroscience.wustl.edu/people/timothy-holy-phd/)), annual. See [videos](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA) and corresponding [branch](https://github.com/timholy/AdvancedScientificComputing/tree/Fall2021) from the Fall 2021 edition of the course.
-@@
 
 ## Historical university courses
 
 _Courses last offered before 2020. These may still contain useful teaching materials._
 
-@@tight-list
 * AGH University of Science and Technology, Poland
     * [Signal processing in medical diagnostic systems](https://web.archive.org/web/20200225113052/http://home.agh.edu.pl:80/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak), Spring 2015
 * Arizona State University
@@ -330,4 +325,3 @@ _Courses last offered before 2020. These may still contain useful teaching mater
     * [Optimization in Machine Learning](https://www.irit.fr/cimi-machine-learning/node/15.html), (Prof. Peter Richtarik), Fall 2015
 * Western University Canada
     * [CS 2101A](https://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza), Fall 2013
-@@

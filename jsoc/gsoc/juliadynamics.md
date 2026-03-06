@@ -20,10 +20,8 @@ We are open to discuss with potential candidate a project description and outlin
 
 Possible features to implement are:
 
-@@tight-list
 - GPU and/or HPC support in Agents.jl by integrating existing ABM packages (Vanaha.jl or CellBasedModels.jl) into Agents.jl API.
 - Differentiation / parameter fitting of ABMs in Agents.jl by utilizing StochasticAD.jl or similar frameworks. 
-@@
 
 **Pre-requisite**: Having already contributed to a Julia package either in JuliaDynamics or of sufficient relevance to JuliaDynamics.
 
@@ -50,11 +48,9 @@ exploration of complex systems.
 
 Here is a list of high-impact, Hard (350 hours) projects that we want to prioritize.
 
-@@tight-list
 - Local and global continuation in dynamical systems combined in one.
   This will be a ground-breaking feature, combining cutting edge research on multistable dynamical systems with the
   established bifurcation-continuation analysis.
-@@
 
 Other than that, we do not outline more possible projects here, and instead we invite interested candidates 
 to explore the documentation and list of open features of any of the subpackages of DynamicalSystems.jl.

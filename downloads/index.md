@@ -35,14 +35,12 @@ If you prefer to use manual installation using a GUI-based installer, see the [M
 
 ## Next steps
 
-@@tight-list
 * Join the [community](/community).
 * Check out the [learning resources](/learning).
 * Set up an [editor](/#editors).
 * Do star us on [GitHub](https://github.com/JuliaLang/julia).
 * If you use Julia in your research, please [cite us](/research/).
 * Do consider [sponsoring](https://github.com/sponsors/julialang) us.
-@@
 
 ## About juliaup
 
