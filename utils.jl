@@ -15,7 +15,7 @@ function hfun_meta()
     title = locvar(:title)
     isnothing(title) && (title = "The Julia Language")
     descr = locvar(:rss_description)
-    isnothing(descr) && (descr = "Official website for the Julia programming language")
+    (isnothing(descr) || isempty(strip(descr))) && (descr = "Official website for the Julia programming language")
     p = "property"
     # Build page URL for og:url
     website_url = strip(globvar(:website_url), '/')
