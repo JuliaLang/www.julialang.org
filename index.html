@@ -46,6 +46,18 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>
+  <script>
+  // Hide previously-dismissed alert immediately to prevent flash (runs before paint)
+  (function() {
+    var p = document.querySelector('#top-alert p');
+    if (!p) return;
+    var key = p.innerHTML.trim();
+    var ts = localStorage.getItem(key);
+    if (ts && (Date.now() - parseInt(ts)) < 3600000) {
+      document.getElementById('top-alert').style.display = 'none';
+    }
+  })();
+  </script>
 
   {{insert navbar.html}}
 
@@ -645,25 +657,11 @@
 <link rel="stylesheet" href="/libs/highlight/github.min.css">
 <script defer src="/libs/highlight/highlight.min.js"></script>
 <script>
-  // Dismiss the top alert if previously dismissed within the last hour.
-  // Uses direct DOM manipulation to work before Bootstrap JS loads (avoids layout shift).
+  // Remember when user dismisses the alert (complements the early-hide script above)
   const topAlert = document.querySelector('#top-alert .alert');
-  const alertText = document.querySelector('#top-alert p').innerHTML.trim();
-  const alertDismissed = localStorage.getItem(alertText);
-  if (alertDismissed) {
-    const dismissedTime = parseInt(alertDismissed);
-    const oneHourInMs = 60 * 60 * 1000;
-    if (Date.now() - dismissedTime < oneHourInMs) {
-      topAlert.style.display = 'none';
-    } else {
-      localStorage.removeItem(alertText);
-    }
-  }
-  // Attach the close listener after Bootstrap JS is available
-  document.addEventListener('DOMContentLoaded', function() {
-    topAlert.addEventListener('close.bs.alert', function () {
-      localStorage.setItem(alertText, Date.now().toString());
-    });
+  topAlert.addEventListener('close.bs.alert', function () {
+    const alertText = document.querySelector('#top-alert p').innerHTML.trim();
+    localStorage.setItem(alertText, Date.now().toString());
   });
 </script>
 <script defer src="/libs/carousel.js"></script>
