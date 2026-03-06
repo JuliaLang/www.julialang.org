@@ -523,15 +523,17 @@ a.header-anchor {
   font-size: 14px;
 }
 
-img.ecosystem-image {
+img.ecosystem-image,
+img.ecosystem-image-tall {
   float: left;
   margin-right: 20px;
+}
+
+img.ecosystem-image {
   width: 400px;
 }
 
 img.ecosystem-image-tall {
-  float: left;
-  margin-right: 20px;
   height: 280px;
 }
 
