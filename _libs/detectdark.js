@@ -17,8 +17,10 @@
     }
 
     function checkScheme() {
-        var isDark = targetNode.getAttribute(darkreaderField) === 'dark' ||
-            window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // Only swap logo when DarkReader is actively injecting a dark theme.
+        // OS prefers-color-scheme alone should not change the logo since
+        // the site handles its own dark mode separately via data-theme.
+        var isDark = targetNode.getAttribute(darkreaderField) === 'dark';
         updateLogo(isDark);
     }
 
@@ -36,7 +38,5 @@
         });
         observer.observe(targetNode, { attributes: true, childList: false, subtree: false });
 
-        // Watch for OS color scheme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', checkScheme);
     });
 })();
