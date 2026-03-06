@@ -15,16 +15,13 @@ function findDiffs() {
     const dir = path.join(resultsDir, entry);
     if (!fs.statSync(dir).isDirectory()) continue;
 
-    const actual = path.join(dir, "actual.png");
-    const expected = path.join(dir, "expected.png");
-    const diff = path.join(dir, "diff.png");
+    const files = fs.readdirSync(dir);
+    const hasActual = files.some((f) => f.endsWith("-actual.png"));
+    const hasExpected = files.some((f) => f.endsWith("-expected.png"));
+    const hasDiff = files.some((f) => f.endsWith("-diff.png"));
 
-    if (fs.existsSync(actual)) {
-      diffs.push({
-        name: entry,
-        hasExpected: fs.existsSync(expected),
-        hasDiff: fs.existsSync(diff),
-      });
+    if (hasActual) {
+      diffs.push({ name: entry, hasExpected, hasDiff });
     }
   }
   return diffs;
