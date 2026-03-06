@@ -1,49 +1,42 @@
-'use strict'
+'use strict';
 
-function add_icon(service, account) {
+function addIcon(service, account) {
     if (service === 'homepage') {
         return `<a id="img-link" href="${account}" target="_blank" rel="noreferrer noopener"><i class="fa fa-globe" aria-hidden="true"></i></a> `;
-    } else {
-        return `<a id="img-link" href="${account}" target="_blank" rel="noreferrer noopener"><i class="fa fa-${service} fa-lg" aria-hidden="true"></i></a> `;
     }
+    return `<a id="img-link" href="${account}" target="_blank" rel="noreferrer noopener"><i class="fa fa-${service} fa-lg" aria-hidden="true"></i></a> `;
 }
 
+function popupText(group) {
+    var s = `<b>${group.name}</b></br>`;
 
-function popup_text(group) {
-    var s = `<b>${group.name}</b></br>`
-
-    if (group.homepage != undefined) {
-        s += add_icon('homepage', group.homepage);
+    if (group.homepage != null) {
+        s += addIcon('homepage', group.homepage);
     }
-
-    if (group.github != undefined) {
-        s += add_icon('github', group.github);
+    if (group.github != null) {
+        s += addIcon('github', group.github);
     }
-
-    if (group.gitlab != undefined) {
-        s += add_icon('gitlab', group.gitlab);
+    if (group.gitlab != null) {
+        s += addIcon('gitlab', group.gitlab);
     }
-
-    if (group.twitter != undefined) {
-        s += add_icon('twitter', group.twitter);
+    if (group.twitter != null) {
+        s += addIcon('twitter', group.twitter);
     }
-
-    if (group.linkedin != undefined) {
-        s += add_icon('linkedin', group.linkedin);
+    if (group.linkedin != null) {
+        s += addIcon('linkedin', group.linkedin);
     }
 
     return s;
 }
 
-function add_marker(markers, group) {
+function addMarker(markers, group) {
     var marker = L.circleMarker([group.lat, group.lon], {
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5,
         radius: 10
     });
-    marker.bindPopup(popup_text(group));
-
+    marker.bindPopup(popupText(group));
     markers.addLayer(marker);
 }
 
@@ -67,7 +60,7 @@ if (document.getElementById('map')) {
     });
 
     for (const group of groups) {
-        add_marker(markers, group);
+        addMarker(markers, group);
     }
 
     map.addLayer(markers);

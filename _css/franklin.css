@@ -1,10 +1,20 @@
 /* correction to the artifacts created via franklin */
 
-.container h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
-    color:black;
+.container h1 > a,
+.container h2 > a,
+.container h3 > a,
+.container h4 > a,
+.container h5 > a,
+.container h6 > a {
+    color: black;
 }
 
-.container h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hover {
+.container h1 > a:hover,
+.container h2 > a:hover,
+.container h3 > a:hover,
+.container h4 > a:hover,
+.container h5 > a:hover,
+.container h6 > a:hover {
     text-decoration: none;
     color: inherit;
 }

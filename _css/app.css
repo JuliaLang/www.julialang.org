@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 #main-menu {
   background-color: #fff !important;
   padding: 0;
@@ -36,6 +40,10 @@ html {
 }
 .navbar-brand img {
   height: 50px;
+  transition: transform 0.3s ease;
+}
+.navbar-brand:hover img {
+  transform: scale(1.05);
 }
 .navbar-right {
   margin-right: 0.25rem;
@@ -45,7 +53,7 @@ html {
     list-style-type: none;
     padding: 4px 4px;
     text-decoration: none;
-    background-color: none;
+    background-color: transparent;
     display: block;
     text-align: left;
 }
@@ -63,14 +71,10 @@ html {
 }
 
 .main-heading {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-weight: 100;
   font-size: 46px;
 }
 .secondary-heading {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 18px;
   margin-bottom: 50px;
@@ -90,8 +94,6 @@ html {
 }
 
 .section-heading .lead {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 28px;
 }
@@ -99,30 +101,26 @@ html {
   margin-bottom: 10px;
 }
 .section-heading h5 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
 }
 
 .feature {
-  /* text-align: center; */
+  padding-bottom: 20px;
 }
 .feature h4 {
   text-align: left;
-  /* border-bottom: 1px solid #4D64AE; */
   padding-bottom: 5px;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-weight: 700;
   color: #4D64AE;
   font-size: 18px;
 }
 .feature p {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-size: 16px;
   text-align: left;
+}
+.feature .outer-link {
+  text-align: center;
 }
 
 .ecosystem {
@@ -140,16 +138,12 @@ html {
 #ecosystem-tab .nav-item a {
   padding: 18px 0;
   border: 0;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-size: 14px;
+  color: #545454;
 }
 #ecosystem-tab .nav-item a.active {
   border-top: 4px solid #CA3C32;
   color: #CA3C32;
-}
-#ecosystem-tab .nav-item a {
-  color: #545454;
 }
 #ecosystem-tab .nav-item a:hover {
   color: #CA3C32;
@@ -161,12 +155,12 @@ html {
 }
 #ecosystem-tab-content div.tab-pane {
   background-color: #fff;
-  /* border-left: 1px solid #ddd; */
   margin-left: -15px;
   margin-right: -15px;
   min-height: 300px;
   margin-bottom: 20px;
-  /* padding: 20px; */
+  padding: 10px;
+  padding-top: 20px;
 }
 .ecosystem hr {
   background-color: #CA3C32;
@@ -181,14 +175,6 @@ html {
   border-bottom: 20px solid #fff;
 }
 
-.feature {
-  padding-bottom: 20px;
-}
-.feature .outer-link {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  text-align: center;
-}
 .ide-feature {
   text-align: center;
 }
@@ -201,10 +187,6 @@ html {
   height: 80px;
 }
 
-.packages {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-}
 .packages.pluto {
   background-color: #faefec;
   border-radius: 0.8em;
@@ -227,13 +209,9 @@ html {
 }
 
 .blog {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   text-align: left;
 }
 .blog h3 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
   margin-bottom: 0;
 }
@@ -255,8 +233,6 @@ html {
 }
 
 .social-network {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-size: 14px;
   background-position: top left;
   background-repeat: no-repeat;
@@ -265,8 +241,6 @@ html {
   border-bottom: 1px solid #ccc;
 }
 .social-network h4 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
 .social-network.discourse {
@@ -349,6 +323,7 @@ html {
   overflow: visible;
   margin-bottom: 2rem;
   background: #1a1a1a;
+  /* 16:9 aspect ratio */
   padding-bottom: 56.25%;
   height: 0;
 }
@@ -408,11 +383,6 @@ html {
   }
 }
 
-.btn {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-}
-
 .btn-outline-primary {
 	color: #0072ee;
 }
@@ -465,7 +435,6 @@ html {
 
 h4.card-title {
 	margin: 0;
-	font-family: "Roboto";
 	font-size: 1rem;
 }
 
@@ -475,13 +444,10 @@ h4.card-title {
 
 .tab-title {
   background-color: #CA3C32;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-size: 16px;
   padding: 18px 20px;
   border: 0;
   font-weight: 400;
-  /* border-top: 4px solid #CA3C32; */
   color: #fff;
 }
 
@@ -543,11 +509,6 @@ a.header-anchor {
 
 .link {
   color: #4D64AE;
-}
-
-#ecosystem-tab-content div.tab-pane {
-  padding: 10px;
-  padding-top: 20px;
 }
 
 #ecosystem-tab-content div.tab-pane h4 {
@@ -613,26 +574,18 @@ img {
 }
 
 h1 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 36px;
 }
 h2 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 32px;
 }
 h3 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 24px;
 }
 h4 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-size: 20px;
 }
 
@@ -640,9 +593,14 @@ a {
 	color: #005bc0;
 }
 
-
-table th {
-  background-color: #eee;
+/* Remove dead table th rule — overridden by the more specific rule below */
+table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    text-transform: none;
+    background-color: #777;
+    color: white;
+    text-align: left;
 }
 
 blockquote {
@@ -745,6 +703,7 @@ pre {
   overflow: auto;
   direction: ltr;
   border-radius: 5px;
+  position: relative;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -754,14 +713,11 @@ pre {
 	}
 }
 
-
 @media (max-width: 575px) {
 	.main-heading {
 		font-size: 36px;
 	}
 }
-
-
 
 caption {
     padding-top: 8px;
@@ -785,17 +741,10 @@ table > thead > tr > td,
 table > tbody > tr > td,
 table > tfoot > tr > td {
     padding: 8px;
-    line-height: 1.42857143;
+    /* 10/7 ≈ 1.42857143 */
+    line-height: 1.43;
     vertical-align: top;
     border-top: 1px solid #ddd;
-}
-table > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #ddd;
-    text-transform: none;
-    background-color: #777;
-    color: white;
-    text-align: left;
 }
 table > caption + thead > tr:first-child > th,
 table > colgroup + thead > tr:first-child > th,
@@ -841,13 +790,7 @@ table tr td {
   	border-radius:40px;
   	text-align:center;
   	box-shadow: 2px 2px 3px #999;
-
   }
-}
-
-pre {
-	position: relative;
-	/* padding: 30px; */
 }
 
 .copy-button {
@@ -900,10 +843,6 @@ pre {
 }
 
 pre .cmdprompt-block::before {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
   user-select: none;
   content: ">";
   margin-right: 10px;
@@ -911,16 +850,13 @@ pre .cmdprompt-block::before {
   color: rgb(127, 127, 127);
 }
 pre .bash-block::before {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
   user-select: none;
   content: "$";
   margin-right: 10px;
   margin-left: 5px;
   color: rgb(127, 127, 127);
 }
+
 .navbar {
   padding: 1rem 0;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
@@ -954,14 +890,6 @@ pre .bash-block::before {
 .nav-link:focus-visible::after {
   width: 100%;
   left: 0;
-}
-
-.navbar-brand img {
-  transition: transform 0.3s ease;
-}
-
-.navbar-brand:hover img {
-  transform: scale(1.05);
 }
 
 /* Code Carousel */

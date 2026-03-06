@@ -1,38 +1,42 @@
-var targetNode = document.documentElement;
-var config = { attributes: true, childList: false, subtree: false };
-var darkreader_field = 'data-darkreader-scheme';
-function changeFilePath(originalPath, newFileName) {
-    const pathArray = originalPath.split('/');
-    const fileNameIndex = pathArray.length - 1;
-    pathArray[fileNameIndex] = newFileName;
-    const modifiedPath = pathArray.join('/');
-    return modifiedPath;
-}
-function check_scheme() {
-    if (targetNode.getAttribute(darkreader_field) == 'dark') {
-        console.log("darkreader dark mode detected");
-        var julialogo = "logo-dark.svg";
-    } else {
-        console.log("darkreader non-dark mode detected");
-        var julialogo = "logo.svg";
-    }
-    var imgElements = document.getElementsByClassName('navbarjulialogo');
-    for (var i = 0; i < imgElements.length; i++) {
-        imgElements[i].src = changeFilePath(imgElements[i].src, julialogo);
-    }
-}
+(function () {
+    var targetNode = document.documentElement;
+    var darkreaderField = 'data-darkreader-scheme';
 
-// Callback function to execute when mutations are observed
-var callback = function (mutationsList, observer) {
-    for (var mutation of mutationsList) {
-        if (mutation.type === 'attributes' && mutation.attributeName === darkreader_field) {
-            check_scheme();
+    function changeFilePath(originalPath, newFileName) {
+        var pathArray = originalPath.split('/');
+        pathArray[pathArray.length - 1] = newFileName;
+        return pathArray.join('/');
+    }
+
+    function updateLogo(isDark) {
+        var julialogo = isDark ? 'logo-dark.svg' : 'logo.svg';
+        var imgElements = document.getElementsByClassName('navbarjulialogo');
+        for (var i = 0; i < imgElements.length; i++) {
+            imgElements[i].src = changeFilePath(imgElements[i].src, julialogo);
         }
     }
-};
 
-document.addEventListener("DOMContentLoaded", function () {
-    check_scheme();
-    var observer = new MutationObserver(callback);
-    observer.observe(targetNode, config);
-});
+    function checkScheme() {
+        var isDark = targetNode.getAttribute(darkreaderField) === 'dark' ||
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+        updateLogo(isDark);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        checkScheme();
+
+        // Watch for DarkReader attribute changes
+        var observer = new MutationObserver(function (mutationsList) {
+            for (var i = 0; i < mutationsList.length; i++) {
+                if (mutationsList[i].type === 'attributes' &&
+                    mutationsList[i].attributeName === darkreaderField) {
+                    checkScheme();
+                }
+            }
+        });
+        observer.observe(targetNode, { attributes: true, childList: false, subtree: false });
+
+        // Watch for OS color scheme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', checkScheme);
+    });
+})();
