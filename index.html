@@ -22,9 +22,7 @@
         </span>
       </p>
 
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>
 
@@ -34,7 +32,7 @@
        Splash: THE JULIA PROGRAMMING LANGUAGE
   -->
   <div class="container">
-    <div class="jumbotron page-heading">
+    <div class="page-heading">
       <h1 class="main-heading">
         The Julia Programming Language
       </h1>
@@ -44,7 +42,7 @@
       <a class="btn btn-primary btn-lg" href="https://docs.julialang.org" role="button">Docs</a>
       &nbsp;
       <a class="btn btn-primary btn-lg" href="https://julialang.org/community/" role="button">Community</a>
-      <span class="btn float-md-right">
+      <span class="btn float-md-end">
         <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
       </span>
       </p>
@@ -129,27 +127,27 @@
         <ul class="nav nav-tabs nav-justified" id="ecosystem-tab" role="tablist">
           <!-- Tab 1 -->
           <li class="nav-item">
-            <a class="nav-link active" id="viz-tab" data-toggle="tab" href="#tab-viz" role="tab" aria-controls="tab-viz" aria-selected="true">Visualization</a>
+            <a class="nav-link active" id="viz-tab" data-bs-toggle="tab" href="#tab-viz" role="tab" aria-controls="tab-viz" aria-selected="true">Visualization</a>
           </li>
           <!-- Tab 2 -->
           <li class="nav-item">
-            <a class="nav-link" id="general-tab" data-toggle="tab" href="#tab-general" role="tab" aria-controls="tab-general" aria-selected="false">General Purpose</a>
+            <a class="nav-link" id="general-tab" data-bs-toggle="tab" href="#tab-general" role="tab" aria-controls="tab-general" aria-selected="false">General Purpose</a>
           </li>
           <!-- Tab 3 -->
           <li class="nav-item">
-            <a class="nav-link" id="ds-tab" data-toggle="tab" href="#tab-ds" role="tab" aria-controls="tab-ds" aria-selected="false">Data Science</a>
+            <a class="nav-link" id="ds-tab" data-bs-toggle="tab" href="#tab-ds" role="tab" aria-controls="tab-ds" aria-selected="false">Data Science</a>
           </li>
           <!-- Tab 4 -->
           <li class="nav-item">
-            <a class="nav-link" id="math-tab" data-toggle="tab" href="#tab-math" role="tab" aria-controls="tab-math" aria-selected="false">Machine Learning</a>
+            <a class="nav-link" id="math-tab" data-bs-toggle="tab" href="#tab-math" role="tab" aria-controls="tab-math" aria-selected="false">Machine Learning</a>
           </li>
           <!-- Tab 5 -->
           <li class="nav-item">
-            <a class="nav-link" id="sci-tab" data-toggle="tab" href="#tab-sci" role="tab" aria-controls="tab-sci" aria-selected="false">Scientific Domains</a>
+            <a class="nav-link" id="sci-tab" data-bs-toggle="tab" href="#tab-sci" role="tab" aria-controls="tab-sci" aria-selected="false">Scientific Domains</a>
           </li>
           <!-- Tab 6 -->
           <li class="nav-item">
-            <a class="nav-link" id="computing-tab" data-toggle="tab" href="#tab-computing" role="tab" aria-controls="tab-computing" aria-selected="false">Parallel Computing</a>
+            <a class="nav-link" id="computing-tab" data-bs-toggle="tab" href="#tab-computing" role="tab" aria-controls="tab-computing" aria-selected="false">Parallel Computing</a>
           </li>
         </ul>
       </div>
@@ -298,7 +296,7 @@
     <div class="row justify-content-center">
        <div class="col-lg-8 col-md-10 video">
         <p class="text-center juliacon-description">Watch talks from JuliaCon 2025, featuring the latest developments, optimizations, and innovations from the Julia community.</p>
-        <div class="embed-responsive embed-responsive-16by9 video-container"><div id="player"></div></div>
+        <div class="ratio ratio-16x9 video-container"><div id="player"></div></div>
         <script>
           var tag = document.createElement('script');
           tag.src = "https://www.youtube.com/iframe_api";
@@ -632,19 +630,20 @@
 <link rel="stylesheet" href="/libs/highlight/github.min.css">
 <script src="/libs/highlight/highlight.min.js"></script>
 <script>
-  $topAlert = $('#top-alert .alert');
-  const alertText = $('#top-alert p').html().trim();
+  const topAlert = document.querySelector('#top-alert .alert');
+  const alertText = document.querySelector('#top-alert p').innerHTML.trim();
   const alertDismissed = localStorage.getItem(alertText);
   if (alertDismissed) {
     const dismissedTime = parseInt(alertDismissed);
     const oneHourInMs = 60 * 60 * 1000;
     if (Date.now() - dismissedTime < oneHourInMs) {
-      $topAlert.alert('close');
+      const bsAlert = bootstrap.Alert.getOrCreateInstance(topAlert);
+      bsAlert.close();
     } else {
       localStorage.removeItem(alertText);
     }
   }
-  $topAlert.on('close.bs.alert', function () {
+  topAlert.addEventListener('close.bs.alert', function () {
     localStorage.setItem(alertText, Date.now().toString());
   });
 </script>
