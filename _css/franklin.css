@@ -122,6 +122,10 @@
 .hljs-string {color: #ca4418;}
 .hljs-subst { color: inherit;}
 
+[data-theme="dark"] .hljs-metaj { color: rgb(80, 220, 100); }
+[data-theme="dark"] .hljs-metas { color: #ff6b6b; }
+[data-theme="dark"] .hljs-metap { color: rgb(100, 170, 255); }
+
 .admonition {
     background-color: #b5b5b5;
     border-style: solid;

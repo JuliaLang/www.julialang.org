@@ -15,32 +15,11 @@
   {{isdef title}} <title>{{fill title}}</title>   {{end}}
 
   {{ispage /blog/* /jsoc/gsoc/* /contribute/* /downloads/* /community/* /about/*}}
-  <style>
-	  .container ul li p {margin-bottom: 0;}
-		.container ol li p {margin-bottom: 0;}
-		.container ul ul {margin: .4em 0 .4em 0;}
-		.container ul ol {margin: .4em 0 .4em 0;}
-		.container ol ul {margin: .4em 0 .4em 0;}
-		.container ol ol {margin: .4em 0 .4em 0;}
-  </style>
+  <link rel="stylesheet" href="/css/container-lists.css">
   {{end}}
 
-  <!-- Specific style for blog pages (except the /blob/index) -->
   {{ispage /blog/*}}{{isnotpage /blog/index}}
-  <style>
-    .main { font-family: Georgia; }
-    .main pre {
-  	  margin-left: auto;
-  	  margin-right: auto;
-    }
-    .main { width: 100%; font-size: 100%; }
-    .main code { font-size: 90%; }
-    .main pre code { font-size: 90%; }
-    @media (min-width: 940px) {
-      .main { max-width: 800px; margin-left: auto; margin-right: auto; }
-      .blog-title { max-width: 800px; margin-left: auto; margin-right: auto; }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/blog-post.css">
   {{end}}{{end}}
 
   <!-- OGP Metadata -->
