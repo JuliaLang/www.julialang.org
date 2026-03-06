@@ -15,13 +15,18 @@ function hfun_meta()
     title = locvar(:title)
     isnothing(title) && (title = "The Julia Language")
     descr = locvar(:rss_description)
-    isnothing(descr) && (descr = "Official website for the Julia programming language")
+    (isnothing(descr) || isempty(strip(descr))) && (descr = "Official website for the Julia programming language")
     p = "property"
+    # Build page URL for og:url
+    website_url = strip(globvar(:website_url), '/')
+    page_rpath = locvar(:fd_rpath)
+    page_url = isnothing(page_rpath) ? website_url : "$website_url/$(replace(page_rpath, r"\.md$" => "/"))"
     # default og properties, can be overwritten by the user
     ogdflt = (
         title = (p, "og:title", title),
         descr = (p, "og:description", descr),
         image = (p, "og:image", "/assets/images/julia-open-graph.png"),
+        url   = (p, "og:url", page_url),
         )
     # check what the user has provided (if anything) use defaults otherwise
     meta = locvar(:meta)
