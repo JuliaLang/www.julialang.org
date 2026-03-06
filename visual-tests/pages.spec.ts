@@ -22,9 +22,6 @@ const PAGES: { name: string; path: string }[] = [
 ];
 
 async function prepareForScreenshot(page: Page) {
-  // Wait for images/fonts to finish loading
-  await page.waitForLoadState("networkidle");
-
   // Disable CSS animations/transitions to avoid flaky diffs
   await page.addStyleTag({
     content: `
@@ -39,12 +36,12 @@ async function prepareForScreenshot(page: Page) {
   });
 
   // Give the browser a frame to apply the above overrides
-  await page.waitForTimeout(200);
+  await page.waitForTimeout(500);
 }
 
 for (const { name, path } of PAGES) {
   test(`${name} visual snapshot`, async ({ page }) => {
-    await page.goto(path, { waitUntil: "networkidle" });
+    await page.goto(path, { waitUntil: "load" });
     await prepareForScreenshot(page);
 
     await expect(page).toHaveScreenshot(`${name}.png`, {

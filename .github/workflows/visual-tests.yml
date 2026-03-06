@@ -47,6 +47,13 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm exec playwright install --with-deps chromium
 
+      - name: Precompile Julia packages
+        run: |
+          julia --color=yes --project -e '
+              using Pkg; Pkg.instantiate();
+              using NodeJS; run(`$(npm_cmd()) install highlight.js`);
+              using Franklin'
+
       - name: Save visual-tests and remove from workspace
         run: |
           cp -r visual-tests /tmp/visual-tests
@@ -60,7 +67,6 @@ jobs:
       - name: Build baseline site (main)
         run: |
           julia --color=yes --project -e '
-              using Pkg; Pkg.instantiate();
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin;
               Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
@@ -91,7 +97,6 @@ jobs:
       - name: Build PR site
         run: |
           julia --color=yes --project -e '
-              using Pkg; Pkg.instantiate();
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin;
               Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
