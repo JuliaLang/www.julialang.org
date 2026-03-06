@@ -10,7 +10,6 @@ Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Ste
 
 Researchers contributing to Julia have been awarded various prizes:
 
-@@tight-list
 * [2025: Julia Community Prizes](https://juliacon.org/2025/prize/): Claire Foster and Stefan Krastanov
 * [2024: Julia Community Prizes](https://juliacon.org/2024/prize/): Guillaume Dalle, the Makie team (Simon Danisch, Julius Krumbiegel, Frederic Freyer, & Anshul Singhvi) and the JuMP team (Oscar Dowson, Benoît Legat, & Miles Lubin)
 * [2023: Julia Community Prizes](https://juliacon.org/2023/prize/): Valentin Churavy, William Moses, Ian Butterworth, Kristoffer Carlsson, and Yingbo Ma
@@ -28,7 +27,6 @@ Researchers contributing to Julia have been awarded various prizes:
 * [2018: Best of Open Source Software (Bossie) Award](https://globenewswire.com/news-release/2018/09/26/1576496/0/en/InfoWorld-Recognizes-Open-Source-Software-Technologies-Driving-Business-Innovation.html): The Julia project
 * [2016: INFORMS Computing Society Prize](https://connect.informs.org/computing/awards/ics-prize): Miles Lubin, Iain Dunning, and Joey Huchette for JuMP.jl
 * [2015: IEEE-CS Charles Babbage Award](https://www.computer.org/web/awards/charles-babbage): Alan Edelman
-@@
 
 ## Publications
 

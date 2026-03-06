@@ -30,12 +30,15 @@
   <!-- Don't delete this alert when hiding it. Comment it out so it can be re-enabled easily. -->
   <div class="container-fluid" id="top-alert">
     <div class="alert alert-dark alert-dismissible mb-0" role="alert">
-      <img src="/assets/infra/world_map.png" alt="" class="world-map-bg" aria-hidden="true">
+      <picture>
+        <source srcset="/assets/infra/world_map.webp" type="image/webp">
+        <img src="/assets/infra/world_map.png" alt="" class="world-map-bg" aria-hidden="true">
+      </picture>
 
-      <p class="text-center" style="margin-bottom: 0; line-height: 1.6;">
+      <p class="text-center">
         <img src="/assets/infra/juliacon_logo.svg" alt="JuliaCon" class="juliacon-logo">
-        <span style="font-size: 15px;">
-          <a href="https://juliacon.org/2026" style="font-weight: 600;">JuliaCon Global 2026</a> is happening this year — visit <a href="https://juliacon.org/2026">juliacon.org/2026</a> for details.
+        <span class="alert-text">
+          <a href="https://juliacon.org/2026">JuliaCon Global 2026</a> is happening this year — visit <a href="https://juliacon.org/2026">juliacon.org/2026</a> for details.
           <a href="#juliacon-videos" class="watch-videos-link">Watch JuliaCon 2025 <span class="arrow-down">↓</span></a>
         </span>
       </p>
@@ -174,7 +177,10 @@
       <div class="tab-content" id="ecosystem-tab-content">
         <div class="tab-pane" id="tab-general" role="tabpanel" aria-labelledby="general-tab">
           <h3 class="tab-title">General Computing</h3>
-          <img src="/assets/infra/minesweeper.png" class="pb-2 ecosystem-image" style="height: 280px" alt="minesweeper gameover" loading="lazy" />
+          <picture>
+            <source srcset="/assets/infra/minesweeper.webp" type="image/webp">
+            <img src="/assets/infra/minesweeper.png" class="pb-2 ecosystem-image-tall" alt="minesweeper gameover" loading="lazy">
+          </picture>
           <div class="container-fluid">
             <h4>Build, Deploy or Embed Your Code</h4>
             <p>
@@ -199,7 +205,10 @@
           <h3 class="tab-title">Parallel Computing</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="/assets/infra/parallel-prefix.png" class="pb-2 ecosystem-image" style="height: 280px" alt="parallel prefix graphical result" loading="lazy" />
+              <picture>
+                <source srcset="/assets/infra/parallel-prefix.webp" type="image/webp">
+                <img src="/assets/infra/parallel-prefix.png" class="pb-2 ecosystem-image-tall" alt="parallel prefix graphical result" loading="lazy">
+              </picture>
               <div class="container-fluid">
                 <h4>
                   Parallel and Heterogeneous Computing
@@ -225,7 +234,10 @@
           <h3 class="tab-title">Machine Learning</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="/assets/infra/cartpole.gif" class="pb-2 ecosystem-image" style="width: 400px; height: 267px" alt="cartpole reinforcement learning problem visualization" loading="lazy" />
+              <picture>
+                <source srcset="/assets/infra/cartpole.webp" type="image/webp">
+                <img src="/assets/infra/cartpole.gif" class="pb-2 ecosystem-image" alt="cartpole reinforcement learning problem visualization" loading="lazy">
+              </picture>
               <div class="container">
                 <h4>
                   Scalable Machine Learning
@@ -247,7 +259,7 @@
           <h3 class="tab-title">Scientific Computing</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="/assets/infra/lorenz.gif" class="pb-2 ecosystem-image" style="width: 400px;" alt="Lorenz Attractor visualization" loading="lazy" />
+              <img src="/assets/infra/lorenz.gif" class="pb-2 ecosystem-image" alt="Lorenz Attractor visualization" loading="lazy" />
               <div class="container">
                 <h4>
                   Rich Ecosystem for Scientific Computing
@@ -265,7 +277,10 @@
           <h3 class="tab-title">Data Science</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="/assets/infra/onlinestats.gif" class="pb-2 ecosystem-image" style="width: 400px;" alt="Visualization of weighted data changing as more data is plotted" loading="lazy" />
+              <picture>
+                <source srcset="/assets/infra/onlinestats.webp" type="image/webp">
+                <img src="/assets/infra/onlinestats.gif" class="pb-2 ecosystem-image" alt="Visualization of weighted data changing as more data is plotted" loading="lazy">
+              </picture>
               <div class="container">
                 <h4>Interact with your Data</h4>
                 <p>The Julia data ecosystem provides <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> to work with datasets, and perform common data manipulations. <a href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> is a fast multi-threaded package to read CSV files and integration with the Arrow ecosystem is in the works with <a href="https://github.com/apache/arrow-julia">Arrow.jl</a>. Online computations on streaming data can be performed with <a href = "https://github.com/joshday/OnlineStats.jl">OnlineStats.jl</a>.
@@ -282,7 +297,10 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="container">
-                <img src="/assets/infra/waves.gif" class="pb-2 ecosystem-image" style="width: 400px;" alt="Visualization of waves in 3D, as a heatmap, and on the x y axis" loading="lazy" />
+                <picture>
+                  <source srcset="/assets/infra/waves.webp" type="image/webp">
+                  <img src="/assets/infra/waves.gif" class="pb-2 ecosystem-image" alt="Visualization of waves in 3D, as a heatmap, and on the x y axis" loading="lazy">
+                </picture>
                 <h4>Data Visualization and Plotting</h4>
                 <p>Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static and dynamic interface. Some packages make a display and never change it, while others make updates in real-time.</p>
                 <p><a href="https://github.com/MakieOrg/Makie.jl">Makie.jl</a> is a sophisticated package for complex graphics and animations. <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="https://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a> and <a href="https://github.com/JuliaPlots/PlotlyJS.jl">PlotlyJS.jl</a>. Users who are used to "grammar of graphics" plotting APIs should take a look at <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a>. For those who do not wish to leave the comfort of the terminal, there is also <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
@@ -301,7 +319,10 @@
        Containers: JULIA CON 2025
   -->
   <div class="container juliacon-section" id="juliacon-videos">
-    <img src="/assets/infra/world_map.png" alt="" class="juliacon-world-map" aria-hidden="true" loading="lazy">
+    <picture>
+      <source srcset="/assets/infra/world_map.webp" type="image/webp">
+      <img src="/assets/infra/world_map.png" alt="" class="juliacon-world-map" aria-hidden="true" loading="lazy">
+    </picture>
     <br><br>
     <div class="row">
       <div class="col-lg-4 col-md-3 language-features "><hr/></div>
@@ -352,7 +373,7 @@
       <br><br>
 
       <div class="row">
-        <div class="col-12" style="text-align: center">
+        <div class="col-12" class="text-center">
           <a class="btn btn-sm btn-outline-danger" href="https://juliahub.com/ui/Packages">JuliaHub: Package Search</a>
           <a class="btn btn-sm btn-outline-danger" href="https://juliapackages.com/trending">JuliaPackages: Trending</a>
           <a class="btn btn-sm btn-outline-danger" href="https://julialang.zulipchat.com/#narrow/stream/299184-new-packages-feed">Feed of new Julia packages</a>
@@ -389,7 +410,7 @@
     <br>
 
     <div class="row">
-      <div class="col-12" style="text-align: center">
+      <div class="col-12" class="text-center">
         <a class="btn btn-sm btn-outline-primary" href="/blog/">Visit Blog</a>
 
       </div>
@@ -407,7 +428,7 @@
     <br><br>
 
     <!-- Talk to us -->
-    <div class="container" style="max-width:1140px;">
+    <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
         <div class="col-lg-4 col-md-6 ecosystem section-heading">
@@ -421,33 +442,33 @@
 
     <!-- Row Discourse-Github-Slack-Zulip -->
     <div class="row">
-      <div class="col-lg-3 col-md-6" style="text-align:center;">
+      <div class="col-lg-3 col-md-6" class="text-center">
         <h3>Discourse</h3>
-		    <a href="https://discourse.julialang.org/" target="_blank">
+		    <a href="https://discourse.julialang.org/" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/discourse.svg" height="85" width="85" alt="Discourse Logo" loading="lazy" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://discourse.julialang.org/" target="_blank">Discourse</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" style="text-align:center;">
+      <div class="col-lg-3 col-md-6" class="text-center">
         <h3>GitHub</h3>
-	    	<a href="https://github.com/JuliaLang/julia" target="_blank">
+	    	<a href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/github.svg" height="85" width="85" alt="GitHub Logo" loading="lazy" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://github.com/JuliaLang/julia" target="_blank">Source code</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" style="text-align:center">
+      <div class="col-lg-3 col-md-6" class="text-center">
         <h3>Zulip</h3>
-	    	<a href="https://julialang.zulipchat.com/" target="_blank">
+	    	<a href="https://julialang.zulipchat.com/" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/zulip.svg" height="85" width="85" alt="Zulip Logo" loading="lazy" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://julialang.zulipchat.com/" target="_blank">Zulip</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" style="text-align:center;">
+      <div class="col-lg-3 col-md-6" class="text-center">
         <h3>Slack</h3>
-		    <a href="https://julialang.org/slack/" target="_blank">
+		    <a href="https://julialang.org/slack/" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/slack.png" height="85" width="85" alt="Slack Logo" loading="lazy" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://julialang.org/slack/" target="_blank">Slack</a>
@@ -457,25 +478,25 @@
 
     <!-- Row -Twitter-Videos-LinkedIn-Twitch -->
     <div class="row">
-      <div class="col-lg-3 col-md-6" style="text-align:center">
+      <div class="col-lg-3 col-md-6" class="text-center">
         <h3>Twitter</h3>
-		    <a href="https://twitter.com/JuliaLanguage" target="_blank">
+		    <a href="https://twitter.com/JuliaLanguage" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/twitter.svg" height="85" width="85" alt="Twitter Logo" loading="lazy" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://twitter.com/JuliaLanguage" target="_blank">#JuliaLang</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" style="text-align:center">
+      <div class="col-lg-3 col-md-6" class="text-center">
         <h3>Videos</h3>
-		    <a href="https://www.youtube.com/user/JuliaLanguage" target="_blank">
+		    <a href="https://www.youtube.com/user/JuliaLanguage" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/youtube.svg" height="85" width="85" alt="YouTube Logo" loading="lazy" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://www.youtube.com/user/JuliaLanguage" target="_blank">YouTube</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" style="text-align:center;">
+      <div class="col-lg-3 col-md-6" class="text-center">
         <h3>LinkedIn</h3>
-		    <a href="https://www.linkedin.com/company/the-julia-language" target="_blank">
+		    <a href="https://www.linkedin.com/company/the-julia-language" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/linkedin.png" height="85" width="85" alt="LinkedIn Logo" loading="lazy" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://www.linkedin.com/company/the-julia-language" target="_blank">LinkedIn</a>
@@ -507,7 +528,7 @@
       <div class="row ides">
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>VS Code</h3>
-		  	<a href="https://www.julia-vscode.org/" target="_blank">
+		  	<a href="https://www.julia-vscode.org/" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/vscode.png" height="85" width="85" alt="VSCode Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://www.julia-vscode.org/" target="_blank">VS Code Extension</a>
@@ -515,7 +536,7 @@
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>Jupyter</h3>
-		  	<a href="https://github.com/JuliaLang/IJulia.jl" target="_blank">
+		  	<a href="https://github.com/JuliaLang/IJulia.jl" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/jupyter.svg" height="85" width="85" alt="Jupyter Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://github.com/JuliaLang/IJulia.jl" target="_blank">Jupyter kernel</a>
@@ -523,7 +544,7 @@
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>Pluto.jl</h3>
-		  	<a href="https://plutojl.org/" target="_blank">
+		  	<a href="https://plutojl.org/" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/pluto_jl.svg" height="85" width="85" alt="Pluto.jl Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://plutojl.org/" target="_blank">Simple reactive notebooks</a>
@@ -531,7 +552,7 @@
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>Vim</h3>
-		  	<a href="https://github.com/JuliaEditorSupport/julia-vim" target="_blank">
+		  	<a href="https://github.com/JuliaEditorSupport/julia-vim" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/vim.png" height="85" width="85" alt="Vim Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-vim" target="_blank">Vim plugin</a>
@@ -539,7 +560,7 @@
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>Emacs</h3>
-		  	<a href="https://github.com/JuliaEditorSupport/julia-emacs" target="_blank">
+		  	<a href="https://github.com/JuliaEditorSupport/julia-emacs" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/emacs.png" height="85" width="85" alt="Emacs Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-emacs" target="_blank">Emacs plugin</a>
@@ -547,7 +568,7 @@
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>Zed</h3>
-        <a href="https://github.com/JuliaEditorSupport/zed-julia" target="_blank">
+        <a href="https://github.com/JuliaEditorSupport/zed-julia" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/zed.png" height="85" width="85" alt="Zed Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://github.com/JuliaEditorSupport/zed-julia" target="_blank">Zed Extension</a>
@@ -575,7 +596,7 @@
       <div class="row ides">
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>Debugger</h3>
-		  	<a href="https://github.com/JuliaDebug/Debugger.jl" target="_blank">
+		  	<a href="https://github.com/JuliaDebug/Debugger.jl" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/Debug.png" height="85" width="85" alt="Debugger" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://github.com/JuliaDebug/Debugger.jl" target="_blank">Debugger.jl</a>
@@ -583,7 +604,7 @@
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>Profiler</h3>
-		  	<a href="https://docs.julialang.org/en/v1/manual/profile/" target="_blank">
+		  	<a href="https://docs.julialang.org/en/v1/manual/profile/" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/profile.png" height="85" width="85" alt="Profiler Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://docs.julialang.org/en/v1/manual/profile/" target="_blank">Profile (Stdlib)</a>
@@ -591,7 +612,7 @@
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>Revise</h3>
-		  	<a href="https://github.com/timholy/Revise.jl" target="_blank">
+		  	<a href="https://github.com/timholy/Revise.jl" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/revise.png" height="85" width="85" alt="Revise Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://github.com/timholy/Revise.jl" target="_blank">Revise.jl</a>
@@ -599,7 +620,7 @@
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>GPUs</h3>
-		  	<a href="https://juliagpu.org/" target="_blank">
+		  	<a href="https://juliagpu.org/" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/gpu.png" height="85" width="85" alt="Julia GPU Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://juliagpu.org/" target="_blank">JuliaGPU</a>
@@ -607,7 +628,7 @@
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>Benchmarking</h3>
-		  	<a href="https://github.com/JuliaCI/BenchmarkTools.jl" target="_blank">
+		  	<a href="https://github.com/JuliaCI/BenchmarkTools.jl" target="_blank" rel="noopener noreferrer">
             <img src="/assets/infra/benchmarktools.png" height="85" width="85" alt="BenchmarkTools Logo" loading="lazy" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://github.com/JuliaCI/BenchmarkTools.jl" target="_blank">BenchmarkTools.jl</a>

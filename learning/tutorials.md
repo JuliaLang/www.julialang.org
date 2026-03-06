@@ -4,7 +4,6 @@ Have a Julia tutorial you want added to this list? Please [submit a pull request
 
 ### Getting Started
 
-@@tight-list
 * [ThinkJulia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html). A comprehensive introduction to programming using Julia.
 * [From zero to Julia!](https://techytok.com/from-zero-to-julia/) by [Aurelio Amerio](https://github.com/aurelio-amerio). An expanding series of short tutorials about Julia, starting from the beginner level and going up to deal with the more advanced topics.
 * [The Julia Express](https://github.com/bkamins/The-Julia-Express) by [Bogumił Kamiński](https://bogumilkaminski.pl). A concise Julia cheatsheet for experienced programmers.
@@ -13,28 +12,21 @@ Have a Julia tutorial you want added to this list? Please [submit a pull request
 * [Julia Programming Tutorial For Beginners](https://www.datacamp.com/tutorial/julia-programming-tutorial-for-beginners) by Bekhruz Tuychiev (DataCamp).
 * [Zero2Hero intensive workshop](https://www.youtube.com/watch?v=Fi7Pf2NveH0) by [George Datseris](https://github.com/Datseris). An intensive video workshop targeting an audience familiar with programming that wants to transition to Julia.
 * [Basics of Projects Example](https://github.com/robbyriverside/ModulePlay) by Rob Farrow. Fast start for using Julia Project and associated tools.
-@@
 
 ### Science & Engineering
 
-@@tight-list
 * [Introduction to Julia for mathematics undergraduates](https://sje30.github.io/catam-julia/). An introduction to Julia, with case studies, suitable for undergraduate students with a mathematics background.
 * [Julia Programming: A Hands-On Tutorial](https://www.matecdev.com/posts/julia-tutorial-science-engineering.html), and [Numerical Computing in Julia](https://www.matecdev.com/posts/julia-numerical-computing.html) by [Martín D. Maas](https://github.com/mdmaas). Introductory material about Julia, focusing on its use in Science and Engineering.
 * [Julia Workshop for Physicists](https://github.com/crstnbr/JuliaOulu20) by [Carsten Bauer](https://github.com/crstnbr) (see also [JuliaWorkshop19](https://github.com/crstnbr/JuliaWorkshop19)).
 * [Practical introduction to Julia for modelling and data analysis in biodiversity and earth sciences](https://github.com/vboussange/WSLJuliaWorkshop2023) by [Victor Boussange](https://vboussange.github.io) and [Mauro Werder](https://maurow.bitbucket.io).
-@@
 
 ### Data Science & Economics
 
-@@tight-list
 * [A Deep Introduction to Julia for Data Science and Scientific Computing](https://ucidatascienceinitiative.github.io/IntroToJulia/) by [Chris Rackauckas](https://chrisrackauckas.com/)
 * [Programming in Julia (Quantitative Economics)](https://julia.quantecon.org/) - by [Jesse Perla](http://jesseperla.com), [Thomas J. Sargent](http://www.tomsargent.com), and [John Stachurski](https://johnstachurski.net). Along with being a complete textbook with Julia code for macroeconomics, this also is a very good introduction to Julia.
 * [A Comprehensive Tutorial to Learn Data Science with Julia from Scratch](https://www.analyticsvidhya.com/blog/2017/10/comprehensive-tutorial-learn-data-science-julia-from-scratch/) by [Mohd Sanad Zaki Rizvi](https://www.analyticsvidhya.com/blog/author/mohdsanadzakirizvigmail-com/)
-@@
 
 ### Non-English Tutorials
 
-@@tight-list
 * [Programación básica en Julia](https://hedero.webs.upv.es/julia-basico/) and [Claves para programar en Julia](https://hedero.webs.upv.es/julia-claves/) by Helios De Rosario. Two guides in Spanish to get started on Julia.
 * [Grundlagen der Programmiersprache Julia](http://dx.doi.org/10.13140/RG.2.2.26626.86721) and [Statistik mit Julia](http://dx.doi.org/10.13140/RG.2.2.19915.98086) by Georg Kindermann. Two guides in German to get started on Julia and Statistics with Julia.
-@@

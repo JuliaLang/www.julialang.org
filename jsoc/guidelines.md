@@ -36,14 +36,12 @@ receive feedback.
 
 The key questions we will ask ourselves when considering it are:
 
-@@tight-list
 * Is the contributor committed to the project?
 * Is the plan a reasonable amount to do in the allotted project time?
 * Are there clear milestones we can use to assess progress (it should be easy
   to answer the question "Is the project done?").
 * Is the proposed mentor enthusiastic about the project?
 * Does the applicant have previous Open Source contributions (preferably in Julia)?
-@@
 
 __Based on analyzing hundreds of GSoC applications, the most common reason(s) someone is not picked for GSoC are__:
  - The individual did not contact the proposed mentor prior to applying. (It is in your best interest to communicate with the proposed mentor as early on as possible. They are your advocate and first point of contact for this program!)
@@ -51,7 +49,6 @@ __Based on analyzing hundreds of GSoC applications, the most common reason(s) so
 
 In more detail, you may find it useful to consider the following questions:
 
-@@tight-list
 * **The Project**
   - What do you want to have completed by the end of the program?
     - For example, "a package for doing X which any Julia user can install" or
@@ -84,7 +81,6 @@ In more detail, you may find it useful to consider the following questions:
   - Anything else you'd like to mention!
 * **Logistics.**
   - What other time commitments, such as summer courses, other jobs, planned vacations, etc., will you have over the summer?
-@@
 
 ## Tips and Tricks from former GSoC Contributors
 ~~~
