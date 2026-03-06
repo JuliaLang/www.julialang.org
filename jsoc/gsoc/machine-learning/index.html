@@ -3,11 +3,15 @@
 <head>
 	<!-- parts for all pages -->
 	<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
 <meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
 <meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
 <meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
 <meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
 
@@ -19,6 +23,13 @@
   
 
 	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
@@ -26,9 +37,9 @@
 <!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
 <link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 <script async defer src="/libs/buttons.js"></script>
-<script src="/libs/clipboard.min.js"></script>
+<script defer src="/libs/clipboard.min.js"></script>
 <script src="/libs/detectdark.js"></script>
 
 
@@ -36,7 +47,7 @@
 
 
 
-<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
 
 
    <title>Machine Learning Projects - Summer of Code</title>   
@@ -57,8 +68,9 @@
 
   <!-- OGP Metadata -->
 	<meta property="og:title" content="Machine Learning Projects - Summer of Code">
-<meta property="og:description" content="">
+<meta property="og:description" content="Official website for the Julia programming language">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.org/jsoc/gsoc/machine-learning/">
 
 
   <!-- Article structured data for blog posts -->
@@ -101,8 +113,8 @@
               </li>
           </ul>
           <div class="navbar-action-buttons d-flex gap-4">
-              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
-              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub" rel="noopener noreferrer">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
           </div>
       </div>
   </div>
@@ -246,7 +258,7 @@
       </div>
       <div class="col-md-2 py-2">
         <span class="float-sm-end">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
         </span>
       </div>
     </div>
