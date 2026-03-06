@@ -92,7 +92,6 @@ html {
 .section-heading .lead {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
-  font-weight: 300;
   font-weight: 700;
   font-size: 28px;
 }
@@ -124,7 +123,6 @@ html {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   text-align: left;
-  text-justify: inter-character;
 }
 
 .ecosystem {

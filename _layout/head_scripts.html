@@ -1,4 +1,11 @@
 <!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
@@ -6,9 +13,9 @@
 <!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
 <link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 <script async defer src="/libs/buttons.js"></script>
-<script src="/libs/clipboard.min.js"></script>
+<script defer src="/libs/clipboard.min.js"></script>
 <script src="/libs/detectdark.js"></script>
 {{if hasplotly}} <script src="/libs/plotly/plotly.min.js"></script> {{end}}
 
@@ -28,4 +35,4 @@ crossorigin=""/>
 <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
 {{end}}
 
-<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
