@@ -31,6 +31,18 @@ async function prepareForScreenshot(page: Page) {
       canvas.className = el.className;
       el.replaceWith(canvas);
     });
+
+    // Replace external iframes (YouTube, GitHub buttons, etc.) with
+    // static placeholders so async-loading content doesn't flicker.
+    document.querySelectorAll("iframe").forEach((iframe) => {
+      const placeholder = document.createElement("div");
+      placeholder.style.cssText = `
+        width: ${iframe.offsetWidth}px;
+        height: ${iframe.offsetHeight}px;
+        background: #e0e0e0;
+      `;
+      iframe.replaceWith(placeholder);
+    });
   });
 
   // Disable CSS animations/transitions to avoid flaky diffs
