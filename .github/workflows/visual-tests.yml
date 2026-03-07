@@ -18,6 +18,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      - name: Find existing comment
+        uses: peter-evans/find-comment@v3
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: github-actions[bot]
+          body-includes: Visual Regression Tests
+
+      - name: Mark comment as re-checking
+        if: steps.find-comment.outputs.comment-id
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ## Visual Regression Tests
+            :hourglass_flowing_sand: Re-checking…
+
       - name: Checkout PR branch
         uses: actions/checkout@v6
         with:
@@ -58,30 +76,6 @@ jobs:
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin'
 
-      - name: Find existing comment
-        uses: peter-evans/find-comment@v3
-        id: find-comment-early
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: github-actions[bot]
-          body-includes: Visual Regression Tests
-
-      - name: Mark comment as re-checking
-        uses: peter-evans/create-or-update-comment@v4
-        id: upsert-comment
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ steps.find-comment-early.outputs.comment-id }}
-          edit-mode: replace
-          body: |
-            ## Visual Regression Tests
-            :hourglass_flowing_sand: Re-checking…
-
-      - name: Save visual-tests and remove from workspace
-        run: |
-          cp -r visual-tests /tmp/visual-tests
-          rm -rf visual-tests
-
       # --- 1. Build baseline from main and capture screenshots ---
 
       - name: Checkout main branch for baseline
@@ -96,18 +90,9 @@ jobs:
               Franklin.optimize(prerender=true, minify=false, suppress_errors=false);
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
 
-      - name: Restore visual-tests and capture baseline screenshots
-        run: cp -r /tmp/visual-tests visual-tests
-
       - name: Capture baseline screenshots
         working-directory: visual-tests
         run: ./node_modules/.bin/playwright test --update-snapshots
-
-      - name: Save baseline screenshots to tmp
-        run: cp -r visual-tests/screenshots /tmp/visual-tests/screenshots
-
-      - name: Remove visual-tests from workspace
-        run: rm -rf visual-tests
 
       # --- 2. Build PR branch and compare against baseline ---
 
@@ -125,11 +110,6 @@ jobs:
               Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
               Franklin.optimize(prerender=true, minify=false, suppress_errors=false);
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
-
-      - name: Restore visual-tests for comparison
-        run: |
-          rm -rf visual-tests
-          cp -r /tmp/visual-tests visual-tests
 
       - name: Compare against baseline
         id: playwright
@@ -167,7 +147,8 @@ jobs:
         if: steps.playwright.outputs.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v4
         with:
-          comment-id: ${{ steps.upsert-comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
           body: ${{ steps.report.outputs.comment_body }}
 
@@ -175,7 +156,8 @@ jobs:
         if: steps.playwright.outputs.outcome == 'success'
         uses: peter-evans/create-or-update-comment@v4
         with:
-          comment-id: ${{ steps.upsert-comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
           body: |
             ## Visual Regression Tests
