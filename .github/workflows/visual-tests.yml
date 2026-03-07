@@ -33,7 +33,7 @@ jobs:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
           body: |
-            ## Visual Regression Tests
+            ## Visual Regression Check
             :hourglass_flowing_sand: Re-checking…
 
       - name: Checkout PR branch
@@ -169,5 +169,5 @@ jobs:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
           body: |
-            ## Visual Regression Tests
+            ## Visual Regression Check
             :white_check_mark: No visual changes detected.
