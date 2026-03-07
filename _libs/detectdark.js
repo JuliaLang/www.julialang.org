@@ -2,6 +2,45 @@
   var STORAGE_KEY = 'julia-theme';
   var root = document.documentElement;
 
+  // Cache original GitHub buttons for dynamic theme reloading
+  var ghBtnCache = [];
+  var observer = new MutationObserver(function (mutations) {
+    for (var i = 0; i < mutations.length; i++) {
+      var added = mutations[i].addedNodes;
+      for (var j = 0; j < added.length; j++) {
+        var node = added[j];
+        if (node.nodeType === 1) {
+          var btns = [];
+          if (node.tagName === 'A' && node.className.indexOf('github-button') !== -1) {
+            btns.push(node);
+          } else if (node.querySelectorAll) {
+            var found = node.querySelectorAll('a.github-button');
+            for (var k = 0; k < found.length; k++) btns.push(found[k]);
+          }
+          for (var k = 0; k < btns.length; k++) {
+            var btn = btns[k];
+            // Wrap in a pristine container so we can safely reset its contents later
+            if (btn.parentNode && btn.parentNode.className !== 'gh-btn-wrapper') {
+              var wrapper = document.createElement('span');
+              wrapper.className = 'gh-btn-wrapper';
+              wrapper.style.display = 'inline-flex';
+              btn.parentNode.insertBefore(wrapper, btn);
+              wrapper.appendChild(btn);
+              ghBtnCache.push({ wrapper: wrapper, html: btn.outerHTML });
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Start observing early to catch buttons before buttons.js mutates them
+  observer.observe(root, { childList: true, subtree: true });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    observer.disconnect();
+  });
+
   function getPreferredTheme() {
     var stored = localStorage.getItem(STORAGE_KEY);
     if (stored === 'dark' || stored === 'light') return stored;
@@ -15,6 +54,46 @@
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
     updateLogo(theme === 'dark');
+    if (document.body) updateGithubButtons(theme);
+  }
+
+  function updateGithubButtons(theme) {
+    if (!document.body) return;
+
+    var scheme = theme === 'dark' ? 'dark' : 'light';
+    var needsReload = false;
+
+    // Handle cached buttons (post-render dynamic toggling)
+    if (ghBtnCache.length > 0) {
+      for (var i = 0; i < ghBtnCache.length; i++) {
+        var cache = ghBtnCache[i];
+        // Reset container to the original pristine anchor
+        cache.wrapper.innerHTML = cache.html;
+        var anchor = cache.wrapper.querySelector('a.github-button');
+        if (anchor) {
+          anchor.setAttribute('data-color-scheme', scheme);
+          needsReload = true;
+        }
+      }
+    } else {
+      // Fallback for non-cached anchors (e.g. initial load before buttons.js runs)
+      var anchors = document.querySelectorAll('a.github-button');
+      for (var i = 0; i < anchors.length; i++) {
+        anchors[i].setAttribute('data-color-scheme', scheme);
+      }
+    }
+
+    if (needsReload) {
+      var scriptId = 'github-buttons-script';
+      var oldScript = document.getElementById(scriptId);
+      if (oldScript) oldScript.remove();
+      
+      var newScript = document.createElement('script');
+      newScript.id = scriptId;
+      newScript.src = '/libs/buttons.js';
+      newScript.async = true;
+      document.body.appendChild(newScript);
+    }
   }
 
   function changeFilePath(originalPath, newFileName) {
@@ -38,14 +117,17 @@
     // Re-apply after DOM is ready (ensures logo is updated)
     applyTheme(getPreferredTheme());
 
-    // Toggle button
     var toggle = document.getElementById('dark-mode-toggle');
     if (toggle) {
       toggle.addEventListener('click', function () {
         var current = root.getAttribute('data-theme');
         var next = current === 'dark' ? 'light' : 'dark';
         localStorage.setItem(STORAGE_KEY, next);
+        toggle.classList.remove('spin');
+        void toggle.offsetWidth;
+        toggle.classList.add('spin');
         applyTheme(next);
+        setTimeout(function () { toggle.classList.remove('spin'); }, 450);
       });
     }
 
