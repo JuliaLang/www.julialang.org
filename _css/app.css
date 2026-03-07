@@ -300,6 +300,10 @@ body {
   pointer-events: none;
 }
 
+.juliacon-world-map img {
+  width: 100%;
+}
+
 .juliacon-section > *:not(.juliacon-world-map) {
   position: relative;
   z-index: 1;
