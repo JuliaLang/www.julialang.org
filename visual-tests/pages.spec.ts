@@ -69,14 +69,17 @@ for (const { name, path: pagePath } of PAGES) {
     await page.goto(pagePath, { waitUntil: "load" });
     await prepareForScreenshot(page);
 
+    const isUpdate = testInfo.config.updateSnapshots === "all";
+
     try {
       await expect(page).toHaveScreenshot(`${name}.png`, {
         fullPage: true,
         timeout: 3_000,
       });
-    } catch {
-      // Page never stabilized — save a single screenshot as the snapshot
-      // so comparisons still run rather than erroring with no output.
+    } catch (err) {
+      if (!isUpdate) throw err;
+      // Baseline capture: page never stabilized — save a single screenshot
+      // so comparisons still run rather than erroring with no baseline.
       const snapshotDir = path.join(
         testInfo.project.testDir,
         "screenshots",
