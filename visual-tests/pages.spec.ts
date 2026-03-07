@@ -20,19 +20,21 @@ const PAGES: { name: string; path: string }[] = [
 ];
 
 async function prepareForScreenshot(page: Page) {
-  // Freeze animated GIFs by drawing their current frame onto a canvas
   await page.evaluate(() => {
-    document.querySelectorAll('img[src$=".gif"]').forEach((img) => {
-      const el = img as HTMLImageElement;
-      if (!el.complete || el.naturalWidth === 0) return;
-      const canvas = document.createElement("canvas");
-      canvas.width = el.naturalWidth;
-      canvas.height = el.naturalHeight;
-      canvas.getContext("2d")!.drawImage(el, 0, 0);
-      canvas.style.cssText = el.style.cssText;
-      canvas.className = el.className;
-      el.replaceWith(canvas);
-    });
+    // Freeze animated images (GIF, WebP) by drawing current frame to canvas
+    document
+      .querySelectorAll('img[src$=".gif"], img[src$=".webp"]')
+      .forEach((img) => {
+        const el = img as HTMLImageElement;
+        if (!el.complete || el.naturalWidth === 0) return;
+        const canvas = document.createElement("canvas");
+        canvas.width = el.naturalWidth;
+        canvas.height = el.naturalHeight;
+        canvas.getContext("2d")!.drawImage(el, 0, 0);
+        canvas.style.cssText = el.style.cssText;
+        canvas.className = el.className;
+        el.replaceWith(canvas);
+      });
 
     // Replace external iframes (YouTube, GitHub buttons, etc.) with
     // static placeholders so async-loading content doesn't flicker.
