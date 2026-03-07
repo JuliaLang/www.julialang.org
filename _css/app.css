@@ -36,7 +36,8 @@ body {
   min-width: 80px;
   margin-left: 0.25rem;
   margin-right: 0;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 .navbar-brand img {
   width: 133px;
@@ -297,10 +298,6 @@ body {
   opacity: 0.25;
   z-index: 0;
   pointer-events: none;
-}
-
-.juliacon-world-map img {
-  width: 100%;
 }
 
 .juliacon-section > *:not(.juliacon-world-map) {
@@ -877,12 +874,13 @@ pre .bash-block::before {
 .navbar-action-buttons {
   align-items: center;
 }
+.navbar-action-buttons span {
+  display: flex !important;
+  align-items: center;
+}
 .navbar-action-buttons .github-button {
   display: inline-flex;
   align-items: center;
-}
-.navbar-action-buttons iframe {
-  vertical-align: middle;
 }
 
 .nav-link {
@@ -1267,52 +1265,82 @@ pre .bash-block::before {
   }
 }
 
-/* Dark mode toggle button — styled to match GitHub buttons */
+/* Theme toggle */
 .dark-mode-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  height: 28px;
-  padding: 0 8px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  color: #24292f;
-  background-color: #f6f8fa;
-  border: 1px solid rgba(31,35,40,0.15);
-  border-radius: 6px;
+  background: transparent;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
+  color: #555;
+  position: relative;
 }
 .dark-mode-toggle:hover {
-  background-color: #f3f4f6;
-  border-color: rgba(31,35,40,0.3);
+  background: rgba(0, 0, 0, 0.06);
+  transform: scale(1.12);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+.dark-mode-toggle:active {
+  transform: scale(0.92);
+  transition-duration: 0.1s;
 }
 .dark-mode-toggle svg {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
-  flex-shrink: 0;
+  stroke: currentColor;
+}
+.dark-mode-toggle .icon-sun,
+.dark-mode-toggle .icon-moon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .dark-mode-toggle .icon-sun { display: none; }
 .dark-mode-toggle .icon-moon { display: flex; }
-.dark-mode-toggle .icon-sun-label { display: none; }
-.dark-mode-toggle .icon-moon-label { display: inline; }
 [data-theme="dark"] .dark-mode-toggle .icon-sun { display: flex; }
 [data-theme="dark"] .dark-mode-toggle .icon-moon { display: none; }
-[data-theme="dark"] .dark-mode-toggle .icon-sun-label { display: inline; }
-[data-theme="dark"] .dark-mode-toggle .icon-moon-label { display: none; }
+
+.dark-mode-toggle.spin .icon-sun,
+.dark-mode-toggle.spin .icon-moon {
+  animation: theme-spin 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes theme-spin {
+  0%   { transform: rotate(-180deg) scale(0); opacity: 0; }
+  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
 [data-theme="dark"] .dark-mode-toggle {
-  color: #e0e0e0;
-  background-color: #21262d;
-  border-color: rgba(240,246,252,0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #c9d1d9;
 }
 [data-theme="dark"] .dark-mode-toggle:hover {
-  background-color: #30363d;
-  border-color: rgba(240,246,252,0.2);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 12px rgba(130, 160, 255, 0.12);
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+@media (max-width: 991.98px) {
+  .dark-mode-toggle {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+}
+@media (min-width: 992px) {
+  .dark-mode-toggle {
+    order: 3;
+    margin-left: 0.75rem;
+  }
 }
 
 /* Dark mode custom properties */
@@ -1354,9 +1382,6 @@ pre .bash-block::before {
 }
 [data-theme="dark"] .navbar-collapse {
   background: var(--dm-bg);
-}
-[data-theme="dark"] .navbar-toggler-icon {
-  filter: invert(1);
 }
 [data-theme="dark"] #main-menu .nav-item:hover {
   background-color: var(--dm-bg-surface);
