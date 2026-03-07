@@ -78,8 +78,16 @@ jobs:
 
       # --- 1. Build baseline from main and capture screenshots ---
 
+      - name: Save PR visual-tests
+        run: cp -r visual-tests /tmp/visual-tests
+
       - name: Checkout main branch for baseline
         run: git checkout ${{ github.event.pull_request.base.sha }}
+
+      - name: Restore PR visual-tests
+        run: |
+          rm -rf visual-tests
+          cp -r /tmp/visual-tests visual-tests
 
       - name: Build baseline site (main)
         run: |
