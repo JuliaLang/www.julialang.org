@@ -4,6 +4,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: visual-tests-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 permissions:
   actions: write
   contents: read
@@ -14,6 +18,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      - name: Find existing comment
+        uses: peter-evans/find-comment@v3
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: github-actions[bot]
+          body-includes: Visual Regression Tests
+
+      - name: Mark comment as re-checking
+        if: steps.find-comment.outputs.comment-id
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ## Visual Regression Check
+            :hourglass_flowing_sand: Re-checking…
+
       - name: Checkout PR branch
         uses: actions/checkout@v6
         with:
@@ -54,15 +76,18 @@ jobs:
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin'
 
-      - name: Save visual-tests and remove from workspace
-        run: |
-          cp -r visual-tests /tmp/visual-tests
-          rm -rf visual-tests
-
       # --- 1. Build baseline from main and capture screenshots ---
+
+      - name: Save PR visual-tests
+        run: cp -r visual-tests /tmp/visual-tests
 
       - name: Checkout main branch for baseline
         run: git checkout ${{ github.event.pull_request.base.sha }}
+
+      - name: Restore PR visual-tests
+        run: |
+          rm -rf visual-tests
+          cp -r /tmp/visual-tests visual-tests
 
       - name: Build baseline site (main)
         run: |
@@ -73,23 +98,16 @@ jobs:
               Franklin.optimize(prerender=true, minify=false, suppress_errors=false);
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
 
-      - name: Restore visual-tests and capture baseline screenshots
-        run: cp -r /tmp/visual-tests visual-tests
-
       - name: Capture baseline screenshots
         working-directory: visual-tests
+        env:
+          UPDATE_SNAPSHOTS: "1"
         run: ./node_modules/.bin/playwright test --update-snapshots
-
-      - name: Save baseline screenshots to tmp
-        run: cp -r visual-tests/screenshots /tmp/visual-tests/screenshots
-
-      - name: Remove visual-tests from workspace
-        run: rm -rf visual-tests
 
       # --- 2. Build PR branch and compare against baseline ---
 
       - name: Checkout PR branch
-        run: git checkout ${{ github.event.pull_request.head.sha }}
+        run: git checkout -f ${{ github.event.pull_request.head.sha }}
 
       - name: Clean previous build
         run: rm -rf __site
@@ -102,11 +120,6 @@ jobs:
               Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
               Franklin.optimize(prerender=true, minify=false, suppress_errors=false);
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
-
-      - name: Restore visual-tests for comparison
-        run: |
-          rm -rf visual-tests
-          cp -r /tmp/visual-tests visual-tests
 
       - name: Compare against baseline
         id: playwright
@@ -140,16 +153,7 @@ jobs:
         working-directory: visual-tests
         run: node report-diffs.js
 
-      - name: Find existing comment
-        if: "!cancelled()"
-        uses: peter-evans/find-comment@v3
-        id: find-comment
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: github-actions[bot]
-          body-includes: Visual Regression Tests
-
-      - name: Post or update PR comment
+      - name: Update PR comment with results
         if: steps.playwright.outputs.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v4
         with:
@@ -158,10 +162,12 @@ jobs:
           edit-mode: replace
           body: ${{ steps.report.outputs.comment_body }}
 
-      - name: Remove previous comment if tests pass
-        if: steps.playwright.outputs.outcome == 'success' && steps.find-comment.outputs.comment-id != ''
-        run: |
-          curl -s -X DELETE \
-            -H "Authorization: token ${{ github.token }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/${{ github.repository }}/issues/comments/${{ steps.find-comment.outputs.comment-id }}"
+      - name: Update PR comment — no changes
+        if: steps.playwright.outputs.outcome == 'success' && steps.find-comment.outputs.comment-id
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ## Visual Regression Check
+            :white_check_mark: No visual changes detected.
