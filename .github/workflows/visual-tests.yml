@@ -105,7 +105,7 @@ jobs:
       # --- 2. Build PR branch and compare against baseline ---
 
       - name: Checkout PR branch
-        run: git checkout ${{ github.event.pull_request.head.sha }}
+        run: git checkout -f ${{ github.event.pull_request.head.sha }}
 
       - name: Clean previous build
         run: rm -rf __site
