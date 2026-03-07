@@ -69,7 +69,7 @@ for (const { name, path: pagePath } of PAGES) {
     await page.goto(pagePath, { waitUntil: "load" });
     await prepareForScreenshot(page);
 
-    const isUpdate = testInfo.config.updateSnapshots === "all";
+    const isUpdate = !!process.env.UPDATE_SNAPSHOTS;
 
     try {
       await expect(page).toHaveScreenshot(`${name}.png`, {
