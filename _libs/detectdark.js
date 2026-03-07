@@ -119,15 +119,43 @@
 
     var toggle = document.getElementById('dark-mode-toggle');
     if (toggle) {
-      toggle.addEventListener('click', function () {
+      toggle.addEventListener('click', function (e) {
         var current = root.getAttribute('data-theme');
         var next = current === 'dark' ? 'light' : 'dark';
         localStorage.setItem(STORAGE_KEY, next);
+
         toggle.classList.remove('spin');
         void toggle.offsetWidth;
         toggle.classList.add('spin');
-        applyTheme(next);
         setTimeout(function () { toggle.classList.remove('spin'); }, 450);
+
+        if (!document.startViewTransition) {
+          applyTheme(next);
+          return;
+        }
+
+        var rect = toggle.getBoundingClientRect();
+        var cx = Math.round(rect.left + rect.width / 2);
+        var cy = Math.round(rect.top + rect.height / 2);
+        var maxR = Math.hypot(
+          Math.max(cx, window.innerWidth - cx),
+          Math.max(cy, window.innerHeight - cy)
+        );
+
+        var transition = document.startViewTransition(function () {
+          applyTheme(next);
+        });
+
+        transition.ready.then(function () {
+          root.animate(
+            { clipPath: [
+              'circle(0px at ' + cx + 'px ' + cy + 'px)',
+              'circle(' + maxR + 'px at ' + cx + 'px ' + cy + 'px)'
+            ]},
+            { duration: 500, easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              pseudoElement: '::view-transition-new(root)' }
+          );
+        });
       });
     }
 

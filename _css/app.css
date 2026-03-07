@@ -1265,6 +1265,16 @@ pre .bash-block::before {
   }
 }
 
+/* View Transitions: suppress default cross-fade, use JS-driven clip-path reveal */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
 /* Theme toggle */
 .dark-mode-toggle {
   background: transparent;
