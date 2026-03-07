@@ -28,6 +28,7 @@
 <link rel="preload" href="/assets/infra/logo.svg" as="image">
 <link rel="preload" href="/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
 
+<script src="/libs/detectdark.js"></script>
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
@@ -78,10 +79,7 @@
   <!-- Don't delete this alert when hiding it. Comment it out so it can be re-enabled easily. -->
   <div class="container-fluid" id="top-alert">
     <div class="alert alert-dark alert-dismissible mb-0" role="alert">
-      <picture>
-        <source srcset="/assets/infra/world_map.webp" type="image/webp">
-        <img src="/assets/infra/world_map.png" alt="" class="world-map-bg" aria-hidden="true">
-      </picture>
+      <img src="/assets/infra/world_map.webp" alt="" class="world-map-bg" aria-hidden="true">
 
       <p class="text-center">
         <img src="/assets/infra/juliacon_logo.svg" alt="JuliaCon" class="juliacon-logo">
@@ -107,7 +105,7 @@
   })();
   </script>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
   <div class="container">
       <a class="navbar-brand" href="/">
           <img src="/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
@@ -138,8 +136,16 @@
               <li class="nav-item ">
                   <a class="nav-link" href="/jsoc/">JSoC</a>
               </li>
+              <li class="nav-item d-flex align-items-center px-2">
+                  <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                      <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+                      <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                      <span class="dark-mode-label icon-moon-label">Dark</span>
+                      <span class="dark-mode-label icon-sun-label">Light</span>
+                  </button>
+              </li>
           </ul>
-          <div class="navbar-action-buttons d-flex gap-4">
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
               <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub" rel="noopener noreferrer">Star</a>
               <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
           </div>
@@ -563,10 +569,7 @@ define i64 @julia_f(...) {
       <div class="tab-content" id="ecosystem-tab-content">
         <div class="tab-pane" id="tab-general" role="tabpanel" aria-labelledby="general-tab">
           <h3 class="tab-title">General Computing</h3>
-          <picture>
-            <source srcset="/assets/infra/minesweeper.webp" type="image/webp">
-            <img src="/assets/infra/minesweeper.png" class="pb-2 ecosystem-image-tall" alt="minesweeper gameover" loading="lazy">
-          </picture>
+          <img src="/assets/infra/minesweeper.webp" class="pb-2 ecosystem-image-tall" alt="minesweeper gameover" loading="lazy">
           <div class="container-fluid">
             <h4>Build, Deploy or Embed Your Code</h4>
             <p>
@@ -591,10 +594,7 @@ define i64 @julia_f(...) {
           <h3 class="tab-title">Parallel Computing</h3>
           <div class="row">
             <div class="col-lg-12">
-              <picture>
-                <source srcset="/assets/infra/parallel-prefix.webp" type="image/webp">
-                <img src="/assets/infra/parallel-prefix.png" class="pb-2 ecosystem-image-tall" alt="parallel prefix graphical result" loading="lazy">
-              </picture>
+              <img src="/assets/infra/parallel-prefix.webp" class="pb-2 ecosystem-image-tall" alt="parallel prefix graphical result" loading="lazy">
               <div class="container-fluid">
                 <h4>
                   Parallel and Heterogeneous Computing
@@ -620,10 +620,7 @@ define i64 @julia_f(...) {
           <h3 class="tab-title">Machine Learning</h3>
           <div class="row">
             <div class="col-lg-12">
-              <picture>
-                <source srcset="/assets/infra/cartpole.webp" type="image/webp">
-                <img src="/assets/infra/cartpole.gif" class="pb-2 ecosystem-image" alt="cartpole reinforcement learning problem visualization" loading="lazy">
-              </picture>
+              <img src="/assets/infra/cartpole.webp" class="pb-2 ecosystem-image" alt="cartpole reinforcement learning problem visualization" loading="lazy">
               <div class="container">
                 <h4>
                   Scalable Machine Learning
@@ -663,10 +660,7 @@ define i64 @julia_f(...) {
           <h3 class="tab-title">Data Science</h3>
           <div class="row">
             <div class="col-lg-12">
-              <picture>
-                <source srcset="/assets/infra/onlinestats.webp" type="image/webp">
-                <img src="/assets/infra/onlinestats.gif" class="pb-2 ecosystem-image" alt="Visualization of weighted data changing as more data is plotted" loading="lazy">
-              </picture>
+              <img src="/assets/infra/onlinestats.webp" class="pb-2 ecosystem-image" alt="Visualization of weighted data changing as more data is plotted" loading="lazy">
               <div class="container">
                 <h4>Interact with your Data</h4>
                 <p>The Julia data ecosystem provides <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> to work with datasets, and perform common data manipulations. <a href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> is a fast multi-threaded package to read CSV files and integration with the Arrow ecosystem is in the works with <a href="https://github.com/apache/arrow-julia">Arrow.jl</a>. Online computations on streaming data can be performed with <a href = "https://github.com/joshday/OnlineStats.jl">OnlineStats.jl</a>.
@@ -683,10 +677,7 @@ define i64 @julia_f(...) {
           <div class="row">
             <div class="col-lg-12">
               <div class="container">
-                <picture>
-                  <source srcset="/assets/infra/waves.webp" type="image/webp">
-                  <img src="/assets/infra/waves.gif" class="pb-2 ecosystem-image" alt="Visualization of waves in 3D, as a heatmap, and on the x y axis" loading="lazy">
-                </picture>
+                <img src="/assets/infra/waves.webp" class="pb-2 ecosystem-image" alt="Visualization of waves in 3D, as a heatmap, and on the x y axis" loading="lazy">
                 <h4>Data Visualization and Plotting</h4>
                 <p>Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static and dynamic interface. Some packages make a display and never change it, while others make updates in real-time.</p>
                 <p><a href="https://github.com/MakieOrg/Makie.jl">Makie.jl</a> is a sophisticated package for complex graphics and animations. <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="https://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a> and <a href="https://github.com/JuliaPlots/PlotlyJS.jl">PlotlyJS.jl</a>. Users who are used to "grammar of graphics" plotting APIs should take a look at <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a>. For those who do not wish to leave the comfort of the terminal, there is also <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
@@ -759,7 +750,7 @@ define i64 @julia_f(...) {
       <br><br>
 
       <div class="row">
-        <div class="col-12" class="text-center">
+        <div class="col-12 text-center">
           <a class="btn btn-sm btn-outline-danger" href="https://juliahub.com/ui/Packages">JuliaHub: Package Search</a>
           <a class="btn btn-sm btn-outline-danger" href="https://juliapackages.com/trending">JuliaPackages: Trending</a>
           <a class="btn btn-sm btn-outline-danger" href="https://julialang.zulipchat.com/#narrow/stream/299184-new-packages-feed">Feed of new Julia packages</a>
@@ -811,7 +802,7 @@ define i64 @julia_f(...) {
     <br>
 
     <div class="row">
-      <div class="col-12" class="text-center">
+      <div class="col-12 text-center">
         <a class="btn btn-sm btn-outline-primary" href="/blog/">Visit Blog</a>
 
       </div>
@@ -843,7 +834,7 @@ define i64 @julia_f(...) {
 
     <!-- Row Discourse-Github-Slack-Zulip -->
     <div class="row">
-      <div class="col-lg-3 col-md-6" class="text-center">
+      <div class="col-lg-3 col-md-6 text-center">
         <h3>Discourse</h3>
 		    <a href="https://discourse.julialang.org/" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/discourse.svg" height="85" width="85" alt="Discourse Logo" loading="lazy" /></a>
@@ -851,7 +842,7 @@ define i64 @julia_f(...) {
           <a class="link extra-link" href="https://discourse.julialang.org/" target="_blank">Discourse</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" class="text-center">
+      <div class="col-lg-3 col-md-6 text-center">
         <h3>GitHub</h3>
 	    	<a href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/github.svg" height="85" width="85" alt="GitHub Logo" loading="lazy" /></a>
@@ -859,7 +850,7 @@ define i64 @julia_f(...) {
           <a class="link extra-link" href="https://github.com/JuliaLang/julia" target="_blank">Source code</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" class="text-center">
+      <div class="col-lg-3 col-md-6 text-center">
         <h3>Zulip</h3>
 	    	<a href="https://julialang.zulipchat.com/" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/zulip.svg" height="85" width="85" alt="Zulip Logo" loading="lazy" /></a>
@@ -867,7 +858,7 @@ define i64 @julia_f(...) {
           <a class="link extra-link" href="https://julialang.zulipchat.com/" target="_blank">Zulip</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" class="text-center">
+      <div class="col-lg-3 col-md-6 text-center">
         <h3>Slack</h3>
 		    <a href="https://julialang.org/slack/" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/slack.png" height="85" width="85" alt="Slack Logo" loading="lazy" /></a>
@@ -879,7 +870,7 @@ define i64 @julia_f(...) {
 
     <!-- Row -Twitter-Videos-LinkedIn-Twitch -->
     <div class="row">
-      <div class="col-lg-3 col-md-6" class="text-center">
+      <div class="col-lg-3 col-md-6 text-center">
         <h3>Twitter</h3>
 		    <a href="https://twitter.com/JuliaLanguage" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/twitter.svg" height="85" width="85" alt="Twitter Logo" loading="lazy" /></a>
@@ -887,7 +878,7 @@ define i64 @julia_f(...) {
           <a class="link extra-link" href="https://twitter.com/JuliaLanguage" target="_blank">#JuliaLang</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" class="text-center">
+      <div class="col-lg-3 col-md-6 text-center">
         <h3>Videos</h3>
 		    <a href="https://www.youtube.com/user/JuliaLanguage" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/youtube.svg" height="85" width="85" alt="YouTube Logo" loading="lazy" /></a>
@@ -895,7 +886,7 @@ define i64 @julia_f(...) {
           <a class="link extra-link" href="https://www.youtube.com/user/JuliaLanguage" target="_blank">YouTube</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" class="text-center">
+      <div class="col-lg-3 col-md-6 text-center">
         <h3>LinkedIn</h3>
 		    <a href="https://www.linkedin.com/company/the-julia-language" target="_blank" rel="noopener noreferrer">
         <img src="/assets/infra/linkedin.png" height="85" width="85" alt="LinkedIn Logo" loading="lazy" /></a>

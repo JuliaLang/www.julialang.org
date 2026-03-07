@@ -36,6 +36,7 @@
 <link rel="preload" href="/assets/infra/logo.svg" as="image">
 <link rel="preload" href="/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
 
+<script src="/libs/detectdark.js"></script>
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
@@ -59,17 +60,9 @@
    <title>Numerical Projects – Summer of Code</title>   
 
   
-  <style>
-	  .container ul li p {margin-bottom: 0;}
-		.container ol li p {margin-bottom: 0;}
-		.container ul ul {margin: .4em 0 .4em 0;}
-		.container ul ol {margin: .4em 0 .4em 0;}
-		.container ol ul {margin: .4em 0 .4em 0;}
-		.container ol ol {margin: .4em 0 .4em 0;}
-  </style>
+  <link rel="stylesheet" href="/css/container-lists.css">
   
 
-  <!-- Specific style for blog pages (except the /blob/index) -->
   
 
   <!-- OGP Metadata -->
@@ -86,7 +79,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
   <div class="container">
       <a class="navbar-brand" href="/">
           <img src="/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
@@ -117,8 +110,16 @@
               <li class="nav-item active">
                   <a class="nav-link" href="/jsoc/">JSoC</a>
               </li>
+              <li class="nav-item d-flex align-items-center px-2">
+                  <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                      <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+                      <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                      <span class="dark-mode-label icon-moon-label">Dark</span>
+                      <span class="dark-mode-label icon-sun-label">Light</span>
+                  </button>
+              </li>
           </ul>
-          <div class="navbar-action-buttons d-flex gap-4">
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
               <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub" rel="noopener noreferrer">Star</a>
               <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
           </div>
