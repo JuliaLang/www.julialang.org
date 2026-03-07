@@ -50,6 +50,7 @@ function generateComment(diffs) {
     : "";
 
   const lines = [
+    "## Visual Regression Check",
     `Visual changes have been detected on the following pages: **${pages.join("**, **")}**.`,
     artifactUrl
       ? `Download the [visual-test-results](${artifactUrl}) artifact for before/after/diff images.`

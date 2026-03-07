@@ -33,7 +33,7 @@ jobs:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
           body: |
-            ## Visual Regression Tests
+            ## Visual Regression Check
             :hourglass_flowing_sand: Re-checking…
 
       - name: Checkout PR branch
@@ -163,12 +163,11 @@ jobs:
           body: ${{ steps.report.outputs.comment_body }}
 
       - name: Update PR comment — no changes
-        if: steps.playwright.outputs.outcome == 'success'
+        if: steps.playwright.outputs.outcome == 'success' && steps.find-comment.outputs.comment-id
         uses: peter-evans/create-or-update-comment@v4
         with:
-          issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
           body: |
-            ## Visual Regression Tests
+            ## Visual Regression Check
             :white_check_mark: No visual changes detected.
