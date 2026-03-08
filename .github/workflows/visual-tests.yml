@@ -51,7 +51,7 @@ jobs:
         with:
           version: '1.12'
 
-      - uses: julia-actions/cache@v2
+      - uses: julia-actions/cache@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
