@@ -1,4 +1,4 @@
-name: Deploy Fork PR Preview
+name: Deploy PR Preview
 
 on:
   workflow_run:
@@ -33,7 +33,6 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ github.token }}
 
-      # deploy-meta only exists for fork PRs; skip everything otherwise
       - name: Read PR number
         if: steps.download-meta.outcome == 'success'
         id: meta
