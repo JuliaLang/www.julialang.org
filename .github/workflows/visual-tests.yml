@@ -121,7 +121,7 @@ jobs:
 
       - name: Upload test results
         if: steps.playwright.outputs.outcome == 'failure'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: visual-test-results
           path: visual-tests/test-results/
@@ -145,7 +145,7 @@ jobs:
 
       - name: Upload result metadata
         if: "!cancelled()"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: visual-test-meta
           path: /tmp/visual-test-meta/

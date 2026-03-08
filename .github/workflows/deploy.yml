@@ -79,7 +79,7 @@ jobs:
 
       - name: Upload site artifact (fork PRs)
         if: github.event_name == 'pull_request' && github.repository != github.event.pull_request.head.repo.full_name
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: site-build
           path: __site/
@@ -93,7 +93,7 @@ jobs:
 
       - name: Upload PR metadata (fork PRs)
         if: github.event_name == 'pull_request' && github.repository != github.event.pull_request.head.repo.full_name
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: deploy-meta
           path: /tmp/deploy-meta/
