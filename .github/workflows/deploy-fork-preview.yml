@@ -1,0 +1,81 @@
+name: Deploy Fork PR Preview
+
+on:
+  workflow_run:
+    workflows: ["Build and Deploy"]
+    types:
+      - completed
+
+concurrency:
+  # Same group as deploy.yml and pr_preview_cleanup.yml to avoid clashes
+  # when pushing to gh-preview branch.
+  group: global-lock-ghpreview-pushing
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Download PR metadata
+        uses: actions/download-artifact@v4
+        id: download-meta
+        continue-on-error: true
+        with:
+          name: deploy-meta
+          path: deploy-meta
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      # deploy-meta only exists for fork PRs; skip everything otherwise
+      - name: Read PR number
+        if: steps.download-meta.outcome == 'success'
+        id: meta
+        run: echo "pr_number=$(cat deploy-meta/pr_number)" >> $GITHUB_OUTPUT
+
+      - name: Download site build
+        if: steps.download-meta.outcome == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: __site
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Install SSH Client
+        if: steps.download-meta.outcome == 'success'
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Deploy preview
+        if: steps.download-meta.outcome == 'success'
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-preview
+          folder: __site
+          ssh-key: true
+          target-folder: "previews/PR${{ steps.meta.outputs.pr_number }}"
+
+      - name: Find existing preview comment
+        if: steps.download-meta.outcome == 'success'
+        uses: peter-evans/find-comment@v3
+        id: find-comment
+        with:
+          issue-number: ${{ steps.meta.outputs.pr_number }}
+          comment-author: github-actions[bot]
+          body-includes: you can preview your PR at this URL
+
+      - name: Comment on PR
+        if: steps.download-meta.outcome == 'success' && !steps.find-comment.outputs.comment-id
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ steps.meta.outputs.pr_number }}
+          body: |
+            Once the deploy has completed, you can preview your PR at this URL: https://julialang.netlify.app/previews/PR${{ steps.meta.outputs.pr_number }}/

@@ -9,33 +9,13 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  actions: write
   contents: read
-  pull-requests: write
 
 jobs:
   visual-test:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - name: Find existing comment
-        uses: peter-evans/find-comment@v3
-        id: find-comment
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: github-actions[bot]
-          body-includes: Visual Regression Tests
-
-      - name: Mark comment as re-checking
-        if: steps.find-comment.outputs.comment-id
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          comment-id: ${{ steps.find-comment.outputs.comment-id }}
-          edit-mode: replace
-          body: |
-            ## Visual Regression Check
-            :hourglass_flowing_sand: Re-checking…
-
       - name: Checkout PR branch
         uses: actions/checkout@v6
         with:
@@ -153,21 +133,19 @@ jobs:
         working-directory: visual-tests
         run: node report-diffs.js
 
-      - name: Update PR comment with results
-        if: steps.playwright.outputs.outcome == 'failure'
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ steps.find-comment.outputs.comment-id }}
-          edit-mode: replace
-          body: ${{ steps.report.outputs.comment_body }}
+      - name: Save result metadata
+        if: "!cancelled()"
+        env:
+          COMMENT_BODY: ${{ steps.report.outputs.comment_body }}
+        run: |
+          mkdir -p /tmp/visual-test-meta
+          echo "${{ github.event.pull_request.number }}" > /tmp/visual-test-meta/pr_number
+          echo "${{ steps.playwright.outputs.outcome }}" > /tmp/visual-test-meta/outcome
+          echo "$COMMENT_BODY" > /tmp/visual-test-meta/comment_body
 
-      - name: Update PR comment — no changes
-        if: steps.playwright.outputs.outcome == 'success' && steps.find-comment.outputs.comment-id
-        uses: peter-evans/create-or-update-comment@v4
+      - name: Upload result metadata
+        if: "!cancelled()"
+        uses: actions/upload-artifact@v4
         with:
-          comment-id: ${{ steps.find-comment.outputs.comment-id }}
-          edit-mode: replace
-          body: |
-            ## Visual Regression Check
-            :white_check_mark: No visual changes detected.
+          name: visual-test-meta
+          path: /tmp/visual-test-meta/
