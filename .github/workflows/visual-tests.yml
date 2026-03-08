@@ -3,6 +3,11 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - '.github/**'
+      - 'README.md'
+      - 'LICENSE.md'
+      - 'CNAME'
 
 concurrency:
   group: visual-tests-${{ github.event.pull_request.number }}
