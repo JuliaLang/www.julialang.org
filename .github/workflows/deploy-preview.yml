@@ -72,7 +72,7 @@ jobs:
         with:
           issue-number: ${{ steps.meta.outputs.pr_number }}
           comment-author: github-actions[bot]
-          body-includes: you can preview your PR at this URL
+          body-includes: You can now preview your PR at this URL
 
       - name: Comment on PR
         if: steps.download-meta.outcome == 'success' && !steps.find-comment.outputs.comment-id
@@ -80,4 +80,4 @@ jobs:
         with:
           issue-number: ${{ steps.meta.outputs.pr_number }}
           body: |
-            Once the deploy has completed, you can preview your PR at this URL: https://julialang.netlify.app/previews/PR${{ steps.meta.outputs.pr_number }}/
+            You can now preview your PR at this URL: https://julialang.netlify.app/previews/PR${{ steps.meta.outputs.pr_number }}/
