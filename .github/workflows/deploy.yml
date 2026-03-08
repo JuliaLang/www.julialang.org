@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 1
 
       - name: Install SSH Client
-        if: github.event_name != 'pull_request' || github.repository == github.event.pull_request.head.repo.full_name # if this build is NOT a PR build, OR if this build is a PR build and the PR is NOT from a fork
+        if: github.event_name != 'pull_request'
         uses: webfactory/ssh-agent@v0.9.1
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
@@ -76,35 +76,26 @@ jobs:
             echo "Franklin did not report a warning"
           fi
 
-      - name: Upload site artifact (fork PRs)
-        if: github.event_name == 'pull_request' && github.repository != github.event.pull_request.head.repo.full_name
+      - name: Upload site artifact
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v7
         with:
           name: site-build
           path: __site/
           retention-days: 1
 
-      - name: Save PR metadata (fork PRs)
-        if: github.event_name == 'pull_request' && github.repository != github.event.pull_request.head.repo.full_name
+      - name: Save PR metadata
+        if: github.event_name == 'pull_request'
         run: |
           mkdir -p /tmp/deploy-meta
           echo "${{ github.event.pull_request.number }}" > /tmp/deploy-meta/pr_number
 
-      - name: Upload PR metadata (fork PRs)
-        if: github.event_name == 'pull_request' && github.repository != github.event.pull_request.head.repo.full_name
+      - name: Upload PR metadata
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v7
         with:
           name: deploy-meta
           path: /tmp/deploy-meta/
-
-      - name: Deploy (preview)
-        if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name # if this build is a PR build and the PR is NOT from a fork
-        uses: JamesIves/github-pages-deploy-action@releases/v4
-        with:
-          branch: gh-preview
-          folder: __site
-          ssh-key: true
-          target-folder: "previews/PR${{ github.event.number }}"
 
       - name: Fetch deployed site for cache diff
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
