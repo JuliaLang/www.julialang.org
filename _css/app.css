@@ -926,7 +926,7 @@ pre .bash-block::before {
   justify-content: center;
   width: 100%;
   overflow: hidden;
-  padding: 20px 0;
+  padding: 20px 0 0;
 }
 
 .code-carousel-container::before,
@@ -1059,7 +1059,7 @@ pre .bash-block::before {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 15px;
+  margin-top: 2px;
 }
 
 .carousel-dot {
