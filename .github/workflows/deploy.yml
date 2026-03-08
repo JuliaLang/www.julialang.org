@@ -77,6 +77,27 @@ jobs:
             echo "Franklin did not report a warning"
           fi
 
+      - name: Upload site artifact (fork PRs)
+        if: github.event_name == 'pull_request' && github.repository != github.event.pull_request.head.repo.full_name
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: __site/
+          retention-days: 1
+
+      - name: Save PR metadata (fork PRs)
+        if: github.event_name == 'pull_request' && github.repository != github.event.pull_request.head.repo.full_name
+        run: |
+          mkdir -p /tmp/deploy-meta
+          echo "${{ github.event.pull_request.number }}" > /tmp/deploy-meta/pr_number
+
+      - name: Upload PR metadata (fork PRs)
+        if: github.event_name == 'pull_request' && github.repository != github.event.pull_request.head.repo.full_name
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-meta
+          path: /tmp/deploy-meta/
+
       - name: Deploy (preview)
         if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name # if this build is a PR build and the PR is NOT from a fork
         uses: JamesIves/github-pages-deploy-action@releases/v4
