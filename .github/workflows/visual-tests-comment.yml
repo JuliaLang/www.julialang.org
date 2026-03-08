@@ -44,7 +44,7 @@ jobs:
 
       - name: Find existing comment
         if: steps.pr.outputs.number
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@v4
         id: find-comment
         with:
           issue-number: ${{ steps.pr.outputs.number }}
@@ -97,7 +97,7 @@ jobs:
 
       - name: Find existing comment
         if: steps.download.outcome == 'success'
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@v4
         id: find-comment
         with:
           issue-number: ${{ steps.meta.outputs.pr_number }}
