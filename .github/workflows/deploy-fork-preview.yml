@@ -7,8 +7,8 @@ on:
       - completed
 
 concurrency:
-  # Same group as deploy.yml and pr_preview_cleanup.yml to avoid clashes
-  # when pushing to gh-preview branch.
+  # Serialize pushes to the `gh-preview` branch to avoid clashes with
+  # pr_preview_cleanup.yml.
   group: global-lock-ghpreview-pushing
 
 permissions:
