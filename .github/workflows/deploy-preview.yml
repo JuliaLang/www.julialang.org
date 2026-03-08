@@ -13,8 +13,8 @@ concurrency:
 
 permissions:
   contents: write
-  pull-requests: write
   actions: read
+  checks: write
 
 jobs:
   deploy-preview:
@@ -41,6 +41,23 @@ jobs:
         id: meta
         run: echo "pr_number=$(cat deploy-meta/pr_number)" >> $GITHUB_OUTPUT
 
+      - name: Create check run on PR
+        if: steps.download-meta.outcome == 'success'
+        uses: actions/github-script@v7
+        id: check
+        with:
+          script: |
+            const prNumber = '${{ steps.meta.outputs.pr_number }}';
+            const { data } = await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
+              head_sha: context.payload.workflow_run.head_sha,
+              status: 'in_progress',
+              details_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            });
+            core.setOutput('id', data.id);
+
       - name: Download site build
         if: steps.download-meta.outcome == 'success'
         uses: actions/download-artifact@v4
@@ -65,19 +82,23 @@ jobs:
           ssh-key: true
           target-folder: "previews/PR${{ steps.meta.outputs.pr_number }}"
 
-      - name: Find existing preview comment
-        if: steps.download-meta.outcome == 'success'
-        uses: peter-evans/find-comment@v4
-        id: find-comment
+      - name: Complete check run
+        if: always() && steps.check.outputs.id
+        uses: actions/github-script@v7
         with:
-          issue-number: ${{ steps.meta.outputs.pr_number }}
-          comment-author: github-actions[bot]
-          body-includes: you can preview your PR at this URL
-
-      - name: Comment on PR
-        if: steps.download-meta.outcome == 'success' && !steps.find-comment.outputs.comment-id
-        uses: peter-evans/create-or-update-comment@v5
-        with:
-          issue-number: ${{ steps.meta.outputs.pr_number }}
-          body: |
-            Once the deploy has completed, you can preview your PR at this URL: https://julialang.netlify.app/previews/PR${{ steps.meta.outputs.pr_number }}/
+          script: |
+            const prNumber = '${{ steps.meta.outputs.pr_number }}';
+            const previewUrl = `https://julialang.netlify.app/previews/PR${prNumber}/`;
+            await github.rest.checks.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              check_run_id: ${{ steps.check.outputs.id }},
+              name: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
+              status: 'completed',
+              conclusion: '${{ job.status }}',
+              output: {
+                title: 'Preview ready',
+                summary: `[Preview this PR](${previewUrl})`,
+              },
+              details_url: previewUrl,
+            });
