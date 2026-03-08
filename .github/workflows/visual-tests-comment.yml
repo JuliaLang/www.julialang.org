@@ -53,7 +53,7 @@ jobs:
 
       - name: Mark comment as re-checking
         if: steps.find-comment.outputs.comment-id
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
@@ -106,7 +106,7 @@ jobs:
 
       - name: Update PR comment — failure
         if: steps.download.outcome == 'success' && steps.meta.outputs.outcome == 'failure'
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ steps.meta.outputs.pr_number }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
@@ -115,7 +115,7 @@ jobs:
 
       - name: Update PR comment — no changes
         if: steps.download.outcome == 'success' && steps.meta.outputs.outcome == 'success' && steps.find-comment.outputs.comment-id
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
