@@ -372,10 +372,14 @@ end
 
 function hfun_all_gsoc_projects()
 	base_dir = joinpath("jsoc", "gsoc")
+	# Only include projects that are linked from the curated projects page
+	curated = String(read(joinpath("jsoc", "projects.md")))
+	curated_slugs = Set(m.match for m in eachmatch(r"(?<=/jsoc/gsoc/)[^/)]+", curated))
 	all_projects = readdir(base_dir)
 	md = IOBuffer()
 	for project in all_projects
 		endswith(project, ".md") || continue
+		replace(project, ".md" => "") in curated_slugs || continue
         for line in eachline(joinpath(base_dir, project))
             # remove any table of contents
             if line == "\\toc"
