@@ -267,7 +267,7 @@ amount of code, saving precious seconds.
 ~~~
 <div id="547edea6-9564-4613-b3c3-1b2e6d1c58c5" style="width: 100%; height: 450px;" class="plotly-graph-div"></div>
 
-<script type="text/javascript" src="/assets/blog/2021-1.6-highlights/gtk3-jll.js"></script>
+<script src="/assets/blog/2021-1.6-highlights/gtk3-jll.js"></script>
 ~~~
 
 The interplay between compiler improvements and the benefits that `JLLWrappers`
