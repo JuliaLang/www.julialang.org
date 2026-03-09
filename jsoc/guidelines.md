@@ -1,3 +1,5 @@
+@def title = "Application Guidelines"
+
 # Application Guidelines
 
 ## Before the Application
@@ -15,13 +17,17 @@ so the more ways you have to show your commitment, the better.
 _If you have accessibility needs with respect to submitting your application, please email `community@julialang.org` to get further assistance with your application. We are committed to making this application process accommodating for everyone._
 
 ~~~
-<iframe style="width:100%;border:none;" height="400" src="https://www.youtube-nocookie.com/embed/YN7uGCg5vLg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div style="max-width:720px;margin:0 auto;">
+  <div class="ratio ratio-16x9 video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/YN7uGCg5vLg" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
 ~~~
 
 ## Application Instructions
 
-- GSoD applications must be submitted to [https://developers.google.com/season-of-docs/](https://developers.google.com/season-of-docs/).
 - GSoC applications must be submitted to [https://summerofcode.withgoogle.com](https://summerofcode.withgoogle.com).
+- GSoD applications must be submitted to [https://developers.google.com/season-of-docs/](https://developers.google.com/season-of-docs/).
 
 ## Application Format
 
@@ -43,9 +49,12 @@ The key questions we will ask ourselves when considering it are:
 * Is the proposed mentor enthusiastic about the project?
 * Does the applicant have previous Open Source contributions (preferably in Julia)?
 
-__Based on analyzing hundreds of GSoC applications, the most common reason(s) someone is not picked for GSoC are__:
- - The individual did not contact the proposed mentor prior to applying. (It is in your best interest to communicate with the proposed mentor as early on as possible. They are your advocate and first point of contact for this program!)
- - No or minimal Open Source Julia contributions. (Given the high quality of applicants each year, we usually choose individuals who have have Julia contributions before GSoC. Start making quality contributions as early on as possible and include links to those in your application.)
+\warn{Common Reasons Applications Are Not Selected}{Based on analyzing hundreds of GSoC applications, the most common reasons someone is not picked are:
+
+**1. No mentor contact.** The individual did not contact the proposed mentor prior to applying. It is in your best interest to communicate with the proposed mentor as early on as possible. They are your advocate and first point of contact for this program!
+
+**2. No or minimal Open Source Julia contributions.** Given the high quality of applicants each year, we usually choose individuals who have Julia contributions before GSoC. Start making quality contributions as early on as possible and include links to those in your application.
+}
 
 In more detail, you may find it useful to consider the following questions:
 
@@ -69,13 +78,13 @@ In more detail, you may find it useful to consider the following questions:
   - Are there any stretch goals you can make if the main project goes smoothly?
     Tell us how you're going to wow us with the final result!
 * **Code portfolio.** Show us a sample or two of code that you're proud of. It doesn't have to be Julia (but that doesn't hurt either). You don't need to be a star programmer as long as you can demonstrate interest in and commitment to your project.
-* **Deliverables** List what concrete products expect to deliver by the end of the project
+* **Deliverables.** List what concrete products you expect to deliver by the end of the project.
 * **About you.** Why you? Give us a sense of who you are as a person and as a programmer.
   - What academic, professional or hobby programming experience do you have, and how will it help you with your project?
   - Have you contributed to open source projects before? (Link us to some issues and patches, if any)
   - Why are you interested in Julia? Have you used it much before? You need to demonstrate your ability to use Julia by the beginning of the program. Trainee programs are not for learning the Julia language, though extensive prior experience is not required, given the high quality of applications each year, individuals with Julia Open Source contributions are usually much more likely to be chosen.
   - Do you have the mathematical/scientific background for your project? Many of the Julialang projects have a significant portion that require technical expertise and applicants need to demonstrate their ability to handle the chosen project.
-  - How should we contact you? Let us know your email address and GitHub  username.
+  - How should we contact you? Let us know your email address and GitHub username.
   - Do you have a website or blog?
   - Are you part of an underrepresented group in STEM? If so, please feel free to provide detail on this as we at the Julia Language are committed to promoting diversity and inclusion in our selection process.
   - Anything else you'd like to mention!
@@ -84,7 +93,11 @@ In more detail, you may find it useful to consider the following questions:
 
 ## Tips and Tricks from former GSoC Contributors
 ~~~
-<iframe style="width:100%;border:none;" height="400" src="https://www.youtube-nocookie.com/embed/YPO9ew6EkkU" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div style="max-width:720px;margin:0 auto;">
+  <div class="ratio ratio-16x9 video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/YPO9ew6EkkU" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
 ~~~
 
 ## Words of Encouragement
