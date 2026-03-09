@@ -23,9 +23,9 @@ A [few months ago](/blog/2020/05/rr) on this blog, I introduced a new Julia feat
 have made use of this capability to send us detailed bug reports. So far, everything went according to plan.
 
 ~~~
-<center>
+<div style="text-align: center">
 <img id="meme" src="/assets/blog/2020-09-23-rr-memory/rr-meme.jpeg" alt="Meme about rr debugging"/>
-</center><br/>
+</div><br/>
 ~~~
 
 In this post I want to tell the story of issue [#37524](https://github.com/JuliaLang/julia/issues/37524), the most unusual of the several `rr` traces we received. As spoiled in the title of this blog post, the eventual issue turned
@@ -490,7 +490,7 @@ encouraged the user to run memtest on their machine. And indeed, the next day I 
 screenshot:
 
 ~~~
-<img id="meme" src="/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg" alt="Memtest86 screenshot showing faulty memory"/>
+<img id="meme-2" src="/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg" alt="Memtest86 screenshot showing faulty memory"/>
 ~~~
 
 The failures reported are exactly what we expected: A 0->1 bit flip in the low bit of the high

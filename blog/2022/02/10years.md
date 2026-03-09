@@ -11,7 +11,7 @@ meta = [ ("property", "og:image", "https://user-images.githubusercontent.com/355
 +++
 
 ~~~
-<img src="https://user-images.githubusercontent.com/35577566/153917389-f9e3cbbf-8c14-47f7-a8ae-a3dcbd60f4a8.png" width="80%" alt="Why We Use Julia, 10 Years Later">
+<img src="https://user-images.githubusercontent.com/35577566/153917389-f9e3cbbf-8c14-47f7-a8ae-a3dcbd60f4a8.png" style="width: 80%" alt="Why We Use Julia, 10 Years Later">
 ~~~
 
 

@@ -38,7 +38,7 @@ julia> Base.REPLCompletions.latex_symbols["\\pi"]
 "π"
 ```
 
-### More π
+## More π
 
 We usually use the `U+03C0` π from the Unicode block for Greek and Coptic text glyphs (Coptic was the Greek-based script adopted by the Egyptians to replace hieroglyphs), but there are other π symbols intended mainly for mathematical use. The following snippet of Julia code tries to show all the lower-case Unicode π symbols:
 
@@ -83,13 +83,13 @@ julia> 2𝜋
 6
 ```
 
-### The phonogram symbol Ⓟ
+## The phonogram symbol Ⓟ
 
 Not all fonts contain a suitable Greek π at `U+03C0`. A few expensive fonts such as [Gotham](https://www.typography.com/fonts/gotham/overview/) offer the circled P symbol at `U+03c0` instead of π. This is the "phonogram" (or "phonorecord") symbol, which usually lives at `U+2117` (the one at `U+24C5` is also used), and it's like the copyright symbol © but for sound recordings. The story behind this is that, particularly before the days of Unicode standardization, font companies sometimes favoured pragmatism over correctness. According to [David Berlow](http://davidberlow.fontbureau.com/):
 
 > we at Font Bureau understand how users work, and so we put the p in a circle, a "must-have" glyph that is very difficult for a user to make on the fly, in the slot of a glyph (math pi) that most people really don't need (because even if they do, it's in the Symbol font on every single computer on earth).
 
-### Designs on π
+## Designs on π
 
 Can we use Julia to find all the different designs of π? My first attempt at this challenge uses [Fontconfig.jl](https://github.com/JuliaGraphics/Fontconfig.jl) to produce a list of installed fonts, and [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl) to draw them in a table. It at least gives a glimpse of the variety of designs available, and illustrates some of the issues. Fonts that provide a zero-width glyph are skipped, meaning the table winds up being smaller than originally planned.
 
@@ -151,7 +151,7 @@ Here are a few of the more interesting designs: the portly Cooper Black and Tiff
 
 I like the small version from Dalliance; it's nicely old-school, where "old-school" here means based on an original from 1799, not long after Euler's death.
 
-### The average π
+## The average π
 
 It occurred to me to ask "what is the average of π?", or "what would it look like if all the πs were displayed at the same time?". Using the same font list generation as before, I ran this:
 

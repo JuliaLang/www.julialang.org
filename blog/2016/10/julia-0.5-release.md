@@ -19,7 +19,7 @@ Most of them are [available to view](https://www.youtube.com/playlist?list=PLP8i
 
 Binaries are available from the [main download page](/downloads/) or visit [JuliaBox](https://juliabox.com/) to try this release from the comfort of your browser. Happy Coding!
 
-### Notable compiler and language changes:
+## Notable compiler and language changes:
 
 - The major focus of this release has been the ability to write fast functional code, removing the earlier performance penalty for anonymous functions and closures.
   This has been achieved via each function and closure now being its own type, and the captured variables of a closure are fields of its type.
@@ -40,10 +40,10 @@ Binaries are available from the [main download page](/downloads/) or visit [Juli
 
 - And [many many more](https://github.com/JuliaLang/julia/blob/release-0.5/NEWS.md#julia-v050-release-notes) changes and improvements...
 
-### Ports
+## Ports
 
 Julia now runs on the ARM and Power architectures, making it possible to use it on the widest variety of hardware, from the smallest embedded machines to the largest HPC systems. Porting a language to a new architecture is never easy, so special thanks to the people who made it possible. Part of the work to create the Power port was supported by IBM, for which we are grateful.
 
-### Developing with Julia
+## Developing with Julia
 
 The Julia debugger, [Gallium](https://github.com/Keno/Gallium.jl), is now ready to use. It allows for a full, multi language debug experience, debugging Julia and C code with ease. The debugger is also integrated with [Juno](https://junolab.org), the Julia IDE that is now fully featured and ready to use.

@@ -81,7 +81,7 @@ JuliaCon 2022 was yet another amazing event for the community and ecosystem to c
 
 Thank you to all of the amazing speakers, volunteers, organizations, and the entire Julia community for making this year's conference a success. It truly does take a community to put on JuliaCon!
 
-### JuliaCon 2022 Organizing Committee
+## JuliaCon 2022 Organizing Committee
 
 * Avik Sengupta, co-Chair [Twitter](https://twitter.com/aviksengupta)
 * Valentin Churavy, co-Chair [Twitter](https://twitter.com/vchuravy)
@@ -96,7 +96,7 @@ Thank you to all of the amazing speakers, volunteers, organizations, and the ent
 * Tom Kwong, Infrastructure [Twitter](https://twitter.com/tomkwong)
 * Will Kimmerer, Local Meetups [Twitter](https://twitter.com/KimmererWill)
 
-### Proceedings Committee
+## Proceedings Committee
 
 * Carsten Bauer
 * Mathieu Besançon

@@ -156,7 +156,7 @@ julia> @time y .*= 2;
 
 I'll now dive deeper into exactly how this new API works.
 
-### The representation of a fused broadcast
+## The representation of a fused broadcast
 
 You can see precisely how a fused broadcast is represented with [`Meta.@lower`][], but in
 simpler terms the expression `([1, 2, 3] .+ [10 20 30 40]) ./ 10` is effectively a syntax
@@ -200,7 +200,7 @@ implement all those new features mentioned above:
   that are already defined. This is what allows them to be precompiled and work in generated
   functions.
 
-### Looking to the future
+## Looking to the future
 
 Of course, this is all [documented and available to packages][]. There's no secret sauce that
 we're hoarding for ourselves. It'll be exciting to see how the many creative minds in the
