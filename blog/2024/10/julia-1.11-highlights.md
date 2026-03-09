@@ -15,7 +15,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 @@announcement
 **1.10 becomes LTS** A quick note about 1.10 first. With the release of 1.11, 1.10 becomes the LTS version,
 which was previously 1.6. Consider using the new `lts` version specifier with
-[juliaup](https://julialang.org/downloads) and the
+[juliaup](/downloads) and the
 [julia-actions/setup-julia](https://github.com/julia-actions/setup-julia#examples) github action.
 @@
 

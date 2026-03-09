@@ -60,6 +60,6 @@ Events:
 
 * The QNumerics summer school on numerical methods in quantum information science is [open for registration](https://qnumerics.org/).
 
-See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [minutes of triage meetings](https://hackmd.io/@LilithHafner/HJaw__uMp)
+See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](/community/#events), [minutes of triage meetings](https://hackmd.io/@LilithHafner/HJaw__uMp)
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)

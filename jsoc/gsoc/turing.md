@@ -7,7 +7,7 @@ Since Turing is implemented in pure Julia code, its compiler and inference metho
 For GSoC 2026 we offer projects from core AD work to scalable inference and user-facing tools.
 
 If a project interests you, contact the mentors listed below or open a discussion on the relevant GitHub repo.
-Please drop a short introduction message in the [`#turing`](https://julialang.slack.com/archives/CCYDC34A0) channel on the [Julia Slack](https://julialang.org/slack/) and feel free to ping [Shravan Goswami](https://github.com/shravanngoswamii) there, he is a past GSoC contributor and currently active in [TuringLang](https://github.com/TuringLang/). Mentors will be happy to discuss project details, scope, and expectations, and you can find mentor contacts at [Turing team page](https://turinglang.org/team/).
+Please drop a short introduction message in the [`#turing`](https://julialang.slack.com/archives/CCYDC34A0) channel on the [Julia Slack](/slack/) and feel free to ping [Shravan Goswami](https://github.com/shravanngoswamii) there, he is a past GSoC contributor and currently active in [TuringLang](https://github.com/TuringLang/). Mentors will be happy to discuss project details, scope, and expectations, and you can find mentor contacts at [Turing team page](https://turinglang.org/team/).
 
 Also cross-posted on [Turing Blog](https://turinglang.org/news/).
 
@@ -85,4 +85,4 @@ The implementation must be correct and performant, validated against standard be
 
 If you have an idea not listed here, propose it. Submit a short proposal with motivation, a concise plan, expected deliverables, and a timeline. Maintainers and mentors will review and help turn it into a plan. Be prepared to discuss scope with mentors early.
 
-To discuss proposals and next steps, contact [Shravan Goswami](https://julialang.slack.com/team/U04UZB5U740) on the [Julia Slack](https://julialang.org/slack/).
+To discuss proposals and next steps, contact [Shravan Goswami](https://julialang.slack.com/team/U04UZB5U740) on the [Julia Slack](/slack/).

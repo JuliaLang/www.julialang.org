@@ -49,6 +49,6 @@ Events:
 
 * An independent [Julia conference is happening in Japan in December](https://discourse.julialang.org/t/julialang-japan-2025-sat-dec-13-2025-tokyo/133259).
 
-See also: [JuliaHub corporate blog](https://juliahub.com/blog), [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
+See also: [JuliaHub corporate blog](https://juliahub.com/blog), [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)

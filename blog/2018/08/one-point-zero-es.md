@@ -35,7 +35,7 @@ I/O asíncrono, control de procesos, logging, perfiles, un administrador de paqu
 * **Opcionalmente tipado**: Julia tiene un lenguaje rico para describir tipos de datos, y la declaración de tipos puede ser usada para clarificar y solidificar programas.
 * **Componible**: Los paquetes de Julia se pueden simultáneamente sin dificultad. Matrices de cantidades unitarias, ó datos de columnas tabuladas de divisas y colores -- todo funciona -- y a buena velocidad.
 
-Prueba Julia bajando la [versión 1.0 ahora](https://julialang.org/downloads/). Si estás actualizando código de Julia 0.6 o versiones anteriores, te recomendamos que primero uses la versión 0.7 como transición.
+Prueba Julia bajando la [versión 1.0 ahora](/downloads/). Si estás actualizando código de Julia 0.6 o versiones anteriores, te recomendamos que primero uses la versión 0.7 como transición.
 Una vez que tu código esté libre de advertencias (*warnings*), puedes cambiarlo a 1.0 sin ninguna pérdida de funcionalidad. Los paquetes registrados están aprovechando esta etapa de transición y liberando sus actualizaciones compatibles con 1.0.
 
 La ventaja más importante de Julia 1.0 es, por supuesto, es un compromiso de estabilidad de API: El código que escribes para Julia 1.0 seguirá funcionando en 1.1, 1.2, etc. El lenguaje está "completo".

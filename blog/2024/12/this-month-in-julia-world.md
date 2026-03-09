@@ -69,6 +69,6 @@ Soapboxes:
 * A new official Julia Bluesky account is now set up at [bsky.app/profile/julialang.org](https://bsky.app/profile/julialang.org) (discussed on [slack](https://julialang.slack.com/archives/C67910KEH/p1732552556407119))
 * The [Julia GSoC team has grown](https://discourse.julialang.org/t/gsoc-admin-team-announcement/122754).
 
-See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [minutes of triage meetings](https://hackmd.io/@LilithHafner/HJaw__uMp)
+See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](/community/#events), [minutes of triage meetings](https://hackmd.io/@LilithHafner/HJaw__uMp)
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)

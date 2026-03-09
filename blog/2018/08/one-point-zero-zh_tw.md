@@ -6,7 +6,7 @@
 @def pagelang = "zh-Hant"
 
 
-~~~Translations:  <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>
+~~~Translations:  <a href="/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="/blog/2018/08/one-point-zero-es">Spanish</a>
 ~~~
 
 眾所期待的 [Julia 語言](https://julialang.org) 1.0 版是近十年的心血結晶。
@@ -67,13 +67,13 @@ open source Julia packages. All told, we have built a language that is: -->
   quantities, or data table columns of currencies and colors, just work — and with good
   performance. -->
 
-現在可以 [下載 Julia 1.0 版本](https://julialang.org/downloads/) 來試試 Julia。
+現在可以 [下載 Julia 1.0 版本](/downloads/) 來試試 Julia。
 如果你現在從 Julia 0.6 或者更早的版本開始升級程式碼，我們建議你先使用過渡的 0.7 版本，
 其中包括了棄用警告（deprecation warning）來指導你升級的過程。一旦你的程式碼無警告通過，
 那麼你可以無痛將程式碼更改為 1.0 版本。
 已註冊過的套件可以利用這個來作為墊腳石並發布與 1.0 相容的版本更新。
 
-<!-- Try Julia by [downloading version 1.0 now](https://julialang.org/downloads/). If you’re
+<!-- Try Julia by [downloading version 1.0 now](/downloads/). If you’re
 upgrading code from Julia 0.6 or earlier, we encourage you to first use the transitional 0.7
 release, which includes deprecation warnings to help guide you through the upgrade process.
 Once your code is warning-free, you can change to 1.0 without any functional changes. The

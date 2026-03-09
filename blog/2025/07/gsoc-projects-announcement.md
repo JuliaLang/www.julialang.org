@@ -8,11 +8,11 @@ rss = "Announcing Google Summer of Code 2025 selected projects"
 
 # Announcing Google Summer of Code 2025 selected projects
 
-— Orestis Ousoultzoglou on behalf of [the admin team](https://julialang.org/jsoc/admins/)
+— Orestis Ousoultzoglou on behalf of [the admin team](/jsoc/admins/)
 
 The Julia Project is [participating](https://summerofcode.withgoogle.com/programs/2025/organizations/the-julia-language) in [Google Summer of Code (GSoC)](https://summerofcode.withgoogle.com/) again this year. GSoC is a global program organized by Google that is designed to bring new contributors to the world of open-source.
 
-Earlier this year, we published a list of [GSoC project ideas](https://julialang.org/jsoc/projects/), and started discussing these projects with potential GSoC applicants on our [Slack](https://julialang.slack.com/archives/C67L30Z3L). We had many interesting discussions with the potential contributors, and even saw some of them making non-trivial contributions, even before GSoC officially started!
+Earlier this year, we published a list of [GSoC project ideas](/jsoc/projects/), and started discussing these projects with potential GSoC applicants on our [Slack](https://julialang.slack.com/archives/C67L30Z3L). We had many interesting discussions with the potential contributors, and even saw some of them making non-trivial contributions, even before GSoC officially started!
 
 After the initial discussions, GSoC applicants prepared and submitted their project proposals. We received a whopping 85 proposals this year! We are happy to see that there was so much interest in our projects.
 
@@ -45,7 +45,7 @@ Below you can find the list of accepted proposals (in no particular order), alon
   
 **Congratulations to all applicants whose project was selected!** The mentors are looking forward to working with you on these exciting projects to improve the Julia ecosystem. You can expect to hear from us soon, so that we can start coordinating the work on your GSoC projects.
 
-We would also like to thank all the applicants whose proposal was sadly not accepted, for their interactions with the Julia community and contributions to various Julia projects. Even if your proposal was not accepted, we would be happy if you would consider contributing to the projects that got you interested, even outside GSoC! Our [project idea list](https://julialang.org/jsoc/projects/) is still actual and could serve as a general entry point for contributors that would like to work on projects that would aid the Julia ecosystem. You can always [reach out to us](https://julialang.org/community/) and we'll make sure to help you in any way we can.
+We would also like to thank all the applicants whose proposal was sadly not accepted, for their interactions with the Julia community and contributions to various Julia projects. Even if your proposal was not accepted, we would be happy if you would consider contributing to the projects that got you interested, even outside GSoC! Our [project idea list](/jsoc/projects/) is still actual and could serve as a general entry point for contributors that would like to work on projects that would aid the Julia ecosystem. You can always [reach out to us](/community/) and we'll make sure to help you in any way we can.
 
 There is also a good chance we'll participate in GSoC next year as well (though we can't promise anything at this moment), so we hope to receive your proposals again in the future!
 
