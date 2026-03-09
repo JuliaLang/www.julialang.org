@@ -26,7 +26,7 @@ The project to update the contributing guide will:
 - Create guides geared towards each of these different groups (perhaps making them similar in content but with different levels of verboseness)
 - Create general guides for things like making a Pull Request or Opening an Issue (leveraging existing materials we have).
 - Highlight all of the non-technical ways folks can contribute to the Julia Language and the ecosystem.
-- Work with existing and new community members to make sure that the new section of the website (https://julialang.org/contribute/) is comprehensive yet still light-handed such that first-time contributors are not overwhelmed.
+- Work with existing and new community members to make sure that the new section of the website (/contribute/) is comprehensive yet still light-handed such that first-time contributors are not overwhelmed.
   Work that is out-of-scope for this project:
 - Unless significant issues are uncovered with the contributing guide (https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md), updating that document will be out of scope.
 - One of our community members has written a great first PR guide (https://kshyatt.github.io/post/firstjuliapr/) we plan to leverage this to avoid duplicating any work.
