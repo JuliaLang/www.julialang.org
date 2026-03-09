@@ -5,9 +5,10 @@ The package provides extensive examples to start from and is designed as a compr
 Ferrite is actively used in teaching finite element to students at several universities across different countries (e.g. Ruhr-University Bochum and Chalmers University of Technology).
 Further infrastructure is provided in the form of different mesh parsers and a Julia based visualizer called [FerriteViz.jl](https://github.com/Ferrite-FEM/FerriteViz.jl).
 
-Below we provide a four of potential project ideas in [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl).
+Below we provide a two of potential project ideas in [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl).
 However, interested students should feel free to explore ideas they are interested in. Please contact any of the mentors listed below, or join the `#ferrite-fem` channel on the Julia slack to discuss.
-Projects in finite element visualization are also possible with [FerriteViz.jl](https://github.com/Ferrite-FEM/FerriteViz.jl).
+Projects in finite element visualization are also possible with for example [FerriteViz.jl](https://github.com/Ferrite-FEM/FerriteViz.jl).
+As a starting point, or to gather inspiration for a potential project, please check out issues marked with [Good First Issue](https://github.com/Ferrite-FEM/Ferrite.jl/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22).
 
 
 
@@ -15,7 +16,7 @@ Projects in finite element visualization are also possible with [FerriteViz.jl](
 
 **Difficulty**: Medium
 
-**Project size**: 250-350 hours
+**Project size**: 300-350 hours
 
 **Problem**: [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl) supports arbitrary order interpolations in 1D and 2D. However, for 3D problems the order for the interpolations is right now limited to interpolations with at most a single dof per face. The difficulty here is of geometric nature. Faces in typical finite element meshes typically have a non-trivial relative orientation, and therefore the facet dofs of the neighboring elements do not match spatially.
 
@@ -28,7 +29,7 @@ Projects in finite element visualization are also possible with [FerriteViz.jl](
 - Good geometric thinking
 - The ability (or eagerness to learn) to write fast code
 
-**Mentors**: [Fredrik Ekre](https://github.com/fekre) and [Dennis Ogiermann](https://github.com/termi-official)
+**Mentors**: [Dennis Ogiermann](https://github.com/termi-official) and [Fredrik Ekre](https://github.com/fekre)
 
 
 
@@ -50,4 +51,4 @@ Projects in finite element visualization are also possible with [FerriteViz.jl](
 - Basic knowledge about benchmarking
 - The ability (or eagerness to learn) to write fast code
 
-**Mentors**: [Maximilian Köhler](https://github.com/koehlerson) and [Dennis Ogiermann](https://github.com/termi-official)
+**Mentors**: [Dennis Ogiermann](https://github.com/termi-official) and [Maximilian Köhler](https://github.com/koehlerson)
