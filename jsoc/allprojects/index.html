@@ -146,40 +146,6 @@
 <p><strong>Mentor:</strong> <a href="https://github.com/sbozzolo">Gabriele Bozzola</a></p>
 <p><strong>Contact:</strong> Feel free to ask questions via <a href="clima-software@caltech.edu">email</a> or <a href="https://join.slack.com/t/julialang/shared_invite/zt-2a5wdtotu-H52pQQTMDOa4NwsTSgQ_lQ">Julia Slack</a> &#40;DM to Gabriele Bozzola&#41;.</p>
 <p><em>Interested in other aspects of climate modeling in Julia but not this particular project? Get in touch—we have many more projects&#33;</em></p>
-<h2 id="tensor_network_contraction_order_optimization_and_visualization_summer_of_code"><a href="#tensor_network_contraction_order_optimization_and_visualization_summer_of_code" class="header-anchor">Tensor network contraction order optimization and visualization – Summer of Code</a></h2>
-<p><a href="https://github.com/under-Peter/OMEinsum.jl">OMEinsum.jl</a> is a pure Julia package for tensor network computation,  which has been used in various projects, including</p>
-<ul>
-<li><p><a href="https://github.com/QuEraComputing/GenericTensorNetworks.jl">GenericTensorNetworks.jl</a> for solving combinatorial optimization problems,</p>
-</li>
-<li><p><a href="https://github.com/QuantumBFS/YaoToEinsum.jl">YaoToEinsum.jl</a> for simulating large scale quantum circuit and</p>
-</li>
-<li><p><a href="https://github.com/TensorBFS/TensorInference.jl">TensorInference.jl</a> for Bayesian inference.</p>
-</li>
-</ul>
-<p>Unlike other tensor contraction packages such as <code>ITensors.jl</code> and <code>TensorOperations.jl</code>, it is designed for large scale tensor networks with arbitrary topology. The key feature of <code>OMEinsum.jl</code> is that it can automatically optimize the contraction order of a tensor network. Related features are implemented in <a href="https://github.com/TensorBFS/OMEinsumContractionOrders.jl">OMEinsumContractionOrders.jl</a>.</p>
-<p>We are looking for a student to work on the following tasks:</p>
-<ul>
-<li><p>Implement a better contraction order optimizer based on <a href="https://arxiv.org/abs/2202.07793">Tamaki&#39;s algorithm</a>.</p>
-</li>
-<li><p>Implement a hyper-graph visualization tool based on <a href="https://arxiv.org/abs/2308.05043">arXiv:2308.05043</a></p>
-</li>
-<li><p>Port the contraction order optimizers to <a href="https://github.com/Jutho/TensorOperations.jl">TensorOperations.jl</a></p>
-</li>
-</ul>
-<p><strong>Recommended skills:</strong> familiarity with tensor networks, graph theory and high performance computing.</p>
-<p><strong>Expected results:</strong></p>
-<ul>
-<li><p>new features added to the package <code>OMEinsumContractionOrders.jl</code> along with tests and relevant documentation.</p>
-</li>
-<li><p>a new package about hyper-graph visualization, and relevant feature added to <code>OMEinsum.jl</code>.</p>
-</li>
-<li><p>a pull request to <code>TensorOperations.jl</code> for better contraction order optimization.</p>
-</li>
-</ul>
-<p><strong>Mentors:</strong> <a href="https://github.com/giggleliu">Jin-Guo Liu</a>, <a href="https://github.com/Jutho">Jutho Haegeman</a> and <a href="https://github.com/lkdvos">Lukas Devos</a></p>
-<p><strong>Project difficulty:</strong> Medium to Hard</p>
-<p><strong>Project length:</strong> 350 hrs</p>
-<p><strong>Contact:</strong> feel free to ask questions via <a href="cacate0129@gmail.com">email</a> or the Julia slack &#40;user name: JinGuo Liu&#41;.</p>
 <h2 id="documentation_tooling_summer_of_code"><a href="#documentation_tooling_summer_of_code" class="header-anchor">Documentation tooling – Summer of Code</a></h2>
 <h3 id="documenterjl"><a href="#documenterjl" class="header-anchor">Documenter.jl</a></h3>
 <p>The Julia manual and the documentation for a large chunk of the ecosystem is generated using <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> – essentially a static site generator that integrates with Julia and its docsystem. There are tons of opportunities for improvements for anyone interested in working on the interface of Julia, documentation and various front-end technologies &#40;web, LaTeX&#41;.</p>
@@ -203,43 +169,6 @@
 <p><strong>Mentors:</strong> <a href="https://github.com/mortenpi">Morten Piibeleht</a>, <a href="https://github.com/fredrikekre">Fredrik Ekre</a></p>
 <h3 id="contact"><a href="#contact" class="header-anchor">Contact</a></h3>
 <p>Best way to reach out is to message in the <code>#documentation</code> channel on the <a href="/slack/">JuliaLang Slack</a>&#33;</p>
-<h2 id="fastdifferentiationjl_summer_of_code"><a href="#fastdifferentiationjl_summer_of_code" class="header-anchor">FastDifferentiation.jl – Summer of Code</a></h2>
-<p><a href="https://github.com/brianguenter/FastDifferentiation.jl">FastDifferentiation.jl</a> is a Julia package for computing very efficient symbolic derivatives of Julia functions and for compiling the derivatives into  efficient executables. It can differentiate much larger expressions than other symbolic systems, such as Symbolics.jl, and the resulting derivatives are also much more efficient, rivaling hand computed derivatives in some cases &#40;see the website for benchmark examples&#41;.</p>
-<p><a href="https://github.com/brianguenter/FastDifferentiation.jl">FastDifferentiation.jl</a> also computes the exact sparsity patterns of Jacobians and Hessians &#40;and any other order derivative&#41; and detects common terms in derivatives of Rⁿ-&gt;Rᵐ functions for large n,m. As a consequence computation time of Jacobians generally scales sub-linearly as a function of n,m.</p>
-<p>However, the current system has several weaknesses. It is not currently possible to differentiate through conditional expressions so many commonly used Julia functions cannot be differentiated. Derivatives of any order can be computed but orders above 3 or 4 become increasingly inefficient. These projects aim to address these weaknesse.</p>
-<h3 id="add_conditionals_to_fastdifferentiationjl"><a href="#add_conditionals_to_fastdifferentiationjl" class="header-anchor">Add Conditionals to FastDifferentiation.jl</a></h3>
-<p>FastDifferentiation supports conditionals in function definitions but cannot yet compute derivatives of functions with conditionals:</p>
-<pre><code class="julia hljs">julia&gt; <span class="hljs-meta">@variables</span> x y
-
-julia&gt; f = if_else(x&gt;y,x^<span class="hljs-number">2</span>,y^<span class="hljs-number">2</span>)
-(if_else  (x &gt; y) (x ^ <span class="hljs-number">2</span>) (y ^ <span class="hljs-number">2</span>))
-
-julia&gt; derivative(f,x)
-ERROR: Your expression contained a if_else expression. FastDifferentiation does not yet support differentiation through this <span class="hljs-keyword">function</span></code></pre>
-<blockquote>
-<p>The goal of this project is to modify the derivative graph analysis code so that it detects conditional subgraphs and then generates run time code to evaluate conditionals and branches to correct derivative expressions.</p>
-</blockquote>
-<p><strong>Medium difficulty, 175 hours.</strong></p>
-<p><strong>Recommended Skills:</strong> Julia programming experience, previous work with graph algorithms helpful but not required.</p>
-<p><strong>Expected Outcome:</strong> Well-tested and well-documented support for conditionals.</p>
-<p><strong>Mentor:</strong> <a href="https://github.com/brianguenter/FastDifferentiation.jl">BrianGuenter</a></p>
-<h3 id="add_higher_order_derivatives_to_fastdifferentiationjl"><a href="#add_higher_order_derivatives_to_fastdifferentiationjl" class="header-anchor">Add higher order derivatives to FastDifferentiation.jl</a></h3>
-<p>FastDifferentiation.jl produces extremely efficient first derivatives. But, higher order derivatives become increasingly less efficient since they are computed by repeatedly applying the differentiation algorithm. </p>
-<p>The fundamental cause of this behavior is that repeated higher order intermediate derivative terms are not detected and reused; instead they are computed from scratch. The goal of this project is to extend the FastDifferentiation algorithm to detect these common higher order terms and to reuse, rather than recompute them.</p>
-<p>This will require a rewrite of the graph factorization code as well as some theoretical work to determine which higher order terms can be reused.</p>
-<p><strong>Hard, 350 hours.</strong></p>
-<p><strong>Recommended Skills:</strong> Julia programming experience, previous work with graph algorithms helpful but not required. Understanding of <a href="https://en.wikipedia.org/wiki/Fa&#37;C3&#37;A0_di_Bruno&#37;27s_formula">Faa Di Bruno&#39;s</a> and <a href="https://en.wikipedia.org/wiki/General_Leibniz_rule">Leibniz&#39;s rule</a>.</p>
-<p><strong>Expected Outcome:</strong> Well-tested and well-documented support for higher order derivatives.</p>
-<p><strong>Mentor:</strong> <a href="https://github.com/brianguenter/FastDifferentiation.jl">BrianGuenter</a></p>
-<h3 id="integrate_fastdifferentiationjl_into_symbolicsjl"><a href="#integrate_fastdifferentiationjl_into_symbolicsjl" class="header-anchor">Integrate FastDifferentiation.jl into Symbolics.jl</a></h3>
-<p>FastDifferentiation.jl uses a new symbolic algorithm for automatic differentiation that can be orders of magnitude faster than conventional symbolic differentiation methods. Symoblics.jl could compute derivatives much faster using the FastDifferentiation algorithm. However implementation and data structure differences between the two systems make it difficult to add FastDifferentiation capabilities to Symbolics.jl.</p>
-<p>For example, Symbolics.jl allows you to define a function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">q(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> and then to compute a symbolic derivative <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>q</mi><mo>˙</mo></mover><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\dot{q}(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.055550000000000016em;"><span class="mord">˙</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> without defining <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span>. Adding this capability to FastDifferentiation.jl requires a change in the graph representation of derivatives. </p>
-<p>The goal of this project is to first analyze the sources of the incompatibilities between the two systems and then to modify FastDifferentiation.jl, and perhaps Symbolics.jl, so that they interoperate.</p>
-<p>See <a href="https://github.com/brianguenter/Proposals">this</a> page for a more detailed description of tasks.</p>
-<p><strong>Medium difficulty, 175 hours.</strong></p>
-<p><strong>Recommended Skills:</strong> Julia programming experience, previous work with graph algorithms helpful but not required.</p>
-<p><strong>Expected Outcome:</strong> Well-tested and well-documented integration of FastDifferentiation into Symbolics.jl.</p>
-<p><strong>Mentor:</strong> <a href="https://github.com/brianguenter/FastDifferentiation.jl">BrianGuenter</a></p>
 <h2 id="ferritejl_-_finite_element_toolbox"><a href="#ferritejl_-_finite_element_toolbox" class="header-anchor">Ferrite.jl - Finite Element Toolbox</a></h2>
 <p><a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a> is a Julia package providing the basic building blocks to develop finite element simulations of partial differential equations. The package provides extensive examples to start from and is designed as a compromise between simplicity and generality, trying to map finite element concepts 1:1 with the code in a low-level . Ferrite is actively used in teaching finite element to students at several universities across different countries &#40;e.g. Ruhr-University Bochum and Chalmers University of Technology&#41;. Further infrastructure is provided in the form of different mesh parsers and a Julia based visualizer called <a href="https://github.com/Ferrite-FEM/FerriteViz.jl">FerriteViz.jl</a>.</p>
 <p>Below we provide a four of potential project ideas in <a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a>. However, interested students should feel free to explore ideas they are interested in. Please contact any of the mentors listed below, or join the <code>#ferrite-fem</code> channel on the Julia slack to discuss. Projects in finite element visualization are also possible with <a href="https://github.com/Ferrite-FEM/FerriteViz.jl">FerriteViz.jl</a>.</p>
@@ -378,12 +307,6 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 </ul>
 <p><strong>Expected Results:</strong> A set of optimized GPU kernels in GPUArrays.jl that are vendor-agnostic and performant across different GPU backends. This will improve the portability of the Julia GPU stack and make it easier to support new GPU architectures.</p>
 <p><strong>Mentors:</strong> <a href="https://github.com/maleadt">Tim Besard</a>, <a href="https://github.com/vchuravy">Valentin Churavy</a></p>
-<h2 id="graphic_projects_summer_of_code"><a href="#graphic_projects_summer_of_code" class="header-anchor">Graphic Projects – Summer of Code</a></h2>
-<h3 id="vegalitejl_improvements"><a href="#vegalitejl_improvements" class="header-anchor">VegaLite.jl Improvements</a></h3>
-<p>The <a href="https://github.com/queryverse/VegaLite.jl">VegaLite.jl</a> package provides a Julia wrapper for <a href="https://vega.github.io/vega-lite/">vega-lite</a> and <a href="https://vega.github.io/vega/">vega</a>. There are many areas that could be improved: 1&#41; provide a more powerful <a href="https://vega.github.io/vega/">vega</a> API that is similar to the existing <a href="https://vega.github.io/vega-lite/">vega-lite</a> API, 2&#41; complete the <a href="https://vega.github.io/vega-lite/">vega-lite</a> API &#40;there are many corner cases that are not ideally handled right now&#41;, 3&#41; make things work better for large datasets, 4&#41; come up with a way to auto-convert/integrate the comprehensive vega-lite documentation into the VegaLite.jl documentation, 5&#41; write more documentation, 6&#41; increase test coverage or 7&#41; add a simple non-grammar of graphics API.</p>
-<p><strong>Expected Results</strong>: Some subset of the list mentioned above.</p>
-<p><strong>Recommended Skills</strong>: Familiarity with Julia, vega-lite or vega, and Node.</p>
-<p><strong>Mentors</strong>: <a href="https://github.com/davidanthoff">David Anthoff</a></p>
 <h2 id="herbjl_projects"><a href="#herbjl_projects" class="header-anchor">Herb.jl Projects</a></h2>
 <p><img src="https://raw.githubusercontent.com/Herb-AI/Herb.jl/refs/heads/documentation/docs/src/assets/herb.png" alt="Herb Logo" /></p>
 <p>Wouldn’t it be great if Julia would program itself? Tell it what you want, Julia magic happens, and you get your program directly. We introduce Herb.jl, a library written in Julia that gets us a step closer to our big goal. <a href="https://herb-ai.github.io/">Herb.jl</a> is a library for program synthesis: The task of automatically generating programs from a given specification. Here, “a program” could be anything, from an actual Python program over moves in chess to the synthesis of biochemical molecules. There are numerous works on program synthesis, all speaking a different language in code and terminology. We want to make developing, comparing, and applying ideas in program synthesis easier.</p>
@@ -1030,15 +953,6 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <h5 id="why_implementation_of_these_features_is_important"><a href="#why_implementation_of_these_features_is_important" class="header-anchor">Why Implementation of These Features is Important</a></h5>
 <p>Implementing these features is crucial for advancing medical imaging technology. Enhanced logging with TensorBoard integration will allow for better insight into model training. Performance improvements ensure reliable and efficient processing of large datasets. Improved documentation and memory management make the tools more accessible and usable for medical professionals, facilitating better integration into clinical workflows. Supporting tabular data alongside imaging allows for comprehensive analysis, combining clinical and imaging data to improve diagnostic accuracy and patient outcomes.</p>
 <p>For each point, the mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it &#40;that just need to be integrated&#41;.</p>
-<h2 id="music_data_analysis"><a href="#music_data_analysis" class="header-anchor">Music data analysis</a></h2>
-<p><a href="https://github.com/JuliaMusic">JuliaMusic</a> is an organization providing packages and functionalities that allow analyzing the properties of music performances. </p>
-<h3 id="midification_of_music_from_wave_files"><a href="#midification_of_music_from_wave_files" class="header-anchor">MIDIfication of music from wave files</a></h3>
-<p><strong>Difficulty</strong>: Medium.</p>
-<p><strong>Length</strong>: 350 hours.</p>
-<p>It is easy to analyze timing and intensity fluctuations in music that is the form of MIDI data.  This format is already digitalized, and packages such as MIDI.jl and MusicManipulations.jl allow for seamless data processing. But arguably the most interesting kind of music to analyze is the live one. Live music performances are recorded in wave formats.  Some algorithms exist that can detect the &quot;onsets&quot; of music hits,  but they are typically focused only on the timing information and hence forfeit detecting e.g., the intensity of the played note. Plus, there are very few code implementations online for this problem, almost all of which are old and unmaintained. We would like to implement an algorithm in MusicProcessing.jl that given a recording of a single instrument, it can &quot;MIDIfy&quot; it, which means to digitalize it into the MIDI format.</p>
-<p><strong>Recommended Skills</strong>: Background in music, familiarity with digital signal processing.</p>
-<p><strong>Expected results</strong>: A well-tested, well-documented function <code>midify</code> in MusicProcessing.jl.</p>
-<p><strong>Mentors</strong>: <a href="https://github.com/Datseris/">George Datseris</a>.</p>
 <h2 id="juliareach"><a href="#juliareach" class="header-anchor">JuliaReach</a></h2>
 <p><a href="https://github.com/JuliaReach">JuliaReach</a> is the Julia ecosystem for reachability computations of dynamical systems. Application domains of set-based reachability include formal verification, controller synthesis and estimation under uncertain model parameters or inputs. For further context reach us on the <a href="https://julialang.zulipchat.com/#narrow/stream/278609-juliareach">JuliaReach zulip</a> stream. You may also refer to the review article <a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-control-071420-081941">Set Propagation Techniques for Reachability Analysis</a>.</p>
 <h3 id="integration_with_the_julia_numerical_modeling_ecosystem"><a href="#integration_with_the_julia_numerical_modeling_ecosystem" class="header-anchor">Integration with the Julia numerical modeling ecosystem</a></h3>
@@ -1100,60 +1014,6 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <p><strong>Expected results:</strong> new features added to the package along with tests and relevant documentation.</p>
 <p><strong>Mentor:</strong> <a href="https://github.com/jgreener64">Joe Greener</a></p>
 <p><strong>Contact:</strong> feel free to ask questions via <a href="http://jgreener64.github.io">email</a> or #juliamolsim on the <a href="https://join.slack.com/t/julialang/shared_invite/zt-2a5wdtotu-H52pQQTMDOa4NwsTSgQ_lQ">Julia Slack</a>.</p>
-<h2 id="numerical_projects_summer_of_code"><a href="#numerical_projects_summer_of_code" class="header-anchor">Numerical Projects – Summer of Code</a></h2>
-<h3 id="numerical_linear_algebra"><a href="#numerical_linear_algebra" class="header-anchor">Numerical Linear Algebra</a></h3>
-<h4 id="matrix_functions"><a href="#matrix_functions" class="header-anchor">Matrix functions</a></h4>
-<p>Matrix functions map matrices onto other matrices, and can often be interpreted as generalizations of ordinary functions like sine and exponential, which map numbers to numbers. Once considered a niche province of numerical algorithms, matrix functions now appear routinely in applications to cryptography, aircraft design, nonlinear dynamics, and finance.</p>
-<p>This project proposes to implement state of the art algorithms that extend the currently available matrix functions in Julia, as outlined in issue <a href="https://github.com/JuliaLang/julia/issues/5840">#5840</a>. In addition to matrix generalizations of standard functions such as real matrix powers, surds and logarithms, contributors will be challenged to design generic interfaces for lifting general scalar-valued functions to their matrix analogues for the efficient computation of arbitrary &#40;well-behaved&#41; matrix functions and their derivatives.</p>
-<p><strong>Recommended Skills</strong>: A strong understanding of calculus and numerical analysis.</p>
-<p><strong>Expected Results</strong>: New and faster methods for evaluating matrix functions.</p>
-<p><strong>Mentors:</strong> <a href="https://github.com/jiahao">Jiahao Chen</a>, <a href="https://github.com/stevengj">Steven Johnson</a>.</p>
-<p><strong>Difficulty:</strong> Hard</p>
-<h3 id="better_bignums_integration"><a href="#better_bignums_integration" class="header-anchor">Better Bignums Integration</a></h3>
-<p>Julia currently supports big integers and rationals, making use of the GMP. However, GMP currently doesn&#39;t permit good integration with a garbage collector.</p>
-<p>This project therefore involves exploring ways to improve BigInt, possibly including:</p>
-<ul>
-<li><p>Modifying GMP to support high-performance garbage-collection</p>
-</li>
-<li><p>Reimplementation of aspects of BigInt in Julia</p>
-</li>
-<li><p>Lazy graph style APIs which can rewrite terms or apply optimisations</p>
-</li>
-</ul>
-<p>This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.</p>
-<p><strong>Expected Results</strong>: An implementation of BigInt in Julia with increased performance over the current one.</p>
-<p><strong>Require Skills</strong>: Familiarity with extended precision numerics OR performance considerations. Familiarity either with Julia or GMP.</p>
-<p><strong>Mentors</strong>: <a href="https://github.com/vtjnash">Jameson Nash</a></p>
-<p><strong>Difficulty:</strong> Hard</p>
-<h4 id="special_functions"><a href="#special_functions" class="header-anchor">Special functions</a></h4>
-<p>As a technical computing language, Julia provides a huge number of <a href="https://en.wikipedia.org/wiki/Special_functions">special functions</a>, both in Base as well as packages such as <a href="https://github.com/JuliaStats/StatsFuns.jl">StatsFuns.jl</a>. At the moment, many of these are implemented in external libraries such as <a href="https://github.com/JuliaLang/Rmath-julia">Rmath</a> and <a href="https://github.com/JuliaLang/openspecfun">openspecfun</a>. This project would involve implementing these functions in native Julia &#40;possibly utilising the work in <a href="https://github.com/nolta/SpecialFunctions.jl">SpecialFunctions.jl</a>&#41;, seeking out opportunities for possible improvements along the way, such as supporting <code>Float32</code> and <code>BigFloat</code>, exploiting fused multiply-add operations, and improving errors and boundary cases.</p>
-<p><strong>Recommended Skills</strong>: A strong understanding of calculus.</p>
-<p><strong>Expected Results</strong>: New and faster methods for evaluating properties of special functions.</p>
-<p><strong>Mentors:</strong> <a href="https://github.com/stevengj">Steven Johnson</a>, <a href="https://github.com/oscardssmith">Oscar Smith</a>. Ask on Discourse or on slack</p>
-<h4 id="a_julia-native_ccsa_optimization_algorithm"><a href="#a_julia-native_ccsa_optimization_algorithm" class="header-anchor">A Julia-native CCSA optimization algorithm</a></h4>
-<p>The CCSA algorithm by <a href="https://epubs.siam.org/doi/10.1137/S1052623499362822">Svanberg &#40;2001&#41;</a> is a <a href="https://en.wikipedia.org/wiki/Nonlinear_programming">nonlinear programming algorithm</a> widely used in <a href="https://en.wikipedia.org/wiki/Topology_optimization">topology optimization</a> and for other large-scale optimization problems: it is a robust algorithm that can handle arbitrary nonlinear inequality constraints and huge numbers of degrees of freedom.  Moreover, the relative simplicity of the algorithm makes it possible to easily incorporate sparsity in the Jacobian matrix &#40;for handling huge numbers of constraints&#41;, approximate-Hessian preconditioners, and as special-case optimizations for affine terms in the objective or constraints.  However, currently it is only available in Julia via the <a href="https://github.com/JuliaOpt/NLopt.jl">NLopt.jl</a> interface to an external C implementation, which greatly limits its flexibility.</p>
-<p><strong>Recommended Skills</strong>: Experience with nonlinear optimization algorithms and understanding of <a href="https://en.wikipedia.org/wiki/Duality_&#40;optimization&#41;">Lagrange duality</a>, familiarity with sparse matrices and other Julia data structures.</p>
-<p><strong>Expected Results</strong>: A package implementing a native-Julia CCSA algorithm.</p>
-<p><strong>Mentors:</strong> <a href="https://github.com/stevengj">Steven Johnson</a>.</p>
-<h2 id="plutojl_projects"><a href="#plutojl_projects" class="header-anchor">Pluto.jl projects</a></h2>
-<p>Unfortunately we won&#39;t have time to mentor this year.  Check back next year&#33;</p>
-<h2 id="pythia_summer_of_code"><a href="#pythia_summer_of_code" class="header-anchor">Pythia – Summer of Code</a></h2>
-<h3 id="machine_learning_time_series_regression"><a href="#machine_learning_time_series_regression" class="header-anchor">Machine Learning Time Series Regression</a></h3>
-<p><a href="https://github.com/ababii/Pythia.jl">Pythia</a> is a package for scalable machine learning time series forecasting and nowcasting in Julia.</p>
-<p>The project mentors are <a href="https://ababii.github.io/">Andrii Babii</a> and <a href="https://www.turing.ac.uk/people/researchers/sebastian-vollmer/">Sebastian Vollmer</a>.</p>
-<h3 id="machine_learning_for_nowcasting_and_forecasting"><a href="#machine_learning_for_nowcasting_and_forecasting" class="header-anchor">Machine learning for nowcasting and forecasting</a></h3>
-<p>This project involves developing scalable machine learning time series regressions for nowcasting and forecasting. Nowcasting in economics is the prediction of the present, the very near future, and the very recent past state of an economic indicator. The term is a contraction of &quot;now&quot; and &quot;forecasting&quot; and originates in meteorology.</p>
-<p>The objective of this project is to introduce scalable regression-based nowcasting and forecasting methodologies that demonstrated the empirical success in data-rich environment recently. Examples of existing popular packages for regression-based nowcasting on other platforms include the &quot;MIDAS Matlab Toolbox&quot;, as well as the &#39;midasr&#39; and &#39;midasml&#39; packages in R. The starting point for this project is porting the &#39;midasml&#39; package from R to Julia. Currently Pythia has the sparse-group LASSO regression functionality for forecasting.</p>
-<p>The following functions are of interest: in-sample and out-of sample forecasts/nowcasts, regularized MIDAS with Legendre polynomials, visualization of nowcasts, AIC/BIC and time series cross-validation tuning, forecast evaluation, pooled and fixed effects panel data regressions for forecasting and nowcasting, HAC-based inference for sparse-group LASSO, high-dimensional Granger causality tests. Other widely used existing functions from R/Python/Matlab are also of interest.</p>
-<p><strong>Recommended skills:</strong> Graduate-level knowledge of time series analysis, machine learning, and optimization is helpful.</p>
-<p><strong>Expected output:</strong> The contributor is expected to produce code, documentation, visualization, and real-data examples.</p>
-<p><strong>References:</strong> Contact project mentors for references.</p>
-<h3 id="time_series_forecasting_at_scales"><a href="#time_series_forecasting_at_scales" class="header-anchor">Time series forecasting at scales</a></h3>
-<p>Modern business applications often involve forecasting hundreds of thousands of time series. Producing such a gigantic number of reliable and high-quality forecasts is computationally challenging, which limits the scope of potential methods that can be used in practice, see, e.g., the &#39;forecast&#39;, &#39;fable&#39;, or &#39;prophet&#39; packages in R. Currently, Julia lacks the scalable time series forecasting functionality and this project aims to develop the automated data-driven and scalable time series forecasting methods.</p>
-<p>The following  functionality is of interest: forecasting intermittent demand &#40;Croston, adjusted Croston, INARMA&#41;, scalable seasonal ARIMA with covariates, loss-based forecasting &#40;gradient boosting&#41;, unsupervised time series clustering, forecast combinations, unit root tests &#40;ADF, KPSS&#41;. Other widely used existing functions from R/Python/Matlab are also of interest.</p>
-<p><strong>Recommended skills:</strong> Graduate-level knowledge of time series analysis is helpful.</p>
-<p><strong>Expected output:</strong> The contributor is expected to produce code, documentation, visualization, and real-data examples.</p>
-<p><strong>References:</strong> Contact project mentors for references.</p>
 <h2 id="tools_for_simulation_of_quantum_clifford_circuits"><a href="#tools_for_simulation_of_quantum_clifford_circuits" class="header-anchor">Tools for simulation of Quantum Clifford Circuits</a></h2>
 <p>Clifford circuits are a class of quantum circuits that can be simulated efficiently on a classical computer. As such, they do not provide the computational advantage expected of universal quantum computers. Nonetheless, they are extremely important, as they underpin most techniques for quantum error correction and quantum networking. Software that efficiently simulates such circuits, at the scale of thousands or more qubits, is essential to the design of quantum hardware. The <a href="https://github.com/Krastanov/QuantumClifford.jl">QuantumClifford.jl</a> Julia project enables such simulations.</p>
 <h3 id="gpu_accelerated_simulator_of_clifford_circuits"><a href="#gpu_accelerated_simulator_of_clifford_circuits" class="header-anchor">GPU accelerated simulator of Clifford Circuits.</a></h3>
@@ -1467,46 +1327,6 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 <p><strong>Mentors</strong>: Community</p>
 <p>If you have an idea not listed here, propose it. Submit a short proposal with motivation, a concise plan, expected deliverables, and a timeline. Maintainers and mentors will review and help turn it into a plan. Be prepared to discuss scope with mentors early.</p>
 <p>To discuss proposals and next steps, contact <a href="https://julialang.slack.com/team/U04UZB5U740">Shravan Goswami</a> on the <a href="/slack/">Julia Slack</a>.</p>
-<h2 id="vs_code_projects"><a href="#vs_code_projects" class="header-anchor">VS Code projects</a></h2>
-<h3 id="vs_code_extension"><a href="#vs_code_extension" class="header-anchor">VS Code extension</a></h3>
-<p>We are generally looking for folks that want to help with the <a href="https://www.julia-vscode.org/">Julia VS Code extension</a>. We have a long list of open issues, and some of them amount to significant projects.</p>
-<p><strong>Required Skills</strong>: TypeScript, Julia, web development.</p>
-<p><strong>Expected Results</strong>: Depends on the specific projects we would agree on.</p>
-<p><strong>Mentors</strong>: <a href="https://github.com/davidanthoff">David Anthoff</a></p>
-<h3 id="package_installation_ui"><a href="#package_installation_ui" class="header-anchor">Package installation UI</a></h3>
-<p>The VSCode extension for Julia could provide a simple way to browse available packages and view what&#39;s installed on a users system. To start with, this project could simply provide a GUI that reads in package data from a <code>Project.toml</code>/<code>Manifest.toml</code> and show some UI elements to add/remove/manage those packages.</p>
-<p>This could also be extended by having metadata about the package, such as a readme, github stars, activity and so on &#40;somewhat similar to the VSCode-native extension explorer&#41;.</p>
-<p><strong>Expected Results</strong>: A UI in VSCode for package operations.</p>
-<p><strong>Recommended Skills</strong>: Familiarity with TypeScript and Julia development.</p>
-<p><strong>Mentors</strong>: <a href="https://github.com/pfitzseb">Sebastian Pfitzner</a></p>
-<p><em>Also take a look at <a href="/jsoc/gsoc/pluto/">Pluto - VS Code integration</a>&#33;</em></p>
-<h2 id="web_platform_projects_summer_of_code"><a href="#web_platform_projects_summer_of_code" class="header-anchor">Web Platform Projects – Summer of Code</a></h2>
-<p>Julia has early support for targeting WebAssembly and running in the web browser. Please note that this is a rapidly moving area &#40;see the <a href="https://github.com/Keno/julia-wasm">project repository</a> for a more detailed overview&#41;, so if you are interested in this work, please make sure to inform yourself of the current state and talk to us to scope out an appropriate project. The below is intended as a set of possible starting points.</p>
-<p>Mentor for these projects is <a href="https://github.com/Keno">Keno Fischer</a> unless otherwise stated.</p>
-<h3 id="code_generation_improvements_and_async_abi"><a href="#code_generation_improvements_and_async_abi" class="header-anchor">Code generation improvements and async ABI</a></h3>
-<p>Because Julia relies on an asynchronous task runtime and WebAssembly currently lacks native support for stack management, Julia needs to explicitly manage task stacks in the wasm heap and perform a compiler transformation to use this stack instead of the native WebAssembly stack. The overhead of this transformation directly impacts the performance of Julia on the wasm platform. Additionally, since all code Julia uses &#40;including arbitrary C/C&#43;&#43; libraries&#41; must be compiled using this transformation, it needs to cover a wide variety of inputs and be coordinated with other users having similar needs &#40;e.g. the Pyodide project to run python on the web&#41;. The project would aim to improve the quality, robustness and flexibility of this transformation.</p>
-<p><strong>Recommended Skills</strong>: Experience with LLVM.</p>
-<h3 id="wasm_threading"><a href="#wasm_threading" class="header-anchor">Wasm threading</a></h3>
-<p>WebAssembly is in the process of standardizing <a href="https://github.com/WebAssembly/threads">threads</a>. Simultaneously, work is ongoing to introduce a new threading runtime in Julia &#40;see <a href="https://github.com/JuliaLang/julia/pull/22631">#22631</a> and replated PRs&#41;. This project would investigate enabling threading support for Julia on the WebAssembly platform, implementing runtime parallel primitives on the web assembly platform and ensuring that high level threading constructs are correctly mapped to the underlying platform. Please note that both the WebAssembly and Julia threading infrastructure is still in active development and may continue to change over the duration of the project. An informed understanding of the state of these projects is a definite prerequisite for this project.</p>
-<p><strong>Recommended Skills</strong>: Experience with C and multi-threaded programming.</p>
-<h3 id="high_performance_low-level_integration_of_js_objects"><a href="#high_performance_low-level_integration_of_js_objects" class="header-anchor">High performance, Low-level integration of js objects</a></h3>
-<p>WebAssembly is in the process of adding <a href="https://github.com/WebAssembly/reference-types">first class references to native objects</a> to their specification. This capability should allow very high performance integration between julia and javascript objects. Since it is not possible to store references to javascript objects in regular memory, adding this capability will require several changes to the runtime system and code generation &#40;possibly including at the LLVM level&#41; in order to properly track these references and emit them either as direct references to as indirect references to the reference table.</p>
-<p><strong>Recommended Skills</strong>: Experience with C.</p>
-<h3 id="dom_integration"><a href="#dom_integration" class="header-anchor">DOM Integration</a></h3>
-<p>While Julia now runs on the web platform, it is not yet a language that&#39;s suitable for first-class development of web applications. One of the biggest missing features is integration with and abstraction over more complicated javascript objects and APIs, in particular the DOM. Inspiration may be drawn from similar projects in <a href="https://github.com/koute/stdweb">Rust</a> or other languages.</p>
-<p><strong>Recommended Skills</strong>: Experience with writing libraries in Julia, experience with JavaScript Web APIs.</p>
-<h3 id="porting_existing_web-integration_packages_to_the_wasm_platform"><a href="#porting_existing_web-integration_packages_to_the_wasm_platform" class="header-anchor">Porting existing web-integration packages to the wasm platform</a></h3>
-<p>Several Julia libraries &#40;e.g. WebIO.jl, Escher.jl&#41; provide input and output capabilities for the web platform. Porting these libraries to run directly on the wasm platform would enable a number of existing UIs to automatically work on the web.</p>
-<p><strong>Recommended Skills</strong>: Experience with writing libraries in Julia.</p>
-<h3 id="native_dependencies_for_the_web"><a href="#native_dependencies_for_the_web" class="header-anchor">Native dependencies for the web</a></h3>
-<p>The Julia project uses <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl">BinaryBuilder</a> to provide binaries of native dependencies of julia packages. Experimental support exists to extend this support to the wasm platform, but few packages have been ported. This project would consist of attempting to port a significant fraction of the binary dependencies of the julia ecosystem to the web platform by improving the toolchain support in BinaryBuilder or &#40;if necessary&#41;, porting upstream packages to fix assumptions not applicable on the wasm platform.</p>
-<p><strong>Recommended Skills</strong>: Experience with building native libraries in Unix environments.</p>
-<h3 id="distributed_computing_with_untrusted_parties"><a href="#distributed_computing_with_untrusted_parties" class="header-anchor">Distributed computing with untrusted parties</a></h3>
-<p>The Distributed computing abstractions in Julia provide convenient abstraction for implementing programs that span many communicating Julia processes on different machines. However, the existing abstractions generally assume that all communicating processes are part of the same trust domain &#40;e.g. they allow messages to execute arbitrary code on the remote&#41;. With some of the nodes potentially running in the web browser &#40;or multiple browser nodes being part of the same distributed computing cluster via WebRPC&#41;, this assumption no longer holds true and new interfaces need to be designed to support multiple trust domains without overly restricting usability.</p>
-<p><strong>Recommended Skills</strong>: Experience with distributed computing and writing libraries in Julia.</p>
-<h3 id="deployment"><a href="#deployment" class="header-anchor">Deployment</a></h3>
-<p>Currently supported use cases for Julia on the web platform are primarily geared towards providing interactive environments to support exploration of the full language. Of course, this leads to significantly larger binaries than would be required for using Julia as part of a production deployment. By disabling dynamic language features &#40;e.g. eval&#41; one could generate small binaries suitable for deployment. Some progress towards this exists in packages like <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler.jl</a>, though significant work remains to be done.</p>
-<p><strong>Recommended Skills</strong>: Interest in or experience with Julia internals.</p>
 
 </div><br><br>
 
@@ -1517,10 +1337,6 @@ ERROR: Your expression contained a if_else expression. FastDifferentiation does 
 
 
     
-    
-        <script defer src="/libs/highlight/highlight.min.js"></script>
-<script>document.addEventListener('DOMContentLoaded',function(){hljs.configure({tabReplace:'    '});hljs.highlightAll();});</script>
-
     
 
     <!-- Copy-to-clipboard for code blocks -->
