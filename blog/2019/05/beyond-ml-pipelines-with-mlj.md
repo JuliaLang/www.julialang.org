@@ -11,12 +11,12 @@
 -->
 
 ~~~
-<p float="left" align="middle">
+<p style="float: left" align="middle">
   <img style="width:40%;padding:0;" src="/assets/blog/2019-05-02-MLJ/learningcurves.png" alt="MLJ learning curves"/>
   <img style="width:40%;padding-left:15px;" src="/assets/blog/2019-05-02-MLJ/heatmap.png" alt="MLJ hyperparameter tuning heatmap"/>
 </p>
 
-<p float="left" align="middle">
+<p style="float: left" align="middle">
   <img style="width:40%;padding:0;" src="/assets/blog/2019-05-02-MLJ/wrapped_ridge.png" alt="MLJ wrapped ridge regression"/>
   <img style="width:40%;padding-left:15px;" src="/assets/blog/2019-05-02-MLJ/MLPackages.png" alt="Julia ML packages ecosystem"/>
 </p>

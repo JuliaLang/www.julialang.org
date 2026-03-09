@@ -216,7 +216,7 @@ _Keno Fischer_, _Shuhei Kadowaki_
 
 In v1.11, several new features have been added to inference.
 
-#### Exception type inference
+### Exception type inference
 
 The first feature we’d like to introduce is exception type inference.
 The Julia compiler is now able to infer the types of exception objects, significantly
@@ -278,7 +278,7 @@ It generally works well only when the `try` block contains basic functions.
 In particular, it often fails to provide accurate results for `try` blocks that might call
 functions involving external calls, such as `ccall`.
 
-#### Escape analysis
+### Escape analysis
 
 The next feature we’d like to introduce is Julia-level escape analysis
 ([`Core.Compiler.EscapeAnalysis`](https://docs.julialang.org/en/v1/devdocs/EscapeAnalysis/)).

@@ -157,7 +157,6 @@ code for sm_20
 [SASS CODE]
 ```
 
-[^1]
 
 Another important part of CUDAnative.jl are the intrinsics: special functions and macros
 that provide functionality hard or impossible to express using normal functions. For

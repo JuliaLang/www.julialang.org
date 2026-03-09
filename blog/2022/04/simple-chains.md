@@ -559,7 +559,7 @@ SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
 SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
 ```
 
-#### PyTorch
+### PyTorch
 
 Before we show the results, let's look at the competition. Here's two runs of 10 epochs using PyTorch following [this script](https://github.com/chriselrod/LeNetTorch) on an A100 GPU using a batch size of 2048:
 
@@ -600,7 +600,7 @@ Took: 10.78
 Accuracy: 0.9841
 ```
 
-#### Flux.jl
+### Flux.jl
 
 The standard machine learning library in Julia, [Flux.jl](https://github.com/FluxML/Flux.jl) was benchmarked using [this script](https://github.com/PumasAI/SimpleChains.jl/blob/main/examples/mnist_lenet.jl) with an A100 GPU. How fast was that?
 
@@ -673,7 +673,7 @@ julia> eval_loss_accuracy(train_loader, model, device),
 ((acc = 97.5417, loss = 0.082f0), (acc = 97.74, loss = 0.0716f0))
 ```
 
-#### How long did SimpleChains.jl take?
+### How long did SimpleChains.jl take?
 
 SimpleChains on an AMD EPYC 7513 32-Core Processor:
 

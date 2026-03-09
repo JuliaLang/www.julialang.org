@@ -284,7 +284,7 @@ We can now do `qsort!([1.3, -2.7, 4.4, 3.1])` and it will
 return the array sorted in ascending order, or `qsort!([1.3, -2.7,
 4.4, 3.1], >)` to sort in descending order.
 
-#### Warning: `qsort_r` is not portable
+### Warning: `qsort_r` is not portable
 
 The example above has one major problem that has nothing to do with
 Julia: the `qsort_r` function is not portable.  The above example

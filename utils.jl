@@ -216,8 +216,8 @@ function hfun_about_the_author()
 
 	html = """
 		<div class="author-info">
-          <img src="$img" class="author-img" alt="$(locvar(:author))" width="150px">
-		  <h3>$(locvar(:author))</h3>
+          <img src="$img" class="author-img" alt="$(locvar(:author))" style="width: 150px">
+		  <h2>$(locvar(:author))</h2>
 		  <div class="author-description">
 		    $(locvar(:author_blurb))
 		  </div>

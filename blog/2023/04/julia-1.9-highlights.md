@@ -64,7 +64,7 @@ The difference in TTL arises because the system image can safely skip all the co
 At the time of Julia 1.9's release, only a small fraction of the package ecosystem has adopted PrecompileTools.
 As these new tools become leveraged more widely, users can probably expect ongoing improvements in TTFX.
 
-#### Methodology
+### Methodology
 
 A demonstration workload was designed for each package. That workload was placed in a [Startup package](https://julialang.github.io/PrecompileTools.jl/stable/#Tutorial:-local-%22Startup%22-packages) and precompiled; for benchmarking, we load the Startup package and run the same workload. Full details can be found in [this repository](https://github.com/timholy/JuliaCon2022_Precompilation/tree/teh/jan_2023/analysis/cache_external).
 

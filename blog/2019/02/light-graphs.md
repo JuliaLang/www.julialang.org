@@ -31,7 +31,7 @@ td{
 </style>
 ~~~
 
-### Benchmark Graph Datasets
+## Benchmark Graph Datasets
 
 No. | Graph | Vertices | Edges
 :---: | :---------: | :------------: | :-----------------:
@@ -42,7 +42,7 @@ No. | Graph | Vertices | Edges
 The graphs were obtained from the [SNAPDatasets](https://github.com/JuliaGraphs/SNAPDatasets.jl) repository.
 
 
-### Speed-up on parallelization with 4 cores
+## Speed-up on parallelization with 4 cores
 
 Algorithm | Twitter | Astro-Physics | Facebook
 ---------: | :------------: | :-----------------: | :-------:
@@ -56,7 +56,7 @@ Betweenness Centrality | - | - | 1.96
 Closeness Centrality | - | - | 2.17
 Stress Centrality | - | - | 1.66
 
-### Speed-up on sequential optimization
+## Speed-up on sequential optimization
 
 Algorithm | Twitter | Astro-Physics | Facebook
 ---------: | :------------: | :-----------------: | :-------:
@@ -65,7 +65,7 @@ Dijkstra SSSP | 2.80 | 2.10 | 1.68
 Prim MST | 7.65 | 4.25 | 4.05
 Kruskal MST | 7.70 | 3.37 | 2.80
 
-### Absolute runtime (in ms) of Bread-First Search
+## Absolute runtime (in ms) of Bread-First Search
 
 Algorithm | Twitter | Astro-Physics | Facebook
 ---------: | :------------: | :-----------------: | :-------:
@@ -120,6 +120,6 @@ The following branches have not been merged into LightGraphs as the parallel imp
 - [Parallel Prim MST](https://github.com/SohamTamba/LightGraphs.jl/tree/BatchPriorityQueue_Parallel_Dijkstra_Prim)
 - [Parallel Dijkstra SSSP](https://github.com/SohamTamba/LightGraphs.jl/tree/BatchPriorityQueue_Parallel_Dijkstra_Prim)
 
-# Acknowledgements
+## Acknowledgements
 
 I would like to thank my mentor, [Divyansh Srivastava](https://github.com/somil55) and LightGraphs co-owner, [Seth Bromberger](https://github.com/sbromberger) for reviewing my code and providing valuable advice during the summer. I would also like to thank [The Julia Project](/project/) and [NUMFocus](https://numfocus.org) for sponsoring my attendance to [JuliaCon 2018](https://juliacon.org/2018/).
