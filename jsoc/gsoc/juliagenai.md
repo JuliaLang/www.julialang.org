@@ -7,12 +7,11 @@
 **IMPORTANT:** There will not be any projects mentored this year by Jan Siml (`svilupp`) and Cameron Pfiffer (`cpfiffer`) due to time constraints, but we will be happy to answer any questions you might have - see below how to contact us.
 
 There is a high overlap with other organizations, you should definitely check out these projects:
-- [Projects with MLJ.jl](https://julialang.org/jsoc/gsoc/MLJ/) - For more traditional machine learning projects
-- [Projects in Reinforcement Learning](https://julialang.org/jsoc/gsoc/machine-learning/) - For projects around AlphaZero.jl
+- [Projects in Reinforcement Learning](/jsoc/gsoc/machine-learning/) - For projects around AlphaZero.jl
 - [Projects with FluxML](https://fluxml.ai/gsoc/) - For projects around Flux.jl, the backbone of Julia's deep learning ecosystem
 
 ## How to Contact Us
 
-Probably the easiest way is to join our [JuliaLang Slack](https://julialang.org/slack/) and join the `#generative-ai` channel.
+Probably the easiest way is to join our [JuliaLang Slack](/slack/) and join the `#generative-ai` channel.
 You can also reach out to us on [Julia Zulip](https://julialang.zulipchat.com/#narrow/stream/423470-generative-ai) or post a GitHub Issue on our website [JuliaGenAI](https://github.com/JuliaGenAI/juliagenai.org).
 

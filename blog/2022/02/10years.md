@@ -15,7 +15,7 @@ meta = [ ("property", "og:image", "https://user-images.githubusercontent.com/355
 ~~~
 
 
-Exactly ten years ago today, we published "[Why We Created Julia](https://julialang.org/blog/2012/02/why-we-created-julia/)", introducing the Julia project to the world.
+Exactly ten years ago today, we published "[Why We Created Julia](/blog/2012/02/why-we-created-julia/)", introducing the Julia project to the world.
 At this point, we have moved well past the ambitious goals set out in the original blog post.
 Julia is now used by hundreds of thousands of people.
 It is taught at hundreds of universities and entire companies are being formed that build their software stacks on Julia.
@@ -587,7 +587,7 @@ Some time later (2015) iPython notebook was renamed to Jupyter for some reason t
 
 In 2012 we had a three language situation at ContextVision. Algorithm development was done in Matlab with C Mex files sprinkled here and there for performance, and the algorithms were rewritten as C++ libraries to make products. We were not satisfied with Matlab. Cost and license management was an annoyance, speed was borderline tolerable, but the real pain point was the software engineering shortcomings.
 
-I looked at Octave, made some PR, but it was becoming clear that it would not solve our problems. Then one day someone asked on their mailing list what people thought about this new Julia language. I headed over to read [Why we created Julia](https://julialang.org/blog/2012/02/why-we-created-julia/) and it matched very much what I was looking for. I started a proof of concept implementation with literal translations of Matlab and C code alike. It turned out just slightly faster, but it was one language instead of two, no Mex boilerplate, much better optimization potential, and greatly improved maintainability, already at that time.
+I looked at Octave, made some PR, but it was becoming clear that it would not solve our problems. Then one day someone asked on their mailing list what people thought about this new Julia language. I headed over to read [Why we created Julia](/blog/2012/02/why-we-created-julia/) and it matched very much what I was looking for. I started a proof of concept implementation with literal translations of Matlab and C code alike. It turned out just slightly faster, but it was one language instead of two, no Mex boilerplate, much better optimization potential, and greatly improved maintainability, already at that time.
 
 What really impressed me personally though was that it was so much more fun to program in. Being a new language there were also a lot of exciting things to explore. I realized that parametric types were a [perfect fit for compound SI units](https://groups.google.com/g/julia-dev/c/FjkHPK5XJdE/m/H8D1RT2I0WIJ). Well, actually it didn't fully work. It turned out that negative parameter values were doubling up for some other piece of information, but Jeff fixed that right away and the idea eventually developed into the [Unitful](https://github.com/PainterQubits/Unitful.jl.git) package.
 

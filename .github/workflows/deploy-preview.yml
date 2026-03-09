@@ -1,5 +1,11 @@
 name: Deploy PR Preview
 
+# This workflow runs as a privileged workflow_run trigger rather than directly
+# in the PR build job because fork PRs use a read-only GITHUB_TOKEN and cannot
+# push to gh-preview or write commit statuses. The "Build and Deploy" workflow
+# uploads the built site + PR metadata as artifacts, and this workflow downloads
+# them and deploys with full repo permissions.
+
 on:
   workflow_run:
     workflows: ["Build and Deploy"]
@@ -14,7 +20,7 @@ concurrency:
 permissions:
   contents: write
   actions: read
-  checks: write
+  statuses: write
 
 jobs:
   deploy-preview:
@@ -41,23 +47,6 @@ jobs:
         id: meta
         run: echo "pr_number=$(cat deploy-meta/pr_number)" >> $GITHUB_OUTPUT
 
-      - name: Create check run on PR
-        if: steps.download-meta.outcome == 'success'
-        uses: actions/github-script@v7
-        id: check
-        with:
-          script: |
-            const prNumber = '${{ steps.meta.outputs.pr_number }}';
-            const { data } = await github.rest.checks.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
-              head_sha: context.payload.workflow_run.head_sha,
-              status: 'in_progress',
-              details_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
-            });
-            core.setOutput('id', data.id);
-
       - name: Download site build
         if: steps.download-meta.outcome == 'success'
         uses: actions/download-artifact@v4
@@ -82,23 +71,22 @@ jobs:
           ssh-key: true
           target-folder: "previews/PR${{ steps.meta.outputs.pr_number }}"
 
-      - name: Complete check run
-        if: always() && steps.check.outputs.id
+      # Use a commit status (not a check run) so it appears as a standalone
+      # entry in the PR checks list rather than being grouped under another
+      # workflow's check suite.  The "Details" link points to the preview URL.
+      - name: Set deploy status
+        if: always() && steps.download-meta.outcome == 'success'
         uses: actions/github-script@v7
         with:
           script: |
             const prNumber = '${{ steps.meta.outputs.pr_number }}';
-            const previewUrl = `https://julialang.netlify.app/previews/PR${prNumber}/`;
-            await github.rest.checks.update({
+            const previewUrl = `https://julialang.netlify.app/previews/PR${prNumber}`;
+            const success = '${{ job.status }}' === 'success';
+            await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              check_run_id: ${{ steps.check.outputs.id }},
-              name: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
-              status: 'completed',
-              conclusion: '${{ job.status }}',
-              output: {
-                title: 'Preview ready',
-                summary: `[Preview this PR](${previewUrl})`,
-              },
-              details_url: previewUrl,
+              sha: context.payload.workflow_run.head_sha,
+              state: success ? 'success' : 'failure',
+              context: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}`,
+              target_url: previewUrl,
             });

@@ -64,6 +64,6 @@ Soapboxes (blogs/talks):
 
 * Chris Rackauckas discusses building products for open-source sustainability, highlighting the work of MIT Julia Lab, PumasAI, and JuliaHub, in a recent [non-technical talk with OpenTeams](https://www.youtube.com/watch?v=kuzwUFuIyk4).
 
-See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [minutes of triage meetings](https://hackmd.io/@LilithHafner/HJaw__uMp)
+See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](/community/#events), [minutes of triage meetings](https://hackmd.io/@LilithHafner/HJaw__uMp)
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)

@@ -1,3 +1,5 @@
+@def title = "Google Season of Docs Projects"
+
 # Julia's Google Season of Docs Projects
 
 Below are the projects which have been proposed for Google Season of Docs under the umbrella of the Julia Language. If you have questions about potential projects, the first point of contact would be the mentor(s) listed on the project. If you are unable to get ahold of the potential mentor(s), you should email `jsoc@julialang.org` and CC `community@julialang.org`.
@@ -8,7 +10,11 @@ We at the Julia Language are committed to making the application process and par
 
 Learn from one of our technical writers about their experience with GSoD:
 ~~~
-<iframe style="width:100%;border:none;" height="450" src="https://www.youtube-nocookie.com/embed/6s9J-ObQaAs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div style="max-width:720px;margin:0 auto;">
+  <div class="ratio ratio-16x9 video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/6s9J-ObQaAs" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
 ~~~
 
 # Project Ideas for 2024
@@ -222,7 +228,7 @@ This timeline is largely accurate but we expect that different packages or tasks
 The November time period gives us the opportunity to revisit any unfinished tasks and to potentially explore stretch goals if there were not many outstanding tasks left.
 
 ### Communication Plan:
-The primary communication channel we will use is [Julia Slack](https://julialang.org/slack/) and Dr. Jakub Mitura (MD, PhD) will be the individual responsible for all contact and mentoring throughout the project for regular updates and meetings.
+The primary communication channel we will use is [Julia Slack](/slack/) and Dr. Jakub Mitura (MD, PhD) will be the individual responsible for all contact and mentoring throughout the project for regular updates and meetings.
 Outside of Slack, email will be used to handle communications with GSoD organizers and administrators with Jakub Mitura's email being: [jakub.mitura14@gmail.com](mailto:jakub.mitura14@gmail.com).
 Volunteers will also be available for communication on the Slack on an as-needed basis.
 Additionally, project updates will be given through the [Julia Health Slack Channel](https://app.slack.com/client/T68168MUP/C012NN70P5K) which is where the majority of JuliaHealth communication takes place between members, users, and the rest of the Julia community.
@@ -262,5 +268,3 @@ Anshul Singhvi is a former Google Summer of Code student and has a vast swath of
 In particular, Anshul has membership with numerous Julia organizations and will be a crucial asset to not only what are best practices for documentation deployment but can also help with how to best unify JuliaHealth packages within JuliaHealth itself and potentially across the greater Julia landscape.
 His insight will be crucial to mitigate any redundant work or answer outsanding questions to make sure this project is ran as effectively as possible.
 Also, given Anshul's tremendous experience in delivering contract work, he will be key in making sure the metrics we investigate and report on for the case study in our final report will be done rigorously and to the best of the technical writer's ability given the data we have access to.
-
-</div>

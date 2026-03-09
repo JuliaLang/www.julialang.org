@@ -5,7 +5,7 @@
 @def rss_description = """Profiling type-inference"""
 
 This is the second in a short series on what package developers can do to reduce the latency of Julia packages.
-In the [first post](https://julialang.org/blog/2021/01/precompile_tutorial/), we introduced precompilation and some of its constraints.
+In the [first post](/blog/2021/01/precompile_tutorial/), we introduced precompilation and some of its constraints.
 We also pointed out that precompilation is closely tied to *type inference*:
 
 - precompilation allows you to cache the results of type inference, thus saving time when you start using methods defined in the package
@@ -60,7 +60,7 @@ InferenceTimingNode: 0.009382/0.010515 on InferenceFrameInfo for Core.Compiler.T
 @@
 
 This may not look like much, but there's a wealth of information hidden inside `tinf`.
-While optional, before proceeding further it's recommended to check `tinf` for hints that [invalidation](https://julialang.org/blog/2020/08/invalidations/) may have influenced the result:
+While optional, before proceeding further it's recommended to check `tinf` for hints that [invalidation](/blog/2020/08/invalidations/) may have influenced the result:
 
 ```
 julia> staleinstances(tinf)

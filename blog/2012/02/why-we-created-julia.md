@@ -75,4 +75,4 @@ Trackbacks:
 - [hellogcc.org (Chinese)](http://www.hellogcc.org/?p=20)
 - [Linuxfr.org (French)](https://linuxfr.org/news/version-1-0-de-julia)
 
-[^1]: This was originally written as being "time for a 1.0 release" but it turns out this was a bit too greedy: Julia 1.0 wasn't released until [considerably later](https://julialang.org/blog/2018/08/one-point-zero/).
+[^1]: This was originally written as being "time for a 1.0 release" but it turns out this was a bit too greedy: Julia 1.0 wasn't released until [considerably later](/blog/2018/08/one-point-zero/).

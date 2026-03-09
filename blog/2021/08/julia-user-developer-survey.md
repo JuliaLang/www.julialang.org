@@ -7,7 +7,7 @@ rss_description = """Julia User & Developer Survey 2021"""
 base = "/assets/images/"
 +++
 
-We conducted the 3rd annual Julia User & Developer Survey from June 2 – July 7, 2021\. The results were presented by [Andrew Claster during JuliaCon on July 29, 2021](https://www.youtube.com/watch?v=0XSk5zybfic). Click here for the [video presentation](https://www.youtube.com/watch?v=0XSk5zybfic) and [slides](https://julialang.org/assets/2021-julia-user-developer-survey.pdf).  
+We conducted the 3rd annual Julia User & Developer Survey from June 2 – July 7, 2021\. The results were presented by [Andrew Claster during JuliaCon on July 29, 2021](https://www.youtube.com/watch?v=0XSk5zybfic). Click here for the [video presentation](https://www.youtube.com/watch?v=0XSk5zybfic) and [slides](/assets/2021-julia-user-developer-survey.pdf).  
 
 2,660 Julia users and developers from more than 104 countries on six continents completed the survey. We recruited respondents online using Slack, Discourse, Twitter, LinkedIn, Facebook, email, JuliaLang.org and JuliaComputing.com. The survey was administered in 4 languages: English, Chinese, Japanese and Spanish.  
 

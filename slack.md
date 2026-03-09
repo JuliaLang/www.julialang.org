@@ -12,11 +12,11 @@ The Julia Language has an active Slack workspace/community with over 15,000 memb
 [Log in to the Julia Slack](https://julialang.slack.com/)
 
 ### Admins
-The [Julia Community Standards](https://julialang.org/community/standards/) are enforced on Slack by our Slack Admins.
+The [Julia Community Standards](/community/standards/) are enforced on Slack by our Slack Admins.
 
 **If you see or experience any violation of those standards, or feel unsafe or upset, please contact us by sending an email to [slackadmins@julialang.org](mailto:slackadmins@julialang.org).** All communications will be treated confidentially but incidents may be shared with the Julia Stewards (who will treat all information confidentially as well).
 
-You can also contact the [Julia Stewards](https://julialang.org/community/stewards/), in particular if your concern or conflict involves the admins and/or you would prefer a third party to resolve it.
+You can also contact the [Julia Stewards](/community/stewards/), in particular if your concern or conflict involves the admins and/or you would prefer a third party to resolve it.
 
 Slack lacks adequate moderations tools so at the present moment, you will have to [email the moderators](mailto:slackadmins@julialang.org) if you think the Julia Community Standards have been violated or otherwise need the support of an Admin. See [the list of our current Slack Admins](https://julialang.slack.com/account/workspace-settings#admins) (Slack sign-in required)
 

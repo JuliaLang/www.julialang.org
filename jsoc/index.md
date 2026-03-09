@@ -1,9 +1,10 @@
+@def title = "Julia Seasons of Contributions"
+@def description = "Julia Seasons of Contributions (JSoC) — seasonal programs for funding and mentoring developers to contribute to the Julia open source ecosystem, including Google Summer of Code (GSoC) and NumFOCUS Small Development Grants."
+
 ~~~
 <!--
       Containers: Julia Seasons of Contributions
 -->
-<br>
- <br>
  <div class="container pt-sm-2">
    <div class="row">
      <div class="col-lg-4 col-md-3 language-features "><hr/></div>
@@ -14,7 +15,6 @@
      </div>
      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
    </div>
-   <br>
 ~~~
 
 The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding and/or mentoring developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in.
@@ -24,9 +24,8 @@ The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding 
 <!--
       Containers: Google Summer of Code (GSoC)
  -->
- <!--<div class="container-fluid alt-color packages">-->
- <div class="container pt-sm-2">
-   <br><br>
+<div class="container-fluid alt-color" style="padding:2rem 0;">
+ <div class="container">
    <div class="row">
      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
@@ -37,38 +36,45 @@ The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding 
      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
    </div>
 
-   <br>
-   <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" style="width:50%;" alt="Google Summer of Code">
-   <br>
-   <br>
-
+   <div style="text-align:center;margin:1.5rem 0;">
+     <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" style="max-width:400px;width:80%;" alt="Google Summer of Code">
+   </div>
 ~~~
 
 The Julia organization is a participant in Google Summer of Code.
-It generally fields a large number of contributors, (&gt;20) mentored by open source developers and university professors at leading institutions from all around the world.
+It generally fields a large number of contributors (>20) mentored by open source developers and university professors at leading institutions from all around the world.
 Contributors who are accepted into this prestigious program are paid a summer stipend to contribute to the open source tooling around Julia and its package ecosystem.
 
-**Get Started**
+~~~
+<div class="admonition admonition-note">
+  <div class="admonition-title">To participate in GSoC with Julia:</div>
+  <div class="admonition-body">
+    <ol>
+      <li><strong>Browse projects</strong> — Head over to the <a href="/jsoc/projects/">Projects page</a> to see all available projects.</li>
+      <li><strong>Contact a mentor</strong> — Reach out on <a href="/slack/">Julia Slack</a> in the <code>#jsoc</code> channel.</li>
+      <li><strong>Apply</strong> — Check out the <a href="/jsoc/guidelines/">application guidelines</a> and submit your proposal.</li>
+    </ol>
+  </div>
+</div>
+~~~
 
-- Head over to the [**Projects page**](/jsoc/projects/) to see a list of all the available projects.
-- Check out the [**application guidelines**](/jsoc/guidelines/) once you have a project in mind.
-
-You can see previous Summer of Code projects at the [Archive page](/jsoc/archive/) and details around the mentoring process on the [Mentors page](/jsoc/mentors/).
-
-## Hear from some of our past GSoC contributors
+You can see previous Summer of Code projects at the [Archive page](/jsoc/archive/) and details around the mentoring process on the [Mentors page](/jsoc/mentors/). Hear from some of our past GSoC contributors:
 
 ~~~
-<iframe height="500" src="https://www.youtube-nocookie.com/embed/8lSB666bigw" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-~~~
-
-~~~
-   <br>
+<div style="max-width:720px;margin:0 auto;">
+  <div class="ratio ratio-16x9 video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/8lSB666bigw" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
  </div>
+</div>
 ~~~
 
 ~~~
-<div class="container pt-sm-2">
-  <br><br>
+<!--
+      Containers: NumFOCUS Small Development Grants
+ -->
+<div class="container pt-sm-2" style="padding-top:2rem;">
   <div class="row">
     <div class="col-lg-4 col-md-3 language-features"><hr/></div>
     <div class="col-lg-4 col-md-6 language-features section-heading">
@@ -78,8 +84,9 @@ You can see previous Summer of Code projects at the [Archive page](/jsoc/archive
     </div>
     <div class="col-lg-4 col-md-3 language-features"><hr/></div>
   </div>
-  <br>
-  <img src="https://user-images.githubusercontent.com/35577566/114047420-87487880-983e-11eb-83f1-2820cfe17942.png" alt="NumFOCUS Logo">
+  <div style="text-align:center;margin:1.5rem 0;">
+    <img src="https://user-images.githubusercontent.com/35577566/114047420-87487880-983e-11eb-83f1-2820cfe17942.png" alt="NumFOCUS Logo" style="max-width:250px;">
+  </div>
 ~~~
 
 Semi-quarterly NumFOCUS puts out a call for small development grants.
@@ -95,16 +102,15 @@ This total amount is adjusted depending on the number and quality of proposals.
 Questions about NumFOCUS Small Development Grants? [Check out the NumFOCUS website Small Grants section for more details](https://numfocus.org/programs/small-development-grants)!
 
 ~~~
-  <br>
  </div>
 ~~~
 
 ~~~
 <!--
-      Containers: Contribution Ideas
+      Containers: Program Admins
  -->
- <div class="container pt-sm-2">
-  <br>
+<div class="container-fluid alt-color" style="padding:2rem 0;">
+ <div class="container">
      <div class="row">
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
        <div class="col-lg-4 col-md-6 language-features section-heading">
@@ -114,37 +120,15 @@ Questions about NumFOCUS Small Development Grants? [Check out the NumFOCUS websi
        </div>
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
      </div>
-
-     <br>
 ~~~
 
-The JSoC program admins have a few responsibilities including, but not limited too, reviewing contributor applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final contributor selections and more.
+The JSoC program admins review contributor applications for all programs, create and submit the organization application for each program, help ensure the programs run smoothly, recruit mentors, make final contributor selections and more.
 
 [Find out more about our program admins](/jsoc/admins/).
 
-~~~
- </div>
-<!--
-    Containers: Get Help
-  -->
-<!--<div class="container-fluid alt-color packages">-->
- <div class="container pt-sm-2">
-  <br><br>
-    <div class="row">
-      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
-      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
-        <h2 class="lead secondary-heading" id="questions">
-          <a href="#questions" class="ecosystem">Questions?</a>
-        </h2>
-      </div>
-      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
-    </div>
-    <br>
-~~~
-
-For any questions, please consult the program administrators at `jsoc@julialang.org`. Note that if you are a prospective applicant for one of the programs above, your first step should be to check out the resources for the project you are interested.
+For any questions, please consult the program administrators at `jsoc@julialang.org`. Note that if you are a prospective applicant for one of the programs above, your first step should be to check out the resources for the project you are interested in.
 
 ~~~
-  <br>
  </div>
+</div>
 ~~~

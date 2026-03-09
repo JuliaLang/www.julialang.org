@@ -15,7 +15,7 @@ Read on to learn how to get started and even if you already are in a workgroup, 
 
 ### What is a working group?
 
-As per [Julia's official website](https://julialang.org/community/working-groups/#working_groups),
+As per [Julia's official website](/community/working-groups/#working_groups),
 
 > A working group is a group of people that are interested in working on a common topic. Working groups are informal and have no official authority. All working groups have a public channel on the Julia Slack.
 
@@ -36,7 +36,7 @@ If you feel there is enough community interest, go for starting the group and se
 > You created a working group; now what?
 
 From there, it's up to you to set-up the workgroup meeting.
-You can use the [Julia Discourse](discourse.julialang.org/), [Slack](https://julialang.org/slack/#the_julia_language_slack), [Zulip](https://julialang.zulipchat.com), or other communication platforms to announce the creation of a workgroup and also say where workgroup members can find members of this community (usually on Slack or Zulip).
+You can use the [Julia Discourse](discourse.julialang.org/), [Slack](/slack/#the_julia_language_slack), [Zulip](https://julialang.zulipchat.com), or other communication platforms to announce the creation of a workgroup and also say where workgroup members can find members of this community (usually on Slack or Zulip).
 
 Then, you can use these platforms to advertise your group -- some folks use a single Discourse thread to announce regular meetings while others use a unique thread per meeting, you could use the respective Slack or Zulip channels to announce your group (as well as the #community channel in Slack) and some advertise their group across social media. 
 You can also post about your working group in other channels like `#general`, `#introduction`, etc. but please be mindful to not post too much as it may come across spammy within the community.

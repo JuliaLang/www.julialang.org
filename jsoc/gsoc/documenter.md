@@ -21,4 +21,4 @@ If any of these sound interesting, please reach out to the mentors to ask for mo
 
 ## Contact
 
-Best way to reach out is to message in the `#documentation` channel on the [JuliaLang Slack](https://julialang.org/slack/)!
+Best way to reach out is to message in the `#documentation` channel on the [JuliaLang Slack](/slack/)!

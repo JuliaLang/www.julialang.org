@@ -267,7 +267,7 @@ on [slack][#security-dev]. Don't hesitate to share your ideas, ask questions, an
 [@mbauman]: https://github.com/mbauman
 [@aviks]: https://github.com/aviks
 
-[#security-dev]: https://julialang.org/slack/
+[#security-dev]: /slack/
 [PkgToSoftwareBOM.jl]: https://github.com/SamuraiAku/PkgToSoftwareBOM.jl
 [SPDX.jl]: https://github.com/SamuraiAku/SPDX.jl
 

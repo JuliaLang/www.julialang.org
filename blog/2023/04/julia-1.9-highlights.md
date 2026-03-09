@@ -348,7 +348,7 @@ sync with the parent or peer manifests.
 
 ## Apple Silicon Achieves Tier 1 Status
 
-With all tests successfully passing and continuous integration (CI) established for Apple Silicon, the [platform's status](https://julialang.org/downloads/support) has been upgraded from Tier 2 to Tier 1.
+With all tests successfully passing and continuous integration (CI) established for Apple Silicon, the [platform's status](/downloads/support) has been upgraded from Tier 2 to Tier 1.
 
 ## LLVM Update to v14
 

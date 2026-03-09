@@ -8,7 +8,7 @@ A monthly newsletter, mostly on julia internals, digestible for casual observers
 
 For recent news on Julia and interesting conversations with community members, check out the [JuliaDispatch](https://juliadispatch.fm/) podcast (on many platforms, including [youtube](https://www.youtube.com/@JuliaDispatch/) and [spotify](https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws)). Highlights from the newsletter get discussed (with more context) during some episodes.
 
-Julia 1.12 is released. Many of the improvements in it have been discussed in the past on this newsletter. [Check out the blogpost for a good summary](https://julialang.org/blog/2025/10/julia-1.12-highlights/). 
+Julia 1.12 is released. Many of the improvements in it have been discussed in the past on this newsletter. [Check out the blogpost for a good summary](/blog/2025/10/julia-1.12-highlights/). 
 
 [Properly cut JuliaCon 2025 videos are being released on youtube.](https://discourse.julialang.org/t/juliacon-global-2025-videos-will-start-releasing-today/132454)
 
@@ -46,6 +46,6 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 * [NoSleep.jl](https://discourse.julialang.org/t/nosleep-jl-keep-julia-awake-for-long-calculations/132911): Keep Julia awake for long calculations
 * [WebAuthn.jl](https://discourse.julialang.org/t/ann-webauthn-jl/132672): WebAuthn enables passwordless, phishing-resistant login using public-key cryptography.
 
-See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
+See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)

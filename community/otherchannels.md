@@ -4,7 +4,7 @@ The most active Julia communities:
 
 * [Discourse](https://discourse.julialang.org)
 * [Github](https://github.com/JuliaLang/julia)
-* [Slack](https://julialang.org/slack/)
+* [Slack](/slack/)
 * [Zulip](https://julialang.zulipchat.com/register/)
 
 A larger list of various Julia communities online:
