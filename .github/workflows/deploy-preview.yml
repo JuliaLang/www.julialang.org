@@ -14,7 +14,7 @@ concurrency:
 permissions:
   contents: write
   actions: read
-  checks: write
+  statuses: write
 
 jobs:
   deploy-preview:
@@ -41,22 +41,20 @@ jobs:
         id: meta
         run: echo "pr_number=$(cat deploy-meta/pr_number)" >> $GITHUB_OUTPUT
 
-      - name: Create check run on PR
+      - name: Set deploy status (pending)
         if: steps.download-meta.outcome == 'success'
         uses: actions/github-script@v7
-        id: check
         with:
           script: |
             const prNumber = '${{ steps.meta.outputs.pr_number }}';
-            const { data } = await github.rest.checks.create({
+            await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              name: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
-              head_sha: context.payload.workflow_run.head_sha,
-              status: 'in_progress',
-              details_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              sha: context.payload.workflow_run.head_sha,
+              state: 'pending',
+              context: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
+              target_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
             });
-            core.setOutput('id', data.id);
 
       - name: Download site build
         if: steps.download-meta.outcome == 'success'
@@ -82,23 +80,20 @@ jobs:
           ssh-key: true
           target-folder: "previews/PR${{ steps.meta.outputs.pr_number }}"
 
-      - name: Complete check run
-        if: always() && steps.check.outputs.id
+      - name: Set deploy status (result)
+        if: always() && steps.download-meta.outcome == 'success'
         uses: actions/github-script@v7
         with:
           script: |
             const prNumber = '${{ steps.meta.outputs.pr_number }}';
             const previewUrl = `https://julialang.netlify.app/previews/PR${prNumber}/`;
-            await github.rest.checks.update({
+            const success = '${{ job.status }}' === 'success';
+            await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              check_run_id: ${{ steps.check.outputs.id }},
-              name: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
-              status: 'completed',
-              conclusion: '${{ job.status }}',
-              output: {
-                title: 'Preview ready',
-                summary: `[Preview this PR](${previewUrl})`,
-              },
-              details_url: previewUrl,
+              sha: context.payload.workflow_run.head_sha,
+              state: success ? 'success' : 'failure',
+              context: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
+              target_url: previewUrl,
+              description: success ? 'Preview ready' : 'Deploy failed',
             });
