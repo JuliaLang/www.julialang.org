@@ -209,7 +209,7 @@
 <p>As always in Julia, you can usually see how the magic is performed:</p>
 <pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> Base.REPLCompletions.latex_symbols[<span class="hljs-string">&quot;\\pi&quot;</span>]
 </span>&quot;π&quot;</code></pre>
-<h3 id="more_π"><a href="#more_π" class="header-anchor">More π</a></h3>
+<h2 id="more_π"><a href="#more_π" class="header-anchor">More π</a></h2>
 <p>We usually use the <code>U&#43;03C0</code> π from the Unicode block for Greek and Coptic text glyphs &#40;Coptic was the Greek-based script adopted by the Egyptians to replace hieroglyphs&#41;, but there are other π symbols intended mainly for mathematical use. The following snippet of Julia code tries to show all the lower-case Unicode π symbols:</p>
 <pre><code class="julia hljs">morepi = [
 (<span class="hljs-number">0x3c0</span>,    <span class="hljs-string">&quot;\\pi&quot;</span>,           <span class="hljs-string">&quot;GREEK SMALL LETTER PI&quot;</span>)
@@ -235,12 +235,12 @@ foreach(p -&gt; println(<span class="hljs-string">&quot; <span class="hljs-subst
 <pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> 𝜋 = <span class="hljs-number">3</span>
 </span><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-number">2</span>𝜋
 </span>6</code></pre>
-<h3 id="the_phonogram_symbol"><a href="#the_phonogram_symbol" class="header-anchor">The phonogram symbol Ⓟ</a></h3>
+<h2 id="the_phonogram_symbol"><a href="#the_phonogram_symbol" class="header-anchor">The phonogram symbol Ⓟ</a></h2>
 <p>Not all fonts contain a suitable Greek π at <code>U&#43;03C0</code>. A few expensive fonts such as <a href="https://www.typography.com/fonts/gotham/overview/">Gotham</a> offer the circled P symbol at <code>U&#43;03c0</code> instead of π. This is the &quot;phonogram&quot; &#40;or &quot;phonorecord&quot;&#41; symbol, which usually lives at <code>U&#43;2117</code> &#40;the one at <code>U&#43;24C5</code> is also used&#41;, and it&#39;s like the copyright symbol © but for sound recordings. The story behind this is that, particularly before the days of Unicode standardization, font companies sometimes favoured pragmatism over correctness. According to <a href="http://davidberlow.fontbureau.com/">David Berlow</a>:</p>
 <blockquote>
 <p>we at Font Bureau understand how users work, and so we put the p in a circle, a &quot;must-have&quot; glyph that is very difficult for a user to make on the fly, in the slot of a glyph &#40;math pi&#41; that most people really don&#39;t need &#40;because even if they do, it&#39;s in the Symbol font on every single computer on earth&#41;.</p>
 </blockquote>
-<h3 id="designs_on_π"><a href="#designs_on_π" class="header-anchor">Designs on π</a></h3>
+<h2 id="designs_on_π"><a href="#designs_on_π" class="header-anchor">Designs on π</a></h2>
 <p>Can we use Julia to find all the different designs of π? My first attempt at this challenge uses <a href="https://github.com/JuliaGraphics/Fontconfig.jl">Fontconfig.jl</a> to produce a list of installed fonts, and <a href="https://github.com/JuliaGraphics/Luxor.jl">Luxor.jl</a> to draw them in a table. It at least gives a glimpse of the variety of designs available, and illustrates some of the issues. Fonts that provide a zero-width glyph are skipped, meaning the table winds up being smaller than originally planned.</p>
 <pre><code class="julia hljs"><span class="hljs-keyword">using</span> Fontconfig, Luxor
 
@@ -288,7 +288,7 @@ tabulatepi()</code></pre>
 <p>Here are a few of the more interesting designs: the portly Cooper Black and Tiffany Heavy, the minimalist Verdana and Tahoma &#40;looking almost like &quot;n&quot;s?&#41;, the eccentric Gill &quot;Kayo&quot; Sans, and the silly Chalkduster.</p>
 <p><img src="/assets/blog/2018-04-13-pifonts/piversity.png" alt="piversity" /></p>
 <p>I like the small version from Dalliance; it&#39;s nicely old-school, where &quot;old-school&quot; here means based on an original from 1799, not long after Euler&#39;s death.</p>
-<h3 id="the_average_π"><a href="#the_average_π" class="header-anchor">The average π</a></h3>
+<h2 id="the_average_π"><a href="#the_average_π" class="header-anchor">The average π</a></h2>
 <p>It occurred to me to ask &quot;what is the average of π?&quot;, or &quot;what would it look like if all the πs were displayed at the same time?&quot;. Using the same font list generation as before, I ran this:</p>
 <pre><code class="julia hljs"><span class="hljs-keyword">function</span> textstroke(s, pos, action)
     <span class="hljs-meta">@layer</span> <span class="hljs-keyword">begin</span>

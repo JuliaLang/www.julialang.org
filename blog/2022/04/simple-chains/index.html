@@ -645,7 +645,7 @@ SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
 <span class="hljs-comment"># assess training and test loss</span>
 SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
 SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)</code></pre>
-<h4 id="pytorch"><a href="#pytorch" class="header-anchor">PyTorch</a></h4>
+<h3 id="pytorch"><a href="#pytorch" class="header-anchor">PyTorch</a></h3>
 <p>Before we show the results, let&#39;s look at the competition. Here&#39;s two runs of 10 epochs using PyTorch following <a href="https://github.com/chriselrod/LeNetTorch">this script</a> on an A100 GPU using a batch size of 2048:</p>
 <p>A100:</p>
 <pre><code class="julia hljs">Took: <span class="hljs-number">17.66</span>
@@ -668,7 +668,7 @@ Accuracy: <span class="hljs-number">0.9783</span></code></pre>
 Accuracy: <span class="hljs-number">0.9759</span>
 Took: <span class="hljs-number">10.78</span>
 Accuracy: <span class="hljs-number">0.9841</span></code></pre>
-<h4 id="fluxjl"><a href="#fluxjl" class="header-anchor">Flux.jl</a></h4>
+<h3 id="fluxjl"><a href="#fluxjl" class="header-anchor">Flux.jl</a></h3>
 <p>The standard machine learning library in Julia, <a href="https://github.com/FluxML/Flux.jl">Flux.jl</a> was benchmarked using <a href="https://github.com/PumasAI/SimpleChains.jl/blob/main/examples/mnist_lenet.jl">this script</a> with an A100 GPU. How fast was that?</p>
 <pre><code class="julia hljs">julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
  <span class="hljs-number">74.678251</span> seconds (<span class="hljs-number">195.36</span> M allocations: <span class="hljs-number">12.035</span> GiB, <span class="hljs-number">4.28</span>% gc time, <span class="hljs-number">77.57</span>% compilation time)
@@ -725,7 +725,7 @@ julia&gt; <span class="hljs-meta">@time</span> train!(model, train_loader)
 julia&gt; eval_loss_accuracy(train_loader, model, device),
        eval_loss_accuracy(test_loader, model, device)
 ((acc = <span class="hljs-number">97.5417</span>, loss = <span class="hljs-number">0.082f0</span>), (acc = <span class="hljs-number">97.74</span>, loss = <span class="hljs-number">0.0716f0</span>))</code></pre>
-<h4 id="how_long_did_simplechainsjl_take"><a href="#how_long_did_simplechainsjl_take" class="header-anchor">How long did SimpleChains.jl take?</a></h4>
+<h3 id="how_long_did_simplechainsjl_take"><a href="#how_long_did_simplechainsjl_take" class="header-anchor">How long did SimpleChains.jl take?</a></h3>
 <p>SimpleChains on an AMD EPYC 7513 32-Core Processor:</p>
 <pre><code class="julia hljs"><span class="hljs-comment">#Compile</span>
 julia&gt; <span class="hljs-meta">@time</span> SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(<span class="hljs-number">3e-4</span>), <span class="hljs-number">10</span>);
