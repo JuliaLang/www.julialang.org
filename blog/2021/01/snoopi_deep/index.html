@@ -195,7 +195,7 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>This is the second in a short series on what package developers can do to reduce the latency of Julia packages. In the <a href="https://julialang.org/blog/2021/01/precompile_tutorial/">first post</a>, we introduced precompilation and some of its constraints. We also pointed out that precompilation is closely tied to <em>type inference</em>:</p>
+<div class="container main"><p>This is the second in a short series on what package developers can do to reduce the latency of Julia packages. In the <a href="/blog/2021/01/precompile_tutorial/">first post</a>, we introduced precompilation and some of its constraints. We also pointed out that precompilation is closely tied to <em>type inference</em>:</p>
 <ul>
 <li><p>precompilation allows you to cache the results of type inference, thus saving time when you start using methods defined in the package</p>
 </li>
@@ -229,7 +229,7 @@
 julia&gt; tinf = <span class="hljs-meta">@snoopi_deep</span> SnoopDemo.domath_with_mytype(<span class="hljs-number">1</span>)
 InferenceTimingNode: <span class="hljs-number">0.009382</span>/<span class="hljs-number">0.010515</span> on InferenceFrameInfo <span class="hljs-keyword">for</span> Core.Compiler.Timings.ROOT() with <span class="hljs-number">1</span> direct children</code></pre>
 <div class="note"><strong>Box 1</strong> Inference gets called only on the <em>first</em> invocation of a method with those specific types. You have to redefine the <code>SnoopDemo</code> module &#40;by re-executing the command we used to define it&#41; if you want to collect data with <code>@snoopi_deep</code> on the same code a second time.  This won&#39;t redefine any <code>Base</code> methods that <code>SnoopDemo</code> depends on, so you still may see differences between running this in a fresh session and subsequent uses of <code>@snoopi_deep</code>.</div>
-<p>This may not look like much, but there&#39;s a wealth of information hidden inside <code>tinf</code>. While optional, before proceeding further it&#39;s recommended to check <code>tinf</code> for hints that <a href="https://julialang.org/blog/2020/08/invalidations/">invalidation</a> may have influenced the result:</p>
+<p>This may not look like much, but there&#39;s a wealth of information hidden inside <code>tinf</code>. While optional, before proceeding further it&#39;s recommended to check <code>tinf</code> for hints that <a href="/blog/2020/08/invalidations/">invalidation</a> may have influenced the result:</p>
 <pre><code class="julia hljs">julia&gt; staleinstances(tinf)
 SnoopCompileCore.InferenceTiming[]</code></pre>
 <p><code>staleinstances</code> extracts <code>MethodInstances</code> that have some &quot;stale&quot; generated code &#40;code that is no longer callable&#41;. In our case, it returns an empty list, meaning that it found no stale instances, which guarantees that no invalidation occurred. There&#39;s nothing &quot;funny&quot; going on behind the scenes that will influence our results.</p>
