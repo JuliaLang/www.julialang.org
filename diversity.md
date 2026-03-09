@@ -8,6 +8,6 @@ As a [NumFocus supported project](https://numfocus.org), we abide by their [Code
 
 We believe that maintaining and promoting diversity and inclusion is the only way we can have a strong and vibrant community. We have and will continue to make significant investments in making sure that we relentlessly push towards that goal.
 
-If you have any ideas, feedback, or the like, feel free to send and email to `diversity@julialang.org` or drop by the [#diversity channel on Slack](https://julialang.org/slack/).
+If you have any ideas, feedback, or the like, feel free to send and email to `diversity@julialang.org` or drop by the [#diversity channel on Slack](/slack/).
 
 __We would like to give a special thank you to all of the Julia Community members working tirelessly on these various Diversity and Inclusion initiates. These individuals are taking time away from their technical work in order to help promote a more inclusive and equitable community, and for that, we are in their debt.__

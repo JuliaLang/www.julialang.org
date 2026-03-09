@@ -173,7 +173,7 @@ julia> readstring(stream)
 ```
 
 ~~~
-<https://github.com/BioJulia/BGZFStreams.jl>
+<a href="https://github.com/BioJulia/BGZFStreams.jl">https://github.com/BioJulia/BGZFStreams.jl</a>
 ~~~
 
 ## Sequence demultiplexing tool

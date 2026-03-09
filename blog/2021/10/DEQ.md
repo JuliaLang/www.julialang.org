@@ -12,7 +12,7 @@ between the optimized libraries being used for physical modeling and
 the techniques used in machine learning: in the composable ecosystem of Julia,
 these are one and the same. The same differential equation solvers that are
 being carefully inspected for speed and accuracy by the FDA and Moderna [for clinical trial analysis](https://pumas.ai/)
-are what's [mixed with neural networks for neural ODEs](https://julialang.org/blog/2019/01/fluxdiffeq/).
+are what's [mixed with neural networks for neural ODEs](/blog/2019/01/fluxdiffeq/).
 The same [computer algebra system](https://symbolics.juliasymbolics.org/dev/)
 that is [used to accelerate NASA launch simulations by 15,000x](https://www.youtube.com/watch?v=tQpqsmwlfY0)
 is the same one that is used in [automatically discovering physical equations](https://datadriven.sciml.ai/dev/).
@@ -27,12 +27,12 @@ We will then show how [DiffEqFlux.jl](https://diffeqflux.sciml.ai/dev/)
 can be used as a package for DEQs, showing how the composability of the
 Julia ecosystem naturally lends itself to extensions and generalizations
 of methods in machine learning literature. For background on DiffEqFlux and Neural ODEs,
-please see the previous blog post [DiffEqFlux.jl – A Julia Library for Neural Differential Equations](https://julialang.org/blog/2019/01/fluxdiffeq/).
+please see the previous blog post [DiffEqFlux.jl – A Julia Library for Neural Differential Equations](/blog/2019/01/fluxdiffeq/).
 
 (Note: If you are interested in this work and are an undergraduate or graduate
 student, we have [Google Summer of Code projects available in this area](/jsoc/projects/). This
 [pays quite well over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
-Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel to discuss in more detail.)
+Please join the [Julia Slack](/slack/) and the #jsoc channel to discuss in more detail.)
 
 \toc
 
@@ -144,7 +144,7 @@ gives an efficient implementation of a DEQ without requiring any new tooling or 
 outperform the fixed-point iteration approaches by taking multiple steps at a time.
 
 The following code block creates a DEQ model. An astute reader will notice that this code looks
-awfully similar to typical [Neural ODEs implemented in Julia](https://julialang.org/blog/2019/01/fluxdiffeq/).
+awfully similar to typical [Neural ODEs implemented in Julia](/blog/2019/01/fluxdiffeq/).
 Therefore, the DEQ implementation simply adds an extra steady state layer on top
 of the ODE function, and as long as we use the correct (automatically chosen) sensitivity corresponding to
 steady state problems, we are covered.

@@ -136,7 +136,7 @@ makeover to help type inference arrive at a concrete answer more often. The
 result is a leaner, faster Julia that is far more impervious to method
 invalidation, and feels considerably more responsive and nimble in interactive
 sessions. Related blog post: [Analyzing sources of compiler latency in Julia:
-method invalidations](https://julialang.org/blog/2020/08/invalidations/).
+method invalidations](/blog/2020/08/invalidations/).
 
 ## Compiler latency reduction
 
@@ -203,7 +203,7 @@ particular package implementation choices interact with compilation time. Early
 adopters have used these tools to eliminate anywhere from a few percent to the
 large majority of first-use latency.
 
-- Related blog post: [Tutorial on precompilation](https://julialang.org/blog/2021/01/precompile_tutorial/)
+- Related blog post: [Tutorial on precompilation](/blog/2021/01/precompile_tutorial/)
 - [SnoopCompile.jl documentation](https://timholy.github.io/SnoopCompile.jl/stable/)
 
 ## Binary loading speedups
@@ -260,14 +260,14 @@ JLL packages only define a thin wrapper around simple, lightweight functions
 that load libraries and return paths and such, they do not benefit from the
 heavy optimization that most Julia code undergoes.  One final piece of the
 optimization puzzle was therefore to disable optimizations and use the new
-[per-module optimization levels](https://julialang.org/blog/2020/08/julia-1.5-highlights/#per-module_optimization_levels)
+[per-module optimization levels](/blog/2020/08/julia-1.5-highlights/#per-module_optimization_levels)
 functionality to reduce the amount of time spent generating a very small
 amount of code, saving precious seconds.
 
 ~~~
 <div id="547edea6-9564-4613-b3c3-1b2e6d1c58c5" style="width: 100%; height: 450px;" class="plotly-graph-div"></div>
 
-<script type="text/javascript" src="/assets/blog/2021-1.6-highlights/gtk3-jll.js"></script>
+<script src="/assets/blog/2021-1.6-highlights/gtk3-jll.js"></script>
 ~~~
 
 The interplay between compiler improvements and the benefits that `JLLWrappers`
@@ -400,7 +400,7 @@ ever see on dedicated hardware. A one-second timeout can, unfortunately, take
 more than 60 seconds on a heavily loaded VM.
 
 After much debugging, including infrastructure work to run tests under
-[rr](https://julialang.org/blog/2020/05/rr) by default, we were able to
+[rr](/blog/2020/05/rr) by default, we were able to
 identify and fix many issues. Here is a representative sample:
 
 - [Close a race condition in the FileWatching tests](https://github.com/JuliaLang/julia/pull/38407)
@@ -422,7 +422,7 @@ We are not yet at 100%, but CI can now generally be expected to pass.
 
 _Kristoffer Carlsson_
 
-Way back in Julia release 0.6, formatting of stacktraces [went through an overhaul](https://julialang.org/blog/2017/04/repl-0.6-highlights/#printing_of_stack_traces)
+Way back in Julia release 0.6, formatting of stacktraces [went through an overhaul](/blog/2017/04/repl-0.6-highlights/#printing_of_stack_traces)
 and in this release [`@jkrumbiegel`](https://github.com/jkrumbiegel) made further improvements on this area (implemented in [#36134](https://github.com/JuliaLang/julia/pull/36134)).
 Let's look at an example of the old stacktrace printing and compare it to the new one:
 

@@ -49,9 +49,9 @@ this is a large generalization of the neural ODEs work and will allow
 researchers to better explore the problem domain.
 
 (Note: If you are interested in this work and are an undergraduate or graduate
-student, we have [Google Summer of Code projects available in this area](https://julialang.org/jsoc/projects/). This
+student, we have [Google Summer of Code projects available in this area](/jsoc/projects/). This
 [pays quite well over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
-Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel to discuss in more detail.)
+Please join the [Julia Slack](/slack/) and the #jsoc channel to discuss in more detail.)
 
 \toc
 

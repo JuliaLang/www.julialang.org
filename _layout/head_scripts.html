@@ -1,20 +1,32 @@
 <!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/libs/detectdark.js"></script>
 <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/franklin.css">
-<link rel="stylesheet" href="/css/fonts.css">
 <!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
 <link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<script async defer src="/libs/buttons.js"></script>
-<script src="/libs/clipboard.min.js"></script>
-<script src="/libs/detectdark.js"></script>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/libs/buttons.js"></script>
 {{if hasplotly}} <script src="/libs/plotly/plotly.min.js"></script> {{end}}
 
 <script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
 
+{{if hasmap}}
 <!-- scripts for map rendering -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
 integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -26,5 +38,6 @@ crossorigin=""/>
 
 <!-- https://github.com/Leaflet/Leaflet.markercluster -->
 <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+{{end}}
 
-<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>

@@ -8,7 +8,7 @@
 We introduce [**Yao**](https://yaoquantum.org/) ([check our latest paper](https://arxiv.org/abs/1912.10877)), an open-source Julia package for solving practical problems in quantum computation research. The name Yao comes from the first Chinese character for unitary (幺正).
 
 ~~~
-<div align="center"> <img
+<div style="text-align: center;"> <img
 src="/assets/images/logo_yao.png"
 alt="Yao Logo" width="210">
 <p>The Logo of Yao</p>

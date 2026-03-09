@@ -19,10 +19,11 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | [Dagger][dagger]                 | `#distributed`      | Every other Thursday at 10am ET          | [Julian Samaroo][Julian-Samaroo], [Krystian Guliński][Krystian-Guliński] |
 | [Documentation tooling][wg-docs] | `#documentation`    | Last Tuesday of every month at 18:00 UTC | [Morten Piibeleht][Morten-Piibeleht], [Fredrik Ekre][Fredrik-Ekre]       |
 | [GPU][gpu]                       | `#gpu`              | Every other Monday at 11am ET            | [Tim Besard][Tim-Besard], [Valentin Churavy][Valentin-Churavy]           |
+| Health and Medicine | `#health-and-medicine`     | Last Thursday of every month at 12pm ET            | [Jacob S. Zelko][Jacob-Zelko]                                               |
 | High-performance computing (HPC) | `#hpc`              | Fourth Tuesday of each month at 2pm ET, and second Thursday of each month at 14:00 CET | [Valentin Churavy][Valentin-Churavy], [Mosè Giordano][Mosè-Giordano] |
 | [JuliaMolSim]                    | `#juliamolsim`      | Third Monday of each month at 12:15 ET   | [Rachel Kurchin][Rachel-Kurchin]                                         |
 | Machine learning                 | `#machine-learning` | Every other Tuesday at 12pm ET           | [Kyle Daruwalla][Kyle-Daruwalla], [Lorenz Ohly][Lorenz-Ohly]             |
-| Multithreading                   | `#multithreading`   | First Wednesday of each month at 10am ET | [Jameson Nash][Jameson-Nash]                                             |
+| Multithreading                   | `#multithreading`   | [none]                                   | [Jameson Nash][Jameson-Nash]                                             |
 | [Pkg][pkg]                       | `#pkg-dev`          | Occasional Tuesdays at 2:15pm ET         | [Kristoffer Carlsson][Kristoffer-Carlsson], [Fredrik Ekre][Fredrik-Ekre] |
 | Release management               | `#releases`         | [none]                                   | [Kristoffer Carlsson][Kristoffer-Carlsson], [Alex Arslan][Alex-Arslan]   |
 | REPL                             | `#repl`             | [none]                                   | [Timothy Chapman][Timothy Chapman]                                       |
@@ -91,3 +92,4 @@ Each of these groups is organized around a common area of interest with a commun
 [Timothy Chapman]: https://github.com/tecosaur
 [Rachel-Kurchin]: https://github.com/rkurchin
 [Matt-Bauman]: https://github.com/mbauman
+[Jacob-Zelko]: https://github.com/TheCedarPrince

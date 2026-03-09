@@ -6,7 +6,7 @@ rss_pubdate = Date(2025, 01, 03)
 rss = """The history of the SatelliteToolbox.jl ecosystem"""
 +++
 
-![](/assets/blog/2024-SatelliteToolbox/logo-reduced.png)
+![SatelliteToolbox.jl logo](/assets/blog/2024-SatelliteToolbox/logo-reduced.png)
 
 The [SatelliteToolbox.jl](https://github.com/JuliaSpace/SatelliteToolbox.jl) is an ecosystem
 of packages that enables the execution of a wide range of analysis tasks related to space
@@ -131,7 +131,7 @@ angular momentum during some orbits. It’s amazing how well the simulator match
 This result is only possible if the algorithms in
 [SatelliteToolbox.jl](https://github.com/JuliaSpace/SatelliteToolbox.jl) are super accurate!
 
-![](/assets/blog/2024-SatelliteToolbox/aocs_simulator_result-reduced.png)
+![AOCS simulator predicted vs actual satellite angular momentum](/assets/blog/2024-SatelliteToolbox/aocs_simulator_result-reduced.png)
 
 ## The Current State of the SatelliteToolbox.jl Ecosystem
 

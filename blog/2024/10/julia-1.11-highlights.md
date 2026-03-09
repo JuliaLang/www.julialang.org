@@ -15,7 +15,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 @@announcement
 **1.10 becomes LTS** A quick note about 1.10 first. With the release of 1.11, 1.10 becomes the LTS version,
 which was previously 1.6. Consider using the new `lts` version specifier with
-[juliaup](https://julialang.org/downloads) and the
+[juliaup](/downloads) and the
 [julia-actions/setup-julia](https://github.com/julia-actions/setup-julia#examples) github action.
 @@
 
@@ -70,7 +70,7 @@ with an empty file.
 
 Tab completion has become more powerful in 1.11 and gained inline hinting when there is a singular completion available that can be completed with tab.
 
-![](/assets/blog/2024-1.11-highlights/inline_complete.png)
+![Julia REPL inline tab completion hinting](/assets/blog/2024-1.11-highlights/inline_complete.png)
 
 If you prefer not to have hinting enabled, disable it via your `startup.jl` with
 ```julia

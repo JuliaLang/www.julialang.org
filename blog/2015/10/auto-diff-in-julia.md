@@ -12,13 +12,13 @@ Under the mentorship of Miles Lubin and Theodore Papamarkou, I completed a major
 
 By the end of this post, you'll hopefully know a little bit about how ForwardDiff.jl works, why it's useful, and why Julia is uniquely well-suited for AD compared to other languages.
 
-# What is Automatic Differentiation?
+## What is Automatic Differentiation?
 
 In broad terms, [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) describes a class of algorithms for automatically taking exact derivatives of user-provided functions. In addition to producing more accurate results, AD methods are also often faster than other common differentiation methods (such as [finite differencing](https://en.wikipedia.org/wiki/Numerical_differentiation)).
 
 The two main flavors of AD are called *forward mode* and *reverse mode*. As you might've guessed, this post only discusses forward mode, which is the kind of AD implemented by ForwardDiff.jl.
 
-# Seeing ForwardDiff.jl In Action
+## Seeing ForwardDiff.jl In Action
 
 Before we get down to the nitty-gritty details, it might be helpful to see a simple example that illustrates various methods from ForwardDiff.jl's API.
 
@@ -72,13 +72,13 @@ Okay, that's not *too* exciting - I could've just done the same thing with Calcu
 
 The simple answer is that ForwardDiff.jl's AD-based methods are, in many cases, much more performant than the finite differencing methods implemented in other packages.
 
-# How ForwardDiff.jl Works - An Overview
+## How ForwardDiff.jl Works - An Overview
 
 The key technique leveraged by ForwardDiff.jl is the implementation of several different `ForwardDiffNumber` types, each of which allocate storage space for both normal values and derivative values. Elementary numerical functions on a `ForwardDiffNumber` are then overloaded to evaluate both the original function and the function's derivative, returning the results in the form of a new `ForwardDiffNumber`.
 
 Thus, we can pass these number types into a general function $f$ (which is assumed to be composed of the overloaded elementary functions), and the derivative information is naturally propagated at each step of the calculation by way of the chain rule. The final result of the evaluation (usually a `ForwardDiffNumber` or an array of them) then contains both $f(x)$ and $f'(x)$, where $x$ was the original point of evaluation.
 
-# Simple Forward Mode AD in Julia
+## Simple Forward Mode AD in Julia
 
 The easiest way to write actual Julia code demonstrating this technique is to implement a simple [dual number](https://en.wikipedia.org/wiki/Dual_number) type. Note that there is already [a Julia package](https://github.com/JuliaDiff/DualNumbers.jl) dedicated to such an implementation, but we're going to roll our own here for pedagogical purposes.
 
@@ -149,7 +149,7 @@ Notice that our dual number result comes *close* to the result obtained from Cal
 
 In reality, the number types that ForwardDiff.jl provides are quite a bit more complicated than `DualNumber`. Instead of simple dual numbers, the various `ForwardDiffNumber` types behave like *ensembles* of dual numbers and [hyper-dual numbers](http://adl.stanford.edu/hyperdual/Fike_AIAA-2011-886.pdf) (the higher-order analog of dual numbers). This ensemble-based approach allows for simultaneous calculation of multiple higher-order partial derivatives in a single evaluation of the target function.
 
-# Performance Comparison: The Ackley Function
+## Performance Comparison: The Ackley Function
 
 The best way to illustrate the performance gains that can be achieved using ForwardDiff.jl is to do some benchmarking. Let's compare the time to calculate the gradient of a function using ForwardDiff.jl, Calculus.jl, and a Python-based AD tool, AlgoPy.
 
@@ -188,7 +188,7 @@ def ackley(x):
             algopy.exp(len_recip*sum_cos) + a + numpy.e)
 ```
 
-# Performance Comparison: The Results
+## Performance Comparison: The Results
 
 The benchmarks were performed with input vectors of length 16, 1600, and 16000, taking the best time out of 5 trials for each test. I ran them on a late 2013 MacBook Pro (macOS 10.9.5, 2.6 GHz Intel Core i5, 8 GB 1600 MHz DDR3) with the following versions of the relevant libraries: Julia v0.4.1-pre+15, Python v2.7.9, ForwardDiff.jl v0.1.2, Calculus.jl v0.1.13, and AlgoPy v0.5.1.
 
@@ -234,7 +234,7 @@ Here are the results (lower is better):
 
 Both AlgoPy and ForwardDiff.jl beat out Calculus.jl for evaluation at higher input dimensions, which isn't too surprising. AlgoPy beating ForwardDiff.jl, though, might catch you off guard - ForwardDiff.jl had the fastest absolute runtimes, after all! One explanation for this outcome is that AlgoPy falls back to vectorized Numpy methods when calculating the gradient, while the `ackley` function itself uses your usual, slow Python scalar arithmetic. Julia's scalar arithmetic performance is *much* faster than Python's, so ForwardDiff.jl doesn't have as much "room for improvement" as AlgoPy does.
 
-# Julia's AD Advantage
+## Julia's AD Advantage
 
 At the beginning of this post, I promised I would give the reader an answer to the question: "Why is Julia uniquely well-suited for AD compared to other languages?"
 
@@ -244,7 +244,7 @@ Unlike many other languages, Julia’s type-based operator overloading is fast a
 
 This ability is phenomenally useful for implementing forward mode AD, which relies almost entirely on operator overloading in order to work. In most other scientific computing languages, operator overloading is either very slow (e.g. MATLAB), fraught with weird edge cases (e.g. Python), arduous to implement generally (e.g. C++) or some combination of all three. In addition, very few languages allow operator overloading to naturally extend to native, black-box, user-written code. Julia's multiple dispatch is the secret weapon leveraged by ForwardDiff.jl to overcome these hurdles.
 
-# Future Directions
+## Future Directions
 
 The new version of ForwardDiff.jl has just been released, but development of the package is still ongoing! Here's a list of things I'd like to see ForwardDiff.jl support in the future:
 

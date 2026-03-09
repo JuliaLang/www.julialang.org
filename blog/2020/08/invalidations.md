@@ -439,7 +439,7 @@ In particular, while Base Julia and its standard libraries are well along the wa
 One might hope that the next period of Julia's development might see significant progress in getting packages to work together gracefully without inadvertently stomping on each other's toes.
 
 [Julia]: https://julialang.org/
-[union-splitting]: https://julialang.org/blog/2018/08/union-splitting/
+[union-splitting]: /blog/2018/08/union-splitting/
 [MethodAnalysis]: https://github.com/timholy/MethodAnalysis.jl
 [SnoopCompile]: https://github.com/timholy/SnoopCompile.jl
 [performance tips]: https://docs.julialang.org/en/v1/manual/performance-tips/

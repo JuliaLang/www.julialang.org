@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{isdef pagelang}}{{fill pagelang}}{{else}}en{{end}}">
 <head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
 	<!-- parts for all pages -->
 	{{insert meta.html}}
 
@@ -14,37 +15,21 @@
 
   {{isdef title}} <title>{{fill title}}</title>   {{end}}
 
-  {{ispage /blog/* /jsoc/gsoc/* /contribute/* /downloads/* /community/*}}
-  <style>
-	  .container ul li p {margin-bottom: 0;}
-		.container ol li p {margin-bottom: 0;}
-		.container ul ul {margin: .4em 0 .4em 0;}
-		.container ul ol {margin: .4em 0 .4em 0;}
-		.container ol ul {margin: .4em 0 .4em 0;}
-		.container ol ol {margin: .4em 0 .4em 0;}
-  </style>
+  {{ispage /blog/* /jsoc/gsoc/* /contribute/* /downloads/* /community/* /about/*}}
+  <link rel="stylesheet" href="/css/container-lists.css">
   {{end}}
 
-  <!-- Specific style for blog pages (except the /blob/index) -->
   {{ispage /blog/*}}{{isnotpage /blog/index}}
-  <style>
-    .main { font-family: Georgia; }
-    .main pre {
-  	  margin-left: auto;
-  	  margin-right: auto;
-    }
-    .main { width: 100%; font-size: 100%; }
-    .main code { font-size: 90%; }
-    .main pre code { font-size: 90%; }
-    @media (min-width: 940px) {
-      .main { width: 800px; }
-      .blog-title { width: 800px;}
-    }
-  </style>
+  <link rel="stylesheet" href="/css/blog-post.css">
   {{end}}{{end}}
 
   <!-- OGP Metadata -->
 	{{meta}}
+
+  <!-- Article structured data for blog posts -->
+  {{ispage /blog/*}}{{isnotpage /blog/index.html}}
+  {{article_schema}}
+  {{end}}{{end}}
 
 </head>
 
@@ -64,7 +49,7 @@
         {{end}}
       </div>
       <div class="blog-title-meta">
-        <h3>
+        <p style="font-size: 1.17em; margin-top: 0;">
           {{isdef published}}
             <span style="font-weight: lighter;">{{fill published}}</span> |
           {{end}}
@@ -74,13 +59,12 @@
           {{isdef authors}}
             <span style="font-weight: bold;">{{fill authors}}</span>
           {{end}}
-        </h3>
+        </p>
       </div>
     </div>
 
     <div class="blog-title-right">
-      <a type="application/rss+xml"
-         href="https://julialang.org/feed.xml"
+      <a href="https://julialang.org/feed.xml"
          class="rss-link">
         <i class="fa fa-rss-square rss-icon"></i>
       </a>
@@ -90,7 +74,7 @@
 {{end}}
 
 {{isnotpage /index.html /blog/index.html}}
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/{{fd_rpath}}" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/{{fd_rpath}}" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
 </a>
 {{end}}
 

@@ -15,13 +15,18 @@ function hfun_meta()
     title = locvar(:title)
     isnothing(title) && (title = "The Julia Language")
     descr = locvar(:rss_description)
-    isnothing(descr) && (descr = "Official website for the Julia programming language")
+    (isnothing(descr) || isempty(strip(descr))) && (descr = "Official website for the Julia programming language")
     p = "property"
+    # Build page URL for og:url
+    website_url = strip(globvar(:website_url), '/')
+    page_rpath = locvar(:fd_rpath)
+    page_url = isnothing(page_rpath) ? website_url : "$website_url/$(replace(page_rpath, r"\.md$" => "/"))"
     # default og properties, can be overwritten by the user
     ogdflt = (
         title = (p, "og:title", title),
         descr = (p, "og:description", descr),
         image = (p, "og:image", "/assets/images/julia-open-graph.png"),
+        url   = (p, "og:url", page_url),
         )
     # check what the user has provided (if anything) use defaults otherwise
     meta = locvar(:meta)
@@ -34,7 +39,9 @@ function hfun_meta()
     end
     io = IOBuffer()
     for m in meta
-        write(io, "<meta $(m[1])=\"$(m[2])\" content=\"$(m[3])\">\n")
+        # HTML-escape double quotes and newlines in content to produce valid attributes
+        escaped = replace(string(m[3]), "&" => "&amp;", "\"" => "&quot;", "\n" => " ")
+        write(io, "<meta $(m[1])=\"$(m[2])\" content=\"$(escaped)\">\n")
     end
     return String(take!(io))
 end
@@ -157,8 +164,10 @@ function hfun_redirect(url)
     s = """
     <!-- REDIRECT -->
     <!doctype html>
-    <html>
+    <html lang="en">
       <head>
+        <meta charset="utf-8">
+        <title>Redirecting…</title>
         <meta http-equiv="refresh" content="0; url=$(url[1])">
       </head>
     </html>
@@ -184,7 +193,7 @@ end
 function hfun_author_twitter()
     url = get_author_twitter()
     isempty(url) && return ""
-    return "<a href=\"$url\"><img src=\"/assets/infra/twitter.svg\"/ width=\"22px\" height=\"22px\" style=\"margin-left:2px\"></a>"
+    return "<a href=\"$url\"><img src=\"/assets/infra/twitter.svg\" alt=\"Twitter\" width=\"22\" height=\"22\" style=\"margin-left:2px\"></a>"
 end
 
 """
@@ -220,6 +229,145 @@ function hfun_about_the_author()
 		</div>
 		"""
     return html
+end
+
+"""
+    {{article_schema}}
+
+Generate a JSON-LD `BlogPosting` structured data block for blog posts.
+See https://developers.google.com/search/docs/data-types/article
+"""
+function hfun_article_schema()
+    title = locvar(:title)
+    isnothing(title) && return ""
+    descr = locvar(:rss_description)
+    isnothing(descr) && (descr = locvar(:rss))
+    isnothing(descr) && (descr = "")
+    descr = strip(descr)
+
+    # Parse the published date into ISO 8601
+    pubdate_str = locvar(:published)
+    isnothing(pubdate_str) && return ""
+    date_iso = try
+        Dates.format(Date(pubdate_str, dateformat"d U Y"), "yyyy-mm-dd") * "T00:00:00+00:00"
+    catch
+        return ""
+    end
+
+    # Get image URL from meta or use default
+    image_url = "/assets/images/julia-open-graph.png"
+    meta = locvar(:meta)
+    if !isnothing(meta)
+        for m in meta
+            if m[2] == "og:image"
+                image_url = m[3]
+                break
+            end
+        end
+    end
+    # Resolve {{base}} if present (some posts use a `base` page variable in meta values)
+    base = locvar(:base)
+    if !isnothing(base)
+        image_url = replace(image_url, "{{base}}" => base)
+    end
+
+    # Strip HTML tags from a string (some older posts have <a> links in author)
+    striptags(s) = replace(s, r"<[^>]*>" => "")
+
+    # Parse author entries, extracting name and optional URL from <a> tags.
+    # Returns a vector of (name, url_or_nothing) tuples.
+    function parse_authors(raw)
+        entries = Tuple{String,Union{String,Nothing}}[]
+        # Split on comma or " and " (but not inside tags)
+        for part in split(raw, r"\s*,\s*|\s+and\s+")
+            part = strip(part)
+            isempty(part) && continue
+            # Try to extract href and link text from <a> tag
+            m = match(r"<a\s+href=\"([^\"]+)\"[^>]*>([^<]+)</a>", part)
+            if m !== nothing
+                push!(entries, (strip(m[2]), strip(m[1])))
+            else
+                name = strip(striptags(part))
+                isempty(name) || push!(entries, (name, nothing))
+            end
+        end
+        entries
+    end
+
+    # Build author list
+    author = locvar(:author)
+    authors = locvar(:authors)
+    raw_authors = if !isnothing(authors)
+        authors
+    elseif !isnothing(author)
+        author
+    else
+        ""
+    end
+    author_entries = parse_authors(raw_authors)
+
+    # Build the author JSON entries
+    function author_obj((name, url))
+        if url !== nothing
+            """{"@type": "Person", "name": "$name", "url": "$url"}"""
+        else
+            """{"@type": "Person", "name": "$name"}"""
+        end
+    end
+    author_json = if length(author_entries) == 1
+        author_obj(author_entries[1])
+    elseif length(author_entries) > 1
+        "[$(join(author_obj.(author_entries), ", "))]"
+    else
+        """{"@type": "Organization", "name": "The Julia Language"}"""
+    end
+
+    website_url = strip(globvar(:website_url), '/')
+
+    # Get the page URL
+    page_url = "$website_url/$(Franklin.locvar(:fd_rpath))"
+    # Normalize: /blog/2024/05/post.md -> /blog/2024/05/post/
+    page_url = replace(page_url, r"\.md$" => "/")
+
+    # Ensure image URL is absolute
+    if startswith(image_url, "/")
+        image_url = "$website_url$image_url"
+    end
+
+    # Escape strings for JSON (also strip any HTML tags and newlines)
+    function esc(s)
+        s = striptags(s)
+        s = replace(s, "\\" => "\\\\")
+        s = replace(s, "\"" => "\\\"")
+        s = replace(s, r"\s+" => " ")
+        strip(s)
+    end
+
+    return """
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "$(esc(title))",
+      "description": "$(esc(descr))",
+      "image": "$(esc(image_url))",
+      "datePublished": "$date_iso",
+      "author": $author_json,
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Julia Language",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "$website_url/assets/images/julia-open-graph.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "$(esc(page_url))"
+      }
+    }
+    </script>
+    """
 end
 
 function hfun_all_gsoc_projects()

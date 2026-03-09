@@ -1,4 +1,4 @@
-@def title = "This Month in Julia World (December) 2025)"
+@def title = "This Month in Julia World (December 2025)"
 @def authors = "Stefan Krastanov"
 @def published = "1 January 2026"
 @def rss_pubdate = Date(2026, 1, 1)
@@ -55,7 +55,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 - A [self-contained juliac demonstration](https://discourse.julialang.org/t/self-contained-juliac-demonstration/134366) provides a complete tutorial for using `juliac`, Julia's command-line compilation tool, to create standalone executables. The demonstration addresses a gap in comprehensive tutorials by automating the entire process of building executables, though discussions reveal concerns about bundle size optimization.
 - [SolarPosition.jl](https://discourse.julialang.org/t/ann-solarposition-jl/134263) provides a unified interface to multiple solar positioning algorithms (PSA, NOAA, Walraven, USNO, SPA), completely rewritten in pure Julia with no external dependencies. It's typically 1-2 orders of magnitude faster than Python equivalents and includes recent additions like sunrise/sunset calculations with polar day/night detection. Originally designed for solar photovoltaic engineering.
 
-See also: [JuliaHub corporate blog](https://juliahub.com/blog), [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
+See also: [JuliaHub corporate blog](https://juliahub.com/blog), [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)
 

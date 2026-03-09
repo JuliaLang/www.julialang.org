@@ -1,0 +1,104 @@
+name: Deploy PR Preview
+
+on:
+  workflow_run:
+    workflows: ["Build and Deploy"]
+    types:
+      - completed
+
+concurrency:
+  # Serialize pushes to the `gh-preview` branch to avoid clashes with
+  # pr_preview_cleanup.yml.
+  group: global-lock-ghpreview-pushing
+
+permissions:
+  contents: write
+  actions: read
+  checks: write
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Download PR metadata
+        uses: actions/download-artifact@v4
+        id: download-meta
+        continue-on-error: true
+        with:
+          name: deploy-meta
+          path: deploy-meta
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Read PR number
+        if: steps.download-meta.outcome == 'success'
+        id: meta
+        run: echo "pr_number=$(cat deploy-meta/pr_number)" >> $GITHUB_OUTPUT
+
+      - name: Create check run on PR
+        if: steps.download-meta.outcome == 'success'
+        uses: actions/github-script@v7
+        id: check
+        with:
+          script: |
+            const prNumber = '${{ steps.meta.outputs.pr_number }}';
+            const { data } = await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
+              head_sha: context.payload.workflow_run.head_sha,
+              status: 'in_progress',
+              details_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            });
+            core.setOutput('id', data.id);
+
+      - name: Download site build
+        if: steps.download-meta.outcome == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: __site
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Install SSH Client
+        if: steps.download-meta.outcome == 'success'
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Deploy preview
+        if: steps.download-meta.outcome == 'success'
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-preview
+          folder: __site
+          ssh-key: true
+          target-folder: "previews/PR${{ steps.meta.outputs.pr_number }}"
+
+      - name: Complete check run
+        if: always() && steps.check.outputs.id
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = '${{ steps.meta.outputs.pr_number }}';
+            const previewUrl = `https://julialang.netlify.app/previews/PR${prNumber}/`;
+            await github.rest.checks.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              check_run_id: ${{ steps.check.outputs.id }},
+              name: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}/`,
+              status: 'completed',
+              conclusion: '${{ job.status }}',
+              output: {
+                title: 'Preview ready',
+                summary: `[Preview this PR](${previewUrl})`,
+              },
+              details_url: previewUrl,
+            });

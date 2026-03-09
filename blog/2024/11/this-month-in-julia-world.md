@@ -76,7 +76,7 @@ Soapboxes (blogs/talks):
 * The Julia Optimization Days 2024 in Toulouse (France) featured a [tutorial on code optimization](https://gdalle.github.io/JuliaOptimizationDays2024-FastJulia/) and an [introduction to autodiff](https://gdalle.github.io/JuliaOptimizationDays2024-AutoDiff/). If there is community interest, those tutorials could be recorded by the author and put on the YouTube channel of the Julia language.
 * If you’re in/near France, consider presenting your optimization-related Julia work at the upcoming conference on operations research [ROADEF 2025](https://roadef2025.org/) (next February in Paris).
 * Consider subscribing to the [French community newsletter](https://pnavaro.github.io/NouvellesJulia/) (much of the shared materials are in English). If you’re in/near France, consider presenting your optimization-related Julia work at the upcoming conference on operations research [ROADEF 2025](https://roadef2025.org/) (next February in Paris).
-* Consider subscribing to the [community calendar](https://julialang.org/community/#events) to be informed of upcoming virtual meetings and talks.
+* Consider subscribing to the [community calendar](/community/#events) to be informed of upcoming virtual meetings and talks.
 * Consider attending the triage meetings of the julia core contributors (organized on slack) – being a fly on the wall can be a great way to learn the nitty-gritty details of current priorities and development work. These are organized on the triage channel in slack. [Minutes are kept](https://hackmd.io/@LilithHafner/HJaw__uMp).
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)

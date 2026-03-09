@@ -204,7 +204,7 @@ Blog Posts:
  - [https://archit.me/blog/gsocfinal](https://archit.me/blog/gsocfinal)
 
 
-You can find the original GSoC and JSoC 2020 project list [here](https://julialang.org/blog/2020/05/jsoc-gsoc2020/).
+You can find the original GSoC and JSoC 2020 project list [here](/blog/2020/05/jsoc-gsoc2020/).
 
 
 ~ Logan, Chris, and Avik
