@@ -1,21 +1,27 @@
+@def title = "Google Season of Docs Projects"
+
 # Julia's Google Season of Docs Projects
 
 Below are the projects which have been proposed for Google Season of Docs under the umbrella of the Julia Language. If you have questions about potential projects, the first point of contact would be the mentor(s) listed on the project. If you are unable to get ahold of the potential mentor(s), you should email `jsoc@julialang.org` and CC `community@julialang.org`.
 
 We at the Julia Language are committed to making the application process and participation in GSoD with Julia accessible to everyone. If you have questions or requests, please do reach out and we will do our best to accommodate you.
 
-### The GSoD experience with The Julia Language
+## The GSoD experience with The Julia Language
 
 Learn from one of our technical writers about their experience with GSoD:
 ~~~
-<iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/6s9J-ObQaAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div style="max-width:720px;margin:0 auto;">
+  <div class="ratio ratio-16x9 video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/6s9J-ObQaAs" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
 ~~~
 
 # Project Ideas for 2024
 
 Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reach out to the respective mentor(s).
 
-# Unifying the [JuliaHeath Organization](https://github.com/JuliaHealth) Documentation Landscape
+# Unifying the JuliaHealth Organization Documentation Landscape
 
 ## About your organization
 
@@ -104,13 +110,13 @@ Finally, if time permits, there will be some additional stretch goals that we wo
 - Page for research accomplishments within JuliaHealth
 - Write a JuliaHealth blog entry on a Medeye topic to broaden project reach
 
-#### Technical Writer
+### Technical Writer
 
 Name: [Sneha Pandey](https://github.com/sneha9231)
 
 Sneha Pandey is a sophomore specializing in AI and ML and also serves as a Microsoft Learn Student Ambassador. Through this role, she had refined her ability to communicate complex concepts effectively to diverse audiences. Additionally, She had gained experience as a content writer, crafting content for her university. She has hands-on experience in developing various mini projects, such as a WhatsApp bot and ML captioning models using Streamlit and Python. Her familiarity with Julia stems from previous engagements in medical imaging alongside MD PhD Msc Jakub Mitura. Moreover, She ensured comprehensive documentation of her personal projects using Documenter.jl. These experiences collectively equip her with the skills and proficiency required to excel as a technical writer within the Julia ecosystem.
 
-#### Volunteer Roles
+### Volunteer Roles
 **Volunteer 1: General JuliaHealth Organization Volunteer:**
 
 Name: Jacob S. Zelko
@@ -168,7 +174,7 @@ Currently, the documentation we do have does not yet have support for documentat
 As of this moment, our best direct source for traffic metrics is to use [JuliaHub](https://juliahub.com/ui/Packages?q=JuliaHealth/) to monitor package downloads and also to reference GitHub stars for a loose approximation of "discoverability".
 Additionally, we take advantage of the [The Julia Programming Language YouTube Channel](https://www.youtube.com/@TheJuliaLanguage) that we use to monitor engagement with our recorded [JuliaHealth Workgroup meetings](https://www.youtube.com/playlist?list=PLP8iPy9hna6QCTkFxfHs2Y4foaYBJAjzO).
 In these situations, potential users or contributors would have to know where to look to find these resources or entry points to our supported packages and their respective subecosystems.
-#### We would consider the project successful if :
+### We would consider the project successful if:
 
 For JuliaHealth, we would consider this project successful if:
 - We can readily track documentation traffic across packages
@@ -222,7 +228,7 @@ This timeline is largely accurate but we expect that different packages or tasks
 The November time period gives us the opportunity to revisit any unfinished tasks and to potentially explore stretch goals if there were not many outstanding tasks left.
 
 ### Communication Plan:
-The primary communication channel we will use is [Julia Slack](https://julialang.org/slack/) and Dr. Jakub Mitura (MD, PhD) will be the individual responsible for all contact and mentoring throughout the project for regular updates and meetings.
+The primary communication channel we will use is [Julia Slack](/slack/) and Dr. Jakub Mitura (MD, PhD) will be the individual responsible for all contact and mentoring throughout the project for regular updates and meetings.
 Outside of Slack, email will be used to handle communications with GSoD organizers and administrators with Jakub Mitura's email being: [jakub.mitura14@gmail.com](mailto:jakub.mitura14@gmail.com).
 Volunteers will also be available for communication on the Slack on an as-needed basis.
 Additionally, project updates will be given through the [Julia Health Slack Channel](https://app.slack.com/client/T68168MUP/C012NN70P5K) which is where the majority of JuliaHealth communication takes place between members, users, and the rest of the Julia community.
@@ -262,5 +268,3 @@ Anshul Singhvi is a former Google Summer of Code student and has a vast swath of
 In particular, Anshul has membership with numerous Julia organizations and will be a crucial asset to not only what are best practices for documentation deployment but can also help with how to best unify JuliaHealth packages within JuliaHealth itself and potentially across the greater Julia landscape.
 His insight will be crucial to mitigate any redundant work or answer outsanding questions to make sure this project is ran as effectively as possible.
 Also, given Anshul's tremendous experience in delivering contract work, he will be key in making sure the metrics we investigate and report on for the case study in our final report will be done rigorously and to the best of the technical writer's ability given the data we have access to.
-
-</div>

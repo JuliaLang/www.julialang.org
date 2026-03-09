@@ -97,11 +97,9 @@ Julia currently supports big integers and rationals, making use of the GMP. Howe
 
 This project therefore involves exploring ways to improve BigInt, possibly including:
 
-@@tight-list
 * Modifying GMP to support high-performance garbage-collection
 * Reimplementation of aspects of BigInt in Julia
 * Lazy graph style APIs which can rewrite terms or apply optimisations
-@@
 
 This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.
 

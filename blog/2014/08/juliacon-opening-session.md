@@ -17,7 +17,7 @@ Tim Holy is a Professor in the Department of Anatomy and Neurobiology at Washing
 - **GitHub:** [https://github.com/timholy](https://github.com/timholy)
 
 ~~~
-<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/FA-1B_amwt8?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
+<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/FA-1B_amwt8?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" style="border:none;" allowfullscreen></iframe></div>
 ~~~
 
 ### Pontus Stenetorp — Natural Language Processing with Julia
@@ -30,7 +30,7 @@ Pontus Stenetorp is a Japan Society for the Promotion of Science Postdoctoral Re
 
 
 ~~~
-<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/OrFxjE44COc?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
+<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/OrFxjE44COc?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" style="border:none;" allowfullscreen></iframe></div>
 ~~~
 
 
@@ -42,5 +42,5 @@ Arch Robison is a Senior Principal Engineer at Intel and is an expert in paralle
 - **GitHub:** [https://github.com/ArchRobison](https://github.com/ArchRobison)
 
 ~~~
-<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/GFTCQNYddhs?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
+<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/GFTCQNYddhs?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" style="border:none;" allowfullscreen></iframe></div>
 ~~~

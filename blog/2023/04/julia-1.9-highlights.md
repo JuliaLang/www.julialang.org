@@ -31,7 +31,7 @@ This feature comes with some tradeoffs, such as an increase in precompilation ti
 
 The graph below illustrates the changes in time-to-load (TTL), TTFX, and cache file size starting with Julia 1.7 (prior to any of the recent precompilation improvements):
 
-![](/assets/blog/2023-1.9-highlights/benchmarks.png)
+![Package load time and TTFX benchmarks comparing Julia 1.7 to 1.9](/assets/blog/2023-1.9-highlights/benchmarks.png)
 
 (See Methodology below for details.) For most packages, TTFX has gone from being the dominant factor to virtually negligible. TTL has also been reduced, albeit not as dramatically as TTFX. The same data is presented in the table below, with the "ratio" columns representing the ratio of Julia 1.7 / Julia 1.9 and "total" meaning "TTL + TTFX".
 
@@ -64,7 +64,7 @@ The difference in TTL arises because the system image can safely skip all the co
 At the time of Julia 1.9's release, only a small fraction of the package ecosystem has adopted PrecompileTools.
 As these new tools become leveraged more widely, users can probably expect ongoing improvements in TTFX.
 
-#### Methodology
+### Methodology
 
 A demonstration workload was designed for each package. That workload was placed in a [Startup package](https://julialang.github.io/PrecompileTools.jl/stable/#Tutorial:-local-%22Startup%22-packages) and precompiled; for benchmarking, we load the Startup package and run the same workload. Full details can be found in [this repository](https://github.com/timholy/JuliaCon2022_Precompilation/tree/teh/jan_2023/analysis/cache_external).
 
@@ -225,7 +225,7 @@ Drawing heavily on inspiration from the IPython shell (and other notebook-based 
 
 Being able to refer to an earlier evaluated object can be useful if, for example, one forgets to store the result of a long computation to a variable and then executes something else (so that `ans` gets overwritten).
 
-| ![](/assets/blog/2023-1.9-highlights/julia_numbered.png)  |![](/assets/blog/2023-1.9-highlights/ipython.png)|
+| ![Julia REPL with numbered prompt](/assets/blog/2023-1.9-highlights/julia_numbered.png)  |![IPython REPL for comparison](/assets/blog/2023-1.9-highlights/ipython.png)|
 | :--------: | :--------: |
 | Julia REPL with "numbered prompt" | IPython REPL |
 
@@ -348,7 +348,7 @@ sync with the parent or peer manifests.
 
 ## Apple Silicon Achieves Tier 1 Status
 
-With all tests successfully passing and continuous integration (CI) established for Apple Silicon, the [platform's status](https://julialang.org/downloads/support) has been upgraded from Tier 2 to Tier 1.
+With all tests successfully passing and continuous integration (CI) established for Apple Silicon, the [platform's status](/downloads/support) has been upgraded from Tier 2 to Tier 1.
 
 ## LLVM Update to v14
 

@@ -6,7 +6,7 @@ GNNs are a growing area of research and find many applications in complex networ
 [GraphNeuralNetworks.jl](https://github.com/CarloLucibello/GraphNeuralNetworks.jl) is a pure Julia package for GNNs equipped with many features. It implements common graph convolutional layers, with CUDA support and graph batching for fast parallel operations. There are several ways by which the package could be improved.
 
 
-### Adding models and examples
+## Adding models and examples
 
 As part of the documentation and for bootstrapping new projects, we want to add fully worked-out examples and applications of graph neural networks. We can start
 with entry-level tutorials and progressively introduce the reader to more advanced features. 
@@ -17,7 +17,7 @@ with entry-level tutorials and progressively introduce the reader to more advanc
 
 **Expected outcome**: A few pedagogical and more advanced examples of graph neural network applications.
 
-### Adding graph datasets
+## Adding graph datasets
 
 Provide Julia-friendly wrappers for common graph datasets in [`MLDatasets.jl`](https://github.com/JuliaML/MLDatasets.jl). Create convenient interfaces
 for the Julia ML and data ecosystem. 
@@ -29,7 +29,7 @@ for the Julia ML and data ecosystem.
 **Expected outcome**: A large collection of graph datasets easily available to the Julia ecosystem.
 
 
-### Improving performance using sparse linear algebra 
+## Improving performance using sparse linear algebra
 
 Many graph convolutional layers can be expressed as non-materializing algebraic operations involving the adjacency matrix instead of the slower and more memory-consuming gather/scatter mechanism. We aim at extending as far as possible and in a gpu-friendly way these *fused* implementation. The project will involve fixing some outstanding issues in CUDA.jl that are blocking sparse adjacency matrix support on GPU.
 
@@ -40,7 +40,7 @@ Many graph convolutional layers can be expressed as non-materializing algebraic 
 **Expected outcome**: A noticeable performance increase for many graph convolutional operations.
 
 
-### Support for AMDGPU and Apple Silicon
+## Support for AMDGPU and Apple Silicon
 
 We currently support scatter/gather operation only on CPU and CUDA hardware. We aim to extend this to AMDGPU and Apple Silicon
 leveraging KernelAbstractions.jl, AMDGPU.jl, and Metal.jl.

@@ -24,4 +24,4 @@ This could also be extended by having metadata about the package, such as a read
 **Mentors**: [Sebastian Pfitzner](https://github.com/pfitzseb)
 
 
-_Also take a look at [Pluto - VS Code integration](https://julialang.org/jsoc/gsoc/pluto/)!_
+_Also take a look at [Pluto - VS Code integration](/jsoc/gsoc/pluto/)!_

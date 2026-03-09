@@ -2,7 +2,7 @@
 
 The [JuliaGeo](https://github.com/JuliaGeo) collaboration 
 
-### Spherical visualizations of geographic data with (Geo)Makie.jl
+## Spherical visualizations of geographic data with (Geo)Makie.jl
 
 Mentors: [Anshul Singhvi (JuliaHub)](anshul.singhvi@juliahub.com), Milan Klöwer (Oxford)
 
@@ -28,7 +28,7 @@ to create a smooth, interactive globe viewer.  Work may include:
 
 Reach out to the mentors to learn more!
 
-### Implementing new algorithms in GeometryOps.jl
+## Implementing new algorithms in GeometryOps.jl
 
 [GeometryOps.jl](https://github.com/JuliaGeo/GeometryOps.jl) is a new framework for geometry processing on the plane and the sphere.
 There are many algorithms that remain to be implemented (e.g. [concave hull], [line merging], [polygon validation]), and you could also 

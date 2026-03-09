@@ -153,7 +153,7 @@ The Julia runtime has gained additional integration capabilities with the Tracy 
 
 Below is an example of using Tracy when profiling the Julia runtime.
 
-![](/assets/blog/2023-1.10-highlights/tracy.png)
+![Tracy profiler showing Julia runtime events](/assets/blog/2023-1.10-highlights/tracy.png)
 
 
 ## Upgrade to LLVM 15
@@ -169,7 +169,7 @@ improved support for Float16 on x86.
 
 *Mose Giordano*
 
-With the upgrade to LLVM 15 we were able to [use JITLink on aarch64 CPUs on Linux](https://github.com/JuliaLang/julia/pull/49745).  [This linker](https://llvm.org/docs/JITLink.html), which had been first introduced in [Julia v1.8 only for Apple Silicon](https://julialang.org/blog/2022/08/julia-1.8-highlights/#improved_support_for_apple_silicon) (aarch64 CPUs on macOS), resolves frequent segmentation fault errors that affected Julia on this platform.  However, due to a [bug in LLVM memory manager](https://github.com/llvm/llvm-project/issues/63236), non-trivial workloads may generate too many memory mappings (`mmap`) that can exceed the limit of allowed mappings.  If you run into this problem, read the documentation on how to [change the `mmap` limit](https://docs.julialang.org/en/v1.10.0/devdocs/build/arm/#AArch64-(ARMv8)).
+With the upgrade to LLVM 15 we were able to [use JITLink on aarch64 CPUs on Linux](https://github.com/JuliaLang/julia/pull/49745).  [This linker](https://llvm.org/docs/JITLink.html), which had been first introduced in [Julia v1.8 only for Apple Silicon](/blog/2022/08/julia-1.8-highlights/#improved_support_for_apple_silicon) (aarch64 CPUs on macOS), resolves frequent segmentation fault errors that affected Julia on this platform.  However, due to a [bug in LLVM memory manager](https://github.com/llvm/llvm-project/issues/63236), non-trivial workloads may generate too many memory mappings (`mmap`) that can exceed the limit of allowed mappings.  If you run into this problem, read the documentation on how to [change the `mmap` limit](https://docs.julialang.org/en/v1.10.0/devdocs/build/arm/#AArch64-(ARMv8)).
 
 ## Parallel native code generation for system images and package images
 

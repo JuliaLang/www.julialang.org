@@ -5,7 +5,7 @@ A package contains modules, tests, and documentation. It extends core Julia func
 You can create a Julia package using the built-in package manager [PkgDev.jl](https://github.com/JuliaLang/PkgDev.jl) or the package [PkgTemplates.jl](https://juliaci.github.io/PkgTemplates.jl/stable/). This example uses `PkgTemplates.jl` and is inspired in the video below:
 
 ~~~
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" style="border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
 In the video, Chris Rackauckas uses Travis as a Continuous Integration (CI) tool. For this tutorial, we use [GitHub Actions](https://github.com/features/actions) instead which is the current preferred method.
@@ -16,7 +16,7 @@ Moreover, this is a summary of the video above. If you want to see more details,
 
 Before you begin developing a package, make sure you perform the following steps:
 
-1. [Install Julia](https://julialang.org/install/) on your local machine.
+1. [Install Julia](/install/) on your local machine.
 2. Install an [IDE](/contribute/#tools) and configure it to work with Julia.
 3. [Understand how modules work in Julia](https://docs.julialang.org/en/v1/manual/modules/).
 4. [Create a GitHub account](https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account) if you don’t have one already.

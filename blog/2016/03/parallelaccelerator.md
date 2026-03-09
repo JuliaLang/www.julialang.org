@@ -657,7 +657,7 @@ and contributions from the Julia community.  We welcome everyone's
 participation, and we are especially interested in how
 ParallelAccelerator can be used to speed up real-world Julia programs.
 
-~~~<a name="footnote1"></a>[1] ~~~ Starting with Julia 0.5, Julia will have its own
+~~~<span id="footnote1"></span>[1] ~~~ Starting with Julia 0.5, Julia will have its own
 native threading support, which means that ParallelAccelerator can
 target Julia's own native threads instead of generating C++ OpenMP
 code for parallelism.  We've begun work on implementing a
@@ -665,7 +665,7 @@ native-threading-based backend for ParallelAccelerator, but we still
 target C++ by default.
 
 
-~~~<a name="footnote2"></a>[2] ~~~ Detailed machine and benchmarking
+~~~<span id="footnote2"></span>[2] ~~~ Detailed machine and benchmarking
 specifications: We use a machine with two Intel Xeon E5-2699 v3
 processors (2.3 GHz) with 18 physical cores each and 128 GB RAM,
 running the CentOS 6.7 Linux distribution.  We use the Intel C++
@@ -675,7 +675,7 @@ average of three runs (we run each version of a benchmark five times
 and discard the first and last runs).
 
 
-~~~<a name="footnote3"></a>[3] ~~~ In Julia, it is not possible to index into
+~~~<span id="footnote3"></span>[3] ~~~ In Julia, it is not possible to index into
 a comprehension's output array in the body of the comprehension.  (The
 `avg` example indexes only into the input array, not the output
 array.)  Therefore, it's not necessary to do any bounds checking on
@@ -686,7 +686,7 @@ avoid all array bounds checking for comprehensions in the way that we
 can for map operations.
 
 
-~~~<a name="footnote4"></a>[4] ~~~ In practice, rather than applying
+~~~<span id="footnote4"></span>[4] ~~~ In practice, rather than applying
 successive Gaussian blurs to an image, we'd probably apply a single,
 larger Gaussian blur, which, as
 [Wikipedia notes](https://en.wikipedia.org/wiki/Gaussian_blur), is at
@@ -694,11 +694,11 @@ least as efficient computationally.  Nevertheless, we'll use it here
 as an example of a stencil computation that can be iterated.
 
 
-~~~<a name="footnote5"></a>[5]~~~ A more sophisticated implementation of
+~~~<span id="footnote5"></span>[5]~~~ A more sophisticated implementation of
 Gaussian blur might do a fancier form of border handling, using only
 the pixels it has available at the borders.
 
 
-~~~<a name="footnote6"></a>[6] ~~~ The names "Domain AST" and "Parallel AST"
+~~~<span id="footnote6"></span>[6] ~~~ The names "Domain AST" and "Parallel AST"
 are inspired by the Domain IR and Parallel IR of the
 [Delite compiler framework](https://ppl.stanford.edu/papers/pact11-brown.pdf).

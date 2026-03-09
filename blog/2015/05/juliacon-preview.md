@@ -14,10 +14,10 @@ The [first ever JuliaCon](https://juliacon.org/2014/) was held in Chicago last y
 * On Thursday 25th and Friday 26th we will be having speakers talking about a range of topics - we were fortunate to have so many fantastic submissions that we had to open up a second track of talks. The near-final [schedule is on the main page](https://juliacon.org). We'll be alternating between ~40 minute long "regular" talks, and ~10 minute long "lightning" talks across all the sessions.
 * On Saturday 27th we will finish with a series of **workshops** on a range of topics: data wrangling and visualization, [optimization](http://www.juliaopt.org/), high-performance computing and more. These workshops run from 1.5 to 3 hours and will be a great way to rapidly boost your Julia skills.
 
-### Thursday's Talks
+## Thursday's Talks
 
 ~~~
-<img src="https://avatars3.githubusercontent.com/u/6486271" width="20%"><img src="/assets/images/juliaastro.svg" width="20%"><img src="/assets/images/juliacloud.svg" width="20%">
+<img src="https://avatars3.githubusercontent.com/u/6486271" style="width: 20%" alt="BioJulia logo"><img src="/assets/images/juliaastro.svg" style="width: 20%" alt="JuliaAstro logo"><img src="/assets/images/juliacloud.svg" style="width: 20%" alt="JuliaCloud logo">
 ~~~
 
 After getting everyone settled in, we'll start the conference proper with a session about the use of Julia in a wide variety of **scientific applications**. Many of the talks at the conference focus on Julia package organizations: groupings of similar packages that promote interoperability and focussing of efforts. In the session [Daniel C. Jones (@dcjones)](https://github.com/dcjones), the creator of the visualization package [Gadfly](https://gadflyjl.org), will discuss the advances being made in the [BioJulia](https://github.com/BioJulia) **bioinformatics** organization, and [Kyle Barbary (@kbarbary)](https://github.com/kbarbary) will present [JuliaAstro](https://juliaastro.github.io/), a home for **astronomy and astrophysics** packages. Theres something for everyone: quantitative **economic modeling** ([QuantEcon.jl](https://quantecon.org/)), **quantum statistical simulations**, and how to fit Julia into a pre-existing body of code in other languages.
@@ -30,10 +30,10 @@ We'll come together at the end of Thursday to learn more about how to write [goo
 
 Whatever you get up to after the talks end on Thursday, make sure you are up in time for...
 
-### Friday's talks
+## Friday's talks
 
 ~~~
-<img src="/assets/images/juliaopt.svg" width="20%"><img src="/assets/images/el.png" width="20%">
+<img src="/assets/images/juliaopt.svg" style="width: 20%" alt="JuliaOpt logo"><img src="/assets/images/el.png" style="width: 20%" alt="Engineering logo">
 ~~~
 
 \\\\

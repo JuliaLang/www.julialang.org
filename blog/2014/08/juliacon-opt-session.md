@@ -8,7 +8,7 @@
 
 ## Optimization Session
 
-### [Iain Dunning](https://iaindunning.com/) / [Joey Huchette](https://joehuchette.github.io/) — [JuliaOpt](http://www.juliaopt.org/) - Optimization Packages for Julia
+### Iain Dunning / Joey Huchette — JuliaOpt - Optimization Packages for Julia
 
 Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts Institute of Technology Operations Research Center, where they study constrained continuous and combinatorial numerical optimization methods and theory. In this session they present the JuliaOpt suite of optimization packages and how they interoperate. They also discuss how various Julia features enable exciting functionality in these packages.
 
@@ -17,7 +17,7 @@ Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts I
 - **GitHub:** <https://github.com/IainNZ> <https://github.com/joehuchette> <https://github.com/mlubin>
 
 ~~~
-<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/VwZvUvXX-vY?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
+<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/VwZvUvXX-vY?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" style="border:none;" allowfullscreen></iframe></div>
 ~~~
 
 ### Madeleine Udell — Convex Optimization in Julia
@@ -29,5 +29,5 @@ Madeleine Udell is a PhD candidate in Computational & Mathematical Engineering a
 - **Website:** [https://people.orie.cornell.edu/mru8/](https://people.orie.cornell.edu/mru8/)
 
 ~~~
-<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/SoI0lEaUvTs?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
+<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/SoI0lEaUvTs?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" style="border:none;" allowfullscreen></iframe></div>
 ~~~

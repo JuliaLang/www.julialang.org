@@ -72,6 +72,6 @@ Notes from other ecosystems:
 * A discussion about monomorphisation (the process of creating brand new specialized compiled function behind the scenes for each concrete type your runtime might face, i.e. one of the main features that makes julia fast), its relationship to boxed types, and its great compilation time cost, if it was to be added to [OCaml](https://discourse.julialang.org/t/why-can-julia-be-better-about-boxing-types-than-ocaml/131628).
 * A great primer on [how GPUs work and how to think about them](https://jax-ml.github.io/scaling-book/gpus/) from the JAX community.
 
-See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
+See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)

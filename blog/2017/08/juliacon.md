@@ -5,7 +5,7 @@
 @def authors = "Ranjan Anantharaman"
 
 
-![](/assets/blog/2017-08-15-juliacon/juliacon.jpg)
+![JuliaCon 2017 attendees](/assets/blog/2017-08-15-juliacon/juliacon.jpg)
 
 It’s [a year later](/blog/2016/09/juliacon2016)
 and I’m back: this time to the West Coast for the next edition of

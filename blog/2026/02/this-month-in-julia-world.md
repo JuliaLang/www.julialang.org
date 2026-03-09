@@ -82,7 +82,7 @@ Numerical Math ecosystem:
 - [JACC.jl](https://github.com/JuliaGPU/JACC.jl) (Julia Accelerated Computing Commons) provides a vendor-neutral abstraction for CPU/GPU computing, similar to Kokkos or SYCL in C++. With portable `parallel_for` and `parallel_reduce` functions, scientists can write code that runs on CUDA, ROCm, Metal, or oneAPI without modification. The project is supported by DOE's Advanced Scientific Computing Research program.
 
 
-See also: [JuliaHub corporate blog](https://juliahub.com/blog), [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
+See also: [JuliaHub corporate blog](https://juliahub.com/blog), [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](/community/#events), [Turing.jl newsletter](https://github.com/TuringLang/Turing.jl/issues/2498)
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)
 

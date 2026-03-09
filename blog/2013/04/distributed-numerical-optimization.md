@@ -16,7 +16,7 @@ cutting-plane algorithm and will be focusing primarily on parallel
 computation patterns, so don't worry if you're not familiar with the
 optimization side of things.
 
-### Cutting-plane algorithm
+## Cutting-plane algorithm
 
 The cutting-plane algorithm is a method for solving the optimization problem
 
@@ -62,7 +62,7 @@ parallelize using many existing frameworks. Indeed, in Julia we can simply
 replace ``map`` with ``pmap`` (parallel map). Let's consider a twist that makes
 the parallelism not so straightforward.
 
-### Asynchronous variant
+## Asynchronous variant
 
 Variability in the time taken by the ``solvesubproblem`` function can lead to
 load imbalance and limit parallel efficiency as workers sit idle waiting for new
@@ -86,7 +86,7 @@ By introducing asynchronicity we can no longer use a nice black-box `pmap`
 function and have to dig deeper into the parallel implementation. Fortunately,
 this is easy to do in Julia.
 
-### Parallel implementation in Julia
+## Parallel implementation in Julia
 
 Julia implements distributed-memory parallelism based on one-sided message
 passing, where process push work onto others (via `remotecall`) and the
@@ -206,7 +206,7 @@ function which conditionally generates new subproblems. A strength of Julia is
 that functions like `pmap` are implemented in Julia itself, so that it is
 particularly straightforward to make modifications like this.
 
-### Running it
+## Running it
 
 Now for the fun part. The complete cutting-plane algorithm (along with
 additional variants) is implemented in [JuliaBenders](https://github.com/mlubin/JuliaBenders). The code is
@@ -373,9 +373,9 @@ than on the shared-memory server likely because the subproblem calculation is
 memory bound, and so performance is better on the distributed-memory
 architecture. Anyway, with Julia we can easily experiment on both.
 
-### Further reading
+## Further reading
 
 A more detailed [tutorial](https://github.com/JuliaLang/julia-tutorial/blob/master/NumericalOptimization/tutorial.pdf?raw=true) was prepared for the Julia [IAP session](https://github.com/JuliaLang/julia-tutorial) at MIT in January 2013.
 
-~~~<a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="padding-left:0;width:10%;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="https://purl.org/dc/terms/" property="dct:title">Distributed Numerical Optimization</span> by <span xmlns:cc="https://creativecommons.org/ns#" property="cc:attributionName">Miles Lubin</span> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+~~~<a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="padding-left:0;width:10%;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span property="dct:title">Distributed Numerical Optimization</span> by <span property="cc:attributionName">Miles Lubin</span> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 ~~~

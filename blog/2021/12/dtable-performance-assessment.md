@@ -33,8 +33,8 @@ keys will be created.
 Along with an `index`, these chunks form a `GDTable`.
 
 ~~~
-<p align="center">
-  <img src="/assets/blog/2021-dtable/dtable_diagram.svg" />
+<p style="text-align: center;">
+  <img src="/assets/blog/2021-dtable/dtable_diagram.svg" alt="Diagram showing DTable and GDTable partitioning and groupby structure" />
 </p>
 ~~~
 
@@ -107,8 +107,8 @@ The data used for the experiments was prepared as follows:
 The diagram below summarizes the above specifications:
 
 ~~~
-<p align="center">
-  <img src="/assets/blog/2021-dtable/table_specs.svg" />
+<p style="text-align: center;">
+  <img src="/assets/blog/2021-dtable/table_specs.svg" alt="Table summarizing benchmark data specifications including column count, row count, value type, and chunk size" />
 </p>
 ~~~
 
@@ -128,7 +128,7 @@ At the smaller chunksize (`10^6`) the `DTable` is scaling better than its compet
 
 DTable command: `map(row -> (r = row.a1 + 1,), d)`
 
-![](/assets/blog/2021-dtable/inrement_map.svg)
+![Increment map benchmark: DTable vs DataFrames vs Dask](/assets/blog/2021-dtable/inrement_map.svg)
 
 ## Filter
 
@@ -141,7 +141,7 @@ The scaling of the `DTable` allows it to catch up to `DataFrames` at the largest
 
 DTable command: `filter(row -> row.a1 < unique_values ÷ 2, d)`
 
-![](/assets/blog/2021-dtable/filter_half.svg)
+![Filter benchmark: DTable vs DataFrames vs Dask](/assets/blog/2021-dtable/filter_half.svg)
 
 ## Reduce (single column)
 
@@ -157,7 +157,7 @@ In order to compute common statistics `DataFrames.jl` users should use array fun
 
 DTable command: `reduce(fit!, d, cols=[:a1], init=Variance())`
 
-![](/assets/blog/2021-dtable/reduce_single_col.svg)
+![Single column reduce benchmark: DTable vs DataFrames vs Dask](/assets/blog/2021-dtable/reduce_single_col.svg)
 
 ## Reduce (all columns)
 
@@ -168,7 +168,7 @@ As of right now, the `DTable` is performing the reduction of all columns as a si
 
 DTable command: `reduce(fit!, d, init=Variance())`
 
-![](/assets/blog/2021-dtable/reduce_allcols.svg)
+![All columns reduce benchmark: DTable vs DataFrames vs Dask](/assets/blog/2021-dtable/reduce_allcols.svg)
 
 
 # Grouped operations
@@ -197,7 +197,7 @@ The `DTable` managed to finish these complex scenarios without any observable hi
 
 DTable command: `Dagger.groupby(d, :a1)`
 
-![](/assets/blog/2021-dtable/groupby_single_col.svg)
+![Groupby shuffle benchmark: DTable vs DataFrames vs Dask](/assets/blog/2021-dtable/groupby_single_col.svg)
 
 
 ## Grouped reduction (single column)
@@ -212,7 +212,7 @@ This may indicate that by increasing the data size further, we might eventually 
 
 DTable command: `r = reduce(fit!, g, cols=[:a2], init=Mean())`
 
-![](/assets/blog/2021-dtable/grouped_reduce_mean_singlecol.svg)
+![Grouped single column reduce benchmark: DTable vs DataFrames vs Dask](/assets/blog/2021-dtable/grouped_reduce_mean_singlecol.svg)
 
 
 ## Grouped reduction (all columns)
@@ -224,7 +224,7 @@ Again, the `DTable` is heavily falling behind `DataFrames.jl` on smaller data si
 
 DTable command: `r = reduce(fit!, g, init=Mean())`
 
-![](/assets/blog/2021-dtable/grouped_reduce_mean_allcols.svg)
+![Grouped all columns reduce benchmark: DTable vs DataFrames vs Dask](/assets/blog/2021-dtable/grouped_reduce_mean_allcols.svg)
 
 # Implementation details (for interested users)
 

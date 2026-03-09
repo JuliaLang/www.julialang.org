@@ -109,7 +109,7 @@ It takes 2 seconds since one of the non-occupied threads can run two of the 1-se
 Unnecessary heap allocations can seriously degrade performance, and existing tools for tracking them down (namely `@time` and `--track-allocation`) didn't quite provide the fine-grained detail, nice visualization, and ease of use we were looking for. So we created the allocation profiler (`Profile.Allocs`), which captures heap allocations with the type, size, and stack trace of each, such that they can be easily visualized with [PProf.jl](https://github.com/JuliaPerf/PProf.jl) and as seen below, with the Julia extension for VS Code.
 
 
-| ![](/assets/blog/2022-1.8-highlights/vscode_allocs.png)|
+| ![VS Code allocation profiling visualization](/assets/blog/2022-1.8-highlights/vscode_allocs.png)|
 | :--------: |
 | The Julia extension for VS Code provides easy access to illustrated allocation profiling via `@profview_allocs` |
 
@@ -186,7 +186,7 @@ Note that each thread now shows a utilization percentage, showing that the only 
 
 External profile viewers now also support thread and task selection.
 
-| ![](/assets/blog/2022-1.8-highlights/thread_profile_profileview.png)| ![](/assets/blog/2022-1.8-highlights/thread_profile_vscode.png) |
+| ![Thread profiling in ProfileView.jl](/assets/blog/2022-1.8-highlights/thread_profile_profileview.png)| ![Thread profiling in VS Code](/assets/blog/2022-1.8-highlights/thread_profile_vscode.png) |
 | :--------: | :--------: |
 | ProfileView.jl | Julia extension for VS Code has a built-in `@profview` macro |
 
@@ -279,7 +279,7 @@ julia> @time_imports using CSV
      13.1 ms  FilePathsBase 28.39% compilation time
    1681.2 ms  CSV 92.40% compilation time
 ```
-Any compilation time will be highlighted as a percentage of load time, and if any of that compile time is [re-compiling invalidated methods](https://julialang.org/blog/2020/08/invalidations/), that will be highlighted as a percentage of compile time.
+Any compilation time will be highlighted as a percentage of load time, and if any of that compile time is [re-compiling invalidated methods](/blog/2020/08/invalidations/), that will be highlighted as a percentage of compile time.
 
 
 ### Pkg status update with upgradable package indicator
@@ -297,7 +297,7 @@ Therefore, the package manager will now show a small indicator when installing p
 
 There is also a new flag `--outdated` that can be passed to the status printing to see what the latest versions are and what packages' compat is holding other packages back from updating.
 
-![](/assets/blog/2022-1.8-highlights/pkg_upgrade.png)
+![Pkg outdated package status output](/assets/blog/2022-1.8-highlights/pkg_upgrade.png)
 
 Above, we can see that both Plots and NanMath are not on their latest version and Plots and RecipesPipeline are blocking NanMath from upgrading.
 
@@ -321,11 +321,11 @@ Julia 1.8 addresses both of these limitations by automatically saving all type-i
 
 With Julia 1.8, for workloads with "predictable" types, you can often entirely eliminate type-inference as a source of latency. The amount of savings depends on how much of the overall latency was due to type-inference; in tests with a dozen or so different packages, we have observed reductions in the time for an initial workload ranging from a few percent to 20-fold. Users of [SnoopCompile](https://timholy.github.io/SnoopCompile.jl/stable/)'s analysis tools will also find that the results of adding precompilation are much more predictable: for dispatch-trees that trace back to methods owned by your package, adding precompilation will eliminate all of their inference time. Thus, you can eliminate the worst offenders with the confidence that your intervention will have the intended effect.
 
-For those wishing for more background about precompilation, [this blog post](https://julialang.org/blog/2021/01/precompile_tutorial/) and/or the SnoopCompile documentation may be useful.
+For those wishing for more background about precompilation, [this blog post](/blog/2021/01/precompile_tutorial/) and/or the SnoopCompile documentation may be useful.
 
 
 ## Improved support for Apple Silicon
 
-Previously Julia 1.7 offered the [first experimental preview](https://julialang.org/blog/2021/11/julia-1.7-highlights/#support_for_apple_silicon) of native builds of Julia on Apple Silicon. While this generally worked for basic usage, users experienced frequent segmentation faults, negatively affecting the experience. These problems were due to how Julia internally uses LLVM to generate and link the code for this platform and were eventually solved in Julia 1.8 by [moving to a more modern linker](https://github.com/JuliaLang/julia/pull/43664), which has better support for ARM CPUs on macOS. However, this fix required upgrading to LLVM 13, a change which cannot be backported to the v1.7 series. Therefore 1.7 will always be affected by frequent crashes on Apple Silicon.
+Previously Julia 1.7 offered the [first experimental preview](/blog/2021/11/julia-1.7-highlights/#support_for_apple_silicon) of native builds of Julia on Apple Silicon. While this generally worked for basic usage, users experienced frequent segmentation faults, negatively affecting the experience. These problems were due to how Julia internally uses LLVM to generate and link the code for this platform and were eventually solved in Julia 1.8 by [moving to a more modern linker](https://github.com/JuliaLang/julia/pull/43664), which has better support for ARM CPUs on macOS. However, this fix required upgrading to LLVM 13, a change which cannot be backported to the v1.7 series. Therefore 1.7 will always be affected by frequent crashes on Apple Silicon.
 
-With 1.8, Apple Silicon becomes become a [Tier 2 supported platform](https://julialang.org/downloads/support) and is now covered by Continuous Integration (CI) on dedicated Apple Silicon machines.
+With 1.8, Apple Silicon becomes become a [Tier 2 supported platform](/downloads/support) and is now covered by Continuous Integration (CI) on dedicated Apple Silicon machines.

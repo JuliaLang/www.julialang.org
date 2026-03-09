@@ -15,7 +15,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 @@announcement
 **1.10 becomes LTS** A quick note about 1.10 first. With the release of 1.11, 1.10 becomes the LTS version,
 which was previously 1.6. Consider using the new `lts` version specifier with
-[juliaup](https://julialang.org/downloads) and the
+[juliaup](/downloads) and the
 [julia-actions/setup-julia](https://github.com/julia-actions/setup-julia#examples) github action.
 @@
 
@@ -70,7 +70,7 @@ with an empty file.
 
 Tab completion has become more powerful in 1.11 and gained inline hinting when there is a singular completion available that can be completed with tab.
 
-![](/assets/blog/2024-1.11-highlights/inline_complete.png)
+![Julia REPL inline tab completion hinting](/assets/blog/2024-1.11-highlights/inline_complete.png)
 
 If you prefer not to have hinting enabled, disable it via your `startup.jl` with
 ```julia
@@ -216,7 +216,7 @@ _Keno Fischer_, _Shuhei Kadowaki_
 
 In v1.11, several new features have been added to inference.
 
-#### Exception type inference
+### Exception type inference
 
 The first feature we’d like to introduce is exception type inference.
 The Julia compiler is now able to infer the types of exception objects, significantly
@@ -278,7 +278,7 @@ It generally works well only when the `try` block contains basic functions.
 In particular, it often fails to provide accurate results for `try` blocks that might call
 functions involving external calls, such as `ccall`.
 
-#### Escape analysis
+### Escape analysis
 
 The next feature we’d like to introduce is Julia-level escape analysis
 ([`Core.Compiler.EscapeAnalysis`](https://docs.julialang.org/en/v1/devdocs/EscapeAnalysis/)).

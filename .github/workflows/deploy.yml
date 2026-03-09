@@ -7,9 +7,8 @@ on:
     branches:
       - main
 concurrency:
-  # Same group concurrency as the `pr_preview_cleanup.yml` workflow, because they both
-  # git-push to the `gh-preview` branch, so we want to avoid clashes.
-  group: global-lock-ghpreview-pushing
+  group: deploy-${{ github.event_name }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -21,7 +20,7 @@ jobs:
           fetch-depth: 1
 
       - name: Install SSH Client
-        if: github.event_name != 'pull_request' || github.repository == github.event.pull_request.head.repo.full_name # if this build is NOT a PR build, OR if this build is a PR build and the PR is NOT from a fork
+        if: github.event_name != 'pull_request'
         uses: webfactory/ssh-agent@v0.9.1
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
@@ -49,7 +48,7 @@ jobs:
         with:
           version: '1.12'
 
-      - uses: julia-actions/cache@v2
+      - uses: julia-actions/cache@v3
 
       # This ensures that NodeJS and Franklin are loaded then it installs
       # highlight.js which is needed for the prerendering step.
@@ -77,14 +76,32 @@ jobs:
             echo "Franklin did not report a warning"
           fi
 
-      - name: Deploy (preview)
-        if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name # if this build is a PR build and the PR is NOT from a fork
-        uses: JamesIves/github-pages-deploy-action@releases/v4
+      - name: Upload site artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v7
         with:
-          branch: gh-preview
-          folder: __site
-          ssh-key: true
-          target-folder: "previews/PR${{ github.event.number }}"
+          name: site-build
+          path: __site/
+          retention-days: 1
+
+      - name: Save PR metadata
+        if: github.event_name == 'pull_request'
+        run: |
+          mkdir -p /tmp/deploy-meta
+          echo "${{ github.event.pull_request.number }}" > /tmp/deploy-meta/pr_number
+
+      - name: Upload PR metadata
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v7
+        with:
+          name: deploy-meta
+          path: /tmp/deploy-meta/
+
+      - name: Fetch deployed site for cache diff
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git fetch origin gh-pages:gh-pages || true
+          git worktree add __old gh-pages || mkdir -p __old
 
       - name: Deploy (main)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -93,3 +110,18 @@ jobs:
           ssh-key: true
           branch: gh-pages
           folder: __site
+
+      - name: Purge changed URLs from Fastly
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          diff -rq __old __site 2>/dev/null \
+            | grep -E "^Files|^Only in __site" \
+            | sed -E 's|^Files __old/(.+) and .+$|\1|; s|^Only in __site/?(.*): (.+)$|\1/\2|' \
+            | sed 's|^/||' \
+            | while read -r file; do
+                url="https://julialang.org/${file}"
+                # Map index.html to directory URL
+                url="${url%index.html}"
+                echo "Purging: $url"
+                curl -s -o /dev/null -w "%{http_code} " -X PURGE "$url" || true
+              done

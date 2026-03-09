@@ -8,7 +8,7 @@
 We introduce [**Yao**](https://yaoquantum.org/) ([check our latest paper](https://arxiv.org/abs/1912.10877)), an open-source Julia package for solving practical problems in quantum computation research. The name Yao comes from the first Chinese character for unitary (幺正).
 
 ~~~
-<div align="center"> <img
+<div style="text-align: center;"> <img
 src="/assets/images/logo_yao.png"
 alt="Yao Logo" width="210">
 <p>The Logo of Yao</p>
@@ -17,7 +17,7 @@ alt="Yao Logo" width="210">
 
 Why we created Yao? To be short, we are as greedy [as Julia itself](/blog/2012/02/why-we-created-julia/). We want something that is:
 
-### Differentiable
+## Differentiable
 Like many other Julia blog posts (as well as the [Zygote paper](https://arxiv.org/abs/1907.07587)) have mentioned: gradients can be a better programmer than humans sometimes. In quantum computing, they can be used for variational algorithms, quantum control, gate learning, etc. Thus, we want to have differentiable programming on quantum circuits as well!
 
 However, automatic differentiation (AD) for quantum circuits is quite different from regular programs: the memory allocation cost in circuit simulation can be extremely high due to caching the intermediate states in the general context. And in forward mode AD, we need extra semantics to preserve the quantum circuit -- so that it can be implemented on the real device.
@@ -41,7 +41,7 @@ end
 
 This example trains a 100 layer parametrized circuit (4816 parameters) to find the ground state of a 16 site Heisenberg model. The engine can also be integrated with general AD framework such as [Zygote](https://github.com/FluxML/Zygote.jl) seamlessly, e.g., in our [gate learning example](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl). We use differentiable programming to find the decomposition of a given unitary. You can learn more in our [tutorial](https://tutorials.yaoquantum.org/dev/) and [Quantum Algorithm Zoo](https://github.com/QuantumBFS/QuAlgorithmZoo.jl).
 
-### Extensible
+## Extensible
 New research ideas keep emerging every day and every hour. The field quantum software itself grows rapidly. We want a framework that is flexible enough for researchers and developers to extend it at any level for any possible type of research.
 
 First, we designed and developed a hardware-free intermediate representation (the Quantum Block Intermediate Representation, QBIR) to represent and manipulate quantum circuits and a set of quantum register interface. This design enables one to extend Yao to customized algorithms, hardware and more by overloading the relevant interfaces. For example, while achieving the state-of-the-art performance as shown in next section, we extend our CUDA backend in [CuYao](https://github.com/QuantumBFS/CuYao.jl) with only a few hundred lines of code written in native Julia with [CUDAnative](https://arxiv.org/abs/1712.03112). With some patches and syntax sugar, Yao just works with the symbolic engine [SymEngine](https://github.com/symengine/SymEngine.jl) that allows you to differentiate, and calculate a quantum circuit with symbolic computation.
@@ -49,7 +49,7 @@ First, we designed and developed a hardware-free intermediate representation (th
 Second, like other projects in Julia, we make Yao extensible at the architecture level. The package Yao (or its CUDA backend CuYao) is only a meta-package that re-exports other component packages.  Developers can customize their own
 software with light-weight dependencies and develop new features rapidly.
 
-### Efficient
+## Efficient
 Efficiency also matters especially in research that evolves numerical experiments, such as variational quantum algorithms. Besides all other exciting features, we still want this framework to achieve the-state-of-art performance in the simulation.
 
 By making use of [native GPU programming in Julia](https://devblogs.nvidia.com/gpu-computing-julia-programming-language/) and specialization based on multiple dispatch, Yao achieves state-of-the-art performance on intermediate-sized quantum circuits.

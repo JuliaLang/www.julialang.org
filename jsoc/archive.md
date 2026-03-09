@@ -1,44 +1,45 @@
-@def title = "Julia's Summer of Code projects"
+@def title = "JSoC Archives"
 
-# Summer of Code Archives
+# Julia Seasons of Contributions Archives
 
-Julia has greatly benefited from Google Summer of Code. In the last 8 years, over 130+ people have contributed to Julia and various Julia packages through the program. Many of these individuals, after their summer projects, have gone on to become regular contributors to the Julia ecosystem.
-Take a look to our [Julia Seasons of Contributions Page](/jsoc) and contribute your ideas.
+Julia has greatly benefited from Google Summer of Code and Google Season of Docs. Over 130 people have contributed to Julia and various Julia packages through these programs since 2014. Many of these individuals have gone on to become regular contributors to the Julia ecosystem.
+Take a look at our [Julia Seasons of Contributions Page](/jsoc) and contribute your ideas.
+
+---
 
 ## GSoC 2025
 
-We thank Google for their ongoing support. Fourteen contributors are currently working on impactful projects. [View Projects](https://summerofcode.withgoogle.com/programs/2025/organizations/the-julia-language)
+Fourteen contributors worked on impactful projects. [View Projects](https://summerofcode.withgoogle.com/programs/2025/organizations/the-julia-language)
 
 ## GSoC 2024
 
-We appreciate Google's funding and our Contributor's efforts. Nineteen committed participants successfully completed meaningful projects. [View Projects](https://summerofcode.withgoogle.com/archive/2024/organizations/the-julia-language)
+Nineteen committed participants successfully completed meaningful projects. [View Projects](https://summerofcode.withgoogle.com/archive/2024/organizations/the-julia-language)
 
 ## GSoC 2023
 
-We gratefully acknowledge Google's sponsorship and our Contributors. Fourteen motivated participants delivered valuable project outcomes. [View Projects](https://summerofcode.withgoogle.com/archive/2023/organizations/the-julia-language)
+Fourteen motivated participants delivered valuable project outcomes. [View Projects](https://summerofcode.withgoogle.com/archive/2023/organizations/the-julia-language)
 
 ## GSoC 2022
 
-In 2022, we are delighted to recognize Google for its support and funding, as well as our Contributors. Nineteen talented and driven contributors worked on projects, making a meaningful impact. [View Projects](https://summerofcode.withgoogle.com/archive/2022/organizations/the-julia-language)
+Nineteen talented and driven contributors worked on projects, making a meaningful impact. [View Projects](https://summerofcode.withgoogle.com/archive/2022/organizations/the-julia-language)
 
 ## GSoC 2021
 
-In 2021, Google provided great support to our contributors through its program. 20 students contributed to Julia projects: [View Projects](https://summerofcode.withgoogle.com/archive/2021/organizations/5086646441082880#projects-list).
-
+20 students contributed to Julia projects. [View Projects](https://summerofcode.withgoogle.com/archive/2021/organizations/5086646441082880#projects-list)
 
 ## GSoC 2020
 
-In 2020, we are grateful to Google and the GSoC program for funding [16 awesome  students working on Julia projects](https://summerofcode.withgoogle.com/archive/2020/organizations/6163109162516480/#projects). In addition to the funding from Google, we [funded an additional 9 students](https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc-2020/38754) for the summer. 2020 was also the first year of the MLH Fellowship where we had 11 students working on Julia projects across the ecosystem. You can find out more about the 2020 Julia Season of Contributions [on our blog](https://julialang.org/blog/2020/09/gsoc-2020-wrapup/).
+[16 students worked on Julia projects](https://summerofcode.withgoogle.com/archive/2020/organizations/6163109162516480/#projects) funded by Google. In addition, we [funded an additional 9 students](https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc-2020/38754) for the summer. 2020 was also the first year of the MLH Fellowship where we had 11 students working on Julia projects across the ecosystem. You can find out more about the 2020 Julia Season of Contributions [on our blog](/blog/2020/09/gsoc-2020-wrapup/).
 
 ## GSoC 2019
 
-In 2019, we received an even larger number of very high quality applications but could only fulfill 15 slots through GSoC. Not wanting to lose some very impressive students and their exciting projects, we decided to supplement the program with the Julia Season of Contributions (JSoC), using some community funds. Details on the program were announced here: [Discourse.julialang : Julia Seasons of Contributions to supplement GSoC](https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc/23922)
+We received a large number of very high quality applications but could only fulfill 15 slots through GSoC. Not wanting to lose some very impressive students and their exciting projects, we decided to supplement the program with the Julia Season of Contributions (JSoC), using some community funds. Details on the program were announced here: [Julia Seasons of Contributions to supplement GSoC](https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc/23922)
 
 Here is a list of all the [Projects for GSoC and JSoC 2019](/blog/2019/05/jsoc19).
 
 ## GSoC 2018
 
-In 2018, Julia participated in GSoC under the [NumFOCUS umbrella organization](/blog/2018/02/gsoc2018-numfocus), and [over 20 projects](https://summerofcode.withgoogle.com/archive/2018/organizations/6485922656813056/) were supported. Some of the students published their work in the [Julia blog](/blog/).
+Julia participated in GSoC under the [NumFOCUS umbrella organization](/blog/2018/02/gsoc2018-numfocus), and [over 20 projects](https://summerofcode.withgoogle.com/archive/2018/organizations/6485922656813056/) were supported. Some of the students published their work in the [Julia blog](/blog/).
 
 ## GSoC 2017
 
@@ -50,27 +51,44 @@ In 2018, Julia participated in GSoC under the [NumFOCUS umbrella organization](/
 
 ## JSoC 2015
 
-Various projects were proposed by the community in GSOC 2015. However, Julia did not make it to GSOC 2015. Julia organized its own Summer of Code this year thanks to a generous sponsorship for the same from **[Gordon and Betty Moore Foundation](https://www.moore.org)**. The projects in Julia Summer of Code 2015 were.
+Various projects were proposed by the community in GSoC 2015. However, Julia did not make it to GSoC 2015. Julia organized its own Summer of Code this year thanks to a generous sponsorship from the **[Gordon and Betty Moore Foundation](https://www.moore.org)**. The projects in Julia Summer of Code 2015 were:
 
-@@tight-list
-- **David Gold [@davidagold](https://github.com/davidagold))**, [Nullable arrays](/blog/2015/10/nullablearrays) (mentor: John Myles White [@johnmyleswhite](https://github.com/johnmyleswhite))
+- **David Gold ([@davidagold](https://github.com/davidagold))**, [Nullable arrays](/blog/2015/10/nullablearrays) (mentor: John Myles White [@johnmyleswhite](https://github.com/johnmyleswhite))
 - **Jacob Quinn ([@quinnj](https://github.com/quinnj))**, [Composable streams for data transfer and processing](/blog/2015/10/datastreams) (mentor: Viral B. Shah [@ViralBShah](https://github.com/ViralBShah))
 - **Jarrett Revels ([@jrevels](https://github.com/jrevels))**, [Automatic differentiation](/blog/2015/10/auto-diff-in-julia) (mentors: Miles Lubin [@mlubin](https://github.com/mlubin) and Theodore Papamarkou [@scidom](https://github.com/papamarkou))
-- **Kenta Sato ([@bicycle1885](https://github.com/bicycle1885))**, [Efficient data structures and algorithms for sequence analysis in BioJulia](/blog/2015/10/biojulia-sequence-analysis)  (mentor: Daniel C. Jones[@dcjones](https://github.com/dcjones))
+- **Kenta Sato ([@bicycle1885](https://github.com/bicycle1885))**, [Efficient data structures and algorithms for sequence analysis in BioJulia](/blog/2015/10/biojulia-sequence-analysis) (mentor: Daniel C. Jones [@dcjones](https://github.com/dcjones))
 - **Rohit Varkey Thankachan ([@rohitvarkey](https://github.com/rohitvarkey))**, [Compose3D.jl: declarative 3D graphics](/blog/2015/10/compose3d-threejs) (mentors: Shashi Gowda [@shashi](https://github.com/shashi) and Simon Danisch [@SimonDanisch](https://github.com/SimonDanisch))
 - **Simon Danisch ([@SimonDanisch](https://github.com/SimonDanisch))**, [GLVisualize.jl: OpenGL visualization in Julia](/blog/2015/10/glvisualize) (mentor: Keno Fischer [@Keno](https://github.com/Keno))
-- **Brian Cohen ([@notthemessiah](https://github.com/notthemessiah))** will be working on implementing a test suite and documentation for Escher.jl (mentor: Shashi Gowda [@shashi](https://github.com/shashi))
+- **Brian Cohen ([@notthemessiah](https://github.com/notthemessiah))**, implementing a test suite and documentation for Escher.jl (mentor: Shashi Gowda [@shashi](https://github.com/shashi))
 - **Ambuj Agrawal**, Improving debug information generation in Julia (mentor: Keno Fischer [@Keno](https://github.com/Keno))
-@@
 
 ## GSoC 2014
 
-Julia was accepted as part of GSOC 2014. Many of the contributors in
-GSOC 2014 were mentors for JSOC 2015.
+Julia was accepted as part of GSoC 2014. Many of the contributors in GSoC 2014 were mentors for JSoC 2015.
 
-@@tight-list
-- **Simon Danisch** - [3D Visualization Package for Julia](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/simon_danisch/5757334940811264)
+- **Simon Danisch** - 3D Visualization Package for Julia
 - **Alessandro Andrioni** - Libgit2 support and linear algebra for generic types
-- **Mike Innes** - [Julia + Light Table](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/one_more_minute/5724160613416960)
-- **Shashi Gowda** - [IJulia Interactive Widgets](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/g0/5113880120393728)
-@@
+- **Mike Innes** - Julia + Light Table
+- **Shashi Gowda** - IJulia Interactive Widgets
+
+---
+
+# Google Season of Docs (GSoD) Archives
+
+Julia has also participated in Google Season of Docs, which funds technical writers to work on open source documentation. See the [GSoD project ideas page](/jsoc/gsod/projects/) for more details.
+
+## GSoD 2024
+
+Unifying the JuliaHealth Organization Documentation Landscape. [View Proposal](/jsoc/gsod/projects/)
+
+## GSoD 2023
+
+Build Tidier.jl Usage Guides and Core Documentation. [View Proposal](/jsoc/gsod/2023/proposal/)
+
+## GSoD 2022
+
+Documenting Machine Learning Models in MLJ.jl. [View Proposal](/jsoc/gsod/2022/proposal/)
+
+## GSoD 2021
+
+Create a Comprehensive Julia Contributing Guide. [View Proposal](/jsoc/gsod/2021/proposal/)

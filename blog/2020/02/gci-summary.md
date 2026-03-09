@@ -13,27 +13,21 @@ The rules of the program dictate that we had to choose a set of winners. We have
 
 __Winners:__
 
-@@tight-list
 - abhishalya
 - kfung
-@@
 
 __Finalists:__
 
-@@tight-list
 - ccl
 - PseudoCodeNerd
 - Soumitra Shewale
 - TheComputerM
-@@
 
 During the program, the participants worked on a variety of tasks across a range of Julia packages. Some of the tasks asked our students to create blog posts explaining a certain facet of the technology. Here is a sample of such posts, the ones we think are among the most interesting. Enjoy!
 
-@@tight-list
 - [Solving Differential Equations with Transformers: Deep Learning for Symbolic Mathematics](https://medium.com/analytics-vidhya/solving-differential-equations-with-transformers-21648d3a1695)
 - [Creating a “Whac-a-Block” game in Minecraft from Julia using PiCraft.jl](https://medium.com/swlh/creating-a-whac-a-block-game-in-minecraft-from-julia-using-picraft-jl-5bffab79a975)
 - [How I wrote a Minecraft minigame in Julia](https://medium.com/@zyzanskidarek/how-i-wrote-a-minecraft-minigame-in-julia-cf6892db1445)
 - [Array Indexing: 0-based or 1-based](https://medium.com/analytics-vidhya/array-indexing-0-based-or-1-based-dd89d631d11c)
 - [Github Actions: An introduction to CI](https://medium.com/analytics-vidhya/github-actions-an-introduction-to-ci-819040f2a087)
 - [An introduction to Continuous Integration & Github Actions for Julia](https://medium.com/analytics-vidhya/an-introduction-to-continuous-integration-github-actions-for-julia-1a5a1a6e64d6)
-@@

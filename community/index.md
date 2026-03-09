@@ -1,4 +1,5 @@
 @def title="Community"
+@def hasmap = true
 
 ~~~
 <!--
@@ -63,7 +64,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <!-- 3 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>Chat</h3>
-       <p>For casual conversations, we have <a href="https://julialang.zulipchat.com/register/">Zulip</a>, <a href="https://julialang.org/slack/">Slack</a> and <a href="https://discord.gg/mm2kYjB">Discord</a>.
+       <p>For casual conversations, we have <a href="https://julialang.zulipchat.com/register/">Zulip</a>, <a href="/slack/">Slack</a> and <a href="https://discord.gg/mm2kYjB">Discord</a>.
        </p>
      </div>
    </div>
@@ -120,7 +121,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <p>The Julia Community has a shared calendar for all upcoming global events. If you are an event organizer, please <a href="mailto:community@julialang.org">email us</a>
      with the details so it can be added to the calendar. The Julia community also has <a href="https://www.meetup.com/topics/julia/all/">local meetups around the world.</a></p>
       <div id="calendar-container">
-           <iframe src="https://calendar.google.com/calendar/b/2/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=UTC&amp;src=anVsaWFsYW5nLm9yZ19rb21hdWFxZXQxNGVvZzlvaXYzcDZvN3BtZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%238E24AA" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+           <iframe src="https://calendar.google.com/calendar/b/2/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=UTC&amp;src=anVsaWFsYW5nLm9yZ19rb21hdWFxZXQxNGVvZzlvaXYzcDZvN3BtZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%238E24AA" style="border:solid 1px #777;width:100%;overflow:hidden;" height="600"></iframe>
       </div>
      <br>
 
@@ -149,7 +150,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 
     <p>We conduct the Julia User & Developer Survey right before JuliaCon every year and present the findings at JuliaCon. The survey has now been conducted several years in a row:</p>
         <ul>
-            <li> 2025: <a href="/assets/2025-julia-user-developer-survey.pdf">Slides</a>
+            <li> 2025: <a href="/assets/2025-julia-user-developer-survey.pdf">Slides</a>, and <a href="https://www.youtube.com/watch?v=Vh69D04zBtk">JuliaCon 2025 talk</a>
             <li> 2024: <a href="/assets/2024-julia-user-developer-survey.pdf">Slides</a>, and <a href="https://www.youtube.com/live/qru5G5Yp77E?t=11628s">JuliaCon 2024 talk</a>
             <li> 2023: <a href="/assets/2023-julia-user-developer-survey.pdf">Slides</a>, and <a href="https://www.youtube.com/watch?v=HYd2GqBlrxI">JuliaCon 2023 talk</a>
             <li> 2022: <a href="/assets/2022-julia-user-developer-survey.pdf">Slides</a>, and <a href="https://www.youtube.com/watch?v=OnlKtNVNRrk">JuliaCon 2022 talk</a>
@@ -233,10 +234,10 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
  <br>
 </div>
 
-<script type="text/javascript">
+<script>
   var timezone = jstz.determine();
   var pref = '<iframe src="https://calendar.google.com/calendar/b/2/embed?mode=agenda&src=julialang.org_komauaqet14eog9oiv3p6o7pmg%40group.calendar.google.com&ctz=';
-  var suff = '" style=" border:solid 1px #777 " width="100%" height="600" frameborder="0" scrolling="no"></iframe>';
+  var suff = '" style=" border:solid 1px #777; width:100%; " height="600" scrolling="no"></iframe>';
   var iframe_html = pref + timezone.name() + suff;
   document.getElementById('calendar-container').innerHTML = iframe_html;
 </script>

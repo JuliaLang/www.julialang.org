@@ -2,7 +2,7 @@
   const slides = document.querySelectorAll('.carousel-slide');
   const dotsContainer = document.querySelector('.carousel-dots');
 
-  if (slides.length === 0) return;
+  if (slides.length === 0 || !dotsContainer) return;
 
   let current = 0;
   const total = slides.length;
@@ -44,15 +44,23 @@
     });
   });
 
-  // Arrow button navigation
-  document.querySelector('.carousel-arrow-left').addEventListener('click', () => goTo(current - 1));
-  document.querySelector('.carousel-arrow-right').addEventListener('click', () => goTo(current + 1));
+  // Arrow button navigation (with null checks for pages without arrows)
+  const leftArrow = document.querySelector('.carousel-arrow-left');
+  const rightArrow = document.querySelector('.carousel-arrow-right');
+  if (leftArrow) leftArrow.addEventListener('click', () => goTo(current - 1));
+  if (rightArrow) rightArrow.addEventListener('click', () => goTo(current + 1));
 
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') goTo(current - 1);
-    if (e.key === 'ArrowRight') goTo(current + 1);
-  });
+  // Keyboard navigation scoped to when carousel is in viewport
+  const carousel = document.querySelector('.carousel-container');
+  if (carousel) {
+    document.addEventListener('keydown', (e) => {
+      const rect = carousel.getBoundingClientRect();
+      const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!inViewport) return;
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+  }
 
   // Initialize
   goTo(0);

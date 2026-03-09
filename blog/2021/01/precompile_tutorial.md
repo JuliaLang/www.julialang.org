@@ -672,6 +672,6 @@ But again, this works only for inferable calls.
 [serialized]: https://en.wikipedia.org/wiki/Serialization
 [module-loading]: https://docs.julialang.org/en/v1/manual/modules/#Module-initialization-and-precompilation
 [`@nospecialize`]: https://docs.julialang.org/en/v1/base/base/#Base.@nospecialize
-[invalidation]: https://julialang.org/blog/2020/08/invalidations/
-[`which`]: https://docs.julialang.org/en/v1/base/base/#Base.which-Tuple{Any,Any}
+[invalidation]: /blog/2020/08/invalidations/
+[`which`]: https://docs.julialang.org/en/v1/base/base/#Base.which-Tuple%7BAny,Any%7D
 [backedges]: https://www.quora.com/What-is-a-back-edge?share=1

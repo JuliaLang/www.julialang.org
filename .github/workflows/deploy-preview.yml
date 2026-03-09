@@ -1,0 +1,108 @@
+name: Deploy PR Preview
+
+# This workflow runs as a privileged workflow_run trigger rather than directly
+# in the PR build job because fork PRs use a read-only GITHUB_TOKEN and cannot
+# push to gh-preview or write commit statuses. The "Build and Deploy" workflow
+# uploads the built site + PR metadata as artifacts, and this workflow downloads
+# them and deploys with full repo permissions.
+
+on:
+  workflow_run:
+    workflows: ["Build and Deploy"]
+    types:
+      - completed
+
+concurrency:
+  # Serialize pushes to the `gh-preview` branch to avoid clashes with
+  # pr_preview_cleanup.yml.
+  group: global-lock-ghpreview-pushing
+
+permissions:
+  contents: write
+  actions: read
+  statuses: write
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Download PR metadata
+        uses: actions/download-artifact@v4
+        id: download-meta
+        continue-on-error: true
+        with:
+          name: deploy-meta
+          path: deploy-meta
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Read PR number
+        if: steps.download-meta.outcome == 'success'
+        id: meta
+        run: echo "pr_number=$(cat deploy-meta/pr_number)" >> $GITHUB_OUTPUT
+
+      - name: Set deploy status (pending)
+        if: steps.download-meta.outcome == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = '${{ steps.meta.outputs.pr_number }}';
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.payload.workflow_run.head_sha,
+              state: 'pending',
+              context: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}`,
+              target_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            });
+
+      - name: Checkout
+        if: steps.download-meta.outcome == 'success'
+        uses: actions/checkout@v6
+
+      - name: Download site build
+        if: steps.download-meta.outcome == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: __site
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Install SSH Client
+        if: steps.download-meta.outcome == 'success'
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Deploy preview
+        if: steps.download-meta.outcome == 'success'
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-preview
+          folder: __site
+          ssh-key: true
+          target-folder: "previews/PR${{ steps.meta.outputs.pr_number }}"
+
+      # Use a commit status (not a check run) so it appears as a standalone
+      # entry in the PR checks list rather than being grouped under another
+      # workflow's check suite.  The "Details" link points to the preview URL.
+      - name: Set deploy status
+        if: always() && steps.download-meta.outcome == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = '${{ steps.meta.outputs.pr_number }}';
+            const previewUrl = `https://julialang.netlify.app/previews/PR${prNumber}`;
+            const success = '${{ job.status }}' === 'success';
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.payload.workflow_run.head_sha,
+              state: success ? 'success' : 'failure',
+              context: `Deploy PR Preview — julialang.netlify.app/previews/PR${prNumber}`,
+              target_url: previewUrl,
+            });

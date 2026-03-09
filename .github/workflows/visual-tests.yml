@@ -1,0 +1,156 @@
+name: Visual Regression Tests
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/**'
+      - 'README.md'
+      - 'LICENSE.md'
+      - 'CNAME'
+
+concurrency:
+  group: visual-tests-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  visual-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.8'
+
+      - name: Install Julia
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.12'
+
+      - uses: julia-actions/cache@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install visual-tests dependencies
+        working-directory: visual-tests
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm exec playwright install --with-deps chromium
+
+      - name: Precompile Julia packages
+        run: |
+          julia --color=yes --project -e '
+              using Pkg; Pkg.instantiate();
+              using NodeJS; run(`$(npm_cmd()) install highlight.js`);
+              using Franklin'
+
+      # --- 1. Build baseline from main and capture screenshots ---
+
+      - name: Save PR visual-tests
+        run: cp -r visual-tests /tmp/visual-tests
+
+      - name: Checkout main branch for baseline
+        run: git checkout ${{ github.event.pull_request.base.sha }}
+
+      - name: Restore PR visual-tests
+        run: |
+          rm -rf visual-tests
+          cp -r /tmp/visual-tests visual-tests
+
+      - name: Build baseline site (main)
+        run: |
+          julia --color=yes --project -e '
+              using NodeJS; run(`$(npm_cmd()) install highlight.js`);
+              using Franklin;
+              Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
+              Franklin.optimize(prerender=true, minify=false, suppress_errors=false);
+              cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
+
+      - name: Capture baseline screenshots
+        working-directory: visual-tests
+        env:
+          UPDATE_SNAPSHOTS: "1"
+        run: ./node_modules/.bin/playwright test --update-snapshots
+
+      # --- 2. Build PR branch and compare against baseline ---
+
+      - name: Checkout PR branch
+        run: git checkout -f ${{ github.event.pull_request.head.sha }}
+
+      - name: Clean previous build
+        run: rm -rf __site
+
+      - name: Build PR site
+        run: |
+          julia --color=yes --project -e '
+              using NodeJS; run(`$(npm_cmd()) install highlight.js`);
+              using Franklin;
+              Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
+              Franklin.optimize(prerender=true, minify=false, suppress_errors=false);
+              cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
+
+      - name: Compare against baseline
+        id: playwright
+        working-directory: visual-tests
+        run: |
+          set +e
+          ./node_modules/.bin/playwright test
+          code=$?
+          if [ $code -eq 0 ]; then
+            echo "outcome=success" >> $GITHUB_OUTPUT
+          elif [ $code -eq 1 ]; then
+            echo "outcome=failure" >> $GITHUB_OUTPUT
+          else
+            echo "Playwright exited with unexpected code $code"
+            exit $code
+          fi
+
+      # --- 3. Report results ---
+
+      - name: Upload test results
+        if: steps.playwright.outputs.outcome == 'failure'
+        uses: actions/upload-artifact@v7
+        with:
+          name: visual-test-results
+          path: visual-tests/test-results/
+          retention-days: 14
+
+      - name: Generate diff report
+        id: report
+        if: "!cancelled()"
+        working-directory: visual-tests
+        run: node report-diffs.js
+
+      - name: Save result metadata
+        if: "!cancelled()"
+        env:
+          COMMENT_BODY: ${{ steps.report.outputs.comment_body }}
+        run: |
+          mkdir -p /tmp/visual-test-meta
+          echo "${{ github.event.pull_request.number }}" > /tmp/visual-test-meta/pr_number
+          echo "${{ steps.playwright.outputs.outcome }}" > /tmp/visual-test-meta/outcome
+          echo "$COMMENT_BODY" > /tmp/visual-test-meta/comment_body
+
+      - name: Upload result metadata
+        if: "!cancelled()"
+        uses: actions/upload-artifact@v7
+        with:
+          name: visual-test-meta
+          path: /tmp/visual-test-meta/
