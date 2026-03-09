@@ -13,6 +13,6 @@ There is a high overlap with other organizations, you should definitely check ou
 
 ## How to Contact Us
 
-Probably the easiest way is to join our [JuliaLang Slack](https://julialang.org/slack/) and join the `#generative-ai` channel.
+Probably the easiest way is to join our [JuliaLang Slack](/slack/) and join the `#generative-ai` channel.
 You can also reach out to us on [Julia Zulip](https://julialang.zulipchat.com/#narrow/stream/423470-generative-ai) or post a GitHub Issue on our website [JuliaGenAI](https://github.com/JuliaGenAI/juliagenai.org).
 

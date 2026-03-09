@@ -228,7 +228,7 @@ This timeline is largely accurate but we expect that different packages or tasks
 The November time period gives us the opportunity to revisit any unfinished tasks and to potentially explore stretch goals if there were not many outstanding tasks left.
 
 ### Communication Plan:
-The primary communication channel we will use is [Julia Slack](https://julialang.org/slack/) and Dr. Jakub Mitura (MD, PhD) will be the individual responsible for all contact and mentoring throughout the project for regular updates and meetings.
+The primary communication channel we will use is [Julia Slack](/slack/) and Dr. Jakub Mitura (MD, PhD) will be the individual responsible for all contact and mentoring throughout the project for regular updates and meetings.
 Outside of Slack, email will be used to handle communications with GSoD organizers and administrators with Jakub Mitura's email being: [jakub.mitura14@gmail.com](mailto:jakub.mitura14@gmail.com).
 Volunteers will also be available for communication on the Slack on an as-needed basis.
 Additionally, project updates will be given through the [Julia Health Slack Channel](https://app.slack.com/client/T68168MUP/C012NN70P5K) which is where the majority of JuliaHealth communication takes place between members, users, and the rest of the Julia community.

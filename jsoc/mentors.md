@@ -12,7 +12,7 @@ There are a few ways to become a GSoC mentor with the Julia Language:
 
 Mentors will be the main point of contact for contributors during all stages of the project life cycle. You can read more about the [mentor expectations from Google on their website](https://google.github.io/gsocguides/mentor/).
 
-Mentors usually communicate with one another via a private `#jsoc-mentors` channel on the [Julia Language's Slack](https://julialang.org/slack/).
+Mentors usually communicate with one another via a private `#jsoc-mentors` channel on the [Julia Language's Slack](/slack/).
 
 Mentors are encouraged to watch this video to give them a better idea how to be a great GSoC mentor:
 ~~~
