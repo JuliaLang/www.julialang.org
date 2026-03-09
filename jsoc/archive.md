@@ -29,7 +29,7 @@ Nineteen talented and driven contributors worked on projects, making a meaningfu
 
 ## GSoC 2020
 
-[16 students worked on Julia projects](https://summerofcode.withgoogle.com/archive/2020/organizations/6163109162516480/#projects) funded by Google. In addition, we [funded an additional 9 students](https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc-2020/38754) for the summer. 2020 was also the first year of the MLH Fellowship where we had 11 students working on Julia projects across the ecosystem. You can find out more about the 2020 Julia Season of Contributions [on our blog](https://julialang.org/blog/2020/09/gsoc-2020-wrapup/).
+[16 students worked on Julia projects](https://summerofcode.withgoogle.com/archive/2020/organizations/6163109162516480/#projects) funded by Google. In addition, we [funded an additional 9 students](https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc-2020/38754) for the summer. 2020 was also the first year of the MLH Fellowship where we had 11 students working on Julia projects across the ecosystem. You can find out more about the 2020 Julia Season of Contributions [on our blog](/blog/2020/09/gsoc-2020-wrapup/).
 
 ## GSoC 2019
 

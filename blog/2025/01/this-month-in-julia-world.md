@@ -37,6 +37,6 @@ Notes from other ecosystems:
 * [EmacsConf talk](https://emacsconf.org/2024/talks/julia/): “Exploring shared philosophies in Julia and Emacs” ([YouTube](https://www.youtube.com/watch?v=RTVXaDR697k))
 * NumPy uses [avx-512 SIMD instructions when available for sorting](https://discourse.julialang.org/t/numpy-sort-vs-julia-sort/123421/7?u=krastanov), leading to much higher performance
 
-See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](https://julialang.org/community/#events), [minutes of triage meetings](https://hackmd.io/@LilithHafner/HJaw__uMp)
+See also: [French community newsletter](https://pnavaro.github.io/NouvellesJulia/), [community calendar](/community/#events), [minutes of triage meetings](https://hackmd.io/@LilithHafner/HJaw__uMp)
 
 You can engage in the discussion of this newsletter on [Discourse](https://discourse.julialang.org/c/community/news/66)
