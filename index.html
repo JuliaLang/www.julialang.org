@@ -234,12 +234,18 @@
             <span class="code-dot green"></span>
             <span class="code-title">Multiple Dispatch</span>
           </div>
-          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>greet(x) = <span class="hljs-string">"Hello, $(x)!"</span>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> Dog <span class="hljs-keyword">end</span>; <span class="hljs-keyword">struct</span> Cat <span class="hljs-keyword">end</span>
 
-<span class="repl-prompt">julia> </span>greet(x::<span class="hljs-built_in">Number</span>) = <span class="hljs-string">"Hello, #$(x)!"</span>
+<span class="repl-prompt">julia> </span>meet(a::Dog, b::Dog) = <span class="hljs-string">"The dogs play together"</span>
+       meet(a::Dog, b::Cat) = <span class="hljs-string">"The dog chases the cat"</span>
+       meet(a::Cat, b::Dog) = <span class="hljs-string">"The cat hisses at the dog"</span>
+       meet(a::Cat, b::Cat) = <span class="hljs-string">"The cats ignore each other"</span>
 
-<span class="repl-prompt">julia> </span>greet(<span class="hljs-string">"world"</span>), greet(<span class="hljs-number">42</span>)
-(<span class="hljs-string">"Hello, world!"</span>, <span class="hljs-string">"Hello, #42!"</span>)</code></pre>
+<span class="repl-prompt">julia> </span>meet(Dog(), Cat())
+<span class="hljs-string">"The dog chases the cat"</span>
+
+<span class="repl-prompt">julia> </span>meet(Cat(), Dog())
+<span class="hljs-string">"The cat hisses at the dog"</span></code></pre>
         </div>
       </div>
       <!-- Slide 2: Display Customization -->
