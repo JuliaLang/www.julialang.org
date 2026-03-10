@@ -37,28 +37,6 @@ The main interest in this project is to implement algorithms that leverage the s
 
 **Mentors**: [Marcelo Forets](https://github.com/mforets), [Christian Schilling](https://github.com/schillic).
 
-## Reachability with sparse polynomial zonotopes
-
-**Difficulty**: Medium.
-
-**Description.** Sparse polynomial zonotopes are a new non-convex set representation that are well-suited for reachability analysis of nonlinear dynamical systems. This project is a continuation of [GSoC'2022 - Reachability with sparse polynomial zonotopes](https://summerofcode.withgoogle.com/archive/2022/projects/feZrZfQX), which implemented the basics in [LazySets](https://github.com/JuliaReach/LazySets.jl).
-
-**Expected Results.** It is expected to add efficient Julia implementations of a reachability algorithm for dynamical systems in [ReachabilityAnalysis](https://github.com/JuliaReach/ReachabilityAnalysis.jl) which leverages polynomial zonotopes. A successful project should:
-
-- Replicate the results from the article [Reachability Analysis for Linear Systems with Uncertain Parameters using Polynomial Zonotopes](https://dl.acm.org/doi/abs/10.1145/3575870.3587130).
-
-- The code shall be documented, tested, and evaluated extensively in benchmarks.
-
-For ambitious candidates it is possible to draw connections with neural-network control systems as implemented in [ClosedLoopReachability.jl](https://github.com/JuliaReach/ClosedLoopReachability.jl).
-
-**Expected Length.** 175 hours.
-
-**Recommended Skills.** Familiarity with Julia and Git/GitHub is mandatory. Familiarity with the mentioned Julia packages is appreciated but not required. The project does not require theoretical contributions, but it requires reading a research literature, hence a certain level of academic experience is recommended.
-
-**Literature and related packages.** [This video](https://www.youtube.com/watch?v=iMtq6YeIsjA) explains the concept of polynomial zonotopes (slides [here](https://github.com/JuliaReach/juliareach-days-3-reachathon/blob/master/Challenge_5/Challenge5_PolynomialZonotopes.pdf)). The relevant theory is described in [this research article](https://arxiv.org/pdf/1901.01780). There exists a Matlab implementation in [CORA](https://tumcps.github.io/CORA/) (the implementation of polynomial zonotopes can be found in [this folder](https://github.com/TUMcps/CORA/tree/master/contSet/%40polyZonotope)).
-
-**Mentors**: [Marcelo Forets](https://github.com/mforets), [Christian Schilling](https://github.com/schillic).
-
 ## Improving the hybrid systems reachability API
 
 **Difficulty**: Medium.
