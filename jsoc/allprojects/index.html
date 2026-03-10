@@ -171,39 +171,55 @@
 <p>Best way to reach out is to message in the <code>#documentation</code> channel on the <a href="/slack/">JuliaLang Slack</a>&#33;</p>
 <h2 id="ferritejl_-_finite_element_toolbox"><a href="#ferritejl_-_finite_element_toolbox" class="header-anchor">Ferrite.jl - Finite Element Toolbox</a></h2>
 <p><a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a> is a Julia package providing the basic building blocks to develop finite element simulations of partial differential equations. The package provides extensive examples to start from and is designed as a compromise between simplicity and generality, trying to map finite element concepts 1:1 with the code in a low-level . Ferrite is actively used in teaching finite element to students at several universities across different countries &#40;e.g. Ruhr-University Bochum and Chalmers University of Technology&#41;. Further infrastructure is provided in the form of different mesh parsers and a Julia based visualizer called <a href="https://github.com/Ferrite-FEM/FerriteViz.jl">FerriteViz.jl</a>.</p>
-<p>Below we provide a four of potential project ideas in <a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a>. However, interested students should feel free to explore ideas they are interested in. Please contact any of the mentors listed below, or join the <code>#ferrite-fem</code> channel on the Julia slack to discuss. Projects in finite element visualization are also possible with <a href="https://github.com/Ferrite-FEM/FerriteViz.jl">FerriteViz.jl</a>.</p>
-<h3 id="fluid-structure_interaction_example"><a href="#fluid-structure_interaction_example" class="header-anchor">Fluid-Structure Interaction Example</a></h3>
-<p><strong>Difficulty</strong>: Easy-Medium &#40;depending on your specific background&#41;</p>
-<p><strong>Project size</strong>: 150-300 hours</p>
-<p><strong>Problem</strong>: <a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a> is designed with the possibility to define partial differential equations on subdomains. This makes it well-suited for interface-coupled multi-physics problems, as for example fluid-structure interaction problems. However, we currently do not have an example showing this capability in our documentation. We also do not provide all necessary utilities for interface-coupled problems.</p>
-<p><strong>Minimum goal</strong>: The minimal goal of this project is to create a functional and documented linear fluid-structure interaction example coupling linear elasticity with a stokes flow in a simple setup. The code should come with proper test coverage.</p>
-<p><strong>Extended goal</strong>: With this minimally functional example it is possible to extend the project into different directions, e.g. optimized solvers or nonlinear fluid-structure interaction.</p>
+<p>Below we provide a two of potential project ideas in <a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a>. However, interested students should feel free to explore ideas they are interested in. Please contact any of the mentors listed below, or join the <code>#ferrite-fem</code> channel on the Julia slack to discuss. Projects in finite element visualization are also possible with for example <a href="https://github.com/Ferrite-FEM/FerriteViz.jl">FerriteViz.jl</a>. As a starting point, or to gather inspiration for a potential project, please check out issues marked with <a href="https://github.com/Ferrite-FEM/Ferrite.jl/issues?q&#61;is&#37;3Aissue&#37;20state&#37;3Aopen&#37;20label&#37;3A&#37;22good&#37;20first&#37;20issue&#37;22">Good First Issue</a>.</p>
+<h3 id="arbitrary_order_interpolations_in_3d"><a href="#arbitrary_order_interpolations_in_3d" class="header-anchor">Arbitrary Order Interpolations in 3D</a></h3>
+<p><strong>Difficulty</strong>: Medium</p>
+<p><strong>Project size</strong>: 300-350 hours</p>
+<p><strong>Problem</strong>: <a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a> supports arbitrary order interpolations in 1D and 2D. However, for 3D problems the order for the interpolations is right now limited to interpolations with at most a single dof per face. The difficulty here is of geometric nature. Faces in typical finite element meshes typically have a non-trivial relative orientation, and therefore the facet dofs of the neighboring elements do not match spatially.</p>
+<p><strong>Minimum goal</strong>: A minimal goal would be to add the necessary infrastructure to support the adjustment of the dof location for high order Lagrange polynomial interpolation on all 3D elements interpolations during the dof assignment phase.</p>
+<p><strong>Extended goal</strong>: With this minimally functional example it is possible to extend the project into different directions, e.g. high-order H&#40;div&#41; and H&#40;curl&#41; elements or optimizing the CellCache for these higher order elements by exploiting the tensor-product structure.</p>
 <p><strong>Recommended skills</strong>:</p>
 <ul>
-<li><p>Basic knowledge the finite element method</p>
+<li><p>Basic knowledge about the finite element method</p>
 </li>
-<li><p>Basic knowledge about solids or fluids</p>
+<li><p>Good geometric thinking</p>
 </li>
 <li><p>The ability &#40;or eagerness to learn&#41; to write fast code</p>
 </li>
 </ul>
-<p><strong>Mentors</strong>: <a href="https://github.com/termi-official">Dennis Ogiermann</a> and <a href="https://github.com/fredrikekre/">Fredrik Ekre</a></p>
-<h3 id="investigation_of_performant_assembly_strategies"><a href="#investigation_of_performant_assembly_strategies" class="header-anchor">Investigation of Performant Assembly Strategies</a></h3>
-<p><strong>Difficulty</strong>: Medium</p>
-<p><strong>Project size</strong>: 250-350 hours</p>
-<p><strong>Problem</strong>: <a href="https://github.com/ferrite-fem/Ferrite.jl">Ferrite.jl</a> has an outstanding performance in single-threaded finite element simulations due to elaborate elimination of redundant workloads. However, we recently identified that the way the single-threaded assembly works makes parallel assembly memory bound, rendering the implementation for &quot;cheap&quot; assembly loops not scalable on a wide range of systems. This problem will also translate to high-order schemes, where the single-threaded strategy as is prevents certain common optimization strategies &#40;e.g. sum factorization&#41;.</p>
-<p><strong>Minimum goal</strong>: As a first step towards better parallel assembly performance it is the investion of different assembly strategies. Local and global matrix-free schemes are a possibility to explore here. The code has to be properly benchmarked and tested to identify different performance problems.</p>
-<p><strong>Extended goal</strong>: With this minimally functional example it is possible to extend the project into different directions, e.g. optimized matrix-free solvers or GPU assembly.</p>
+<p><strong>Mentors</strong>: <a href="https://github.com/termi-official">Dennis Ogiermann</a> and <a href="https://github.com/fekre">Fredrik Ekre</a></p>
+<h3 id="forest-based_adaptive_mesh_refinement"><a href="#forest-based_adaptive_mesh_refinement" class="header-anchor">Forest-based Adaptive Mesh Refinement</a></h3>
+<p><strong>Difficulty</strong>: Hard</p>
+<p><strong>Project size</strong>: 350 hours</p>
+<p><strong>Problem</strong>: Adaptive mesh refinement is an attractive technique to speed up simulations with localized features, like for example steep traveling wave-fronts. Over the last years multiple prototypes have been developed and adopted for a specific use-case. Our generic implementation utilizes ideas from the <a href="https://p4est.github.io/papers/BursteddeWilcoxGhattas11.pdf">p4est</a> research paper and lives in a separate branch for quite a bit of time now &#40;see <a href="https://github.com/Ferrite-FEM/Ferrite.jl/pull/780">here</a>&#41;. We need more hands to finish the last steps.</p>
+<p><strong>Minimum goal</strong>: As the PR is almost done, the bare minimum would be to push the PR over the finish line. This includes more adding more extensive tests, help with missing documentation, more debug coverage to track down failures and completing a nice user-interface. THe user interface is partially done and needs to cover the marking, error estimation, refinement, coarsening and efficient transfer operations between two nested grids.</p>
+<p><strong>Extended goal</strong>: We see are essentially four ways to can explore as an extended goal. The first one would be to expend the approach as described in the subsequent work by the group &#40;t8code&#41; to allow more element types that just line/quad/hex. The second possible extension would be to parallelize the algorithms and making them GPU ready, so we do not need a roundtrip for the grid through the main memory. The third option would be to allow MPI parallelization and &#40;SFC-based&#41; load balancing. The fourth one is to extend the data structures to 4D hypercubes to allow space-time adaptive simulations.</p>
 <p><strong>Recommended skills</strong>:</p>
 <ul>
-<li><p>Basic knowledge the finite element method</p>
+<li><p>Basic knowledge about either the finite element method and/or tree-based data structures</p>
+</li>
+<li><p>Good geometric thinking</p>
+</li>
+<li><p>The ability &#40;or eagerness to learn&#41; to write fast code</p>
+</li>
+</ul>
+<p><strong>Mentors</strong>: <a href="https://github.com/termi-official">Dennis Ogiermann</a> and <a href="https://github.com/koehlerson">Maximilian Köhler</a></p>
+<h3 id="proper_subdomain_support_for_ferritedistributedjl"><a href="#proper_subdomain_support_for_ferritedistributedjl" class="header-anchor">Proper Subdomain Support for FerriteDistributed.jl</a></h3>
+<p><strong>Difficulty</strong>: Hard</p>
+<p><strong>Project size</strong>: 350 hours</p>
+<p><strong>Problem</strong>: <a href="https://github.com/ferrite-fem/FerriteDistributed.jl">FerriteDistributed.jl</a> is the MPI variant of Ferrite allowing scalable distributed assembly. However, it has been initially developed during the Ferrite v1.0 release window, right before proper subdomain has been added to Ferrite. Therefore, right now the upgrade to Ferrite v1 is primarily blocked by adding proper support for subdomains through the newly introduced SubDofHandler.</p>
+<p><strong>Minimum goal</strong>: At the very least a DistributedSubDofHandler must be added. Therefore the internal communication infrastructure must be upgraded to properly subdomains instead of the full domain.</p>
+<p><strong>Extended goal</strong>: Probably the most useful extended goal right now is to refactor the internal communication infrastructure to better integrate with MPI.jl, as we do not use the full potential of MPI.jl yet. Alternatively, we would like to also allow users to use other distributed memory backends to be used, as for example Reactant.jl.</p>
+<p><strong>Recommended skills</strong>:</p>
+<ul>
+<li><p>Basic knowledge about the finite element method</p>
 </li>
 <li><p>Basic knowledge about benchmarking</p>
 </li>
 <li><p>The ability &#40;or eagerness to learn&#41; to write fast code</p>
 </li>
 </ul>
-<p><strong>Mentors</strong>: <a href="https://github.com/koehlerson">Maximilian Köhler</a> and <a href="https://github.com/termi-official">Dennis Ogiermann</a></p>
+<p><strong>Mentors</strong>: <a href="https://github.com/termi-official">Dennis Ogiermann</a> and <a href="https://github.com/koehlerson">Maximilian Köhler</a></p>
 <h2 id="freebirdjl"><a href="#freebirdjl" class="header-anchor">FreeBird.jl</a></h2>
 <p><a href="https://github.com/wexlergroup/FreeBird.jl">FreeBird.jl</a> is a Julia package of enhanced sampling methods, such as nested sampling, Wang-Landau sampling, Metropolis Monte Carlo, for accelerating materials discovery through statistical mechanics. It is designed to be an extensible platform for computationally studying phase equilibria across a diverse range of atomistic and molecular systems, with easy extension to other phenomena.</p>
 <h3 id="molecular_dynamics_nested_sampling_in_freebirdjl_with_mollyjl"><a href="#molecular_dynamics_nested_sampling_in_freebirdjl_with_mollyjl" class="header-anchor">Molecular Dynamics Nested Sampling in FreeBird.jl with Molly.jl</a></h3>
