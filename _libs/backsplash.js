@@ -93,9 +93,39 @@
     canvas.height = ch * dpr;
     ctx = canvas.getContext('2d');
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    scaleY = ch / VH;
+    scaleY = (ch + 20) / VH;
     // Widen x-scale as needed so one pattern spans the full heading width.
     scaleX = Math.max(scaleY, (cw + 24) / VW);
+  }
+
+  // Compute displaced screen position for a vertex purely from its original (x, y).
+  // Identical coordinates always produce identical results, preserving tessellation.
+  function sampleVertex(x, y, t, motionScale, driftBase, waveDrift, shimmerDrift, waveShimmer) {
+    var sx = x * scaleX;
+    var sy = y * scaleY;
+
+    // Wave influence at this vertex's screen position
+    var waveInf = 0;
+    for (var w = 0; w < waves.length; w++) {
+      var wave = waves[w];
+      var p = sx * wave.dx + sy * wave.dy;
+      var dist = p - wave.pos;
+      var env = Math.exp(-(dist * dist) / wave.width2);
+      waveInf += env * wave.amp;
+    }
+    if (waveInf > 1) waveInf = 1;
+
+    var drift = driftBase + waveInf * waveDrift;
+
+    // Shimmer seed from this vertex's coordinates only
+    var shimmerSeed = (x * 0.009 + y * 0.021) % (Math.PI * 2);
+    var shimmerPhase = (Math.sin(t * 0.35 + shimmerSeed) + 1) * 0.5;
+    var shimmerKick = shimmerPhase * (shimmerDrift + waveInf * waveShimmer);
+
+    var dx = Math.sin(t * 0.42 + x * 0.017 + y * 0.019) * drift + shimmerKick;
+    var dy = Math.sin(t * 0.35 + x * 0.014 + y * 0.023) * drift - shimmerKick * 0.25;
+
+    return [(x + dx) * scaleX, (y + dy) * scaleY];
   }
 
   function draw(t) {
@@ -105,7 +135,6 @@
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, cw, ch);
 
-    // Mostly-still baseline + intermittent wavefront bursts
     var motionScale = Math.min(1, Math.max(0.45, cw / 900));
     var driftBase = 0.65 * motionScale;
     var shimmerDrift = 0.12 * motionScale;
@@ -118,6 +147,12 @@
 
     for (var i = 0; i < D.length; i++) {
       var d = D[i];
+
+      var v0 = sampleVertex(d[0], d[1], t, motionScale, driftBase, waveDrift, shimmerDrift, waveShimmer);
+      var v1 = sampleVertex(d[2], d[3], t, motionScale, driftBase, waveDrift, shimmerDrift, waveShimmer);
+      var v2 = sampleVertex(d[4], d[5], t, motionScale, driftBase, waveDrift, shimmerDrift, waveShimmer);
+
+      // Alpha still uses triangle center for smooth per-face shading
       var cx = triCx[i] * scaleX;
       var cy = triCy[i] * scaleY;
       var waveInfluence = 0;
@@ -130,30 +165,14 @@
       }
       if (waveInfluence > 1) waveInfluence = 1;
 
-      var drift = driftBase + waveInfluence * waveDrift;
-      var sx0 = d[0];
-      var sx1 = d[2];
-      var sx2 = d[4];
-      var shimmerSeed = (sx0 * 0.009 + d[1] * 0.021 + sx1 * 0.007 + d[3] * 0.013) % (Math.PI * 2);
-      var shimmerPhase = (Math.sin(t * 0.35 + shimmerSeed) + 1) * 0.5;
-      var shimmerKick = shimmerPhase * (shimmerDrift + waveInfluence * waveShimmer);
-
-      // Keep base motion quiet; wavefronts add most of the visible movement.
-      var x0 = (d[0] + Math.sin(t * 0.42 + sx0 * 0.017 + d[1] * 0.019) * drift + shimmerKick) * scaleX;
-      var y0 = (d[1] + Math.sin(t * 0.35 + sx0 * 0.014 + d[1] * 0.023) * drift - shimmerKick * 0.25) * scaleY;
-      var x1 = (d[2] + Math.sin(t * 0.39 + sx1 * 0.016 + d[3] * 0.021) * drift + shimmerKick * 0.8) * scaleX;
-      var y1 = (d[3] + Math.sin(t * 0.47 + sx1 * 0.013 + d[3] * 0.018) * drift - shimmerKick * 0.2) * scaleY;
-      var x2 = (d[4] + Math.sin(t * 0.37 + sx2 * 0.015 + d[5] * 0.022) * drift + shimmerKick * 0.6) * scaleX;
-      var y2 = (d[5] + Math.sin(t * 0.44 + sx2 * 0.012 + d[5] * 0.017) * drift - shimmerKick * 0.15) * scaleY;
-
-      var alphaPhase = sx0 * 0.006 + d[1] * 0.011;
+      var alphaPhase = d[0] * 0.006 + d[1] * 0.011;
       var alpha = BASE_OPACITY + Math.sin(t * 0.24 + alphaPhase) * oAmpBase + waveInfluence * waveAlphaBoost;
       alpha = Math.max(0.16, Math.min(0.96, alpha));
 
       ctx.beginPath();
-      ctx.moveTo(x0, y0);
-      ctx.lineTo(x1, y1);
-      ctx.lineTo(x2, y2);
+      ctx.moveTo(v0[0], v0[1]);
+      ctx.lineTo(v1[0], v1[1]);
+      ctx.lineTo(v2[0], v2[1]);
       ctx.closePath();
 
       ctx.globalAlpha = alpha;
