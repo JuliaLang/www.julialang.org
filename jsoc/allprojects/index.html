@@ -560,156 +560,9 @@
 <p>No projects this year&#33;</p>
 </blockquote>
 <h3 id="medical_imaging_subecosystem_projects"><a href="#medical_imaging_subecosystem_projects" class="header-anchor">Medical Imaging Subecosystem Projects</a></h3>
-<h4 id="julia_radiomics"><a href="#julia_radiomics" class="header-anchor">Julia Radiomics</a></h4>
-<p><strong>Project Title:</strong> Julia Radiomics   <strong>Difficulty:</strong> Medium   <strong>Duration:</strong> 375 hours &#40;22 Weeks&#41;   <strong>Mentor:</strong> Jakub Mitura  </p>
-<h5 id="description"><a href="#description" class="header-anchor">Description</a></h5>
-<p>Radiomic features are quantitative metrics extracted from medical images using data-characterization algorithms. These features capture tissue and lesion characteristics, such as heterogeneity and shape, which may provide valuable insights beyond what the naked eye can perceive.</p>
-<p>This project aims to implement algorithms for extracting radiomic features from 2D and 3D medical images, similar to PyRadiomics, using Julia. The implementation will include Gray Level Co-occurrence Matrix &#40;GLCM&#41;, Gray Level Size Zone Matrix &#40;GLSZM&#41;, Gray Level Run Length Matrix &#40;GLRM&#41;, Neighborhood Gray Tone Difference Matrix &#40;NGTDM&#41;, and Gray Level Dependence Matrix &#40;GLDM&#41;. The extracted features will be validated against PyRadiomics and applied to medical imaging data, such as the AutoPET dataset, to demonstrate the methodology. </p>
-<h5 id="deliverables"><a href="#deliverables" class="header-anchor">Deliverables</a></h5>
-<h6 id="implementation_of_radiomic_feature_extraction_algorithms"><a href="#implementation_of_radiomic_feature_extraction_algorithms" class="header-anchor">Implementation of Radiomic Feature Extraction Algorithms</a></h6>
-<ul>
-<li><p><strong>First Group:</strong> GLCM, GLSZM, GLRM</p>
-</li>
-<li><p><strong>Second Group:</strong> NGTDM, GLDM</p>
-</li>
-</ul>
-<h6 id="feature_extraction_pipeline"><a href="#feature_extraction_pipeline" class="header-anchor">Feature Extraction Pipeline</a></h6>
-<ul>
-<li><p>Extract all features from segmented lesions in PET and CT modalities.</p>
-</li>
-<li><p>Use MedImages.jl for image handling.</p>
-</li>
-<li><p>Leverage KernelAbstractions.jl for performance optimization where possible.</p>
-</li>
-</ul>
-<h6 id="validation"><a href="#validation" class="header-anchor">Validation</a></h6>
-<ul>
-<li><p>Compare extracted features against PyRadiomics outputs.</p>
-</li>
-<li><p>Ensure statistical equivalence in extracted features.</p>
-</li>
-</ul>
-<h6 id="final_report_code_repository"><a href="#final_report_code_repository" class="header-anchor">Final Report &amp; Code Repository</a></h6>
-<ul>
-<li><p>Methodology, results, benchmarking.</p>
-</li>
-<li><p>Public GitHub repository under an MIT license.</p>
-</li>
-</ul>
-<h5 id="success_criteria_and_timeline"><a href="#success_criteria_and_timeline" class="header-anchor">Success Criteria and Timeline</a></h5>
-<h6 id="phase_1_literature_review_and_setup_3_weeks"><a href="#phase_1_literature_review_and_setup_3_weeks" class="header-anchor">Phase 1: Literature Review and Setup &#40;3 Weeks&#41;</a></h6>
-<ul>
-<li><p>Review PyRadiomics documentation, MedImages.jl, KernelAbstractions.jl APIs, and AutoPET dataset structure.</p>
-</li>
-<li><p><strong>Success Criteria:</strong> Understanding of feature definitions, dataset access, and GPU kernel design.</p>
-</li>
-</ul>
-<h6 id="phase_2_feature_implementation_6_weeks"><a href="#phase_2_feature_implementation_6_weeks" class="header-anchor">Phase 2: Feature Implementation &#40;6 Weeks&#41;</a></h6>
-<ul>
-<li><p>Implement GLCM, GLSZM, GLRM, NGTDM, and GLDM matrices.</p>
-</li>
-<li><p>Validate outputs against PyRadiomics &#40;&gt;90&#37; similarity in unit tests&#41;.</p>
-</li>
-<li><p><strong>Success Criteria:</strong> GPU-accelerated implementation for 3D volumes.</p>
-</li>
-</ul>
-<h6 id="phase_3_feature_extraction_pipeline_4_weeks"><a href="#phase_3_feature_extraction_pipeline_4_weeks" class="header-anchor">Phase 3: Feature Extraction Pipeline &#40;4 Weeks&#41;</a></h6>
-<ul>
-<li><p>Build a pipeline to process AutoPET lesions using MedImages.jl.</p>
-</li>
-<li><p><strong>Success Criteria:</strong> Extraction of 100&#43; features per lesion, support for batch processing.</p>
-</li>
-</ul>
-<h6 id="phase_4_validation_3_weeks"><a href="#phase_4_validation_3_weeks" class="header-anchor">Phase 4: Validation &#40;3 Weeks&#41;</a></h6>
-<ul>
-<li><p>Compare Julia feature extraction results with PyRadiomics.</p>
-</li>
-<li><p><strong>Success Criteria:</strong> Statistical equivalence &#40;e.g., t-test p &gt; 0.05&#41;, with documented discrepancies &lt;5&#37;.</p>
-</li>
-</ul>
-<h6 id="phase_5_documentation_and_packaging_4_weeks"><a href="#phase_5_documentation_and_packaging_4_weeks" class="header-anchor">Phase 5: Documentation and Packaging &#40;4 Weeks&#41;</a></h6>
-<ul>
-<li><p>Write documentation for the Julia-based radiomics library.</p>
-</li>
-<li><p>Write automated tests for the proper functioning of the library.</p>
-</li>
-<li><p>Register the package in the Julia package registry.</p>
-</li>
-<li><p><strong>Success Criteria:</strong> The final working library is successfully available in the Julia ecosystem.</p>
-</li>
-</ul>
-<h6 id="phase_6_reporting_2_weeks"><a href="#phase_6_reporting_2_weeks" class="header-anchor">Phase 6: Reporting &#40;2 Weeks&#41;</a></h6>
-<ul>
-<li><p>Document methodology, results, and benchmarking.</p>
-</li>
-<li><p><strong>Success Criteria:</strong> Reproducible code, Jupyter notebooks, open-source repository.</p>
-</li>
-</ul>
-<h5 id="stretch_goals"><a href="#stretch_goals" class="header-anchor">Stretch Goals</a></h5>
-<ul>
-<li><p>Implementation of additional radiomic features such as:</p>
-<ul>
-<li><p>Wavelet Features &#40;Transform-based texture analysis&#41;</p>
-</li>
-<li><p>Fractal Analysis &#40;Estimating complexity in medical images&#41;</p>
-</li>
-<li><p>Laplacian of Gaussian &#40;LoG&#41; Features &#40;Edge detection-based feature extraction&#41;</p>
-</li>
-</ul>
-</li>
-<li><p>Optimized parallel computation using GPU acceleration in KernelAbstractions.jl.</p>
-</li>
-<li><p>Implementation of an interactive Julia-based visualization tool for extracted radiomic features.</p>
-</li>
-</ul>
-<h5 id="clarification"><a href="#clarification" class="header-anchor">Clarification</a></h5>
-<p>This implementation will be done entirely in Julia, and Python will not be used in any part of the implementation.   Any cross-validation with PyRadiomics is purely for benchmarking purposes.</p>
-<h5 id="importance_and_impact"><a href="#importance_and_impact" class="header-anchor">Importance and Impact</a></h5>
-<h6 id="technical_impact"><a href="#technical_impact" class="header-anchor">Technical Impact</a></h6>
-<ul>
-<li><p><strong>Julia Ecosystem Growth:</strong> First native Radiomics toolkit in Julia.</p>
-</li>
-<li><p><strong>GPU Acceleration:</strong> Utilizes KernelAbstractions.jl for efficient 3D feature extraction.</p>
-</li>
-<li><p><strong>Reproducibility:</strong> Open-source implementation ensures transparency in radiomics research.</p>
-</li>
-</ul>
-<h6 id="clinical_impact"><a href="#clinical_impact" class="header-anchor">Clinical Impact</a></h6>
-<ul>
-<li><p><strong>Cancer Differentiation:</strong> Model insights may aid in non-invasive cancer subtyping.</p>
-</li>
-<li><p><strong>Standardization:</strong> Cross-tool validation enhances study comparability across different platforms.</p>
-</li>
-</ul>
-<h6 id="community_impact"><a href="#community_impact" class="header-anchor">Community Impact</a></h6>
-<ul>
-<li><p><strong>Foundation for Future Work:</strong> Enables Julia-based radiomics pipelines for projects like TCIA.</p>
-</li>
-<li><p><strong>Educational Value:</strong> Demonstrates GPU-accelerated medical image processing in Julia for researchers and students.</p>
-</li>
-</ul>
-<h5 id="references"><a href="#references" class="header-anchor">References</a></h5>
-<ul>
-<li><p><a href="https://pyradiomics.readthedocs.io">PyRadiomics Documentation</a></p>
-</li>
-<li><p><a href="https://autopet.grand-challenge.org/">AutoPET Dataset</a></p>
-</li>
-<li><p><a href="https://github.com/JuliaHealth/MedImages.jl">MedImages.jl</a></p>
-</li>
-<li><p><a href="https://github.com/JuliaGPU/KernelAbstractions.jl">KernelAbstractions.jl</a></p>
-</li>
-<li><p>Radiomics Research: Various studies on the clinical relevance of radiomics in medical imaging.</p>
-</li>
-<li><p>Kumar, V., et al. &quot;Radiomics: the process and the challenges.&quot; Magnetic Resonance Imaging, 2012.</p>
-</li>
-<li><p>Gillies, R.J., et al. &quot;Radiomics: images are more than pictures, they are data.&quot; Nature Reviews Cancer, 2016.</p>
-</li>
-<li><p>Lambin, P., et al. &quot;Radiomics: extracting more information from medical images using advanced feature analysis.&quot; European Journal of Cancer, 2012.</p>
-</li>
-</ul>
 <h4 id="klay-core_high-performance_neurosymbolic_constraint_layers_for_trustworthy_medical_ai"><a href="#klay-core_high-performance_neurosymbolic_constraint_layers_for_trustworthy_medical_ai" class="header-anchor">KLAY-Core: High-Performance Neurosymbolic Constraint Layers for Trustworthy Medical AI</a></h4>
 <p><strong>Difficulty:</strong> Hard / Ambitious   <strong>Duration:</strong> 350 hours &#40;22 weeks&#41;   <strong>Mentor:</strong> Jakub Mitura   <strong>Technology Stack:</strong> Julia, Lux.jl, NNlib.jl, ChainRules.jl, LogExpFunctions.jl</p>
-<h5 id="description__2"><a href="#description__2" class="header-anchor">Description</a></h5>
+<h5 id="description"><a href="#description" class="header-anchor">Description</a></h5>
 <p>Deep learning in medical diagnostics suffers from a well-known trust gap. Models often behave as black boxes and may produce physiologically implausible predictions — for example simultaneously predicting cachexia and obesity. This lack of interpretability and clinical consistency limits adoption of AI systems in healthcare environments.</p>
 <p>Neurosymbolic artificial intelligence &#40;NeSy&#41; addresses this limitation by integrating structured logical knowledge directly into neural models. However, many existing approaches struggle with numerical stability, scalability, and GPU efficiency when deployed in realistic clinical settings.</p>
 <p>KLAY-Core is a high-performance logical constraint layer designed for Lux.jl. It enables domain experts and developers to encode clinical knowledge as differentiable logical constraints integrated directly into neural network architectures.</p>
@@ -763,7 +616,7 @@
 <li><p><strong>Phase 6 &#40;Weeks 21–22&#41;:</strong> Final documentation, testing, and publication in the Julia General Registry.</p>
 </li>
 </ul>
-<h5 id="references__2"><a href="#references__2" class="header-anchor">References</a></h5>
+<h5 id="references"><a href="#references" class="header-anchor">References</a></h5>
 <ul>
 <li><p>Alam, S., et al. &#40;2026&#41;. Constraint-aware neurosymbolic uncertainty quantification with Bayesian deep learning for scientific discovery. arXiv preprint &#40;arXiv:2601.12442&#41;.</p>
 </li>
@@ -784,7 +637,7 @@
 </ul>
 <h5 id="capsule_networks_for_3d_medical_imaging_segmentation_in_julia"><a href="#capsule_networks_for_3d_medical_imaging_segmentation_in_julia" class="header-anchor">Capsule Networks for 3D Medical Imaging Segmentation in Julia</a></h5>
 <p><strong>Difficulty:</strong> Hard   <strong>Duration:</strong> 350 hours   <strong>Mentor:</strong> Jakub Mitura   <strong>Technology Stack:</strong> Julia, Lux.jl, MedPipe3D.jl, KernelAbstractions.jl, CUDA.jl, MLUtils.jl, MoonCake.jl</p>
-<h5 id="deliverables__2"><a href="#deliverables__2" class="header-anchor">Deliverables</a></h5>
+<h5 id="deliverables"><a href="#deliverables" class="header-anchor">Deliverables</a></h5>
 <ul>
 <li><p>3D Capsule Network layer primitives &#40;dynamic routing, locally-constrained routing&#41; as reusable Lux.jl modules</p>
 </li>
@@ -799,7 +652,7 @@
 <li><p>Documentation, pretrained weights, and reproducible experiment scripts contributed to JuliaHealth</p>
 </li>
 </ul>
-<h5 id="success_criteria_and_timeline__2"><a href="#success_criteria_and_timeline__2" class="header-anchor">Success Criteria and Timeline</a></h5>
+<h5 id="success_criteria_and_timeline"><a href="#success_criteria_and_timeline" class="header-anchor">Success Criteria and Timeline</a></h5>
 <p>This project is scoped for a 350-hour GSoC timeframe &#40;approximately 12–13 weeks&#41;. The following milestones and success criteria outline the expected progression.</p>
 <p><strong>Community Bonding &#40;pre-coding period&#41;</strong></p>
 <ul>
@@ -879,10 +732,10 @@
 <li><p>Success criterion: Merged contributions into JuliaHealth repositories plus a project report summarizing methods, experiments, and lessons learned.</p>
 </li>
 </ul>
-<h5 id="description__3"><a href="#description__3" class="header-anchor">Description</a></h5>
+<h5 id="description__2"><a href="#description__2" class="header-anchor">Description</a></h5>
 <p>This project implements 3D Capsule Network &#40;CapsNet&#41; architectures within the Julia ecosystem using Lux.jl and MedPipe3D.jl for volumetric medical image segmentation. The core work involves building a SegCaps &#40;Segmentation Capsules&#41; layer abstraction supporting dynamic routing-by-agreement, extending it to 3D convolution capsules with equivariance-preserving pose matrices. We will implement two key variants: &#40;1&#41; a 3D SegCaps U-Net hybrid that replaces encoder/decoder conv blocks with capsule layers while retaining skip connections, and &#40;2&#41; an efficient locally-constrained routing variant to manage the quadratic computational cost of full capsule coupling in volumetric data. Custom CUDA kernels via KernelAbstractions.jl will accelerate the routing procedure, and the full pipeline—preprocessing, training, and evaluation—will integrate with MedPipe3D.jl&#39;s NIFTI/DICOM I/O and metric infrastructure.</p>
 <p>The central hypothesis is that capsule networks&#39; explicit encoding of part-whole spatial hierarchies and viewpoint-equivariant pose vectors yields superior cross-domain generalization compared to standard CNNs, which rely on max-pooling and thus discard spatial relationships. We will rigorously benchmark 3D SegCaps against a 3D U-Net baseline across all 10 tasks of the Medical Segmentation Decathlon &#40;covering CT and MRI across brain, liver, lung, pancreas, etc.&#41;, measuring not only per-task Dice/HD95 but critically cross-task transfer: models pretrained on one organ/modality and fine-tuned on another. We expect capsule routing to better preserve geometric structure across domains, improving few-shot adaptation. All code, pretrained weights, and reproducible experiment scripts will be contributed to the JuliaHealth ecosystem under MIT license.</p>
-<h5 id="references__3"><a href="#references__3" class="header-anchor">References</a></h5>
+<h5 id="references__2"><a href="#references__2" class="header-anchor">References</a></h5>
 <ul>
 <li><p>Sabour, S., Frosst, N., &amp; Hinton, G. E. &#40;2017&#41;. <em>Dynamic Routing Between Capsules</em>. Advances in Neural Information Processing Systems &#40;NeurIPS&#41;. <a href="https://arxiv.org/abs/1710.09829">https://arxiv.org/abs/1710.09829</a></p>
 </li>
@@ -902,7 +755,7 @@
 </li>
 </ul>
 <h4 id="enhancing_medpipe3d_building_a_comprehensive_medical_imaging_pipeline_in_julia"><a href="#enhancing_medpipe3d_building_a_comprehensive_medical_imaging_pipeline_in_julia" class="header-anchor">Enhancing MedPipe3D: Building a Comprehensive Medical Imaging Pipeline in Julia</a></h4>
-<h5 id="description__4"><a href="#description__4" class="header-anchor">Description</a></h5>
+<h5 id="description__3"><a href="#description__3" class="header-anchor">Description</a></h5>
 <p>MedPipe3D was created to improve integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. Currently, it needs to be expanded and adapted to serve as the basis for a fully functional medical imaging pipeline.</p>
 <p><strong>Mentor:</strong> Jakub Mitura &#91;email: jakub.mitura14@gmail.com&#93;</p>
 <h5 id="project_difficulty_and_timeline"><a href="#project_difficulty_and_timeline" class="header-anchor">Project Difficulty and Timeline</a></h5>
