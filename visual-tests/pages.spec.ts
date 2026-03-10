@@ -68,6 +68,10 @@ async function prepareForScreenshot(page: Page) {
 
 for (const { name, path: pagePath } of PAGES) {
   test(`${name} visual snapshot`, async ({ page }, testInfo) => {
+    await page.addInitScript(() => {
+      (window as any).__JULIA_VISUAL_TEST__ = true;
+    });
+
     await page.goto(pagePath, { waitUntil: "load" });
     await prepareForScreenshot(page);
 

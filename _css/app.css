@@ -546,9 +546,8 @@ img.ecosystem-image-tall {
 .page-heading {
   color: #fff;
   padding: 2rem;
-  background-image: url('../assets/infra/backsplash-min-0.5.svg');
-  background-repeat: repeat-x;
-  background-size: auto 100%;
+  background-color: #1a1a33;
+  overflow: hidden;
 }
 
 .page-heading .main-heading {
