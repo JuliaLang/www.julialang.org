@@ -255,3 +255,110 @@ This set of changes, although time-consuming to implement, should not pose a sig
 Implementing these features is crucial for advancing medical imaging technology. Enhanced logging with TensorBoard integration will allow for better insight into model training. Performance improvements ensure reliable and efficient processing of large datasets. Improved documentation and memory management make the tools more accessible and usable for medical professionals, facilitating better integration into clinical workflows. Supporting tabular data alongside imaging allows for comprehensive analysis, combining clinical and imaging data to improve diagnostic accuracy and patient outcomes.
 
 For each point, the mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it (that just need to be integrated).
+
+### `komamripy` - Python Wrapper for KomaMRI
+
+**Difficulty:** Medium
+
+**Duration:** 90 hours (small project)
+
+**Description:** 
+KomaMRI.jl is a high-performance Julia package for MRI simulation. This project delivers a long-requested Python entry point ([issue #68](https://github.com/JuliaHealth/KomaMRI.jl/issues/68)) by building `komamripy`: a thin, pip-installable Python wrapper around KomaMRI (with no reimplementation in Python). The goal is to create a Python package that calls Julia under the hood via `juliacall`/PythonCall.jl, similar to [diffeqpy](https://github.com/SciML/diffeqpy) and [PySR](https://github.com/MilesCranmer/PySR).
+
+**Suggested Skills and Background:**
+
+  - Python packaging (pyproject), wheels, CI (GitHub Actions)
+  - Basic experience with Julia and package environments
+  - Familiarity with scientific computing and GPU concepts
+  - Interest in deep learning workflows (PyTorch or JAX)
+  - Familiarity with some of the following Julia packages is desirable:
+      - PythonCall.jl / `juliacall`
+      - PrecompileTools.jl
+
+**Expected Results:** 
+
+1. Release `komamripy` as a `pip`-installable package exposing a minimal API for simulation.
+2. Add Python CI (lint + tests + build) and automated tagged releases to publish package artifacts.
+3. Implement explicit **Julia-side** precompile workloads using PrecompileTools.jl to reduce first-use compilation overhead for common simulation/autodiff paths.
+4. Enable backend selection support for CUDA/AMDGPU/Metal/oneAPI (when available in the host Julia environment).
+5. Provide one validated end-to-end Python example (PyTorch or JAX) that runs differentiable optimization on a single GPU.
+
+**Mentors:** Carlos Castillo [email: cacp@stanford.edu], Daniel Ennis, Jakub Mitura
+
+### Extensible MRI Scanner Models for Realistic MRI Simulations
+
+**Difficulty:** Hard  
+
+**Duration:** 350 hours (large project)
+
+**Description:**
+KomaMRI simulation behavior does not yet fully rely on explicit scanner models. This project introduces an extensible scanner framework that supports both idealized and realistic MRI hardware while keeping basic simulations simple and fast. The primary focus is gradient modeling, with an architecture that can later be extended to additional scanner effects.
+
+**Suggested Skills and Background:**
+  - Strong Julia experience (parametric types, multiple dispatch, performance)
+  - Knowledge of MRI physics (gradients, eddy currents, GIRF, RF behavior)
+  - Experience with numerical and scientific computing workflows
+  - Familiarity with some of the following Julia packages is a plus:
+      - KernelAbstractions.jl
+      - CUDA.jl
+      - Adapt.jl / Functors.jl
+      - MRIReco.jl / GIRFReco.jl
+      - HDF5.jl
+
+**Outcomes:** The following goals should be achieved on both CPU and GPU:
+1. Define a typed `Scanner` foundation (with `HardwareLimits`, `<: RFSystem`, and `<: GradientSystem`) to standardize scanner representation. Make the new types GPU-compatible using Adapt.jl and Functors.jl.
+2. Implement core extensible functions (`get_B1`, `get_coils`, `get_Bz`, ...) and make them depend on selected scanner system configurations via multiple dispatch.
+3. Add optional hardware-limit validation with clear warnings or errors before simulation runs (using `HardwareLimits`).
+4. Deliver baseline linear-gradient behavior (`LinearGradients`) through `get_Bz`, with tests matching current idealized results on both CPU and GPU.
+5. Introduce modular spatially nonlinear gradient models (quadratic and PatLoc-like) on top of the baseline, and show their effects in an example.
+6. Add a temporally dependent gradient model (eddy currents) and provide an example showing a Nyquist ghosting artifact.
+7. Include a GIRF-compatible `GradientSystem` with loaders via `KomaMRIFiles.jl`, using realistic GIRF acquisitions, and provide examples showing gradient delays or GIRF-induced k-space distortion.
+8. Add support for saving and loading `Scanner` definitions through `KomaMRIFiles.jl` (as is currently done for `Phantom`s).
+9. Provide plotting helper functions in `KomaMRIPlots.jl` for scanner-imperfection visualization, validation, and GIRF workflows.
+
+**Mentors:** Carlos Castillo [email: cacp@stanford.edu], Daniel Ennis, Jakub Mitura
+
+### Differentiable GPU-accelerated MRI Simulations
+
+**Difficulty:** Hard  
+
+**Duration:** 350 hours (large project)
+
+**Description:**
+KomaMRI.jl is a high-performance Julia package for MRI simulation. Recent progress with Enzyme.jl and Reactant.jl has demonstrated promising results for running optimization-based design problems efficiently. However, several gaps remain before KomaMRI.jl is fully compatible with Enzyme/Reactant across its full stack.
+
+The main challenge of this project is the **multiple levels of abstraction** in KomaMRI.jl, where highly dynamic, high-level workflows interact with low-level, performance-critical kernels. Some functions that act on or modify high-level objects are more dynamic than standard Enzyme workflows typically assume. Success will therefore require not only making existing code differentiable, but also designing robust data structures (if needed) that simplify execution and enable gradients through workflows that may mix CPU and GPU code paths.
+
+The work is organized across the following levels:
+
+- **High-level:** `simulate`, and objects such as `Phantom`, `Sequence`, and `Scanner`
+- **Mid-level:** `discretize`, CPU/GPU memory transfers, `run_spin_iter`
+- **Low-level:** parallel functions `run_spin_(excitation/precession)_parallel`
+- **Kernel-level:** GPU kernels `run_spin_(excitation/precession)`
+
+Implementation should proceed bottom-up, beginning with kernel and low-level compatibility, then moving upward to mid- and high-level APIs.
+
+A practical strategy is to start with the `BlochSimple` variants (array programming + broadcasting), establish reliable differentiable pipelines there, and then extend support to highly optimized kernel-based `Bloch` methods.
+
+**Suggested Skills and Background:**
+- Strong Julia experience, including performant code and type-stable design
+- Familiarity with CUDA, XLA, and LLVM-level tooling
+- Solid understanding of automatic differentiation
+- Familiarity with some of the following Julia packages is a plus:
+  - KernelAbstractions.jl
+  - CUDA.jl
+  - Adapt.jl / Functors.jl
+  - DifferentiationInterface.jl / Mooncake.jl / Enzyme.jl / Reactant.jl
+
+**Outcomes:** 
+1. Assess the state of Mooncake.jl/FiniteDifferences.jl via DifferentiationInterface.jl for differentiating simulations on CPU and GPU.
+2. Implement a reverse-mode AD pipeline using Enzyme/Reactant for the `BlochSimple` simulation method on CPU.
+3. Implement a reverse-mode AD pipeline using Enzyme/Reactant for the `BlochSimple` simulation method on GPU.
+4. Assess whether a new `Simulation` data structure is needed for optimization pipelines to avoid CPU/GPU memory transfers (containing inputs, preallocations, etc.).
+5. Implement a reverse-mode AD pipeline using Enzyme/Reactant for the `Bloch` simulation method on CPU.
+6. Implement a reverse-mode AD pipeline using Enzyme/Reactant for the `Bloch` simulation method on GPU.
+7. Deliver `Bloch` CPU/GPU differentiation examples, including forward/reverse Enzyme workflows and Reactant workflows for benchmarking.
+8. Add a tutorial for 1D RF pulse optimization using the developed tools.
+9. Document required changes to the codebase to enable fast differentiation of GPU-based simulations.
+
+**Mentors:** Carlos Castillo [email: cacp@stanford.edu], Daniel Ennis, Jakub Mitura
