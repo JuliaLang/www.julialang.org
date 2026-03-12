@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2509/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2509/assets/infra/logo.svg" as="image">
+<script src="/previews/PR2509/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2509/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2509/css/app.css">
+<link rel="stylesheet" href="/previews/PR2509/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2509/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2509/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2509/libs/buttons.js"></script>
+<script async src="/previews/PR2509/libs/backsplash.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>JuliaCon 2020 Wrap-up</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2509/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2509/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="JuliaCon 2020 Wrap-up">
+<meta property="og:description" content="JuliaCon 2020 Wrap-up">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2509/blog/2020/08/juliacon-2020-wrapup/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "JuliaCon 2020 Wrap-up",
+  "description": "JuliaCon 2020 Wrap-up",
+  "image": "https://julialang.netlify.app/previews/PR2509/assets/images/julia-open-graph.png",
+  "datePublished": "2020-08-11T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "The JuliaCon 2020 Organizing Committee"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2509/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2509/blog/2020/08/juliacon-2020-wrapup/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2509/">
+          <img src="/previews/PR2509/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2509/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2509/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>JuliaCon 2020 Wrap-up</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p style="font-size: 1.17em; margin-top: 0;">
+          
+            <span style="font-weight: lighter;">11 August 2020</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;">The JuliaCon 2020 Organizing Committee</span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2020/08/juliacon-2020-wrapup.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>JuliaCon 2020, the 7th annual Julia conference, has come to a close. This year, given the global COVID-19 Pandemic, the <a href="https://juliacon.org/2020/committee.html">organizing committee</a> made the decision to move the conference from Lisbon, Portugal into a <a href="https://discourse.julialang.org/t/juliacon-2020-is-going-virtual/38327">completely virtual experience</a>. This virtual format presented many challenges that we had to move quickly to solve. Avik and Jane &#40;co-Chairs of JuliaCon&#41; detailed some of the thinking and rationale for the high level design decisions that were made for this year&#39;s JuliaCon in the <a href="https://www.youtube.com/watch?v&#61;hbHmH0fezjs">final episode of the inaugural JuliaCon podcast</a>.</p>
+<p>Before we go further and summarize the outcomes of this year&#39;s JuliaCon, it is important to acknowledge the tremendous amount of work done by our organizing committee, moderators, speakers, and sponsors that enabled this year to be a success despite the new virtual format.</p>
+<h2 id="outcomes"><a href="#outcomes" class="header-anchor">Outcomes</a></h2>
+<p>JuliaCon 2020 had over 10,000 conference registrations this year with over 1,000 of those people joining us on the official conference discussion forum on Discord. The <a href="https://www.youtube.com/user/JuliaLanguage">Julia Language Youtube channel</a> registered 28,900 unique viewers during the conference &#40;up from 9,500 unique viewers during JuliaCon 2019&#41; from 78 countries, representing a tripling in size. The JuliaCon website itself had over 20,000 unique visitors. We are also pleased to report that according to Google Analytics, over 21&#37; of the unique visitors were identified as female which may have potentially been as a result of concerted efforts to engage with and invite people from underrepresented groups in tech to attend JuliaCon. This effort will continue and grow into next year&#39;s conference with a focus on inviting diverse folks from specific technical backgrounds where Julia can benefit their work.</p>
+<p>This year, we created more than <a href="https://www.youtube.com/playlist?list&#61;PLP8iPy9hna6Tl2UHTrm4jnIYrLkIcAROR">164 YouTube videos for the conference</a> including talks, workshops, and sponsor addresses. This was an increase from <a href="https://www.youtube.com/playlist?list&#61;PLP8iPy9hna6StY9tIJIUN3F_co9A0zh0H">last year&#39;s 116 videos</a>. In general, we were also more selective in choosing talks for 2020, compared to 2019.</p>
+<p>In order to provide a strong online experience, we designed a web app to deliver a unique JuliaCon viewing experience. Travis DePrato and <a href="https://github.com/JuliaCon/juliacon-webapp/graphs/contributors">other community members</a> were tasked last minute with delivering the web app and they did so brilliantly. It was hosted on <a href="https://live.juliacon.org">https://live.juliacon.org</a> and we plan to leverage it for future JuliaCons &#40;regardless of virtual or physical format&#41;.</p>
+<p>As previously mentioned, this year&#39;s JuliaCon featured the first iteration of the <a href="https://www.youtube.com/watch?v&#61;sECiJ59hPXg">JuliaCon Podcast</a> hosted by Keno Fischer, Huda Nassar, and Nathan Daly featuring guests from all over the Julia Community. The videos were also graciously edited by Elliot Saba.</p>
+<p>Being virtual, we didn&#39;t want to miss out on the chance encounters, discussions, and general intermingling of attendees that the <em>hallway track</em> usually provides. A dedicated JuliaCon <a href="https://gather.town">gather.town</a> space was setup that stayed live throughout the event, with scheduled socials each day and a total of 788 unique users entering the space. The ability to form face-to-face group discussions so easily and fluidly facilitated a lot of inclusive discussion and fun that would&#39;ve otherwise been missed. Thanks to the team at gather.town for hosting us&#33; A minecraft server was also setup with a mini Lisbon town center to give attendees a feel for the city where JuliaCon would have been held.</p>
+<p>In the effort to bring the JuliaCon experience from virtual to material, we launched a <a href="https://www.bonfire.com/store/the-julia-language/">JuliaCon 2020 T-shirt and Mug store</a>. These items helped raise ~4,000 USD which helps offset the lost funds due to the conference being free this year. The money will be used to cover AV/Technical expenses and any excess funds will be transferred to the Julia Language&#39;s account with NumFOCUS which helps fund core Julia Language infrastructure and outreach programs like Julia Summer of Code and our upcoming Julia Season of Docs.</p>
+<p>We would be remiss to not mention the strong support of our fiscal and media partners for this year&#39;s JuliaCon. Without them, running a conference like JuliaCon would not be feasible so we are extremely grateful for our veteran and new sponsors alike.</p>
+<p><img src="/previews/PR2509/assets/blog/2020-08-10-JuliaCon/JuliaCon2020Sponsors.png" alt="JuliaCon Sponsors" /></p>
+<p>The final thanks goes to you, the JuliaCon conference attendees and community members. Without so much interest and support from the community, JuliaCon would not be what it is. Despite not being in person and getting to enjoy Lisbon, JuliaCon 2020 was a massive success. We look forward to next year&#39;s conference being better than ever. Do check out these blog posts by <a href="https://ahsmart.com/pub/juliacon2020/">Tom Kwong</a>, <a href="https://bkamins.github.io/julialang/2020/08/07/production-ready.html">Bogumił Kamiński</a>, and <a href="https://invenia.github.io/blog/2020/08/12/juliacon/">InveniaLabs</a> for a view from the attendees.</p>
+<p>~ The JuliaCon Organizing Committee</p>
+<p>If you attended JuliaCon 2020 and want to provide feedback, please do so <a href="https://docs.google.com/forms/d/e/1FAIpQLScgNSNxgBMEQmNC1jYCmXPgCGssdvv-nI1okD_pwU12__4CWw/viewform">here</a>.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2509/project">About</a></li>
+        <li><a href="/previews/PR2509/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2509/governance/">Governance</a></li>
+        <li><a href="/previews/PR2509/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2509/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2509/downloads">Install</a></li>
+        <li><a href="/previews/PR2509/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2509/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2509/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2509/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2509/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2509/community/">Community</a></li>
+        <li><a href="/previews/PR2509/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2509/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2509/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2509/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2509/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2509/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2509/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>
