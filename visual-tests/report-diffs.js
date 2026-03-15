@@ -51,7 +51,7 @@ function generateComment(diffs) {
 
   const lines = [
     "## Visual Regression Check",
-    `Visual changes have been detected on the following pages: **${pages.join("**, **")}**.`,
+    `Visual changes have been detected on the following pages: **${pages.join("**, **")}**. These changes may or may not be expected — please review. Note that only [main pages](../visual-tests/pages.spec.ts) are checked.`,
     artifactUrl
       ? `Download the [visual-test-results](${artifactUrl}) artifact for before/after/diff images.`
       : "Download the **visual-test-results** artifact for before/after/diff images.",
