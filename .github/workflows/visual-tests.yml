@@ -66,8 +66,12 @@ jobs:
       - name: Save PR visual-tests
         run: cp -r visual-tests /tmp/visual-tests
 
-      - name: Checkout main branch for baseline
-        run: git checkout ${{ github.event.pull_request.base.sha }}
+      - name: Find merge base
+        id: merge-base
+        run: echo "sha=$(git merge-base ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})" >> $GITHUB_OUTPUT
+
+      - name: Checkout base commit for baseline
+        run: git checkout ${{ steps.merge-base.outputs.sha }}
 
       - name: Restore PR visual-tests
         run: |
