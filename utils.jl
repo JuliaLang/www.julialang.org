@@ -55,9 +55,10 @@ Plug in the list of blog posts contained in the `/blog/` folder.
 function hfun_blogposts()
     curyear = year(Dates.today())
     io = IOBuffer()
-    for year in curyear:-1:2012
-        ys = "$year"
-        year < curyear && write(io, "\n**$year**\n")
+    alt = false  # track alternating background
+    for yr in curyear:-1:2012
+        ys = "$yr"
+        year_posts = IOBuffer()
         for month in 12:-1:1
             ms = "0"^(month < 10) * "$month"
             base = joinpath("blog", ys, ms)
@@ -83,16 +84,31 @@ function hfun_blogposts()
                     date    = Date(pubdate, dateformat"d U Y")
                     days[i] = day(date)
                 end
-                lines[i] = "\n[$title]($url) $date \n"
+                lines[i] = "<a href=\"$url\">$title</a> $date"
             end
             # sort by day
-            foreach(line -> write(io, line), lines[sortperm(days, rev=true)])
+            foreach(line -> write(year_posts, "<p>$line</p>\n"), lines[sortperm(days, rev=true)])
         end
+        year_html = String(take!(year_posts))
+        isempty(year_html) && continue
+        bg = alt ? "container-fluid alt-color packages" : "container pt-sm-2"
+        alt = !alt
+        write(io, """
+        <div class="$bg"><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+              <div class="col-lg-4 col-md-6 language-features section-heading">
+                <h2 class="lead secondary-heading">$yr</h2>
+              </div>
+              <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+            </div>
+            <div class="grid">$year_html</div>
+          </div>
+        <br></div>
+        """)
     end
-    # markdown conversion adds `<p>` beginning and end but
-    # we want to  avoid this to avoid an empty separator
-    r = Franklin.fd2html(String(take!(io)), internal=true)
-    return r
+    return String(take!(io))
 end
 
 """
