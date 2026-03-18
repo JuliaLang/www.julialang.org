@@ -2327,25 +2327,6 @@
 
 <item>
   <title>
-    <![CDATA[  Stanford Talk Video  ]]>
-  </title>
-  <link> https://julialang.org/blog/2012/03/stanford-talk-video/index.html </link>
-  <guid> https://julialang.org/blog/2012/03/stanford-talk-video/index.html </guid>
-  <description>
-    <![CDATA[  Stanford Talk Video | Jeff gave his <a href="https://julialang.org/blog/2012/02/talk-announcement/">previously announced</a>, invited talk at Stanford yesterday and the video is available here &#40;https://ee380.stanford.edu/cgi-bin/videologger.php?target&#61;120229-ee380-300.asx&#41;....   ]]>
-  </description>  
-    
-  <pubDate>Thu, 01 Mar 2012 00:00:00 +0000</pubDate>  
-  
-  
-  <atom:author>
-    <atom:name><a href="https://karpinski.org/">Stefan Karpinski</a></atom:name>
-  </atom:author>
-        
-</item>
-
-<item>
-  <title>
     <![CDATA[  Stanford Talk Announcement  ]]>
   </title>
   <link> https://julialang.org/blog/2012/02/talk-announcement/index.html </link>
