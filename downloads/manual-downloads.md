@@ -1,11 +1,21 @@
 @def title = "Manual Downloads"
 
-# Manual Downloads
+~~~
+<div class="container pt-sm-2">
+  <div class="row">
+    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    <div class="col-lg-4 col-md-6 language-features section-heading">
+      <h2 class="lead secondary-heading">Current Stable Release</h2>
+    </div>
+    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+  </div>
+  <br>
+~~~
 
 \note{Use juliaup for typical installations}{See the [installation instructions](/downloads/) on using `juliaup` to install the official Julia binaries. Users who are unable to use `juliaup` or require a specific, atypical setup may manually download and install the binaries from this page. If these binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).}
 
 ~~~
-<h2 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h2>
+<h3 id="current_stable_release"><a href="#current_stable_release">v{{stable_release}} ({{stable_release_date}})</a></h3>
 ~~~
 
 [Release notes](https://github.com/JuliaLang/julia/blob/v{{stable_release}}/NEWS.md) | [GitHub tag](https://github.com/JuliaLang/julia/releases/tag/v{{stable_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5)
@@ -95,10 +105,25 @@ Almost everyone should be downloading and using the latest stable release of Jul
 Great care is taken not to break compatibility with older Julia versions, so older code should continue to work with the latest stable Julia release.
 You should *only* be using the long-term support (LTS) version of Julia if you work at an organization where implementing or certifying upgrades is prohibitively expensive and there is no need for new language features or packages. See this description of ["Risk Personas"](/blog/2019/08/release-process/#risk_tolerance_personas) for more detail on who should be using what versions of Julia based on their risk tolerance. See this blog post on [Julia's Release Process](/blog/2019/08/release-process/) for more information on different kinds of releases.
 
+~~~
+<br>
+</div>
 
+<div class="container-fluid alt-color packages">
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+      <div class="col-lg-4 col-md-6 language-features section-heading">
+        <h2 class="lead secondary-heading">Long-term Support Release</h2>
+      </div>
+      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    </div>
+    <br>
+~~~
 
 ~~~
-<h2 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h2>
+<h3 id="long_term_support_release"><a href="#long_term_support_release">v{{lts_release}} ({{lts_release_date}})</a></h3>
 ~~~
 
 [Release notes](https://github.com/JuliaLang/julia/blob/v{{lts_release}}/NEWS.md) | [GitHub tag](https://github.com/JuliaLang/julia/releases/tag/v{{lts_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5)
@@ -182,13 +207,31 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
 ~~~
 @@ @@
 
+~~~
+    <br>
+  </div>
+</div>
+~~~
+
 {{ifdef upcoming_release}}
 
 ~~~
-<h2 id=upcoming_release><a href="#upcoming_release">Upcoming release: v{{upcoming_release}} ({{upcoming_release_date}})</a></h2>
+<div class="container pt-sm-2">
+  <div class="row">
+    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    <div class="col-lg-4 col-md-6 language-features section-heading">
+      <h2 class="lead secondary-heading">Upcoming Release</h2>
+    </div>
+    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+  </div>
+  <br>
 ~~~
 
 We're currently testing a prerelease for Julia v{{upcoming_release_short}}, an upcoming minor release in the 1.x series of releases. We encourage developers and interested users to try it out and report any issues they encounter. As a prerelease, it should not be considered production-ready; it's intended to give users a chance to try out {{upcoming_release_short}} with their code before the full release.
+
+~~~
+<h3 id="upcoming_release"><a href="#upcoming_release">v{{upcoming_release}} ({{upcoming_release_date}})</a></h3>
+~~~
 
 [Release notes](https://github.com/JuliaLang/julia/blob/v{{upcoming_release}}/NEWS.md) | [GitHub tag](https://github.com/JuliaLang/julia/releases/tag/v{{upcoming_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.md5)
 
@@ -273,8 +316,6 @@ We're currently testing a prerelease for Julia v{{upcoming_release_short}}, an u
 ~~~
 @@ @@
 
-{{end}} <!-- upcoming_release -->
-
 <!-- NOTE: Uncomment this if/when any of the musl links above get uncommented
 \label{musl-fn}
 ~~~
@@ -283,26 +324,56 @@ We're currently testing a prerelease for Julia v{{upcoming_release_short}}, an u
 Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.
 -->
 
-## Supported platforms and tiers
+~~~
+<br>
+</div>
+~~~
+
+{{end}} <!-- upcoming_release -->
+
+~~~
+<div class="container-fluid alt-color packages">
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+      <div class="col-lg-4 col-md-6 language-features section-heading">
+        <h2 class="lead secondary-heading">Supported Platforms</h2>
+      </div>
+      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    </div>
+    <br>
+~~~
 
 Julia supports all the major operating systems, but specific versions and architectures have different [tiers of support](/downloads/support).
 
-## Avoid external package managers
-
 Please do not use Julia shipped by Linux or BSD package managers. Many Linux/BSD/Unix package managers ship broken and/or significantly out of date versions of Julia. Please use [`juliaup`](/downloads) or download the official binaries instead.
 
-### Older Releases
+~~~
+    <br>
+  </div>
+</div>
 
-Older releases of Julia for all platforms are available on the [Older releases page](/downloads/oldreleases/). Only the LTS and Stable releases are maintained.
+<div class="container pt-sm-2">
+  <div class="row">
+    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    <div class="col-lg-4 col-md-6 language-features section-heading">
+      <h2 class="lead secondary-heading">Additional Resources</h2>
+    </div>
+    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+  </div>
+  <br>
+~~~
 
-### Nightly Builds
+**Older Releases** — Older releases of Julia for all platforms are available on the [Older releases page](/downloads/oldreleases/). Only the LTS and Stable releases are maintained.
 
-Builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). While the name suggests that they are built every night, they are actually built after each commit to master. However, at times due to broken builds or CI infrastructure issues, nightlies may not be produced. These are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current stable release version of Julia.
+**Nightly Builds** — Builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). While the name suggests that they are built every night, they are actually built after each commit to master. However, at times due to broken builds or CI infrastructure issues, nightlies may not be produced. These are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current stable release version of Julia.
 
-### Download verification
+**Download verification** — All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using [this key](/assets/juliareleases.asc).
 
-All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using [this key](/assets/juliareleases.asc).
+**JSON release feed** — The info above is also available as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)). It may take up to two hours after the release of a new version for it to be included in the JSON file.
 
-### JSON release feed
-
-The info above is also available as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)). It may take up to two hours after the release of a new version for it to be included in the JSON file.
+~~~
+<br>
+</div>
+~~~
