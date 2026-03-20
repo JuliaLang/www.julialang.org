@@ -123,7 +123,7 @@
 
 /* Specific colours for code highlighting */
 
-.hljs-metaj, .hljs-metas, .hljs-metap { font-weight: bold; }
+.hljs-metaj, .hljs-metas, .hljs-metap { font-weight: 700; }
 
 .hljs-meta  { color: #b14e8f; } /* @... */
 .hljs-metaj { color: rgb(25, 179, 51); }  /* julia> */

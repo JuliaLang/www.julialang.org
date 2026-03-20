@@ -425,7 +425,7 @@ body {
 
 .footer-copy li:first-child a {
   font-size: 110%;
-  font-weight: bold;
+  font-weight: 700;
   color: #7a95dd;
 }
 .footer-copy #footer-bottom {
@@ -1172,23 +1172,23 @@ pre .bash-block::before {
 
 .code-content .repl-prompt {
   color: rgb(25, 179, 51);
-  font-weight: bold;
+  font-weight: 700;
   user-select: none;
 }
 
 .code-content .repl-pkg {
   color: rgb(51, 131, 231);
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .code-content .repl-shell {
   color: rgb(203, 60, 51);
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .code-content .repl-help {
   color: rgb(230, 181, 32);
-  font-weight: bold;
+  font-weight: 700;
 }
 
 @media (max-width: 767px) {
