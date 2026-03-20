@@ -49,15 +49,15 @@
         {{end}}
       </div>
       <div class="blog-title-meta">
-        <p style="font-size: 1.17em; margin-top: 0;">
+        <p>
           {{isdef published}}
-            <span style="font-weight: lighter;">{{fill published}}</span> |
+            <span class="blog-meta-date">{{fill published}}</span> |
           {{end}}
           {{isdef author}}
-            <span style="font-weight: bold;">{{fill author}}{{author_twitter}}</span>
+            <span class="blog-meta-author">{{fill author}}{{author_twitter}}</span>
           {{end}}
           {{isdef authors}}
-            <span style="font-weight: bold;">{{fill authors}}</span>
+            <span class="blog-meta-author">{{fill authors}}</span>
           {{end}}
         </p>
       </div>

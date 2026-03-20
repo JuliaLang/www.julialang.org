@@ -54,7 +54,18 @@
 .container.blog-title h3 {
   margin-top: 0.3em;
   margin-bottom: 1em;
-  font-size: 18px;
+  font-size: 1.125rem;
+}
+
+.blog-title-meta p {
+  font-size: 1.125rem;
+  margin-top: 0;
+}
+.blog-meta-date {
+  font-weight: 300;
+}
+.blog-meta-author {
+  font-weight: 500;
 }
 
 .author-info {

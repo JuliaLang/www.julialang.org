@@ -74,16 +74,16 @@ body {
 
 .main-heading {
   font-weight: 300;
-  font-size: 46px;
+  font-size: 2.875rem;
 }
 .secondary-heading {
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1.125rem;
   margin-bottom: 50px;
 }
 
 .extra-link {
-  font-size: 12px;
+  font-size: 0.75rem;
   text-decoration: none !important;
 }
 
@@ -97,7 +97,7 @@ body {
 
 .section-heading .lead {
   font-weight: 400;
-  font-size: 28px;
+  font-size: 1.75rem;
   color: #4D64AE;
 }
 .section-heading .lead a {
@@ -109,7 +109,7 @@ body {
 }
 .section-heading h5 {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .feature {
@@ -120,10 +120,10 @@ body {
   padding-bottom: 5px;
   font-weight: 500;
   color: #4D64AE;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 .feature p {
-  font-size: 16px;
+  font-size: 1rem;
   text-align: left;
 }
 .feature .outer-link {
@@ -145,7 +145,7 @@ body {
 #ecosystem-tab .nav-item a {
   padding: 18px 0;
   border: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #545454;
 }
 #ecosystem-tab .nav-item a.active {
@@ -219,7 +219,7 @@ body {
   text-align: left;
 }
 .blog h3 {
-  font-size: 18px;
+  font-size: 1.125rem;
   margin-bottom: 0;
 }
 .blog h3 a {
@@ -228,7 +228,7 @@ body {
   min-height: 42px;
 }
 .blog .article-date {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #545454;
 }
 .blog p {
@@ -236,11 +236,11 @@ body {
   margin-top: 10px;
   padding-top: 10px;
   margin-bottom: 0px;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .social-network {
-  font-size: 14px;
+  font-size: 0.875rem;
   background-position: top left;
   background-repeat: no-repeat;
   padding-left: 60px;
@@ -248,7 +248,7 @@ body {
   border-bottom: 1px solid #ccc;
 }
 .social-network h4 {
-  font-size: 16px;
+  font-size: 1rem;
 }
 .social-network.discourse {
   background-image: url("../img/discourse.png");
@@ -455,7 +455,7 @@ h4.card-title {
 
 .tab-title {
   background-color: #CA3C32;
-  font-size: 16px;
+  font-size: 1rem;
   padding: 18px 20px;
   border: 0;
   font-weight: 400;
@@ -531,7 +531,7 @@ a.header-anchor {
 }
 
 #ecosystem-tab-content div.tab-pane div.code-sample p {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 img.ecosystem-image,
@@ -561,7 +561,7 @@ img.ecosystem-image-tall {
 }
 
 .page-heading .secondary-heading {
-  font-size: 28px;
+  font-size: 1.75rem;
   margin-bottom: 2rem;
 }
 
@@ -595,18 +595,18 @@ img {
 
 h1 {
   font-weight: 400;
-  font-size: 36px;
+  font-size: 2.25rem;
 }
 h2 {
   font-weight: 400;
-  font-size: 32px;
+  font-size: 2rem;
 }
 h3 {
   font-weight: 400;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 h4 {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 a {
@@ -663,7 +663,7 @@ blockquote p {
 }
 
 #top-alert .alert-text {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 #top-alert .alert-text a:first-child {
@@ -685,7 +685,7 @@ blockquote p {
     text-align: left;
   }
   #top-alert p {
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.4;
     text-align: left;
   }
@@ -734,7 +734,7 @@ pre {
 
 @media (max-width: 575px) {
   .main-heading {
-    font-size: 36px;
+    font-size: 2.25rem;
   }
 }
 
@@ -815,7 +815,7 @@ table tr td {
 .copy-button {
   cursor: pointer;
   border: 0;
-  font-size: 10px;
+  font-size: 0.625rem;
   text-transform: uppercase;
   font-weight: 500;
   padding: 6px 10px 10px;
@@ -1023,7 +1023,7 @@ pre .bash-block::before {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.8);
   color: #888;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 32px;
   text-align: center;
   padding: 0;
@@ -1148,7 +1148,7 @@ pre .bash-block::before {
 .code-title {
   color: #666;
   font-family: 'JuliaMono', Monaco, 'Consolas', monospace;
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-left: 10px;
 }
 
@@ -1164,7 +1164,7 @@ pre .bash-block::before {
 
 .code-content code {
   font-family: 'JuliaMono', Monaco, 'Consolas', monospace;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.6;
   font-variant-ligatures: none;
 }
@@ -1199,7 +1199,7 @@ pre .bash-block::before {
     height: 260px;
   }
   .code-content code {
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
   .carousel-slide {
     padding: 0 8px;
