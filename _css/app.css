@@ -931,7 +931,7 @@ pre .bash-block::before {
   justify-content: center;
   width: 100%;
   overflow: hidden;
-  padding: 20px 0 0;
+  padding: 0;
 }
 
 .code-carousel-container::before,
