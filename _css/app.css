@@ -73,7 +73,7 @@ body {
 }
 
 .main-heading {
-  font-weight: 100;
+  font-weight: 300;
   font-size: 46px;
 }
 .secondary-heading {
@@ -96,8 +96,13 @@ body {
 }
 
 .section-heading .lead {
-  font-weight: 700;
+  font-weight: 400;
   font-size: 28px;
+  color: #4D64AE;
+}
+.section-heading .lead a {
+  color: #4D64AE;
+  text-decoration: none;
 }
 .section-heading h2 {
   margin-bottom: 10px;
@@ -113,7 +118,7 @@ body {
 .feature h4 {
   text-align: left;
   padding-bottom: 5px;
-  font-weight: 700;
+  font-weight: 500;
   color: #4D64AE;
   font-size: 18px;
 }
@@ -127,7 +132,7 @@ body {
 
 .ecosystem {
   text-align: center;
-  color: #CA3C32;
+  color: #4D64AE;
 }
 
 .alt-color {
@@ -165,7 +170,7 @@ body {
   padding-top: 20px;
 }
 .ecosystem hr {
-  background-color: #CA3C32;
+  background-color: #4D64AE;
 }
 
 .ide, .blog {
@@ -552,7 +557,7 @@ img.ecosystem-image-tall {
 }
 
 .page-heading .main-heading {
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .page-heading .secondary-heading {
@@ -589,7 +594,7 @@ img {
 }
 
 h1 {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 36px;
 }
 h2 {
@@ -597,7 +602,7 @@ h2 {
   font-size: 32px;
 }
 h3 {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 24px;
 }
 h4 {
@@ -698,7 +703,7 @@ blockquote p {
 }
 
 code, table.benchmarks tbody {
-  font-family: Monaco, 'Consolas', monospace;
+  font-family: 'JuliaMono', Monaco, 'Consolas', monospace;
 }
 
 code.has-jax {
@@ -1142,7 +1147,7 @@ pre .bash-block::before {
 
 .code-title {
   color: #666;
-  font-family: Monaco, 'Consolas', monospace;
+  font-family: 'JuliaMono', Monaco, 'Consolas', monospace;
   font-size: 12px;
   margin-left: 10px;
 }
@@ -1584,7 +1589,7 @@ pre .bash-block::before {
   color: var(--dm-accent-blue);
 }
 [data-theme="dark"] .ecosystem hr {
-  background-color: var(--dm-accent-red);
+  background-color: var(--dm-accent-blue);
 }
 [data-theme="dark"] .language-features hr {
   background-color: var(--dm-accent-blue);
@@ -1593,7 +1598,10 @@ pre .bash-block::before {
   color: var(--dm-accent-blue);
 }
 [data-theme="dark"] .ecosystem {
-  color: var(--dm-accent-red);
+  color: var(--dm-accent-blue);
+}
+[data-theme="dark"] .section-heading .lead a {
+  color: var(--dm-accent-blue);
 }
 
 /* Dark: Pluto packages */
