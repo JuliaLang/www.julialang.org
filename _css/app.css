@@ -371,12 +371,12 @@ body {
   z-index: 0;
 }
 
-.juliacon-links {
+.section-links {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.juliacon-links .btn {
+.section-links .btn {
   margin: 0.5rem;
   padding: 0.625rem 1.5rem;
   font-size: 1rem;
@@ -387,7 +387,7 @@ body {
     font-size: 1rem;
     margin-bottom: 1.5rem;
   }
-  .juliacon-links .btn {
+  .section-links .btn {
     display: block;
     width: 90%;
     margin: 0.5rem auto;
@@ -1725,7 +1725,7 @@ pre .bash-block::before {
 [data-theme="dark"] .juliacon-description {
   color: var(--dm-text-muted);
 }
-[data-theme="dark"] .juliacon-links .btn-primary {
+[data-theme="dark"] .section-links .btn-primary {
   background-color: #3a5fad;
   border-color: #3a5fad;
 }
