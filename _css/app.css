@@ -13,17 +13,16 @@ body {
 }
 #main-menu .nav-item {
   padding: 12px 8px;
-  border-bottom: 2px solid transparent;
 }
 #main-menu .nav-item:hover {
   background-color: #eee;
 }
 #main-menu .nav-item.donate:hover {
   background-color: #fff;
-  border-bottom: 0;
 }
-#main-menu .nav-item.active {
-  border-bottom-color: #ca3c32;
+#main-menu .nav-item.active .nav-link::after {
+  width: 100%;
+  left: 0;
 }
 .navbar-light .navbar-nav .nav-link {
   color: inherit;
