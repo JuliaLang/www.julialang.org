@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-lg-4 col-md-3 language-features"><hr/></div>
     <div class="col-lg-4 col-md-6 language-features section-heading">
-      <h2 class="lead secondary-heading">The Julia Blog</h2>
+      <h2 class="lead secondary-heading">The Julia Language Blog</h2>
     </div>
     <div class="col-lg-4 col-md-3 language-features"><hr/></div>
   </div>
