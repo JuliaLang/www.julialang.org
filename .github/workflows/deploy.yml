@@ -1,0 +1,89 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main # only trigger deployment upon pushes to main branch
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Install SSH Client
+        if: github.event_name != 'pull_request' || github.repository == github.event.pull_request.head.repo.full_name # if this build is NOT a PR build, OR if this build is a PR build and the PR is NOT from a fork
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Fix URLs for PR preview deployment (pull request previews)
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "JULIA_FRANKLIN_WEBSITE_URL=https://julialang.netlify.app/previews/PR${{ github.event.number }}/" >> $GITHUB_ENV
+          echo "JULIA_FRANKLIN_PREPATH=previews/PR${{ github.event.number }}" >> $GITHUB_ENV
+
+      - run: echo $JULIA_FRANKLIN_WEBSITE_URL
+
+      - run: echo $JULIA_FRANKLIN_PREPATH
+
+      # Python is necessary for pre-rendering steps as well as to install
+      # matplotlib which is necessary if you intend to use PyPlot. If you do
+      # not, then you can remove the `run: pip install matplotlib` line.
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: Install Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: 1.6
+
+      # This ensures that NodeJS and Franklin are loaded then it installs
+      # highlight.js which is needed for the prerendering step.
+      # Then the environment is activated and instantiated to install all
+      # Julia packages which may be required to successfully build your site.
+      # NOTE: the last line should be `optimize()`, you may want to give it
+      # specific arguments, see the documentation or ?optimize in the REPL.
+      - name: Build site
+        run: |
+          julia --color=yes --project -e '
+              using Pkg; Pkg.instantiate();
+              using NodeJS; run(`$(npm_cmd()) install highlight.js`);
+              using Franklin;
+              Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
+              Franklin.optimize(prerender=true, minify=false);
+              cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))' > build.log
+          cat build.log
+
+      - name: Validate output
+        run: |
+          if grep -1 "Franklin Warning" build.log; then
+            echo "Franklin reported a warning; exiting"
+            exit 1
+          else
+            echo "Franklin did not report a warning"
+          fi
+
+      - name: Deploy (preview)
+        if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name # if this build is a PR build and the PR is NOT from a fork
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-preview
+          folder: __site
+          ssh-key: true
+          target-folder: "previews/PR${{ github.event.number }}"
+
+      - name: Deploy (main)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          ssh-key: true
+          branch: gh-pages
+          folder: __site
