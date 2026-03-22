@@ -161,10 +161,12 @@ function hfun_recentblogposts()
         blurb = pagevar(surl, :rss_description)
         blurb = blurb === nothing ? "" : "<p>$blurb</p>"
         write(io, """
-            <div class="col-lg-4 col-md-12 blog">
-              <h3><a href="$url" class="title" data-proofer-ignore>$title</a>
-              </h3><span class="article-date">$sdate</span>
-              $blurb
+            <div class="col-lg-4 col-md-12">
+              <a class="blog" href="$url" data-proofer-ignore>
+                <h3 class="title">$title</h3>
+                <span class="article-date">$sdate</span>
+                $blurb
+              </a>
             </div>
             """)
     end

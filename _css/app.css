@@ -173,17 +173,35 @@ body {
   background-color: #4D64AE;
 }
 
-.ide, .blog {
-  background-color: #F2F2F2;
-  border-left: 20px solid #fff;
-  border-right: 20px solid #fff;
+.ide-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding: 20px;
-  text-align: center;
-  border-bottom: 20px solid #fff;
+  height: 100%;
+  background-color: #F2F2F2;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-
-.ide-feature {
-  text-align: center;
+.ide-tile:hover {
+  background-color: #eaedfa;
+  box-shadow: 0 4px 16px rgba(77, 100, 174, 0.15);
+  transform: translateY(-2px);
+  color: #333;
+  text-decoration: none;
+}
+.ide-tile strong {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+.ide-tile span {
+  font-size: 0.8rem;
+  color: #4D64AE;
 }
 
 .editor-icon {
@@ -216,15 +234,27 @@ body {
 }
 
 .blog {
+  display: block;
   text-align: left;
+  height: 100%;
+  background-color: #F2F2F2;
+  padding: 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.blog:hover {
+  background-color: #eaedfa;
+  box-shadow: 0 4px 16px rgba(77, 100, 174, 0.15);
+  transform: translateY(-2px);
+  color: inherit;
+  text-decoration: none;
 }
 .blog h3 {
   font-size: 1.125rem;
   margin-bottom: 0;
-}
-.blog h3 a {
   color: #4D64AE;
-  display: block;
   min-height: 42px;
 }
 .blog .article-date {
@@ -1445,14 +1475,29 @@ pre .bash-block::before {
 [data-theme="dark"] .alt-color {
   background-color: var(--dm-bg-deep);
 }
-[data-theme="dark"] .ide,
+[data-theme="dark"] .ide-tile,
 [data-theme="dark"] .blog {
   background-color: var(--dm-bg-surface);
-  border-left: 20px solid var(--dm-bg);
-  border-right: 20px solid var(--dm-bg);
-  border-bottom: 20px solid var(--dm-bg);
 }
-[data-theme="dark"] .blog h3 a {
+[data-theme="dark"] .ide-tile {
+  color: var(--dm-text);
+}
+[data-theme="dark"] .ide-tile strong { color: var(--dm-text); }
+[data-theme="dark"] .ide-tile span { color: var(--dm-accent-blue); }
+[data-theme="dark"] .ide-tile:hover {
+  background-color: var(--dm-bg-elevated);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  color: var(--dm-text);
+}
+[data-theme="dark"] .blog {
+  color: var(--dm-text);
+}
+[data-theme="dark"] .blog:hover {
+  background-color: var(--dm-bg-elevated);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  color: var(--dm-text);
+}
+[data-theme="dark"] .blog h3 {
   color: var(--dm-accent-blue);
 }
 [data-theme="dark"] .blog p {
@@ -1745,10 +1790,17 @@ pre .bash-block::before {
 [data-theme="dark"] .page-heading .btn-success {
   background-color: #2ea043;
   border-color: #2ea043;
+  color: #fff;
 }
 [data-theme="dark"] .page-heading .btn-primary {
   background-color: #3a5fad;
   border-color: #3a5fad;
+  color: #fff;
+}
+[data-theme="dark"] .page-heading .btn-primary:hover {
+  background-color: #4d72c4;
+  border-color: #4d72c4;
+  color: #fff;
 }
 
 /* Dark: JuliaCon section */
@@ -1765,6 +1817,12 @@ pre .bash-block::before {
 [data-theme="dark"] .section-links .btn-primary {
   background-color: #3a5fad;
   border-color: #3a5fad;
+  color: #fff;
+}
+[data-theme="dark"] .section-links .btn-primary:hover {
+  background-color: #4d72c4;
+  border-color: #4d72c4;
+  color: #fff;
 }
 
 /* Dark: Packages section buttons */
