@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{isdef pagelang}}{{fill pagelang}}{{else}}en{{end}}">
 <head>
-	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<script>(function(){var t=localStorage.getItem('julia-theme'),d=t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');var l=document.createElement('link');l.rel='preload';l.as='image';l.setAttribute('fetchpriority','high');l.href='/assets/infra/'+(d?'logo-dark':'logo')+'.svg';document.head.appendChild(l);})()</script>
 	<!-- parts for all pages -->
 	{{insert meta.html}}
 

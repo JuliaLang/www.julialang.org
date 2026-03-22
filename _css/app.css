@@ -883,13 +883,54 @@ pre .bash-block::before {
 .navbar-action-buttons {
   align-items: center;
 }
-.navbar-action-buttons span {
-  display: flex !important;
-  align-items: center;
-}
-.navbar-action-buttons .github-button {
+
+.gh-nav-btn {
   display: inline-flex;
   align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #25292e;
+  text-decoration: none;
+  background: linear-gradient(180deg, #f6f8fa, #ebf0f4 90%);
+  border: 1px solid #d1d9e0;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.gh-nav-btn:hover,
+.gh-nav-btn:focus-visible {
+  background: linear-gradient(180deg, #eff2f5, #e5eaee 90%);
+  color: #25292e;
+}
+
+.gh-nav-btn svg {
+  flex-shrink: 0;
+}
+
+.gh-nav-heart {
+  color: #bf3989;
+}
+
+[data-theme="dark"] .gh-nav-btn {
+  color: #f0f6fc;
+  background: linear-gradient(180deg, #212830, #1a2026 90%);
+  border-color: #3d444d;
+}
+
+[data-theme="dark"] .gh-nav-btn:hover,
+[data-theme="dark"] .gh-nav-btn:focus-visible {
+  background: linear-gradient(180deg, #262c36, #1f242c 90%);
+  color: #f0f6fc;
+}
+
+[data-theme="dark"] .gh-nav-heart {
+  color: #db61a2;
 }
 
 .nav-link {
@@ -1233,11 +1274,7 @@ pre .bash-block::before {
   border-color: #b93530;
 }
 
-/* Reserve space for GitHub buttons to prevent CLS when iframes load */
-.github-button {
-  min-height: 28px;
-  display: inline-block;
-}
+
 
 /* Improve mobile menu styles */
 @media (max-width: 991.98px) {
