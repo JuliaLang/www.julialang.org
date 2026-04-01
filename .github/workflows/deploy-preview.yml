@@ -46,7 +46,7 @@ jobs:
 
       - name: Set deploy status (pending)
         if: steps.download-meta.outcome == 'success'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const prNumber = '${{ steps.meta.outputs.pr_number }}';
@@ -92,7 +92,7 @@ jobs:
       # workflow's check suite.  The "Details" link points to the preview URL.
       - name: Set deploy status
         if: always() && steps.download-meta.outcome == 'success'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const prNumber = '${{ steps.meta.outputs.pr_number }}';
