@@ -21,7 +21,7 @@ jobs:
 
       - name: Install SSH Client
         if: github.event_name != 'pull_request'
-        uses: webfactory/ssh-agent@v0.9.1
+        uses: webfactory/ssh-agent@v0.10.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
