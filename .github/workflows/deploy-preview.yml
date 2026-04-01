@@ -30,7 +30,7 @@ jobs:
       github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Download PR metadata
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         id: download-meta
         continue-on-error: true
         with:
@@ -65,7 +65,7 @@ jobs:
 
       - name: Download site build
         if: steps.download-meta.outcome == 'success'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: site-build
           path: __site
