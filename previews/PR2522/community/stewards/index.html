@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme'),d=t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');var l=document.createElement('link');l.rel='preload';l.as='image';l.setAttribute('fetchpriority','high');l.href='/previews/PR2522/assets/infra/'+(d?'logo-dark':'logo')+'.svg';document.head.appendChild(l);})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2522/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background; navbar logo preloaded dynamically in head.html to pick the correct theme variant) -->
+<link rel="preload" href="/previews/PR2522/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2522/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2522/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2522/css/app.css">
+<link rel="stylesheet" href="/previews/PR2522/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2522/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2522/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2522/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Julia Community - Stewards</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2522/css/container-lists.css">
+  
+
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Julia Community - Stewards">
+<meta property="og:description" content="Official website for the Julia programming language">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2522/community/stewards/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2522/">
+          <img alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <script>document.querySelector('.navbarjulialogo').src='/previews/PR2522/assets/infra/'+(document.documentElement.getAttribute('data-theme')==='dark'?'logo-dark':'logo')+'.svg'</script>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2522/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2522/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2522/blog/">Blog</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2522/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2522/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2522/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="gh-nav-btn" href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener" aria-label="Star JuliaLang/julia on GitHub">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg>
+              Star
+            </a>
+            <a class="gh-nav-btn" href="https://github.com/sponsors/JuliaLang" target="_blank" rel="noopener" aria-label="Sponsor @JuliaLang on GitHub">
+              <svg class="gh-nav-heart" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"/></svg>
+              Sponsor
+            </a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/community/stewards.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="julia_community_-_stewards"><a href="#julia_community_-_stewards" class="header-anchor">Julia Community - Stewards</a></h1>
+<p>The spirit of community is crucial to free/open-source development. In the large majority of cases, interactions are naturally constructive, but in rare cases conflict can arise. This document explains the mechanisms for conflict reporting and resolution within the Julia community, to handle violations of the <a href="/previews/PR2522/community/standards/">Julia Community Standards</a>.</p>
+<p>&#40;Our procedures were informed in part by the <a href="https://policies.mit.edu/policies-procedures/90-relations-and-responsibilities-within-mit-community/98-complaint-resolution">Complaint Resolution Policies and Procedures at the Massachusetts Institute of Technology</a>, but are necessarily less formal given the loose nature of the Julia community.&#41;</p>
+<h2 id="stewards_of_the_community_standards"><a href="#stewards_of_the_community_standards" class="header-anchor">Stewards of the Community Standards</a></h2>
+<p>All members of the Julia community are expected to abide by the community standards and encourage others to do so. To ensure that some group has the obligation and authority to cope with conflicts, a group known as the “Julia Stewards” has been created. The current membership of this group is:</p>
+<ul>
+<li><p>Milan Bouchet-Valat</p>
+</li>
+<li><p>Simon Byrne</p>
+</li>
+<li><p>Tim Holy</p>
+</li>
+<li><p>Katharine Hyatt</p>
+</li>
+<li><p>Steven G. Johnson</p>
+</li>
+<li><p>Stefan Karpinski</p>
+</li>
+<li><p>Viral Shah</p>
+</li>
+</ul>
+<p>As needed, this group can be contacted at <a href="mailto:stewards@julialang.org">stewards@julialang.org</a>. Other than the committee listed above, there are no other recipients of emails sent to this address, and <strong>all communications shall be treated confidentially</strong>.</p>
+<h2 id="complaint_resolution"><a href="#complaint_resolution" class="header-anchor">Complaint Resolution</a></h2>
+<p><strong>No one shall be retaliated against for good-faith participation in a complaint</strong>. In general, violations of the community standards will generate one or more of the following responses from the Stewards:</p>
+<ol>
+<li><p>Informal feedback, privately and/or &#40;for public violations&#41; in the forum where a violation appeared, with the goal of encouraging good-faith contributions and mutual understanding while making offenders aware of the problem and preventing future incidents. Where possible, good intentions of the participants should be assumed.</p>
+</li>
+<li><p>Gross online violations of community standards may result in immediate deletion of the offending comments, coupled with informal feedback.</p>
+</li>
+<li><p>For severe cases, especially persistent, disruptive violations despite repeated warnings and other feedback, a formal investigation may be convened by the stewards.</p>
+<ul>
+<li><p>A consensus committee of 3&#43; disinterested stewards &#40;possibly including non-steward members&#41; shall investigate the complaint, communicating this with both the complainant &#40;if any&#41; and the respondent &#40;alleged violator&#41;.</p>
+</li>
+<li><p>The investigation shall be as confidential as possible, and this expectation shall be communicated to all participants. Identities and testimonies of participants shall, where possible, be known only to the committee.</p>
+</li>
+<li><p>The committee shall provide a private written report detailing its findings and recommendations to the stewards, complainant, and respondent. If a violation has been found, recommendations may include bans and other alterations of online privileges, or in less severe cases may request apologies and other informal resolutions.</p>
+</li>
+<li><p>The conclusions of the investigative committee are final and cannot be appealed except in cases of gross misconduct or major factual errors.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="bans"><a href="#bans" class="header-anchor">Bans</a></h2>
+<p>The public Julia forums &#40;e.g. <a href="https://discourse.julialang.org/">Discourse</a>&#41; and GitHub pages &#40;e.g. issues and pull requests&#41; are normally open forums for all good-faith contributors. In extreme cases, repeated violations of the Community Standards may lead to the banning of a contributor from one or more of these public forums. Such total bans are expected to be rare and are not to be undertaken lightly.</p>
+<p>Note that:</p>
+<ul>
+<li><p>Long-term bans shall only be undertaken in response to the recommendations of a formal investigation by the Julia stewards as described above. &#40;A temporary ban may be imposed by Julia admins in response to an urgent situation, but shall be followed by a formal investigation if the ban is to continue.&#41;</p>
+</li>
+<li><p>After a predetermined period, not to exceed six months, the banned individual may request that the ban be lifted, by acknowledging his/her past violations and providing a written plan to avoid such violations in the future. This request will typically be considered by the same committee that recommended the initial ban.</p>
+</li>
+</ul>
+<h2 id="becoming_a_steward"><a href="#becoming_a_steward" class="header-anchor">Becoming a Steward</a></h2>
+<p>The Julia Stewards were originally chosen for their long term commitment and quality contributions to the Julia community. Stewards currently serve at will and do not have a pre-defined appointment term. If a steward decides to give up their role and move on, the other stewards may seek out an individual whom they know has been a long term contributor to the Julia community. This is a high trust role given the implications mentioned above, which is generally why there is a need for folks to be trusted in the community before they become a steward.</p>
+<p>In addition to the stewards seeking out folks to add to the committee, you can also nominate someone &#40;including yourself&#41; to join the committee, even if there is not a vacancy. Nominations are accepted on a rolling basis and will be reviewed if/when the current stewards determine they need to bring on additional support. Nominations are reviewed on the axis of long term commitment and contributions to the Julia community &#40;which need not be technical in nature&#41;. </p>
+<p>The nomination form can be found here: <a href="https://forms.gle/7R8X7dpDh4DpWsJ1A">Julia Steward Nomination Form</a></p>
+<p>Please contact the stewards: <a href="mailto:stewards@julialang.org">stewards@julialang.org</a> if you have questions about this process.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2522/project">About</a></li>
+        <li><a href="/previews/PR2522/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2522/governance/">Governance</a></li>
+        <li><a href="/previews/PR2522/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2522/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2522/downloads">Install</a></li>
+        <li><a href="/previews/PR2522/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2522/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2522/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2522/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2522/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2522/community/">Community</a></li>
+        <li><a href="/previews/PR2522/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2522/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2522/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2522/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2522/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2522/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2522/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>
