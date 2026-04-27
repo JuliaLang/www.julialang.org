@@ -4,6 +4,7 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 
 ### General Julia
 
+* Bartłomiej Łukaszuk, [Build Super Helpful and Interesting Things with Julia](https://b-lukaszuk.github.io/BS_wJ_eng/), available freely under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), 2026.
 * Antonello Lobianco. [Julia Quick Syntax Reference, 2nd ed.](https://doi.org/10.1007/979-8-8688-0965-1). Apress, January 2025.
 * Lee Phillips. [Practical Julia: A Hands-On Introduction for Scientific Minds](https://nostarch.com/practical-julia), No Starch Press, October 2023.
 * Erik Engheim. [Julia as a Second Language](https://www.manning.com/books/julia-as-a-second-language). Manning Publications, May 2023.
