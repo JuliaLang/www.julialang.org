@@ -45,6 +45,9 @@ _Courses currently being offered or offered regularly since 2020._
     * [AICC202 Introduction to Data Science](https://github.com/rojesh-shikhrakar/KU-AICC202-Intro-to-Data-Science), Foundational Data Science Course (Rojesh Man Shikhrakar), Spring 2023
 * Korea Advanced Institute of Science and Technology (KAIST)
     * [IE535](https://www.chkwon.net/teaching/#ie-535-network-theory-and-applications), Network Theory and Applications (Prof. [Changhyun Kwon](https://www.chkwon.net)), Fall 2023
+* Kühne Logistics University (KLU)
+    * [Scientific Programming](https://github.com/rajgoel/course-scientific-programming/) (Prof. [Asvin Goel](https://github.com/rajgoel)), since Fall 2025
+    * [Machine Learning and Deep Learning](https://github.com/rajgoel/course-machine-learning/) (Prof. [Asvin Goel](https://github.com/rajgoel)), since Spring 2025
 * [Lund University, Sweden](https://www.lunduniversity.lu.se/), [Department of Automatic Control](http://control.lth.se/)
     * [Julia for Scientific Computing](http://www.control.lth.se/education/doctorate-program/julia-course/julia-course-2019/)
     * [Optimization for Learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
