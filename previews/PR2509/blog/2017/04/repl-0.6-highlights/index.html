@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2509/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2509/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2509/assets/infra/logo.svg" as="image">
+<script src="/previews/PR2509/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2509/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2509/css/app.css">
+<link rel="stylesheet" href="/previews/PR2509/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2509/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2509/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2509/libs/buttons.js"></script>
+<script async src="/previews/PR2509/libs/backsplash.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Upgrades to the REPL in Julia 0.6</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2509/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2509/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Upgrades to the REPL in Julia 0.6">
+<meta property="og:description" content=" Upgrades to the REPL in Julia 0.6 | Since version 0.3, Julia has come with a command-line interface — a REPL (https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2509/blog/2017/04/repl-0.6-highlights/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Upgrades to the REPL in Julia 0.6",
+  "description": "Upgrades to the REPL in Julia 0.6 | Since version 0.3, Julia has come with a command-line interface — a REPL (https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)...",
+  "image": "https://julialang.netlify.app/previews/PR2509/assets/images/julia-open-graph.png",
+  "datePublished": "2017-04-25T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "Kristoffer Carlsson", "url": "https://kristofferc.github.io/"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2509/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2509/blog/2017/04/repl-0.6-highlights/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2509/">
+          <img src="/previews/PR2509/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2509/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2509/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>Upgrades to the REPL in Julia 0.6</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p style="font-size: 1.17em; margin-top: 0;">
+          
+            <span style="font-weight: lighter;">25 April 2017</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;"><a href="https://kristofferc.github.io/">Kristoffer Carlsson</a></span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/04/repl-0.6-highlights.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Since version 0.3, Julia has come with a command-line interface — a <a href="https://en.wikipedia.org/wiki/Read&#37;E2&#37;80&#37;93eval&#37;E2&#37;80&#37;93print_loop">REPL</a>  — that is completely written in Julia &#40;<a href="https://github.com/JuliaLang/julia/pull/6270">PR #6270</a>&#41;. Among other features, the REPL provides code completion, history with reverse search, and a rich set of customizable key bindings. &#40;See the <a href="https://docs.julialang.org/en/stable/manual/interacting-with-julia/">Interacting with Julia</a> part of the manual for the REPL documentation.&#41; Even so, the REPL in Julia 0.6 includes quite a few new visual tweaks and features. In this blog post, we look into some of these changes and customizations to the Julia REPL, available in 0.6.</p>
+<h2 id="prompt_pasting"><a href="#prompt_pasting" class="header-anchor">Prompt pasting</a></h2>
+<p>It is quite common &#40;as in the Julia manual and in subsequent code blocks of this blog post&#41; to write snippets of Julia code like they were copied straight from a REPL session, for example:</p>
+<pre><code class="julia hljs">julia&gt; f() = rand(<span class="hljs-number">10</span>^<span class="hljs-number">6</span>)
+f (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
+
+julia&gt; <span class="hljs-meta">@time</span> f();
+  <span class="hljs-number">0.052948</span> seconds (<span class="hljs-number">25.05</span> k allocations: <span class="hljs-number">8.769</span> MiB)</code></pre>
+<p>If you wanted to try out this code in 0.5, you would typically copy the code into a text editor, remove the <code>julia&gt;</code> prompt, remove the output, and then finally have code that looked like:</p>
+<pre><code class="julia hljs">f() = rand(<span class="hljs-number">10</span>^<span class="hljs-number">6</span>);
+
+<span class="hljs-meta">@time</span> f();</code></pre>
+<p>which could then be pasted back into the REPL to be executed. In 0.6, the REPL comes with a feature called <em>prompt pasting</em> by which a pasted expression starting with <code>julia&gt;</code> automatically has prompts and eventual output scrubbed before being executed. If you have a 0.6 REPL currently at hand, you can try to copy and paste the example with the prompt and output above directly into the REPL and you will see that it works in exactly the same way as if we had manually removed them.</p>
+<p>Unfortunately, for technical reasons &#40;no support for bracket pasting&#41;, this feature does not work in the standard cmd-terminal on Windows. There are, however, multiple alternative terminal emulators on Windows that do support this, e.g. <a href="https://sourceforge.net/projects/console/">Console2</a> or <a href="https://www.cygwin.com/">Cygwin</a>.</p>
+<h2 id="printing_of_stack_traces"><a href="#printing_of_stack_traces" class="header-anchor">Printing of stack traces</a></h2>
+<p>When an error occurs, the REPL prints the exception that was thrown along with a <a href="https://en.wikipedia.org/wiki/Stack_trace">stack trace</a>: a list tracing back through the sequence of function calls and source code lines that were being executed when the error occurred. In previous versions of Julia, the stack trace might omit some function calls that were <a href="https://en.wikipedia.org/wiki/Inline_expansion">inlined</a>, making it harder to understand. In Julia 0.6, the stack trace includes function calls that were inlined. Unfortunately, in combination with the Julia idiom of breaking complex tasks into many smaller functions, this can sometimes lead to long stack traces. Furthermore, the stack trace includes the type signature of the methods being called, but these type signatures can sometimes be quite verbose &#40;e.g. for union types or types taking many parameters&#41;. Julia 0.6 greatly improves the readability of this output by coloration, numbering, and interactive features described below.</p>
+<p>In earlier Julia versions, stack traces were printed without much structure. Everything was printed in bold red which made it a bit difficult to find the information one was looking for. As an example, here is a screenshot from an error thrown on 0.5:</p>
+<p><img src="/previews/PR2509/assets/blog/2017-02-24-repl0.6/0.5stacktrace.png" alt="Stacktrace in 0.5" /></p>
+<p>Finding the relevant information can be quite difficult, especially the file name and line numbers since they are not aligned in any way. In 0.6, this is what is currently shown for the same error:</p>
+<p><img src="/previews/PR2509/assets/blog/2017-02-24-repl0.6/0.6stacktrace.png" alt="Stacktrace in 0.6" /></p>
+<p>Stack trace presentation has improved significantly: Stack traces no longer print in red, while associated error messages continue to print in red. Stack traces also no longer print entirely in bold; only function names and line information now appear in bold. These changes visually separate the most frequently sought information &#40;the associated error message, function names and line information&#41; from the surrounding text, making that information much easier to pick out. Additionally, each stack frame in the stack trace prints numbered, making individual stack frames easier to refer to. &#40;Apart from these changes to stack trace presentation, <code>BoundsErrors</code> no longer display with the associated collection&#39;s contents, decreasing visual noise.&#41; Furthermore, you can now customize stack frame function and line information print colors by setting the environment variables <code>JULIA_STACKFRAME_FUNCTION_COLOR</code> and <code>JULIA_STACKFRAME_LINEINFO_COLOR</code> respectively.</p>
+<p>For example, setting</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-literal">ENV</span>[<span class="hljs-string">&quot;JULIA_STACKFRAME_LINEINFO_COLOR&quot;</span>] = :cyan;
+
+julia&gt; <span class="hljs-literal">ENV</span>[<span class="hljs-string">&quot;JULIA_STACKFRAME_FUNCTION_COLOR&quot;</span>] = :yellow;</code></pre>
+<p>and rerunning the example above yields</p>
+<p><img src="/previews/PR2509/assets/blog/2017-02-24-repl0.6/0.6stacktrace_conf.png" alt="Stacktrace in 0.6 with configured colors" /></p>
+<p>In addition to the visual changes to the stack trace, there is also a new interactive feature, possible now that we can refer to stack frames by number. After a stack trace has been printed, you can simply enter the number of one of the stack frames in the REPL, press <code>CTRL &#43; Q</code> and the file will be opened in an editor at the line number corresponding to that stack frame. To set the editor, use the environment variable <code>EDITOR</code>, for example <code>ENV&#91;&quot;EDITOR&quot;&#93; &#61; &quot;subl&quot;</code> for the Sublime Text editor. This can be used when you quickly want to fix a typo or just to jump around with the editor in the call stack leading up to the error. Note that it is currently not possible to open the location of a stack frame that refers to code directly evaluated in the REPL.</p>
+<h2 id="more_colors"><a href="#more_colors" class="header-anchor">More colors</a></h2>
+<p>While not strictly related to the REPL, it is still within the scope of this post to describe some of the changes made to the color printing functionalities in Julia 0.6. Previously, it was only possible to use 8 colors for printing &#40;see <code>help?&gt; Base.text_colors</code>&#41; by using the function <code>print_with_color</code>. In 0.6, light versions of these colors &#40;prefixed by <code>light_</code>&#41; are also supported, increasing the number of named colors to 16. In addition, an integer between 0 and 255 can now be used as a color &#40;see <a href="https://commons.wikimedia.org/wiki/File:Xterm_256color_chart.svg">this chart</a> for a reference&#41;. These new colors are possible to use wherever an option previously existed to change the color of some element in the REPL. Another change is that, by default, the function <code>print_with_color</code> no longer prints in bold; instead a new keyword argument <code>bold::Bool</code> was introduced that controls this.</p>
+<p>Some examples of this functionality are given in the figure below:</p>
+<p><img src="/previews/PR2509/assets/blog/2017-02-24-repl0.6/0.6colors.png" alt="Colors in 0.6" /></p>
+<h2 id="default_style_of_inputoutput_text"><a href="#default_style_of_inputoutput_text" class="header-anchor">Default style of input/output text</a></h2>
+<p>Previously, the default style of entered code and shown objects in the REPL was bold; this was changed in 0.6 to instead use standard &quot;light&quot; text. However, as the example below shows, it is possible to change this back to bold, or to any other color:</p>
+<p><img src="/previews/PR2509/assets/blog/2017-02-24-repl0.6/0.6input_output_conf.png" alt="Input/output text colors in 0.6" /></p>
+<h2 id="taking_repl-customization_even_further"><a href="#taking_repl-customization_even_further" class="header-anchor">Taking REPL-customization even further</a></h2>
+<p>If you would like to take REPL customization even further, I would encourage you to take a look at the <a href="https://github.com/KristofferC/OhMyREPL.jl"><code>OhMyREPL</code></a> package &#40;author of this post is also author of that package&#41;. Some of the features described in this post were upstreamed to Base Julia from that package, but for now, some of the more advanced features, like syntax highlighting, matching bracket highlighting and customization of input/output prompts, still live only in the <code>OhMyREPL</code> package.</p>
+<h2 id="acknowledgments"><a href="#acknowledgments" class="header-anchor">Acknowledgments</a></h2>
+<p>Thanks to Sacha Verweij, Steven G. Johnson, Tony Kelman and Alex Arslan for valuable comments and suggestions.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script defer src="/previews/PR2509/libs/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){hljs.configure({tabReplace:'    '});hljs.highlightAll();});</script>
+
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2509/project">About</a></li>
+        <li><a href="/previews/PR2509/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2509/governance/">Governance</a></li>
+        <li><a href="/previews/PR2509/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2509/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2509/downloads">Install</a></li>
+        <li><a href="/previews/PR2509/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2509/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2509/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2509/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2509/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2509/community/">Community</a></li>
+        <li><a href="/previews/PR2509/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2509/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2509/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2509/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2509/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2509/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2509/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>
