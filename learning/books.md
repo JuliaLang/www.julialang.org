@@ -71,7 +71,7 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 * Changhyun Kwon. [Julia Programming for Operations Research](https://www.chkwon.net/julia/). March 2019.
 
 ### Domain Applications
-
+* Pankaj K Mishra [Geoscientific Machine Learning](https://geo-sciml.com/), 2026. 
 * R. Gökhan Türeci, Hamdi Dağıstanlı, and İlkay Türk Çakır. [Julia Programming for Physics Applications](https://link.springer.com/book/10.1007/978-3-031-84716-5). Springer, May 2025.
 * Andreas Varga, [Solving Fault Diagnosis Problems - Linear Synthesis Techniques with Julia Code Examples](https://link.springer.com/book/10.1007/978-3-031-35767-1), Vol. 482 of Studies in Systems, Decision and Control, Springer Nature Switzerland, 2024. The computational examples presented in the book use functions of the [FaultDetectionTools.jl](https://github.com/andreasvarga/FaultDetectionTools.jl) and [DescriptorSystems.jl](https://github.com/andreasvarga/DescriptorSystems.jl) packages and are available [here](https://github.com/andreasvarga/FaultDetectionTools.jl/tree/master/Examples).
 * Adeil Araújo and Meirivâni Oliveira, ["Julia with Physics: An Introduction" in Portuguese](https://www.seduc.ce.gov.br/wp-content/uploads/sites/37/2023/09/Ebook-02-Julia-com-Fisica.pdf), Seduc - CE, September 2023.
