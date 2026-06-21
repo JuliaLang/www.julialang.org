@@ -28,7 +28,7 @@
     --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   }
 
-  .section-grid { margin-top: 18px; }
+  .section-grid { margin-top: 18px; margin-bottom: 48px; }
 
   .lead-list {
     margin: 8px 0 14px 18px;
@@ -213,16 +213,11 @@
 <div class="grid section-grid">
   <section class="card" aria-labelledby="for-users">
     <div class="card-head">
-      <span class="kicker">For users</span>
-      <h2 id="for-users">Standalone installer</h2>
-      <p class="if-you">If you:</p>
+      <span class="kicker">Standalone GUI installer</span>
+      <h2>For users who:</h2>
       <ul class="lead-list">
-        <li>use Julia code, but don't write it yourself</li>
-        <li>
-          and only need a single version of Julia<br />
-          <span class="muted">(not sure which? ask the authors of the code you want to run)</span>
-        </li>
-        <li>and have no command-line knowledge</li>
+        <li>Need a single version of Julia<br />
+        <li>Prefer to use a GUI</li>
       </ul>
     </div>
 
@@ -244,11 +239,11 @@
           <img class="os-icon" src="macos.png" alt="" aria-hidden="true" />
           <span class="os-name">macOS</span>
           <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg" title="Julia {{stable_release}} macOS Apple Silicon installer">
-            <span>Apple</span>
+            <span>arm</span>
           </a>
           |
           <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.dmg" title="Julia {{stable_release}} macOS Intel installer">
-            <span>Intel</span>
+            <span>x64</span>
           </a>
         </div>
         <div class="os-row" data-os="linux">
@@ -268,7 +263,7 @@
         </div>
         <div class="os-separator">Other systems:</div>
         <div class="os-row">
-          <a href="/downloads/manual-downloads/">All platforms &amp; architectures</a>
+          <a href="/downloads/manual-downloads/#current_stable_release">All platforms &amp; architectures</a>
         </div>
       </div>
 
@@ -289,11 +284,11 @@
           <img class="os-icon" src="macos.png" alt="" aria-hidden="true" />
           <span class="os-name">macOS</span>
           <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{lts_release_short}}/julia-{{lts_release}}-macaarch64.dmg" title="Julia {{lts_release}} macOS Apple Silicon installer">
-            <span>Apple</span>
+            <span>arm</span>
           </a>
           |
           <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{lts_release_short}}/julia-{{lts_release}}-mac64.dmg" title="Julia {{lts_release}} macOS Intel installer">
-            <span>Intel</span>
+            <span>x64</span>
           </a>
         </div>
         <div class="os-row" data-os="linux">
@@ -313,7 +308,7 @@
         </div>
         <div class="os-separator">Other systems:</div>
         <div class="os-row">
-          <a href="/downloads/manual-downloads/">All platforms &amp; architectures</a>
+          <a href="/downloads/manual-downloads/#long_term_support_release">All platforms &amp; architectures</a>
         </div>
       </div>
     </div>
@@ -321,11 +316,13 @@
     <details>
       <summary>Other Julia versions</summary>
       <p>
-        Need a different version? The
-        <a href="/downloads/manual-downloads/">manual downloads</a> page lists the
-        current stable and long-term support releases for every platform, and
-        <a href="/downloads/oldreleases/">older releases</a> are archived separately.
-        Development builds are on the
+        Need a different version? The manual downloads page has builds for every
+        platform of the
+        <a href="/downloads/manual-downloads/#current_stable_release">current stable</a>,
+        <a href="/downloads/manual-downloads/#long_term_support_release">long-term support</a>, and
+        <a href="/downloads/manual-downloads/#upcoming_release">upcoming</a> releases.
+        <a href="/downloads/oldreleases/">Older releases</a> are archived separately,
+        and development builds are on the
         <a href="/downloads/nightlies/">nightlies</a> page.
       </p>
     </details>
@@ -333,13 +330,11 @@
 
   <section class="card" aria-labelledby="for-devs">
     <div class="card-head">
-      <span class="kicker">For developers and researchers</span>
-      <h2 id="for-devs">Use <code>juliaup</code></h2>
-      <p class="if-you">If you:</p>
+      <span class="kicker">Julia version manager: <code>juliaup</code></span>
+      <h2>For developers who:</h2>
       <ul class="lead-list">
-        <li>write or expect to write Julia code</li>
-        <li>or need multiple versions available at once</li>
-        <li>or have experience with the command line</li>
+        <li>Need to have multiple versions available at once</li>
+        <li>Are comfortable with command line tools</li>
       </ul>
     </div>
 
