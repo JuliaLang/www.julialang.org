@@ -212,94 +212,107 @@
     </div>
 
     <div class="version-grid" aria-label="Standalone installers by version">
-      <div class="version-block" aria-label="Julia 1.12 installers">
-        <h3>Latest: Julia 1.12</h3>
+      <div class="version-block" aria-label="Julia {{stable_release_short}} installers">
+        <h3>Latest: Julia {{stable_release_short}}</h3>
         <div class="os-row" data-os="windows">
           <img class="os-icon" src="windows.png" alt="" aria-hidden="true" />
           <span class="os-name">Windows</span>
-          <a href="#" title="TODO: link to Julia 1.12 Windows x64 installer">
+          <a href="https://julialang-s3.julialang.org/bin/winnt/x64/{{stable_release_short}}/julia-{{stable_release}}-win64.exe" title="Julia {{stable_release}} Windows x64 installer">
             <span>x64</span>
           </a>
           |
-          <a href="#" title="TODO: link to Julia 1.12 Windows x86 installer">
+          <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.exe" title="Julia {{stable_release}} Windows x86 installer">
             <span>x86</span>
           </a>
         </div>
         <div class="os-row" data-os="macos">
           <img class="os-icon" src="macos.png" alt="" aria-hidden="true" />
           <span class="os-name">macOS</span>
-          <a href="#" title="TODO: link to Julia 1.12 macOS Apple Silicon installer">
+          <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg" title="Julia {{stable_release}} macOS Apple Silicon installer">
             <span>Apple</span>
           </a>
           |
-          <a href="#" title="TODO: link to Julia 1.12 macOS Intel installer">
+          <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.dmg" title="Julia {{stable_release}} macOS Intel installer">
             <span>Intel</span>
           </a>
         </div>
         <div class="os-row" data-os="linux">
           <img class="os-icon" src="linux.png" alt="" aria-hidden="true" />
           <span class="os-name">Linux</span>
-          <a href="#" title="TODO: link to Julia 1.12 Linux x64 tarball">
+          <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{stable_release}}-linux-x86_64.tar.gz" title="Julia {{stable_release}} Linux x64 tarball">
             <span>x64</span>
           </a>
           |
-          <a href="#" title="TODO: link to Julia 1.12 Linux x86 tarball">
+          <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{stable_release_short}}/julia-{{stable_release}}-linux-i686.tar.gz" title="Julia {{stable_release}} Linux x86 tarball">
             <span>x86</span>
           </a>
           |
-          <a href="#" title="TODO: link to Julia 1.12 Linux arm tarball">
+          <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{stable_release_short}}/julia-{{stable_release}}-linux-aarch64.tar.gz" title="Julia {{stable_release}} Linux ARM tarball">
             <span>arm</span>
           </a>
         </div>
         <div class="os-separator">Other systems:</div>
+        <div class="os-row">
+          <a href="/downloads/manual-downloads/">All platforms &amp; architectures</a>
+        </div>
       </div>
 
-      <div class="version-block" aria-label="Julia 1.10 installers">
-        <h3>Long-term support: Julia 1.10</h3>
+      <div class="version-block" aria-label="Julia {{lts_release_short}} installers">
+        <h3>Long-term support: Julia {{lts_release_short}}</h3>
         <div class="os-row" data-os="windows">
           <img class="os-icon" src="windows.png" alt="" aria-hidden="true" />
           <span class="os-name">Windows</span>
-          <a href="#" title="TODO: link to Julia 1.10 Windows x64 installer">
+          <a href="https://julialang-s3.julialang.org/bin/winnt/x64/{{lts_release_short}}/julia-{{lts_release}}-win64.exe" title="Julia {{lts_release}} Windows x64 installer">
             <span>x64</span>
           </a>
           |
-          <a href="#" title="TODO: link to Julia 1.10 Windows x86 installer">
+          <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{lts_release_short}}/julia-{{lts_release}}-win32.exe" title="Julia {{lts_release}} Windows x86 installer">
             <span>x86</span>
           </a>
         </div>
         <div class="os-row" data-os="macos">
           <img class="os-icon" src="macos.png" alt="" aria-hidden="true" />
           <span class="os-name">macOS</span>
-          <a href="#" title="TODO: link to Julia 1.10 macOS Apple Silicon installer">
+          <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{lts_release_short}}/julia-{{lts_release}}-macaarch64.dmg" title="Julia {{lts_release}} macOS Apple Silicon installer">
             <span>Apple</span>
           </a>
           |
-          <a href="#" title="TODO: link to Julia 1.10 macOS Intel installer">
+          <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{lts_release_short}}/julia-{{lts_release}}-mac64.dmg" title="Julia {{lts_release}} macOS Intel installer">
             <span>Intel</span>
           </a>
         </div>
         <div class="os-row" data-os="linux">
           <img class="os-icon" src="linux.png" alt="" aria-hidden="true" />
           <span class="os-name">Linux</span>
-          <a href="#" title="TODO: link to Julia 1.10 Linux x64 tarball">
+          <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{lts_release_short}}/julia-{{lts_release}}-linux-x86_64.tar.gz" title="Julia {{lts_release}} Linux x64 tarball">
             <span>x64</span>
           </a>
           |
-          <a href="#" title="TODO: link to Julia 1.10 Linux x86 tarball">
+          <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{lts_release_short}}/julia-{{lts_release}}-linux-i686.tar.gz" title="Julia {{lts_release}} Linux x86 tarball">
             <span>x86</span>
           </a>
           |
-          <a href="#" title="TODO: link to Julia 1.10 Linux arm tarball">
+          <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{lts_release_short}}/julia-{{lts_release}}-linux-aarch64.tar.gz" title="Julia {{lts_release}} Linux ARM tarball">
             <span>arm</span>
           </a>
         </div>
         <div class="os-separator">Other systems:</div>
+        <div class="os-row">
+          <a href="/downloads/manual-downloads/">All platforms &amp; architectures</a>
+        </div>
       </div>
     </div>
 
     <details>
       <summary>Other Julia versions</summary>
-      <p>TODO: Add links to older Julia versions here.</p>
+      <p>
+        Need a different version? The
+        <a href="/downloads/manual-downloads/">manual downloads</a> page lists the
+        current stable and long-term support releases for every platform, and
+        <a href="/downloads/oldreleases/">older releases</a> are archived separately.
+        Development builds are on the
+        <a href="/downloads/nightlies/">nightlies</a> page.
+      </p>
     </details>
   </section>
 
