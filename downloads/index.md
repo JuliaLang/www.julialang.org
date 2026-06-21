@@ -10,7 +10,22 @@
     --border: #e5e7eb;
     --link: #1f6feb;
     --card: #ffffff;
+    --card-inset: #ffffff;
     --shadow: 0 1px 0 rgba(17, 24, 39, 0.06);
+    --card-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+  }
+
+  /* Map the palette onto the site-wide dark theme (see _css/app.css). */
+  [data-theme="dark"] {
+    --bg: var(--dm-bg, #1a1a2e);
+    --panel: var(--dm-bg-surface, #2a2a3e);
+    --text: var(--dm-text, #e0e0e0);
+    --muted: var(--dm-text-muted, #bbb);
+    --border: var(--dm-border, #444);
+    --link: var(--dm-link, #6ea8fe);
+    --card: var(--dm-bg-surface, #2a2a3e);
+    --card-inset: var(--dm-bg-elevated, #333);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   }
 
   .section-grid { margin-top: 18px; }
@@ -37,7 +52,7 @@
     padding: 10px 14px;
     border: 1px solid var(--border);
     border-radius: 999px;
-    background: linear-gradient(180deg, var(--panel) 0%, #ffffff 100%);
+    background: linear-gradient(180deg, var(--panel) 0%, var(--card) 100%);
     color: var(--text);
     font-size: 18px;
     font-weight: 800;
@@ -61,7 +76,7 @@
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+    box-shadow: var(--card-shadow);
   }
 
   .card h2 { margin: 10px 0 6px; font-size: 16px; color: var(--muted); }
@@ -78,7 +93,7 @@
     padding: 12px;
     border: 1px solid var(--border);
     border-radius: 12px;
-    background: #fff;
+    background: var(--card-inset);
     min-width: 0;
   }
 
@@ -122,7 +137,7 @@
     padding: 10px 12px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: #fff;
+    background: var(--card-inset);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
       monospace;
     font-size: 13px;
@@ -169,7 +184,7 @@
     padding: 12px;
     border: 1px solid var(--border);
     border-radius: 12px;
-    background: #fff;
+    background: var(--card-inset);
   }
 
   summary {
