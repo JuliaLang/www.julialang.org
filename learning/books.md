@@ -66,6 +66,7 @@ Have a Julia book you want added to this list? Please [submit a pull request](ht
 
 ### Optimization & Operations Research
 
+* Luiz A. N. Lorena, Luiz H. N. Lorena, and Antônio A. Chaves. [Introduction to Integer Programming and Applications with Julia](https://intro-ilp-julia.github.io/book/), available freely under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/), July 2026.
 * Mykel J. Kochenderfer, Sydney M. Katz, Anthony L. Corso, and Robert J. Moss, [Algorithms for Validation](https://algorithmsbook.com/validation/), Forthcoming.
 * Mykel J. Kochenderfer, Tim A. Wheeler, and Kyle H. Wray. [Algorithms for Decision Making](https://algorithmsbook.com/), December 2020.
 * Mykel J. Kochenderfer and Tim A. Wheeler. [Algorithms for Optimization](https://mitpress.mit.edu/books/algorithms-optimization). MIT Press, March 2019.
