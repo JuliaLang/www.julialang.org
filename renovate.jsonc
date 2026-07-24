@@ -3,5 +3,8 @@
   "extends": [
     "config:recommended"
   ],
-  "rebaseWhen": "conflicted"
+  "rebaseWhen": "conflicted",
+  "lockFileMaintenance": {
+    "enabled": true
+  }
 }
