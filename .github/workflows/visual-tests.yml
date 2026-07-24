@@ -43,10 +43,7 @@ jobs:
         with:
           node-version-file: 'visual-tests/.tool-versions'
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 11
+      - run: corepack enable
 
       - name: Install visual-tests dependencies
         working-directory: visual-tests
