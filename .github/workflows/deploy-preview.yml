@@ -61,7 +61,7 @@ jobs:
 
       - name: Checkout
         if: steps.download-meta.outcome == 'success'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download site build
         if: steps.download-meta.outcome == 'success'
