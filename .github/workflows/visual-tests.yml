@@ -46,7 +46,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: 9
+          version: 11
 
       - name: Install visual-tests dependencies
         working-directory: visual-tests
