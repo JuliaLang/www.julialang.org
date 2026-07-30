@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2351/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+   <link rel="stylesheet" href="/previews/PR2351/libs/katex/katex.min.css">
+      
+   <link rel="stylesheet" href="/previews/PR2351/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2351/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2351/css/app.css">
+<link rel="stylesheet" href="/previews/PR2351/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2351/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2351/libs/buttons.js"></script>
+<script src="/previews/PR2351/libs/clipboard.min.js"></script>
+<script src="/previews/PR2351/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Knowing where you are: custom array indices in Julia</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Knowing where you are: custom array indices in Julia">
+<meta property="og:description" content=" Knowing where you are: custom array indices in Julia | Arrays are a crucial component of any programming language,... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2351/">
+          <img src="/previews/PR2351/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2351/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2351/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2351/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2351/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2351/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2351/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Knowing where you are: custom array indices in Julia
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 18 April 2017 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"><a href="http://holylab.wustl.edu">Tim Holy</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/04/offset-arrays.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Arrays are a crucial component of any programming language, particularly for a data-oriented language like Julia.  Arrays store values according to their location: in Julia, given a two-dimensional array <code>A</code>, the expression <code>A&#91;1,3&#93;</code> returns the value stored at a location known as <code>&#40;1,3&#41;</code>.  If, for example, <code>A</code> stores <code>Float64</code> numbers, the value returned by this expression will be a single <code>Float64</code> number.</p>
+<p>Julia&#39;s arrays conventionally start numbering their axes with 1, meaning that the first element of a one-dimensional array <code>a</code> is <code>a&#91;1&#93;</code>. The choice of 1 vs. 0 seems to generate a certain amount of discussion. A fairly recent addition to the Julia landscape is the ability to define arrays that start with an <em>arbitrary</em> index.  The purpose of this blog post is to describe why this might be interesting.  This is really a &quot;user-oriented&quot; blog post, hinting at some of the ways this new feature can make your life simpler.  For developers who want to write code that supports arrays with arbitrary indices, see <a href="https://docs.julialang.org/en/latest/devdocs/offset-arrays">this documentation page</a>.</p>
+<h2 id="why_should_we_care_which_indices_an_array_has_a_first_example"><a href="#why_should_we_care_which_indices_an_array_has_a_first_example" class="header-anchor">Why should we care which indices an array has? A first example</a></h2>
+<p>Sometimes arrays are used as simple lists, in which case the indices may not matter to you. But in other cases, arrays are used as a discrete representation of a continuous quantity &#40;e.g., values defined over space or time&#41;, and in such cases the array indices correspond to &quot;location&quot; in a way that may be meaningful.</p>
+<p>As a simple example, consider the process of rotating an image:</p>
+<table><tr><th align="center">img</th><th align="center">img_rotated</th></tr><tr><td align="center"><img src="/previews/PR2351/assets/blog/2017-04-18-offset-arrays/cameraman.png" alt="cameraman" /></td><td align="center"><img src="/previews/PR2351/assets/blog/2017-04-18-offset-arrays/cameraman_rotated.png" alt="cameraman_rot" /></td></tr></table>
+<p>Many languages provide functions for rotating an image; in Julia, you can do this with the <code>warp</code> function defined in <a href="https://github.com/JuliaImages/ImageTransformations.jl">ImageTransformations</a>.</p>
+<p>Things get a little more &quot;interesting&quot; when you want to compare pixels in the rotated image to those of the original image. How, exactly, do these pixels match up? In other words, for a location <code>img&#91;i,j&#93;</code>, what is the corresponding <code>i′,j′</code> location in <code>img_rotated</code>? In many languages, figuring out these types of geometric alignments may not be a simple task; it&#39;s no exaggeration to say that in complex situations &#40;e.g., a three-dimensional image with a complex spatial deformation&#41; that one can spend a day or more figuring out exactly how pixels/voxels in two images are supposed to be compared.</p>
+<p>Why is this such a hard problem? The core problem is that, in most cases, the language is essentially &quot;lying&quot; to you about the location of pixels: if arrays always start indexing at 1 along any given axis, the array indices don&#39;t really correspond to an absolute spatial location. An index of 1 means &quot;first index&quot; rather than &quot;spatial location 1.&quot;</p>
+<p>So to fix this in Julia, starting with version 0.5 we support arrays with indices that don&#39;t start with 1. Let&#39;s illustrate this by specifying that we want the above rotation to be around a point in the head of the cameraman. Let&#39;s load the image:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> Images, TestImages
+
+julia&gt; img = testimage(<span class="hljs-string">&quot;cameraman&quot;</span>);
+
+julia&gt; summary(img)
+<span class="hljs-string">&quot;512×512 Array{Gray{N0f8},2}&quot;</span></code></pre>
+<p><code>summary</code> shows that <code>img</code> is a grayscale image indexed over the ranges <code>1:512×1:512</code>. Using any of several approaches &#40;e.g., <a href="https://github.com/timholy/ImageView.jl">ImageView</a> and paying attention to the status bar to get the mouse pointer location&#41;, we can learn that the point <code>&#40;y&#61;126, x&#61;251&#41;</code> is in the head of the cameraman. Consequently, let&#39;s define a rotation around this point:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> Rotations, CoordinateTransformations
+
+julia&gt; tfm = Translation(<span class="hljs-number">125</span>,<span class="hljs-number">250</span>) ∘ LinearMap(RotMatrix(<span class="hljs-literal">pi</span>/<span class="hljs-number">6</span>)) ∘ Translation(-<span class="hljs-number">125</span>,-<span class="hljs-number">250</span>)
+AffineMap([<span class="hljs-number">0.866025</span> -<span class="hljs-number">0.5</span>; <span class="hljs-number">0.5</span> <span class="hljs-number">0.866025</span>], [<span class="hljs-number">141.747</span>, -<span class="hljs-number">29.0064</span>])</code></pre>
+<p>This defines <code>tfm</code> as the composition of a translation &#40;shifting the head to the origin&#41; followed by a rotation, and then translating back. &#40;You can get the composition operator <code>∘</code> by typing <code>\circ</code> and then hitting TAB.&#41; If we apply this transformation to the image, we get an interesting result:</p>
+<pre><code class="julia hljs">julia&gt; img_rotated = warp(img, tfm);
+
+julia&gt; summary(img_rotated)
+<span class="hljs-string">&quot;-107:592×-160:539 OffsetArray{Gray{N0f8},2}&quot;</span></code></pre>
+<p>Perhaps surprisingly, <code>img_rotated</code> is indexed over the range <code>-107:592×-160:539</code>, meaning that we access the upper left corner by <code>img_rotated&#91;-107,-160&#93;</code> and the lower right corner by <code>img_rotated&#91;592,539&#93;</code>. It&#39;s not hard to see why these numbers arise, if we see how the corners of <code>img</code> are transformed by <code>tfm</code>:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> StaticArrays
+
+julia&gt; itfm = inv(tfm)
+AffineMap([<span class="hljs-number">0.866025</span> <span class="hljs-number">0.5</span>; -<span class="hljs-number">0.5</span> <span class="hljs-number">0.866025</span>], [-<span class="hljs-number">108.253</span>, <span class="hljs-number">95.9936</span>])
+
+julia&gt; itfm(SVector(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>))
+<span class="hljs-number">2</span>-element SVector{<span class="hljs-number">2</span>,<span class="hljs-built_in">Float64</span>}:
+ -<span class="hljs-number">106.887</span>
+   <span class="hljs-number">96.3597</span>
+
+julia&gt; itfm(SVector(<span class="hljs-number">512</span>,<span class="hljs-number">1</span>))
+<span class="hljs-number">2</span>-element SVector{<span class="hljs-number">2</span>,<span class="hljs-built_in">Float64</span>}:
+  <span class="hljs-number">335.652</span>
+ -<span class="hljs-number">159.14</span>
+
+julia&gt; itfm(SVector(<span class="hljs-number">1</span>,<span class="hljs-number">512</span>))
+<span class="hljs-number">2</span>-element SVector{<span class="hljs-number">2</span>,<span class="hljs-built_in">Float64</span>}:
+ <span class="hljs-number">148.613</span>
+ <span class="hljs-number">538.899</span>
+
+julia&gt; itfm(SVector(<span class="hljs-number">512</span>,<span class="hljs-number">512</span>))
+<span class="hljs-number">2</span>-element SVector{<span class="hljs-number">2</span>,<span class="hljs-built_in">Float64</span>}:
+ <span class="hljs-number">591.152</span>
+ <span class="hljs-number">283.399</span></code></pre>
+<p>This makes it apparent that the output&#39;s indices span the region of the transformed coordinates.</p>
+<p>The fact that the output preserves the coordinates makes it trivial to compare the images:</p>
+<pre><code class="julia hljs">julia&gt; cv = colorview(RGB, paddedviews(<span class="hljs-number">0</span>, img, img_rotated, img)...)</code></pre>
+<p><code>paddedviews&#40;0, arrays...&#41;</code> pads input arrays with 0, as needed, to give them all the same indices, and <code>colorview&#40;RGB, r, g, b&#41;</code> inserts the grayscale images <code>r</code>, <code>g</code>, and <code>b</code> into the red, green, and blue channels respectively.  If we visualize <code>cv</code>, we see the following:</p>
+<table><tr><th align="center">around image center</th><th align="center">around head &#40;cv&#41;</th></tr><tr><td align="center"><img src="/previews/PR2351/assets/blog/2017-04-18-offset-arrays/cameraman_overlay_center.png" alt="cameraman" /></td><td align="center"><img src="/previews/PR2351/assets/blog/2017-04-18-offset-arrays/cameraman_overlay.png" alt="cameraman_rot" /></td></tr></table>
+<p>The image on the left is for reference, showing what a rotation around the image center would look like when properly aligned. The image on the right corresponds to the steps taken above, and indeed confirms that the rotation is around the head. Alternatively, we can focus on the overlapping portions of these images like this:</p>
+<pre><code class="julia hljs">julia&gt; inds = map(intersect, indices(img), indices(img_rotated))
+(<span class="hljs-number">1</span>:<span class="hljs-number">512</span>, <span class="hljs-number">1</span>:<span class="hljs-number">512</span>)
+
+julia&gt; imgi = img[inds...];
+
+julia&gt; imgri = img_rotated[inds...];</code></pre>
+<p>so that <code>colorview&#40;RGB, imgi, imgri, imgi&#41;</code> displays as</p>
+<p><img src="/previews/PR2351/assets/blog/2017-04-18-offset-arrays/cameraman_overlay_interior.png" alt="cameraman_interior" /></p>
+<p>Since the indices of the pixels encode absolute spatial location, it&#39;s trivial to keep track of how different pixels align: pixel <code>i,j</code> in one image corresponds to pixel <code>i,j</code> in the other.  This is true even if our coordinate transformation were far more complicated than a simple rotation.</p>
+<p>Having motivated why this might be useful, let&#39;s take a step back and walk through array indices a bit more systematically.</p>
+<h2 id="a_systematic_introduction_to_arrays_with_arbitrary_indices"><a href="#a_systematic_introduction_to_arrays_with_arbitrary_indices" class="header-anchor">A systematic introduction to arrays with arbitrary indices</a></h2>
+<p>In Julia, if we define an array</p>
+<pre><code class="julia hljs">julia&gt; A = collect(reshape(<span class="hljs-number">1</span>:<span class="hljs-number">30</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>))
+<span class="hljs-number">5</span>×<span class="hljs-number">6</span> <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>}:
+ <span class="hljs-number">1</span>   <span class="hljs-number">6</span>  <span class="hljs-number">11</span>  <span class="hljs-number">16</span>  <span class="hljs-number">21</span>  <span class="hljs-number">26</span>
+ <span class="hljs-number">2</span>   <span class="hljs-number">7</span>  <span class="hljs-number">12</span>  <span class="hljs-number">17</span>  <span class="hljs-number">22</span>  <span class="hljs-number">27</span>
+ <span class="hljs-number">3</span>   <span class="hljs-number">8</span>  <span class="hljs-number">13</span>  <span class="hljs-number">18</span>  <span class="hljs-number">23</span>  <span class="hljs-number">28</span>
+ <span class="hljs-number">4</span>   <span class="hljs-number">9</span>  <span class="hljs-number">14</span>  <span class="hljs-number">19</span>  <span class="hljs-number">24</span>  <span class="hljs-number">29</span>
+ <span class="hljs-number">5</span>  <span class="hljs-number">10</span>  <span class="hljs-number">15</span>  <span class="hljs-number">20</span>  <span class="hljs-number">25</span>  <span class="hljs-number">30</span></code></pre>
+<p>then we can refer to a rectangular region like this:</p>
+<pre><code class="julia hljs">julia&gt; B = A[<span class="hljs-number">1</span>:<span class="hljs-number">3</span>, <span class="hljs-number">1</span>:<span class="hljs-number">4</span>]
+<span class="hljs-number">3</span>×<span class="hljs-number">4</span> <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>}:
+ <span class="hljs-number">1</span>  <span class="hljs-number">6</span>  <span class="hljs-number">11</span>  <span class="hljs-number">16</span>
+ <span class="hljs-number">2</span>  <span class="hljs-number">7</span>  <span class="hljs-number">12</span>  <span class="hljs-number">17</span>
+ <span class="hljs-number">3</span>  <span class="hljs-number">8</span>  <span class="hljs-number">13</span>  <span class="hljs-number">18</span></code></pre>
+<p>For certain applications, one negative to extracting blocks is that there is no record indicating where the new block originated from:</p>
+<pre><code class="julia hljs">julia&gt; B2 = A[<span class="hljs-number">2</span>:<span class="hljs-number">4</span>, <span class="hljs-number">1</span>:<span class="hljs-number">4</span>]
+<span class="hljs-number">3</span>×<span class="hljs-number">4</span> <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>}:
+ <span class="hljs-number">2</span>  <span class="hljs-number">7</span>  <span class="hljs-number">12</span>  <span class="hljs-number">17</span>
+ <span class="hljs-number">3</span>  <span class="hljs-number">8</span>  <span class="hljs-number">13</span>  <span class="hljs-number">18</span>
+ <span class="hljs-number">4</span>  <span class="hljs-number">9</span>  <span class="hljs-number">14</span>  <span class="hljs-number">19</span>
+
+julia&gt; B2[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+<span class="hljs-number">2</span></code></pre>
+<p>So <code>B2&#91;1,1&#93;</code> corresponds to <code>A&#91;2,1&#93;</code>, despite the fact that, as measured by their indices, these are not the same location.</p>
+<p>To maintain consistent &quot;naming&quot; of our indices, let&#39;s use the <a href="https://github.com/alsam/OffsetArrays.jl">OffsetArrays</a> package:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> OffsetArrays
+
+julia&gt; B3 = OffsetArray(A[<span class="hljs-number">2</span>:<span class="hljs-number">4</span>, <span class="hljs-number">1</span>:<span class="hljs-number">4</span>], <span class="hljs-number">2</span>:<span class="hljs-number">4</span>, <span class="hljs-number">1</span>:<span class="hljs-number">4</span>)
+<span class="hljs-comment"># wrap the snipped-out piece in an OffsetArray</span>
+OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>}} with indices <span class="hljs-number">2</span>:<span class="hljs-number">4</span>×<span class="hljs-number">1</span>:<span class="hljs-number">4</span>:
+ <span class="hljs-number">2</span>  <span class="hljs-number">7</span>  <span class="hljs-number">12</span>  <span class="hljs-number">17</span>
+ <span class="hljs-number">3</span>  <span class="hljs-number">8</span>  <span class="hljs-number">13</span>  <span class="hljs-number">18</span>
+ <span class="hljs-number">4</span>  <span class="hljs-number">9</span>  <span class="hljs-number">14</span>  <span class="hljs-number">19</span>
+
+julia&gt; B3[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+<span class="hljs-number">18</span>
+
+julia&gt; A[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+<span class="hljs-number">18</span></code></pre>
+<p>So the indices in <code>B3</code> match those of <code>A</code>. Indeed, <code>B3</code> doesn&#39;t even have an element &quot;named&quot; <code>&#40;1,1&#41;</code>:</p>
+<pre><code class="julia hljs">julia&gt; B3[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+ERROR: <span class="hljs-built_in">BoundsError</span>: attempt to access OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>}}
+ with indices <span class="hljs-number">2</span>:<span class="hljs-number">4</span>×<span class="hljs-number">1</span>:<span class="hljs-number">4</span> at index [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>]
+Stacktrace:
+ [<span class="hljs-number">1</span>] throw_boundserror(::OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>}}, ::<span class="hljs-built_in">Tuple</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-built_in">Int64</span>}) at ./abstractarray.jl:<span class="hljs-number">426</span>
+ [<span class="hljs-number">2</span>] checkbounds at ./abstractarray.jl:<span class="hljs-number">355</span> [inlined]
+ [<span class="hljs-number">3</span>] getindex(::OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>}}, ::<span class="hljs-built_in">Int64</span>, ::<span class="hljs-built_in">Int64</span>) at /home/tim/.julia/v0<span class="hljs-number">.6</span>/OffsetArrays/src/OffsetArrays.jl:<span class="hljs-number">89</span></code></pre>
+<p>In this case we created <code>B3</code> by explicitly &quot;wrapping&quot; the extracted array inside a type that allows you to supply custom indices.  &#40;You can retrieve just the extracted portion with <code>parent&#40;B3&#41;</code>.&#41;  We could do the same thing by adjusting the <em>indices</em> instead:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> IdentityRanges
+
+julia&gt; ind1, ind2 = IdentityRange(<span class="hljs-number">2</span>:<span class="hljs-number">4</span>), IdentityRange(<span class="hljs-number">1</span>:<span class="hljs-number">4</span>)
+(IdentityRange(<span class="hljs-number">2</span>:<span class="hljs-number">4</span>), IdentityRange(<span class="hljs-number">1</span>:<span class="hljs-number">4</span>))</code></pre>
+<p>An <a href="https://github.com/JuliaArrays/IdentityRanges.jl"><code>IdentityRange</code></a> is a range with indices that match its values, <code>r&#91;i&#93; &#61;&#61; i</code>. &#40;<code>ind1, ind2 &#61; OffsetArray&#40;2:4, 2:4&#41;, OffsetArray&#40;1:4, 1:4&#41;</code> would be functionally equivalent.&#41; Let&#39;s use <code>ind1</code> and <code>ind2</code> to snip out the region of the array:</p>
+<pre><code class="julia hljs">julia&gt; B4 = A[ind1, ind2]
+OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>}} with indices <span class="hljs-number">2</span>:<span class="hljs-number">4</span>×<span class="hljs-number">1</span>:<span class="hljs-number">4</span>:
+ <span class="hljs-number">2</span>  <span class="hljs-number">7</span>  <span class="hljs-number">12</span>  <span class="hljs-number">17</span>
+ <span class="hljs-number">3</span>  <span class="hljs-number">8</span>  <span class="hljs-number">13</span>  <span class="hljs-number">18</span>
+ <span class="hljs-number">4</span>  <span class="hljs-number">9</span>  <span class="hljs-number">14</span>  <span class="hljs-number">19</span>
+
+julia&gt; B4[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+<span class="hljs-number">18</span></code></pre>
+<p>This implements a simple rule of composition:</p>
+<h3 id="if_c_aind1_ind2_then_ci_j_aind1i_ind2j"><a href="#if_c_aind1_ind2_then_ci_j_aind1i_ind2j" class="header-anchor">If <code>C &#61; A&#91;ind1, ind2&#93;</code>, then <code>C&#91;i, j&#93; &#61;&#61; A&#91;ind1&#91;i&#93;, ind2&#91;j&#93;&#93;</code></a></h3>
+<p>Consequently, if your indices have their own unconventional indices, they will be propagated forward to the next stage.</p>
+<p>This technique can also be used to create a &quot;view&quot;:</p>
+<pre><code class="julia hljs">julia&gt; V = view(A, ind1, ind2)
+<span class="hljs-built_in">SubArray</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>},<span class="hljs-built_in">Tuple</span>{IdentityRanges.IdentityRange{<span class="hljs-built_in">Int64</span>},IdentityRanges.IdentityRange{<span class="hljs-built_in">Int64</span>}},<span class="hljs-literal">false</span>} with indices <span class="hljs-number">2</span>:<span class="hljs-number">4</span>×<span class="hljs-number">1</span>:<span class="hljs-number">4</span>:
+ <span class="hljs-number">2</span>  <span class="hljs-number">7</span>  <span class="hljs-number">12</span>  <span class="hljs-number">17</span>
+ <span class="hljs-number">3</span>  <span class="hljs-number">8</span>  <span class="hljs-number">13</span>  <span class="hljs-number">18</span>
+ <span class="hljs-number">4</span>  <span class="hljs-number">9</span>  <span class="hljs-number">14</span>  <span class="hljs-number">19</span>
+
+julia&gt; V[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+<span class="hljs-number">18</span>
+
+julia&gt; V[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+ERROR: <span class="hljs-built_in">BoundsError</span>: attempt to access <span class="hljs-built_in">SubArray</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>},<span class="hljs-built_in">Tuple</span>{IdentityRanges.IdentityRange{<span class="hljs-built_in">Int64</span>},IdentityRanges.IdentityRange{<span class="hljs-built_in">Int64</span>}},<span class="hljs-literal">false</span>} with indices <span class="hljs-number">2</span>:<span class="hljs-number">4</span>×<span class="hljs-number">1</span>:<span class="hljs-number">4</span> at index [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>]
+Stacktrace:
+ [<span class="hljs-number">1</span>] throw_boundserror(::<span class="hljs-built_in">SubArray</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>},<span class="hljs-built_in">Tuple</span>{IdentityRanges.IdentityRange{<span class="hljs-built_in">Int64</span>},IdentityRanges.IdentityRange{<span class="hljs-built_in">Int64</span>}},<span class="hljs-literal">false</span>}, ::<span class="hljs-built_in">Tuple</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-built_in">Int64</span>}) at ./abstractarray.jl:<span class="hljs-number">426</span>
+ [<span class="hljs-number">2</span>] checkbounds at ./abstractarray.jl:<span class="hljs-number">355</span> [inlined]
+ [<span class="hljs-number">3</span>] getindex(::<span class="hljs-built_in">SubArray</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">2</span>},<span class="hljs-built_in">Tuple</span>{IdentityRanges.IdentityRange{<span class="hljs-built_in">Int64</span>},IdentityRanges.IdentityRange{<span class="hljs-built_in">Int64</span>}},<span class="hljs-literal">false</span>}, ::<span class="hljs-built_in">Int64</span>, ::<span class="hljs-built_in">Int64</span>) at ./subarray.jl:<span class="hljs-number">184</span></code></pre>
+<p>Note that this object is a <em>conventional</em> <code>SubArray</code> &#40;it&#39;s not an <code>OffsetArray</code>&#41;, but because it was passed <code>IdentityRange</code> indices it preserves the indices of the indices.</p>
+<h2 id="a_second_application_arrayimage_filtering_convolution"><a href="#a_second_application_arrayimage_filtering_convolution" class="header-anchor">A second application: array/image filtering &#40;convolution&#41;</a></h2>
+<p>As illustrated above for the image rotation example, a recent release &#40;v0.6.0&#41; of the Images package put both the power and responsibility for dealing with arrays with custom indices into the hands of users. One of the key functions in this package is <code>imfilter</code> which can be used to smooth or otherwise &quot;filter&quot; arrays. The idea is that starting from an array <code>A</code>, each local neighborhood is weighted by a &quot;kernel&quot; <code>kern</code>, producing an output value according to the following formula:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">[</mo><mi>I</mi><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>J</mi></munder><mi>A</mi><mo stretchy="false">[</mo><mi>I</mi><mo>+</mo><mi>J</mi><mo stretchy="false">]</mo><mi>k</mi><mi>e</mi><mi>r</mi><mi>n</mi><mo stretchy="false">[</mo><mi>J</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex"> F[I] = \sum_J A[I+J] kern[J] </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.344341em;vertical-align:-1.294336em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0500050000000003em;"><span style="top:-1.855664em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.09618em;">J</span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.294336em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mclose">]</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">n</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mclose">]</span></span></span></span></span>
+<p>This is the formula for <a href="https://en.wikipedia.org/wiki/Cross-correlation">correlation</a>; the formula for another operation, <a href="https://en.wikipedia.org/wiki/Convolution">convolution</a>, is very similar.</p>
+<p>Let&#39;s start with a trivial example: let&#39;s filter with a &quot;delta function&quot; kernel, meaning it has value <code>1</code> at location 0 and is zero everywhere else. According to the correlation formula, because <code>kern&#91;J&#93;</code> is 1 at <code>J&#61;&#61;0</code>, this should simply give us a copy of our original array:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> Images
+
+julia&gt; imfilter(<span class="hljs-number">1</span>:<span class="hljs-number">8</span>, [<span class="hljs-number">1</span>])
+WARNING: assuming that the origin is at the center of the kernel;
+to avoid this warning, call <span class="hljs-string">`centered(kernel)`</span> or use an OffsetArray
+Stacktrace:
+ [<span class="hljs-number">1</span>] depwarn(::<span class="hljs-built_in">String</span>, ::<span class="hljs-built_in">Symbol</span>) at ./deprecated.jl:<span class="hljs-number">64</span>
+ [<span class="hljs-number">2</span>] _kernelshift at /home/tim/.julia/v0<span class="hljs-number">.6</span>/ImageFiltering/src/imfilter.jl:<span class="hljs-number">1049</span> [inlined]
+ [<span class="hljs-number">3</span>] kernelshift at /home/tim/.julia/v0<span class="hljs-number">.6</span>/ImageFiltering/src/imfilter.jl:<span class="hljs-number">1046</span> [inlined]
+ [<span class="hljs-number">4</span>] factorkernel(::<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}) at /home/tim/.julia/v0<span class="hljs-number">.6</span>/ImageFiltering/src/imfilter.jl:<span class="hljs-number">1016</span>
+ [<span class="hljs-number">5</span>] imfilter at /home/tim/.julia/v0<span class="hljs-number">.6</span>/ImageFiltering/src/imfilter.jl:<span class="hljs-number">10</span> [inlined]
+ [<span class="hljs-number">6</span>] imfilter(::<span class="hljs-built_in">UnitRange</span>{<span class="hljs-built_in">Int64</span>}, ::<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}) at /home/tim/.julia/v0<span class="hljs-number">.6</span>/ImageFiltering/src/imfilter.jl:<span class="hljs-number">5</span>
+ [<span class="hljs-number">7</span>] eval(::<span class="hljs-built_in">Module</span>, ::<span class="hljs-built_in">Any</span>) at ./boot.jl:<span class="hljs-number">235</span>
+ [<span class="hljs-number">8</span>] eval_user_input(::<span class="hljs-built_in">Any</span>, ::Base.REPL.REPLBackend) at ./REPL.jl:<span class="hljs-number">66</span>
+ [<span class="hljs-number">9</span>] <span class="hljs-keyword">macro</span> expansion at ./REPL.jl:<span class="hljs-number">97</span> [inlined]
+ [<span class="hljs-number">10</span>] (::Base.REPL.<span class="hljs-comment">##1#2{Base.REPL.REPLBackend})() at ./event.jl:73</span>
+<span class="hljs-keyword">while</span> loading no file, <span class="hljs-keyword">in</span> expression starting on line <span class="hljs-number">0</span>
+<span class="hljs-number">8</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">1</span>
+ <span class="hljs-number">2</span>
+ <span class="hljs-number">3</span>
+ <span class="hljs-number">4</span>
+ <span class="hljs-number">5</span>
+ <span class="hljs-number">6</span>
+ <span class="hljs-number">7</span>
+ <span class="hljs-number">8</span></code></pre>
+<p>The warning is telling you that Images decided to make a guess about your intention, that the kernel <code>&#91;1&#93;</code> was intended to be centered around zero. You can suppress the warning by explicitly passing the following kernel instead:</p>
+<pre><code class="julia hljs">julia&gt; kern = centered([<span class="hljs-number">1</span>])
+OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}} with indices <span class="hljs-number">0</span>:<span class="hljs-number">0</span>:
+ <span class="hljs-number">1</span>
+
+julia&gt; kern[<span class="hljs-number">0</span>]
+<span class="hljs-number">1</span>
+
+julia&gt; kern[<span class="hljs-number">1</span>]
+ERROR: <span class="hljs-built_in">BoundsError</span>: attempt to access OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}} with indices <span class="hljs-number">0</span>:<span class="hljs-number">0</span> at index [<span class="hljs-number">1</span>]
+Stacktrace:
+ [<span class="hljs-number">1</span>] throw_boundserror(::OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}}, ::<span class="hljs-built_in">Tuple</span>{<span class="hljs-built_in">Int64</span>}) at ./abstractarray.jl:<span class="hljs-number">426</span>
+ [<span class="hljs-number">2</span>] checkbounds at ./abstractarray.jl:<span class="hljs-number">355</span> [inlined]
+ [<span class="hljs-number">3</span>] getindex(::OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}}, ::<span class="hljs-built_in">Int64</span>) at /home/tim/.julia/v0<span class="hljs-number">.6</span>/OffsetArrays/src/OffsetArrays.jl:<span class="hljs-number">94</span></code></pre>
+<p>By using an <code>OffsetArray</code> you have clearly specified your intended indices for <code>kern</code>.</p>
+<p>This can be used to shift an image in the following way &#40;by default, <code>imfilter</code> returns its results over the same domain as the input&#41;:</p>
+<pre><code class="julia hljs">julia&gt; kern2 = OffsetArray([<span class="hljs-number">1</span>], <span class="hljs-number">2</span>:<span class="hljs-number">2</span>)  <span class="hljs-comment"># a delta function centered at 2</span>
+OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}} with indices <span class="hljs-number">2</span>:<span class="hljs-number">2</span>:
+ <span class="hljs-number">1</span>
+
+julia&gt; imfilter(<span class="hljs-number">1</span>:<span class="hljs-number">8</span>, kern2, Fill(<span class="hljs-number">0</span>))  <span class="hljs-comment"># pad the edges of the input with 0</span>
+<span class="hljs-number">8</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">3</span>
+ <span class="hljs-number">4</span>
+ <span class="hljs-number">5</span>
+ <span class="hljs-number">6</span>
+ <span class="hljs-number">7</span>
+ <span class="hljs-number">8</span>
+ <span class="hljs-number">0</span>
+ <span class="hljs-number">0</span>
+
+julia&gt; kern3 = OffsetArray([<span class="hljs-number">1</span>], -<span class="hljs-number">5</span>:-<span class="hljs-number">5</span>)   <span class="hljs-comment"># a delta function centered at -5</span>
+OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}} with indices -<span class="hljs-number">5</span>:-<span class="hljs-number">5</span>:
+ <span class="hljs-number">1</span>
+
+julia&gt; imfilter(<span class="hljs-number">1</span>:<span class="hljs-number">8</span>, kern3, Fill(<span class="hljs-number">0</span>))
+<span class="hljs-number">8</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">0</span>
+ <span class="hljs-number">0</span>
+ <span class="hljs-number">0</span>
+ <span class="hljs-number">0</span>
+ <span class="hljs-number">0</span>
+ <span class="hljs-number">1</span>
+ <span class="hljs-number">2</span>
+ <span class="hljs-number">3</span></code></pre>
+<p>These are all illustrated in the following figure:</p>
+<p><img src="/previews/PR2351/assets/blog/2017-04-18-offset-arrays/filtering.png" alt="deltafunctions" /></p>
+<p>In this figure, we plotted the kernel as if it were at the location corresponding to convolution rather than correlation.</p>
+<p>In other programming languages, when filtering with a kernel that has an even number of elements, it can be difficult to remember which of the two middle elements corresponds to the origin.  In Julia, that&#39;s not an issue, because you can make that choice for yourself:</p>
+<pre><code class="julia hljs">julia&gt; kern = OffsetArray([<span class="hljs-number">0.5</span>,<span class="hljs-number">0.5</span>], <span class="hljs-number">0</span>:<span class="hljs-number">1</span>)
+OffsetArrays.OffsetArray{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">1</span>}} with indices <span class="hljs-number">0</span>:<span class="hljs-number">1</span>:
+ <span class="hljs-number">0.5</span>
+ <span class="hljs-number">0.5</span>
+
+julia&gt; imfilter(<span class="hljs-number">1</span>:<span class="hljs-number">8</span>, kern, Fill(<span class="hljs-number">0</span>))
+<span class="hljs-number">8</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">1.5</span>
+ <span class="hljs-number">2.5</span>
+ <span class="hljs-number">3.5</span>
+ <span class="hljs-number">4.5</span>
+ <span class="hljs-number">5.5</span>
+ <span class="hljs-number">6.5</span>
+ <span class="hljs-number">7.5</span>
+ <span class="hljs-number">4.0</span>
+
+julia&gt; kern = OffsetArray([<span class="hljs-number">0.5</span>,<span class="hljs-number">0.5</span>], -<span class="hljs-number">1</span>:<span class="hljs-number">0</span>)
+OffsetArrays.OffsetArray{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">1</span>}} with indices -<span class="hljs-number">1</span>:<span class="hljs-number">0</span>:
+ <span class="hljs-number">0.5</span>
+ <span class="hljs-number">0.5</span>
+
+julia&gt; imfilter(<span class="hljs-number">1</span>:<span class="hljs-number">8</span>, kern, Fill(<span class="hljs-number">0</span>))
+<span class="hljs-number">8</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Float64</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-number">0.5</span>
+ <span class="hljs-number">1.5</span>
+ <span class="hljs-number">2.5</span>
+ <span class="hljs-number">3.5</span>
+ <span class="hljs-number">4.5</span>
+ <span class="hljs-number">5.5</span>
+ <span class="hljs-number">6.5</span>
+ <span class="hljs-number">7.5</span></code></pre>
+<p>Likewise, sometimes we might have an application where we simply can&#39;t handle the edges properly, and we wish to discard them.  For example, consider the following quadratic function:</p>
+<pre><code class="julia hljs">julia&gt; a = [(i-<span class="hljs-number">3</span>)^<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>:<span class="hljs-number">9</span>]  <span class="hljs-comment"># a quadratic function</span>
+<span class="hljs-number">9</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}:
+  <span class="hljs-number">4</span>
+  <span class="hljs-number">1</span>
+  <span class="hljs-number">0</span>
+  <span class="hljs-number">1</span>
+  <span class="hljs-number">4</span>
+  <span class="hljs-number">9</span>
+ <span class="hljs-number">16</span>
+ <span class="hljs-number">25</span>
+ <span class="hljs-number">36</span>
+
+julia&gt; imfilter(a, Kernel.Laplacian((<span class="hljs-literal">true</span>,)))
+<span class="hljs-number">9</span>-element <span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}:
+  -<span class="hljs-number">3</span>
+   <span class="hljs-number">2</span>
+   <span class="hljs-number">2</span>
+   <span class="hljs-number">2</span>
+   <span class="hljs-number">2</span>
+   <span class="hljs-number">2</span>
+   <span class="hljs-number">2</span>
+   <span class="hljs-number">2</span>
+ -<span class="hljs-number">11</span></code></pre>
+<p>Those weird values on the edges &#40;for which there is no padding that will &quot;extrapolate&quot; the quadratic&#41; might cause problems. Consequently, let&#39;s only extract the values that are well-defined, meaning that all inputs to the correlation formula have explicitly-assigned values:</p>
+<pre><code class="julia hljs">julia&gt; imfilter(a, Kernel.Laplacian((<span class="hljs-literal">true</span>,)), Inner())
+OffsetArrays.OffsetArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}} with indices <span class="hljs-number">2</span>:<span class="hljs-number">8</span>:
+ <span class="hljs-number">2</span>
+ <span class="hljs-number">2</span>
+ <span class="hljs-number">2</span>
+ <span class="hljs-number">2</span>
+ <span class="hljs-number">2</span>
+ <span class="hljs-number">2</span>
+ <span class="hljs-number">2</span></code></pre>
+<p>Notice that in this case, it returned an <code>OffsetArray</code> so that the values in the result align properly with the original array.</p>
+<h2 id="a_final_application_fourier_transforms"><a href="#a_final_application_fourier_transforms" class="header-anchor">A final application: Fourier transforms</a></h2>
+<p>There are many more things you can do with custom indices.  As one last illustration, consider the <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform">Discrete Fourier Transform</a>, which is defined on a periodic domain.  Typically, it&#39;s rather difficult to emulate a periodic domain with arrays, because arrays have finite size.  However, it&#39;s possible to define indexing objects which possess periodic behavior.  Here we use the <a href="https://github.com/JuliaArrays/FFTViews.jl">FFTViews</a> package, demonstrating the technique on a simple sinusoid:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> FFTViews
+
+julia&gt; a = [sin(<span class="hljs-number">2</span><span class="hljs-literal">π</span>*x)+<span class="hljs-number">0.1</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> linspace(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">16</span>)];
+
+julia&gt; afft = FFTView(fft(a))
+FFTViews.FFTView{<span class="hljs-built_in">Complex</span>{<span class="hljs-built_in">Float64</span>},<span class="hljs-number">1</span>,<span class="hljs-built_in">Array</span>{<span class="hljs-built_in">Complex</span>{<span class="hljs-built_in">Float64</span>},<span class="hljs-number">1</span>}} with indices FFTViews.URange(<span class="hljs-number">0</span>,<span class="hljs-number">15</span>):
+       <span class="hljs-number">1.6</span>+<span class="hljs-number">0.0</span><span class="hljs-literal">im</span>
+     <span class="hljs-number">1.498</span>-<span class="hljs-number">7.53098</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.288537</span>+<span class="hljs-number">0.69659</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.236488</span>+<span class="hljs-number">0.35393</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.222614</span>+<span class="hljs-number">0.222614</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.216932</span>+<span class="hljs-number">0.14495</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.214217</span>+<span class="hljs-number">0.0887316</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.212937</span>+<span class="hljs-number">0.0423558</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.212557</span>+<span class="hljs-number">0.0</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.212937</span>-<span class="hljs-number">0.0423558</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.214217</span>-<span class="hljs-number">0.0887316</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.216932</span>-<span class="hljs-number">0.14495</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.222614</span>-<span class="hljs-number">0.222614</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.236488</span>-<span class="hljs-number">0.35393</span><span class="hljs-literal">im</span>
+ -<span class="hljs-number">0.288537</span>-<span class="hljs-number">0.69659</span><span class="hljs-literal">im</span>
+     <span class="hljs-number">1.498</span>+<span class="hljs-number">7.53098</span><span class="hljs-literal">im</span></code></pre>
+<p>Now, as every student of Fourier transforms learns, the 0-frequency bin holds the sum of the values in <code>a</code>:</p>
+<pre><code class="julia hljs">julia&gt; afft[<span class="hljs-number">0</span>]
+<span class="hljs-number">1.6000000000000003</span> + <span class="hljs-number">0.0</span><span class="hljs-literal">im</span></code></pre>
+<p>Since the mean of a sinusoid is zero, this is &#40;within roundoff error&#41; 16*0.1 &#61; 1.6.</p>
+<p>We can also check the amplitude at the Fourier-peak, and explore the periodicity of the result:</p>
+<pre><code class="julia hljs">julia&gt; afft[<span class="hljs-number">1</span>]
+<span class="hljs-number">1.4980046017247872</span> - <span class="hljs-number">7.53097769363728</span><span class="hljs-literal">im</span>
+
+julia&gt; afft[-<span class="hljs-number">1</span>]      <span class="hljs-comment"># negative frequencies are OK</span>
+<span class="hljs-number">1.4980046017247872</span> + <span class="hljs-number">7.53097769363728</span><span class="hljs-literal">im</span>
+
+julia&gt; afft[<span class="hljs-number">64</span>+<span class="hljs-number">1</span>]    <span class="hljs-comment"># look Ma, it&#x27;s periodic!</span>
+<span class="hljs-number">1.4980046017247872</span> - <span class="hljs-number">7.53097769363728</span><span class="hljs-literal">im</span>
+
+julia&gt; length(indices(afft,<span class="hljs-number">1</span>))   <span class="hljs-comment"># but we still know how big it is</span>
+<span class="hljs-number">16</span></code></pre>
+<p>Given the periodicity of <code>afft</code>, the commonly-used <code>fftshift</code> function &#40;e.g., <code>fftshift&#40;fft&#40;a&#41;&#41;</code>&#41; can be replaced by <code>afft&#91;-8:7&#93;</code>. While very simple, these techniques make it surprisingly more pleasant to deal with what can sometimes become complex and error-prone index gymnastics.</p>
+<h2 id="summary_a_users_perspective"><a href="#summary_a_users_perspective" class="header-anchor">Summary: a user&#39;s perspective</a></h2>
+<p>This has only scratched the surface of what&#39;s possible with custom indices.  In the opinion of the author, their main advantage is that they can increase the clarity of code by ensuring that &quot;names&quot; &#40;indices&#41; can be endowed with <em>absolute meaning</em>, rather than always being &quot;referenced to whatever the first element of this particular array happens to encode.&quot;</p>
+<p>There is quite a lot of code that hasn&#39;t yet properly accounted for the possibility of custom indices — surely, some of it written by the author of this post&#33; So users should be prepared for the possibility that exploiting custom indices will trigger errors in base Julia or in packages.  Rather than giving up, users are encouraged to report such errors as issues, as this is the only way that custom indices will, over the course of time, have solid support.</p>
+<h2 id="summary_a_developers_perspective"><a href="#summary_a_developers_perspective" class="header-anchor">Summary: a developer&#39;s perspective</a></h2>
+<p>For some algorithms, there appears to be little reason to ever use arrays with anything but 1-based indices; in such cases, there may be no reason to modify existing code.  But if your code has a &quot;spatial&quot; interpretation–where location has meaning–then you just might want to give the new facilities a try.</p>
+<p>In transitioning existing code, the author of this post has observed the following tendencies:</p>
+<ul>
+<li><p>algorithms that exploit custom indices are sometimes simpler to understand than their &quot;1-locked&quot; counterparts;</p>
+</li>
+<li><p>if you&#39;re porting old code to support custom indices, there&#39;s some bad news: if you had to think carefully about the indexing the first time you wrote it, it usually requires significant investment to re-think the indexing, even if the end result is somewhat simpler.</p>
+</li>
+<li><p>even when a specific algorithm might gain little advantage from supporting arbitrary indices, writing code that is &quot;indices aware&quot; from the beginning is often no harder than writing algorithms that implicitly assume indexing starts at 1.</p>
+</li>
+</ul>
+<p>Developers are referred to <a href="https://docs.julialang.org/en/latest/devdocs/offset-arrays">Julia&#39;s documentation</a> for further guidance.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+        
+
+
+
+    
+    
+        <script src="/previews/PR2351/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2351/project">About</a></li>
+        <li><a href="/previews/PR2351/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2351/governance/">Governance</a></li>
+        <li><a href="/previews/PR2351/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2351/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2351/install/">Install</a></li>
+        <li><a href="/previews/PR2351/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2351/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2351/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2351/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2351/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2351/community/">Community</a></li>
+        <li><a href="/previews/PR2351/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2351/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2351/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2351/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2351/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2351/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2351/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2351/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2351/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/previews/PR2351/libs/groups.js"></script>
+    <script src="/previews/PR2351/libs/map.js"></script>
+  </body>
+</html>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2431/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2431/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2431/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2431/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2431/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2431/css/app.css">
+<link rel="stylesheet" href="/previews/PR2431/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2431/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2431/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2431/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>This Month in Julia World (April 2025)</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2431/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2431/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="This Month in Julia World (April 2025)">
+<meta property="og:description" content="Community Newsletter for April 2025">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2431/blog/2025/05/this-month-in-julia-world/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "This Month in Julia World (April 2025)",
+  "description": "Community Newsletter for April 2025",
+  "image": "https://julialang.netlify.app/previews/PR2431/assets/images/julia-open-graph.png",
+  "datePublished": "2025-05-01T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "Stefan Krastanov"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2431/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2431/blog/2025/05/this-month-in-julia-world/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2431/">
+          <img src="/previews/PR2431/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2431/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2431/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2431/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2431/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2431/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2431/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>This Month in Julia World (April 2025)</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p style="font-size: 1.17em; margin-top: 0;">
+          
+            <span style="font-weight: lighter;">1 May 2025</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;">Stefan Krastanov</span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2025/05/this-month-in-julia-world.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.</p>
+<p>For recent news on Julia and interesting conversations with community members, check out the <a href="https://juliadispatch.fm/">JuliaDispatch</a> podcast &#40;on many platforms, including <a href="https://www.youtube.com/@JuliaDispatch/">youtube</a> and <a href="https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws">spotify</a>&#41;. Highlights from the newsletter get discussed &#40;with more context&#41; during some episodes.</p>
+<p>JuliaCon Local Paris 2025:</p>
+<ul>
+<li><p>The call for proposals is still open until May 15th&#33; <a href="https://juliacon.org/local/paris2025/cfp/">Submit your talk, tutorial or poster while you can</a>.</p>
+</li>
+<li><p>Tickets are now available&#33; <a href="https://juliacon.org/local/paris2025/tickets/">Get yours here</a>&#33;</p>
+</li>
+</ul>
+<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<ul>
+<li><p>Julia 1.11.5 and 1.12-beta2 have been released.</p>
+</li>
+<li><p>The API for the compiler’s lowering has been reworked &#91;<a href="https://github.com/JuliaLang/julia/pull/58147">1</a>, <a href="https://github.com/JuliaLang/julia/pull/58207">2</a>&#93;, paving the way for experimental use of <a href="https://github.com/c42f/JuliaLowering.jl">JuliaLowering.jl</a> as the default lowering implementation. JuliaLowering is intended to improve code provenance in Julia, which will have a big impact on future developer tooling. See the <a href="https://www.youtube.com/watch?v&#61;I6-zV0SPpFA">JuliaCon 2024 video</a>. A recent <a href="https://discourse.julialang.org/t/understanding-bindings-in-julialowering-jl/126941">discussion on discourse</a> also delves deeper in the inner workings of JuliaLowering. JuliaLowering is also an important part of the experimental <a href="https://github.com/c42f/JuliaLowering.jl/pull/10">JET-based language server</a>, which would provide much better dev feedback in IDEs.</p>
+</li>
+<li><p>The <a href="https://github.com/JuliaLang/StyledStrings.jl/issues/61">StyledStrings standard library committed piracy</a> against Base and was type unstable. This led to invalidations and contributed to the higher latency of Julia 1.11 and 1.12 compared to 1.10. The latency impact has now been <a href="https://github.com/JuliaLang/julia/issues/57998">deemed untenable</a>, so work is ongoing to fix the piracy and invalidations &#91;<a href="https://github.com/JuliaLang/julia/pull/58112">1</a>, <a href="https://github.com/JuliaLang/julia/pull/56194">2</a>, <a href="https://github.com/JuliaLang/julia/pull/58134">3</a>&#93;</p>
+</li>
+<li><p>The discussion on optional modules has bubbled up again &#91;<a href="https://github.com/JuliaLang/julia/pull/58051">1</a>, <a href="https://github.com/JuliaLang/julia/issues/55516">2</a>&#93;. This is related to the older discussion of <a href="https://github.com/JuliaLang/julia/issues/48163">precompile-only packages</a> as well as package extensions, all mechanisms to reduce the number of dependencies, and thereby improve precompile times and latency.</p>
+</li>
+<li><p>There have been many posts about the increasing load latency since the release of Julia 1.10 &#91;<a href="https://discourse.julialang.org/t/startup-time-of-1000-packages-53-slower-in-julia-1-12-vs-1-10/128343/">1</a>, <a href="https://discourse.julialang.org/t/slower-times-to-ttfx-for-gmt-in-1-11-and-even-more-in-nightly/126350">2</a>, <a href="https://github.com/JuliaLang/julia/issues/58201">3</a>, <a href="https://github.com/JuliaLang/julia/issues/57436">4</a>, <a href="https://github.com/JuliaLang/julia/issues/57970">5</a>, <a href="https://github.com/JuliaLang/julia/issues/58163">6</a>&#93;. This issue is well known to the compiler team who are looking into it. One particularly nice outcome of this is the creation of a repository of “representative examples of a package’s use” for benchmarking Julia’s performance on load, compilation, and more. There is even a <a href="https://discourse.julialang.org/t/startup-time-of-1000-packages-53-slower-in-julia-1-12-vs-1-10/128343/51?u&#61;krastanov">simple webpage for direct submission of such code snippets</a>.</p>
+</li>
+<li><p>Detailed new documentation on the <a href="https://github.com/JuliaLang/julia/pull/58253/files">“world age” mechanism in julia</a>.</p>
+</li>
+<li><p>Further progress on <a href="https://github.com/JuliaLang/julia/pull/58142">support for LLVM v20</a> is near.</p>
+</li>
+<li><p>Unexpectedly, a few ‘optimised’ methods in Base have been found to be slower than the naive implementations, providing rare opportunities to optimise code simply by deleting stuff &#91;<a href="https://github.com/JuliaLang/julia/pull/50509">1</a>, <a href="https://github.com/JuliaLang/julia/pull/58280">2</a>, <a href="https://github.com/JuliaLang/julia/pull/58267">3</a>&#93;.</p>
+</li>
+<li><p>A talk for non-julian audiences on the <a href="https://www.youtube.com/watch?v&#61;LluyXFj9YDI">recent progress on static compilation</a> at PyData Global by Jeff.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/why-are-statically-sized-arrays-immutable/128331">Why are static arrays immutable?</a> - a short discourse post in which Oscar and Mason give very informative short answers about stack and heap allocations in julia and other languages.</p>
+</li>
+</ul>
+<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<ul>
+<li><p><a href="https://discourse.julialang.org/t/ann-testpicker-interactive-tool-for-testing-based-on-fzf-and-bat/128273/3">TestPicker.jl</a> - a neat dev tool for interactively running a subset of tests matching a fuzzy search.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-borrowchecker-jl-a-borrow-checker-for-julia/127897">BorrowChecker.jl</a> - a runtime borrow checker &#40;similar to Rusts compile borrow checker&#41; that can be disabled in release code, but kept enabled during development and testing to detect bugs and structural issues in your library code.</p>
+</li>
+<li><p>The Pluto notebook is getting AI coding assistance features. They are taking a very cautious approach of putting in only limited-scope features of high value right now, e.g. <a href="https://github.com/fonsp/Pluto.jl/pull/3201">automatically fixing syntax errors</a>.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-askai-your-direct-ai-support-in-repl/128042">AskAI.jl</a> for interactive queries to LLMs and executing code returned by them.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-rxinferserver-python-sdk-fast-inference-from-python-and-more/127969">RxInferServer and a Python SDK</a>: remote execution of probabilistic modules and support for consumers from other languages.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-zerodimensionalarrays-jl-zero-dimensional-arrays-references-boxes/128002">ZeroDimensionalArrays.jl</a> - tiny package, implementing several similar types, each being a zero-dimensional array, as a semantically neater alternative to the many meanings <code>Base.Ref</code> has.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-pawsometracker-jl/127929">PawsomeTracker.jl</a> for target tracking in videos.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-structuralvibration-jl/127978">StructuralVibration.jl</a> released recently for work on modeling various problems in mechanics.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-announcing-cliquetrees-jl-tree-decompositions-in-julia/128808">ClickeTrees.jl</a> - tree decomposition tools</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-smallcollections-jl-fast-small-vectors-sets-and-dictionaries/128787">SmallCollections.jl</a> - fast small vectors, sets and dictionaries</p>
+</li>
+</ul>
+<p>Abstract Math ecosystem:</p>
+<ul>
+<li><p><a href="https://discourse.julialang.org/t/ann-liegroups-jl/128294">LieGroups.jl</a> - an interface to work with and define Lie groups as well as a library of Lie groups</p>
+</li>
+</ul>
+<p>Numerical Math ecosystem:</p>
+<ul>
+<li><p><a href="https://discourse.julialang.org/t/ann-convolutioninterpolations-jl-smooth-multi-dimensional-high-order-of-accuracy-interpolation/128003">ConvolutionInterpolations.jl</a>: Smooth multi-dimensional high order of accuracy interpolation.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-breakers-jl/127874">Breakers.jl</a> for binning continuous data, a pure Julia partial implementation of the R classInt library, that handles fisher, kmeans, quantile and equal breaks of a vector &#40;potentially containing missing values&#41;.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/ann-numericaldistributions-jl-user-defined-distributions/128025">NumericalDistributions.jl</a>: a Distributions.jl-compatible tool for defining custom probability distributions from arbitrary numerical functions.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/t/numerical-linear-algebra-class-in-julia-tum/128661">Numerical Linear Algebra class in Julia at TUM</a></p>
+</li>
+</ul>
+<p>Notes from other ecosystems:</p>
+<ul>
+<li><p><a href="https://github.com/HEPLean/PhysLean">PhysLean</a>: Digitizing physics in Lean 4 – formalizing calculations, theorems, and proofs&#33;</p>
+</li>
+<li><p><a href="https://news.ycombinator.com/item?id&#61;43777731">CubeCL</a>: the Rust version of KernelAbstractions</p>
+</li>
+</ul>
+<p>Events:</p>
+<ul>
+<li><p>The QNumerics summer school on numerical methods in quantum information science is <a href="https://qnumerics.org/">open for registration</a>.</p>
+</li>
+</ul>
+<p>See also: <a href="https://pnavaro.github.io/NouvellesJulia/">French community newsletter</a>, <a href="/previews/PR2431/community/#events">community calendar</a>, <a href="https://hackmd.io/@LilithHafner/HJaw__uMp">minutes of triage meetings</a></p>
+<p>You can engage in the discussion of this newsletter on <a href="https://discourse.julialang.org/c/community/news/66">Discourse</a></p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2431/project">About</a></li>
+        <li><a href="/previews/PR2431/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2431/governance/">Governance</a></li>
+        <li><a href="/previews/PR2431/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2431/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2431/downloads">Install</a></li>
+        <li><a href="/previews/PR2431/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2431/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2431/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2431/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2431/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2431/community/">Community</a></li>
+        <li><a href="/previews/PR2431/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2431/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2431/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2431/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2431/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2431/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2431/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

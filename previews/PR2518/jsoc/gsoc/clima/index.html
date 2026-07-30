@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2518/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2518/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2518/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2518/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2518/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2518/css/app.css">
+<link rel="stylesheet" href="/previews/PR2518/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2518/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2518/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2518/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>CliMA: A New Open-Source Climate Model Running on GPUs</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2518/css/container-lists.css">
+  
+
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="CliMA: A New Open-Source Climate Model Running on GPUs">
+<meta property="og:description" content="Official website for the Julia programming language">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2518/jsoc/gsoc/clima/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2518/">
+          <img src="/previews/PR2518/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2518/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2518/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2518/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2518/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2518/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2518/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsoc/clima.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="clima_a_new_open-source_climate_model_running_on_gpus"><a href="#clima_a_new_open-source_climate_model_running_on_gpus" class="header-anchor">CliMA: A New Open-Source Climate Model Running on GPUs</a></h1>
+<p>Climate models are complex codes that simulate Earth&#39;s climate system &#40;atmosphere, ocean, land, ice&#41;. These models demand immense computing power and present significant software engineering challenges, including managing massive datasets, ensuring numerical stability, optimizing performance, and coupling diverse components. The complexity and legacy nature of existing models hinder their ability to fully utilize modern computing infrastructure &#40;GPUs, machine learning, etc.&#41;. The Climate Modeling Alliance is developing CliMA, a new climate model built in Julia and designed from the outset to leverage GPU acceleration and modern software engineering practices to overcome the limitations of traditional climate models.</p>
+<h2 id="climaexplorer_an_interactive_visualizer_of_climate_model_outputs"><a href="#climaexplorer_an_interactive_visualizer_of_climate_model_outputs" class="header-anchor"><code>ClimaExplorer</code>: An Interactive Visualizer of Climate Model Outputs</a></h2>
+<p>Visualizing simulation output is crucial for both scientific understanding and outreach. This project involves developing <code>ClimaExplorer</code>, an interactive visualizer for the output of the CliMA Earth system model. <code>ClimaExplorer</code> will leverage the <a href="https://github.com/MakieOrg/Makie.jl">Makie</a> ecosystem and web technologies, providing a user-friendly interface for exploring complex climate data. This will enable researchers to more easily analyze and interpret simulation results, accelerating scientific discovery. Furthermore, the web-based component will facilitate broader dissemination of results to a wider audience.</p>
+<p><strong>Desired Skills:</strong> Familiarity with front-end web development &#40;HTML, JavaScript, and CSS&#41;, Julia, and <a href="https://github.com/MakieOrg/Makie.jl">Makie</a>.</p>
+<p><strong>Difficulty:</strong> Medium</p>
+<p><strong>Duration</strong> 175 hours</p>
+<p><strong>Expected Results:</strong> <code>ClimaExplorer</code>, a new module for interactive visualization of simulation output &#40;with tests and documentation&#41;.</p>
+<p><strong>Mentor:</strong> <a href="https://github.com/sbozzolo">Gabriele Bozzola</a></p>
+<p><strong>Contact:</strong> Feel free to ask questions via <a href="clima-software@caltech.edu">email</a> or <a href="https://join.slack.com/t/julialang/shared_invite/zt-2a5wdtotu-H52pQQTMDOa4NwsTSgQ_lQ">Julia Slack</a> &#40;DM to Gabriele Bozzola&#41;.</p>
+<p><em>Interested in other aspects of climate modeling in Julia but not this particular project? Get in touch—we have many more projects&#33;</em></p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2518/project">About</a></li>
+        <li><a href="/previews/PR2518/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2518/governance/">Governance</a></li>
+        <li><a href="/previews/PR2518/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2518/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2518/downloads">Install</a></li>
+        <li><a href="/previews/PR2518/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2518/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2518/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2518/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2518/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2518/community/">Community</a></li>
+        <li><a href="/previews/PR2518/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2518/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2518/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2518/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2518/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2518/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2518/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>
