@@ -66,6 +66,10 @@
           <td>Build and solve decision making problems using the POMDPs.jl ecosystem. Taught by Robert Moss.</td>
         </tr>
         <tr>
+          <td><a href="https://www.youtube.com/playlist?list=PLUAq6xQKFgGr39PiyrPk_C9dhBKvWcjUA">High Performance Computing in Julia</a></td>
+          <td>Learn high-performance computing using Julia, from single-core optimization to multithreading, distributed computing and GPU programming. Taught by Dr Jamie Mair.</td>
+        </tr>
+        <tr>
           <td><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6T56GkMHEdSrjCCheNuEwI0">Computational Thinking (MIT)</a></td>
           <td>MIT's open course 18.S191 on computational thinking using Julia, with interactive Pluto notebooks.</td>
         </tr>
