@@ -1,4 +1,4 @@
-using HTTP, JSON3, GitHub
+using Downloads, JSON3, GitHub
 
 function currentversions()
     out = Dict{VersionNumber,String}()
@@ -13,8 +13,8 @@ function currentversions()
     return out
 end
 
-response = HTTP.get("https://julialang-s3.julialang.org/bin/versions.json")
-releases = [VersionNumber(String(k)) => v.files for (k, v) in JSON3.read(response.body)]
+versions_json = take!(Downloads.download("https://julialang-s3.julialang.org/bin/versions.json", IOBuffer()))
+releases = [VersionNumber(String(k)) => v.files for (k, v) in JSON3.read(versions_json)]
 
 # Note, we may get rate limited here
 github_repo = Repo("JuliaLang/julia")
