@@ -14,9 +14,9 @@ ignore = ["visual-tests/"]
 # Templating of the Downloads
 # NOTE: When updating for a new release, make sure to also rerun
 # `downloads/oldreleases.jl`
-stable_release = "1.12.6"
+stable_release = "1.12.7"
 stable_release_short = "1.12"
-stable_release_date = "April 9, 2026"
+stable_release_date = "August 15, 2026"
 lts_release = "1.10.11"
 lts_release_short = "1.10"
 lts_release_date = "March 9, 2026"
@@ -29,7 +29,7 @@ hasmap = false
 
 # If the following lines are commented, the "upcoming release" section
 # in `downloads/index.md` will not be shown.
-upcoming_release = "1.13.0-rc2"
+upcoming_release = "1.13.0-rc3"
 upcoming_release_short = "1.13"
 upcoming_release_date = "2026"
 +++
