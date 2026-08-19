@@ -10,7 +10,7 @@
     "@playwright/test": "^1.61.1",
     "serve": "^14.2.6"
   },
-  "packageManager": "pnpm@11.20.0",
+  "packageManager": "pnpm@11.21.0",
   "pnpm": {
     "minimumReleaseAge": 10080
   }
