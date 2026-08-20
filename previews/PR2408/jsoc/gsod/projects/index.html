@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2408/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2408/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2408/css/app.css">
+<link rel="stylesheet" href="/previews/PR2408/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2408/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2408/libs/buttons.js"></script>
+<script src="/previews/PR2408/libs/clipboard.min.js"></script>
+<script src="/previews/PR2408/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Julia&#39;s Google Season of Docs Projects</title>   
+
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Julia&#39;s Google Season of Docs Projects">
+<meta property="og:description" content="">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2408/">
+          <img src="/previews/PR2408/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2408/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2408/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2408/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2408/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2408/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2408/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsod/projects.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="julias_google_season_of_docs_projects"><a href="#julias_google_season_of_docs_projects" class="header-anchor">Julia&#39;s Google Season of Docs Projects</a></h1>
+<p>Below are the projects which have been proposed for Google Season of Docs under the umbrella of the Julia Language. If you have questions about potential projects, the first point of contact would be the mentor&#40;s&#41; listed on the project. If you are unable to get ahold of the potential mentor&#40;s&#41;, you should email <code>jsoc@julialang.org</code> and CC <code>community@julialang.org</code>.</p>
+<p>We at the Julia Language are committed to making the application process and participation in GSoD with Julia accessible to everyone. If you have questions or requests, please do reach out and we will do our best to accommodate you.</p>
+<h3 id="the_gsod_experience_with_the_julia_language"><a href="#the_gsod_experience_with_the_julia_language" class="header-anchor">The GSoD experience with The Julia Language</a></h3>
+<p>Learn from one of our technical writers about their experience with GSoD: 
+<iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/6s9J-ObQaAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+<h1 id="project_ideas_for_2024"><a href="#project_ideas_for_2024" class="header-anchor">Project Ideas for 2024</a></h1>
+<p>Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reach out to the respective mentor&#40;s&#41;.</p>
+<h1 id="unifying_the_a_hrefhttpsgithubcomjuliahealthjuliaheath_organization_documentation_landscape"><a href="#unifying_the_a_hrefhttpsgithubcomjuliahealthjuliaheath_organization_documentation_landscape" class="header-anchor">Unifying the <a href="https://github.com/JuliaHealth">JuliaHeath Organization</a> Documentation Landscape</a></h1>
+<h2 id="about_your_organization"><a href="#about_your_organization" class="header-anchor">About your organization</a></h2>
+<p>The Julia Programming Language is an MIT-licensed high-performance programming language designed for speed, usability, and reproducibility within both scientific and general purpose computing. Currently the Julia community has over 7,000 registered Julia packages, 35 million&#43; downloads of Julia, and thousands of contributors worldwide. Julia&#39;s popularity continues to grow thanks to the dedicated community of users and developers who have helped develop several smaller specialty ecosystems within Julia.</p>
+<p>In particular, the <a href="https://github.com/JuliaHealth/">JuliaHealth Organization</a> is one such ecosystem that was originally organized and founded 2020. It is an organization dedicated to improving healthcare by developing open-source tools to work with a variety of health data and promotes interoperable data standards within the broader health research community. The community is made up of health researchers, data scientists, software developers, and healthcare professionals who are passionate about using Julia to investigate and improve patient outcomes and promote data-driven decision-making.</p>
+<p>Over the past four years, our organization membership has grown to more than 60 members actively working on the dozens of JuliaHealth packages we house. As the entire JuliaHealth user community comprises more than 250 registered users across the Julia Slack and Julia Zulip instances, niche subecosystems have organically arisen under the JuliaHealth umbrella. Currently, there are various subecosystems such as the Medical Imaging and the Observational Health subecosystem with more subecosystems beginning to emerge.</p>
+<h2 id="your_projects_problem"><a href="#your_projects_problem" class="header-anchor">Your project’s problem</a></h2>
+<p>With JuliaHealth&#39;s terrific growth over the years – both in terms of growth in users, members, and actively maintained packages – we are beginning to see the need for more unified documentation. Without this unified documentation, we are seeing:</p>
+<ul>
+<li><p>User confusion due to the lack of documentation around subecosystems &#40;including both emerging and established subecosystems&#41;</p>
+</li>
+<li><p>Developing fragmentation of documentation across packages</p>
+</li>
+<li><p>Lack of clarity in how users and developers can compose packages together across JuliaHealth and the broader Julia ecosystem to accomplish research tasks</p>
+</li>
+</ul>
+<p>In some ways, this is a very good place to be in in that we have grown to the point of having these issues. Users and developers want to engage with the JuliaHealth community, but if we do not provide a more unified documentation approach, we could potentially lose members or new contributors and stagnate our growth.</p>
+<h3 id="project_impact"><a href="#project_impact" class="header-anchor">Project Impact</a></h3>
+<ul>
+<li><p>By providing clearer guidance and improving accessibility, we seek to make navigating the different aspects of the JuliaHealth organization seamless and intuitive.</p>
+</li>
+<li><p>We envision through participation in GSoD that by developing enhanced and unified documentation, we can assist all community levels within the JuliaHealth ecosystem.</p>
+</li>
+<li><p>Additionally, as we construct solutions within JuliaHealth to address the needs we have encountered as a growing organization, we will share our insights to the broader Julia community to illustrate various methods other ecosystems within Julia can adapt to meet growing demand.</p>
+</li>
+</ul>
+<h2 id="your_projects_scope"><a href="#your_projects_scope" class="header-anchor">Your project’s scope</a></h2>
+<p>Although there are many subecosystems within JuliaHealth, our project will be scoped to specifically the Medical Imaging subecosystem as it has grown mature enough to encounter many of these problems already. Working on documentation around the Medical Imagining subecosystem will benefit the rest of the JuliaHealth ecosystem as it will provide a roadmap for how other subecosystems can best document themselves and support their users.</p>
+<p>To better position the Medical Imaging subecosystem within the JuliaHealth organization, we will first have to do some general documentation improvements to the main JuliaHealth website. This includes:</p>
+<ul>
+<li><p>Upgrade website to latest Julia documentation deployment tool</p>
+<ul>
+<li><p>DocumenterVitepress.jl may be one target</p>
+</li>
+</ul>
+</li>
+<li><p>Add additional organization details for JuliaHealth overall including:</p>
+<ul>
+<li><p>A new landing page for the subecosystems</p>
+<ul>
+<li><p>Medical Imaging</p>
+</li>
+<li><p>Observational Health</p>
+</li>
+<li><p>Standards and Interoperability</p>
+</li>
+</ul>
+</li>
+<li><p>Package breakdown using our pre-existing package listing tool</p>
+</li>
+</ul>
+</li>
+<li><p>Add FAQ or support page</p>
+</li>
+<li><p>Define and implement tracking metrics to monitor user engagement and interaction with the platform</p>
+<ul>
+<li><p>Using an open source and GDPR compliant technology like GoatCounter</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Once this initial groundwork is done, we will then address some of the specific core tooling within the Medical Imaging subecosystem. Due to the modular nature of packages within this subecosystem, we will need to improve documentation across various packages to show what they should be used for, how they integrate with one another, and how to onboard as a potential new contributor:</p>
+<ul>
+<li><p>Documentation tasks for <a href=" https://github.com/JuliaHealth/MedImage.jl">MedImage</a></p>
+<ul>
+<li><p>Introduction to the theory of medical imaging formats and spatial metadata</p>
+</li>
+<li><p>Describe how to load and save image</p>
+</li>
+<li><p>Describe how apply basic transformation using MedImage</p>
+</li>
+</ul>
+</li>
+<li><p>Documentation tasks for <a href="https://github.com/JuliaHealth/MedEye3d.jl">MedEye3d</a></p>
+<ul>
+<li><p>Write tutorial how to configure window size and amount of space allocated to text</p>
+</li>
+<li><p>Give detailed tutorial describing the possible configurations using TextureSpec objects</p>
+</li>
+<li><p>Add the section with all keyboard shortcuts and print screens showing their effects</p>
+</li>
+<li><p>Describe possible user interactions including:</p>
+<ul>
+<li><p>Using tool with REPL for fast debugging, include how to modify and refresh image manually</p>
+</li>
+<li><p>Describe manual interaction of modifiable masks</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Documentation tasks for <a href="https://github.com/JuliaHealth/MedEval3D.jl">MedEval3D</a></p>
+<ul>
+<li><p>Describe different metrics and what are their strength and weaknesses</p>
+</li>
+<li><p>Make a tutorial showing how to use each metric</p>
+</li>
+</ul>
+</li>
+<li><p>Documentation tasks for <a href="https://github.com/JuliaHealth/MedPipe3D.jl">MedPipe3D</a></p>
+<ul>
+<li><p>Describe how to use Medpipe functionalities in different use cases</p>
+</li>
+<li><p>Give introduction to the functionalities in development like augmentations, largest component analysis or hyperparameter tuning &#40;without usage examples&#41;</p>
+</li>
+</ul>
+</li>
+<li><p>Documentation tasks for <a href="https://github.com/JuliaHealth/KomaMRI.jl">KomaMRI</a>:</p>
+<ul>
+<li><p>Through coordination with the KomaMRI volunteers, <a href="https://github.com/JuliaHealth/KomaMRI.jl/issues?q&#61;is&#37;3Aissue&#43;is&#37;3Aopen&#43;sort&#37;3Aupdated-desc&#43;label&#37;3Adocumentation">outstanding issues from KomaMRI will be addressed</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Finally, if time permits, there will be some additional stretch goals that we would like to attempt accomplishing:</p>
+<ul>
+<li><p>Page for ongoing projects across JuliaHealth</p>
+</li>
+<li><p>Page for research accomplishments within JuliaHealth</p>
+</li>
+<li><p>Write a JuliaHealth blog entry on a Medeye topic to broaden project reach</p>
+</li>
+</ul>
+<h4 id="technical_writer"><a href="#technical_writer" class="header-anchor">Technical Writer</a></h4>
+<p>Name: <a href="https://github.com/sneha9231">Sneha Pandey</a></p>
+<p>Sneha Pandey is a sophomore specializing in AI and ML and also serves as a Microsoft Learn Student Ambassador. Through this role, she had refined her ability to communicate complex concepts effectively to diverse audiences. Additionally, She had gained experience as a content writer, crafting content for her university. She has hands-on experience in developing various mini projects, such as a WhatsApp bot and ML captioning models using Streamlit and Python. Her familiarity with Julia stems from previous engagements in medical imaging alongside MD PhD Msc Jakub Mitura. Moreover, She ensured comprehensive documentation of her personal projects using Documenter.jl. These experiences collectively equip her with the skills and proficiency required to excel as a technical writer within the Julia ecosystem.</p>
+<h4 id="volunteer_roles"><a href="#volunteer_roles" class="header-anchor">Volunteer Roles</a></h4>
+<p><strong>Volunteer 1: General JuliaHealth Organization Volunteer:</strong></p>
+<p>Name: Jacob S. Zelko</p>
+<p>Duties:</p>
+<ol>
+<li><p>Providing support for general JuliaHealth documentation tasks.</p>
+</li>
+<li><p>Assisting in reviewing documentation pull requests &#40;PRs&#41; periodically.</p>
+</li>
+<li><p>Deploying documentation within the Julia ecosystem as needed.</p>
+</li>
+<li><p>Handling miscellaneous tasks as they arise.</p>
+</li>
+<li><p>Serving as a general support role while integrating Technical Writer&#39;s work into the broader JuliaHealth ecosystem.</p>
+</li>
+</ol>
+<p><strong>Volunteer 2: JuliaDocs and Documentation Deployment Volunteer:</strong></p>
+<p>Name: Anshul Singhvi</p>
+<p>Duties:</p>
+<ol>
+<li><p>Transition support the main JuliaHealth page to the designated technology platform.</p>
+</li>
+<li><p>Provide guidance on safely implementing tracking metrics to monitor user engagement and interaction with the platform.</p>
+</li>
+<li><p>Offer technical consultation and guidance as needed throughout the project duration.</p>
+</li>
+<li><p>Help fix issues or rememdy needs that may arise from using tools from within the JuliaDocs ecosystem</p>
+</li>
+</ol>
+<p><strong>Volunteer 3: Medical Imaging Subecosystem Volunteer:</strong></p>
+<p>Name: Guillermo Sahonero Alvarez</p>
+<p>Duties:</p>
+<ol>
+<li><p>Provide guidance on medical imaging theory and spatial metadata</p>
+</li>
+<li><p>Support in connecting imaging discussions to other aspects of the Julia ecosystem &#40;such as MLJ or JuliaImages&#41;</p>
+</li>
+<li><p>Provide subject matter expertise on imaging standards</p>
+</li>
+<li><p>Assist in writing theorethical introductions</p>
+</li>
+</ol>
+<p><strong>Volunteer 4: Task consultations on packages functionalities and function documentations</strong></p>
+<p>Duties:</p>
+<ol>
+<li><p>Support for technical writer related to practical development issues of Julia programming languages</p>
+</li>
+<li><p>To help checking weather docstrings of functions are working correctly</p>
+</li>
+<li><p>Collaborate with KormaMRI to create specialized documentation sections based on their research paper, covering advanced topics or techniques relevant to medical imaging.</p>
+</li>
+</ol>
+<h3 id="work_that_is_out_of_scope_for_this_project"><a href="#work_that_is_out_of_scope_for_this_project" class="header-anchor">Work that is out of scope for this project:</a></h3>
+<p>To explicitly enumerate what work is out of scope for this project, we do not plan for work done in the following spaces:</p>
+<ul>
+<li><p>Developing thorough documentation for other subecosystems</p>
+</li>
+<li><p>Any of the aforementioned medical imagining packages not related to documentation</p>
+<ul>
+<li><p>Adding docstrings or crosslinks may fall in scope depending on the needs per task</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="measuring_your_projects_success"><a href="#measuring_your_projects_success" class="header-anchor">Measuring your project’s success</a></h2>
+<p>Currently, the documentation we do have does not yet have support for documentation traffic analytics. As of this moment, our best direct source for traffic metrics is to use <a href="https://juliahub.com/ui/Packages?q&#61;JuliaHealth/">JuliaHub</a> to monitor package downloads and also to reference GitHub stars for a loose approximation of &quot;discoverability&quot;. Additionally, we take advantage of the <a href="https://www.youtube.com/@TheJuliaLanguage">The Julia Programming Language YouTube Channel</a> that we use to monitor engagement with our recorded <a href="https://www.youtube.com/playlist?list&#61;PLP8iPy9hna6QCTkFxfHs2Y4foaYBJAjzO">JuliaHealth Workgroup meetings</a>. In these situations, potential users or contributors would have to know where to look to find these resources or entry points to our supported packages and their respective subecosystems.</p>
+<h4 id="we_would_consider_the_project_successful_if"><a href="#we_would_consider_the_project_successful_if" class="header-anchor">We would consider the project successful if :</a></h4>
+<p>For JuliaHealth, we would consider this project successful if:</p>
+<ul>
+<li><p>We can readily track documentation traffic across packages</p>
+<ul>
+<li><p>Encompasses deploying a safe traffic detection tool</p>
+</li>
+<li><p>Seeing at least a 10 - 15&#37; growth in traffic after the deployment of tracking</p>
+</li>
+</ul>
+</li>
+<li><p>An overall increase by 5 - 10&#37; in traffic across all JuliaHealth platforms</p>
+<ul>
+<li><p>Includes JuliaHub, YouTube, GitHub, and documentation statistics</p>
+</li>
+</ul>
+</li>
+<li><p>Most &#40;if not all&#41; enumerated documentation tasks are completed for the Medical Imaging subecosystem</p>
+<ul>
+<li><p>Some Related Issue Links:</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://github.com/JuliaHealth/MedPipe3D.jl/issues/10">Sub-Package Documentation 1</a> <a href="https://github.com/JuliaHealth/MedEye3d.jl/issues/10">Sub-Package Documentation 2</a> <a href="https://github.com/JuliaHealth/MedEye3d.jl/issues/11">Sub-Package Documentation 3</a> <a href="https://github.com/JuliaHealth/MedEye3d.jl/issues/9">Sub-Package Documentation 4</a></p>
+<ul>
+<li><p>At least 3 - 5 new active JuliaHealth contributors across the JuliaHealth ecosystem are onboarded</p>
+<ul>
+<li><p>Tracked across GitHub contribution history</p>
+</li>
+</ul>
+</li>
+<li><p>A new blog post is published</p>
+</li>
+</ul>
+<h2 id="timeline"><a href="#timeline" class="header-anchor">Timeline</a></h2>
+<p>We assume the tech writer will put in part time hours &#40;10-20 hours/week&#41; during this time.</p>
+<h3 id="monthly_plan"><a href="#monthly_plan" class="header-anchor">Monthly Plan</a></h3>
+<table><tr><th align="right">Dates</th><th align="right">Action items</th></tr><tr><td align="right">May</td><td align="right">Technical writer and volunteers are hired, onboarding</td></tr><tr><td align="right">June-July</td><td align="right">Research into Julia community, Audit existing documentation</td></tr><tr><td align="right">August-September</td><td align="right">Create Standard Package Documentations, Medical imaging subecosystem documentation</td></tr><tr><td align="right">October</td><td align="right">Improvements to the main page of JuliaHealth</td></tr><tr><td align="right">November</td><td align="right">Write a blog post, Any outstanding tasks or stretch goals</td></tr></table>
+<h3 id="weekly_plan"><a href="#weekly_plan" class="header-anchor">Weekly Plan</a></h3>
+<ul>
+<li><p><strong>Week &#40;1-2&#41;</strong> - Reading and Familiarization</p>
+</li>
+<li><p><strong>Week &#40;3-4&#41;</strong> - Documentation Traffic Tracker Setup</p>
+</li>
+<li><p><strong>Week &#40;5-7&#41;</strong> - Setting up the environment and Updating Organization Details &amp; Creating Subecosystem Sections</p>
+</li>
+<li><p><strong>Week &#40;8-10&#41;</strong> -  Linking Packages across subecosystems</p>
+</li>
+<li><p><strong>Week &#40;11- 16&#41;</strong> - Medical Imaging Subecosystem Packages Documentation</p>
+</li>
+<li><p><strong>Week &#40;17- 20&#41;</strong> - Review and Finalize Website Content also Feedback Incorporation</p>
+</li>
+<li><p><strong>Week &#40;20-24&#41;</strong> - Wrap up / touch up of overall packages docs page alongside stretch goals</p>
+</li>
+</ul>
+<p>This timeline is largely accurate but we expect that different packages or tasks may be slightly more challenging than others. The November time period gives us the opportunity to revisit any unfinished tasks and to potentially explore stretch goals if there were not many outstanding tasks left.</p>
+<h3 id="communication_plan"><a href="#communication_plan" class="header-anchor">Communication Plan:</a></h3>
+<p>The primary communication channel we will use is <a href="https://julialang.org/slack/">Julia Slack</a> and Dr. Jakub Mitura &#40;MD, PhD&#41; will be the individual responsible for all contact and mentoring throughout the project for regular updates and meetings. Outside of Slack, email will be used to handle communications with GSoD organizers and administrators with Jakub Mitura&#39;s email being: <a href="mailto:jakub.mitura14@gmail.com">jakub.mitura14@gmail.com</a>. Volunteers will also be available for communication on the Slack on an as-needed basis. Additionally, project updates will be given through the <a href="https://app.slack.com/client/T68168MUP/C012NN70P5K">Julia Health Slack Channel</a> which is where the majority of JuliaHealth communication takes place between members, users, and the rest of the Julia community.</p>
+<h2 id="project_budget"><a href="#project_budget" class="header-anchor">Project Budget</a></h2>
+<table><tr><th align="right">Budget item</th><th align="right">Amount</th><th align="right">Running total</th></tr><tr><td align="right">Technical writer</td><td align="right">&#36;4000</td><td align="right">&#36;4000</td></tr><tr><td align="right">Volunteer &#40;500x4&#41;</td><td align="right">&#36;2000</td><td align="right">&#36;6000</td></tr><tr><td align="right">Swags &#40;3 shirts and 10 sticker packs&#41;</td><td align="right">&#36;125</td><td align="right">&#36;6125</td></tr><tr><td align="right">TOTAL</td><td align="right"></td><td align="right">&#36;6125</td></tr></table>
+<p>Additional justifications:</p>
+<ul>
+<li><p>Volunteers: Please see the above section on Project Scope for details about selected volunteers</p>
+</li>
+<li><p>Swag: is to create a more welcoming environment for our writer and volunteers</p>
+<ul>
+<li><p>Sticker packs will also be given to welcome new contributors</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="additional_information"><a href="#additional_information" class="header-anchor">Additional information:</a></h3>
+<p><strong>About GSoD Project Lead:</strong></p>
+<p>MD PhD Msc Jakub Mitura Researcher specialising in creating artificial intelligence models for medical imaging. Holds a doctorate in medical sciences with a thesis titled ‘The Role of Positron Emission Tomography Using Fluorodeoxyglucose in the Diagnosis of Vascular Prosthesis Infections.’ Additionally, holds a master’s degree in informatics with a specialisation in Big Data. Has authored scientific publications in the fields of medicine and artificial intelligence.</p>
+<p><strong>Additional Volunteer Notes:</strong></p>
+<p>Jacob Zelko was selected as a volunteer as he has a proven track record as a successful Google Summer of Code mentor for the past 3 years and is currently the Julia Organization&#39;s co-administrator for this years Google Summer of Code where he handles questions from both students and mentors. Given his experience, Jacob will provide guidance to Jakub and Sneha as needed to make sure this project is well-aligned with general Google Open Source program goals. Additionally, Jacob has a overseen many grants in the past through Google Summer of Code and former positions at Georgia Tech Research Institute and the Centers for Disease Control and will provide a valuable asset in answering any questions about the project scope.</p>
+<p>Anshul Singhvi is a former Google Summer of Code student and has a vast swath of experience of working across the Julia ecosystem. In particular, Anshul has membership with numerous Julia organizations and will be a crucial asset to not only what are best practices for documentation deployment but can also help with how to best unify JuliaHealth packages within JuliaHealth itself and potentially across the greater Julia landscape. His insight will be crucial to mitigate any redundant work or answer outsanding questions to make sure this project is ran as effectively as possible. Also, given Anshul&#39;s tremendous experience in delivering contract work, he will be key in making sure the metrics we investigate and report on for the case study in our final report will be done rigorously and to the best of the technical writer&#39;s ability given the data we have access to.</p>
+<p>&lt;/div&gt;</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2408/project">About</a></li>
+        <li><a href="/previews/PR2408/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2408/governance/">Governance</a></li>
+        <li><a href="/previews/PR2408/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2408/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2408/downloads">Install</a></li>
+        <li><a href="/previews/PR2408/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2408/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2408/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2408/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2408/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2408/community/">Community</a></li>
+        <li><a href="/previews/PR2408/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2408/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2408/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2408/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2408/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2408/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2025 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2408/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2408/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2408/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/previews/PR2408/libs/groups.js"></script>
+    <script src="/previews/PR2408/libs/map.js"></script>
+  </body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2481/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<link rel="stylesheet" href="/previews/PR2481/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2481/css/app.css">
+<link rel="stylesheet" href="/previews/PR2481/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2481/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2481/css/juliamono.css"></noscript>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+<script async src="/previews/PR2481/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Web Platform Projects – Summer of Code</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Web Platform Projects – Summer of Code">
+<meta property="og:description" content="Official website for the Julia programming language">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2481/jsoc/gsoc/wasm/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2481/">
+          <img src="/previews/PR2481/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2481/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2481/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2481/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2481/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2481/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2481/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub" rel="noopener noreferrer">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsoc/wasm.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="web_platform_projects_summer_of_code"><a href="#web_platform_projects_summer_of_code" class="header-anchor">Web Platform Projects – Summer of Code</a></h1>
+<p>Julia has early support for targeting WebAssembly and running in the web browser. Please note that this is a rapidly moving area &#40;see the <a href="https://github.com/Keno/julia-wasm">project repository</a> for a more detailed overview&#41;, so if you are interested in this work, please make sure to inform yourself of the current state and talk to us to scope out an appropriate project. The below is intended as a set of possible starting points.</p>
+<p>Mentor for these projects is <a href="https://github.com/Keno">Keno Fischer</a> unless otherwise stated.</p>
+<h2 id="code_generation_improvements_and_async_abi"><a href="#code_generation_improvements_and_async_abi" class="header-anchor">Code generation improvements and async ABI</a></h2>
+<p>Because Julia relies on an asynchronous task runtime and WebAssembly currently lacks native support for stack management, Julia needs to explicitly manage task stacks in the wasm heap and perform a compiler transformation to use this stack instead of the native WebAssembly stack. The overhead of this transformation directly impacts the performance of Julia on the wasm platform. Additionally, since all code Julia uses &#40;including arbitrary C/C&#43;&#43; libraries&#41; must be compiled using this transformation, it needs to cover a wide variety of inputs and be coordinated with other users having similar needs &#40;e.g. the Pyodide project to run python on the web&#41;. The project would aim to improve the quality, robustness and flexibility of this transformation.</p>
+<p><strong>Recommended Skills</strong>: Experience with LLVM.</p>
+<h2 id="wasm_threading"><a href="#wasm_threading" class="header-anchor">Wasm threading</a></h2>
+<p>WebAssembly is in the process of standardizing <a href="https://github.com/WebAssembly/threads">threads</a>. Simultaneously, work is ongoing to introduce a new threading runtime in Julia &#40;see <a href="https://github.com/JuliaLang/julia/pull/22631">#22631</a> and replated PRs&#41;. This project would investigate enabling threading support for Julia on the WebAssembly platform, implementing runtime parallel primitives on the web assembly platform and ensuring that high level threading constructs are correctly mapped to the underlying platform. Please note that both the WebAssembly and Julia threading infrastructure is still in active development and may continue to change over the duration of the project. An informed understanding of the state of these projects is a definite prerequisite for this project.</p>
+<p><strong>Recommended Skills</strong>: Experience with C and multi-threaded programming.</p>
+<h2 id="high_performance_low-level_integration_of_js_objects"><a href="#high_performance_low-level_integration_of_js_objects" class="header-anchor">High performance, Low-level integration of js objects</a></h2>
+<p>WebAssembly is in the process of adding <a href="https://github.com/WebAssembly/reference-types">first class references to native objects</a> to their specification. This capability should allow very high performance integration between julia and javascript objects. Since it is not possible to store references to javascript objects in regular memory, adding this capability will require several changes to the runtime system and code generation &#40;possibly including at the LLVM level&#41; in order to properly track these references and emit them either as direct references to as indirect references to the reference table.</p>
+<p><strong>Recommended Skills</strong>: Experience with C.</p>
+<h2 id="dom_integration"><a href="#dom_integration" class="header-anchor">DOM Integration</a></h2>
+<p>While Julia now runs on the web platform, it is not yet a language that&#39;s suitable for first-class development of web applications. One of the biggest missing features is integration with and abstraction over more complicated javascript objects and APIs, in particular the DOM. Inspiration may be drawn from similar projects in <a href="https://github.com/koute/stdweb">Rust</a> or other languages.</p>
+<p><strong>Recommended Skills</strong>: Experience with writing libraries in Julia, experience with JavaScript Web APIs.</p>
+<h2 id="porting_existing_web-integration_packages_to_the_wasm_platform"><a href="#porting_existing_web-integration_packages_to_the_wasm_platform" class="header-anchor">Porting existing web-integration packages to the wasm platform</a></h2>
+<p>Several Julia libraries &#40;e.g. WebIO.jl, Escher.jl&#41; provide input and output capabilities for the web platform. Porting these libraries to run directly on the wasm platform would enable a number of existing UIs to automatically work on the web.</p>
+<p><strong>Recommended Skills</strong>: Experience with writing libraries in Julia.</p>
+<h2 id="native_dependencies_for_the_web"><a href="#native_dependencies_for_the_web" class="header-anchor">Native dependencies for the web</a></h2>
+<p>The Julia project uses <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl">BinaryBuilder</a> to provide binaries of native dependencies of julia packages. Experimental support exists to extend this support to the wasm platform, but few packages have been ported. This project would consist of attempting to port a significant fraction of the binary dependencies of the julia ecosystem to the web platform by improving the toolchain support in BinaryBuilder or &#40;if necessary&#41;, porting upstream packages to fix assumptions not applicable on the wasm platform.</p>
+<p><strong>Recommended Skills</strong>: Experience with building native libraries in Unix environments.</p>
+<h2 id="distributed_computing_with_untrusted_parties"><a href="#distributed_computing_with_untrusted_parties" class="header-anchor">Distributed computing with untrusted parties</a></h2>
+<p>The Distributed computing abstractions in Julia provide convenient abstraction for implementing programs that span many communicating Julia processes on different machines. However, the existing abstractions generally assume that all communicating processes are part of the same trust domain &#40;e.g. they allow messages to execute arbitrary code on the remote&#41;. With some of the nodes potentially running in the web browser &#40;or multiple browser nodes being part of the same distributed computing cluster via WebRPC&#41;, this assumption no longer holds true and new interfaces need to be designed to support multiple trust domains without overly restricting usability.</p>
+<p><strong>Recommended Skills</strong>: Experience with distributed computing and writing libraries in Julia.</p>
+<h2 id="deployment"><a href="#deployment" class="header-anchor">Deployment</a></h2>
+<p>Currently supported use cases for Julia on the web platform are primarily geared towards providing interactive environments to support exploration of the full language. Of course, this leads to significantly larger binaries than would be required for using Julia as part of a production deployment. By disabling dynamic language features &#40;e.g. eval&#41; one could generate small binaries suitable for deployment. Some progress towards this exists in packages like <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler.jl</a>, though significant work remains to be done.</p>
+<p><strong>Recommended Skills</strong>: Interest in or experience with Julia internals.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2481/project">About</a></li>
+        <li><a href="/previews/PR2481/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2481/governance/">Governance</a></li>
+        <li><a href="/previews/PR2481/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2481/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2481/downloads">Install</a></li>
+        <li><a href="/previews/PR2481/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2481/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2481/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2481/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2481/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2481/community/">Community</a></li>
+        <li><a href="/previews/PR2481/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2481/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2481/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2481/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2481/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2481/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2481/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

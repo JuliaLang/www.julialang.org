@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2426/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2426/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2426/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2426/css/app.css">
+<link rel="stylesheet" href="/previews/PR2426/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2426/css/fonts.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2426/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2426/css/juliamono.css"></noscript>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2426/libs/buttons.js"></script>
+<script src="/previews/PR2426/libs/clipboard.min.js"></script>
+<script src="/previews/PR2426/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Efficient Aggregates in Julia</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Efficient Aggregates in Julia">
+<meta property="og:description" content=" Efficient Aggregates in Julia | We recently introduced an exciting feature that has been in planning for some... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2426/">
+          <img src="/previews/PR2426/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2426/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2426/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2426/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2426/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2426/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2426/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>Efficient Aggregates in Julia</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <h3>
+          
+            <span style="font-weight: lighter;">5 March 2013</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;"><a href="https://github.com/JeffBezanson">Jeff Bezanson</a></span>
+          
+        </h3>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a type="application/rss+xml"
+         href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/03/efficient-aggregates.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>We recently introduced an exciting feature that has been in planning for some time: immutable aggregate types. In fact, we have been planning to do this for so long that this feature is the subject of our issue #13 on GitHub, out of more than 2400 total issues so far.</p>
+<p>Essentially, this feature drastically reduces the overhead of user-defined types that represent small number-like values, or that wrap a small number of other objects. Consider an RGB pixel type:</p>
+<pre><code class="julia hljs">immutable Pixel
+    r::Uint8
+    g::Uint8
+    b::Uint8
+<span class="hljs-keyword">end</span></code></pre>
+<p>Instances of this type can now be packed efficiently into arrays, using exactly 3 bytes per object. In all other respects, these objects continue to act like normal first-class objects. To see how we might use this, here is a function that converts an RGB image in standard 24-bit framebuffer format to grayscale:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> rgb2gray!(img::<span class="hljs-built_in">Array</span>{Pixel})
+    <span class="hljs-keyword">for</span> i=<span class="hljs-number">1</span>:length(img)
+        p = img[i]
+        v = uint8(<span class="hljs-number">0.30</span>*p.r + <span class="hljs-number">0.59</span>*p.g + <span class="hljs-number">0.11</span>*p.b)
+        img[i] = Pixel(v,v,v)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+<p>This code will run blazing fast, performing no memory allocation. We have not done thorough benchmarking, but this is in fact likely to be the fastest way to write this function in Julia from now on.</p>
+<p>The key to this behavior is the new <code>immutable</code> keyword, which means instances of the type cannot be modified. At first this sounds like a mere restriction — how come I&#39;m not allowed to modify one? — but what it really means is that the object is identified with its contents, rather than its memory address. A mutable object has &quot;behavior&quot;; it changes over time, and there may be many references to the object, all of which can observe those changes. An immutable object, on the other hand, has only a value, and no time-varying behavior. Its location does not matter. It is &quot;just some bits&quot;.</p>
+<p>Julia has always had some immutable values, in the form of bits types, which are used to represent fixed-bit-width numbers. It is highly intuitive that numbers are immutable. If <code>x</code> equals 2, you might later change the value of <code>x</code>, but it is understood that the value of 2 itself does not change. The <code>immutable</code> keyword generalizes this idea to structured data types with named fields. Julia variables and containers, including arrays, are all still mutable. While a <code>Pixel</code> object itself can&#39;t change, a new <code>Pixel</code> can be written over an old one within an array, since the array is mutable.</p>
+<p>Let&#39;s take a look at the benefits of this feature.</p>
+<ol>
+<li><p>The compiler and GC have a lot of freedom to move and copy these objects around.</p>
+</li>
+</ol>
+<p>This flexibility can be used to store data more efficiently, for example keeping the real and imaginary parts of a complex number in separate registers, or keeping only one part in a register.</p>
+<ol start="2">
+<li><p>Immutable objects are easy to reason about.</p>
+</li>
+</ol>
+<p>Some languages, such as C&#43;&#43; and C#, provide &quot;value types&quot;, which have many of the benefits of immutable objects. However, their behavior can be confusing. Consider code like the following:</p>
+<pre><code class="julia hljs">item = lookup(collection, index)
+modify!(item)</code></pre>
+<p>The question here is whether we have modified the same <code>item</code> that is in the collection, or if we have modified a local copy. In Julia there are only two possibilities: either <code>item</code> is mutable, in which case we modified the one and only copy of it, or it is immutable, in which case modifying it is not allowed.</p>
+<ol start="3">
+<li><p>No-overhead data abstractions become possible.</p>
+</li>
+</ol>
+<p>It is often useful to define a new type that simply wraps a single value, and modifies its behavior in some way. Our favorite modular integer example type fits this description:</p>
+<pre><code class="julia hljs">immutable ModInt{n} &lt;: <span class="hljs-built_in">Integer</span>
+  k::<span class="hljs-built_in">Int</span>
+  ModInt(k) = new(mod(k,n))
+<span class="hljs-keyword">end</span></code></pre>
+<p>Since a given <code>ModInt</code> doesn&#39;t need to exist at a particular address, it can be passed to functions, stored in arrays, and so on, as efficiently as a single <code>Int</code>, with no wrapping overhead. But, in Julia, the overhead will not <em>always</em> be zero. The <code>ModInt</code> type information will &quot;follow the data around&quot; at compile time to the extent possible, but heap-allocated wrappers will be added as needed at run time. Typically these wrappers will be short-lived; if the final destination of a <code>ModInt</code> is in a <code>ModInt</code> array, for example, the wrapper can be discarded when the value is assigned. But if the value is only used locally inside a function, there will most likely be no wrappers at all.</p>
+<ol start="4">
+<li><p>Abstractions are fully enforced. If a custom constructor is written for an immutable type, then all instances will be created by it.</p>
+</li>
+</ol>
+<p>Since the constructed objects are never modified, the invariants provided by the constructor cannot be violated. At this time, uninitialized arrays are an exception to this rule. New arrays of &quot;plain data&quot; immutable types have unspecified contents, so it is possible to obtain an invalid value from one. This is usually harmless in practice, since arrays must be initialized anyway, and are often created through functions like <code>zeros</code> that do so.</p>
+<ol start="5">
+<li><p>We can automatically type-specialize fields.</p>
+</li>
+</ol>
+<p>Since field values at construction time are final, their types are too, so we learn everything about the type of an immutable object when it is constructed.</p>
+<p>There are many potential optimizations here, and we have not implemented all of them yet. But having this feature in place provides another lever to help us improve performance over time.</p>
+<p>For now though, we at least have a much simpler implementation of complex numbers, and will be able to take advantage of efficient rational matrices and other similar niceties.</p>
+<h2 id="addendum_under_the_hood"><a href="#addendum_under_the_hood" class="header-anchor">Addendum: Under the hood</a></h2>
+<p>For purposes of calling C and writing reflective code, it helps to know a bit about how immutable types are implemented. Before this change, we had types <code>AbstractKind</code>, <code>BitsKind</code>, and <code>CompositeKind</code>, for separating which types are abstract, which are represented by immutable bit strings, and which are mutable aggregates. It was sometimes convenient that the type system reflected these differences, but also a bit unwarranted since all these types participate in the same hierarchy and follow the same subtyping rules.</p>
+<p>Now, the type landscape is both simpler and more complex. The three Kinds have been merged into a single kind called <code>DataType</code>. The type of every value in Julia is now either a <code>DataType</code>, or else a tuple type &#40;union types still exist, but of course are always abstract&#41;. To find out the details of a <code>DataType</code>&#39;s physical representation, you must query its properties. <code>DataType</code>s have three boolean properties <code>abstract</code>, <code>mutable</code>, and <code>pointerfree</code>, and an integer property <code>size</code>. The <code>CompositeKind</code> properties <code>names</code> and <code>types</code> are still there to describe fields.</p>
+<p>The <code>abstract</code> property indicates that the type was declared with the <code>abstract</code> keyword and has no direct instances. <code>mutable</code> indicates, for concrete types, whether instances are mutable. <code>pointerfree</code> means that instances contain &quot;just data&quot; and no references to other Julia values. <code>size</code> gives the size of an instance in bytes.</p>
+<p>What used to be <code>BitsKind</code>s are now <code>DataType</code>s that are immutable, concrete, have no fields, and have non-zero size. The former <code>CompositeKind</code>s are mutable and concrete, and either have fields or are zero size if they have zero fields. Clearly, new combinations are now possible. We have already mentioned immutable types with fields. We could have the equivalent of mutable <code>BitsKind</code>s, but this combination is not exposed in the language, since it is easily emulated using mutable fields. Another new combination is abstract types with fields, which would allow you to declare that all subtypes of some abstract type should have certain fields. That one is definitely useful, and we plan to provide syntax for it.</p>
+<p>Typically, the only time you need to worry about these things is when calling native code, when you want to know whether some array or struct has C-compatible data layout. This is handled by the type predicate <code>isbits&#40;T&#41;</code>.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/previews/PR2426/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2426/project">About</a></li>
+        <li><a href="/previews/PR2426/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2426/governance/">Governance</a></li>
+        <li><a href="/previews/PR2426/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2426/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2426/downloads">Install</a></li>
+        <li><a href="/previews/PR2426/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2426/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2426/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2426/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2426/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2426/community/">Community</a></li>
+        <li><a href="/previews/PR2426/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2426/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2426/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2426/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2426/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2426/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2025 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2426/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2426/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2426/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/previews/PR2426/libs/groups.js"></script>
+    <script src="/previews/PR2426/libs/map.js"></script>
+  </body>
+</html>

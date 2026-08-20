@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2509/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2509/assets/infra/logo.svg" as="image">
+<script src="/previews/PR2509/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2509/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2509/css/app.css">
+<link rel="stylesheet" href="/previews/PR2509/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2509/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2509/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2509/libs/buttons.js"></script>
+<script async src="/previews/PR2509/libs/backsplash.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Installing Julia</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2509/css/container-lists.css">
+  
+
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Installing Julia">
+<meta property="og:description" content="Official website for the Julia programming language">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2509/downloads/index/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2509/">
+          <img src="/previews/PR2509/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2509/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2509/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/downloads/index.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="installing_julia"><a href="#installing_julia" class="header-anchor">Installing Julia</a></h1>
+
+<div id="windows-instructions" style="display: none;">
+  It appears that you are using Windows. Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt. In case you are not using Windows, please follow the <a href="#" onclick="showUNIX(); return false;">Linux and macOS instructions</a>.<br><br>
+  <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
+</div>
+<div id="unix-instructions" style="display: none;">
+  It appears that you are using macOS or Linux. Install Julia by running the following in your terminal. In case you are using Windows, please follow these <a href="#" onclick="showWindows(); return false;">instructions for Windows</a>.<br><br>
+  <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
+</div>
+<script>
+  function showWindows() {
+    document.getElementById('windows-instructions').style.display = 'block';
+    document.getElementById('unix-instructions').style.display = 'none';
+  }
+  function showUNIX() {
+    document.getElementById('windows-instructions').style.display = 'none';
+    document.getElementById('unix-instructions').style.display = 'block';
+  }
+  var isWindows = navigator.platform.indexOf('Win') > -1;
+  if (isWindows) {
+    showWindows();
+  } else {
+    showUNIX();
+  }
+</script>
+
+<p>This will install the latest stable version of Julia, as well as the <code>juliaup</code> tool. Start Julia from the command-line by typing <code>julia</code>. See <code>juliaup --help</code> for how to configure installed versions.</p>
+<p>If you prefer to use manual installation using a GUI-based installer, see the <a href="/previews/PR2509/downloads/manual-downloads/">Manual Downloads</a> page.</p>
+<h2 id="next_steps"><a href="#next_steps" class="header-anchor">Next steps</a></h2>
+<ul>
+<li><p>Join the <a href="/previews/PR2509/community">community</a>.</p>
+</li>
+<li><p>Check out the <a href="/previews/PR2509/learning">learning resources</a>.</p>
+</li>
+<li><p>Set up an <a href="/previews/PR2509/#editors">editor</a>.</p>
+</li>
+<li><p>Do star us on <a href="https://github.com/JuliaLang/julia">GitHub</a>.</p>
+</li>
+<li><p>If you use Julia in your research, please <a href="/previews/PR2509/research/">cite us</a>.</p>
+</li>
+<li><p>Do consider <a href="https://github.com/sponsors/julialang">sponsoring</a> us.</p>
+</li>
+</ul>
+<h2 id="about_juliaup"><a href="#about_juliaup" class="header-anchor">About juliaup</a></h2>
+<p><a href="https://github.com/JuliaLang/juliaup"><code>juliaup</code></a> is the recommended way to install Julia. It automatically installs the latest stable <code>julia</code> binary and helps keep it up to date. It also supports installing and using different versions of Julia simultaneously. To install different Julia versions, see <code>juliaup --help</code>.</p>
+<h2 id="support_tiers"><a href="#support_tiers" class="header-anchor">Support tiers</a></h2>
+<p>Julia supports all the major operating systems, but specific versions and architectures have different <a href="/previews/PR2509/downloads/support">tiers of support</a>.</p>
+<h2 id="official_domains"><a href="#official_domains" class="header-anchor">Official domains</a></h2>
+<p>The following domains are official and used by open source Julia infrastructure for serving content and resources:</p>
+<ul>
+<li><p><code>julialang.org</code> and all subdomains</p>
+</li>
+<li><p><code>julialang.net</code> and all subdomains</p>
+</li>
+</ul>
+<p>If you are using Julia behind a firewall that blocks access to these, you may have trouble downloading and installing Julia packages. If this is the case, please ask your sysadmin to add these domains to the firewall allow list. Traffic can be limited to HTTPS &#40;TCP port 443&#41;.</p>
+<h3 id="ip_address_retention_policy"><a href="#ip_address_retention_policy" class="header-anchor">IP Address Retention Policy</a></h3>
+<p>Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <a href="https://pkg.julialang.org">https://pkg.julialang.org</a>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 31 days.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2509/project">About</a></li>
+        <li><a href="/previews/PR2509/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2509/governance/">Governance</a></li>
+        <li><a href="/previews/PR2509/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2509/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2509/downloads">Install</a></li>
+        <li><a href="/previews/PR2509/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2509/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2509/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2509/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2509/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2509/community/">Community</a></li>
+        <li><a href="/previews/PR2509/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2509/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2509/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2509/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2509/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2509/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2509/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>
