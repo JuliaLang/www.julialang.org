@@ -28,6 +28,7 @@
 
 <body>
   <!-- Don't delete this alert when hiding it. Comment it out so it can be re-enabled easily. -->
+  <!--
   <div class="container-fluid" id="top-alert">
     <div class="alert alert-dark alert-dismissible mb-0" role="alert">
       <img src="/assets/infra/world_map.webp" alt="" class="world-map-bg" aria-hidden="true">
@@ -43,6 +44,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>
+  -->
   <script>
   // Hide previously-dismissed alert immediately to prevent flash (runs before paint)
   (function() {
@@ -602,10 +604,12 @@
 <script>
   // Remember when user dismisses the alert (complements the early-hide script above)
   const topAlert = document.querySelector('#top-alert .alert');
-  topAlert.addEventListener('close.bs.alert', function () {
-    const alertText = document.querySelector('#top-alert p').innerHTML.trim();
-    localStorage.setItem(alertText, Date.now().toString());
-  });
+  if (topAlert) {
+    topAlert.addEventListener('close.bs.alert', function () {
+      const alertText = document.querySelector('#top-alert p').innerHTML.trim();
+      localStorage.setItem(alertText, Date.now().toString());
+    });
+  }
 </script>
 <script defer src="/libs/carousel.js"></script>
 </body>
