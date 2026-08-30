@@ -131,6 +131,31 @@ Some important reminders: `hash` remains **noncryptographic**. Also, the default
 
 
 
+## Faster GC by not sweeping the sysimage
+*Cody Tapscott*
+
+<!-- PR: https://github.com/JuliaLang/julia/pull/61474 (landed in 1.13-rc2, so not in NEWS.md).
+     Objects in the sysimage / pkgimages are never freed and rarely mutated, so they are now loaded as
+     permanently marked (`GC_OLD_MARKED`); the mark phase never enters the image subgraph. Mutations to image
+     objects are tracked in a dedicated `image_remset` that roots any new referents.
+     Full-collection pause times drop dramatically (e.g. ~37 ms -> ~1.4 ms for a bare sysimage, ~40 ms -> ~3-4 ms
+     after loading packages in the PR's benchmarks); quick/partial collections are essentially unchanged.
+     Consider reusing the table from the PR description. -->
+
+TODO
+
+```julia-repl
+julia> # example: time a full collection before/after, e.g. @time GC.gc(true)
+```
+
+## Scheduler and interrupt fixes
+*TODO authors*
+
+<!-- TODO: collect the relevant PRs (scheduler robustness, ^C / InterruptException delivery, deadlock fixes).
+     Frame this as groundwork for the proper task cancellation (cancellation tokens) coming in 1.14. -->
+
+TODO
+
 ## Introspection with type annotations
 *TODO authors*
 
@@ -224,6 +249,14 @@ Pkg now recursively collects `[sources]` entries from packages fetched by URL, a
 
 
 ### No longer default to bounds checking on testing
+
+TODO
+
+## Juliaup GUI
+*TODO authors*
+
+<!-- TODO: describe the new graphical interface for juliaup: what it can do (install/update/switch channels?),
+     which platforms, how to launch it, and link to the juliaup release / README. Consider a screenshot. -->
 
 TODO
 
