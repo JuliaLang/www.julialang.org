@@ -56,6 +56,22 @@ TODO
 
 TODO
 
+Pasting a ~500 line function into the REPL on Windows, before:
+
+~~~
+<video controls muted playsinline style="max-width: 100%">
+  <source src="/assets/blog/2026-1.13-highlights/windows-paste-before.mp4" type="video/mp4">
+</video>
+~~~
+
+and after:
+
+~~~
+<video controls muted playsinline style="max-width: 100%">
+  <source src="/assets/blog/2026-1.13-highlights/windows-paste-after.mp4" type="video/mp4">
+</video>
+~~~
+
 ### Smaller REPL niceties
 
 <!-- NEWS: `AbstractChar` display shows LaTeX input info (#58181);
