@@ -199,7 +199,7 @@ eval: #= script.jl:2 =#
 Hello world
 ```
 It can also be enabled via the "debug logging" option on CI platforms (GitHub Actions shown here):
-![Screenshot 2026-03-26 at 2.04.40 PM](https://hackmd.io/_uploads/S1OUBxXj-x.png)
+![GitHub Actions re-run dialog with "Enable debug logging" checked](/assets/blog/2026-1.13-highlights/enable-debug-logging.png)
 
 
 ## Pkg
