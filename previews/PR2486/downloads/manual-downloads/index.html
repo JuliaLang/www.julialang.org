@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2486/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2486/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2486/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2486/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2486/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2486/css/app.css">
+<link rel="stylesheet" href="/previews/PR2486/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2486/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2486/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2486/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Manual Downloads</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2486/css/container-lists.css">
+  
+
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Manual Downloads">
+<meta property="og:description" content="Official website for the Julia programming language">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2486/downloads/manual-downloads/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2486/">
+          <img src="/previews/PR2486/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2486/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2486/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2486/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2486/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2486/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2486/jsoc/">JSoC</a>
+              </li>
+              <li class="nav-item d-flex align-items-center px-2">
+                  <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                      <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+                      <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                      <span class="dark-mode-label icon-moon-label">Dark</span>
+                      <span class="dark-mode-label icon-sun-label">Light</span>
+                  </button>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub" rel="noopener noreferrer">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/downloads/manual-downloads.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="manual_downloads"><a href="#manual_downloads" class="header-anchor">Manual Downloads</a></h1>
+<div class="admonition-note"><div class="admonition-title">Note:  Use juliaup for typical installations</div>
+<div class="admonition-body">See the <a href="/previews/PR2486/downloads/">installation instructions</a> on using <code>juliaup</code> to install the official Julia binaries. Users who are unable to use <code>juliaup</code> or require a specific, atypical setup may manually download and install the binaries from this page. If these binaries do not work for you, please <a href="https://github.com/JuliaLang/julia/issues">file an issue in the Julia project</a>.</div></div>
+
+<h2 id=current_stable_release><a href="#current_stable_release">Current stable release: v1.12.5 (February 9, 2026)</a></h2>
+
+<p><a href="https://github.com/JuliaLang/julia/blob/v1.12.5/NEWS.md">Release notes</a> | <a href="https://github.com/JuliaLang/julia/releases/tag/v1.12.5">GitHub tag</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.12.5.sha256">SHA256 checksums</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.12.5.md5">MD5 checksums</a></p>
+<div class="row"><div class="col-12"><table class="downloads table table-hover table-bordered">
+  <tbody>
+    <tr>
+      <th> Platform</th>
+      <th> 64-bit</th>
+      <th> 32-bit</th>
+    </tr>
+    <tr>
+      <td> Windows <a href="/previews/PR2486/downloads/platform/#windows">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.5-win64.exe">installer</a>, <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.5-win64.zip">portable</a> </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.5-win32.exe">installer</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.5-win32.zip">portable</a> </td>
+    </tr>
+    <tr>
+      <td> macOS (Apple Silicon) <a href="/previews/PR2486/downloads/platform/#macos">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.5-macaarch64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.5-macaarch64.tar.gz">.tar.gz</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> macOS (Intel x86) <a href="/previews/PR2486/downloads/platform/#macos">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.5-mac64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.5-mac64.tar.gz">.tar.gz</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> Generic Linux on x86 <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td>
+        <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.5-linux-x86_64.tar.gz">glibc</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.5-linux-x86_64.tar.gz.asc">GPG</a>)<!--,
+        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz">musl</a><sup>[<a href=#musl-fn>1</a>]</sup>
+        (<a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz.asc">GPG</a>)-->
+      </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.12/julia-1.12.5-linux-i686.tar.gz">glibc</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.12/julia-1.12.5-linux-i686.tar.gz.asc">GPG</a>)
+      </td>
+    </tr>
+    <tr>
+      <td> Generic Linux on ARM <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.12/julia-1.12.5-linux-aarch64.tar.gz">.tar.gz</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.12/julia-1.12.5-linux-aarch64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <!-- <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz">ARMv7-a hard float</a>
+                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
+      </td>
+    </tr>
+    <!--
+    <tr>
+      <td> Generic Linux on PowerPC <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{stable_release_short}}/julia-{{stable_release}}-linux-ppc64le.tar.gz">little endian</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{stable_release_short}}/julia-{{stable_release}}-linux-ppc64le.tar.gz.asc">GPG</a>)
+      </td>
+      <td>
+      </td>
+    </tr>
+    -->
+    <tr>
+      <td> Generic FreeBSD on x86 <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.12/julia-1.12.5-freebsd-x86_64.tar.gz">.tar.gz</a>
+        (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.12/julia-1.12.5-freebsd-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th> Source </th>
+      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.12.5/julia-1.12.5.tar.gz">Tarball</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.12.5/julia-1.12.5.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.12.5/julia-1.12.5-full.tar.gz">Tarball with dependencies</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.12.5/julia-1.12.5-full.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <a href="https://github.com/JuliaLang/julia/tree/v1.12.5">GitHub</a> </td>
+    </tr>
+  </tbody>
+</table></div></div>
+<p>Almost everyone should be downloading and using the latest stable release of Julia. Great care is taken not to break compatibility with older Julia versions, so older code should continue to work with the latest stable Julia release. You should <em>only</em> be using the long-term support &#40;LTS&#41; version of Julia if you work at an organization where implementing or certifying upgrades is prohibitively expensive and there is no need for new language features or packages. See this description of <a href="https://julialang.org/blog/2019/08/release-process/#risk_tolerance_personas">&quot;Risk Personas&quot;</a> for more detail on who should be using what versions of Julia based on their risk tolerance. See this blog post on <a href="https://julialang.org/blog/2019/08/release-process/">Julia&#39;s Release Process</a> for more information on different kinds of releases.</p>
+
+<h2 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v1.10.10 (June 27, 2025)</a></h2>
+
+<p><a href="https://github.com/JuliaLang/julia/blob/v1.10.10/NEWS.md">Release notes</a> | <a href="https://github.com/JuliaLang/julia/releases/tag/v1.10.10">GitHub tag</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.10.10.sha256">SHA256 checksums</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.10.10.md5">MD5 checksums</a></p>
+<div class="row"><div class="col-12"><table class="downloads table table-hover table-bordered">
+  <tbody>
+    <tr>
+      <th> Platform</th>
+      <th> 64-bit</th>
+      <th> 32-bit</th>
+    </tr>
+    <tr>
+      <td> Windows <a href="/previews/PR2486/downloads/platform/#windows">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.10/julia-1.10.10-win64.exe">installer</a>, <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.10/julia-1.10.10-win64.zip">portable</a> </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.10/julia-1.10.10-win32.exe">installer</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.10/julia-1.10.10-win32.zip">portable</a> </td>
+    </tr>
+    <tr>
+      <td> macOS (Apple Silicon) <a href="/previews/PR2486/downloads/platform/#macos">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.10/julia-1.10.10-macaarch64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.10/julia-1.10.10-macaarch64.tar.gz">.tar.gz</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> macOS (Intel x86) <a href="/previews/PR2486/downloads/platform/#macos">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.10/julia-1.10.10-mac64.dmg">.dmg</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.10/julia-1.10.10-mac64.tar.gz">.tar.gz</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> Generic Linux on x86 <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td>
+        <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.10-linux-x86_64.tar.gz">glibc</a>
+          (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.10-linux-x86_64.tar.gz.asc">GPG</a>),
+        <a href="https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.10-musl-x86_64.tar.gz">musl</a><sup>[<a href=#musl-fn>1</a>]</sup>
+        (<a href="https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.10-musl-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.10-linux-i686.tar.gz">glibc</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.10-linux-i686.tar.gz.asc">GPG</a>)
+      </td>
+    </tr>
+    <tr>
+      <td> Generic Linux on ARM <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.10-linux-aarch64.tar.gz">.tar.gz</a>
+          (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.10-linux-aarch64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <!-- <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{lts_release_short}}/julia-{{lts_release}}-linux-armv7l.tar.gz">ARMv7-a hard float</a>
+          (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{lts_release_short}}/julia-{{lts_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
+      </td>
+    </tr>
+    <tr>
+      <td> Generic Linux on PowerPC <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.10/julia-1.10.10-linux-ppc64le.tar.gz">little endian</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.10/julia-1.10.10-linux-ppc64le.tar.gz.asc">GPG</a>)
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td> Generic FreeBSD on x86 <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.10/julia-1.10.10-freebsd-x86_64.tar.gz">.tar.gz</a>
+          (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.10/julia-1.10.10-freebsd-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th> Source </th>
+      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.10.10/julia-1.10.10.tar.gz">Tarball</a>
+            (<a href="https://github.com/JuliaLang/julia/releases/download/v1.10.10/julia-1.10.10.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.10.10/julia-1.10.10-full.tar.gz">Tarball with dependencies</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.10.10/julia-1.10.10-full.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <a href="https://github.com/JuliaLang/julia/tree/v1.10.10">GitHub</a> </td>
+    </tr>
+  </tbody>
+</table></div></div>
+
+
+<h2 id=upcoming_release><a href="#upcoming_release">Upcoming release: v1.13.0-beta2 (2026)</a></h2>
+
+<p>We&#39;re currently testing a prerelease for Julia v1.13, an upcoming minor release in the 1.x series of releases. We encourage developers and interested users to try it out and report any issues they encounter. As a prerelease, it should not be considered production-ready; it&#39;s intended to give users a chance to try out 1.13 with their code before the full release.</p>
+<p><a href="https://github.com/JuliaLang/julia/blob/v1.13.0-beta2/NEWS.md">Release notes</a> | <a href="https://github.com/JuliaLang/julia/releases/tag/v1.13.0-beta2">GitHub tag</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.13.0-beta2.sha256">SHA256 checksums</a> | <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.13.0-beta2.md5">MD5 checksums</a></p>
+<div class="row"><div class="col-12"><table class="downloads table table-hover  table-bordered">
+  <tbody>
+    <tr>
+      <th> Platform</th>
+      <th> 64-bit</th>
+      <th> 32-bit</th>
+    </tr>
+    <tr>
+      <td> Windows <a href="/previews/PR2486/downloads/platform/#windows">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.13/julia-1.13.0-beta2-win64.exe">installer</a>, <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.13/julia-1.13.0-beta2-win64.zip">portable</a> </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.13/julia-1.13.0-beta2-win32.exe">installer</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.13/julia-1.13.0-beta2-win32.zip">portable</a> </td>
+    </tr>
+    <tr>
+      <td> macOS (Intel x86) <a href="/previews/PR2486/downloads/platform/#macos">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.13/julia-1.13.0-beta2-mac64.dmg">.dmg</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> macOS (Apple Silicon) <a href="/previews/PR2486/downloads/platform/#macos">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.13/julia-1.13.0-beta2-macaarch64.dmg">.dmg</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> Generic Linux on x86 <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td>
+        <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.13/julia-1.13.0-beta2-linux-x86_64.tar.gz">glibc</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.13/julia-1.13.0-beta2-linux-x86_64.tar.gz.asc">GPG</a>)<!--,
+        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-musl-x86_64.tar.gz">musl</a><sup>[<a href=#musl-fn>1</a>]</sup>
+        (<a href="https://julialang-s3.julialang.org/bin/musl/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-musl-x86_64.tar.gz.asc">GPG</a>)-->
+      </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.13/julia-1.13.0-beta2-linux-i686.tar.gz">glibc</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.13/julia-1.13.0-beta2-linux-i686.tar.gz.asc">GPG</a>)
+      </td>
+    </tr>
+    <tr>
+      <td> Generic Linux on ARM <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.13/julia-1.13.0-beta2-linux-aarch64.tar.gz">AArch64</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.13/julia-1.13.0-beta2-linux-aarch64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <!-- <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz">ARMv7-a hard float</a>
+                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
+      </td>
+    </tr>
+    <!--
+    <tr>
+      <td> Generic Linux on PowerPC <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-ppc64le.tar.gz">little endian</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-ppc64le.tar.gz.asc">GPG</a>)
+      </td>
+      <td>
+      </td>
+    </tr>
+    -->
+    <tr>
+      <td> Generic FreeBSD on x86 <a href="/previews/PR2486/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.13/julia-1.13.0-beta2-freebsd-x86_64.tar.gz">.tar.gz</a>
+        (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.13/julia-1.13.0-beta2-freebsd-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th> Source </th>
+      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.13.0-beta2/julia-1.13.0-beta2.tar.gz">Tarball</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.13.0-beta2/julia-1.13.0-beta2.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <a href="https://github.com/JuliaLang/julia/releases/download/v1.13.0-beta2/julia-1.13.0-beta2-full.tar.gz">Tarball with dependencies</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.13.0-beta2/julia-1.13.0-beta2-full.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <a href="https://github.com/JuliaLang/julia/tree/v1.13.0-beta2">GitHub</a> </td>
+    </tr>
+  </tbody>
+</table></div></div>
+<p> </p>
+<p><a id="musl-fn" class="anchor"></a> 
+<sup>[1]</sup>
+ Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.</p>
+<h2 id="supported_platforms_and_tiers"><a href="#supported_platforms_and_tiers" class="header-anchor">Supported platforms and tiers</a></h2>
+<p>Julia supports all the major operating systems, but specific versions and architectures have different <a href="/previews/PR2486/downloads/support">tiers of support</a>.</p>
+<h2 id="avoid_external_package_managers"><a href="#avoid_external_package_managers" class="header-anchor">Avoid external package managers</a></h2>
+<p>Please do not use Julia shipped by Linux or BSD package managers. Many Linux/BSD/Unix package managers ship broken and/or significantly out of date versions of Julia. Please use <a href="/previews/PR2486/downloads"><code>juliaup</code></a> or download the official binaries instead.</p>
+<h3 id="older_releases"><a href="#older_releases" class="header-anchor">Older Releases</a></h3>
+<p>Older releases of Julia for all platforms are available on the <a href="/previews/PR2486/downloads/oldreleases/">Older releases page</a>. Only the LTS and Stable releases are maintained.</p>
+<h3 id="nightly_builds"><a href="#nightly_builds" class="header-anchor">Nightly Builds</a></h3>
+<p>Builds of the current unstable development version of Julia are available on the <a href="/previews/PR2486/downloads/nightlies/">nightlies page</a>. While the name suggests that they are built every night, they are actually built after each commit to master. However, at times due to broken builds or CI infrastructure issues, nightlies may not be produced. These are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current stable release version of Julia.</p>
+<h3 id="download_verification"><a href="#download_verification" class="header-anchor">Download verification</a></h3>
+<p>All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using <a href="/previews/PR2486/assets/juliareleases.asc">this key</a>.</p>
+<h3 id="json_release_feed"><a href="#json_release_feed" class="header-anchor">JSON release feed</a></h3>
+<p>The info above is also available as a <a href="https://julialang-s3.julialang.org/bin/versions.json">JSON file</a> &#40;<a href="https://julialang-s3.julialang.org/bin/versions-schema.json">schema</a>&#41;. It may take up to two hours after the release of a new version for it to be included in the JSON file.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2486/project">About</a></li>
+        <li><a href="/previews/PR2486/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2486/governance/">Governance</a></li>
+        <li><a href="/previews/PR2486/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2486/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2486/downloads">Install</a></li>
+        <li><a href="/previews/PR2486/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2486/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2486/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2486/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2486/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2486/community/">Community</a></li>
+        <li><a href="/previews/PR2486/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2486/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2486/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2486/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2486/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2486/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2486/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2431/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+   <link rel="stylesheet" href="/previews/PR2431/libs/katex/katex.min.css">
+      
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2431/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2431/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2431/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2431/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2431/css/app.css">
+<link rel="stylesheet" href="/previews/PR2431/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2431/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2431/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2431/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>2024 GSoC and JSoC Fellows Announced</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2431/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2431/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="2024 GSoC and JSoC Fellows Announced">
+<meta property="og:description" content="GSoC and JSoC Fellows and Projects announced for 2024.">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2431/blog/2024/05/gsoc-2024-fellows/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2024 GSoC and JSoC Fellows Announced",
+  "description": "GSoC and JSoC Fellows and Projects announced for 2024.",
+  "image": "https://julialang.netlify.app/previews/PR2431/assets/images/julia-open-graph.png",
+  "datePublished": "2024-05-03T00:00:00+00:00",
+  "author": [{"@type": "Person", "name": "Avik Sengupta"}, {"@type": "Person", "name": "Jacob Zelko"}],
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2431/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2431/blog/2024/05/gsoc-2024-fellows/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2431/">
+          <img src="/previews/PR2431/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2431/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2431/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2431/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2431/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2431/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2431/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>2024 GSoC and JSoC Fellows Announced</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p style="font-size: 1.17em; margin-top: 0;">
+          
+            <span style="font-weight: lighter;">3 May 2024</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;">Avik Sengupta, Jacob Zelko</span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2024/05/gsoc-2024-fellows.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Hi Julia Community,</p>
+<p>It is with GREAT excitement we are pleased to announce this year&#39;s Google Summer of Code projects and the Julia Summer of Code projects&#33;</p>
+<h2 id="google_summer_of_code"><a href="#google_summer_of_code" class="header-anchor">Google Summer of Code</a></h2>
+<p>To give some quick statistics, we had <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>26</mn></mrow><annotation encoding="application/x-tex">26</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">6</span></span></span></span> proposals we submitted to Google and we were allocated <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>21</mn></mrow><annotation encoding="application/x-tex">21</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">1</span></span></span></span> slots – that&#39;s <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo><mn>81</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\approx 81\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.48312em;vertical-align:0em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">8</span><span class="mord">1</span><span class="mord">%</span></span></span></span> of the proposals&#33; Here are the list of projects, their fellows, and the mentors for each project; if you want to learn any <a href="https://summerofcode.withgoogle.com/programs/2024/organizations/the-julia-language">more details about the projects, click here</a>.</p>
+<hr />
+<table><tr><th align="right">Project Title</th><th align="right">GSoC Fellow</th><th align="right">Assigned Mentor&#40;s&#41;</th></tr><tr><td align="right">Graph Neural Networks - Training on very large graphs</td><td align="right">Agata</td><td align="right">CarloLucibello</td></tr><tr><td align="right">Julia Dagger - Enhancing Streaming Data Processing for Heterogeneous Computing</td><td align="right">Davide Ferretti</td><td align="right">Julian Samaroo, James Wrigley</td></tr><tr><td align="right">JuliaGenAI/Gibberish.jl: GPU-accelerated language models in Julia</td><td align="right">Dhruv Dhamani</td><td align="right">Cameron Pfiffer</td></tr><tr><td align="right">Adding functionalities to medical imaging visualizations</td><td align="right">Divyansh Goyal</td><td align="right">cncastillo, Jakub Mitura</td></tr><tr><td align="right">Bringing state-of-the-art categorical variable encoding methods to Julia</td><td align="right">Essam Wisam</td><td align="right">Anthony Blaom</td></tr><tr><td align="right">Improving the integration between Turing and Turing’s MCMC inference packages</td><td align="right">Ivan Sladoljev</td><td align="right">Tor Erlend Fjelde</td></tr><tr><td align="right">Project 4: Adding dataset-wide functions and integrations of augmentations</td><td align="right">JanZubik</td><td align="right">cncastillo, Jakub Mitura</td></tr><tr><td align="right">PosteriorDB Implementations for Turing.jl</td><td align="right">JasonPekos</td><td align="right">Tor Erlend Fjelde</td></tr><tr><td align="right">Developing Tooling for Observational Health Research in Julia</td><td align="right">Jay Sanjay Landge</td><td align="right">TheCedarPrince</td></tr><tr><td align="right">Algorithms and interface for detection of periodic orbits</td><td align="right">Jonas Koziorek</td><td align="right">Datseris</td></tr><tr><td align="right">Integrating the Modern CFD Package Trixi.jl with Compiler-Based Auto-Diff via Enzyme.jl</td><td align="right">Julian Xu</td><td align="right">Hendrik Ranocha</td></tr><tr><td align="right">Developing IPUMS.jl: A Pure Julia Interface to IPUMS for Health Research Applications and Beyond</td><td align="right">Michela Rocchetti</td><td align="right">Krishna Bhogaonker</td></tr><tr><td align="right">OptiFloat.jl: Automatic Floating Point Expression Optimization in Pure Julia</td><td align="right">Niklas Heim</td><td align="right">Shashi Gowda, Alessandro Cheli</td></tr><tr><td align="right">Add the support to Conformal Bayes to Taija</td><td align="right">Pasquale Caterino</td><td align="right">Pat Alt</td></tr><tr><td align="right">Language Interoperability - CxxWrap.jl</td><td align="right">PraneethJain</td><td align="right">Bart Janssens</td></tr><tr><td align="right">Enhance KomaMRI.jl GPU Support</td><td align="right">Ryan Kierulf</td><td align="right">cncastillo Pim</td></tr><tr><td align="right">Supercharging the Knowledge Base of AIHelpMe.jl</td><td align="right">Shreyas Agrawal</td><td align="right">Cameron Pfiffer, Jan Siml</td></tr><tr><td align="right">ColBERTv2.0: Efficient Information Retrieval in Julia</td><td align="right">Siddhant Chaudhary</td><td align="right">Cameron Pfiffer, Jan Siml</td></tr><tr><td align="right">Tensor network contraction order optimization and visualization</td><td align="right">Xuanzhao Gao</td><td align="right">JinGuo Liu</td></tr><tr><td align="right">Symbolic computation with Julia &#40;Symbolics.jl&#41;: Symbolic Root finding</td><td align="right">Yassin ElBedwihy</td><td align="right">Alexander Demin</td></tr><tr><td align="right">New quantum error-correcting codes and decoders for QuantumClifford.jl</td><td align="right">Yuxuan Yan</td><td align="right">Stefan Krastanov</td></tr></table>
+<h2 id="julia_summer_of_code"><a href="#julia_summer_of_code" class="header-anchor">Julia Summer of Code</a></h2>
+<p>Additionally, the limited number of slots from Google meant that not all projects that we selected could receive a GSoC fellowship. We were however able to offer additional fellowships through the broader Julia Summer of Code umbrella via open source funds.</p>
+<hr />
+<table><tr><th align="right">Project Title</th><th align="right">Fellow</th><th align="right">Assigned Mentor&#40;s&#41;</th></tr><tr><td align="right">Efficient Tensor Differentiation</td><td align="right">Prateek Garg</td><td align="right">Yingbo Ma</td></tr><tr><td align="right">From Counterfactuals to Interventions &#40;Recourse through Minimal Causal Interventions&#41;</td><td align="right">jorgelwyz.franco</td><td align="right">Pat Alt, moritzschauer</td></tr><tr><td align="right">Enhancing GraphNeuralNetwork.jl with Equivariant Layer, Models, and Dataset Wrappers</td><td align="right">Rishabh</td><td align="right">carlo.lucibello</td></tr><tr><td align="right">Implementing layers for temporal graphs in GraphNeuralNetworks.jl</td><td align="right">aurora</td><td align="right">carlo.lucibello</td></tr><tr><td align="right">Testing and benchmarking of TopOpt.jl</td><td align="right">utkarshyashvardhan11</td><td align="right">mohamed82008</td></tr></table>
+<h2 id="concluding_thoughts"><a href="#concluding_thoughts" class="header-anchor">Concluding Thoughts</a></h2>
+<p>A huge congratulations to all the fellows for this year&#39;s Google Summer of Code and Julia Summer of Code cohorts&#33; Additionally, a massive thank you to all the mentors who are overseeing projects this year. We are thrilled to have you all within the Julia Community and are eager to see what all comes next&#33;</p>
+<p>~ Avik Sengupta &amp; Jacob Zelko   &#40;Julia Season of Contributions Team&#41;</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+        
+
+
+
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2431/project">About</a></li>
+        <li><a href="/previews/PR2431/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2431/governance/">Governance</a></li>
+        <li><a href="/previews/PR2431/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2431/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2431/downloads">Install</a></li>
+        <li><a href="/previews/PR2431/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2431/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2431/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2431/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2431/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2431/community/">Community</a></li>
+        <li><a href="/previews/PR2431/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2431/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2431/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2431/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2431/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2431/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2431/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>
