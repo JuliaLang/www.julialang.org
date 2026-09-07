@@ -239,7 +239,7 @@ julia> @code_warntype (::Vector{Int}) .+ 1.0
 ```
 
 ## CI debugging tracing
-*TODO authors*
+*Ian Butterworth*
 
 The new `--trace-eval` argument shows top-level eval progress, to help see how a test suite or script is advancing, e.g. to identify hangs. For instance:
 ```
@@ -256,6 +256,7 @@ It can also be enabled via the "debug logging" option on CI platforms (GitHub Ac
 
 
 ## Pkg
+*Kristoffer Carlsson*
 
 Pkg has gotten quite a bit of attention for 1.13. Here we list some of the more notable changes and improvements.
 
@@ -286,6 +287,7 @@ julia> ENV["JULIA_PKG_PRECOMPILE_AUTO"] = 0
 # 1.12.1
 julia> empty!(Pkg.Registry.REGISTRY_CACHE); @time Pkg.add("Plots"; io=devnull)
   1.257017 seconds (8.83 M allocations: 681.328 MiB, 16.31% gc time)
+
 # 1.13.0
 julia> empty!(Pkg.Registry.REGISTRY_CACHE); @time Pkg.add("Plots"; io=devnull)
   0.745170 seconds (4.43 M allocations: 304.580 MiB, 26.90% gc time)
@@ -319,7 +321,7 @@ Pkg now recursively collects `[sources]` entries from packages fetched by URL, a
 
 ### `Pkg.test` no longer defaults to enabling strict bounds checking
 
-When running `Pkg.test`, Pkg used to run the testing process with bounds checking forced on. This meant that the package being tested and all its dependencies typically had to be recompiled. Now, the precompile files generated during development of the package are also valid when testing. Forced bounds checking can be enabled by running `Pkg.test` in a `--check-bounds=yes` process or by passing that argument as `julia_args` to `Pkg.test`.
+Previously, `Pkg.test` always launched the test process with `--check-bounds=yes`, which forces bounds checking even inside `@inbounds` blocks. Since precompile cache files are specific to the bounds-checking mode, this meant that the package being tested and all of its dependencies typically had to be recompiled before the tests could even start, and those cache files were then useless for normal development. `Pkg.test` now leaves the bounds-checking mode alone, so the test process inherits it from the parent Julia session and can reuse the precompile files generated during development. To get the old behavior, either start Julia with `--check-bounds=yes` before running `Pkg.test`, or pass the flag explicitly with `Pkg.test(; julia_args=["--check-bounds=yes"])`.
 
 ## Juliaup GUI
 
