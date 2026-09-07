@@ -81,11 +81,9 @@ and after:
 TODO
 
 ## `@__FUNCTION__`
-*TODO authors*
+*Miles Cranmer, Jeff Bezanson*
 
-<!-- NEWS: #58940. Refers to the innermost enclosing function; useful for recursion in anonymous functions / closures. -->
-
-TODO
+Like the existing `@__MODULE__` or `@__FILE__` macros, the new `@__FUNCTION__` macro references the innermost containing function even if that function is anonymous. This should work in all kinds of functions, and is stable, unlike the internal variable `#self#`.
 
 ```julia-repl
 julia> fact = n -> n <= 1 ? 1 : n * @__FUNCTION__()(n - 1);
