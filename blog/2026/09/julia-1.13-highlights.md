@@ -37,48 +37,56 @@ julia> # short, self-contained example
 <!-- The REPL got a lot of user-visible love this release; probably the headline section.
      Consider a screenshot/GIF for highlighting and history search. -->
 
-### Syntax highlighting as you type
+### Syntax highlighting
+*Timothy*, *Kristoffer Carlsson*
 
-<!-- NEWS: no PR number listed. Link to the REPL docs section on customization. -->
+The Julia REPL now has syntax highlighting (without having to load an external package like OhMyREPL.jl):
 
-TODO
+![REPL syntax highlighting](/assets/blog/2026-1.13-highlights/repl_highlight.png)
+
+By default, the color scheme is quite conservative but it is easy to customize (see the documentation for the REPL). As an example,
+here is the same code but using the Monokai color scheme:
+
+![REPL syntax highlighting](/assets/blog/2026-1.13-highlights/repl_highlight_monokai.png)
 
 
 ### New fzf-style history search
 
-<!-- NEWS: rewritten as an interactive modal dialogue. -->
+The history search (entered by default via Ctrl-R) has been redesigned and now works similarly to the command-line fuzzy finder `fzf`:
 
-TODO
+![REPL history search](/assets/blog/2026-1.13-highlights/fzf.png)
+
+![REPL history search LinearAlgebra](/assets/blog/2026-1.13-highlights/fzf_LA.png)
+
+Among other things, the new history search has support for:
+
+- Fuzzy searching in the history.
+- Showing what REPL mode was used for the command.
+- Selecting multiple search results to put into the prompt buffer.
+- Syntax highlighting of the code, matching the REPL itself.
+
+Enter the history search and type `?` to see the full help.
 
 ### Bracketed paste on Windows
 
 <!-- NEWS: #59825. Large pastes are much faster. -->
 
-TODO
+[Bracketed paste](https://en.wikipedia.org/wiki/Bracketed-paste) allows an application running in a terminal to know when text is being pasted (as opposed to just being typed). This can allow for more efficient and correct processing of the text being pasted.
+This functionality has been enabled on Linux and macOS for a long time but is now also finally available on Windows. As a concrete example, the videos below show the behavior of pasting a ~500-line function into the Julia REPL before and after enabling bracketed paste on Windows.
 
-Pasting a ~500 line function into the REPL on Windows, before:
-
+Before:
 ~~~
 <video controls muted playsinline style="max-width: 100%">
   <source src="/assets/blog/2026-1.13-highlights/windows-paste-before.mp4" type="video/mp4">
 </video>
 ~~~
 
-and after:
-
+After:
 ~~~
 <video controls muted playsinline style="max-width: 100%">
   <source src="/assets/blog/2026-1.13-highlights/windows-paste-after.mp4" type="video/mp4">
 </video>
 ~~~
-
-### Smaller REPL niceties
-
-<!-- NEWS: `AbstractChar` display shows LaTeX input info (#58181);
-     repeated frames / cycles in stack traces are bracketed (#55841);
-     `\^q` for U+107A5 (#59544); `\hookunderrightarrow` operator (#57143); Unicode 17 (#59534). -->
-
-TODO
 
 ## `@__FUNCTION__`
 *Miles Cranmer, Jeff Bezanson*
@@ -93,8 +101,7 @@ julia> fact(5)
 ```
 
 ## Hashing changes
-
-*Andy Dienes, Jameson Nash*
+*Andy Dienes*, *Jameson Nash*
 
 The hash function has been replaced. The byte-hashing algorithm is now [RapidhashNano](https://github.com/Nicoshev/rapidhash). This hash is used by default for `AbstractString` and many numeric types like `BigInt`, `Rational`, and large `Real` or `Integer` values. It is also much easier now for custom types to opt in to the generic implementations without having to first convert to a supported type (like `String`). This change offers several advantages compared to the pre-existing implementation based on MurmurHash3. It has significantly better performance, is a streaming hash so it no longer requires the `length` of the input up front, and has moved from C to pure Julia for better readability and maintainability.
 
@@ -176,7 +183,8 @@ TODO
 <!-- NEWS: #57909, #58222. `@code_typed f(1, ::Float64, 3)`, `@which sum(::Vector{T}; init = ::T) where {T<:Real}`.
      Compatible with signatures copied from stacktraces. Also better broadcasting support in `@code_lowered`/`@code_typed` (#58349). -->
 
-TODO
+
+The code introspection macros (`@which`, `@code_warntype`, etc.) now have support for
 
 ```julia-repl
 julia> @which sum(::Vector{Float64})
@@ -219,11 +227,11 @@ For downloads from a package server (registries, packages and artifacts), Pkg wi
 
 ### Performance improvements
 
-Some general micro-optimizations have been made to the resolver and the registry processing, leading to generally better performance of Pkg operations.
+Some micro-optimizations have been made to the resolver and the registry processing, leading to generally better performance of Pkg operations.
 Some of these improvements have already been backported to 1.12, so to get a proper performance comparison we compare against 1.12.1, which did not get any of these backports.
 
 To assess the impact on resolver speed, we do the following benchmark: we add Plots to an empty environment, remove it, and then benchmark the time it takes to add Plots again. This ensures that all the files for Plots are already downloaded. In addition, auto-precompilation is turned off and the registry cache is cleared so that it has to be re-read from scratch.
-This isolates the time-consuming parts of adding Plots to this environment to mostly the registry processing and the resolver:
+This means that the time spent adding Plots to this environment is mostly registry processing and resolving:
 
 ```julia
 julia> ENV["JULIA_PKG_PRECOMPILE_AUTO"] = 0
@@ -253,7 +261,7 @@ julia> @time Pkg.add(name="Plots"; rev="master")
 
 ```
 
-### Registries for packages tracked in manifest
+### Registries for packages tracked in the manifest
 
 Previously, to instantiate a manifest you needed to manually make sure that the registries required by that manifest were available. Now, the registry for each package is stored in the manifest and automatically downloaded upon manifest instantiation (or other package operations).
 
@@ -262,12 +270,11 @@ Previously, to instantiate a manifest you needed to manually make sure that the 
 Pkg now recursively collects `[sources]` entries from packages fetched by URL, allowing private dependency chains to resolve without requiring all dependencies of a private package to be in a registry.
 
 
-### No longer default to bounds checking on testing
+### `Pkg.test` no longer defaults to enabling strict bounds checking
 
-TODO
+When running `Pkg.test`, Pkg used to run the testing process with bounds checking forced on. This meant that the package being tested and all its dependencies typically had to be recompiled. Now, the precompile files generated during development of the package are also valid when testing. Forced bounds checking can be enabled by running `Pkg.test` in a `--check-bounds=yes` process or by passing that argument as `julia_args` to `Pkg.test`.
 
 ## Juliaup GUI
-*TODO authors*
 
 <!-- TODO: describe the new graphical interface for juliaup: what it can do (install/update/switch channels?),
      which platforms, how to launch it, and link to the juliaup release / README. Consider a screenshot. -->
