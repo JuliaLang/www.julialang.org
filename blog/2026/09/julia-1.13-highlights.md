@@ -32,10 +32,7 @@ julia> # short, self-contained example
 -->
 
 ## REPL improvements
-*TODO authors*
 
-<!-- The REPL got a lot of user-visible love this release; probably the headline section.
-     Consider a screenshot/GIF for highlighting and history search. -->
 
 ### Syntax highlighting
 *Timothy*, *Kristoffer Carlsson*
@@ -68,8 +65,6 @@ Among other things, the new history search has support for:
 Enter the history search and type `?` to see the full help.
 
 ### Bracketed paste on Windows
-
-<!-- NEWS: #59825. Large pastes are much faster. -->
 
 [Bracketed paste](https://en.wikipedia.org/wiki/Bracketed-paste) allows an application running in a terminal to know when text is being pasted (as opposed to just being typed). This can allow for more efficient and correct processing of the text being pasted.
 This functionality has been enabled on Linux and macOS for a long time but is now also finally available on Windows. As a concrete example, the videos below show the behavior of pasting a ~500-line function into the Julia REPL before and after enabling bracketed paste on Windows.
@@ -151,23 +146,56 @@ The hash for small fixed-width data has also changed. The finalizer is now a sin
 Some important reminders: `hash` remains **noncryptographic**. Also, the default seed has changed. Custom `hash` methods should **always** accept the seed as an argument like `hash(x::MyType, h::UInt)` and **never** provide a default value like `hash(x::MyType, h::UInt=0)`, since the correct seed is determined by the caller.
 
 
-
 ## Faster GC by not sweeping the sysimage
 *Cody Tapscott*
 
-<!-- PR: https://github.com/JuliaLang/julia/pull/61474 (landed in 1.13-rc2, so not in NEWS.md).
-     Objects in the sysimage / pkgimages are never freed and rarely mutated, so they are now loaded as
-     permanently marked (`GC_OLD_MARKED`); the mark phase never enters the image subgraph. Mutations to image
-     objects are tracked in a dedicated `image_remset` that roots any new referents.
-     Full-collection pause times drop dramatically (e.g. ~37 ms -> ~1.4 ms for a bare sysimage, ~40 ms -> ~3-4 ms
-     after loading packages in the PR's benchmarks); quick/partial collections are essentially unchanged.
-     Consider reusing the table from the PR description. -->
+Every Julia session starts with a large number of objects that were loaded from the system image, and every package that gets loaded brings its own package image with even more of them: method tables, type information, compiled code, constants and so on. These objects are never freed, and they are rarely mutated, yet until now a full garbage collection would walk through all of them to mark them as reachable, just like any other object on the heap. For a session with a handful of large packages loaded, this could easily be the dominant cost of a full collection.
 
-TODO
+In Julia 1.13, objects in the sysimage and in package images are loaded as permanently marked and the mark phase never enters them. The few mutations that do happen to image objects (for example, when a method is added to an existing function) are tracked separately so that any new objects they point to are still kept alive. The effect is that the cost of a full collection now scales with the size of the heap that your program actually created, not with the amount of code that has been loaded.
+
+The easiest way to see the difference is to time a full collection in a fresh session:
 
 ```julia-repl
-julia> # example: time a full collection before/after, e.g. @time GC.gc(true)
+# 1.12
+julia> @time GC.gc()
+  0.035493 seconds (99.90% gc time)
+
+# 1.13
+julia> @time GC.gc()
+  0.000528 seconds (99.08% gc time)
 ```
+
+The table below shows the time for a full collection (`GC.gc(true)`) on an Apple M4 Pro, first in a bare session and then after loading some packages of increasing size. Incremental (young generation) collections are not affected by this change and are equally fast on both versions.
+
+|                  | 1.12          | 1.13         |
+|------------------|---------------|--------------|
+| Bare session     | 35 ms         | 2 ms         |
+| `using Revise`   | 50 ms         | 11 ms        |
+| `using Cthulhu`  | 59 ms         | 18 ms        |
+| `using PythonCall` | 90 ms       | 30 ms        |
+| `using GLMakie`  | 187 ms        | 68 ms        |
+
+Since full collections are triggered more often for programs with a large live heap, this also shows up as reduced overall GC time in real workloads. The following example inserts random vectors into a `Dict` that is kept alive across iterations, so that a large fraction of the allocated objects get promoted to the old generation:
+
+```julia
+function work(n)
+    d = Dict{Int,Vector{Float64}}()
+    for i in 1:n
+        d[i % 50_000] = rand(64)
+    end
+    return length(d)
+end
+
+# 1.12
+julia> @time work(5_000_000)
+  1.699095 seconds (10.00 M allocations: 2.688 GiB, 79.80% gc time)
+
+# 1.13
+julia> @time work(5_000_000)
+  0.566276 seconds (10.00 M allocations: 2.688 GiB, 44.32% gc time)
+```
+
+For more details, see [the pull request](https://github.com/JuliaLang/julia/pull/61474).
 
 ## Scheduler and interrupt fixes
 *TODO authors*
@@ -178,18 +206,37 @@ julia> # example: time a full collection before/after, e.g. @time GC.gc(true)
 TODO
 
 ## Introspection with type annotations
-*TODO authors*
 
-<!-- NEWS: #57909, #58222. `@code_typed f(1, ::Float64, 3)`, `@which sum(::Vector{T}; init = ::T) where {T<:Real}`.
-     Compatible with signatures copied from stacktraces. Also better broadcasting support in `@code_lowered`/`@code_typed` (#58349). -->
-
-
-The code introspection macros (`@which`, `@code_warntype`, etc.) now have support for
+The code introspection macros (`@which`, `@code_typed`, `@code_warntype`, etc.) now accept
+call expressions where arguments are given as types instead of values, using the same
+`::T` syntax as in method definitions and stacktraces. Values and types can be freely mixed,
+and keyword arguments are supported:
 
 ```julia-repl
-julia> @which sum(::Vector{Float64})
+julia> @which push!(::Vector{Int}, 1)
+push!(a::Vector{T}, item) where T
+     @ Base array.jl:1339
+
+julia> @which sort!(::Vector{Int}; by = ::Function)
+kwcall(::NamedTuple, ::typeof(sort!), v::AbstractVector{T}) where T
+     @ Base.Sort sort.jl:1734
 ```
 
+This means a frame can be copied straight out of a stacktrace and pasted into `@which`
+to find the method that was called:
+
+```julia-repl
+julia> @which Base.Order.lt(o::Base.Order.Lt{typeof(isless)}, a::Int64, b::Int64)
+lt(o::Base.Order.Lt, a, b)
+     @ Base.Order ordering.jl:121
+```
+
+Broadcasting expressions are also supported in `@code_lowered`, `@code_typed`
+and `@code_warntype`:
+
+```julia-repl
+julia> @code_warntype (::Vector{Int}) .+ 1.0
+```
 
 ## CI debugging tracing
 *TODO authors*
