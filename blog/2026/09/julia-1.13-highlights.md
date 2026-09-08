@@ -56,7 +56,7 @@ The plots below cover all 39 currently submitted snippets, measured across Julia
 
 This monitoring is now also part of Julia's own development process: new TTFX CI jobs run on relevant pull requests and on every commit to `master`, and the results are tracked at [perf.julialang.org/ttfx](https://perf.julialang.org/ttfx). (That tracking went live on September 7, 2026; measurements before then were ad hoc.)
 
-Julia 1.14 (`nightly` in the plots above) is gaining features and capabilities, yet is shaping up to be faster still, with a new global object code cache that significantly reduces recompilation in the JIT, and package load time improvements on the horizon.
+Julia 1.14 is gaining features and capabilities, yet is shaping up to be faster still, with a new global object code cache that significantly reduces recompilation in the JIT, and package load time improvements on the horizon.
 
 
 ## REPL improvements
