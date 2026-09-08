@@ -46,13 +46,11 @@ The plots below cover all 39 currently submitted snippets, measured across Julia
 
 **Apple MacBook Pro, M5 Pro**
 
-(REPLACEME)
 ![TTFX results on an M5 Pro MacBook Pro](/assets/blog/2026-1.13-highlights/TTFX-macOS.png)
 
 **Linux, AMD Ryzen 9 5950X (16 cores / 32 threads)**
 
-(REPLACEME)
-![TTFX results on an AMD Ryzen 9 5950X Linux machine](/assets/blog/2026-1.13-highlights/TTFX-macOS.png)
+![TTFX results on an AMD Ryzen 9 5950X Linux machine](/assets/blog/2026-1.13-highlights/TTFX-linux.png)
 
 This monitoring is now also part of Julia's own development process: new TTFX CI jobs run on relevant pull requests and on every commit to `master`, and the results are tracked at [perf.julialang.org/ttfx](https://perf.julialang.org/ttfx). (That tracking went live on September 7, 2026; measurements before then were ad hoc.)
 
