@@ -282,6 +282,15 @@ Hello world
 It can also be enabled via the "debug logging" option on CI platforms (GitHub Actions shown here):
 ![GitHub Actions re-run dialog with "Enable debug logging" checked](/assets/blog/2026-1.13-highlights/enable-debug-logging.png)
 
+## JuliaC/trim
+*Cody Tapscott*, *many others*
+
+The juliac.jl script in contrib has been supplanted by [JuliaC.jl](https://github.com/JuliaLang/Juliac.jl) and was removed from contrib.
+
+More code can now be trimmed like finalizers, `cfunction` and `mapreduce`. 
+
+Several bugs were fixed related to the trimming process itself improving it's reliability.
+
 
 ## Pkg
 *Kristoffer Carlsson*
