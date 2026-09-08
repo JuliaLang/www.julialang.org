@@ -21,10 +21,20 @@
       title: "Script execution time",
       sub: "Geometric mean first-execution time of each workflow after loading" },
   ];
-  var W = 760, H = 420;
-  var PL = 70, PR = 620, PT = 110, PB = 350;   // plot area
-  var PLOT_H = PB - PT;                          // doubled when the workflows are shown
-  var xs = VERS.map(function (_, i) { return PL + i * (PR - PL) / (VERS.length - 1); });
+  // Plot geometry in viewBox units. On a narrow container (phones) the viewBox is
+  // narrower too, so the same nominal font sizes come out larger on screen, and the
+  // tick/label fonts are bumped further via the ttfx-narrow class.
+  var W, H, PL, PR, PT, PB, PLOT_H, xs, narrow;
+  function layout() {
+    narrow = root.clientWidth > 0 && root.clientWidth < 560;
+    W = narrow ? 440 : 760;
+    PL = narrow ? 60 : 70;
+    PR = narrow ? 340 : 620;
+    PT = 24;
+    PLOT_H = narrow ? 200 : 240;   // doubled when the workflows are shown
+    xs = VERS.map(function (_, i) { return PL + i * (PR - PL) / (VERS.length - 1); });
+    root.classList.toggle("ttfx-narrow", narrow);
+  }
   var state = { metric: "precompile", tasks: false };
   var sc_y_cache = null;   // y-scale of the current render, for tooltips
   var hoverDot = null;     // marker on the workflow point under the mouse
@@ -51,17 +61,35 @@
   controls.appendChild(toggle);
   root.appendChild(controls);
 
+  // Title, subtitle and legend are HTML so they wrap and scale with the page text.
+  var head = el("div", "ttfx-head");
+  var titleEl = el("div", "ttfx-title");
+  var subEl = el("div", "ttfx-sub");
+  var legendEl = el("div", "ttfx-legend");
+  D.machines.forEach(function (mc) {
+    var item = el("span", "ttfx-legend-item");
+    item.appendChild(el("i", "ttfx-swatch ttfx-swatch-" + mc.id));
+    item.appendChild(document.createTextNode(mc.label));
+    legendEl.appendChild(item);
+  });
+  head.appendChild(titleEl); head.appendChild(subEl); head.appendChild(legendEl);
+  root.appendChild(head);
+
   // The svg keeps its natural aspect from the viewBox; the wrapper's height is set
   // explicitly and transitions, so the chart grows and shrinks smoothly when the
   // workflows are toggled instead of jumping.
   var wrap = el("div", "ttfx-wrap");
   var svg = document.createElementNS(NS, "svg");
-  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
   svg.setAttribute("role", "img");
   wrap.appendChild(svg);
   root.appendChild(wrap);
   function fitWrap() { if (wrap.clientWidth) wrap.style.height = (wrap.clientWidth * H / W) + "px"; }
-  window.addEventListener("resize", fitWrap);
+  // Re-lay out when the container crosses the narrow threshold; otherwise just refit.
+  window.addEventListener("resize", function () {
+    var was = narrow;
+    layout();
+    if (narrow !== was) render(); else fitWrap();
+  });
   var tip = el("div", "ttfx-tip");
   tip.hidden = true;
   root.appendChild(tip);
@@ -150,9 +178,12 @@
     });
     while (svg.firstChild) svg.removeChild(svg.firstChild);
     tip.hidden = true;
+    layout();
+    titleEl.textContent = m.title;
+    subEl.textContent = m.sub + ", " + D.ntasks + " workflows.";
     // Twice the vertical room for 39 lines per machine, so they spread out.
     PB = PT + (state.tasks ? 2 : 1) * PLOT_H;
-    H = PB + 70;
+    H = PB + (narrow ? 62 : 70);
     svg.setAttribute("viewBox", "0 0 " + W + " " + H);
     fitWrap();
 
@@ -163,18 +194,6 @@
     });
     var sc = makeScale(vals);
     sc_y_cache = sc.y;
-
-    svg.appendChild(text(PL, 28, m.title, "ttfx-ink ttfx-title"));
-    svg.appendChild(text(PL, 48, m.sub + ", " + D.ntasks + " workflows.", "ttfx-ink2 ttfx-sub"));
-
-    // legend
-    var lx = PL;
-    D.machines.forEach(function (mc) {
-      svg.appendChild(s("circle", { cx: lx + 5, cy: 72, r: 4 }, "ttfx-fill-" + mc.id));
-      var t = text(lx + 15, 76, mc.label, "ttfx-ink2 ttfx-legend");
-      svg.appendChild(t);
-      lx += 15 + mc.label.length * 6.6 + 24;
-    });
 
     // grid + y ticks
     sc.ticks.forEach(function (v) {

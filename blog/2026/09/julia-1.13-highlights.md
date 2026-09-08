@@ -54,11 +54,16 @@ The chart below shows the geometric mean across all 39 currently submitted workf
 .ttfx-tabs button.ttfx-on { background: #2a78d6; color: #fff; }
 .ttfx-toggle { color: #52514e; cursor: pointer; user-select: none; }
 .ttfx-tip { position: absolute; pointer-events: none; background: #fff; color: #0b0b0b; border: 1px solid #c3c2b7; border-radius: 4px; padding: 0.35em 0.6em; font-size: 0.8em; line-height: 1.4; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 2; }
-.ttfx-title { font-size: 17px; font-weight: 600; }
-.ttfx-sub, .ttfx-legend { font-size: 12px; }
+.ttfx-head { margin: 0.75em 0 0.5em; }
+.ttfx-title { font-size: 1.1em; font-weight: 600; line-height: 1.3; }
+.ttfx-sub { font-size: 0.85em; color: #52514e; margin-top: 0.2em; }
+.ttfx-legend { font-size: 0.85em; color: #52514e; margin-top: 0.5em; display: flex; flex-wrap: wrap; gap: 0.3em 1.5em; }
+.ttfx-swatch { display: inline-block; width: 0.7em; height: 0.7em; border-radius: 50%; margin-right: 0.4em; vertical-align: -0.02em; }
+.ttfx-swatch-macos { background: #2a78d6; } .ttfx-swatch-linux { background: #eb6834; }
 .ttfx-tick { font-size: 11px; }
-.ttfx-val { font-size: 13px; font-weight: 600; }
 .ttfx-delta { font-size: 11px; }
+.ttfx-narrow .ttfx-tick { font-size: 13px; }
+.ttfx-narrow .ttfx-delta { font-size: 12.5px; }
 .ttfx-ink { fill: #0b0b0b; } .ttfx-ink2 { fill: #52514e; } .ttfx-muted { fill: #898781; }
 .ttfx-grid { stroke: #e1e0d9; } .ttfx-axis { stroke: #c3c2b7; }
 .ttfx-ring { stroke: #fff; stroke-width: 2; }
@@ -74,6 +79,8 @@ The chart below shows the geometric mean across all 39 currently submitted workf
 [data-theme="dark"] .ttfx-tabs button.ttfx-on { background: #3987e5; color: #fff; }
 [data-theme="dark"] .ttfx-tip { background: #2a2a3e; color: #e0e0e0; border-color: #555; }
 [data-theme="dark"] .ttfx-ink { fill: #fff; } [data-theme="dark"] .ttfx-ink2 { fill: #c3c2b7; }
+[data-theme="dark"] .ttfx-sub, [data-theme="dark"] .ttfx-legend { color: #bbb; }
+[data-theme="dark"] .ttfx-swatch-macos { background: #3987e5; } [data-theme="dark"] .ttfx-swatch-linux { background: #d95926; }
 [data-theme="dark"] .ttfx-grid { stroke: #33334a; } [data-theme="dark"] .ttfx-axis { stroke: #555; }
 [data-theme="dark"] .ttfx-ring { stroke: #1a1a2e; }
 [data-theme="dark"] .ttfx-line-macos { stroke: #3987e5; } [data-theme="dark"] .ttfx-fill-macos { fill: #3987e5; }
