@@ -1,0 +1,260 @@
+// Interactive TTFX plot for the Julia 1.13 highlights post.
+// Data comes from ttfx-data.js (window.TTFX_DATA): per machine, per metric, the
+// geometric mean over the Julia-TTFX-Snippets workflows plus every workflow's own
+// times. Default view is the precompile geomean only; the metric tabs, the
+// per-workflow lines and the hover readout are progressive detail.
+(function () {
+  var D = window.TTFX_DATA;
+  var root = document.getElementById("ttfx-plot");
+  if (!D || !root) return;
+
+  var NS = "http://www.w3.org/2000/svg";
+  var VERS = D.versions;
+  var METRICS = [
+    { id: "precompile", tab: "Precompilation",
+      title: "Julia 1.13 precompiles packages ~30% faster than 1.12",
+      sub: "Geometric mean precompilation time of the full dependency tree from a clean depot" },
+    { id: "load", tab: "Package load",
+      title: "Package load time",
+      sub: "Geometric mean load time after precompilation, excluding Julia startup" },
+    { id: "run", tab: "Script execution",
+      title: "Script execution time",
+      sub: "Geometric mean first-execution time of each workflow after loading" },
+  ];
+  var W = 760, H = 420;
+  var PL = 70, PR = 620, PT = 110, PB = 350;   // plot area
+  var xs = VERS.map(function (_, i) { return PL + i * (PR - PL) / (VERS.length - 1); });
+  var state = { metric: "precompile", tasks: false };
+  var sc_y_cache = null;   // y-scale of the current render, for tooltips
+
+  // ---------- controls ----------
+  var controls = el("div", "ttfx-controls");
+  var tabs = el("div", "ttfx-tabs");
+  tabs.setAttribute("role", "tablist");
+  METRICS.forEach(function (m) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = m.tab; b.dataset.metric = m.id;
+    b.setAttribute("role", "tab");
+    b.addEventListener("click", function () { state.metric = m.id; render(); });
+    tabs.appendChild(b);
+  });
+  var toggle = document.createElement("label");
+  toggle.className = "ttfx-toggle";
+  var cb = document.createElement("input");
+  cb.type = "checkbox";
+  cb.addEventListener("change", function () { state.tasks = cb.checked; render(); });
+  toggle.appendChild(cb);
+  toggle.appendChild(document.createTextNode(" Show all " + D.ntasks + " workflows"));
+  controls.appendChild(tabs);
+  controls.appendChild(toggle);
+  root.appendChild(controls);
+
+  var svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+  svg.setAttribute("role", "img");
+  root.appendChild(svg);
+  var tip = el("div", "ttfx-tip");
+  tip.hidden = true;
+  root.appendChild(tip);
+
+  // ---------- helpers ----------
+  function el(tag, cls) { var e = document.createElement(tag); if (cls) e.className = cls; return e; }
+  function s(tag, attrs, cls) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (cls) e.setAttribute("class", cls);
+    return e;
+  }
+  function text(x, y, str, cls, attrs) {
+    var t = s("text", Object.assign({ x: x, y: y }, attrs || {}), cls);
+    t.textContent = str;
+    return t;
+  }
+  function fmt(v) {
+    if (v >= 100) return v.toFixed(0) + " s";
+    if (v >= 1) return v.toFixed(1) + " s";
+    return (v * 1000).toFixed(0) + " ms";
+  }
+  // Axis ticks: whole numbers stay whole ("5 s", not "5.00 s").
+  function fmtTick(v) {
+    if (v === 0) return "0";
+    if (v >= 1) return (Number.isInteger(v) ? v : v.toFixed(1)) + " s";
+    return (v * 1000).toFixed(0) + " ms";
+  }
+  function pct(a, b) { return Math.round(100 * (a / b - 1)); }
+  function pctStr(p) { return (p > 0 ? "+" : p < 0 ? "−" : "") + Math.abs(p) + "%"; }
+  function pctCls(p) { return p < 0 ? "ttfx-good" : p > 0 ? "ttfx-bad" : "ttfx-ink2"; }
+  // Changes worth quoting for point i of series ys: vs the previous release for the
+  // newest point, and vs the first version (1.10, the LTS) for every later point.
+  function deltas(ys, i) {
+    var out = [];
+    if (i === ys.length - 1 && ys[i - 1]) out.push({ p: pct(ys[i], ys[i - 1]), vs: VERS[i - 1] });
+    if (i > 0 && ys[0]) out.push({ p: pct(ys[i], ys[0]), vs: VERS[0] });
+    return out;
+  }
+  function deltaHtml(ys, i) {
+    return deltas(ys, i).map(function (d) {
+      return "<span class='" + pctCls(d.p) + "'>" + pctStr(d.p) + " vs " + d.vs + "</span>";
+    }).join(" · ");
+  }
+
+  // Linear axis from zero for the summary; log when the workflows are shown, since
+  // they span two decades.
+  function makeScale(vals) {
+    var max = Math.max.apply(null, vals);
+    if (!state.tasks) {
+      var step = niceStep(max / 4);
+      var top = Math.ceil(max / step) * step;
+      var ticks = [];
+      for (var v = 0; v <= top + 1e-9; v += step) ticks.push(v);
+      return { y: function (v) { return PB - (v / top) * (PB - PT); }, ticks: ticks };
+    }
+    var min = Math.min.apply(null, vals);
+    var lo = Math.floor(Math.log10(min)), hi = Math.ceil(Math.log10(max));
+    var tks = [];
+    for (var e = lo; e <= hi; e++) tks.push(Math.pow(10, e));
+    return { y: function (v) { return PB - ((Math.log10(v) - lo) / (hi - lo)) * (PB - PT); }, ticks: tks };
+  }
+  function niceStep(raw) {
+    var p = Math.pow(10, Math.floor(Math.log10(raw)));
+    var f = raw / p;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p;
+  }
+
+  // ---------- render ----------
+  function render() {
+    var m = METRICS.filter(function (x) { return x.id === state.metric; })[0];
+    Array.prototype.forEach.call(tabs.children, function (b) {
+      var on = b.dataset.metric === m.id;
+      b.setAttribute("aria-selected", on);
+      b.classList.toggle("ttfx-on", on);
+    });
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    tip.hidden = true;
+
+    var vals = [];
+    D.machines.forEach(function (mc) {
+      vals = vals.concat(mc.geomean[m.id]);
+      if (state.tasks) for (var k in mc.tasks[m.id]) mc.tasks[m.id][k].forEach(function (v) { if (v) vals.push(v); });
+    });
+    var sc = makeScale(vals);
+    sc_y_cache = sc.y;
+
+    svg.appendChild(text(PL, 28, m.title, "ttfx-ink ttfx-title"));
+    svg.appendChild(text(PL, 48, m.sub + ", " + D.ntasks + " workflows.", "ttfx-ink2 ttfx-sub"));
+
+    // legend
+    var lx = PL;
+    D.machines.forEach(function (mc) {
+      svg.appendChild(s("circle", { cx: lx + 5, cy: 72, r: 4 }, "ttfx-fill-" + mc.id));
+      var t = text(lx + 15, 76, mc.label, "ttfx-ink2 ttfx-legend");
+      svg.appendChild(t);
+      lx += 15 + mc.label.length * 6.6 + 24;
+    });
+
+    // grid + y ticks
+    sc.ticks.forEach(function (v) {
+      var y = sc.y(v);
+      svg.appendChild(s("line", { x1: PL, y1: y, x2: PR, y2: y }, v === 0 || (state.tasks && v === sc.ticks[0]) ? "ttfx-axis" : "ttfx-grid"));
+      svg.appendChild(text(PL - 10, y + 4, fmtTick(v), "ttfx-muted ttfx-tick", { "text-anchor": "end" }));
+    });
+    // x ticks
+    VERS.forEach(function (v, i) {
+      svg.appendChild(text(xs[i], PB + 22, v + (i === 0 ? " (LTS)" : ""), "ttfx-ink2 ttfx-tick", { "text-anchor": "middle" }));
+    });
+    svg.appendChild(text((PL + PR) / 2, PB + 46, "Julia version", "ttfx-muted ttfx-tick", { "text-anchor": "middle" }));
+
+    // per-workflow lines, faint, drawn first; their hover targets go on top of everything
+    var taskHits = [];
+    if (state.tasks) {
+      D.machines.forEach(function (mc) {
+        for (var k in mc.tasks[m.id]) {
+          var ys = mc.tasks[m.id][k];
+          var pts = [];
+          ys.forEach(function (v, i) { if (v) pts.push(xs[i] + "," + sc.y(v)); });
+          if (pts.length < 2) continue;
+          var pl = s("polyline", { points: pts.join(" "), fill: "none", "stroke-width": 1 }, "ttfx-line-" + mc.id + " ttfx-task");
+          svg.appendChild(pl);
+          taskHits.push({ line: pl, points: pts.join(" "), machine: mc, name: k, ys: ys });
+        }
+      });
+    }
+
+    // geomean lines + markers + endpoint labels
+    var labelYs = [];
+    D.machines.forEach(function (mc) {
+      var g = mc.geomean[m.id];
+      var pts = g.map(function (v, i) { return xs[i] + "," + sc.y(v); }).join(" ");
+      svg.appendChild(s("polyline", { points: pts, fill: "none", "stroke-width": 2.5,
+        "stroke-linejoin": "round", "stroke-linecap": "round" }, "ttfx-line-" + mc.id));
+      g.forEach(function (v, i) {
+        var c = s("circle", { cx: xs[i], cy: sc.y(v), r: i === VERS.length - 1 ? 5.5 : 4.5 }, "ttfx-fill-" + mc.id + " ttfx-ring");
+        // generous hit target
+        var hit = s("circle", { cx: xs[i], cy: sc.y(v), r: 14, fill: "transparent" });
+        hit.style.cursor = "default";
+        hit.addEventListener("mouseenter", function () { showTip(mc, m, g, i, xs[i], sc.y(v)); });
+        hit.addEventListener("mouseleave", function () { tip.hidden = true; });
+        svg.appendChild(c);
+        svg.appendChild(hit);
+      });
+      // endpoint label: value and change vs 1.12
+      var last = g.length - 1, y = sc.y(g[last]);
+      // nudge apart if the two labels would collide
+      labelYs.forEach(function (o) { if (Math.abs(o - y) < 48) y = o < y ? o + 48 : o - 48; });
+      labelYs.push(y);
+      svg.appendChild(text(PR + 14, y - 8, fmt(g[last]), "ttfx-ink ttfx-val"));
+      deltas(g, last).forEach(function (d, j) {
+        svg.appendChild(text(PR + 14, y + 7 + 14 * j, pctStr(d.p) + " vs " + d.vs, pctCls(d.p) + " ttfx-delta"));
+      });
+    });
+
+    // Wide transparent strokes over each workflow line so a thin line is easy to hit.
+    // Hovering names the workflow, lifts its line, and reads out the nearest version.
+    taskHits.forEach(function (h) {
+      var hit = s("polyline", { points: h.points, fill: "none" }, "ttfx-task-hit");
+      hit.addEventListener("mouseenter", function () { h.line.classList.add("ttfx-hl"); });
+      hit.addEventListener("mousemove", function (e) { showTaskTip(h, e); });
+      hit.addEventListener("mouseleave", function () { h.line.classList.remove("ttfx-hl"); tip.hidden = true; });
+      svg.appendChild(hit);
+    });
+  }
+
+  function svgX(e) {
+    var sb = svg.getBoundingClientRect();
+    return (e.clientX - sb.left) * W / sb.width;
+  }
+  function showTaskTip(h, e) {
+    var sx = svgX(e), best = -1;
+    h.ys.forEach(function (v, i) {
+      if (v && (best < 0 || Math.abs(xs[i] - sx) < Math.abs(xs[best] - sx))) best = i;
+    });
+    if (best < 0) return;
+    var v = h.ys[best];
+    var html = "<b>" + h.name + "</b><br>" + h.machine.label + "<br><b>Julia " + VERS[best] + "</b> " + fmt(v);
+    var d = deltaHtml(h.ys, best);
+    if (d) html += "<br>" + d;
+    tip.innerHTML = html;
+    placeTip(xs[best], sc_y_cache(v));
+  }
+
+  function showTip(mc, m, g, i, x, y) {
+    var v = g[i];
+    var html = "<b>Julia " + VERS[i] + "</b> · " + mc.label + "<br>" + fmt(v);
+    var d = deltaHtml(g, i);
+    if (d) html += "<br>" + d;
+    tip.innerHTML = html;
+    placeTip(x, y);
+  }
+
+  function placeTip(x, y) {
+    tip.hidden = false;
+    var box = root.getBoundingClientRect(), sb = svg.getBoundingClientRect();
+    var k = sb.width / W;
+    var px = sb.left - box.left + x * k, py = sb.top - box.top + y * k;
+    var left = Math.max(0, Math.min(box.width - tip.offsetWidth, px - tip.offsetWidth / 2));
+    tip.style.left = left + "px";
+    tip.style.top = (py - tip.offsetHeight - 14) + "px";
+  }
+
+  render();
+})();

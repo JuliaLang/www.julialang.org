@@ -37,22 +37,52 @@ julia> # short, self-contained example
 
 Julia 1.13 precompiles packages roughly 30% faster than 1.12, and roughly 10-20% faster than 1.10 (LTS) depending on the machine.
 
-Time To First eXecution (TTFX), the time from starting Julia to getting a first result, is made up of three main costs: precompiling packages, loading them, and running the code. With the help of the community-submitted workflows at [Julia-TTFX-Snippets](https://github.com/tecosaur/Julia-TTFX-Snippets), we have started measuring these costs more systematically on real-world examples and optimizing Julia against them.
+Time To First X (TTFX), the time from starting Julia to getting a first result, is made up of three main costs: precompiling packages, loading them, and running the code. With the help of the community-submitted workflows at [Julia-TTFX-Snippets](https://github.com/tecosaur/Julia-TTFX-Snippets), we have started measuring these costs more systematically on real-world examples and optimizing Julia against them.
 
-The plots below cover all 39 currently submitted snippets, measured across Julia releases from 1.10 (LTS) through the current nightly. For each snippet we report:
-- Precompilation time for the full dependency tree, starting from a clean depot (fastest of 2 runs)
-- Package load time (fastest of 3 runs)
-- Script execution time (fastest of 3 runs)
+The chart below shows the geometric mean across all 39 currently submitted workflows, on two machines. Hover a point for the numbers, switch metric with the tabs, or show every workflow individually. Precompilation is a single sample on macOS and the fastest of 2 on Linux; load and execution times are the fastest of 3 runs.
 
-**Apple MacBook Pro, M5 Pro**
+~~~
+<style>
+.ttfx { margin: 1.5em 0; position: relative; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+.ttfx svg { width: 100%; height: auto; display: block; }
+.ttfx-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5em 1.5em; margin-bottom: 0.25em; font-size: 0.85em; }
+.ttfx-tabs { display: inline-flex; border: 1px solid #c3c2b7; border-radius: 6px; overflow: hidden; }
+.ttfx-tabs button { background: none; border: 0; border-right: 1px solid #c3c2b7; padding: 0.35em 0.9em; color: #52514e; cursor: pointer; font: inherit; }
+.ttfx-tabs button:last-child { border-right: 0; }
+.ttfx-tabs button.ttfx-on { background: #2a78d6; color: #fff; }
+.ttfx-toggle { color: #52514e; cursor: pointer; user-select: none; }
+.ttfx-tip { position: absolute; pointer-events: none; background: #fff; color: #0b0b0b; border: 1px solid #c3c2b7; border-radius: 4px; padding: 0.35em 0.6em; font-size: 0.8em; line-height: 1.4; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 2; }
+.ttfx-title { font-size: 17px; font-weight: 600; }
+.ttfx-sub, .ttfx-legend { font-size: 12px; }
+.ttfx-tick { font-size: 11px; }
+.ttfx-val { font-size: 13px; font-weight: 600; }
+.ttfx-delta { font-size: 11px; }
+.ttfx-ink { fill: #0b0b0b; } .ttfx-ink2 { fill: #52514e; } .ttfx-muted { fill: #898781; }
+.ttfx-grid { stroke: #e1e0d9; } .ttfx-axis { stroke: #c3c2b7; }
+.ttfx-ring { stroke: #fff; stroke-width: 2; }
+.ttfx-line-macos { stroke: #2a78d6; } .ttfx-fill-macos { fill: #2a78d6; }
+.ttfx-line-linux { stroke: #eb6834; } .ttfx-fill-linux { fill: #eb6834; }
+.ttfx-task { opacity: 0.25; }
+.ttfx-task.ttfx-hl { opacity: 1; stroke-width: 2.5; }
+.ttfx-task-hit { stroke: transparent; stroke-width: 12; pointer-events: stroke; }
+.ttfx-good { fill: #006300; color: #006300; } .ttfx-bad { fill: #b3261e; color: #b3261e; }
+[data-theme="dark"] .ttfx-tabs, [data-theme="dark"] .ttfx-tabs button { border-color: #555; }
+[data-theme="dark"] .ttfx-tabs button, [data-theme="dark"] .ttfx-toggle { color: #bbb; }
+[data-theme="dark"] .ttfx-tabs button.ttfx-on { background: #3987e5; color: #fff; }
+[data-theme="dark"] .ttfx-tip { background: #2a2a3e; color: #e0e0e0; border-color: #555; }
+[data-theme="dark"] .ttfx-ink { fill: #fff; } [data-theme="dark"] .ttfx-ink2 { fill: #c3c2b7; }
+[data-theme="dark"] .ttfx-grid { stroke: #33334a; } [data-theme="dark"] .ttfx-axis { stroke: #555; }
+[data-theme="dark"] .ttfx-ring { stroke: #1a1a2e; }
+[data-theme="dark"] .ttfx-line-macos { stroke: #3987e5; } [data-theme="dark"] .ttfx-fill-macos { fill: #3987e5; }
+[data-theme="dark"] .ttfx-line-linux { stroke: #d95926; } [data-theme="dark"] .ttfx-fill-linux { fill: #d95926; }
+[data-theme="dark"] .ttfx-good { fill: #0ca30c; color: #0ca30c; } [data-theme="dark"] .ttfx-bad { fill: #e66767; color: #e66767; }
+</style>
+<div id="ttfx-plot" class="ttfx"></div>
+<script src="/assets/blog/2026-1.13-highlights/ttfx-data.js"></script>
+<script src="/assets/blog/2026-1.13-highlights/ttfx-plot.js"></script>
+~~~
 
-![TTFX results on an M5 Pro MacBook Pro](/assets/blog/2026-1.13-highlights/TTFX-macOS.png)
-
-**Linux workstation, AMD Ryzen 9 5950X (16 cores / 32 threads)**
-
-![TTFX results on an AMD Ryzen 9 5950X Linux machine](/assets/blog/2026-1.13-highlights/TTFX-linux.png)
-
-This monitoring is now also part of Julia's own development process: new TTFX CI jobs run on relevant pull requests and on every commit to `master`, and the results are tracked at [perf.julialang.org/ttfx](https://perf.julialang.org/ttfx). (That tracking went live on September 7, 2026; measurements before then were ad hoc.)
+This monitoring is now also part of Julia's own development process: new TTFX CI jobs run on relevant pull requests and on every commit to `master`, and the results are tracked at [perf.julialang.org/ttfx](https://perf.julialang.org/ttfx). That tracking went live on September 7, 2026; measurements before then were ad hoc.
 
 
 ## REPL improvements
@@ -287,7 +317,7 @@ It can also be enabled via the "debug logging" option on CI platforms (GitHub Ac
 
 The juliac.jl script in contrib has been supplanted by [JuliaC.jl](https://github.com/JuliaLang/Juliac.jl) and was removed from contrib.
 
-More code can now be trimmed like finalizers, `cfunction` and `mapreduce`. 
+More code can now be trimmed like finalizers, `cfunction` and `mapreduce`.
 
 Several bugs were fixed related to the trimming process itself improving it's reliability.
 
