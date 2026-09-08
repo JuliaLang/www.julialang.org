@@ -48,7 +48,7 @@ The plots below cover all 39 currently submitted snippets, measured across Julia
 
 ![TTFX results on an M5 Pro MacBook Pro](/assets/blog/2026-1.13-highlights/TTFX-macOS.png)
 
-**Linux, AMD Ryzen 9 5950X (16 cores / 32 threads)**
+**Linux workstation, AMD Ryzen 9 5950X (16 cores / 32 threads)**
 
 ![TTFX results on an AMD Ryzen 9 5950X Linux machine](/assets/blog/2026-1.13-highlights/TTFX-linux.png)
 
