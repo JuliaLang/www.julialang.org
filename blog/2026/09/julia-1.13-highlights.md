@@ -56,7 +56,7 @@ The plots below cover all 39 currently submitted snippets, measured across Julia
 
 This monitoring is now also part of Julia's own development process: new TTFX CI jobs run on relevant pull requests and on every commit to `master`, and the results are tracked at [perf.julialang.org/ttfx](https://perf.julialang.org/ttfx). (That tracking went live on September 7, 2026; measurements before then were ad hoc.)
 
-And even though Julia 1.14 (`nightly` in the plots above) is gaining features and capabilities, its shaping up to be faster still, with a new global object code cache that significantly reduces recompilation in the JIT, and package load time improvements on the horizon.
+Julia 1.14 (`nightly` in the plots above) is gaining features and capabilities, yet is shaping up to be faster still, with a new global object code cache that significantly reduces recompilation in the JIT, and package load time improvements on the horizon.
 
 
 ## REPL improvements
@@ -226,7 +226,7 @@ julia> @time work(5_000_000)
 For more details, see [the pull request](https://github.com/JuliaLang/julia/pull/61474).
 
 ## Scheduler and interrupt fixes
-*Ian Butterworth*, *Kiran Pamnany*, *Jameson Nash*
+*Kiran Pamnany*, *Jameson Nash*, *Ian Butterworth*
 
 Idle threads now park in a dedicated scheduler task instead of holding on to the last task they ran, so finished tasks can be garbage collected promptly ([#57544](https://github.com/JuliaLang/julia/pull/57544)). It lands alongside fixes that make interrupts reliable again ([#62665](https://github.com/JuliaLang/julia/pull/62665)):
 
