@@ -44,19 +44,19 @@ The plots below cover all 39 currently submitted snippets, measured across Julia
 - Package load time (fastest of 3 runs)
 - Script execution time (fastest of 3 runs)
 
-**Apple M5 Pro MacBook Pro**
+**Apple MacBook Pro, M5 Pro**
 
 (REPLACEME)
 ![TTFX results on an M5 Pro MacBook Pro](/assets/blog/2026-1.13-highlights/TTFX-macOS.png)
 
-**AMD Ryzen 9 5950X (16 cores / 32 threads), Linux**
+**Linux, AMD Ryzen 9 5950X (16 cores / 32 threads)**
 
 (REPLACEME)
 ![TTFX results on an AMD Ryzen 9 5950X Linux machine](/assets/blog/2026-1.13-highlights/TTFX-macOS.png)
 
-This monitoring is now also part of Julia's own development process: new TTFX CI jobs run on relevant pull requests and on every commit to `master`, and the results are tracked at [perf.julialang.org/ttfx](https://perf.julialang.org/ttfx). (That page went live on September 7, 2026; measurements before then were ad hoc.)
+This monitoring is now also part of Julia's own development process: new TTFX CI jobs run on relevant pull requests and on every commit to `master`, and the results are tracked at [perf.julialang.org/ttfx](https://perf.julialang.org/ttfx). (That tracking went live on September 7, 2026; measurements before then were ad hoc.)
 
-Julia 1.14 (`nightly` in the plots above) is shaping up to be faster still, with a new global object code cache that significantly reduces recompilation in the JIT, and further package load time improvements on the horizon.
+And even though Julia 1.14 (`nightly` in the plots above) is gaining features and capabilities, its shaping up to be faster still, with a new global object code cache that significantly reduces recompilation in the JIT, and package load time improvements on the horizon.
 
 
 ## REPL improvements
