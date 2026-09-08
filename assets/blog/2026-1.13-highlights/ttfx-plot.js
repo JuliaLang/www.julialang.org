@@ -235,11 +235,11 @@
       // endpoint label: value and change vs 1.12
       var last = g.length - 1, y = sc.y(g[last]);
       // nudge apart if the two labels would collide
-      labelYs.forEach(function (o) { if (Math.abs(o - y) < 48) y = o < y ? o + 48 : o - 48; });
+      // Only the relative changes: the geomean's absolute seconds aren't meaningful.
+      labelYs.forEach(function (o) { if (Math.abs(o - y) < 34) y = o < y ? o + 34 : o - 34; });
       labelYs.push(y);
-      svg.appendChild(text(PR + 14, y - 8, fmt(g[last]), "ttfx-ink ttfx-val"));
       deltas(g, last).forEach(function (d, j) {
-        svg.appendChild(text(PR + 14, y + 7 + 14 * j, pctStr(d.p) + " vs " + d.vs, pctCls(d.p) + " ttfx-delta"));
+        svg.appendChild(text(PR + 14, y - 2 + 14 * j, pctStr(d.p) + " vs " + d.vs, pctCls(d.p) + " ttfx-delta"));
       });
     });
 
