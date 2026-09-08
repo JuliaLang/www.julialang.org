@@ -292,6 +292,12 @@ It can also be enabled via the "debug logging" option on CI platforms (GitHub Ac
 
 Pkg has gotten quite a bit of attention for 1.13. Here we list some of the more notable changes and improvements.
 
+### `pkg> add` now tries to add the same version as already-loaded packages
+
+v1 Julia has always allowed changing the active project during a session, and supports stacked environments (most commonly the default environment) which introduces a rough edge that can lead to repeated precompilation of packages. For instance: a version of a package is loaded from the default environment during startup.jl, then the user adds a new package to the active project that pulls in a new version of that dependency. To respect the manifest and compat entries etc., Pkg precompiles the active project dependency graph meaning re-precompilation would happen when the package is loaded.
+
+In 1.13 Pkg now prefers the already-loaded version of any already-loaded packages when resolving `pkg> add`, if the environment's compatibility constraints allow it, so nothing needs to be precompiled again. As usual, `pkg> status` will flag that a newer version is available.
+
 ### Change in default compression algorithm from gzip to zstd
 
 For downloads from a package server (registries, packages and artifacts), Pkg will now by default ask for a zstd-compressed archive instead of a gzipped one. For the type of files Pkg typically downloads, zstd compression tends to have both a better compression ratio and significantly better decompression performance. As an example, downloading the packages and artifacts for the packages Plots, Makie and ModelingToolkit results in the following data:
