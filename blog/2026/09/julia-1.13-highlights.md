@@ -35,7 +35,7 @@ julia> # short, self-contained example
 
 *Ian Butterworth*, *many others*
 
-Julia 1.13 precompiles packages roughly 30% faster than 1.12, and is roughly 10-20% faster than 1.10 (LTS) depending on the machine.
+Julia 1.13 precompiles packages roughly 30% faster than 1.12, and roughly 10-20% faster than 1.10 (LTS) depending on the machine.
 
 Time To First eXecution (TTFX), the time from starting Julia to getting a first result, is made up of three main costs: precompiling packages, loading them, and running the code. With the help of the community-submitted workflows at [Julia-TTFX-Snippets](https://github.com/tecosaur/Julia-TTFX-Snippets), we have started measuring these costs more systematically on real-world examples and optimizing Julia against them.
 
