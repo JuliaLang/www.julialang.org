@@ -109,10 +109,20 @@
       for (var v = 0; v <= top + 1e-9; v += step) ticks.push(v);
       return { y: function (v) { return PB - (v / top) * (PB - PT); }, ticks: ticks };
     }
+    // Hug the data (a few percent of padding in log space) rather than rounding out to
+    // whole decades, which flattened the lines. Ticks at the decades inside the range,
+    // with 2x and 5x steps added when fewer than three decades are visible.
     var min = Math.min.apply(null, vals);
-    var lo = Math.floor(Math.log10(min)), hi = Math.ceil(Math.log10(max));
+    var lo = Math.log10(min) - 0.05, hi = Math.log10(max) + 0.05;
     var tks = [];
-    for (var e = lo; e <= hi; e++) tks.push(Math.pow(10, e));
+    for (var e = Math.ceil(lo); e <= Math.floor(hi); e++) tks.push(Math.pow(10, e));
+    if (tks.length < 3) {
+      for (var e2 = Math.floor(lo); e2 <= Math.floor(hi); e2++) [2, 5].forEach(function (f) {
+        var v = f * Math.pow(10, e2);
+        if (Math.log10(v) >= lo && Math.log10(v) <= hi) tks.push(v);
+      });
+      tks.sort(function (a, b) { return a - b; });
+    }
     return { y: function (v) { return PB - ((Math.log10(v) - lo) / (hi - lo)) * (PB - PT); }, ticks: tks };
   }
   function niceStep(raw) {
@@ -155,12 +165,23 @@
     // grid + y ticks
     sc.ticks.forEach(function (v) {
       var y = sc.y(v);
-      svg.appendChild(s("line", { x1: PL, y1: y, x2: PR, y2: y }, v === 0 || (state.tasks && v === sc.ticks[0]) ? "ttfx-axis" : "ttfx-grid"));
+      svg.appendChild(s("line", { x1: PL, y1: y, x2: PR, y2: y }, v === 0 ? "ttfx-axis" : "ttfx-grid"));
       svg.appendChild(text(PL - 10, y + 4, fmtTick(v), "ttfx-muted ttfx-tick", { "text-anchor": "end" }));
     });
+    if (state.tasks) svg.appendChild(s("line", { x1: PL, y1: PB, x2: PR, y2: PB }, "ttfx-axis"));
     // x ticks
+    // Hovering a version label shows the exact build each machine ran.
     VERS.forEach(function (v, i) {
-      svg.appendChild(text(xs[i], PB + 22, v + (i === 0 ? " (LTS)" : ""), "ttfx-ink2 ttfx-tick", { "text-anchor": "middle" }));
+      var label = text(xs[i], PB + 22, v + (i === 0 ? " (LTS)" : ""), "ttfx-ink2 ttfx-tick ttfx-xlabel", { "text-anchor": "middle" });
+      label.addEventListener("mouseenter", function () {
+        var builds = D.machines.map(function (mc) { return mc.builds[v]; });
+        var same = builds.every(function (b) { return b === builds[0]; });
+        tip.innerHTML = "<b>Julia " + v + "</b><br>" + (same ? builds[0] :
+          D.machines.map(function (mc) { return mc.label.split(",")[0] + ": " + mc.builds[v]; }).join("<br>"));
+        placeTip(xs[i], PB + 10);
+      });
+      label.addEventListener("mouseleave", function () { tip.hidden = true; });
+      svg.appendChild(label);
     });
     svg.appendChild(text((PL + PR) / 2, PB + 46, "Julia version", "ttfx-muted ttfx-tick", { "text-anchor": "middle" }));
 

@@ -63,6 +63,7 @@ The chart below shows the geometric mean across all 39 currently submitted workf
 .ttfx-line-macos { stroke: #2a78d6; } .ttfx-fill-macos { fill: #2a78d6; }
 .ttfx-line-linux { stroke: #eb6834; } .ttfx-fill-linux { fill: #eb6834; }
 .ttfx-task { opacity: 0.25; }
+.ttfx-xlabel { cursor: help; }
 .ttfx-task.ttfx-hl { opacity: 1; stroke-width: 2.5; }
 .ttfx-task-hit { stroke: transparent; stroke-width: 12; pointer-events: stroke; }
 .ttfx-good { fill: #006300; color: #006300; } .ttfx-bad { fill: #b3261e; color: #b3261e; }
