@@ -45,6 +45,8 @@ The chart below shows the geometric mean across all 39 currently submitted workf
 <style>
 .ttfx { margin: 1.5em 0; position: relative; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
 .ttfx svg { width: 100%; height: auto; display: block; }
+.ttfx-wrap { overflow: hidden; }
+.ttfx-wrap.ttfx-animate { transition: height 0.4s ease; }
 .ttfx-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5em 1.5em; margin-bottom: 0.25em; font-size: 0.85em; }
 .ttfx-tabs { display: inline-flex; border: 1px solid #c3c2b7; border-radius: 6px; overflow: hidden; }
 .ttfx-tabs button { background: none; border: 0; border-right: 1px solid #c3c2b7; padding: 0.35em 0.9em; color: #52514e; cursor: pointer; font: inherit; }

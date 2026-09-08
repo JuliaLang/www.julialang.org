@@ -23,6 +23,7 @@
   ];
   var W = 760, H = 420;
   var PL = 70, PR = 620, PT = 110, PB = 350;   // plot area
+  var PLOT_H = PB - PT;                          // doubled when the workflows are shown
   var xs = VERS.map(function (_, i) { return PL + i * (PR - PL) / (VERS.length - 1); });
   var state = { metric: "precompile", tasks: false };
   var sc_y_cache = null;   // y-scale of the current render, for tooltips
@@ -50,10 +51,17 @@
   controls.appendChild(toggle);
   root.appendChild(controls);
 
+  // The svg keeps its natural aspect from the viewBox; the wrapper's height is set
+  // explicitly and transitions, so the chart grows and shrinks smoothly when the
+  // workflows are toggled instead of jumping.
+  var wrap = el("div", "ttfx-wrap");
   var svg = document.createElementNS(NS, "svg");
   svg.setAttribute("viewBox", "0 0 " + W + " " + H);
   svg.setAttribute("role", "img");
-  root.appendChild(svg);
+  wrap.appendChild(svg);
+  root.appendChild(wrap);
+  function fitWrap() { if (wrap.clientWidth) wrap.style.height = (wrap.clientWidth * H / W) + "px"; }
+  window.addEventListener("resize", fitWrap);
   var tip = el("div", "ttfx-tip");
   tip.hidden = true;
   root.appendChild(tip);
@@ -142,6 +150,11 @@
     });
     while (svg.firstChild) svg.removeChild(svg.firstChild);
     tip.hidden = true;
+    // Twice the vertical room for 39 lines per machine, so they spread out.
+    PB = PT + (state.tasks ? 2 : 1) * PLOT_H;
+    H = PB + 70;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    fitWrap();
 
     var vals = [];
     D.machines.forEach(function (mc) {
@@ -289,4 +302,5 @@
   }
 
   render();
+  requestAnimationFrame(function () { wrap.classList.add("ttfx-animate"); });
 })();
