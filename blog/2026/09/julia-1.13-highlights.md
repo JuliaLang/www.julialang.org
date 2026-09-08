@@ -226,12 +226,16 @@ julia> @time work(5_000_000)
 For more details, see [the pull request](https://github.com/JuliaLang/julia/pull/61474).
 
 ## Scheduler and interrupt fixes
-*TODO authors*
+*Ian Butterworth*, *Kiran Pamnany*, *Jameson Nash*
 
-<!-- TODO: collect the relevant PRs (scheduler robustness, ^C / InterruptException delivery, deadlock fixes).
-     Frame this as groundwork for the proper task cancellation (cancellation tokens) coming in 1.14. -->
+Idle threads now park in a dedicated scheduler task instead of holding on to the last task they ran, so finished tasks can be garbage collected promptly ([#57544](https://github.com/JuliaLang/julia/pull/57544)). It lands alongside fixes that make interrupts reliable again ([#62665](https://github.com/JuliaLang/julia/pull/62665)):
 
-TODO
+- Ctrl-C reaches user code again, including scripts blocked in `sleep` or IO, and `Distributed.interrupt` works.
+- The REPL survives repeated and badly timed Ctrl-C presses.
+- `@spawn` wakes one idle thread in the task's threadpool instead of every thread ([#61826](https://github.com/JuliaLang/julia/pull/61826)). Spawn-heavy code speeds up anywhere from not at all on macOS, to 1.1-1.6x on a 16-core Linux machine, to 10-300x on Windows and heavily oversubscribed machines, where waking every thread had been the dominant cost.
+- Several lost-task and deadlock races were fixed.
+
+And Julia 1.14 will go further, with a proper task cancellation mechanism in development.
 
 ## Introspection with type annotations
 
