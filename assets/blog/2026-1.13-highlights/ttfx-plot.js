@@ -26,6 +26,7 @@
   var xs = VERS.map(function (_, i) { return PL + i * (PR - PL) / (VERS.length - 1); });
   var state = { metric: "precompile", tasks: false };
   var sc_y_cache = null;   // y-scale of the current render, for tooltips
+  var hoverDot = null;     // marker on the workflow point under the mouse
 
   // ---------- controls ----------
   var controls = el("div", "ttfx-controls");
@@ -235,9 +236,14 @@
       var hit = s("polyline", { points: h.points, fill: "none" }, "ttfx-task-hit");
       hit.addEventListener("mouseenter", function () { h.line.classList.add("ttfx-hl"); });
       hit.addEventListener("mousemove", function (e) { showTaskTip(h, e); });
-      hit.addEventListener("mouseleave", function () { h.line.classList.remove("ttfx-hl"); tip.hidden = true; });
+      hit.addEventListener("mouseleave", function () {
+        h.line.classList.remove("ttfx-hl"); tip.hidden = true; hoverDot.setAttribute("visibility", "hidden");
+      });
       svg.appendChild(hit);
     });
+    // Marker for the point a workflow tooltip is describing; moves with the mouse.
+    hoverDot = s("circle", { r: 4.5, visibility: "hidden", "pointer-events": "none" }, "ttfx-ring");
+    svg.appendChild(hoverDot);
   }
 
   function svgX(e) {
@@ -255,7 +261,12 @@
     var d = deltaHtml(h.ys, best);
     if (d) html += "<br>" + d;
     tip.innerHTML = html;
-    placeTip(xs[best], sc_y_cache(v));
+    var y = sc_y_cache(v);
+    hoverDot.setAttribute("cx", xs[best]);
+    hoverDot.setAttribute("cy", y);
+    hoverDot.setAttribute("class", "ttfx-ring ttfx-fill-" + h.machine.id);
+    hoverDot.setAttribute("visibility", "visible");
+    placeTip(xs[best], y);
   }
 
   function showTip(mc, m, g, i, x, y) {
