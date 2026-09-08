@@ -31,6 +31,34 @@ julia> # short, self-contained example
 <Optional caveats / links to docs and PRs.>
 -->
 
+## Latency (TTFX) Improvements
+
+*Ian Butterworth*, *many others*
+
+Julia 1.13 precompiles packages roughly 30% faster than 1.12 and roughly 20% faster than 1.10 (LTS).
+
+Time To First eXecution (TTFX), the time from starting Julia to getting a first result, is made up of three main costs: precompiling packages, loading them, and running the code. With the help of the community-submitted workflows at [Julia-TTFX-Snippets](https://github.com/tecosaur/Julia-TTFX-Snippets), we have started measuring these costs more systematically on real-world examples and optimizing Julia against them.
+
+The plots below cover all 39 currently submitted snippets, measured across Julia releases from 1.10 (LTS) through the current nightly. For each snippet we report:
+- Precompilation time for the full dependency tree, starting from a clean depot (fastest of 2 runs)
+- Package load time (fastest of 3 runs)
+- Script execution time (fastest of 3 runs)
+
+**Apple M5 Pro MacBook Pro**
+
+(REPLACEME)
+![TTFX results on an M5 Pro MacBook Pro](/assets/blog/2026-1.13-highlights/TTFX-macOS.png)
+
+**AMD Ryzen 9 5950X (16 cores / 32 threads), Linux**
+
+(REPLACEME)
+![TTFX results on an AMD Ryzen 9 5950X Linux machine](/assets/blog/2026-1.13-highlights/TTFX-macOS.png)
+
+This monitoring is now also part of Julia's own development process: new TTFX CI jobs run on relevant pull requests and on every commit to `master`, and the results are tracked at [perf.julialang.org/ttfx](https://perf.julialang.org/ttfx). (That page went live on September 7, 2026; measurements before then were ad hoc.)
+
+Julia 1.14 (`nightly` in the plots above) is shaping up to be faster still, with a new global object code cache that significantly reduces recompilation in the JIT, and further package load time improvements on the horizon.
+
+
 ## REPL improvements
 
 
