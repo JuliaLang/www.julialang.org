@@ -106,6 +106,24 @@ body { overflow-x: hidden; }
 
 This monitoring is now also part of Julia's own development process: new TTFX CI jobs run on relevant pull requests and on every commit to `master`, and the results are tracked at [perf.julialang.org/ttfx](https://perf.julialang.org/ttfx). That tracking went live on September 7, 2026; measurements before then were ad hoc.
 
+Julia 1.13 startup is also ~20% faster than 1.12.
+
+```
+% hyperfine --warmup 3 --runs 20 -N \
+  --command-name "julia 1.12" "julia +1.12 --startup-file=no -e ''" \
+  --command-name "julia 1.13" "julia +1.13 --startup-file=no -e ''"
+Benchmark 1: julia 1.12
+  Time (mean ± σ):      69.1 ms ±   1.0 ms    [User: 50.1 ms, System: 18.1 ms]
+  Range (min … max):    68.0 ms …  72.6 ms    20 runs
+
+Benchmark 2: julia 1.13
+  Time (mean ± σ):      56.7 ms ±   0.5 ms    [User: 49.1 ms, System: 18.9 ms]
+  Range (min … max):    56.0 ms …  58.1 ms    20 runs
+
+Summary
+  julia 1.13 ran
+    1.22 ± 0.02 times faster than julia 1.12
+```
 
 ## REPL improvements
 
