@@ -203,7 +203,7 @@ julia> fact(5)
 The hash function has been replaced. The byte-hashing algorithm is now [RapidhashNano](https://github.com/Nicoshev/rapidhash). This hash is used by default for `AbstractString` and many numeric types like `BigInt`, `Rational`, and large `Real` or `Integer` values. It is also much easier now for custom types to opt in to the generic implementations without having to first convert to a supported type (like `String`). This change offers several advantages compared to the pre-existing implementation based on MurmurHash3. It has significantly better performance, is a streaming hash so it no longer requires the `length` of the input up front, and has moved from C to pure Julia for better readability and maintainability.
 
 To demonstrate the performance improvement on long strings:
-```
+```julia
 using BenchmarkTools, Downloads
 
 io = IOBuffer()
@@ -222,7 +222,7 @@ s = String(take!(io));
 ```
 
 And a demonstration of opting in to a faster fallback:
-```
+```julia
 struct MyString <: AbstractString
     s::String
 end
