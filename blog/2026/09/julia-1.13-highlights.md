@@ -425,11 +425,25 @@ Pkg now recursively collects `[sources]` entries from packages fetched by URL, a
 Previously, `Pkg.test` always launched the test process with `--check-bounds=yes`, which forces bounds checking even inside `@inbounds` blocks. Since precompile cache files are specific to the bounds-checking mode, this meant that the package being tested and all of its dependencies typically had to be recompiled before the tests could even start, and those cache files were then useless for normal development. `Pkg.test` now leaves the bounds-checking mode alone, so the test process inherits it from the parent Julia session and can reuse the precompile files generated during development. To get the old behavior, either start Julia with `--check-bounds=yes` before running `Pkg.test`, or pass the flag explicitly with `Pkg.test(; julia_args=["--check-bounds=yes"])`.
 
 ## Juliaup GUI
+*Ian Butterworth*
 
-<!-- TODO: describe the new graphical interface for juliaup: what it can do (install/update/switch channels?),
-     which platforms, how to launch it, and link to the juliaup release / README. Consider a screenshot. -->
+[Juliaup](https://github.com/JuliaLang/juliaup), the Julia version manager, now has a graphical interface alongside its command line. It ships with juliaup 1.22 and later on every platform juliaup supports, so after a `juliaup self update` it can be opened with:
 
-TODO
+```
+juliaup gui
+```
+
+The **Installed** tab shows each installed channel as a tile or a list row. From there a channel can be launched, launched with a custom project, arguments and environment variables, set as the default, or removed, and there are one-click actions to update everything and to garbage collect versions no channel uses any more.
+
+~~~
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/juliaup-gui-installed.png" alt="The Juliaup GUI's Installed tab, showing installed Julia channels as tiles" width="900" style="max-width: 100%"></p>
+~~~
+
+The **Available** tab lists everything in the channel database, including `release`, `lts`, `rc`, `nightly` and `pr{number}` channels for testing pull requests, with an install button for each. It can also link an existing Julia binary to a custom channel name. The **Configuration** tab exposes juliaup's settings, such as the version database update interval and automatic self-updates.
+
+~~~
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/juliaup-gui-available.png" alt="The Juliaup GUI's Available tab, listing channels that can be installed" width="900" style="max-width: 100%"></p>
+~~~
 
 ## Acknowledgement
 
