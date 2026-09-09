@@ -61,8 +61,10 @@ The chart below shows the geometric mean across all 39 currently submitted workf
 .ttfx-swatch { display: inline-block; width: 0.7em; height: 0.7em; border-radius: 50%; margin-right: 0.4em; vertical-align: -0.02em; }
 .ttfx-swatch-macos { background: #2a78d6; } .ttfx-swatch-linux { background: #eb6834; }
 .ttfx-tick { font-size: 11px; }
+.ttfx-axis-label { font-size: 13px; }
 .ttfx-delta { font-size: 11px; }
 .ttfx-narrow .ttfx-tick { font-size: 13px; }
+.ttfx-narrow .ttfx-axis-label { font-size: 15px; }
 .ttfx-narrow .ttfx-delta { font-size: 12.5px; }
 .ttfx-ink { fill: #0b0b0b; } .ttfx-ink2 { fill: #52514e; } .ttfx-muted { fill: #898781; }
 .ttfx-grid { stroke: #e1e0d9; } .ttfx-axis { stroke: #c3c2b7; }

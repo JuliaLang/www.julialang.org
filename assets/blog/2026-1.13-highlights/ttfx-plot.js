@@ -11,13 +11,13 @@
   var NS = "http://www.w3.org/2000/svg";
   var VERS = D.versions;
   var METRICS = [
-    { id: "precompile", tab: "Precompilation",
+    { id: "precompile", tab: "Precompilation", axis: "Precompilation time",
       title: "Julia 1.13 precompiles packages ~30% faster than 1.12",
       sub: "Geometric mean precompilation time of the full dependency tree from a clean depot" },
-    { id: "load", tab: "Package load",
+    { id: "load", tab: "Package load", axis: "Package load time",
       title: "Package load time",
       sub: "Geometric mean load time after precompilation, excluding Julia startup" },
-    { id: "run", tab: "Script execution",
+    { id: "run", tab: "Script execution", axis: "Script execution time",
       title: "Script execution time",
       sub: "Geometric mean first-execution time of each workflow after loading" },
   ];
@@ -28,7 +28,7 @@
   function layout() {
     narrow = root.clientWidth > 0 && root.clientWidth < 560;
     W = narrow ? 440 : 760;
-    PL = narrow ? 60 : 70;
+    PL = narrow ? 72 : 80;   // room for the tick labels plus a rotated axis label
     PR = narrow ? 340 : 620;
     PT = 24;
     PLOT_H = narrow ? 200 : 240;   // doubled when the workflows are shown
@@ -216,7 +216,10 @@
       label.addEventListener("mouseleave", function () { tip.hidden = true; });
       svg.appendChild(label);
     });
-    svg.appendChild(text((PL + PR) / 2, PB + 46, "Julia version", "ttfx-muted ttfx-tick", { "text-anchor": "middle" }));
+    svg.appendChild(text((PL + PR) / 2, PB + 48, "Julia version", "ttfx-ink2 ttfx-axis-label", { "text-anchor": "middle" }));
+    var ymid = (PT + PB) / 2;
+    svg.appendChild(text(16, ymid, m.axis + (state.tasks ? " (log scale)" : ""), "ttfx-ink2 ttfx-axis-label",
+      { "text-anchor": "middle", transform: "rotate(-90 16 " + ymid + ")" }));
 
     // per-workflow lines, faint, drawn first; their hover targets go on top of everything
     var taskHits = [];
