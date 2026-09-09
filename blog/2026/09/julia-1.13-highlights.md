@@ -39,7 +39,7 @@ Julia 1.13 precompiles packages roughly 30% faster than 1.12, and roughly 10-20%
 
 Time To First X (TTFX), the time from starting Julia to getting a first result, is made up of three main costs: precompiling packages, loading them, and running the code. With the help of the community-submitted workflows at [Julia-TTFX-Snippets](https://github.com/tecosaur/Julia-TTFX-Snippets), we have started measuring these costs more systematically on real-world examples and optimizing Julia against them.
 
-The chart below shows the geometric mean across all 39 currently submitted workflows, on two machines. Hover a point for the numbers, switch metric with the tabs, or show every workflow individually. Precompilation is a single sample on macOS and the fastest of 2 on Linux; load and execution times are the fastest of 3 runs.
+The chart below shows the geometric mean across all 39 currently submitted workflows, on two machines. Precompilation is the fastest of 2 runs; load and execution times are the fastest of 3 runs.
 
 ~~~
 <style>
