@@ -66,6 +66,7 @@ The chart below shows the geometric mean across all 39 currently submitted workf
 .ttfx-narrow .ttfx-tick { font-size: 13px; }
 .ttfx-narrow .ttfx-axis-label { font-size: 15px; }
 .ttfx-narrow .ttfx-delta { font-size: 12.5px; }
+.center-table table { margin-left: auto; margin-right: auto; }
 .ttfx-ink { fill: #0b0b0b; } .ttfx-ink2 { fill: #52514e; } .ttfx-muted { fill: #898781; }
 .ttfx-grid { stroke: #e1e0d9; } .ttfx-axis { stroke: #c3c2b7; }
 .ttfx-ring { stroke: #fff; stroke-width: 2; }
@@ -105,21 +106,29 @@ This monitoring is now also part of Julia's own development process: new TTFX CI
 
 The Julia REPL now has syntax highlighting (without having to load an external package like OhMyREPL.jl):
 
-![REPL syntax highlighting](/assets/blog/2026-1.13-highlights/repl_highlight.png)
+~~~
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/repl_highlight.png" alt="REPL syntax highlighting" width="479"></p>
+~~~
 
 By default, the color scheme is quite conservative but it is easy to customize (see the documentation for the REPL). As an example,
 here is the same code but using the Monokai color scheme:
 
-![REPL syntax highlighting](/assets/blog/2026-1.13-highlights/repl_highlight_monokai.png)
+~~~
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/repl_highlight_monokai.png" alt="REPL syntax highlighting with the Monokai color scheme" width="487"></p>
+~~~
 
 
 ### New fzf-style history search
 
 The history search (entered by default via Ctrl-R) has been redesigned and now works similarly to the command-line fuzzy finder `fzf`:
 
-![REPL history search](/assets/blog/2026-1.13-highlights/fzf.png)
+~~~
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/fzf.png" alt="REPL history search" width="568"></p>
+~~~
 
-![REPL history search LinearAlgebra](/assets/blog/2026-1.13-highlights/fzf_LA.png)
+~~~
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/fzf_LA.png" alt="REPL history search for LinearAlgebra" width="566"></p>
+~~~
 
 Among other things, the new history search has support for:
 
@@ -233,13 +242,15 @@ julia> @time GC.gc()
 
 The table below shows the time for a full collection (`GC.gc(true)`) on an Apple M4 Pro, first in a bare session and then after loading some packages of increasing size. Incremental (young generation) collections are not affected by this change and are equally fast on both versions.
 
-|                  | 1.12          | 1.13         |
-|------------------|---------------|--------------|
-| Bare session     | 35 ms         | 2 ms         |
-| `using Revise`   | 50 ms         | 11 ms        |
-| `using Cthulhu`  | 59 ms         | 18 ms        |
-| `using PythonCall` | 90 ms       | 30 ms        |
-| `using GLMakie`  | 187 ms        | 68 ms        |
+@@center-table
+|                    | 1.12   | 1.13  |
+|--------------------|--------|-------|
+| Bare session       | 35 ms  | 2 ms  |
+| `using Revise`     | 50 ms  | 11 ms |
+| `using Cthulhu`    | 59 ms  | 18 ms |
+| `using PythonCall` | 90 ms  | 30 ms |
+| `using GLMakie`    | 187 ms | 68 ms |
+@@
 
 Since full collections are triggered more often for programs with a large live heap, this also shows up as reduced overall GC time in real workloads. The following example inserts random vectors into a `Dict` that is kept alive across iterations, so that a large fraction of the allocated objects get promoted to the old generation:
 
@@ -312,6 +323,7 @@ julia> @code_warntype (::Vector{Int}) .+ 1.0
 *Ian Butterworth*
 
 The new `--trace-eval` argument shows top-level eval progress, to help see how a test suite or script is advancing, e.g. to identify hangs. For instance:
+
 ```
 % julia --trace-eval script.jl
 eval: #= /Users/me/.julia/config/startup.jl:1 =#
@@ -321,7 +333,9 @@ eval: #= script.jl:1 =#
 eval: #= script.jl:2 =#
 Hello world
 ```
-It can also be enabled via the "debug logging" option on CI platforms (GitHub Actions shown here):
+
+It can also be enabled via the "debug logging" option on CI platforms. GitHub Actions shown here:
+
 ![GitHub Actions re-run dialog with "Enable debug logging" checked](/assets/blog/2026-1.13-highlights/enable-debug-logging.png)
 
 ## JuliaC/trim
@@ -350,12 +364,14 @@ In 1.13 Pkg now prefers the already-loaded version of any already-loaded package
 For downloads from a package server (registries, packages and artifacts), Pkg will now by default ask for a zstd-compressed archive instead of a gzipped one. For the type of files Pkg typically downloads, zstd compression tends to have both a better compression ratio and significantly better decompression performance. As an example, downloading the packages and artifacts for the packages Plots, Makie and ModelingToolkit results in the following data:
 
 
-|                  | gzip            | zstd           |
-|------------------------|-----------------|----------------|
-| Total downloads        | 405             | 405            |
-| Total download size       | 307.99 MB       | 239.31 MB      |
-| Total decompression time | 8.77 s        | 5.50 s         |
-| Average decompression time | 21.98 ms    | 13.77 ms       |
+@@center-table
+|                            | gzip      | zstd      |
+|----------------------------|-----------|-----------|
+| Total downloads            | 405       | 405       |
+| Total download size        | 307.99 MB | 239.31 MB |
+| Total decompression time   | 8.77 s    | 5.50 s    |
+| Average decompression time | 21.98 ms  | 13.77 ms  |
+@@
 
 
 ### Performance improvements

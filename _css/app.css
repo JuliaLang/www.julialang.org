@@ -639,6 +639,24 @@ h4 {
   font-size: 1.25rem;
 }
 
+/* Blog posts: Bootstrap's reboot zeroes heading top margins, which left section
+   headings sitting on the paragraph above. The blog-title block only precedes the
+   content on blog pages, so this leaves the rest of the site alone. */
+.blog-title ~ .container.main h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.blog-title ~ .container.main h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.blog-title ~ .container.main h2 + h3 {
+  margin-top: 0.75rem;
+}
+.blog-title ~ .container.main h4 {
+  margin-top: 1.25rem;
+}
+
 a {
   color: #005bc0;
 }
