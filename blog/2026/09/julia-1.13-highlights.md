@@ -67,6 +67,15 @@ The chart below shows the geometric mean across all 39 currently submitted workf
 .ttfx-narrow .ttfx-axis-label { font-size: 15px; }
 .ttfx-narrow .ttfx-delta { font-size: 12.5px; }
 .center-table table { margin-left: auto; margin-right: auto; }
+/* Alternate a faint tint behind every other major section so their extent is visible. */
+/* Full-bleed: pull the band out to the viewport edges and pad the content back into the column. */
+.hl-section { padding: 0.25rem calc(50vw - 50%) 1rem; margin: 1.5rem calc(50% - 50vw) 0; }
+.hl-section:nth-of-type(odd) { padding-top: 0.75rem; padding-bottom: 1.5rem; }
+.hl-section > .franklin-toc { margin-top: 0.5rem; }
+body { overflow-x: hidden; }
+.hl-section:nth-of-type(odd) { background: rgba(74, 120, 214, 0.06); }
+[data-theme="dark"] .hl-section:nth-of-type(odd) { background: rgba(255, 255, 255, 0.035); }
+.blog-title ~ .container.main .hl-section > h2:first-child { margin-top: 0.75rem; }
 .ttfx-ink { fill: #0b0b0b; } .ttfx-ink2 { fill: #52514e; } .ttfx-muted { fill: #898781; }
 .ttfx-grid { stroke: #e1e0d9; } .ttfx-axis { stroke: #c3c2b7; }
 .ttfx-ring { stroke: #fff; stroke-width: 2; }
@@ -450,3 +459,23 @@ The **Available** tab lists everything in the channel database, including `relea
 <!-- TODO: confirm funding acknowledgement is still applicable for this release. -->
 
 The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
+
+~~~
+<script>
+// Group each h2 with the content that follows it, so the sections can be tinted.
+(function () {
+  var main = document.querySelector(".container.main");
+  if (!main) return;
+  var sec = null;
+  Array.prototype.slice.call(main.childNodes).forEach(function (n) {
+    // The table of contents is the first band; each h2 then starts a new one.
+    if (n.nodeType === 1 && (n.tagName === "H2" || n.classList.contains("franklin-toc"))) {
+      sec = document.createElement("section");
+      sec.className = "hl-section";
+      main.insertBefore(sec, n);
+    }
+    if (sec) sec.appendChild(n);
+  });
+})();
+</script>
+~~~
