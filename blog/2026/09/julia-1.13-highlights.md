@@ -18,7 +18,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 *Ian Butterworth*, *many others*
 
-Julia 1.13 precompiles packages roughly 30% faster than 1.12, and roughly 10-20% faster than 1.10 (LTS) depending on the machine.
+Julia 1.13 takes roughly 30% less time to precompile packages than 1.12, and roughly 10-20% less time than 1.10 (LTS) depending on the machine.
 
 Time To First X (TTFX), the time from starting Julia to getting a first result, is made up of three main costs: precompiling packages, loading them, and running the code. With the help of the community-submitted workflows at [Julia-TTFX-Snippets](https://github.com/tecosaur/Julia-TTFX-Snippets), we have started measuring these costs more systematically on real-world examples and optimizing Julia against them.
 
@@ -232,7 +232,7 @@ The hash for small fixed-width data has also changed. The final mixing step is n
 Some important reminders: `hash` remains **noncryptographic**. Also, the default seed has changed. Custom `hash` methods should **always** accept the seed as an argument like `hash(x::MyType, h::UInt)` and **never** provide a default value like `hash(x::MyType, h::UInt=0)`, since the correct seed is determined by the caller.
 
 
-## Faster GC by not sweeping the sysimage
+## Faster GC by skipping image objects during marking
 *Cody Tapscott*
 
 Every Julia session starts with a large number of objects that were loaded from the system image, and every package that gets loaded brings its own package image with even more of them: method tables, type information, compiled code, constants and so on. These objects are never freed, and they are rarely mutated, yet until now a full garbage collection would walk through all of them to mark them as reachable, just like any other object on the heap. For a session with a handful of large packages loaded, this could easily be the dominant cost of a full collection.

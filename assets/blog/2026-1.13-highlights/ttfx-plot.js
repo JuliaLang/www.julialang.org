@@ -12,7 +12,7 @@
   var VERS = D.versions;
   var METRICS = [
     { id: "precompile", tab: "Precompilation", axis: "Precompilation time",
-      title: "Julia 1.13 precompiles packages ~30% faster than 1.12",
+      title: "Julia 1.13 takes ~30% less time to precompile packages than 1.12",
       sub: "Geometric mean precompilation time of the full dependency tree from a clean depot" },
     { id: "load", tab: "Package load", axis: "Package load time",
       title: "Package load time",
