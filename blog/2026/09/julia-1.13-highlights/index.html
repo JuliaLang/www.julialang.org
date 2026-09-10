@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme'),d=t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');var l=document.createElement('link');l.rel='preload';l.as='image';l.setAttribute('fetchpriority','high');l.href='/assets/infra/'+(d?'logo-dark':'logo')+'.svg';document.head.appendChild(l);})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background; navbar logo preloaded dynamically in head.html to pick the correct theme variant) -->
+<link rel="preload" href="/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Julia 1.13 Highlights</title>   
+
+  
+  <link rel="stylesheet" href="/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Julia 1.13 Highlights">
+<meta property="og:description" content="Highlights of the Julia 1.13 release.">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.org/blog/2026/09/julia-1.13-highlights/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Julia 1.13 Highlights",
+  "description": "Highlights of the Julia 1.13 release.",
+  "image": "https://julialang.org/assets/images/julia-open-graph.png",
+  "datePublished": "2026-09-10T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "The Julia contributors"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.org/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.org/blog/2026/09/julia-1.13-highlights/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/">
+          <img alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <script>document.querySelector('.navbarjulialogo').src='/assets/infra/'+(document.documentElement.getAttribute('data-theme')==='dark'?'logo-dark':'logo')+'.svg'</script>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="gh-nav-btn" href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener" aria-label="Star JuliaLang/julia on GitHub">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg>
+              Star
+            </a>
+            <a class="gh-nav-btn" href="https://github.com/sponsors/JuliaLang" target="_blank" rel="noopener" aria-label="Sponsor @JuliaLang on GitHub">
+              <svg class="gh-nav-heart" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"/></svg>
+              Sponsor
+            </a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>Julia 1.13 Highlights</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p>
+          
+            <span class="blog-meta-date">10 September 2026</span> |
+          
+          
+            <span class="blog-meta-author"></span>
+          
+          
+            <span class="blog-meta-author">The Julia contributors</span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2026/09/julia-1.13-highlights.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<p>Julia version 1.13 has been released. We want to thank all the contributors to this release and all the testers who helped find regressions and issues in the pre-releases. Without you, this release would not have been possible.</p>
+<p>The full list of changes can be found in the <a href="https://github.com/JuliaLang/julia/blob/release-1.13/NEWS.md">NEWS file</a>, but here we&#39;ll give a more in-depth overview of some of the release highlights.</p>
+<div class="franklin-toc"><ol><li><a href="#latency_ttfx_improvements">Latency &#40;TTFX&#41; improvements</a></li><li><a href="#repl_improvements">REPL improvements</a><ol><li><a href="#syntax_highlighting">Syntax highlighting</a></li><li><a href="#new_fzf-style_history_search">New fzf-style history search</a></li><li><a href="#bracketed_paste_on_windows">Bracketed paste on Windows</a></li></ol></li><li><a href="#_function_"><code>@__FUNCTION__</code></a></li><li><a href="#hashing_changes">Hashing changes</a></li><li><a href="#faster_gc_by_skipping_image_objects_during_marking">Faster GC by skipping image objects during marking</a></li><li><a href="#scheduler_and_interrupt_fixes">Scheduler and interrupt fixes</a></li><li><a href="#introspection_with_type_annotations">Introspection with type annotations</a></li><li><a href="#tracing_top-level_evaluation_with_--trace-eval">Tracing top-level evaluation with <code>--trace-eval</code></a></li><li><a href="#juliactrim">JuliaC/trim</a></li><li><a href="#pkg">Pkg</a><ol><li><a href="#change_in_default_compression_algorithm_from_gzip_to_zstd">Change in default compression algorithm from gzip to zstd</a></li><li><a href="#performance_improvements">Performance improvements</a></li><li><a href="#registries_for_packages_tracked_in_the_manifest">Registries for packages tracked in the manifest</a></li><li><a href="#recursively_collect_sources">Recursively collect sources</a></li><li><a href="#pkg_add_now_tries_to_add_the_same_version_as_already-loaded_packages"><code>pkg&gt; add</code> now tries to add the same version as already-loaded packages</a></li><li><a href="#pkgtest_no_longer_defaults_to_enabling_strict_bounds_checking"><code>Pkg.test</code> no longer defaults to enabling strict bounds checking</a></li></ol></li><li><a href="#juliaup_gui">Juliaup GUI</a></li><li><a href="#acknowledgement">Acknowledgement</a></li></ol></div>
+<h2 id="latency_ttfx_improvements"><a href="#latency_ttfx_improvements" class="header-anchor">Latency &#40;TTFX&#41; improvements</a></h2>
+<p><em>Ian Butterworth</em>, <em>many others</em></p>
+<p>Julia 1.13 takes roughly 30&#37; less time to precompile packages than 1.12, and roughly 10-20&#37; less time than 1.10 &#40;LTS&#41; depending on the machine.</p>
+<p>Time To First X &#40;TTFX&#41;, the time from starting Julia to getting a first result, is made up of three main costs: precompiling packages, loading them, and running the code. With the help of the community-submitted workflows at <a href="https://github.com/tecosaur/Julia-TTFX-Snippets">Julia-TTFX-Snippets</a>, we have started measuring these costs more systematically on real-world examples and optimizing Julia against them.</p>
+<p>The chart below shows the geometric mean across all 39 currently submitted workflows, on two machines. Precompilation is the fastest of 2 runs; load and execution times are the fastest of 3 runs.</p>
+
+<style>
+.ttfx { margin: 1.5em 0; position: relative; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+.ttfx svg { width: 100%; height: auto; display: block; }
+.ttfx-wrap { overflow: hidden; }
+.ttfx-wrap.ttfx-animate { transition: height 0.4s ease; }
+.ttfx-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5em 1.5em; margin-bottom: 0.25em; font-size: 0.85em; }
+.ttfx-tabs { display: inline-flex; border: 1px solid #c3c2b7; border-radius: 6px; overflow: hidden; }
+.ttfx-tabs button { background: none; border: 0; border-right: 1px solid #c3c2b7; padding: 0.35em 0.9em; color: #52514e; cursor: pointer; font: inherit; }
+.ttfx-tabs button:last-child { border-right: 0; }
+.ttfx-tabs button.ttfx-on { background: #2a78d6; color: #fff; }
+.ttfx-toggle { color: #52514e; cursor: pointer; user-select: none; }
+.ttfx-tip { position: absolute; pointer-events: none; background: #fff; color: #0b0b0b; border: 1px solid #c3c2b7; border-radius: 4px; padding: 0.35em 0.6em; font-size: 0.8em; line-height: 1.4; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 2; }
+.ttfx-head { margin: 0.75em 0 0.5em; }
+.ttfx-title { font-size: 1.1em; font-weight: 600; line-height: 1.3; }
+.ttfx-sub { font-size: 0.85em; color: #52514e; margin-top: 0.2em; }
+.ttfx-legend { font-size: 0.85em; color: #52514e; margin-top: 0.5em; display: flex; flex-wrap: wrap; gap: 0.3em 1.5em; }
+.ttfx-swatch { display: inline-block; width: 0.7em; height: 0.7em; border-radius: 50%; margin-right: 0.4em; vertical-align: -0.02em; }
+.ttfx-swatch-macos { background: #2a78d6; } .ttfx-swatch-linux { background: #eb6834; }
+.ttfx-tick { font-size: 11px; }
+.ttfx-axis-label { font-size: 13px; }
+.ttfx-delta { font-size: 11px; }
+.ttfx-narrow .ttfx-tick { font-size: 13px; }
+.ttfx-narrow .ttfx-axis-label { font-size: 15px; }
+.ttfx-narrow .ttfx-delta { font-size: 12.5px; }
+.center-table table { margin-left: auto; margin-right: auto; }
+/* Alternate a faint tint behind every other major section so their extent is visible. */
+/* Full-bleed: pull the band out to the viewport edges and pad the content back into the column. */
+.hl-section { padding: 0.25rem calc(50vw - 50%) 1rem; margin: 1.5rem calc(50% - 50vw) 0; }
+.hl-section:nth-of-type(odd) { padding-top: 0.75rem; padding-bottom: 1.5rem; }
+.hl-section > .franklin-toc { margin-top: 0.5rem; }
+body { overflow-x: hidden; }
+.hl-section:nth-of-type(odd) { background: rgba(74, 120, 214, 0.06); }
+[data-theme="dark"] .hl-section:nth-of-type(odd) { background: rgba(255, 255, 255, 0.035); }
+.blog-title ~ .container.main .hl-section > h2:first-child { margin-top: 0.75rem; }
+.ttfx-ink { fill: #0b0b0b; } .ttfx-ink2 { fill: #52514e; } .ttfx-muted { fill: #898781; }
+.ttfx-grid { stroke: #e1e0d9; } .ttfx-axis { stroke: #c3c2b7; }
+.ttfx-ring { stroke: #fff; stroke-width: 2; }
+.ttfx-line-macos { stroke: #2a78d6; } .ttfx-fill-macos { fill: #2a78d6; }
+.ttfx-line-linux { stroke: #eb6834; } .ttfx-fill-linux { fill: #eb6834; }
+.ttfx-task { opacity: 0.25; }
+.ttfx-xlabel { cursor: help; }
+.ttfx-task.ttfx-hl { opacity: 1; stroke-width: 2.5; }
+.ttfx-task-hit { stroke: transparent; stroke-width: 12; pointer-events: stroke; }
+.ttfx-good { fill: #006300; color: #006300; } .ttfx-bad { fill: #b3261e; color: #b3261e; }
+[data-theme="dark"] .ttfx-tabs, [data-theme="dark"] .ttfx-tabs button { border-color: #555; }
+[data-theme="dark"] .ttfx-tabs button, [data-theme="dark"] .ttfx-toggle { color: #bbb; }
+[data-theme="dark"] .ttfx-tabs button.ttfx-on { background: #3987e5; color: #fff; }
+[data-theme="dark"] .ttfx-tip { background: #2a2a3e; color: #e0e0e0; border-color: #555; }
+[data-theme="dark"] .ttfx-ink { fill: #fff; } [data-theme="dark"] .ttfx-ink2 { fill: #c3c2b7; }
+[data-theme="dark"] .ttfx-sub, [data-theme="dark"] .ttfx-legend { color: #bbb; }
+[data-theme="dark"] .ttfx-swatch-macos { background: #3987e5; } [data-theme="dark"] .ttfx-swatch-linux { background: #d95926; }
+[data-theme="dark"] .ttfx-grid { stroke: #33334a; } [data-theme="dark"] .ttfx-axis { stroke: #555; }
+[data-theme="dark"] .ttfx-ring { stroke: #1a1a2e; }
+[data-theme="dark"] .ttfx-line-macos { stroke: #3987e5; } [data-theme="dark"] .ttfx-fill-macos { fill: #3987e5; }
+[data-theme="dark"] .ttfx-line-linux { stroke: #d95926; } [data-theme="dark"] .ttfx-fill-linux { fill: #d95926; }
+[data-theme="dark"] .ttfx-good { fill: #0ca30c; color: #0ca30c; } [data-theme="dark"] .ttfx-bad { fill: #e66767; color: #e66767; }
+</style>
+<div id="ttfx-plot" class="ttfx"></div>
+<script src="/assets/blog/2026-1.13-highlights/ttfx-data.js"></script>
+<script src="/assets/blog/2026-1.13-highlights/ttfx-plot.js"></script>
+
+<p>This monitoring is now also part of Julia&#39;s own development process: new TTFX CI jobs run on relevant pull requests and on every commit to <code>master</code>, and the results are tracked at <a href="https://perf.julialang.org/ttfx">perf.julialang.org/ttfx</a>. That tracking went live on September 7, 2026; measurements before then were ad hoc.</p>
+<p>Julia 1.13 startup is also ~20&#37; faster than 1.12.</p>
+<pre><code class="julia hljs">% hyperfine --warmup <span class="hljs-number">3</span> --runs <span class="hljs-number">20</span> -N \
+  --command-name <span class="hljs-string">&quot;julia 1.12&quot;</span> <span class="hljs-string">&quot;julia +1.12 --startup-file=no -e &#x27;&#x27;&quot;</span> \
+  --command-name <span class="hljs-string">&quot;julia 1.13&quot;</span> <span class="hljs-string">&quot;julia +1.13 --startup-file=no -e &#x27;&#x27;&quot;</span>
+Benchmark <span class="hljs-number">1</span>: julia <span class="hljs-number">1.12</span>
+  Time (mean ± σ):      <span class="hljs-number">69.1</span> ms ±   <span class="hljs-number">1.0</span> ms    [User: <span class="hljs-number">50.1</span> ms, System: <span class="hljs-number">18.1</span> ms]
+  Range (min … max):    <span class="hljs-number">68.0</span> ms …  <span class="hljs-number">72.6</span> ms    <span class="hljs-number">20</span> runs
+
+Benchmark <span class="hljs-number">2</span>: julia <span class="hljs-number">1.13</span>
+  Time (mean ± σ):      <span class="hljs-number">56.7</span> ms ±   <span class="hljs-number">0.5</span> ms    [User: <span class="hljs-number">49.1</span> ms, System: <span class="hljs-number">18.9</span> ms]
+  Range (min … max):    <span class="hljs-number">56.0</span> ms …  <span class="hljs-number">58.1</span> ms    <span class="hljs-number">20</span> runs
+
+Summary
+  julia <span class="hljs-number">1.13</span> ran
+    <span class="hljs-number">1.22</span> ± <span class="hljs-number">0.02</span> times faster than julia <span class="hljs-number">1.12</span></code></pre>
+<h2 id="repl_improvements"><a href="#repl_improvements" class="header-anchor">REPL improvements</a></h2>
+<h3 id="syntax_highlighting"><a href="#syntax_highlighting" class="header-anchor">Syntax highlighting</a></h3>
+<p><em>Timothy</em>, <em>Kristoffer Carlsson</em></p>
+<p>The Julia REPL now has syntax highlighting &#40;without having to load an external package like OhMyREPL.jl&#41;:</p>
+
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/repl_highlight.png" alt="REPL syntax highlighting" width="479"></p>
+
+<p>By default, the color scheme is quite conservative, but it is easy to customize &#40;see the documentation for the REPL&#41;. As an example, here is the same code but using the Monokai color scheme:</p>
+
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/repl_highlight_monokai.png" alt="REPL syntax highlighting with the Monokai color scheme" width="487"></p>
+
+<h3 id="new_fzf-style_history_search"><a href="#new_fzf-style_history_search" class="header-anchor">New fzf-style history search</a></h3>
+<p><em>Timothy</em></p>
+<p>The history search &#40;entered by default via Ctrl-R&#41; has been redesigned and now works similarly to the command-line fuzzy finder <code>fzf</code>:</p>
+
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/fzf.png" alt="REPL history search" width="568"></p>
+
+
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/fzf_LA.png" alt="REPL history search for LinearAlgebra" width="566"></p>
+
+<p>Among other things, the new history search has support for:</p>
+<ul>
+<li><p>Fuzzy searching in the history.</p>
+</li>
+<li><p>Showing what REPL mode was used for the command.</p>
+</li>
+<li><p>Selecting multiple search results to put into the prompt buffer.</p>
+</li>
+<li><p>Syntax highlighting of the code, matching the REPL itself.</p>
+</li>
+</ul>
+<p>Enter the history search and type <code>?</code> to see the full help.</p>
+<h3 id="bracketed_paste_on_windows"><a href="#bracketed_paste_on_windows" class="header-anchor">Bracketed paste on Windows</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Bracketed-paste">Bracketed paste</a> allows an application running in a terminal to know when text is being pasted &#40;as opposed to just being typed&#41;. This can allow for more efficient and correct processing of the text being pasted. This functionality has been enabled on Linux and macOS for a long time but is now also finally available on Windows. As a concrete example, the videos below show the behavior of pasting a ~500-line function into the Julia REPL before and after enabling bracketed paste on Windows.</p>
+<p>Before: 
+<video controls muted playsinline style="max-width: 100%">
+  <source src="/assets/blog/2026-1.13-highlights/windows-paste-before.mp4" type="video/mp4">
+</video>
+</p>
+<p>After: 
+<video controls muted playsinline style="max-width: 100%">
+  <source src="/assets/blog/2026-1.13-highlights/windows-paste-after.mp4" type="video/mp4">
+</video>
+</p>
+<h2 id="_function_"><a href="#_function_" class="header-anchor"><code>@__FUNCTION__</code></a></h2>
+<p><em>Miles Cranmer</em>, <em>Jeff Bezanson</em></p>
+<p>Like the existing <code>@__MODULE__</code> and <code>@__FILE__</code> macros, the new <code>@__FUNCTION__</code> macro references the innermost containing function even if that function is anonymous. This should work in all kinds of functions, and is public API, unlike the internal variable <code>#self#</code>.</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> fact = n -&gt; n &lt;= <span class="hljs-number">1</span> ? <span class="hljs-number">1</span> : n * <span class="hljs-meta">@__FUNCTION__</span>()(n - <span class="hljs-number">1</span>);
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> fact(<span class="hljs-number">5</span>)
+</span>120</code></pre>
+<h2 id="hashing_changes"><a href="#hashing_changes" class="header-anchor">Hashing changes</a></h2>
+<p><em>Andy Dienes</em>, <em>Jameson Nash</em></p>
+<p>The hash function has been replaced. The byte-hashing algorithm is now <a href="https://github.com/Nicoshev/rapidhash">RapidhashNano</a>. This hash is used by default for <code>AbstractString</code> and many numeric types like <code>BigInt</code>, <code>Rational</code>, and large <code>Real</code> or <code>Integer</code> values. It is also much easier now for custom types to opt in to the generic implementations without having to first convert to a supported type &#40;like <code>String</code>&#41;. This change offers several advantages compared to the pre-existing implementation based on MurmurHash3. It has significantly better performance, is a streaming hash so it no longer requires the <code>length</code> of the input up front, and has moved from C to pure Julia for better readability and maintainability.</p>
+<p>To demonstrate the performance improvement on long strings:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> BenchmarkTools, Downloads
+
+io = <span class="hljs-built_in">IOBuffer</span>()
+Downloads.download(<span class="hljs-string">&quot;https://www.gutenberg.org/cache/epub/1080/pg1080.txt&quot;</span>, io)
+s = <span class="hljs-built_in">String</span>(take!(io));
+
+<span class="hljs-comment"># 1.12</span>
+<span class="hljs-meta">@btime</span> hash($s)
+  <span class="hljs-number">8.555</span> μs (<span class="hljs-number">0</span> allocations: <span class="hljs-number">0</span> bytes)
+<span class="hljs-number">0x5fbd2717019846ea</span>
+
+<span class="hljs-comment"># 1.13</span>
+<span class="hljs-meta">@btime</span> hash($s)
+  <span class="hljs-number">1.742</span> μs (<span class="hljs-number">0</span> allocations: <span class="hljs-number">0</span> bytes)
+<span class="hljs-number">0x718308e795047519</span></code></pre>
+<p>And a demonstration of opting in to a faster fallback:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">struct</span> MyString &lt;: <span class="hljs-built_in">AbstractString</span>
+    s::<span class="hljs-built_in">String</span>
+<span class="hljs-keyword">end</span>
+m = MyString(s);
+
+<span class="hljs-comment"># 1.12</span>
+Base.iterate(m::MyString) = iterate(m.s)
+Base.iterate(m::MyString, i::<span class="hljs-built_in">Integer</span>) = iterate(m.s, i)
+<span class="hljs-meta">@btime</span> hash($m)
+  <span class="hljs-number">204.583</span> μs (<span class="hljs-number">21</span> allocations: <span class="hljs-number">107.02</span> KiB)
+<span class="hljs-number">0x5fbd2717019846ea</span>
+
+<span class="hljs-comment"># 1.13</span>
+Base.codeunit(m::MyString) = codeunit(m.s)
+Base.codeunits(m::MyString) = codeunits(m.s)
+<span class="hljs-meta">@btime</span> hash($m)
+  <span class="hljs-number">1.750</span> μs (<span class="hljs-number">0</span> allocations: <span class="hljs-number">0</span> bytes)
+<span class="hljs-number">0x718308e795047519</span></code></pre>
+<p>The hash for small fixed-width data has also changed. The final mixing step is now a single-round XMX construction with some carefully tuned constants, and the mixing step now properly avalanches when composing hash calls; previously the mixing step always simplified to a linear function at every composition depth. This change to the mixing step does introduce a data dependency &#40;and thus potentially lower performance&#41; when sequentially hashing elements together in a tight loop, e.g. <code>foldr&#40;hash, collection&#41;</code>, but the algorithm for hashing <code>AbstractArray</code> has been partially unrolled at small to medium sizes, maintaining several hash accumulators in parallel, and will be much faster at most lengths.</p>
+<p>Some important reminders: <code>hash</code> remains <strong>noncryptographic</strong>. Also, the default seed has changed. Custom <code>hash</code> methods should <strong>always</strong> accept the seed as an argument like <code>hash&#40;x::MyType, h::UInt&#41;</code> and <strong>never</strong> provide a default value like <code>hash&#40;x::MyType, h::UInt&#61;0&#41;</code>, since the correct seed is determined by the caller.</p>
+<h2 id="faster_gc_by_skipping_image_objects_during_marking"><a href="#faster_gc_by_skipping_image_objects_during_marking" class="header-anchor">Faster GC by skipping image objects during marking</a></h2>
+<p><em>Cody Tapscott</em></p>
+<p>Every Julia session starts with a large number of objects that were loaded from the system image, and every package that gets loaded brings its own package image with even more of them: method tables, type information, compiled code, constants and so on. These objects are never freed, and they are rarely mutated, yet until now a full garbage collection would walk through all of them to mark them as reachable, just like any other object on the heap. For a session with a handful of large packages loaded, this could easily be the dominant cost of a full collection.</p>
+<p>In Julia 1.13, objects in the sysimage and in package images are loaded as permanently marked and the mark phase never enters them. The few mutations that do happen to image objects &#40;for example, when a method is added to an existing function&#41; are tracked separately so that any new objects they point to are still kept alive. The effect is that the cost of a full collection now scales with the size of the heap that your program actually created, not with the amount of code that has been loaded.</p>
+<p>The easiest way to see the difference is to time a full collection in a fresh session:</p>
+<pre><code class="julia-repl hljs"># 1.12
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> GC.gc()
+</span>  0.035493 seconds (99.90% gc time)
+
+# 1.13
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> GC.gc()
+</span>  0.000528 seconds (99.08% gc time)</code></pre>
+<p>The table below shows the time for a full collection &#40;<code>GC.gc&#40;true&#41;</code>&#41; on an Apple M4 Pro, first in a bare session and then after loading some packages of increasing size. Incremental &#40;young generation&#41; collections are not affected by this change and are equally fast on both versions.</p>
+<div class="center-table"><table><tr><th align="right"></th><th align="right">1.12</th><th align="right">1.13</th></tr><tr><td align="right">Bare session</td><td align="right">35 ms</td><td align="right">2 ms</td></tr><tr><td align="right"><code>using Revise</code></td><td align="right">50 ms</td><td align="right">11 ms</td></tr><tr><td align="right"><code>using Cthulhu</code></td><td align="right">59 ms</td><td align="right">18 ms</td></tr><tr><td align="right"><code>using PythonCall</code></td><td align="right">90 ms</td><td align="right">30 ms</td></tr><tr><td align="right"><code>using GLMakie</code></td><td align="right">187 ms</td><td align="right">68 ms</td></tr></table></div>
+<p>Since full collections are triggered more often for programs with a large live heap, this also shows up as reduced overall GC time in real workloads. The following example inserts random vectors into a <code>Dict</code> that is kept alive across iterations, so that a large fraction of the allocated objects get promoted to the old generation:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> work(n)
+    d = <span class="hljs-built_in">Dict</span>{<span class="hljs-built_in">Int</span>,<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Float64</span>}}()
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:n
+        d[i % <span class="hljs-number">50_000</span>] = rand(<span class="hljs-number">64</span>)
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> length(d)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># 1.12</span>
+julia&gt; <span class="hljs-meta">@time</span> work(<span class="hljs-number">5_000_000</span>)
+  <span class="hljs-number">1.699095</span> seconds (<span class="hljs-number">10.00</span> M allocations: <span class="hljs-number">2.688</span> GiB, <span class="hljs-number">79.80</span>% gc time)
+
+<span class="hljs-comment"># 1.13</span>
+julia&gt; <span class="hljs-meta">@time</span> work(<span class="hljs-number">5_000_000</span>)
+  <span class="hljs-number">0.566276</span> seconds (<span class="hljs-number">10.00</span> M allocations: <span class="hljs-number">2.688</span> GiB, <span class="hljs-number">44.32</span>% gc time)</code></pre>
+<p>For more details, see <a href="https://github.com/JuliaLang/julia/pull/61474">the pull request</a>.</p>
+<h2 id="scheduler_and_interrupt_fixes"><a href="#scheduler_and_interrupt_fixes" class="header-anchor">Scheduler and interrupt fixes</a></h2>
+<p><em>Kiran Pamnany</em>, <em>Jameson Nash</em>, <em>Ian Butterworth</em></p>
+<p>Idle threads now park in a dedicated scheduler task instead of holding on to the last task they ran, so finished tasks can be garbage collected promptly &#40;<a href="https://github.com/JuliaLang/julia/pull/57544">#57544</a>&#41;. This lands alongside a set of related scheduler fixes, including ones that make interrupts reliable again &#40;<a href="https://github.com/JuliaLang/julia/pull/62665">#62665</a>&#41;:</p>
+<ul>
+<li><p>Ctrl-C reaches user code again, including scripts blocked in <code>sleep</code> or IO, and <code>Distributed.interrupt</code> works.</p>
+</li>
+<li><p>The REPL survives repeated and badly timed Ctrl-C presses.</p>
+</li>
+<li><p><code>@spawn</code> wakes one idle thread in the task&#39;s threadpool instead of every thread &#40;<a href="https://github.com/JuliaLang/julia/pull/61826">#61826</a>&#41;. Spawn-heavy code speeds up anywhere from not at all on macOS, to 1.1-1.6x on a 16-core Linux machine, to 10-300x on Windows and heavily oversubscribed machines, where waking every thread had been the dominant cost.</p>
+</li>
+<li><p>Several lost-task and deadlock races were fixed.</p>
+</li>
+</ul>
+<p>Work on a proper task cancellation mechanism is in progress and is planned for Julia 1.14.</p>
+<h2 id="introspection_with_type_annotations"><a href="#introspection_with_type_annotations" class="header-anchor">Introspection with type annotations</a></h2>
+<p>The code introspection macros &#40;<code>@which</code>, <code>@code_typed</code>, <code>@code_warntype</code>, etc.&#41; now accept call expressions where arguments are given as types instead of values, using the same <code>::T</code> syntax as in method definitions and stacktraces. Values and types can be freely mixed, and keyword arguments are supported:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@which</span> push!(::<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Int</span>}, <span class="hljs-number">1</span>)
+</span>push!(a::Vector{T}, item) where T
+     @ Base array.jl:1339
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@which</span> sort!(::<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Int</span>}; by = ::<span class="hljs-built_in">Function</span>)
+</span>kwcall(::NamedTuple, ::typeof(sort!), v::AbstractVector{T}) where T
+     @ Base.Sort sort.jl:1734</code></pre>
+<p>This means a frame can be copied straight out of a stacktrace and pasted into <code>@which</code> to find the method that was called:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@which</span> Base.Order.lt(o::Base.Order.Lt{typeof(isless)}, a::<span class="hljs-built_in">Int64</span>, b::<span class="hljs-built_in">Int64</span>)
+</span>lt(o::Base.Order.Lt, a, b)
+     @ Base.Order ordering.jl:121</code></pre>
+<p>Broadcasting expressions are also supported in <code>@code_lowered</code>, <code>@code_typed</code> and <code>@code_warntype</code>:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@code_warntype</span> (::<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Int</span>}) .+ <span class="hljs-number">1.0</span></span></code></pre>
+<h2 id="tracing_top-level_evaluation_with_--trace-eval"><a href="#tracing_top-level_evaluation_with_--trace-eval" class="header-anchor">Tracing top-level evaluation with <code>--trace-eval</code></a></h2>
+<p><em>Ian Butterworth</em></p>
+<p>The new <code>--trace-eval</code> command-line flag shows top-level evaluation progress, to help see how a test suite or script is advancing, e.g. to identify hangs. For instance:</p>
+<pre><code class="julia hljs">% julia --trace-eval script.jl
+eval: <span class="hljs-comment">#= /Users/me/.julia/config/startup.jl:1 =#</span>
+eval: <span class="hljs-comment">#= /Users/me/.julia/config/startup.jl:2 =#</span>
+eval: <span class="hljs-comment">#= /Users/me/.julia/config/startup.jl:3 =#</span>
+eval: <span class="hljs-comment">#= script.jl:1 =#</span>
+eval: <span class="hljs-comment">#= script.jl:2 =#</span>
+Hello world</code></pre>
+<p>It is also enabled automatically when the &quot;debug logging&quot; option is turned on for a CI run, as shown here for GitHub Actions:</p>
+<p><img src="/assets/blog/2026-1.13-highlights/enable-debug-logging.png" alt="GitHub Actions re-run dialog with &quot;Enable debug logging&quot; checked" /></p>
+<h2 id="juliactrim"><a href="#juliactrim" class="header-anchor">JuliaC/trim</a></h2>
+<p><em>Cody Tapscott</em>, <em>many others</em></p>
+<p>The juliac.jl script in the Julia repo has been made into a proper package/application: <a href="https://github.com/JuliaLang/JuliaC.jl">JuliaC.jl</a>.</p>
+<p>More code can now be trimmed, such as finalizers, <code>@cfunction</code> and <code>mapreduce</code>.</p>
+<p>Several bugs in the trimming process itself were also fixed, improving its reliability.</p>
+<h2 id="pkg"><a href="#pkg" class="header-anchor">Pkg</a></h2>
+<p><em>Kristoffer Carlsson</em></p>
+<p>Pkg has received quite a bit of attention for 1.13. Here we list some of the more notable changes and improvements.</p>
+<h3 id="change_in_default_compression_algorithm_from_gzip_to_zstd"><a href="#change_in_default_compression_algorithm_from_gzip_to_zstd" class="header-anchor">Change in default compression algorithm from gzip to zstd</a></h3>
+<p>For downloads from a package server &#40;registries, packages and artifacts&#41;, Pkg will now by default ask for a zstd-compressed archive instead of a gzipped one. For the type of files Pkg typically downloads, zstd compression tends to have both a better compression ratio and significantly better decompression performance. As an example, downloading the packages and artifacts for the packages Plots, Makie and ModelingToolkit results in the following numbers:</p>
+<div class="center-table"><table><tr><th align="right"></th><th align="right">gzip</th><th align="right">zstd</th></tr><tr><td align="right">Total downloads</td><td align="right">405</td><td align="right">405</td></tr><tr><td align="right">Total download size</td><td align="right">307.99 MB</td><td align="right">239.31 MB</td></tr><tr><td align="right">Total decompression time</td><td align="right">8.77 s</td><td align="right">5.50 s</td></tr><tr><td align="right">Average decompression time</td><td align="right">21.98 ms</td><td align="right">13.77 ms</td></tr></table></div>
+<h3 id="performance_improvements"><a href="#performance_improvements" class="header-anchor">Performance improvements</a></h3>
+<p>Some micro-optimizations have been made to the resolver and the registry processing, leading to generally better performance of Pkg operations. Some of these improvements have already been backported to 1.12, so to get a proper performance comparison we compare against 1.12.1, which did not get any of these backports.</p>
+<p>To assess the impact on resolver speed, we do the following benchmark: we add Plots to an empty environment, remove it, and then benchmark the time it takes to add Plots again. This ensures that all the files for Plots are already downloaded. In addition, auto-precompilation is turned off and the registry cache is cleared so that it has to be re-read from scratch. This means that the time spent adding Plots to this environment is mostly registry processing and resolving:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-literal">ENV</span>[<span class="hljs-string">&quot;JULIA_PKG_PRECOMPILE_AUTO&quot;</span>] = <span class="hljs-number">0</span>
+
+<span class="hljs-comment"># 1.12.1</span>
+julia&gt; empty!(Pkg.Registry.REGISTRY_CACHE); <span class="hljs-meta">@time</span> Pkg.add(<span class="hljs-string">&quot;Plots&quot;</span>; io=<span class="hljs-literal">devnull</span>)
+  <span class="hljs-number">1.257017</span> seconds (<span class="hljs-number">8.83</span> M allocations: <span class="hljs-number">681.328</span> MiB, <span class="hljs-number">16.31</span>% gc time)
+
+<span class="hljs-comment"># 1.13.0</span>
+julia&gt; empty!(Pkg.Registry.REGISTRY_CACHE); <span class="hljs-meta">@time</span> Pkg.add(<span class="hljs-string">&quot;Plots&quot;</span>; io=<span class="hljs-literal">devnull</span>)
+  <span class="hljs-number">0.745170</span> seconds (<span class="hljs-number">4.43</span> M allocations: <span class="hljs-number">304.580</span> MiB, <span class="hljs-number">26.90</span>% gc time)</code></pre>
+<p>In addition, Pkg will now clone repos with more efficient settings, avoiding downloading unnecessary data:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># 1.12.1</span>
+julia&gt; <span class="hljs-meta">@time</span> Pkg.add(name=<span class="hljs-string">&quot;Plots&quot;</span>; rev=<span class="hljs-string">&quot;master&quot;</span>)
+     Cloning git-repo <span class="hljs-string">`https://github.com/JuliaPlots/Plots.jl.git`</span>
+...
+ <span class="hljs-number">10.953074</span> seconds (<span class="hljs-number">4.51</span> M allocations: <span class="hljs-number">330.819</span> MiB, <span class="hljs-number">1.68</span>% gc time)
+
+<span class="hljs-comment"># 1.13.0</span>
+julia&gt; <span class="hljs-meta">@time</span> Pkg.add(name=<span class="hljs-string">&quot;Plots&quot;</span>; rev=<span class="hljs-string">&quot;master&quot;</span>)
+     Cloning git-repo <span class="hljs-string">`https://github.com/JuliaPlots/Plots.jl.git`</span>
+...
+  <span class="hljs-number">2.980337</span> seconds (<span class="hljs-number">2.87</span> M allocations: <span class="hljs-number">189.202</span> MiB, <span class="hljs-number">3.87</span>% gc time)</code></pre>
+<h3 id="registries_for_packages_tracked_in_the_manifest"><a href="#registries_for_packages_tracked_in_the_manifest" class="header-anchor">Registries for packages tracked in the manifest</a></h3>
+<p>Previously, to instantiate a manifest you needed to manually make sure that the registries required by that manifest were available. Now, the registry each package came from is recorded in the manifest and is automatically installed upon manifest instantiation &#40;or other package operations&#41;.</p>
+<h3 id="recursively_collect_sources"><a href="#recursively_collect_sources" class="header-anchor">Recursively collect sources</a></h3>
+<p>Pkg now recursively collects <code>&#91;sources&#93;</code> entries from packages fetched by URL, allowing private dependency chains to resolve without requiring all dependencies of a private package to be in a registry.</p>
+<h3 id="pkg_add_now_tries_to_add_the_same_version_as_already-loaded_packages"><a href="#pkg_add_now_tries_to_add_the_same_version_as_already-loaded_packages" class="header-anchor"><code>pkg&gt; add</code> now tries to add the same version as already-loaded packages</a></h3>
+<p>Julia has always allowed changing the active project during a session and supports stacked environments &#40;most commonly via the default environment&#41;, which introduces a rough edge that can lead to repeated precompilation of packages. For instance, a version of a package is loaded from the default environment during <code>startup.jl</code>, and then the user adds a new package to the active project that pulls in a different version of that dependency. Pkg precompiles the dependency graph of the active project, so the new version gets precompiled even though the already-loaded version would often have satisfied the compat constraints just as well.</p>
+<p>In 1.13, Pkg prefers the currently loaded version of any package that is already loaded when resolving <code>pkg&gt; add</code>, if the environment&#39;s compatibility constraints allow it, so nothing needs to be precompiled again. As usual, <code>pkg&gt; status</code> will flag that a newer version is available.</p>
+<h3 id="pkgtest_no_longer_defaults_to_enabling_strict_bounds_checking"><a href="#pkgtest_no_longer_defaults_to_enabling_strict_bounds_checking" class="header-anchor"><code>Pkg.test</code> no longer defaults to enabling strict bounds checking</a></h3>
+<p>Previously, <code>Pkg.test</code> always launched the test process with <code>--check-bounds&#61;yes</code>, which forces bounds checking even inside <code>@inbounds</code> blocks. Since precompile cache files are specific to the bounds-checking mode, this meant that the package being tested and all of its dependencies typically had to be recompiled before the tests could even start, and those cache files were then useless for normal development. <code>Pkg.test</code> now leaves the bounds-checking mode alone, so the test process inherits it from the parent Julia session and can reuse the precompile files generated during development. To get the old behavior, either start Julia with <code>--check-bounds&#61;yes</code> before running <code>Pkg.test</code>, or pass the flag explicitly with <code>Pkg.test&#40;; julia_args&#61;&#91;&quot;--check-bounds&#61;yes&quot;&#93;&#41;</code>.</p>
+<h2 id="juliaup_gui"><a href="#juliaup_gui" class="header-anchor">Juliaup GUI</a></h2>
+<p><em>Ian Butterworth</em></p>
+<p><a href="https://github.com/JuliaLang/juliaup">Juliaup</a>, the Julia version manager, now has a graphical interface alongside its command line. It ships with Juliaup 1.22 and later on every platform Juliaup supports, so after a <code>juliaup self update</code> it can be opened with:</p>
+<pre><code class="julia hljs">juliaup gui</code></pre>
+<p>The <strong>Installed</strong> tab shows each installed channel as a tile or a list row. From there a channel can be launched, launched with a custom project, arguments and environment variables, set as the default, or removed, and there are one-click actions to update everything and to garbage collect versions no channel uses any more.</p>
+
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/juliaup-gui-installed.png" alt="The Juliaup GUI's Installed tab, showing installed Julia channels as tiles" width="900" style="max-width: 100%"></p>
+
+<p>The <strong>Available</strong> tab lists everything in the channel database, including <code>release</code>, <code>lts</code>, <code>rc</code>, <code>nightly</code> and <code>pr&#123;number&#125;</code> channels for testing pull requests, with an install button for each. It can also link an existing Julia binary to a custom channel name. The <strong>Configuration</strong> tab exposes Juliaup&#39;s settings, such as the version database update interval and automatic self-updates.</p>
+
+<p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/juliaup-gui-available.png" alt="The Juliaup GUI's Available tab, listing channels that can be installed" width="900" style="max-width: 100%"></p>
+
+<h2 id="acknowledgement"><a href="#acknowledgement" class="header-anchor">Acknowledgement</a></h2>
+<p>The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author&#40;s&#41; and do not necessarily reflect the views of the National Aeronautics and Space Administration.</p>
+
+<script>
+// Group each h2 with the content that follows it, so the sections can be tinted.
+(function () {
+  var main = document.querySelector(".container.main");
+  if (!main) return;
+  var sec = null;
+  Array.prototype.slice.call(main.childNodes).forEach(function (n) {
+    // The table of contents is the first band; each h2 then starts a new one.
+    if (n.nodeType === 1 && (n.tagName === "H2" || n.classList.contains("franklin-toc"))) {
+      sec = document.createElement("section");
+      sec.className = "hl-section";
+      main.insertBefore(sec, n);
+    }
+    if (sec) sec.appendChild(n);
+  });
+})();
+</script>
+
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script defer src="/libs/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){hljs.configure({tabReplace:'    '});hljs.highlightAll();});</script>
+
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/downloads">Install</a></li>
+        <li><a href="/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/community/stewards/">Stewards</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>
