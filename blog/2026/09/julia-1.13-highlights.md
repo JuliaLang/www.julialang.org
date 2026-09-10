@@ -453,10 +453,6 @@ The **Available** tab lists everything in the channel database, including `relea
 <p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/juliaup-gui-available.png" alt="The Juliaup GUI's Available tab, listing channels that can be installed" width="900" style="max-width: 100%"></p>
 ~~~
 
-## Acknowledgement
-
-The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
-
 ~~~
 <script>
 // Group each h2 with the content that follows it, so the sections can be tinted.
