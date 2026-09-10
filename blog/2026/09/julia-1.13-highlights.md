@@ -3,12 +3,10 @@ mintoclevel = 2
 maxtoclevel = 3
 title = "Julia 1.13 Highlights"
 authors = "The Julia contributors"
-published = "1 September 2026"
-rss_pubdate = Date(2026, 9, 1)
+published = "10 September 2026"
+rss_pubdate = Date(2026, 9, 10)
 rss = """Highlights of the Julia 1.13 release."""
 +++
-
-<!-- TODO: set `published` and `rss_pubdate` to the actual release date (and move the file to the matching blog/YYYY/MM/ directory) before merging. -->
 
 Julia version 1.13 has been released. We want to thank all the contributors to this release and all the testers who helped find regressions and issues in the pre-releases. Without you, this release would not have been possible.
 
@@ -16,22 +14,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 \toc
 
-<!--
-Section template (copy for each highlight):
-
-## <Feature name>
-*Author One*, *Author Two*
-
-<1–3 paragraphs: what it is, why it matters, how to use it.>
-
-```julia-repl
-julia> # short, self-contained example
-```
-
-<Optional caveats / links to docs and PRs.>
--->
-
-## Latency (TTFX) Improvements
+## Latency (TTFX) improvements
 
 *Ian Butterworth*, *many others*
 
@@ -125,8 +108,8 @@ Summary
     1.22 ± 0.02 times faster than julia 1.12
 ```
 
-## REPL improvements
 
+## REPL improvements
 
 ### Syntax highlighting
 *Timothy*, *Kristoffer Carlsson*
@@ -137,7 +120,7 @@ The Julia REPL now has syntax highlighting (without having to load an external p
 <p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/repl_highlight.png" alt="REPL syntax highlighting" width="479"></p>
 ~~~
 
-By default, the color scheme is quite conservative but it is easy to customize (see the documentation for the REPL). As an example,
+By default, the color scheme is quite conservative, but it is easy to customize (see the documentation for the REPL). As an example,
 here is the same code but using the Monokai color scheme:
 
 ~~~
@@ -146,6 +129,7 @@ here is the same code but using the Monokai color scheme:
 
 
 ### New fzf-style history search
+*Timothy*
 
 The history search (entered by default via Ctrl-R) has been redesigned and now works similarly to the command-line fuzzy finder `fzf`:
 
@@ -186,9 +170,9 @@ After:
 ~~~
 
 ## `@__FUNCTION__`
-*Miles Cranmer, Jeff Bezanson*
+*Miles Cranmer*, *Jeff Bezanson*
 
-Like the existing `@__MODULE__` or `@__FILE__` macros, the new `@__FUNCTION__` macro references the innermost containing function even if that function is anonymous. This should work in all kinds of functions, and is stable, unlike the internal variable `#self#`.
+Like the existing `@__MODULE__` and `@__FILE__` macros, the new `@__FUNCTION__` macro references the innermost containing function even if that function is anonymous. This should work in all kinds of functions, and is public API, unlike the internal variable `#self#`.
 
 ```julia-repl
 julia> fact = n -> n <= 1 ? 1 : n * @__FUNCTION__()(n - 1);
@@ -243,7 +227,7 @@ Base.codeunits(m::MyString) = codeunits(m.s)
 0x718308e795047519
 ```
 
-The hash for small fixed-width data has also changed. The finalizer is now a single-round XMX construction with some carefully tuned constants, and the mixing step now properly avalanches when composing hash calls; previously the mixing step always simplified to a linear function at every composition depth. This change to the mixing step does introduce a data dependency (and thus potentially lower performance) when sequentially hashing elements together in a tight loop, e.g. `foldr(hash, collection)`, but the algorithm for hashing `AbstractArray` has been partially unrolled at small to medium sizes, maintaining several hash accumulators in parallel, and will be much faster at most lengths.
+The hash for small fixed-width data has also changed. The final mixing step is now a single-round XMX construction with some carefully tuned constants, and the mixing step now properly avalanches when composing hash calls; previously the mixing step always simplified to a linear function at every composition depth. This change to the mixing step does introduce a data dependency (and thus potentially lower performance) when sequentially hashing elements together in a tight loop, e.g. `foldr(hash, collection)`, but the algorithm for hashing `AbstractArray` has been partially unrolled at small to medium sizes, maintaining several hash accumulators in parallel, and will be much faster at most lengths.
 
 Some important reminders: `hash` remains **noncryptographic**. Also, the default seed has changed. Custom `hash` methods should **always** accept the seed as an argument like `hash(x::MyType, h::UInt)` and **never** provide a default value like `hash(x::MyType, h::UInt=0)`, since the correct seed is determined by the caller.
 
@@ -304,14 +288,14 @@ For more details, see [the pull request](https://github.com/JuliaLang/julia/pull
 ## Scheduler and interrupt fixes
 *Kiran Pamnany*, *Jameson Nash*, *Ian Butterworth*
 
-Idle threads now park in a dedicated scheduler task instead of holding on to the last task they ran, so finished tasks can be garbage collected promptly ([#57544](https://github.com/JuliaLang/julia/pull/57544)). It lands alongside fixes that make interrupts reliable again ([#62665](https://github.com/JuliaLang/julia/pull/62665)):
+Idle threads now park in a dedicated scheduler task instead of holding on to the last task they ran, so finished tasks can be garbage collected promptly ([#57544](https://github.com/JuliaLang/julia/pull/57544)). This lands alongside a set of related scheduler fixes, including ones that make interrupts reliable again ([#62665](https://github.com/JuliaLang/julia/pull/62665)):
 
 - Ctrl-C reaches user code again, including scripts blocked in `sleep` or IO, and `Distributed.interrupt` works.
 - The REPL survives repeated and badly timed Ctrl-C presses.
 - `@spawn` wakes one idle thread in the task's threadpool instead of every thread ([#61826](https://github.com/JuliaLang/julia/pull/61826)). Spawn-heavy code speeds up anywhere from not at all on macOS, to 1.1-1.6x on a 16-core Linux machine, to 10-300x on Windows and heavily oversubscribed machines, where waking every thread had been the dominant cost.
 - Several lost-task and deadlock races were fixed.
 
-And Julia 1.14 will go further, with a proper task cancellation mechanism in development.
+Work on a proper task cancellation mechanism is in progress and is planned for Julia 1.14.
 
 ## Introspection with type annotations
 
@@ -346,10 +330,10 @@ and `@code_warntype`:
 julia> @code_warntype (::Vector{Int}) .+ 1.0
 ```
 
-## CI debugging tracing
+## Tracing top-level evaluation with `--trace-eval`
 *Ian Butterworth*
 
-The new `--trace-eval` argument shows top-level eval progress, to help see how a test suite or script is advancing, e.g. to identify hangs. For instance:
+The new `--trace-eval` command-line flag shows top-level evaluation progress, to help see how a test suite or script is advancing, e.g. to identify hangs. For instance:
 
 ```
 % julia --trace-eval script.jl
@@ -361,35 +345,27 @@ eval: #= script.jl:2 =#
 Hello world
 ```
 
-It can also be enabled via the "debug logging" option on CI platforms. GitHub Actions shown here:
+It is also enabled automatically when the "debug logging" option is turned on for a CI run, as shown here for GitHub Actions:
 
 ![GitHub Actions re-run dialog with "Enable debug logging" checked](/assets/blog/2026-1.13-highlights/enable-debug-logging.png)
 
 ## JuliaC/trim
 *Cody Tapscott*, *many others*
 
-The juliac.jl script in contrib has been supplanted by [JuliaC.jl](https://github.com/JuliaLang/Juliac.jl) and was removed from contrib.
+The juliac.jl script in the Julia repo has been made into a proper package/application: [JuliaC.jl](https://github.com/JuliaLang/JuliaC.jl).
 
-More code can now be trimmed like finalizers, `cfunction` and `mapreduce`.
+More code can now be trimmed, such as finalizers, `@cfunction` and `mapreduce`.
 
-Several bugs were fixed related to the trimming process itself improving it's reliability.
-
+Several bugs in the trimming process itself were also fixed, improving its reliability.
 
 ## Pkg
 *Kristoffer Carlsson*
 
-Pkg has gotten quite a bit of attention for 1.13. Here we list some of the more notable changes and improvements.
-
-### `pkg> add` now tries to add the same version as already-loaded packages
-
-v1 Julia has always allowed changing the active project during a session, and supports stacked environments (most commonly the default environment) which introduces a rough edge that can lead to repeated precompilation of packages. For instance: a version of a package is loaded from the default environment during startup.jl, then the user adds a new package to the active project that pulls in a new version of that dependency. To respect the manifest and compat entries etc., Pkg precompiles the active project dependency graph meaning re-precompilation would happen when the package is loaded.
-
-In 1.13 Pkg now prefers the already-loaded version of any already-loaded packages when resolving `pkg> add`, if the environment's compatibility constraints allow it, so nothing needs to be precompiled again. As usual, `pkg> status` will flag that a newer version is available.
+Pkg has received quite a bit of attention for 1.13. Here we list some of the more notable changes and improvements.
 
 ### Change in default compression algorithm from gzip to zstd
 
-For downloads from a package server (registries, packages and artifacts), Pkg will now by default ask for a zstd-compressed archive instead of a gzipped one. For the type of files Pkg typically downloads, zstd compression tends to have both a better compression ratio and significantly better decompression performance. As an example, downloading the packages and artifacts for the packages Plots, Makie and ModelingToolkit results in the following data:
-
+For downloads from a package server (registries, packages and artifacts), Pkg will now by default ask for a zstd-compressed archive instead of a gzipped one. For the type of files Pkg typically downloads, zstd compression tends to have both a better compression ratio and significantly better decompression performance. As an example, downloading the packages and artifacts for the packages Plots, Makie and ModelingToolkit results in the following numbers:
 
 @@center-table
 |                            | gzip      | zstd      |
@@ -435,17 +411,22 @@ julia> @time Pkg.add(name="Plots"; rev="master")
      Cloning git-repo `https://github.com/JuliaPlots/Plots.jl.git`
 ...
   2.980337 seconds (2.87 M allocations: 189.202 MiB, 3.87% gc time)
-
 ```
 
 ### Registries for packages tracked in the manifest
 
-Previously, to instantiate a manifest you needed to manually make sure that the registries required by that manifest were available. Now, the registry for each package is stored in the manifest and automatically downloaded upon manifest instantiation (or other package operations).
+Previously, to instantiate a manifest you needed to manually make sure that the registries required by that manifest were available. Now, the registry each package came from is recorded in the manifest and is automatically installed upon manifest instantiation (or other package operations).
 
 ### Recursively collect sources
 
 Pkg now recursively collects `[sources]` entries from packages fetched by URL, allowing private dependency chains to resolve without requiring all dependencies of a private package to be in a registry.
 
+
+### `pkg> add` now tries to add the same version as already-loaded packages
+
+Julia has always allowed changing the active project during a session and supports stacked environments (most commonly via the default environment), which introduces a rough edge that can lead to repeated precompilation of packages. For instance, a version of a package is loaded from the default environment during `startup.jl`, and then the user adds a new package to the active project that pulls in a different version of that dependency. Pkg precompiles the dependency graph of the active project, so the new version gets precompiled even though the already-loaded version would often have satisfied the compat constraints just as well.
+
+In 1.13, Pkg prefers the currently loaded version of any package that is already loaded when resolving `pkg> add`, if the environment's compatibility constraints allow it, so nothing needs to be precompiled again. As usual, `pkg> status` will flag that a newer version is available.
 
 ### `Pkg.test` no longer defaults to enabling strict bounds checking
 
@@ -454,7 +435,7 @@ Previously, `Pkg.test` always launched the test process with `--check-bounds=yes
 ## Juliaup GUI
 *Ian Butterworth*
 
-[Juliaup](https://github.com/JuliaLang/juliaup), the Julia version manager, now has a graphical interface alongside its command line. It ships with juliaup 1.22 and later on every platform juliaup supports, so after a `juliaup self update` it can be opened with:
+[Juliaup](https://github.com/JuliaLang/juliaup), the Julia version manager, now has a graphical interface alongside its command line. It ships with Juliaup 1.22 and later on every platform Juliaup supports, so after a `juliaup self update` it can be opened with:
 
 ```
 juliaup gui
@@ -466,15 +447,13 @@ The **Installed** tab shows each installed channel as a tile or a list row. From
 <p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/juliaup-gui-installed.png" alt="The Juliaup GUI's Installed tab, showing installed Julia channels as tiles" width="900" style="max-width: 100%"></p>
 ~~~
 
-The **Available** tab lists everything in the channel database, including `release`, `lts`, `rc`, `nightly` and `pr{number}` channels for testing pull requests, with an install button for each. It can also link an existing Julia binary to a custom channel name. The **Configuration** tab exposes juliaup's settings, such as the version database update interval and automatic self-updates.
+The **Available** tab lists everything in the channel database, including `release`, `lts`, `rc`, `nightly` and `pr{number}` channels for testing pull requests, with an install button for each. It can also link an existing Julia binary to a custom channel name. The **Configuration** tab exposes Juliaup's settings, such as the version database update interval and automatic self-updates.
 
 ~~~
 <p style="text-align: center"><img src="/assets/blog/2026-1.13-highlights/juliaup-gui-available.png" alt="The Juliaup GUI's Available tab, listing channels that can be installed" width="900" style="max-width: 100%"></p>
 ~~~
 
 ## Acknowledgement
-
-<!-- TODO: confirm funding acknowledgement is still applicable for this release. -->
 
 The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
 
