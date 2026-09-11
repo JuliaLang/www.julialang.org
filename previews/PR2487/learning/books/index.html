@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2487/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2487/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2487/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2487/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2487/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2487/css/app.css">
+<link rel="stylesheet" href="/previews/PR2487/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2487/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2487/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2487/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Books</title>   
+
+  
+
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Books">
+<meta property="og:description" content="Official website for the Julia programming language">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2487/learning/books/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2487/">
+          <img src="/previews/PR2487/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2487/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2487/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2487/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2487/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2487/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2487/jsoc/">JSoC</a>
+              </li>
+              <li class="nav-item d-flex align-items-center px-2">
+                  <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                      <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+                      <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                      <span class="dark-mode-label icon-moon-label">Dark</span>
+                      <span class="dark-mode-label icon-sun-label">Light</span>
+                  </button>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub" rel="noopener noreferrer">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/learning/books.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h2 id="books"><a href="#books" class="header-anchor">Books</a></h2>
+<p>Have a Julia book you want added to this list? Please <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/learning/books.md">submit a pull request</a>.</p>
+<h3 id="general_julia"><a href="#general_julia" class="header-anchor">General Julia</a></h3>
+<ul>
+<li><p>Antonello Lobianco. <a href="https://doi.org/10.1007/979-8-8688-0965-1">Julia Quick Syntax Reference, 2nd ed.</a>. Apress, January 2025.</p>
+</li>
+<li><p>Lee Phillips. <a href="https://nostarch.com/practical-julia">Practical Julia: A Hands-On Introduction for Scientific Minds</a>, No Starch Press, October 2023.</p>
+</li>
+<li><p>Erik Engheim. <a href="https://www.manning.com/books/julia-as-a-second-language">Julia as a Second Language</a>. Manning Publications, May 2023.</p>
+</li>
+<li><p>Noel Kalicharan. <a href="https://link.springer.com/book/10.1007/978-3-030-73936-2">Julia - Bit by Bit</a>. Springer, 2021.</p>
+</li>
+<li><p>Sambit Kumar Dash. <a href="https://in.bpbonline.com/products/hands-on-julia-programming">Hands-on Julia Programming</a>, Bpb Publications, October 2021.</p>
+</li>
+<li><p>Erik Engheim. <a href="https://leanpub.com/julia-for-beginners">Julia for Beginners</a>, January 2021.</p>
+</li>
+<li><p>Tanmay Bakshi. <a href="https://www.mheducation.co.uk/tanmay-teaches-julia-for-beginners-a-springboard-to-machine-learning-for-all-ages-9781260456639-emea">Tanmay Teaches Julia for Beginners: A Springboard to Machine Learning for All Ages</a>. McGraw Hill, November 2019.</p>
+</li>
+<li><p>Ben Lauwens and Allen B. Downey. <a href="https://www.oreilly.com/library/view/think-julia/9781492045021/">Think Julia</a>. O&rsquo;Reilly Media, June 2019.</p>
+</li>
+<li><p>Ivo Balbaert. <a href="https://www.packtpub.com/en-us/product/julia-10-programming-9781788999090">Julia 1.0 Programming</a>. Packt Publishing, September 2018.</p>
+</li>
+<li><p>Anshul Joshi and Rahul Lakhanpal. <a href="https://www.packtpub.com/en-us/product/learning-julia-9781785883279">Learning Julia</a>. Packt Publishing, November 2017.</p>
+</li>
+<li><p>Sandeep Nagar. <a href="https://doi.org/10.1007/978-1-4842-3171-5">Beginning Julia Programming For Engineers and Scientists</a>. Apress, 2017</p>
+</li>
+<li><p>Ivo Balbaert, Avik Sengupta, and Malcolm Sherrington. <a href="https://www.oreilly.com/library/view/julia-high-performance/9781787125704/">Julia: High Performance Programming</a>. Packt Publishing, 2016.</p>
+</li>
+<li><p>Ivo Balbaert. <a href="https://www.packtpub.com/en-us/product/getting-started-with-julia-9781783284795">Getting Started with Julia Programming Language</a>. Packt Publishing, 2015.</p>
+</li>
+<li><p>Malcolm Sherrington. <a href="https://www.packtpub.com/en-us/product/mastering-julia-9781783553310">Mastering Julia</a>. Packt Publishing, 2015.</p>
+</li>
+<li><p>Bruce Tate, Ian Dees, Frederic Daoud, and Jack Moffit. <a href="https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks">Seven More Languages in Seven Weeks</a>. The Pragmatic Programmers, December 2014.</p>
+</li>
+</ul>
+<h3 id="recipes_patterns_performance"><a href="#recipes_patterns_performance" class="header-anchor">Recipes, Patterns &amp; Performance</a></h3>
+<ul>
+<li><p>Ahan Sengupta <a href="https://www.amazon.com/Little-Book-Julia-Algorithms-programming/dp/1838173609/">The Little Book of Julia Algorithms</a>. SAV Publishing, September 2020.</p>
+</li>
+<li><p>Tom Kwong. <a href="https://www.packtpub.com/en-us/product/hands-on-design-patterns-and-best-practices-with-julia-9781838648817">Hands-on Design Patterns and Best Practices with Julia</a>.  Packt Publishing, January 2020.</p>
+</li>
+<li><p>Avik Sengupta. <a href="https://www.packtpub.com/product/julia-high-performance-second-edition/9781788298117">Julia High Performance, 2nd Ed.</a>. Packt Publishing, June  2019.</p>
+</li>
+<li><p>Bogumił Kamiński and Przemysław Szufel. <a href="https://www.oreilly.co.jp/books/9784873118895/">Julia プログラミングクックブック</a>. Japanese translation for Julia 1.2 by Hidemoto Nakada. Orairījapan, Tōkyo, October 2019.</p>
+</li>
+<li><p>Adrian Salceanu. <a href="https://www.packtpub.com/en-us/product/julia-programming-projects-9781788292740">Julia Programming Projects</a>. Packt Publishing, December 2018.</p>
+</li>
+<li><p>Bogumił Kamiński and Przemysław Szufel. <a href="https://www.packtpub.com/en-us/product/julia-10-programming-cookbook-9781788998369">Julia 1.0 Programming Cookbook</a>. Packt Publishing, November 2018.</p>
+</li>
+<li><p>Jalem Raj Rohit. <a href="https://www.packtpub.com/en-us/product/julia-cookbook-9781785882012">Julia Cookbook</a>. Packt Publishing, September 2016.</p>
+</li>
+<li><p>Avik Sengupta. <a href="https://www.packtpub.com/en-us/product/julia-high-performance-9781785880919">Julia High Performance</a>. Packt Publishing, April 2016.</p>
+</li>
+</ul>
+<h3 id="data_science_machine_learning"><a href="#data_science_machine_learning" class="header-anchor">Data Science &amp; Machine Learning</a></h3>
+<ul>
+<li><p>Bogumił Kamiński. <a href="https://www.manning.com/books/julia-for-data-analysis">Julia for Data Analysis</a>, Manning Publications, December 2022</p>
+</li>
+<li><p>Diego Javier Zea. <a href="https://www.packtpub.com/en-us/product/interactive-visualization-and-plotting-with-julia-9781801810517">Interactive Visualization and Plotting with Julia</a>. Packt Publishing, August 2022.</p>
+</li>
+<li><p>Zacharias Voulgaris. <a href="https://technicspub.com/julia/">Julia for Machine Learning</a>. Technics Publications, June 2020.</p>
+</li>
+<li><p>Günter Faes. <a href="https://www.amazon.de/Datenanalyse-mit-Julia-Einstieg-Programmiersprache/dp/3749485089/ref&#61;sr_1_3?__mk_de_DE&#61;&#37;C3&#37;85M&#37;C3&#37;85&#37;C5&#37;BD&#37;C3&#37;95&#37;C3&#37;91&amp;keywords&#61;Datenanalyse&#43;mit&#43;Julia&amp;qid&#61;1582912563&amp;sr&#61;8-3">Datenanalyse mit Julia: Einstieg in die Datenanalyse mit der Programmiersprache Julia</a>. Books on Demand, September 2019.</p>
+</li>
+<li><p>Paul D. McNicholas and Peter Tait. <a href="https://www.crcpress.com/Data-Science-with-Julia/McNicholas-Tait/p/book/9781138499980">Data Science with Julia</a>. Chapman and Hall/CRC, January 2019.</p>
+</li>
+<li><p>Zacharias Voulgaris. <a href="https://technicspub.com/julia-for-data-science/">Julia for Data Science</a>. Technics Publications, September 2016.</p>
+</li>
+<li><p>Anshul Joshi. <a href="https://www.packtpub.com/en-us/product/julia-for-data-science-9781785289699">Julia for Data Science</a>. Packt Publishing, 2016.</p>
+</li>
+</ul>
+<h3 id="statistics_probability_econometrics"><a href="#statistics_probability_econometrics" class="header-anchor">Statistics, Probability &amp; Econometrics</a></h3>
+<ul>
+<li><p>Bartłomiej Łukaszuk, <a href="https://b-lukaszuk.github.io/RJ_BS_eng/">Romeo and Julia, where Romeo is Basic Statistics</a>, <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>, 2023.</p>
+</li>
+<li><p>Florian Heiss and Daniel Brunner, <a href="http://upfie.net/downloads/PDF/UJfIE_web.pdf">&quot;Using Julia for Introductory Econometrics&quot;</a>, Independently published, May 3, 2023.</p>
+</li>
+<li><p>Hayden Klok, Yoni Nazarathy. <a href="https://github.com/h-Klok/StatsWithJuliaBook">Statistics with julia: Fundamentals for data science, machine learning and artificial intelligence</a>. Springer, 2021</p>
+</li>
+<li><p>Stanley H. Chan. <a href="https://www.amazon.com/Introduction-Probability-Data-Science-Stanley/dp/1607857464/">Intro to Probability for Data Science</a>, November 2021. The book is also available freely as HTML and PDF at <a href="https://probability4datascience.com/index.html">probability4datascience.com</a>. Code is in Julia/Python/R/Matlab.</p>
+</li>
+<li><p>Christopher P. Adams. <a href="https://www.routledge.com/Learning-Microeconometrics-with-R/Adams/p/book/9780367255381">Learning Microeconometrics with R</a>, December 2020; Has <a href="https://sites.google.com/view/microeconometricswithr/home?authuser&#61;0">Julia code</a> for all <a href="https://sites.google.com/view/microeconometricswithr/table-of-contents?authuser&#61;0">12 chapters</a>.</p>
+</li>
+<li><p>Giray Ökten. <a href="https://link.springer.com/book/10.1007/978-3-030-56070-6">Probability and Simulation</a>. Springer, June 2020.</p>
+</li>
+</ul>
+<h3 id="scientific_computing_numerical_methods"><a href="#scientific_computing_numerical_methods" class="header-anchor">Scientific Computing &amp; Numerical Methods</a></h3>
+<ul>
+<li><p>James V Lambers, Amber Sumner Mooney, Vivian A Montiforte, and James Quinlan, <a href="https://www.worldscientific.com/worldscibooks/10.1142/14443#t&#61;aboutBook">Explorations in Numerical Analysis and Machine Learning with Julia</a>. World Scientific, October 2025.</p>
+</li>
+<li><p>Martin Vuk, <a href="http://zalozba.fri.uni-lj.si/vuk2024.pdf">Numerical Mathematics with Julia programming language &#40;in Slovenian&#41;</a>, Založba UL FRI, Ljubljana, 2024. Code examples from the book are available <a href="https://gitlab.com/nummat/nummat-knjiga">here</a>.</p>
+</li>
+<li><p>Clemens Heitzinger. <a href="https://link.springer.com/book/10.1007/978-3-031-16560-3">Algorithms with JULIA: Optimization, Machine Learning, and Differential Equations Using the JULIA Language</a>. Springer, 2022.</p>
+</li>
+<li><p>Marilena Mitrouli. <a href="https://korfiatisbooks.gr/eshop/product/arithmitiki-grammiki-algevra-kai-epistimonikoi-ypologismoi/">ΑΡΙΘΜΗΤΙΚΗ ΓΡΑΜΜΙΚΗ ΑΛΓΕΒΡΑ ΚΑΙ ΕΠΙΣΤΗΜΟΝΙΚΟΙ ΥΠΟΛΟΓΙΣΜΟΙ &#40;Arithmetical Linear Algebra and Scientific Computations&#41;</a>, ΕΚΠΑ, December 2022.</p>
+</li>
+<li><p>Tobin A. Driscoll, Richard J. Braun. <a href="https://my.siam.org/Store/Product/viewproduct/?ProductId&#61;41831895">Fundamentals of Numerical Computation: Julia Edition</a>. SIAM-Society for Industrial and Applied Mathematics, 2022</p>
+</li>
+<li><p>C. T. Kelley, <a href="https://my.siam.org/Store/Product/viewproduct/?ProductId&#61;44313635">Solving Nonlinear Equations with Iterative Methods. Solvers and Examples in Julia</a>, SIAM, 2022. The book comes with a package <a href="https://github.com/ctkelley/SIAMFANLEquations.jl">SIAMFANLequations.jl</a> and a set of <a href="https://github.com/ctkelley/NotebookSIAMFANL">Jupyter notebooks</a>.</p>
+</li>
+<li><p>Bogumił Kamiński and Paweł Prałat. <a href="https://www.ryerson.ca/train-your-brain/">Train Your Brain - Challenging Yet Elementary Mathematics</a>, December 2020; a free on-line <a href="https://math.ryerson.ca/~pralat/train-your-brain.pdf">Julia language companion</a> is available for download.</p>
+</li>
+<li><p>Giray Ökten. <a href="https://diginole.lib.fsu.edu/islandora/object/fsu&#37;3A657877">First Semester in Numerical Analysis with Julia</a>. Florida State University Libraries, April 2019.</p>
+</li>
+<li><p>Stephen Boyd and Lieven Vandenberghe. <a href="https://web.stanford.edu/~boyd/vmls/">Introduction to Applied Linear Algebra</a>. Cambridge University Press, June 2018.</p>
+</li>
+<li><p>Dominique Orban and Mario Arioli. <a href="https://dx.doi.org/10.1137/1.9781611974737">Iterative Solution of Symmetric Quasi-definite Linear Systems</a>. Society for Industrial and Applied Mathematics, April 2017.</p>
+</li>
+</ul>
+<h3 id="optimization_operations_research"><a href="#optimization_operations_research" class="header-anchor">Optimization &amp; Operations Research</a></h3>
+<ul>
+<li><p>Mykel J. Kochenderfer, Sydney M. Katz, Anthony L. Corso, and Robert J. Moss, <a href="https://algorithmsbook.com/validation/">Algorithms for Validation</a>, Forthcoming.</p>
+</li>
+<li><p>Mykel J. Kochenderfer, Tim A. Wheeler, and Kyle H. Wray. <a href="https://algorithmsbook.com/">Algorithms for Decision Making</a>, December 2020.</p>
+</li>
+<li><p>Mykel J. Kochenderfer and Tim A. Wheeler. <a href="https://mitpress.mit.edu/books/algorithms-optimization">Algorithms for Optimization</a>. MIT Press, March 2019.</p>
+</li>
+<li><p>Changhyun Kwon. <a href="https://www.chkwon.net/julia/">Julia Programming for Operations Research</a>. March 2019.</p>
+</li>
+</ul>
+<h3 id="domain_applications"><a href="#domain_applications" class="header-anchor">Domain Applications</a></h3>
+<ul>
+<li><p>R. Gökhan Türeci, Hamdi Dağıstanlı, and İlkay Türk Çakır. <a href="https://link.springer.com/book/10.1007/978-3-031-84716-5">Julia Programming for Physics Applications</a>. Springer, May 2025.</p>
+</li>
+<li><p>Andreas Varga, <a href="https://link.springer.com/book/10.1007/978-3-031-35767-1">Solving Fault Diagnosis Problems - Linear Synthesis Techniques with Julia Code Examples</a>, Vol. 482 of Studies in Systems, Decision and Control, Springer Nature Switzerland, 2024. The computational examples presented in the book use functions of the <a href="https://github.com/andreasvarga/FaultDetectionTools.jl">FaultDetectionTools.jl</a> and <a href="https://github.com/andreasvarga/DescriptorSystems.jl">DescriptorSystems.jl</a> packages and are available <a href="https://github.com/andreasvarga/FaultDetectionTools.jl/tree/master/Examples">here</a>.</p>
+</li>
+<li><p>Adeil Araújo and Meirivâni Oliveira, <a href="https://www.seduc.ce.gov.br/wp-content/uploads/sites/37/2023/09/Ebook-02-Julia-com-Fisica.pdf">&quot;Julia with Physics: An Introduction&quot; in Portuguese</a>, Seduc - CE, September 2023.</p>
+</li>
+<li><p>Júlio Hoffimann, <a href="https://juliaearth.github.io/geospatial-data-science-with-julia">Geospatial Data Science with Julia</a>, Open Access, 2023.</p>
+</li>
+<li><p>Ivo Balbaert and Adrian Salceanu. <a href="https://www.packtpub.com/en-us/product/web-development-with-julia-and-genie-9781801811132">Web Development with Julia and Genie</a>. Packt Publishing, November 2022.</p>
+</li>
+<li><p>George Datseris, Ulrich Parlitz. <a href="https://github.com/JuliaDynamics/NonlinearDynamicsTextbook">Nonlinear Dynamics: A Concise Introduction Interlaced with Code</a>. Springer, 2022</p>
+</li>
+<li><p>Dmitrijs Cudihins. <a href="https://www.packtpub.com/en-us/product/hands-on-computer-vision-with-julia-9781788998796">Hands-on Computer Vision with Julia</a>. Packt Publishing, June 2018.</p>
+</li>
+</ul>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2487/project">About</a></li>
+        <li><a href="/previews/PR2487/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2487/governance/">Governance</a></li>
+        <li><a href="/previews/PR2487/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2487/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2487/downloads">Install</a></li>
+        <li><a href="/previews/PR2487/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2487/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2487/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2487/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2487/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2487/community/">Community</a></li>
+        <li><a href="/previews/PR2487/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2487/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2487/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2487/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2487/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2487/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2487/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

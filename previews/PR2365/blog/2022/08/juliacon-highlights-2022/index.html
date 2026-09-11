@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2365/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2365/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2365/css/app.css">
+<link rel="stylesheet" href="/previews/PR2365/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2365/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2365/libs/buttons.js"></script>
+<script src="/previews/PR2365/libs/clipboard.min.js"></script>
+<script src="/previews/PR2365/libs/detectdark.js"></script>
+<script src="/previews/PR2365/libs/animated-banner.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>JuliaCon 2022 Highlights</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:image" content="https://user-images.githubusercontent.com/35577566/183544010-09691b83-9fc6-4b49-b835-d9a8e691e112.png">
+<meta name="twitter:creator" content="@JuliaLanguage">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="JuliaCon 2022 Highlights">
+<meta property="og:description" content="JuliaCon 2022 Highlights">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2365/">
+          <img src="/previews/PR2365/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2365/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2365/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2365/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2365/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2365/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2365/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>JuliaCon 2022 Highlights
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 10 August 2022 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">The JuliaCon 2022 Organizing Committee </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2022/08/juliacon-highlights-2022.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<p>Another successful JuliaCon is officially in the books&#33; This year, we had 7,986 free registrations via Eventbrite with over 220 people opting to make a donation to the Julia Project while signing up. Between the period of July 19th &#40;start of workshops&#41; - July 30th &#40;last day of the conference&#41;, we had over 41,000 unique viewers on the Julia Language’s YouTube and 10,000&#43; more across the PyData YouTube along with other venues like LinkedIn despite the Summer of 2022 including travel plans for many along with virtual conference burnout. This year’s conference boasted the highest quality content to date, with more engagement overall than we have seen in previous years.</p>
+<h1 id="julia_community_prize_winners"><a href="#julia_community_prize_winners" class="header-anchor">Julia Community Prize Winners</a></h1>
+<p>We wanted to give another warm congratulation to the <a href="https://juliacon.org/2022/prize/">2022 Julia Community Prize winners</a>. This year’s winners are:</p>
+<ul>
+<li><p>Morten Piibeleht, Michael Hatherly, Fredrik Ekre, and Mauro Werder &#40;For their work on Documenter.jl and its ecosystem&#41;</p>
+</li>
+<li><p>Frames White &#40;For her many technical and community contributions across the Julia ecosystem&#41;</p>
+</li>
+<li><p>Shuhei Kadowaki &#40;For his work on JET.jl and the Julia compiler&#41;</p>
+</li>
+</ul>
+<p>It is an incredibly tough job to pick just three awards each year as there are so many deserving people in the Julia community.</p>
+<h1 id="keynotes"><a href="#keynotes" class="header-anchor">Keynotes</a></h1>
+<p>JuliaCon 2022 brought together an amazing group of keynote speakers sharing some truly amazing perspectives.</p>
+<ul>
+<li><p>Erin LeDell, Chief Machine Learning Scientist at H2O.ai, founder of WiMLDS and co-founder of R-Ladies Global, presented: <a href="https://www.youtube.com/watch?v&#61;ubURNGq6lsI">API’s and Community: Building for Success</a></p>
+</li>
+<li><p>Jeremy Howard, Fast.ai co-creator, University of Queensland Honorary Professor, presented: <a href="https://www.youtube.com/watch?v&#61;s6pjxCuNGjc">What makes a programming language successful</a></p>
+</li>
+<li><p>Husain Attarwala, Head of Clinical Pharmacology and Pharmacometrics at Moderna, presented: <a href="https://www.youtube.com/watch?v&#61;6wGSCD3cI9E">Modeling and Simulation to Guide Dose Selection</a></p>
+</li>
+</ul>
+<h1 id="jump-dev_2022"><a href="#jump-dev_2022" class="header-anchor">JuMP-dev 2022</a></h1>
+<p>We were excited to have the JuMP-dev conference co-located within JuliaCon for the second time this year. It was another awesome opportunity to get the users and developers from the JuMP community engaged with the greater Julia community. The list of all of the JuMP-dev talks, along with links to their YouTube videos, is available on the <a href="https://jump.dev/meetings/juliacon2022/">JuMP-dev webpage</a>.</p>
+<h1 id="state_of_julia"><a href="#state_of_julia" class="header-anchor">State of Julia</a></h1>
+<p>This year, Jeff Bezanson presented the State of Julia talk on behalf of the core Julia development team. The talk covered many of the new compiler developments, language features, and Jeff shared a roadmap for some of the future initiatives the core team is working on.</p>
+<p><a href="https://www.youtube.com/watch?v&#61;N4h46_TCmGc">Check out the full talk to learn more</a></p>
+<h1 id="julia_user_developer_survey"><a href="#julia_user_developer_survey" class="header-anchor">Julia User &amp; Developer Survey</a></h1>
+<p>This year&#39;s 4th annual Julia User and Developer survey captured the thoughts of 1,162 members of the community with the survey being available in English, Spanish, and Japanese. The survey revealed key trends in the Julia community which <a href="https://www.youtube.com/watch?v&#61;OnlKtNVNRrk">you can check out in the full video</a>.</p>
+<h1 id="sponsors"><a href="#sponsors" class="header-anchor">Sponsors</a></h1>
+<p>JuliaCon would not be possible without the support of such amazing sponsors.  You can find our list of JuliaCon 2022 sponsors below with their sponsored videos:</p>
+<ul>
+<li><p>JuliaHub, Platinum Sponsor, <a href="https://www.youtube.com/watch?v&#61;ZB15pk1fpgA">Sponsored Talk</a></p>
+</li>
+<li><p>Julius Technologies, Platinum Sponsor, <a href="https://www.youtube.com/watch?v&#61;Giq0qRByfmY">Sponsored Talk</a></p>
+</li>
+<li><p>RelationalAI, Platinum Sponsor, <a href="https://www.youtube.com/watch?v&#61;Pncp0puIwI0">Sponsored Talk</a></p>
+</li>
+<li><p>Intel, Gold Sponsor, <a href="https://www.youtube.com/watch?v&#61;-n5VMbEQLa4">Sponsored Talk</a></p>
+</li>
+<li><p>AWS, Gold, <a href="https://www.youtube.com/watch?v&#61;OY8RglOhHdU">Sponsored Talk</a></p>
+</li>
+<li><p>Beacon Biosignals, Silver Sponsor, <a href="">Sponsored Talk</a></p>
+</li>
+<li><p>PumasAI, Silver Sponsor, <a href="https://www.youtube.com/watch?v&#61;CULuTOaqYQE">Sponsored Talk</a></p>
+</li>
+<li><p>QuEra Computing, Silver Sponsor, <a href="https://www.youtube.com/watch?v&#61;f7awOW3IHW8">Sponsored Talk</a></p>
+</li>
+<li><p>Conning, Silver Sponsor</p>
+</li>
+<li><p>Invenia, Silver Sponsor</p>
+</li>
+<li><p>metalenz, Silver Sponsor, <a href="https://www.youtube.com/watch?v&#61;Ji47nTNX90o">Sponsored Talk</a></p>
+</li>
+<li><p>ASML, Silver Sponsor, <a href="https://www.youtube.com/watch?v&#61;waWkScPKoDM">Sponsored Talk</a></p>
+</li>
+<li><p>G Research, Silver Sponsor, <a href="https://www.youtube.com/watch?v&#61;fUUpk1gTe_w">Sponsored Talk</a></p>
+</li>
+<li><p>Jeffrey Sarnoff, Silver Sponsor</p>
+</li>
+<li><p>Packt Publishing, Gather, and Vercel: Media Partners</p>
+</li>
+<li><p>Data Umbrella and WiMLDS: Community Partners</p>
+</li>
+<li><p>NumFOCUS, Fiscal Sponsor</p>
+</li>
+</ul>
+<h1 id="juliacon_t-shirt_mug_and_more"><a href="#juliacon_t-shirt_mug_and_more" class="header-anchor">JuliaCon T-Shirt, Mug, and more&#33;</a></h1>
+<p>A huge thanks to all of those who supported JuliaCon 2022 by purchasing a limited edition <a href="https://discourse.julialang.org/t/juliacon-2022-t-shirts-socks-stickers-more-now-available/83184">JuliaCon 2022 t-shirt, stickers, etc</a>. This year we were lucky to have a few amazing new designs which were well received by the community thanks to <a href="https://github.com/cormullion/graphics">cormullion</a>.</p>
+<h1 id="conference_feedback_welcome"><a href="#conference_feedback_welcome" class="header-anchor">Conference Feedback Welcome</a></h1>
+<p>We are always trying to make JuliaCon more inclusive, fun, and informative. If you have any suggestions for what we can do better in the future, please <a href="https://forms.gle/GJ6Y8Tz99XvBZgwr9">share your thoughts in the post conference survey</a>. Note that there are other third party surveys out there that are not affiliated with the Julia project or JuliaCon, so please be careful.</p>
+<h1 id="wrapping_up"><a href="#wrapping_up" class="header-anchor">Wrapping up</a></h1>
+<p>JuliaCon 2022 was yet another amazing event for the community and ecosystem to come together &#40;albeit virtually&#41;. During the closing remarks of this year&#39;s conference, co-chair Valentin Churavy <a href="https://www.youtube.com/watch?v&#61;9H9igUoavxc">announced that next year’s conference will be in-person at MIT July 23rd - 28th, 2023</a>.</p>
+<p>Thank you to all of the amazing speakers, volunteers, organizations, and the entire Julia community for making this year&#39;s conference a success. It truly does take a community to put on JuliaCon&#33;</p>
+<h3 id="juliacon_2022_organizing_committee"><a href="#juliacon_2022_organizing_committee" class="header-anchor">JuliaCon 2022 Organizing Committee</a></h3>
+<ul>
+<li><p>Avik Sengupta, co-Chair <a href="https://twitter.com/aviksengupta">Twitter</a></p>
+</li>
+<li><p>Valentin Churavy, co-Chair <a href="https://twitter.com/vchuravy">Twitter</a></p>
+</li>
+<li><p>Katharine Hyatt, Program <a href="https://twitter.com/kslimes">Twitter</a></p>
+</li>
+<li><p>Michael Herbst, Program</p>
+</li>
+<li><p>Oscar Dowson, Program &#40;JuMP&#41;</p>
+</li>
+<li><p>Kelly Shen, Diversity &amp; Inclusion</p>
+</li>
+<li><p>Ranjan Anantharaman, Finance</p>
+</li>
+<li><p>Kevin O&#39;Brien, Media and Publicity</p>
+</li>
+<li><p>Logan Kilpatrick, Media and Publicity <a href="https://twitter.com/OfficialLoganK">Twitter</a></p>
+</li>
+<li><p>Carsten Bauer, Proceedings Chair</p>
+</li>
+<li><p>Tom Kwong, Infrastructure <a href="https://twitter.com/tomkwong">Twitter</a></p>
+</li>
+<li><p>Will Kimmerer, Local Meetups <a href="https://twitter.com/KimmererWill">Twitter</a></p>
+</li>
+</ul>
+<h3 id="proceedings_committee"><a href="#proceedings_committee" class="header-anchor">Proceedings Committee</a></h3>
+<ul>
+<li><p>Carsten Bauer</p>
+</li>
+<li><p>Mathieu Besançon</p>
+</li>
+<li><p>Ranjan Anantharaman</p>
+</li>
+<li><p>Valentin Churavy</p>
+</li>
+</ul>
+<p>If you are interested in helping out with next year&#39;s conference, <a href="https://forms.gle/t2GTGjmUgYSGztU26">please let us know</a>&#33;</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2365/project">About</a></li>
+        <li><a href="/previews/PR2365/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2365/governance/">Governance</a></li>
+        <li><a href="/previews/PR2365/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2365/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2365/install/">Install</a></li>
+        <li><a href="/previews/PR2365/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2365/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2365/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2365/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2365/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2365/community/">Community</a></li>
+        <li><a href="/previews/PR2365/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2365/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2365/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2365/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2365/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2365/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2365/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2365/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2365/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/previews/PR2365/libs/groups.js"></script>
+    <script src="/previews/PR2365/libs/map.js"></script>
+  </body>
+</html>

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2351/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2351/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2351/css/app.css">
+<link rel="stylesheet" href="/previews/PR2351/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2351/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2351/libs/buttons.js"></script>
+<script src="/previews/PR2351/libs/clipboard.min.js"></script>
+<script src="/previews/PR2351/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Julia Governance</title>   
+
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Julia Governance">
+<meta property="og:description" content="">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2351/">
+          <img src="/previews/PR2351/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2351/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2351/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2351/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2351/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2351/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2351/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/governance.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="julia_governance"><a href="#julia_governance" class="header-anchor">Julia Governance</a></h1>
+<p>The Julia project is a large collaborative open source endeavor founded by <a href="https://github.com/JeffBezanson">Jeff Bezanson</a> &#40;<a href="https://github.com/JeffBezanson">Github</a>, <a href="https://twitter.com/JeffBezanson">Twitter</a>&#41;, <a href="https://en.wikipedia.org/wiki/Alan_Edelman">Alan Edelman</a> &#40;<a href="https://math.mit.edu/~edelman/">MIT</a>&#41;, <a href="https://en.wikipedia.org/wiki/Stefan_Karpinski">Stefan Karpinski</a> &#40;<a href="https://github.com/StefanKarpinski">Github</a>, <a href="https://twitter.com/StefanKarpinski">Twitter</a>&#41;, and <a href="https://en.wikipedia.org/wiki/Viral_B._Shah">Viral B. Shah</a> &#40;<a href="https://github.com/ViralBShah">Github</a>, <a href="https://twitter.com/Viral_B_Shah">Twitter</a>&#41; with the initial release of the Julia programming language. The project now encompasses many individuals, organizations, and groups collaborating across varying platforms and venues. The communal nature of open source makes it difficult to precisely define where the official Julia project ends and the greater community begins, which is advantageous but can make it challenging to understand the governance structures. This page describes some of those structures.</p>
+<div class="franklin-toc"><ol><li><a href="#julia_governance">Julia Governance</a><ol><li><a href="#julia">Julia</a></li><li><a href="#julia_stewards">Julia Stewards</a></li><li><a href="#numfocus">NumFOCUS</a></li><li><a href="#related_organizations_with_no_governance_role">Related Organizations With No Governance Role</a><ol><li><a href="#the_julia_lab">The Julia Lab</a></li></ol></li><li><a href="#juliahub">JuliaHub</a></li><li><a href="#questions">Questions</a></li></ol></li></ol></div>
+<h2 id="julia"><a href="#julia" class="header-anchor">Julia</a></h2>
+<p>Fundamentally, the project consists of some code and a community of people who work on that code. Some of this code is managed within the <a href="https://github.com/JuliaLang">JuliaLang GitHub organization</a>, with multiple teams working together to develop and maintain the individual repositories. One particularly important team is that of the &quot;committers&quot;: these 40-some individuals have commit privileges and work together to maintain the repositories, including <a href="https://github.com/JuliaLang/julia"><code>julia</code></a> itself. This set of people doesn’t really define the project, however, since there are many people who are prolific contributors to the Julia ecosystem but who do not have this “commit bit.” An informal consensus process is used to review and merge pull requests, and a standing meeting — the <a href="/previews/PR2351/community/working-groups/#triage_call">triage call</a> — aims to provide guidance and help move contentious issues forward.</p>
+<p>A larger set of individuals participates as &quot;triage&quot; members of the JuliaLang GitHub organization; they have permissions to organize and label the issues and pull requests.</p>
+<h2 id="julia_stewards"><a href="#julia_stewards" class="header-anchor">Julia Stewards</a></h2>
+<p>One official group of people representing the Julia project does exist: <a href="/previews/PR2351/community/stewards/">Julia Stewards</a>. This group exists to handle conflict resolution and reports of inappropriate or problematic behavior in the Julia community and ecosystem. The current stewards are: Milan Bouchet-Valat, Simon Byrne, Tim Holy, Katharine Hyatt, Steven Johnson, Stefan Karpinski, and Viral Shah. This group gets &#40;rare&#41; emails about potentially problematic situations and confidentially discusses and decides on what to do about them. The stewards group is not responsible for making any kinds of technical decisions or steering the project in any other way, it just exists to handle complaints and disputes, which fortunately are exceedingly rare.</p>
+<h2 id="numfocus"><a href="#numfocus" class="header-anchor">NumFOCUS</a></h2>
+<p>NumFOCUS is a US 501&#40;c&#41;&#40;3&#41; nonprofit organization promoting open practices in scientific research, data science, and scientific computing by serving as a fiscal sponsor for open source projects and organizing community-driven educational programs in these areas. Through NumFOCUS, both <a href="https://numfocus.org/support">individuals</a> and <a href="https://numfocus.org/sponsors">corporations</a> have the opportunity to donate to any of NumFOCUS’s fiscally sponsored projects including Julia, NumPy, Jupyter, Pandas, JuMP, rOpenSci, QuantEcon, and <a href="https://numfocus.org/sponsored-projects/">many others</a>. This is possible because these projects have entered into a contractual and legal relationship with NumFOCUS. This means that a set of people serving as the project’s leadership body has signed an agreement stating that they, or their successors, will manage the technical direction and programs of the project within the scope of the organization’s nonprofit status. NumFOCUS is the legal and financial administrator of project funds, disbursing as requested by the project’s leadership body with ultimate oversight by the NumFOCUS board of directors.</p>
+<p>Despite what “fiscally sponsored project” may sound like, NumFOCUS does not have a big bag of money that it gives out to projects however it wants to. Rather, it means that NumFOCUS is legally able to accept donations from individuals, companies, private foundations and government entities to be spent on the fiscally sponsored projects. There are <a href="https://numfocus.org/sponsored-projects/affiliated-projects">other projects</a> affiliated with NumFOCUS that are not fiscally sponsored, including Flux, Conda, Cython, Dask, SciPy, and scikit-learn. These projects can’t receive money through NumFOCUS because they don’t have the same legal relationship.</p>
+<p>Julia’s signatories with NumFOCUS are <a href="https://github.com/timholy">Tim Holy</a>, <a href="https://github.com/stevengj">Steven Johnson</a>, <a href="https://github.com/ViralBShah">Viral Shah</a>, <a href="https://github.com/StefanKarpinski">Stefan Karpinski</a>, and <a href="https://github.com/aviks">Avik Sengupta</a>. This set of people was chosen to be trustworthy, independent &#40;not all from any one company or organization&#41;, and representative of the open source project. Signatories provide oversight to make sure that funding is being used for legitimate purposes. Avik Sengupta is currently the Julia project representative at NumFOCUS and manages the projects finances. Other members of the Julia community are also actively involved with NumFOCUS in other capacities: Stefan Karpinski is on the <a href="https://numfocus.org/community/people#people-advisorycouncil">advisory council</a> and <a href="https://twitter.com/OfficialLoganK">Logan Kilpatrick</a> is a current <a href="https://numfocus.org/community/people#people-directors">board member</a>.</p>
+<p>What kind of money goes to Julia through NumFOCUS and how is it spent? When you click on the &quot;Donate to Julia button&quot; on the Julia website, your donation goes to NumFOCUS and is earmarked to be used for the Julia project. This money is used to pay for infrastructure and personnel costs, including website hosting, continuous integration services, and anyone who is working on Julia through NumFOCUS. By far the biggest flow of money through NumFOCUS for Julia is for the annual JuliaCon conference. Money from JuliaCon ticket sales and sponsorships go to NumFOCUS which then pays vendors for services required to make JuliaCon happen and reimburse anyone who has reimbursable conference-related expenses. Excess money &#40;if any&#41; from JuliaCon goes into the same pool as donations. JuliaCon finances are managed by the finance chair and approved by the <a href="https://juliacon.org/2021/committee/">JuliaCon organizing committee</a> as representatives of the project and community. All money that goes in and out of NumFOCUS is a matter of <a href="https://numfocus.org/legal">public record</a> since it is a nonprofit.</p>
+<h2 id="related_organizations_with_no_governance_role"><a href="#related_organizations_with_no_governance_role" class="header-anchor">Related Organizations With No Governance Role</a></h2>
+<p>There are organizations that people sometimes mistakenly believe have some kind of official control over the Julia project. This section details two of them, but please note that neither has any official relationship to the Julia project, nor any governance capacity with respect to the project. Individuals who have some control over the project and happen to belong to these organizations, have that control as individuals and not as members of those organizations and take the separation of those roles quite seriously.</p>
+<h3 id="the_julia_lab"><a href="#the_julia_lab" class="header-anchor">The Julia Lab</a></h3>
+<p>A lot of the early work on the development of core Julia was done at MIT in what is known as <a href="https://julia.mit.edu">The Julia Lab</a> under the direction of professor Alan Edelman. All of the co-creators of Julia have been part of the lab at some point. In those early days, it wasn&#39;t called the Julia Lab yet, it was just an office where some people worked on high performance computing, numerical linear algebra, <a href="https://en.wikipedia.org/wiki/Random_matrix">random matrix theory</a>, and this new programming language called Julia. Since those early days, things have gotten a lot more organized under the leadership &#40;in chronological order&#41; of <a href="https://github.com/jiahao">Jiahao Chen</a>, <a href="https://github.com/andreasnoack">Andreas Noack</a>, <a href="https://github.com/vchuravy">Valentin Churavy</a>, and <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a>. The Julia Lab remains a steady source of major innovations and contributions to Julia.</p>
+<p>There are several other groups at MIT that have made major contributions to Julia over the years besides the Julia Lab. <a href="https://en.wikipedia.org/wiki/Steven_G._Johnson">Steven Johnson</a>, also a <a href="https://math.mit.edu/~stevenj/">professor at MIT</a>, heads up his own group but in his spare time has become one of the most prolific contributors to Julia &#40;currently #10 by commits&#41;. The <a href="http://jump.dev/">JuMP</a> and <a href="https://github.com/JuliaLabs/Cassette.jl">Cassette</a> projects are primarily developed by current and former members of professor Juan Pablo Vielma’s optimization research group at <a href="https://orc.mit.edu/">MIT Operations Research Center</a>. There are so many research groups at MIT using Julia these days, making major contributions to its ecosystem and to science, that it has become commonplace for Alan to discover that some neighbor of his at <a href="https://www.csail.mit.edu">CSAIL</a> is using Julia completely unbeknownst to him. So definitely don’t consider this list exhaustive. And of course, there’s incredible work being done on Julia by people at many other universities all around the world.</p>
+<h3 id="juliahub"><a href="#juliahub" class="header-anchor">JuliaHub</a></h3>
+<p>In 2015, the four co-creators of Julia along with <a href="https://en.wikipedia.org/wiki/Keno_Fischer">Keno Fischer</a> &#40;<a href="https://github.com/keno">Github</a>, <a href="https://twitter.com/KenoFischer">Twitter</a>&#41; and <a href="https://www.linkedin.com/in/deepakvinchhi/">Deepak Vinchhi</a> founded Julia Computing &#40;now <a href="https://juliahub.com/">JuliaHub</a>&#41;, a United States C corporation. JuliaHub provides products, support and services around Julia and <a href="https://juliaacademy.com">JuliaAcademy</a>. The company employs many of the top contributors to Julia itself &#40;half of the top ten contributors by commits&#41; and to major Julia packages, especially for simulation, data science and machine learning. Even though there’s no formal connection between the company and the open source project, JuliaHub is deeply committed to Julia’s success and is proud to sponsor JuliaCon each year as well as drive open source Julia development.</p>
+<h2 id="questions"><a href="#questions" class="header-anchor">Questions</a></h2>
+<p>If you have questions about Julia&#39;s governance structure, please reach out via email to <code>contact@julialang.org</code>.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2351/project">About</a></li>
+        <li><a href="/previews/PR2351/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2351/governance/">Governance</a></li>
+        <li><a href="/previews/PR2351/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2351/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2351/install/">Install</a></li>
+        <li><a href="/previews/PR2351/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2351/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2351/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2351/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2351/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2351/community/">Community</a></li>
+        <li><a href="/previews/PR2351/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2351/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2351/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2351/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2351/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2351/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2351/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2351/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2351/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/previews/PR2351/libs/groups.js"></script>
+    <script src="/previews/PR2351/libs/map.js"></script>
+  </body>
+</html>

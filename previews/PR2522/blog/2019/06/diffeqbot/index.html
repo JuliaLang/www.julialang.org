@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme'),d=t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');var l=document.createElement('link');l.rel='preload';l.as='image';l.setAttribute('fetchpriority','high');l.href='/previews/PR2522/assets/infra/'+(d?'logo-dark':'logo')+'.svg';document.head.appendChild(l);})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2522/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2522/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background; navbar logo preloaded dynamically in head.html to pick the correct theme variant) -->
+<link rel="preload" href="/previews/PR2522/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2522/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2522/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2522/css/app.css">
+<link rel="stylesheet" href="/previews/PR2522/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2522/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2522/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2522/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Hello @DiffEqBot</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2522/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2522/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Hello @DiffEqBot">
+<meta property="og:description" content=" Hello @DiffEqBot | Hi! Today we all got a new member to the DiffEq family. Say hi to our own DiffEqBot (https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a repository (https://github.com/DiffE... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2522/blog/2019/06/diffeqbot/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Hello @DiffEqBot",
+  "description": "Hello @DiffEqBot | Hi! Today we all got a new member to the DiffEq family. Say hi to our own DiffEqBot (https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a repository (https://github.com/DiffE...",
+  "image": "https://julialang.netlify.app/previews/PR2522/assets/images/julia-open-graph.png",
+  "datePublished": "2019-06-18T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "Kanav Gupta", "url": "https://github.com/kanav99"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2522/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2522/blog/2019/06/diffeqbot/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2522/">
+          <img alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <script>document.querySelector('.navbarjulialogo').src='/previews/PR2522/assets/infra/'+(document.documentElement.getAttribute('data-theme')==='dark'?'logo-dark':'logo')+'.svg'</script>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2522/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2522/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2522/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2522/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2522/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2522/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="gh-nav-btn" href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener" aria-label="Star JuliaLang/julia on GitHub">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg>
+              Star
+            </a>
+            <a class="gh-nav-btn" href="https://github.com/sponsors/JuliaLang" target="_blank" rel="noopener" aria-label="Sponsor @JuliaLang on GitHub">
+              <svg class="gh-nav-heart" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"/></svg>
+              Sponsor
+            </a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>Hello @DiffEqBot</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p>
+          
+            <span class="blog-meta-date">18 June 2019</span> |
+          
+          
+            <span class="blog-meta-author"></span>
+          
+          
+            <span class="blog-meta-author"><a href="https://github.com/kanav99">Kanav Gupta</a></span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2019/06/diffeqbot.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Hi&#33; Today we all got a new member to the DiffEq family. Say hi to our own <a href="https://github.com/DiffEqBot">DiffEqBot</a> - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a <a href="https://github.com/DiffEqBot/Reports">repository</a>. What&#39;s special about this is that it is completely stateless &#40;no databases involved at all, just juggling between repositories&#33;&#41; and it has no exposed public URLs. Even though highly inspired by Nanosoldier, this has a completely unique workflow.</p>
+<div class="franklin-toc"><ol><li><a href="#how_do_you_make_it_work">How do you make it work?</a></li><li><a href="#how_does_diffeqbot_work_internally">How does DiffEqBot work internally?</a></li><li><a href="#configuring_the_bot">Configuring the Bot</a></li><li><a href="#access_control_and_security">Access Control and Security</a></li><li><a href="#shortcomings_and_road_ahead">Shortcomings and Road ahead</a></li></ol></div>
+<h2 id="how_do_you_make_it_work"><a href="#how_do_you_make_it_work" class="header-anchor">How do you make it work?</a></h2>
+<p>So what all you need to do is call <code>@DiffEqBot runbenchmarks</code> in a comment in a PR of a JuliaDiffEq repository and it will do all the work for you.  It will benchmark your pull request against the current master and post the link of report when the job gets completed. Found a bug in PR and now you don&#39;t need to complete previous job? Just comment <code>@DiffEqBot abort</code> and it won&#39;t run now. You also need to maintain two folders <code>diagrams</code> &#40;For diagrams generation of the report&#41; and <code>benchmark</code>&#40;for comparing the results with master&#41; &#40;like <code>test</code> folder&#41; in the root of your repository. <code>benchmark</code> folder should have <code>benchmark/runbenchmarks.jl</code> &#40;it uses the package <code>PkgBenchmark</code>&#41; and <code>diagrams</code> should have <code>diagrams/diagrams.jl</code>. You can store <code>REQUIRE</code>/<code>Project.toml</code> in the <code>diagrams</code> folder to define the dependencies specifically for <code>diagrams</code> generation.</p>
+<p>For collecting diagrams, all you have to do is to make a dictionary called <code>DIAGRAMS</code> and save all the plot references in that dictionary. For eg -</p>
+<pre><code class="julia hljs">DIAGRAMS = <span class="hljs-built_in">Dict</span>()
+sol = solve(prob, Tsit5())
+DIAGRAMS[<span class="hljs-string">&quot;Fig1&quot;</span>] = plot(sol)</code></pre>
+<p>Right now, <code>DIAGRAMS</code> cannot be a recursive dictionary, i.e. an element of the dictionary can only be a reference to the plot.</p>
+<h2 id="how_does_diffeqbot_work_internally"><a href="#how_does_diffeqbot_work_internally" class="header-anchor">How does DiffEqBot work internally?</a></h2>
+<p>DiffEqBot works by jumping across many repositories and it has been all possible due to awesome APIs both GitHub and Gitlab has provided us with&#33; I will explain the workflow of DiffEqBot in the steps it take to get a particular job done -</p>
+<ol>
+<li><p>You make a comment on the pull request to run the benchmarks. With the help of GitHub webhooks, <code>comment</code> event is posted on a Heroku app. You get the repository&#39;s name and pull request number where this comment is made. It makes sure all the sanity checks, like if the person can run benchmarks or not, or the repository is registered or not etc.</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/YoigTvy.png" alt="GitHub PR comment triggering DiffEqBot benchmark" /></p>
+<ol start="2">
+<li><p>DiffEqBot checks if there is another job is pending/running for the same pull request. It rejects the request if there is, otherwise it accepts the job. It makes the respective comment on the GitHub PR. This is done using the <a href="https://docs.gitlab.com/ee/api/jobs.html">Jobs API</a> of Gitlab. &#40;I know you must be confused from where did Gitlab come from; this will be explained in the next point&#41;</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/lWS8i7X.jpg" alt="DiffEqBot checking for pending jobs" /></p>
+<ol start="3">
+<li><p>Here comes the tricky part. We have a separate dedicated Gitlab private repository called <code>BenchmarkingRepo</code> which is basically an empty repository, but plays an important role which would be explained now. DiffEqBot checks out a branch with name formatted as <code>REPONAME-PR</code> and generates a Gitlab CI configuration script &#40;<code>.gitlab-ci.yml</code>&#41; and makes a commit on this branch. What this configuration does is, pull the PR where the request is made, run the benchmarks, and post the results back to the bot. Basically the script is -</p>
+</li>
+</ol>
+<pre><code class="yaml hljs"><span class="hljs-attr">main:</span>
+  <span class="hljs-attr">script:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">clone</span> <span class="hljs-string">https://github.com/${org}/${repo}</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">cd</span> <span class="hljs-string">${repo}</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">fetch</span> <span class="hljs-string">origin</span> <span class="hljs-string">pull/${pr}/head:pr/${pr}</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">checkout</span> <span class="hljs-string">pr/${pr}</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">julia</span> <span class="hljs-string">-e</span> <span class="hljs-string">&quot;using Pkg;Pkg.clone(pwd());&quot;</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">cd</span> <span class="hljs-string">..</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">julia</span> <span class="hljs-string">some_script_to_run_benchmarks.jl</span> <span class="hljs-string">&quot;${repo}&quot;</span> <span class="hljs-string">&quot;${pr}&quot;</span> <span class="hljs-string">&quot;${commit}&quot;</span>
+
+<span class="hljs-attr">failed_job:</span>
+  <span class="hljs-attr">script:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">curl</span> <span class="hljs-string">&quot;https://endpoint_to_tell_that_report_failed?repo=${repo}&amp;pr=${pr}&amp;commit=${commit}&quot;</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">on_failure</span></code></pre>
+<p><img src="https://i.imgur.com/ORRPWx7.jpg" alt="DiffEqBot generating Gitlab CI configuration" /></p>
+<ol start="4">
+<li><p>As soon as we make this commit on the <code>BenchmarkingRepo</code> on the branch, the Gitlab CI detects that this pushed branch has a config file in it and it goes wild. It knows now that it needs to run this script&#33; It looks for available Gitlab Runners. We don&#39;t use shared runner as they are not suitable for benchmarking jobs. We have our own dedicated Gitlab Runner for this purpose.</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/vYvx4Ta.jpg" alt="Gitlab CI detecting the benchmark branch" /></p>
+<ol start="5">
+<li><p>In the <code>some_script_to_run_benchmarks.jl</code> file, we make a request back to DiffEqBot along with the report in JSON format in the end. When this happens, DiffEqBot makes a commit on the Reports repository on GitHub submitting the markdown script.</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/49pIrAe.jpg" alt="DiffEqBot submitting benchmark report" /></p>
+<ol start="6">
+<li><p>Then it makes a comment on the same PR notifying that the job is complete and report is generated.</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/XN8sQMo.png" alt="DiffEqBot commenting that the benchmark report is complete" /></p>
+<p>Voila 🎉 The job is done, all thanks to DiffEqBot&#33;</p>
+<h2 id="configuring_the_bot"><a href="#configuring_the_bot" class="header-anchor">Configuring the Bot</a></h2>
+<p>All the configuration of DiffEqBot is done through a file <code>config.json</code> in the Heroku Dyno. It contains all sorts of information you need to pass to the Bot so that it works right. That means to deploy your own bot, you only need to edit this file. The <code>config.json</code> file looks something like this -</p>
+<pre><code class="json hljs"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;admin&quot;</span>               <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;kanav99&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;homepage_url&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://appnameffeqbot.herokuapp.com&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;org&quot;</span>                 <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JuliaDiffEq&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;registered_repos&quot;</span>    <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;OrdinaryDiffEq.jl&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;benchmarkers&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;kanav99&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;ChrisRackauckas&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;bot_name&quot;</span>            <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;DiffEqBot&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;gitlab_runner_secret&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;secret_secret_secret&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;github_app&quot;</span>          <span class="hljs-punctuation">:</span>
+    <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;client_id&quot;</span>           <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;github-app-client-id&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;client_secret&quot;</span>       <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;github-app-client-secret&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;bot_endpoint&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/bot/secret/endpoint&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;gitlab_account&quot;</span>      <span class="hljs-punctuation">:</span>
+    <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;benchmarking_repo_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">12345678</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;access_token&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;access_token_of_bot_account_gitlab&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;github_account&quot;</span>      <span class="hljs-punctuation">:</span>
+    <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;access_token&quot;</span>        <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;access_token_of_bot_account_gitlab&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<ul>
+<li><p><code>admin</code> -  This is the admin and maintainer of the bot. Bot will ping this person in case of any problem.</p>
+</li>
+<li><p><code>homepage_url</code> - This is the URL of the heroku app of bot. It&#39;s named like this because we may host this as the homepage of the frontend of the bot.</p>
+</li>
+<li><p><code>org</code> - Organization which deployed the bot</p>
+</li>
+<li><p><code>registered_repos</code> - These are the repositories that will work with DiffEqBot. You can <code>runbenchmarks</code> from these repositories only.</p>
+</li>
+<li><p><code>benchmarkers</code> - An array of GitHub handles of members who can run benchmarks &#40;see <a href="#access_control_and_security">the next section</a> for more information&#41;</p>
+</li>
+<li><p><code>bot_name</code> - Handle of the bot on GitHub and Gitlab</p>
+</li>
+<li><p><code>gitlab_runner_secret</code> - This is the token to be attached by the Gitlab Runner for every request it makes to the bot. If this token is not right, Bot rejects any request made by the runner.</p>
+</li>
+<li><p><code>github_app.client_id</code>/<code>github_app.client_secret</code> - You have to make an instance of a Github App for the bot, these are the client ID and client secret of the same app.</p>
+</li>
+<li><p><code>github_app.bot_endpoint</code> - Github App interacts with the Heroku app by a webhook. This is the endpoint where the app should make requests.</p>
+</li>
+<li><p><code>gitlab_account.benchmarking_repo_id</code> - Project ID of the BenchmarkingRepo on Gitlab</p>
+</li>
+<li><p><code>gitlab_account.access_token</code> - Gitlab Personal Access token of Bot account with repo:write rights.</p>
+</li>
+<li><p><code>github_account.access_token</code> - Github Personal access token with <code>public_repo</code> scope. You can directly generate this <a href="https://github.com/settings/tokens/new?description&#61;DiffEqBot&amp;scopes&#61;public_repo">here</a>.</p>
+</li>
+</ul>
+<h2 id="access_control_and_security"><a href="#access_control_and_security" class="header-anchor">Access Control and Security</a></h2>
+<p>We have for now given access to only certain members of the organization. We call these members &quot;Benchmarkers&quot;. Basically there is an array called <code>benchmarkers</code> in the bot configuration. When you make a comment in repository, the GitHub webhook provides you with the handle of the person which made the comment, so that way you can check if this person is in the <code>benchmarkers</code> list. The main reason behind this restriction is that you are allowing code from a non-member to be run on your runner. This can be very bad for your machine. Dockerizing the runner can help in this situation. Also currently, there is no provision to provide repository wise access. This can be done easily and expect this patch soon&#33; Another thing which would be needed is easy access control - you cannot edit the heroku dyno everytime. What all we can do is</p>
+<ol>
+<li><p>Make a repository &#40;yet again&#41; for this purpose - maintain a heirarchial access control in its file&#40;s&#41;. For requesting access, you make a PR over there and once its approved and merged - you get the permission to run benchmarks.</p>
+</li>
+<li><p>Add the command <code>addbenchmarker</code> to DiffEqBot which would make the specified person a benchmarker. Internally this would need the Bot to make a commit to the access-control repository &#40;remember that the bot is stateless&#41;.</p>
+</li>
+</ol>
+<h2 id="shortcomings_and_road_ahead"><a href="#shortcomings_and_road_ahead" class="header-anchor">Shortcomings and Road ahead</a></h2>
+<p>I absolutely love this new member of our community. But it still has several shortcomings. As seen above, due to security concerns, we have allowed only certain members of the organization access to run the benchmarks. Also, we have a basic frontend ready for display of reports, but an even more better design is welcome&#33; We might also need more commands for DiffEqBot than just <code>runbenchmarks</code> and <code>abort</code>. All these extra features would be a cherry on top. I also plan to make it open source and maintain a proper documentation so that other communities can also deploy this for their uses and maybe help in its development too&#33;</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script defer src="/previews/PR2522/libs/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){hljs.configure({tabReplace:'    '});hljs.highlightAll();});</script>
+
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2522/project">About</a></li>
+        <li><a href="/previews/PR2522/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2522/governance/">Governance</a></li>
+        <li><a href="/previews/PR2522/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2522/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2522/downloads">Install</a></li>
+        <li><a href="/previews/PR2522/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2522/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2522/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2522/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2522/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2522/community/">Community</a></li>
+        <li><a href="/previews/PR2522/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2522/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2522/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2522/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2522/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2522/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2522/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

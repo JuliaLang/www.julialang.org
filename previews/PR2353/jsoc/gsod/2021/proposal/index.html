@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2353/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2353/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2353/css/app.css">
+<link rel="stylesheet" href="/previews/PR2353/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2353/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2353/libs/buttons.js"></script>
+<script src="/previews/PR2353/libs/clipboard.min.js"></script>
+<script src="/previews/PR2353/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Google Season of Docs 2021 Proposal</title>   
+
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Google Season of Docs 2021 Proposal">
+<meta property="og:description" content="">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2353/">
+          <img src="/previews/PR2353/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2353/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2353/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2353/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2353/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2353/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2353/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsod/2021/proposal.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="google_season_of_docs_2021_proposal"><a href="#google_season_of_docs_2021_proposal" class="header-anchor">Google Season of Docs 2021 Proposal</a></h1>
+<h2 id="proposal_title_-_create_a_comprehensive_julia_contributing_guide"><a href="#proposal_title_-_create_a_comprehensive_julia_contributing_guide" class="header-anchor">PROPOSAL TITLE - Create a Comprehensive Julia Contributing Guide</a></h2>
+<h3 id="about_your_organization"><a href="#about_your_organization" class="header-anchor">About your organization</a></h3>
+<blockquote>
+<p>In this section, tell us about your organization or project in a few short paragraphs. What problem does your project solve? Who are your users and contributors? How long has your organization or project been in existence? Give some context to help us understand why funding your proposal would positively impact open source and the world.</p>
+</blockquote>
+<p>The Julia Programming Language &#40;current version 1.5.4, first released in 2012&#41; is an MIT-licensed High-performance programming language designed for speed, usability, and reproducibility. Given Julia’s speed, it is considered by many to be the best-in-class tool for scientific computing. Since 2012, the domain in which Julia is being used to solve complex computation problems has expanded along with our user base. We currently have over 5,000 registered Julia packages, 25 Million &#43; downloads of Julia, and thousands of contributors worldwide. Julia is also one of the fastest-growing &#40;IEEE Programming Language rankings 2019&#41; and most loved &#40;2019 Stack Overflow Developer Survey&#41; programming languages due in large part to the dedicated community of users and developers alike. Given that the Julia community is still relatively small, we feel that strategic investments now in making the language and ecosystem friendly to new contributors will enable the next generation of developers to be a part of this friendly and vibrant community. About your project</p>
+<h3 id="your_projects_problem"><a href="#your_projects_problem" class="header-anchor">Your project’s problem</a></h3>
+<blockquote>
+<p>Tell us about the problem your project will help solve. Why is it important to your organization or project to solve this problem?</p>
+</blockquote>
+<p>Right now, when someone wants to get started in Julia with the intent to contribute to Julia Packages across the ecosystem or the core language, there is really no guide to help them. We implicitly require that folks already have some background in OSS as well as an understanding of the inner workings of the Julia Ecosystem. This may have been a fair assumption to make in the past, but as Julia continues to grow in popularity, more and more folks are coming to try. Julia does not have an extensive Open Source nor technical background, so we need to step up and meet our community where they are. This project would create a comprehensive contributor guide geared to be a one-stop-shop for all things contributing to Julia. It would cover the basics of OSS, how to get involved with a project, what to say to open source maintainers, how to structure your PR’s to make sure they get approved, and much more. Most of these ideas have been articulated already, and we would just be including them in our guide. Our hope with this project is that it would significantly reduce the barrier to entry for folks interested in learning Julia and making contributions to the core language or the package ecosystem.</p>
+<h3 id="your_projects_scope"><a href="#your_projects_scope" class="header-anchor">Your project’s scope</a></h3>
+<blockquote>
+<p>Tell us about what documentation your organization will create, update, or improve. If some work is deliberately not being done, include that information as well. Include a time estimate and whether you have already identified organization volunteers and a technical writer to work with your project.</p>
+</blockquote>
+<p>The project to update the contributing guide will:</p>
+<ul>
+<li><p>Audit the existing contributing guide for the core language &#40;https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md&#41; Work with community leaders and members to identify the different groups of folks we want to write guides for &#40;contributors, professionals, open-source enthusiasts, etc.&#41;</p>
+</li>
+<li><p>Create guides geared towards each of these different groups &#40;perhaps making them similar in content but with different levels of verboseness&#41;</p>
+</li>
+<li><p>Create general guides for things like making a Pull Request or Opening an Issue &#40;leveraging existing materials we have&#41;.</p>
+</li>
+<li><p>Highlight all of the non-technical ways folks can contribute to the Julia Language and the ecosystem.</p>
+</li>
+<li><p>Work with existing and new community members to make sure that the new section of the website &#40;https://julialang.org/contribute/&#41; is comprehensive yet still light-handed such that first-time contributors are not overwhelmed. Work that is out-of-scope for this project:</p>
+</li>
+<li><p>Unless significant issues are uncovered with the contributing guide &#40;https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md&#41;, updating that document will be out of scope.</p>
+</li>
+<li><p>One of our community members has written a great first PR guide &#40;https://kshyatt.github.io/post/firstjuliapr/&#41; we plan to leverage this to avoid duplicating any work. We currently have a couple of technical writers who have expressed interest &#40;introduced to us by some of our 2020 GSoD writers&#41; in working with the Julia Language for 2021. We also plan to put out a call for interest in our Discourse shortly after submitting our application. This project will be supported by Avik Sengupta, Viral Shah, with input from our past GSoD writers, who will provide periodic reviews. We will also seek input from the community via PR review and feedback requests on https://Discourse.julialang.org.</p>
+</li>
+</ul>
+<h3 id="measuring_your_projects_success"><a href="#measuring_your_projects_success" class="header-anchor">Measuring your project’s success</a></h3>
+<blockquote>
+<p>How will you know that your new documentation has helped solve your problem? What metrics will you use, and how will you track them?</p>
+</blockquote>
+<p>Given the scope of this project and the large base of existing contributors, we intend to be very intentional about how we try to measure success. On the one hand, it will be simple to track core Julia Language contributors &#40;and hopefully increase the number of PR’s made and merged by new folks&#41;. However, the scope of this project is beyond core Julia itself and extends to the entire Julia Ecosystem. That is why we plan to try and add a hashtag or a specific bot user, which we ask folks to tag on GitHub when making a PR/Issue/Commit inspired by the new contributing guide &#40;think to cite a paper&#41;. This will help us better understand the broader impact of the guide outside the bounds of the core Julia repo. We will track two main metrics each month after the guide goes live—first, the number of pageviews the new contributing guide section receives. Second, the number of folks who “@” mention the contributor guide bot user, which would look something like: “Here is my PR, it does XYZ, etc. @JuliaContributorBot”. Note that this may be a hashtag instead. We need to explore which is easier to track on GitHub. This will show us that folks read the guide and allow us to track the impact across the entire ecosystem.</p>
+<p>We would consider the project successful if, after the new guide goes live:</p>
+<ul>
+<li><p>100 &#43; mentions of the Contributing guide on GitHub per month &#40;this number is likely to start off smaller as we ramp up awareness of the new doc and tagging process&#41;</p>
+</li>
+<li><p>3,000 &#43; pageviews on the guide per month &#40;this is slightly lower than our “learning page” gets per month, so we think this is a realistic number, and we expect it to grow over time&#41;</p>
+</li>
+</ul>
+<h3 id="project_budget"><a href="#project_budget" class="header-anchor">Project budget</a></h3>
+<p>General guidelines</p>
+<blockquote>
+<p>You can include your budget in your proposal or as a separate link. If your budget is fewer than ten items, we recommend including it in your proposal.</p>
+</blockquote>
+<table><tr><th align="left">Budget item</th><th align="left">Amount</th><th align="left">Running Total</th><th align="left">Notes/justifications</th></tr><tr><td align="left">Technical writer audit and creation of a comprehensive contributor guide.</td><td align="left">6000.00</td><td align="left">6000.00</td><td align="left"></td></tr><tr><td align="left">Volunteer Mentor stipends</td><td align="left">400.00</td><td align="left">6800.00</td><td align="left">2 volunteer stipends x 400 each</td></tr></table>
+<p><strong>TOTAL: 6800.00 USD</strong></p>
+<h3 id="additional_information"><a href="#additional_information" class="header-anchor">Additional information</a></h3>
+<blockquote>
+<p>Include here any additional information that is relevant to your proposal.</p>
+</blockquote>
+<p>Previous experience with technical writers or documentation: In 2020, the Julia Language was a mentoring organization and successfully mentored 3 projects through GSoD. In 2020, we also paid our own technical writers to work on various projects following the same timeline as GSoD. These projects proved to be extremely valuable, and we are hoping to build off their success. This year, we asked a couple of our successful GSoD contributors to leverage their technical writing experience and come back as mentors. We are really excited to have these mentors stay in the community with us and hopefully help the next round of technical writer&#40;s&#41;.</p>
+<p>Previous participation in Season of Docs, Google Summer of Code, or others: In 2020, the Julia Language successfully mentored 3 GSoD projects. 2020 being our first year in GSoD, we learned a ton about what we need to do to support technical writers better. A big lesson learned was the need for project and writer mentors. This is something that we are doing in 2021 with the hope of having content feedback for writer&#40;s&#41; and mentors with technical writing expertise so our writer&#40;s&#41; can continue developing their skills. Another welcome change for GSoD 2021, which we would have implemented on our own, but is not part of the core program, is monthly updates. Given that the timelines can be longer for these projects, it makes sense to check in regularly.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2353/project">About</a></li>
+        <li><a href="/previews/PR2353/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2353/governance/">Governance</a></li>
+        <li><a href="/previews/PR2353/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2353/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2353/install/">Install</a></li>
+        <li><a href="/previews/PR2353/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2353/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2353/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2353/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2353/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2353/community/">Community</a></li>
+        <li><a href="/previews/PR2353/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2353/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2353/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2353/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2353/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2353/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2353/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2353/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2353/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/previews/PR2353/libs/groups.js"></script>
+    <script src="/previews/PR2353/libs/map.js"></script>
+  </body>
+</html>

@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2513/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2513/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2513/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2513/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2513/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2513/css/app.css">
+<link rel="stylesheet" href="/previews/PR2513/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2513/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2513/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2513/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>为什么我们要创造Julia (Simplified Chinese)</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2513/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2513/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="为什么我们要创造Julia (Simplified Chinese)">
+<meta property="og:description" content=" 为什么我们要创造Julia (Simplified Chinese) | 我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2513/blog/2012/02/why-we-created-julia-zh_CN/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "为什么我们要创造Julia (Simplified Chinese)",
+  "description": "为什么我们要创造Julia (Simplified Chinese) | 我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们...",
+  "image": "https://julialang.netlify.app/previews/PR2513/assets/images/julia-open-graph.png",
+  "datePublished": "2012-02-14T00:00:00+00:00",
+  "author": [{"@type": "Person", "name": "Jeff Bezanson"}, {"@type": "Person", "name": "Stefan Karpinski"}, {"@type": "Person", "name": "Viral B. Shah"}, {"@type": "Person", "name": "Alan Edelman"}],
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2513/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2513/blog/2012/02/why-we-created-julia-zh_CN/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2513/">
+          <img src="/previews/PR2513/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2513/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2513/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2513/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2513/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2513/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2513/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>为什么我们要创造Julia (Simplified Chinese)</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p style="font-size: 1.17em; margin-top: 0;">
+          
+            <span style="font-weight: lighter;">14 February 2012</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;">Jeff Bezanson, Stefan Karpinski, Viral B. Shah, Alan Edelman</span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2012/02/why-we-created-julia-zh_CN.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<a href="https://github.com/JeffBezanson/">Jeff Bezanson</a>
+<a href="https://karpinski.org/">Stefan Karpinski</a>
+<a href="https://github.com/ViralBShah/">Viral B. Shah</a>
+<a href="https://math.mit.edu/~edelman/">Alan Edelman</a>
+
+<blockquote>
+<p>这是一篇重译，参考了2012年的一篇豆瓣（链接在最后）。</p>
+</blockquote>
+<p>简短来讲，是因为我们很贪婪。</p>
+<p>我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们像是疯了一样用R画了越来越多的图，而C是我们的硬核摇滚（也有大杀器之意）。</p>
+<p>我们热爱所有这些语言，他们实在很好很强大。在我们从事的领域（科学计算，机器学习，数据挖掘，大规模线性代数计算，分布式和并行计算）中，每一种语言都对某一项工作的一项特定需求非常完美，但是却无法胜任其它需求。于是使用什么语言都需要我们去权衡。</p>
+<p>而我们很贪婪，我们还想要更多。</p>
+<p>我们想要的是一个自由开源的语言，并且它同时拥有C的速度和Ruby的动态性；我们想要一个具有<a href="">同像性</a>（可以将语言的脚本本身当作数据进行处理）的语言，它有着真正的和lisp一样的宏，但是却像Matlab一样有着显然的，类似于数学表达式的标记；我们想要一个既可以像Python一样作为通用编程语言的工具，又可以像R那样适用于统计分析，能像Perl那样自然地处理字符串，能像Matlab那样给力地处理矩阵运算，它还要能像shell一样作为胶水将各种程序粘合在一起；我们想要一个简单易学的语言，同时它还能让最苛刻的魔法师们（hackers）开心。我们希望它是交互式的，但我们也希望它能被编译。</p>
+<p>我们刚刚有提它要和C一样快嘛？！）</p>
+<p>当我们在构思这些需求的时候，我们发现它还得有Hadoop这样强大的分布式能力，却不想要Hadoop里面那些冗长Jave和XML模板，更不想被被迫在几个GB的日志文件和几百台机器里找bug。我们不想要那些令人费解的层次结构。我们想让简单的标量循环能被编译成仅用寄存器和一块CPU的干净的机器码。我们希望简单地写下<code>A*B</code>就能够在成千上万的机器上用成千上万地运算来计算这个庞大的矩阵乘法。</p>
+<p>如无必要，那就不用声明类型。但当我们需要多态函数（polymorphic functions）时，我们也想要用泛型编程（generic programming）仅仅书写一次算法，就能够在无限多的类型上使用。我们想要多重派发（multiple dispatch）来为一个函数所有可能的参数选出最佳的执行方法。这些参数可能有着不同定义，不同类型，但是却有着相同功能。在拥有以上能力的同时，我们还希望这种语言简单，干净。</p>
+<p>要求有点多，是不是？</p>
+<p>尽管我们意识到了自己有多贪心，我们还是想要拥有这些功能。大概在两年半之前，我们开始创造这种能满足我们贪念的语言。它还没有完工——但是已经可以发布一个1.0版本了（其实等了6年才要发布）——我们创造的这个语言叫做Julia。它已经实现了我们这次乱七八糟需求的90&#37;，而现在她需要来自更多人的乱七八糟的需求，来让她走得更远。如果你也是一位贪心不足，不可理喻，需索无度的码场二逼青年，希望你能来试试这个东东。</p>
+
+<p>
+作者：Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman
+<br>
+译者：Roger
+<br>
+翻译自：<a href="/previews/PR2513/blog/2012/02/why-we-created-julia/">Why we create Julia</a>
+<br>
+参考自：<a href="https://www.douban.com/note/203945680/">豆瓣：为什么我们要创造Julia</a>
+</p>
+
+<p>Trackbacks:</p>
+<ul>
+<li><p><a href="https://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/">Reddit</a></p>
+</li>
+<li><p><a href="https://news.ycombinator.com/item?id&#61;3606380">Hacker News</a></p>
+</li>
+<li><p><a href="http://lambda-the-ultimate.org/node/4452">Lambda-the-Ultimate</a></p>
+</li>
+<li><p><a href="https://www.phoronix.com/scan.php?page&#61;news_item&amp;px&#61;MTA2ODg">Phoronix</a></p>
+</li>
+<li><p><a href="https://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/">The Endeavor &#40;John D. Cook&#41;</a></p>
+</li>
+<li><p><a href="http://www.walkingrandomly.com/?p&#61;87">Walking Randomly &#40;Mike Croucher&#41;</a></p>
+</li>
+<li><p><a href="https://dmbates.blogspot.in/2012/03/julia-version-of-multinomial-sampler_12.html">Douglas Bates</a></p>
+</li>
+<li><p><a href="https://vincebuffalo.com/blog/2012/03/07/thoughts-on-julia-and-r.html">Vince Buffalo</a></p>
+</li>
+<li><p><a href="https://www.johnmyleswhite.com/notebook/2012/03/31/julia-i-love-you/">John Myles White</a></p>
+</li>
+<li><p><a href="https://habrahabr.ru/blogs/programming/138577/">Habrahabr.ru &#40;Russian&#41;</a></p>
+</li>
+<li><p><a href="https://www.linux.org.ru/news/opensource/7440863">Linux.org.ru &#40;Russian&#41;</a></p>
+</li>
+<li><p><a href="http://www.hellogcc.org/?p&#61;20">hellogcc.org &#40;Chinese&#41;</a></p>
+</li>
+<li><p><a href="https://linuxfr.org/news/version-1-0-de-julia">Linuxfr.org &#40;French&#41;</a></p>
+</li>
+</ul>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2513/project">About</a></li>
+        <li><a href="/previews/PR2513/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2513/governance/">Governance</a></li>
+        <li><a href="/previews/PR2513/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2513/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2513/downloads">Install</a></li>
+        <li><a href="/previews/PR2513/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2513/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2513/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2513/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2513/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2513/community/">Community</a></li>
+        <li><a href="/previews/PR2513/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2513/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2513/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2513/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2513/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2513/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2513/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

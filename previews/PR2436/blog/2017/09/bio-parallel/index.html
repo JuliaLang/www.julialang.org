@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2436/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2436/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2436/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2436/css/app.css">
+<link rel="stylesheet" href="/previews/PR2436/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2436/css/fonts.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2436/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2436/css/juliamono.css"></noscript>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2436/libs/buttons.js"></script>
+<script src="/previews/PR2436/libs/clipboard.min.js"></script>
+<script src="/previews/PR2436/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>GSoC 2017: Parallelism in BioJulia</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="GSoC 2017: Parallelism in BioJulia">
+<meta property="og:description" content=" GSoC 2017: Parallelism in BioJulia | In this summer, I have worked on a project to develop tools that make BioJulia... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2436/">
+          <img src="/previews/PR2436/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2436/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2436/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2436/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2436/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2436/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2436/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>GSoC 2017: Parallelism in BioJulia</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <h3>
+          
+            <span style="font-weight: lighter;">7 September 2017</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;">Kenta Sato</span>
+          
+        </h3>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a type="application/rss+xml"
+         href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/09/bio-parallel.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>In this summer, I have worked on a project to develop tools that make BioJulia run faster. As an outcome, Automa.jl now generates more efficient code to parse text files, ConcurrentCalls.jl runs multiple tasks in parallel, and simple and efficient interfaces to various compression formats are provided in TranscodingStreams.jl.</p>
+<h2 id="instruction-level_parallelism"><a href="#instruction-level_parallelism" class="header-anchor">Instruction-level parallelism</a></h2>
+<p>Instruction-level parallelism is a technique to run multiple instructions simultaneously on a CPU core. This may sound odd but actually it is possible because CPU instructions are executed in multiple stages such as fetch, decode, execute, and so on. This is called <a href="https://en.wikipedia.org/wiki/Instruction_pipelining">instruction pipelining</a> and modern processors can execute these stages in parallel and hence processing throughput may be boosted by utilizing it.</p>
+<p>I implemented automatic loop unrolling in <a href="https://github.com/BioJulia/Automa.jl">Automa.jl</a>, which is a package to generate finite state machine &#40;FSM&#41; from regular expressions. We use it to generate high-performance parsers for various file formats used in bioinformatics.  The loop unrolling factor can be specified as an argument of <a href="https://biojulia.net/Automa.jl/latest/references.html#Automa.CodeGenContext"><code>Automa.CodeGenContext</code></a>. For example, you can specify the value 8 in this way: <code>context &#61;
+Automa.CodeGenContext&#40;loopunroll&#61;8&#41;</code> and that is all. The code generator of Automa.jl will automatically unroll loops found in an FSM.</p>
+<p>Automa.jl works by incrementally increasing a reading position variable and reading data byte by byte from a buffer. This is difficult to unroll because the position variable creates a critical path of data dependencies. So, Automa.jl unrolls particular nodes in an FSM that have a self edge and have no actions within state transition.</p>
+<p>Let&#39;s see the improvement of performance. <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> and <a href="https://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> are one of the most common file formats to store biological sequences. I benchmarked parsing throughput in these two formats. The throughput improved as the loop unrolling factor was increased and saturated around factor &#61; 10.</p>
+<p><img src="/previews/PR2436/assets/blog/2017-09-07-bio-parallel/fasta-fastq-benchmarks.png" alt="FASTA-FASTQ benchmarks" /></p>
+<p>Unrolled parsing achieved about 1.3 times speedup in both cases.  This benchmark does not include I/O operations but other operations that are required to convert byte data to our data type are included. The improvement may not look surprising, however, we should note that it is achieved almost for free. There is no need to use more CPU cores.</p>
+<h2 id="task-level_parallelism"><a href="#task-level_parallelism" class="header-anchor">Task-level parallelism</a></h2>
+<p><a href="https://github.com/bicycle1885/ConcurrentCalls.jl">ConcurrentCalls.jl</a> is a package that makes function calls &#40;or tasks&#41; run concurrently. It exports a macro <code>@cc</code> that transforms Julia code to code that calls functions on remote processes.  This is a conceptual example of running tasks in parallel:</p>
+<pre><code class="julia hljs">addprocs(<span class="hljs-number">2</span>)
+<span class="hljs-keyword">using</span> ConcurrentCalls
+
+<span class="hljs-keyword">function</span> multitask()
+    <span class="hljs-comment"># Define some time-consuming (say &gt;10ms) task(s).</span>
+    <span class="hljs-keyword">function</span> sum(x, y)
+        sleep(<span class="hljs-number">2</span>)
+        <span class="hljs-keyword">return</span> x + y
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">function</span> prod(x, y)
+        sleep(<span class="hljs-number">1</span>)
+        <span class="hljs-keyword">return</span> x * y
+    <span class="hljs-keyword">end</span>
+
+    <span class="hljs-comment"># Call functions concurrently using multiple processes.</span>
+    <span class="hljs-meta">@cc</span> <span class="hljs-keyword">begin</span>
+        x = sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)       <span class="hljs-comment"># =&gt;  3</span>
+        y = sum(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)       <span class="hljs-comment"># =&gt;  7</span>
+        prod(x, sum(y, <span class="hljs-number">1</span>))  <span class="hljs-comment"># =&gt; 24</span>
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+multitask()  <span class="hljs-comment"># =&gt; 24</span></code></pre>
+<p>In the example above, <code>x &#61; sum&#40;1, 2&#41;</code> and <code>y &#61; sum&#40;3, 4&#41;</code> will be executed in parallel on different processes. These function calls are arranged by a scheduler of ConcurrentCalls.jl and each taks is assigned to a worker process based on some heuristics. The third line inside the <code>@cc</code> macro has two function calls. Each of them will also be assigned to a worker but it never starts until the first two finish. Dependencies of tasks are handled by the scheduler and a task will not be executed until all of its arguments are finished and results are available.</p>
+<p>Execution of tasks are defined in an imperative way and so its semantics would be apparent from the code. Data dependencies are naturally expressed by arguments passed to functions.  The code below shows three examples that use a for loop to describe a job:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># independent tasks</span>
+<span class="hljs-meta">@cc</span> <span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">100</span>
+        task()
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># sequential taks (not parallelizable)</span>
+<span class="hljs-meta">@cc</span> <span class="hljs-keyword">begin</span>
+    a = task1()
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">100</span>
+        a = task2(a)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># biparallel tasks</span>
+<span class="hljs-meta">@cc</span> <span class="hljs-keyword">begin</span>
+    a = task1()
+    b = task2()
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">100</span>
+        a = task3(a)
+        b = task4(b)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+<p>This package is still at a very early stage of development but some simple subset of Julia code can be executed in parallel. See the <a href="https://github.com/bicycle1885/ConcurrentCalls.jl#usage">README</a> page of ConcurrentCalls.jl for more examples and some caveats.</p>
+<h2 id="new_io_apis"><a href="#new_io_apis" class="header-anchor">New I/O APIs</a></h2>
+<p>A difficulty of parallelizing data processing in bioinformatics is that input files are often compressed. The most common compression format, gzip, does not support either parallel decompression or splitting data into smaller chunks. Some special file formats &#40;<a href="https://github.com/BioJulia/BGZFStreams.jl">BGZF</a> for example&#41; can support parallel decompression and chunking but gzip is still slow.</p>
+<p>A recent compression algorithm known as <a href="https://facebook.github.io/zstd/">Zstandard</a> &#40;or Zstd&#41; is much faster than gzip while keeping the compression ratio at the same level of gzip. Moreover, it started to implement an experimental support of <a href="https://github.com/facebook/zstd/blob/dev/contrib/seekable_format/zstd_seekable_compression_format.md">seekable compression format</a>, in which data are split into frames and each of which are compressed independently. Tables to seek to a specific position are stored in <em>skippable</em> frames and hence it can support parallel processing and chunking.</p>
+<p>To support this feature, I implemented an interface package to Zstd, which is already available as <a href="https://github.com/bicycle1885/CodecZstd.jl">CodecZstd.jl</a>. While it does not yet support the seekable format, we can enjoy the performance of Zstd immediately. Also, this package is built on top of <a href="https://github.com/bicycle1885/TranscodingStreams.jl">TranscodingStreams.jl</a>, which offers simple and consistent APIs for many data formats. Currently, <a href="https://github.com/bicycle1885/CodecZlib.jl">gzip &#40;zlib&#41;</a>, <a href="https://github.com/bicycle1885/CodecBzip2.jl">bzip2</a>, <a href="https://github.com/bicycle1885/CodecXz.jl">xz</a>, and <a href="https://github.com/bicycle1885/CodecZstd.jl">zstd</a> are supported. These packages are replacements of <a href="https://github.com/BioJulia/Libz.jl">Libz.jl</a> and <a href="https://github.com/BioJulia/BufferedStreams.jl">BufferedStreams.jl</a> I maintain.</p>
+<h2 id="plans"><a href="#plans" class="header-anchor">Plans</a></h2>
+<p>Speeding up programs never ends. I still have some pending pull requests that are required to work well with these tools &#40;<a href="https://github.com/BioJulia/BioCore.jl/pull/7">https://github.com/BioJulia/BioCore.jl/pull/7</a>, <a href="https://github.com/BioJulia/BioAlignments.jl/pull/4">https://github.com/BioJulia/BioAlignments.jl/pull/4</a>, <a href="https://github.com/BioJulia/BioSequences.jl/pull/25">https://github.com/BioJulia/BioSequences.jl/pull/25</a>&#41;. ConcurrentCalls.jl lacks examples, tests, benchmarks, and many features to be used in real work. CodecZstd.jl will support the seekable format once it gets stable. I really welcome feedbacks of these designs and ideas to improve them further.</p>
+<h2 id="acknowledgments"><a href="#acknowledgments" class="header-anchor">Acknowledgments</a></h2>
+<p>I appreciate contributions of my mentor Shashi Gowda and other members of the Julia community.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/previews/PR2436/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2436/project">About</a></li>
+        <li><a href="/previews/PR2436/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2436/governance/">Governance</a></li>
+        <li><a href="/previews/PR2436/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2436/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2436/downloads">Install</a></li>
+        <li><a href="/previews/PR2436/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2436/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2436/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2436/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2436/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2436/community/">Community</a></li>
+        <li><a href="/previews/PR2436/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2436/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2436/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2436/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2436/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2436/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2025 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2436/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2436/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2436/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/previews/PR2436/libs/groups.js"></script>
+    <script src="/previews/PR2436/libs/map.js"></script>
+  </body>
+</html>

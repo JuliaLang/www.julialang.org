@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme'),d=t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');var l=document.createElement('link');l.rel='preload';l.as='image';l.setAttribute('fetchpriority','high');l.href='/previews/PR2531/assets/infra/'+(d?'logo-dark':'logo')+'.svg';document.head.appendChild(l);})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2531/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2531/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background; navbar logo preloaded dynamically in head.html to pick the correct theme variant) -->
+<link rel="preload" href="/previews/PR2531/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2531/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2531/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2531/css/app.css">
+<link rel="stylesheet" href="/previews/PR2531/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2531/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2531/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2531/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>JSoC 2015 project: NullableArrays.jl</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2531/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2531/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="JSoC 2015 project: NullableArrays.jl">
+<meta property="og:description" content=" JSoC 2015 project: NullableArrays.jl | My project under the 2015 Julia Summer of Code program has been to develop the NullableArrays (https://github.com/JuliaStats/NullableArrays.jl) package, which provides the `NullableArray` data type and its respective interface. I first encountered Julia earlier this year... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2531/blog/2015/10/nullablearrays/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "JSoC 2015 project: NullableArrays.jl",
+  "description": "JSoC 2015 project: NullableArrays.jl | My project under the 2015 Julia Summer of Code program has been to develop the NullableArrays (https://github.com/JuliaStats/NullableArrays.jl) package, which provides the `NullableArray` data type and its respective interface. I first encountered Julia earlier this year...",
+  "image": "https://julialang.netlify.app/previews/PR2531/assets/images/julia-open-graph.png",
+  "datePublished": "2015-10-16T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "David Gold"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2531/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2531/blog/2015/10/nullablearrays/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2531/">
+          <img alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <script>document.querySelector('.navbarjulialogo').src='/previews/PR2531/assets/infra/'+(document.documentElement.getAttribute('data-theme')==='dark'?'logo-dark':'logo')+'.svg'</script>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2531/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2531/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2531/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2531/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2531/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2531/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="gh-nav-btn" href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener" aria-label="Star JuliaLang/julia on GitHub">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg>
+              Star
+            </a>
+            <a class="gh-nav-btn" href="https://github.com/sponsors/JuliaLang" target="_blank" rel="noopener" aria-label="Sponsor @JuliaLang on GitHub">
+              <svg class="gh-nav-heart" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"/></svg>
+              Sponsor
+            </a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>JSoC 2015 project: NullableArrays.jl</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p>
+          
+            <span class="blog-meta-date">16 October 2015</span> |
+          
+          
+            <span class="blog-meta-author"></span>
+          
+          
+            <span class="blog-meta-author">David Gold</span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2015/10/nullablearrays.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>My project under the 2015 <a href="/previews/PR2531/jsoc/">Julia Summer of Code</a> program has been to develop the <a href="https://github.com/JuliaStats/NullableArrays.jl">NullableArrays</a> package, which provides the <code>NullableArray</code> data type and its respective interface. I first encountered Julia earlier this year as a suggestion for which language I ought to learn as a matriculating PhD student in statistics. This summer has been an incredible opportunity for me both to develop as a young programmer and to contribute to an open-source community as full of possibility as Julia&#39;s. I&#39;d be remiss not to thank <a href="https://math.mit.edu/~edelman/">Alan Edelman</a>&#39;s group at MIT, <a href="https://numfocus.org/">NumFocus</a>, and the <a href="https://www.moore.org/">Gordon &amp; Betty Moore Foundation</a> for their financial support, <a href="https://github.com/johnmyleswhite/">John Myles White</a> for his mentorship and guidance, and many others of the Julia community who have helped to contribute both to the package and to my edification as a programmer over the summer. Much of my work on this project was conducted at the <a href="https://www.recurse.com">Recurse Center</a>, where I received the support of an amazing community of self-directed learners.</p>
+<h2 id="the_nullablearray_data_structure"><a href="#the_nullablearray_data_structure" class="header-anchor">The <code>NullableArray</code> data structure</a></h2>
+<p><code>NullableArray</code>s are array structures that efficiently represent missing values without incurring the performance difficulties that face <code>DataArray</code> objects, which have heretofore been used to store data that include missing values. The core issue responsible for <code>DataArray</code>s performance woes concerns the way in which the former represent missing values, i.e. through a token <code>NA</code> object of token type <code>NAType</code>. In particular, indexing into, say, a <code>DataArray&#123;Int&#125;</code> can return an object either of type <code>Int</code> or of type <code>NAType</code>. This design does not provide sufficient information to Julia&#39;s type inference system at JIT-compilation time to support the sort of static analysis that Julia&#39;s compiler can otherwise leverage to emit efficient machine code. We can illustrate as much through following example, in which we calculate the sum of five million random <code>Float64</code>s stored in a <code>DataArray</code>:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> DataArrays
+<span class="hljs-comment"># warnings suppressed…</span>
+
+julia&gt; A = rand(<span class="hljs-number">5_000_000</span>);
+
+julia&gt; D = DataArray(A);
+
+julia&gt; <span class="hljs-keyword">function</span> f(D::<span class="hljs-built_in">AbstractArray</span>)
+           x = <span class="hljs-number">0.0</span>
+           <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(D)
+               x += D[i]
+           <span class="hljs-keyword">end</span>
+           x
+       <span class="hljs-keyword">end</span>
+f (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
+
+julia&gt; f(D);
+
+julia&gt; <span class="hljs-meta">@time</span> f(D)
+  <span class="hljs-number">0.163567</span> seconds (<span class="hljs-number">10.00</span> M allocations: <span class="hljs-number">152.598</span> MB, <span class="hljs-number">9.21</span>% gc time)
+<span class="hljs-number">2.500102419334644e6</span></code></pre>
+<p>Looping through and summing the elements of <code>D</code> is over twenty times slower and allocates far more memory than running the same loop over <code>A</code>:</p>
+<pre><code class="julia hljs">julia&gt; f(A);
+
+julia&gt; <span class="hljs-meta">@time</span> f(A)
+  <span class="hljs-number">0.007465</span> seconds (<span class="hljs-number">5</span> allocations: <span class="hljs-number">176</span> bytes)
+<span class="hljs-number">2.500102419334644e6</span></code></pre>
+<p>This is because the code generated for <code>f&#40;D&#41;</code> must assume that <code>getindex&#40;D, i&#41;</code> for an arbitrary index <code>i</code> may return an object either of type <code>Float64</code> or of type <code>NAType</code> and hence must “box” every object returned from indexing into <code>D</code>. The performance penalty incurred by this requirement is reflected in the comparison above. &#40;The interested reader can find more about these issues <a href="https://www.johnmyleswhite.com/notebook/2014/11/29/whats-wrong-with-statistics-in-julia/">here</a>.&#41;</p>
+<p>On the other hand, <code>NullableArray</code>s are designed to support the sort of static analysis used by Julia’s type inference system to generate efficient machine code. The crux of the strategy is to use a single type — <code>Nullable&#123;T&#125;</code> — to represent both missing and present values. <code>Nullable&#123;T&#125;</code> objects are specialized containers that hold precisely either one or zero values. A <code>Nullable</code> that wraps, say, <code>5</code> can be taken to represent a present value of <code>5</code>, whereas an empty <code>Nullable&#123;Int&#125;</code> can represent a missing value that, if it had been present, would have been of type <code>Int</code>. Crucially, both such objects are of the same type, i.e. <code>Nullable&#123;Int&#125;</code>. Interested readers can hear a bit more on these design considerations in my <a href="https://www.youtube.com/watch?v&#61;2v5k28F80BQ">JuliaCon 2015 lighting talk</a>.</p>
+<p>Here is the result of running the same loop over a comparable <code>NullableArray</code>:</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> NullableArrays
+
+julia&gt; X = NullableArray(A);
+
+julia&gt; <span class="hljs-keyword">function</span> f(X::NullableArray)
+           x = Nullable(<span class="hljs-number">0.0</span>)
+           <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(X)
+               x += X[i]
+           <span class="hljs-keyword">end</span>
+           x
+       <span class="hljs-keyword">end</span>
+f (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">1</span> method)
+
+julia&gt; f(X);
+
+julia&gt; <span class="hljs-meta">@time</span> f(X)
+  <span class="hljs-number">0.009812</span> seconds (<span class="hljs-number">5</span> allocations: <span class="hljs-number">192</span> bytes)
+Nullable(<span class="hljs-number">2.500102419334644e6</span>)</code></pre>
+<p>As can be seen, naively looping over a <code>NullableArray</code> is on the same order of magnitude as naively looping over a regular <code>Array</code> in terms of both time elapsed and memory allocated. Below is a set of plots &#40;drawn with <a href="https://github.com/dcjones/Gadfly.jl">Gadfly.jl</a>&#41; that visualize the results of running 20 benchmark samples of <code>f</code> over both <code>NullableArray</code> and <code>DataArray</code> arguments each consisting of 5,000,000 random <code>Float64</code> values and containing either zero null entries or approximately half randomly chosen null entries.</p>
+<p><img src="/previews/PR2531/assets/blog/2015-10-03-nullablearrays-images/f_plot.png" alt="Benchmark plot of NullableArray vs DataArray for function f" /></p>
+<p>Of course, it is possible to bring the performance of such a loop over a <code>DataArray</code> up to par with that of a loop over an <code>Array</code>. But such optimizations generally introduce additional complexity that oughtn’t to be required to achieve acceptable performance in such a simple task. Considerably more complex code can be required to achieve performance in more involved implementations, such as that of <code>broadcast&#33;</code>. We intend for <code>NullableArray</code>s to to perform well under involved tasks involving missing data while requiring as little interaction with <code>NullableArray</code> internals as possible. This includes allowing users to leverage extant implementations without sacrificing performance. Consider for instance the results of relying on Base’s implementation of <code>broadcast&#33;</code> for <code>DataArray</code> and <code>NullableArray</code> arguments &#40;i.e., having omitted the respective <code>src/broadcast.jl</code> from each package’s source code&#41;. Below are plots that visualize the results of running 20 benchmark samples of <code>broadcast&#33;&#40;dest, src1, src2&#41;</code>, where <code>dest</code> and <code>src2</code> are <code>5_000_000 x 2</code> <code>Array</code>s, <code>NullableArray</code>s or <code>DataArray</code>s, and <code>src1</code> is a <code>5_000_000 x 1</code> <code>Array</code>, <code>NullableArray</code> or <code>DataArray</code>. As above, the <code>NullableArray</code> and <code>DataArray</code> arguments are tested in cases with either zero or approximately half null entries:</p>
+<p><img src="/previews/PR2531/assets/blog/2015-10-03-nullablearrays-images/bcast_plot.png" alt="Benchmark plot of NullableArray vs DataArray for broadcast" /></p>
+<p>We have designed the <code>NullableArray</code> type to feel as much like a regular <code>Array</code> as possible. However, that <code>NullableArray</code>s return <code>Nullable</code> objects is a significant departure from both <code>Array</code> and <code>DataArray</code> behavior. Arguably the most important issue is to support user-defined functions that lack methods for <code>Nullable</code> arguments as they interact with <code>Nullable</code> and <code>NullableArray</code> objects. Throughout my project I have also worked to develop interfaces that make dealing with <code>Nullable</code> objects user-friendly and safe.</p>
+<p>Given a method <code>f</code> defined on an argument signature of types <code>&#40;U1, U2, …, UN&#41;</code>, we would like to provide an accessible, safe and performant way for a user to call <code>f</code> on an argument of signature <code>&#40;Nullable&#123;U1&#125;, Nullable&#123;U2&#125;, …, Nullable&#123;UN&#125;&#41;</code> without having to extend <code>f</code> herself. Doing so should return <code>Nullable&#40;f&#40;get&#40;u1&#41;, get&#40;u1&#41;, …, get&#40;un&#41;&#41;&#41;</code> if each argument is non-null, and should return an empty <code>Nullable</code> if any argument is null. Systematically extending an arbitrary method <code>f</code> over <code>Nullable</code> argument signatures is often referred to as “lifting” <code>f</code> over the <code>Nullable</code> arguments.</p>
+<p>NullableArrays offers keyword arguments for certain methods such as <code>broadcast</code> and <code>map</code> that direct the latter methods to lift passed function arguments over <code>NullableArray</code> arguments:</p>
+<pre><code class="julia hljs">julia&gt; X = NullableArray(collect(<span class="hljs-number">1</span>:<span class="hljs-number">10</span>), rand(<span class="hljs-built_in">Bool</span>, <span class="hljs-number">10</span>))
+<span class="hljs-number">10</span>-element NullableArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-comment">#NULL</span>
+ <span class="hljs-comment">#NULL</span>
+ <span class="hljs-comment">#NULL</span>
+     <span class="hljs-number">4</span>
+     <span class="hljs-number">5</span>
+     <span class="hljs-number">6</span>
+     <span class="hljs-number">7</span>
+     <span class="hljs-number">8</span>
+ <span class="hljs-comment">#NULL</span>
+    <span class="hljs-number">10</span>
+
+julia&gt; f(x::<span class="hljs-built_in">Int</span>) = <span class="hljs-number">2</span>x
+f (generic <span class="hljs-keyword">function</span> with <span class="hljs-number">2</span> methods)
+
+julia&gt; map(f, X)
+ERROR: <span class="hljs-built_in">MethodError</span>: <span class="hljs-string">`f`</span> has no method matching f(::Nullable{<span class="hljs-built_in">Int64</span>})
+Closest candidates are:
+  f(::<span class="hljs-built_in">Any</span>, ::<span class="hljs-built_in">Any</span>)
+ [inlined code] from /Users/David/.julia/v0<span class="hljs-number">.4</span>/NullableArrays/src/map.jl:<span class="hljs-number">93</span>
+ <span class="hljs-keyword">in</span> _F_ at /Users/David/.julia/v0<span class="hljs-number">.4</span>/NullableArrays/src/map.jl:<span class="hljs-number">124</span>
+ <span class="hljs-keyword">in</span> map at /Users/David/.julia/v0<span class="hljs-number">.4</span>/NullableArrays/src/map.jl:<span class="hljs-number">172</span>
+
+julia&gt; map(f, X; lift=<span class="hljs-literal">true</span>)
+<span class="hljs-number">10</span>-element NullableArray{<span class="hljs-built_in">Int64</span>,<span class="hljs-number">1</span>}:
+ <span class="hljs-comment">#NULL</span>
+ <span class="hljs-comment">#NULL</span>
+ <span class="hljs-comment">#NULL</span>
+     <span class="hljs-number">8</span>
+    <span class="hljs-number">10</span>
+    <span class="hljs-number">12</span>
+    <span class="hljs-number">14</span>
+    <span class="hljs-number">16</span>
+ <span class="hljs-comment">#NULL</span>
+    <span class="hljs-number">20</span></code></pre>
+<p>I also plan to release shortly a small package that will offer a more flexible “lift” macro, which will be able to lift function calls over <code>Nullable</code> arguments within a variety of expression types.</p>
+<p>We hope that the new NullableArrays package will help to support not only Julia’s statistical computing ecosystem as it moves forward but also any endeavor that requires an efficient, developed interface for handling arrays of <code>Nullable</code> objects. Please do try the package, submit feature requests, report bugs, and, if you’re interested, submit a PR or two. Happy coding&#33;</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script defer src="/previews/PR2531/libs/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){hljs.configure({tabReplace:'    '});hljs.highlightAll();});</script>
+
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2531/project">About</a></li>
+        <li><a href="/previews/PR2531/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2531/governance/">Governance</a></li>
+        <li><a href="/previews/PR2531/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2531/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2531/downloads">Install</a></li>
+        <li><a href="/previews/PR2531/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2531/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2531/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2531/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2531/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2531/community/">Community</a></li>
+        <li><a href="/previews/PR2531/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2531/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2531/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2531/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2531/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2531/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2531/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>
