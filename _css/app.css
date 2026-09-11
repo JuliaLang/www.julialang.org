@@ -657,6 +657,33 @@ h4 {
   margin-top: 1.25rem;
 }
 
+/* Blog posts: banded sections. /libs/blog-sections.js wraps each h2 (and the table of
+   contents) with its content in a <section class="blog-section">; alternate ones get a
+   faint full-bleed tint so the extent of each section is visible. The band is pulled
+   out to the viewport edges with negative margins and the content padded back into
+   the column, so the body must not scroll sideways on these pages. */
+body:has(.blog-title) {
+  overflow-x: hidden;
+}
+.blog-title ~ .container.main .blog-section {
+  padding: 0.25rem calc(50vw - 50%) 1rem;
+  margin: 1.5rem calc(50% - 50vw) 0;
+}
+.blog-title ~ .container.main .blog-section:nth-of-type(odd) {
+  padding-top: 0.75rem;
+  padding-bottom: 1.5rem;
+  background: rgba(74, 120, 214, 0.06);
+}
+[data-theme="dark"] .blog-title ~ .container.main .blog-section:nth-of-type(odd) {
+  background: rgba(255, 255, 255, 0.035);
+}
+.blog-title ~ .container.main .blog-section > h2:first-child {
+  margin-top: 0.75rem;
+}
+.blog-title ~ .container.main .blog-section > .franklin-toc {
+  margin-top: 0.5rem;
+}
+
 a {
   color: #005bc0;
 }

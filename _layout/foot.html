@@ -11,6 +11,9 @@
     {{insert foot_clipboard.html}}
 
     {{insert foot_general.html}}
+    {{ispage /blog/*}}{{isnotpage /blog/index.html}}
+    <script src="/libs/blog-sections.js"></script>
+    {{end}}{{end}}
     {{if hasmap}}
     <script src="/libs/groups.js"></script>
     <script src="/libs/map.js"></script>
