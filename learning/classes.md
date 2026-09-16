@@ -18,7 +18,10 @@ If you know of other classes using Julia for teaching, please consider submittin
 ## Active university courses
 
 _Courses currently being offered or offered regularly since 2020._
-
+* [Academia Politécnica Militar (Chile)](https://www.acapomil.cl/)
+    * Operational Research (Spanish), since 2020
+    * Applied Optimization (Spanish), since 2022
+    * External Ballistics (Spanish), since 2026
 * [Budapest University of Technology and Economics](https://www.bme.hu/)
     * Applications of Differential Equations and Vector Analysis for Engineers II ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
 * [Central European University](https://economics.ceu.edu/)
