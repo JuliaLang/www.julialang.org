@@ -330,7 +330,7 @@ CodeInfo(
 </span>
 <span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> display(plot(rand(<span class="hljs-number">5</span>)))
 </span>  0.305394 seconds (19.96 k allocations: 781.836 KiB)</code></pre>
-<p>you can see it&#39;s essentially as fast again.  However, StaticArrays was already present because it gets loaded internally by Plots–-all the invalidations it causes have already happened before we issued that second plotting command.  Let&#39;s contrast that with what happens if you load a package that does a lot of <em>new</em> invalidation &#40;again, this is on Julia versions 1.5 and below&#41;:</p>
+<p>you can see it&#39;s essentially as fast again.  However, StaticArrays was already present because it gets loaded internally by Plots—all the invalidations it causes have already happened before we issued that second plotting command.  Let&#39;s contrast that with what happens if you load a package that does a lot of <em>new</em> invalidation &#40;again, this is on Julia versions 1.5 and below&#41;:</p>
 <pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-keyword">using</span> SIMD
 </span>
 <span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> display(plot(rand(<span class="hljs-number">5</span>)))

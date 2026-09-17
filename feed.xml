@@ -680,12 +680,12 @@
 
 <item>
   <title>
-    <![CDATA[  Profiling type-inference  ]]>
+    <![CDATA[  Apache Arrow Support in Julia  ]]>
   </title>
-  <link> https://julialang.org/blog/2021/01/snoopi_deep/index.html </link>
-  <guid> https://julialang.org/blog/2021/01/snoopi_deep/index.html </guid>
+  <link> https://julialang.org/blog/2021/01/arrow/index.html </link>
+  <guid> https://julialang.org/blog/2021/01/arrow/index.html </guid>
   <description>
-    <![CDATA[  Profiling type-inference  ]]>
+    <![CDATA[  Apache Arrow Support in Julia  ]]>
   </description>  
     
   <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>  
@@ -695,12 +695,12 @@
 
 <item>
   <title>
-    <![CDATA[  Apache Arrow Support in Julia  ]]>
+    <![CDATA[  Profiling type-inference  ]]>
   </title>
-  <link> https://julialang.org/blog/2021/01/arrow/index.html </link>
-  <guid> https://julialang.org/blog/2021/01/arrow/index.html </guid>
+  <link> https://julialang.org/blog/2021/01/snoopi_deep/index.html </link>
+  <guid> https://julialang.org/blog/2021/01/snoopi_deep/index.html </guid>
   <description>
-    <![CDATA[  Apache Arrow Support in Julia  ]]>
+    <![CDATA[  Profiling type-inference  ]]>
   </description>  
     
   <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>  
@@ -954,6 +954,21 @@
 
 <item>
   <title>
+    <![CDATA[  Julia夏季会议@Beijing - 本地化奖  ]]>
+  </title>
+  <link> https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html </link>
+  <guid> https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html </guid>
+  <description>
+    <![CDATA[  <a href="https://github.com/JuliaCN">JuliaCN</a>在8月24日，中国北京举办了自2016以来第五次Julia会议。我们非常感谢Julia社区对本次活动的支持， 以及<a href="https://caiyunapp.com/">彩云科技</a>, <a href="https://microsoft.com/">微软中国</a>, <a href="https://swarma.org">集智俱乐部</a>, <a href="https://syncedreview.com/">机器之心</a>对本次活动的大力支持。本次活动有100余人注册，实到50余人。 线上直播在线人数达1600余人。   ]]>
+  </description>  
+    
+  <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  Julia的版本发布流程  ]]>
   </title>
   <link> https://julialang.org/blog/2019/09/release-process-zh-cn/index.html </link>
@@ -975,21 +990,6 @@
   <guid> https://julialang.org/blog/2019/09/julia-workshop-beijing/index.html </guid>
   <description>
     <![CDATA[  A Julia workshop in China was hosted by <a href="https://github.com/JuliaCN">JuliaCN</a> in Beijing on Aug 24, 2019. This is the 5th Julia workshop in China hosted by <a href="https://github.com/JuliaCN">JuliaCN</a> since 2016. We thank the Julia community and our kind sponsors: <a href="https://caiyunapp.com/">Colorful Clouds</a>, <a href="https://microsoft.com/">Microsoft</a>, <a href="https://swarma.org">Swarma club</a>, and <a href="https://syncedreview.com/">SyncedReview</a>. We received over 100 registrations for this event, and roughly 50 offline participants. The online video stream had 1,600 live viewers.  ]]>
-  </description>  
-    
-  <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>  
-  
-        
-</item>
-
-<item>
-  <title>
-    <![CDATA[  Julia夏季会议@Beijing - 本地化奖  ]]>
-  </title>
-  <link> https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html </link>
-  <guid> https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html </guid>
-  <description>
-    <![CDATA[  <a href="https://github.com/JuliaCN">JuliaCN</a>在8月24日，中国北京举办了自2016以来第五次Julia会议。我们非常感谢Julia社区对本次活动的支持， 以及<a href="https://caiyunapp.com/">彩云科技</a>, <a href="https://microsoft.com/">微软中国</a>, <a href="https://swarma.org">集智俱乐部</a>, <a href="https://syncedreview.com/">机器之心</a>对本次活动的大力支持。本次活动有100余人注册，实到50余人。 线上直播在线人数达1600余人。   ]]>
   </description>  
     
   <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>  
@@ -1322,12 +1322,12 @@
 
 <item>
   <title>
-    <![CDATA[  Julia 1.0 Anunciando el release de Julia 1.0 &#40;Spanish&#41;  ]]>
+    <![CDATA[  Julia 1.0 正式發佈 &#40;Traditional Chinese&#41;  ]]>
   </title>
-  <link> https://julialang.org/blog/2018/08/one-point-zero-es/index.html </link>
-  <guid> https://julialang.org/blog/2018/08/one-point-zero-es/index.html </guid>
+  <link> https://julialang.org/blog/2018/08/one-point-zero-zh_tw/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/one-point-zero-zh_tw/index.html </guid>
   <description>
-    <![CDATA[  La anticipada liberación de la versión 1.0 de...  ]]>
+    <![CDATA[  Julia 1.0 正式發佈 &#40;Traditional Chinese&#41; | 眾所期待的 Julia 語言 &#40;https://julialang.org&#41; 1.0 版是近十年的心血結晶。...   ]]>
   </description>  
     
   <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>  
@@ -1337,12 +1337,12 @@
 
 <item>
   <title>
-    <![CDATA[  Julia 1.0 正式發佈 &#40;Traditional Chinese&#41;  ]]>
+    <![CDATA[  Julia 1.0 Anunciando el release de Julia 1.0 &#40;Spanish&#41;  ]]>
   </title>
-  <link> https://julialang.org/blog/2018/08/one-point-zero-zh_tw/index.html </link>
-  <guid> https://julialang.org/blog/2018/08/one-point-zero-zh_tw/index.html </guid>
+  <link> https://julialang.org/blog/2018/08/one-point-zero-es/index.html </link>
+  <guid> https://julialang.org/blog/2018/08/one-point-zero-es/index.html </guid>
   <description>
-    <![CDATA[  Julia 1.0 正式發佈 &#40;Traditional Chinese&#41; | 眾所期待的 Julia 語言 &#40;https://julialang.org&#41; 1.0 版是近十年的心血結晶。...   ]]>
+    <![CDATA[  La anticipada liberación de la versión 1.0 de...  ]]>
   </description>  
     
   <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>  
@@ -2132,12 +2132,12 @@
 
 <item>
   <title>
-    <![CDATA[  JuliaCon 2014 Opening Session Presentations  ]]>
+    <![CDATA[  JuliaCon 2014 Optimization Presentations  ]]>
   </title>
-  <link> https://julialang.org/blog/2014/08/juliacon-opening-session/index.html </link>
-  <guid> https://julialang.org/blog/2014/08/juliacon-opening-session/index.html </guid>
+  <link> https://julialang.org/blog/2014/08/juliacon-opt-session/index.html </link>
+  <guid> https://julialang.org/blog/2014/08/juliacon-opt-session/index.html </guid>
   <description>
-    <![CDATA[  JuliaCon 2014 Opening Session Presentations | Tim Holy is a Professor in the Department of Anatomy and Neurobiology at Washington University in St. Louis. He’s been involved with Julia development for over 2 years. In this presentation, Tim describes how Images.jl can be used for rapid inquiry and dissection of biomedical imaging data....   ]]>
+    <![CDATA[  JuliaCon 2014 Optimization Presentations | Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts Institute of Technology Operations Research Center, where they study constrained continuous and combinatorial numerical optimization methods and theory. In this session they present the JuliaOpt suite of optimization packa...   ]]>
   </description>  
     
   <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>  
@@ -2147,12 +2147,12 @@
 
 <item>
   <title>
-    <![CDATA[  JuliaCon 2014 Optimization Presentations  ]]>
+    <![CDATA[  JuliaCon 2014 Opening Session Presentations  ]]>
   </title>
-  <link> https://julialang.org/blog/2014/08/juliacon-opt-session/index.html </link>
-  <guid> https://julialang.org/blog/2014/08/juliacon-opt-session/index.html </guid>
+  <link> https://julialang.org/blog/2014/08/juliacon-opening-session/index.html </link>
+  <guid> https://julialang.org/blog/2014/08/juliacon-opening-session/index.html </guid>
   <description>
-    <![CDATA[  JuliaCon 2014 Optimization Presentations | Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts Institute of Technology Operations Research Center, where they study constrained continuous and combinatorial numerical optimization methods and theory. In this session they present the JuliaOpt suite of optimization packa...   ]]>
+    <![CDATA[  JuliaCon 2014 Opening Session Presentations | Tim Holy is a Professor in the Department of Anatomy and Neurobiology at Washington University in St. Louis. He’s been involved with Julia development for over 2 years. In this presentation, Tim describes how Images.jl can be used for rapid inquiry and dissection of biomedical imaging data....   ]]>
   </description>  
     
   <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>  
@@ -2177,12 +2177,12 @@
 
 <item>
   <title>
-    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part I  ]]>
+    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part II  ]]>
   </title>
-  <link> https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/index.html </link>
-  <guid> https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/index.html </guid>
+  <link> https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/index.html </link>
+  <guid> https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/index.html </guid>
   <description>
-    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part I | This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia....   ]]>
+    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part II | In this installment, we&#39;ll cover both low-level graphics &#40;using Cairo&#41; and plotting graphs inside GUIs &#40;using Winston&#41;....   ]]>
   </description>  
     
   <pubDate>Thu, 23 May 2013 00:00:00 +0000</pubDate>  
@@ -2192,12 +2192,12 @@
 
 <item>
   <title>
-    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part II  ]]>
+    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part I  ]]>
   </title>
-  <link> https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/index.html </link>
-  <guid> https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/index.html </guid>
+  <link> https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/index.html </link>
+  <guid> https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/index.html </guid>
   <description>
-    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part II | In this installment, we&#39;ll cover both low-level graphics &#40;using Cairo&#41; and plotting graphs inside GUIs &#40;using Winston&#41;....   ]]>
+    <![CDATA[  Building GUIs with Julia, Tk, and Cairo, Part I | This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia....   ]]>
   </description>  
     
   <pubDate>Thu, 23 May 2013 00:00:00 +0000</pubDate>  
@@ -2357,12 +2357,12 @@
 
 <item>
   <title>
-    <![CDATA[  Why We Created Julia  ]]>
+    <![CDATA[  为什么我们要创造Julia &#40;Simplified Chinese&#41;  ]]>
   </title>
-  <link> https://julialang.org/blog/2012/02/why-we-created-julia/index.html </link>
-  <guid> https://julialang.org/blog/2012/02/why-we-created-julia/index.html </guid>
+  <link> https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/index.html </link>
+  <guid> https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/index.html </guid>
   <description>
-    <![CDATA[  Why We Created Julia | In short, because we are greedy....   ]]>
+    <![CDATA[  为什么我们要创造Julia &#40;Simplified Chinese&#41; | 我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们...   ]]>
   </description>  
     
   <pubDate>Tue, 14 Feb 2012 00:00:00 +0000</pubDate>  
@@ -2372,12 +2372,12 @@
 
 <item>
   <title>
-    <![CDATA[  为什么我们要创造Julia &#40;Simplified Chinese&#41;  ]]>
+    <![CDATA[  Why We Created Julia  ]]>
   </title>
-  <link> https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/index.html </link>
-  <guid> https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/index.html </guid>
+  <link> https://julialang.org/blog/2012/02/why-we-created-julia/index.html </link>
+  <guid> https://julialang.org/blog/2012/02/why-we-created-julia/index.html </guid>
   <description>
-    <![CDATA[  为什么我们要创造Julia &#40;Simplified Chinese&#41; | 我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们...   ]]>
+    <![CDATA[  Why We Created Julia | In short, because we are greedy....   ]]>
   </description>  
     
   <pubDate>Tue, 14 Feb 2012 00:00:00 +0000</pubDate>  
