@@ -34,7 +34,7 @@ jobs:
       - name: Install Julia
         uses: julia-actions/setup-julia@v3
         with:
-          version: '1.12'
+          version: '1.13'
 
       - uses: julia-actions/cache@v3
 
