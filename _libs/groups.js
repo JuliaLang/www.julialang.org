@@ -76,6 +76,7 @@ const groups = [
         name: 'Julia Yerevan',
         lat: 40.193537, 
         lon: 44.503473,
-        homepage: "https://juliacon.am"
+        homepage: "https://juliacon.am",
+        linkedin: 'https://www.linkedin.com/company/julia-yerevan',
     }
 ];
