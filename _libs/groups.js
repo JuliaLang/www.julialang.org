@@ -72,4 +72,10 @@ const groups = [
         lon: -79.995888,
         homepage: 'https://events.cmu.edu/event/29322-julia-programming-user-meeting',
     },
+    {
+        name: 'Julia Yerevan',
+        lat: 40.193537, 
+        lon: 44.503473,
+        homepage: "https://juliacon.am"
+    }
 ];
