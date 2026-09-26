@@ -1,45 +1,395 @@
 @def title = "Installing Julia"
 
 ~~~
-<div class="container pt-sm-2">
-  <div class="row">
-    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-    <div class="col-lg-4 col-md-6 language-features section-heading">
-      <h2 class="lead secondary-heading">Install Julia</h2>
+<style>
+  :root {
+    --bg: #ffffff;
+    --panel: #f6f7f9;
+    --text: #111827;
+    --muted: #7c7c7c;
+    --border: #e5e7eb;
+    --link: #1f6feb;
+    --card: #ffffff;
+    --card-inset: #ffffff;
+    --shadow: 0 1px 0 rgba(17, 24, 39, 0.06);
+    --card-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+  }
+
+  /* Map the palette onto the site-wide dark theme (see _css/app.css). */
+  [data-theme="dark"] {
+    --bg: var(--dm-bg, #1a1a2e);
+    --panel: var(--dm-bg-surface, #2a2a3e);
+    --text: var(--dm-text, #e0e0e0);
+    --muted: var(--dm-text-muted, #bbb);
+    --border: var(--dm-border, #444);
+    --link: var(--dm-link, #6ea8fe);
+    --card: var(--dm-bg-surface, #2a2a3e);
+    --card-inset: var(--dm-bg-elevated, #333);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  }
+
+  .section-grid { margin-top: 18px; margin-bottom: 48px; }
+
+  .lead-list {
+    margin: 8px 0 14px 18px;
+    padding: 0;
+    color: var(--text);
+  }
+  .lead-list li { margin: 0 0 6px; }
+  .lead-list li:last-child { margin-bottom: 0; }
+
+  .muted { color: var(--muted); }
+
+  .if-you {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-weight: 650;
+    font-size: 13px;
+  }
+
+  .kicker {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--panel) 0%, var(--card) 100%);
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .card h2 { margin: 10px 0 6px; font-size: 16px; color: var(--muted); }
+
+  .card p {
+    margin: 0 0 10px;
+    color: var(--muted);
+  }
+
+  .card-head { display: flex; flex-direction: column; gap: 4px; }
+
+  .version-block {
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--card-inset);
+    min-width: 0;
+  }
+
+  .version-grid {
+    display: flex;
+    gap: 14px;
+    flex-wrap: nowrap;
+  }
+
+  .version-grid .version-block {
+    flex: 1 1 0;
+    margin-top: 12px;
+  }
+
+  .version-block h3 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    <!-- text-transform: uppercase; -->
+  }
+
+  .os-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+
+  .os-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0 6px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .code {
+    margin: 10px 0 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card-inset);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+      monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .os-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .os-row .os-icon {
+    flex: 0 0 auto;
+  }
+
+  .os-row .os-name {
+    font-weight: 600;
+    min-width: 70px;
+  }
+
+  .os-row a {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  .os-row a:hover {
+    text-decoration: underline;
+  }
+
+  .os-separator {
+    margin: 12px 0 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  details {
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--card-inset);
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--link);
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:hover {
+    opacity: 0.8;
+  }
+
+  details p {
+    margin: 10px 0 0;
+    color: var(--muted);
+  }
+</style>
+
+<div class="grid section-grid">
+  <section class="card" aria-labelledby="for-users">
+    <div class="card-head">
+      <span class="kicker">Standalone GUI installer</span>
+      <h2>For users who:</h2>
+      <ul class="lead-list">
+        <li>Need a single version of Julia<br />
+        <li>Prefer to use a GUI</li>
+      </ul>
     </div>
-    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-  </div>
-  <br>
 
-  <div id="windows-instructions" style="display: none;">
-    It appears that you are using Windows. Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt. In case you are not using Windows, please follow the <a href="#" onclick="showUNIX(); return false;">Linux and macOS instructions</a>.<br><br>
-    <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
-  </div>
-  <div id="unix-instructions" style="display: none;">
-    It appears that you are using macOS or Linux. Install Julia by running the following in your terminal. In case you are using Windows, please follow these <a href="#" onclick="showWindows(); return false;">instructions for Windows</a>.<br><br>
-    <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
-  </div>
-  <script>
-    function showWindows() {
-      document.getElementById('windows-instructions').style.display = 'block';
-      document.getElementById('unix-instructions').style.display = 'none';
-    }
-    function showUNIX() {
-      document.getElementById('windows-instructions').style.display = 'none';
-      document.getElementById('unix-instructions').style.display = 'block';
-    }
-    var isWindows = navigator.platform.indexOf('Win') > -1;
-    if (isWindows) {
-      showWindows();
-    } else {
-      showUNIX();
-    }
-  </script>
+    <div class="version-grid" aria-label="Standalone installers by version">
+      <div class="version-block" aria-label="Julia {{stable_release_short}} installers">
+        <h3>Latest: Julia {{stable_release_short}}</h3>
+        <div class="os-row" data-os="windows">
+          <img class="os-icon" src="windows.png" alt="" aria-hidden="true" />
+          <span class="os-name">Windows</span>
+          <a href="https://julialang-s3.julialang.org/bin/winnt/x64/{{stable_release_short}}/julia-{{stable_release}}-win64.exe" title="Julia {{stable_release}} Windows x64 installer">
+            <span>x64</span>
+          </a>
+          |
+          <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.exe" title="Julia {{stable_release}} Windows x86 installer">
+            <span>x86</span>
+          </a>
+        </div>
+        <div class="os-row" data-os="macos">
+          <img class="os-icon" src="macos.png" alt="" aria-hidden="true" />
+          <span class="os-name">macOS</span>
+          <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg" title="Julia {{stable_release}} macOS Apple Silicon installer">
+            <span>arm</span>
+          </a>
+          |
+          <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.dmg" title="Julia {{stable_release}} macOS Intel installer">
+            <span>x64</span>
+          </a>
+        </div>
+        <div class="os-row" data-os="linux">
+          <img class="os-icon" src="linux.png" alt="" aria-hidden="true" />
+          <span class="os-name">Linux</span>
+          <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{stable_release}}-linux-x86_64.tar.gz" title="Julia {{stable_release}} Linux x64 tarball">
+            <span>x64</span>
+          </a>
+          |
+          <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{stable_release_short}}/julia-{{stable_release}}-linux-i686.tar.gz" title="Julia {{stable_release}} Linux x86 tarball">
+            <span>x86</span>
+          </a>
+          |
+          <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{stable_release_short}}/julia-{{stable_release}}-linux-aarch64.tar.gz" title="Julia {{stable_release}} Linux ARM tarball">
+            <span>arm</span>
+          </a>
+        </div>
+        <div class="os-separator">Other systems:</div>
+        <div class="os-row">
+          <a href="/downloads/manual-downloads/#current_stable_release">All platforms &amp; architectures</a>
+        </div>
+      </div>
 
-  <p>This will install the latest stable version of Julia, as well as the <a href="https://github.com/JuliaLang/juliaup"><code>juliaup</code></a> tool. Start Julia from the command-line by typing <code>julia</code>. See <code>juliaup --help</code> for how to configure installed versions.</p>
-  <p>If you prefer to use manual installation using a GUI-based installer, see the <a href="/downloads/manual-downloads/">Manual Downloads</a> page.</p>
-  <br>
+      <div class="version-block" aria-label="Julia {{lts_release_short}} installers">
+        <h3>Long-term support: Julia {{lts_release_short}}</h3>
+        <div class="os-row" data-os="windows">
+          <img class="os-icon" src="windows.png" alt="" aria-hidden="true" />
+          <span class="os-name">Windows</span>
+          <a href="https://julialang-s3.julialang.org/bin/winnt/x64/{{lts_release_short}}/julia-{{lts_release}}-win64.exe" title="Julia {{lts_release}} Windows x64 installer">
+            <span>x64</span>
+          </a>
+          |
+          <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{lts_release_short}}/julia-{{lts_release}}-win32.exe" title="Julia {{lts_release}} Windows x86 installer">
+            <span>x86</span>
+          </a>
+        </div>
+        <div class="os-row" data-os="macos">
+          <img class="os-icon" src="macos.png" alt="" aria-hidden="true" />
+          <span class="os-name">macOS</span>
+          <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{lts_release_short}}/julia-{{lts_release}}-macaarch64.dmg" title="Julia {{lts_release}} macOS Apple Silicon installer">
+            <span>arm</span>
+          </a>
+          |
+          <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{lts_release_short}}/julia-{{lts_release}}-mac64.dmg" title="Julia {{lts_release}} macOS Intel installer">
+            <span>x64</span>
+          </a>
+        </div>
+        <div class="os-row" data-os="linux">
+          <img class="os-icon" src="linux.png" alt="" aria-hidden="true" />
+          <span class="os-name">Linux</span>
+          <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{lts_release_short}}/julia-{{lts_release}}-linux-x86_64.tar.gz" title="Julia {{lts_release}} Linux x64 tarball">
+            <span>x64</span>
+          </a>
+          |
+          <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{lts_release_short}}/julia-{{lts_release}}-linux-i686.tar.gz" title="Julia {{lts_release}} Linux x86 tarball">
+            <span>x86</span>
+          </a>
+          |
+          <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{lts_release_short}}/julia-{{lts_release}}-linux-aarch64.tar.gz" title="Julia {{lts_release}} Linux ARM tarball">
+            <span>arm</span>
+          </a>
+        </div>
+        <div class="os-separator">Other systems:</div>
+        <div class="os-row">
+          <a href="/downloads/manual-downloads/#long_term_support_release">All platforms &amp; architectures</a>
+        </div>
+      </div>
+    </div>
+
+    <details>
+      <summary>Other Julia versions</summary>
+      <p>
+        Need a different version? The manual downloads page has builds for every
+        platform of the
+        <a href="/downloads/manual-downloads/#current_stable_release">current stable</a>,
+        <a href="/downloads/manual-downloads/#long_term_support_release">long-term support</a>, and
+        <a href="/downloads/manual-downloads/#upcoming_release">upcoming</a> releases.
+        <a href="/downloads/oldreleases/">Older releases</a> are archived separately,
+        and development builds are on the
+        <a href="/downloads/nightlies/">nightlies</a> page.
+      </p>
+    </details>
+  </section>
+
+  <section class="card" aria-labelledby="for-devs">
+    <div class="card-head">
+      <span class="kicker">Julia version manager: <code>juliaup</code></span>
+      <h2>For developers who:</h2>
+      <ul class="lead-list">
+        <li>Need to have multiple versions available at once</li>
+        <li>Are comfortable with command line tools</li>
+      </ul>
+    </div>
+
+    <p>Run in your terminal:</p>
+
+    <div class="os-label">
+      <img class="os-icon" src="linux.png" alt="" aria-hidden="true" />
+      <img class="os-icon" src="macos.png" alt="" aria-hidden="true" />
+      <span>Linux or macOS</span>
+    </div>
+    <div class="code">curl -fsSL https://install.julialang.org | sh</div>
+
+    <div class="os-label">
+      <img class="os-icon" src="windows.png" alt="" aria-hidden="true" />
+      <span>Windows</span>
+    </div>
+    <div class="code">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</div>
+
+    <p>
+      This will install the latest stable version of Julia, as well as the <code>juliaup</code> tool.<br>
+      Start Julia from the command-line by typing <code>julia</code>.<br>
+      See <a href="https://github.com/JuliaLang/juliaup"><code>juliaup</code> docs</a> for more details.
+    </p>
+  </section>
 </div>
+
+<script>
+(function() {
+  const platform = navigator.platform.toLowerCase();
+  const ua = navigator.userAgent.toLowerCase();
+  let detectedOS = 'linux';
+
+  if (platform.includes('win') || ua.includes('windows')) {
+    detectedOS = 'windows';
+  } else if (platform.includes('mac') || ua.includes('mac')) {
+    detectedOS = 'macos';
+  }
+
+  // Reorder OS rows: move detected OS to top with separator
+  document.querySelectorAll('.version-block').forEach(block => {
+    const rows = Array.from(block.querySelectorAll('.os-row[data-os]'));
+    const separator = block.querySelector('.os-separator');
+    const matchingRow = rows.find(row => row.getAttribute('data-os') === detectedOS);
+
+    if (matchingRow && separator) {
+      // Move matching row to the top
+      const h3 = block.querySelector('h3');
+      h3.insertAdjacentElement('afterend', matchingRow);
+
+      // Move separator after the matching row
+      matchingRow.insertAdjacentElement('afterend', separator);
+    }
+  });
+})();
+</script>
 
 <div class="container-fluid alt-color packages">
   <br>
