@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2489/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2489/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2489/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2489/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2489/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2489/css/app.css">
+<link rel="stylesheet" href="/previews/PR2489/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2489/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2489/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2489/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>The SatelliteToolbox.jl Ecosystem</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2489/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2489/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="The SatelliteToolbox.jl Ecosystem">
+<meta property="og:description" content="The history of the SatelliteToolbox.jl ecosystem">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2489/blog/2025/01/the-satellite-toolbox-ecosystem/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The SatelliteToolbox.jl Ecosystem",
+  "description": "The history of the SatelliteToolbox.jl ecosystem",
+  "image": "https://julialang.netlify.app/previews/PR2489/assets/images/julia-open-graph.png",
+  "datePublished": "2025-01-03T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "Ronan Arraes Jardim Chagas"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2489/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2489/blog/2025/01/the-satellite-toolbox-ecosystem/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2489/">
+          <img src="/previews/PR2489/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2489/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2489/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2489/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2489/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2489/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2489/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>The SatelliteToolbox.jl Ecosystem</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p style="font-size: 1.17em; margin-top: 0;">
+          
+            <span style="font-weight: lighter;">3 January 2025</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;">Ronan Arraes Jardim Chagas</span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2025/01/the-satellite-toolbox-ecosystem.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<p><img src="/previews/PR2489/assets/blog/2024-SatelliteToolbox/logo-reduced.png" alt="SatelliteToolbox.jl logo" /></p>
+<p>The <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> is an ecosystem of packages that enables the execution of a wide range of analysis tasks related to space missions in the Julia programming language. These tasks encompass the propagation of satellite orbits, the transformation of reference systems, the computation of atmospheric density, and numerous other functionalities.</p>
+<p>After a decade of uninterrupted development, the ecosystem has finally achieved the 1.0 milestone. This post shows the evolution of the ecosystem, from its initial conception to its current state, highlighting some notable use cases that this package has enabled.</p>
+<h2 id="the_beginning"><a href="#the_beginning" class="header-anchor">The Beginning</a></h2>
+<p>The reason why I started to develop the SatelliteToolbox.jl is both common in the Julia community and somewhat unique in the space engineering. Back in 2009 to 2012, I was pursuing a PhD at the Aeronautics Institute of Technology &#40;ITA&#41; in São José dos Campos, São Paulo, Brazil. My research focused on distributed estimation in a fleet of unmanned aerial vehicles &#40;UAVs&#41; with communication delays. To test and analyze my algorithms, I needed a simulator.</p>
+<p>Creating a simulation of an inertial navigation system &#40;INS&#41; is no easy feat. You have to model the vehicle’s movement in a spinning, spherical Earth and integrate the navigation equations to obtain the solution using the simulated sensor data. We also have to add in the data communication behavior and, of course, the filters to estimate each vehicle’s state vector. To handle this task, I decided to use a well-known programming software for engineering. When I finished programming the algorithm, I found out that simulating the system with a certain number of UAVs, given our computing power &#40;which was pretty good for the time&#33;&#41;, would take around six months &#40;ouch&#33;&#41;. The problem was the curse of dimensionality - each node &#40;UAV&#41; in this problem has 18 states. And we needed a lot of realizations to test the algorithm’s performance in this stochastic system.</p>
+<p>Since I didn’t have this much time to finish my PhD., I had to make a tough decision: rewrite as much as I could in C, which led to the &#40;in&#41;famous two-language problem. This approach cut down my execution time to about a week and helped me wrap up my studies.</p>
+<p>In the winter of 2013 &#40;in the southern hemisphere&#33;&#41;, I started working a junior space systems engineer at the Brazilian National Institute for Space Research &#40;INPE&#41;. My first task? To dive deep into the Amazonia-1 mission and become an expert in analyzing space missions and developing attitude and orbit control subsystems &#40;AOCS&#41;<sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup>. Around the same time, I stumbled upon this new language called Julia, which was supposedly the solution to the same problem I had been grappling with during my PhD.</p>
+<p>I do believe you learn more when you implement what you’re learning. So, in my free time, I decided to learn Julia and implement all the algorithms I needed to understand those topics for my work. Of course, since the ecosystem was young, there were basically no packages related to space engineering. So, I started coding the <a href="https://github.com/JuliaSpace/ReferenceFrameRotations.jl">ReferenceFrameRotations.jl</a> &#40;which was called Rotations.jl back then, but I didn’t register it and I lost the name 😄&#41; and the <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a>.</p>
+<h2 id="development_strategy"><a href="#development_strategy" class="header-anchor">Development Strategy</a></h2>
+<p>The development strategy of <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> was to not have a development strategy at all 😅. I had no idea where this would take me, I just wanted to learn all the cool stuff about space engineering. The fact that I needed to use the nightly build of Julia and things were breaking every month &#40;or week&#33;&#41; was not helping either. I also was not expecting any external help since Julia was almost prohibited in engineering fields by that time.</p>
+<p>Despite the challenges, I remained steadfast in my belief in Julia’s promises and diligently applied the knowledge I gained from various sources. The API of <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> was constantly evolving &#40;breaking&#41;, often in unexpected ways, to meet the evolving needs of my work at INPE.</p>
+<p>The turning point came when Julia 0.7/1.0 was released, resulting in a super stable system. At that time, we already had some really cool algorithms in place, and I was also starting to use Julia at INPE to analyze data for Amazonia-1 development. By the way, I heard a lot of criticism back then for using a non-traditional technology in a field that was still mostly dominated by .f90 files. But guess what? That history turned out to be a happy ending&#33;</p>
+<p>After a year of hard work, <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> finally became a really useful tool for my work. So, in 2018, I decided to officially register it in METADATA.jl &#40;who remembers that?&#41;. That way, it became an “official” package of the Julia ecosystem.</p>
+<h2 id="the_amazonia-1_aocs_simulator_and_the_julia_advantage"><a href="#the_amazonia-1_aocs_simulator_and_the_julia_advantage" class="header-anchor">The Amazonia-1 AOCS Simulator and the Julia Advantage</a></h2>
+<p>Up to the moment the package was registered, <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> was just yet another package to perform space mission analysis. We already had good alternatives in many other languages. However, we were about to experience the turning point, when using Julia really paid off and everyone stopped complaining about this new technology.</p>
+<p>The AOCS development needs a super accurate simulator for many tasks. The toughest one is tuning control gains and parameters. We need to test how the system works after we set the values. This simulation needs a good model for space dynamics, which <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> already had, and a fast differential equation solver.</p>
+<p>When I began working on the simulator, I had already experimented with <a href="https://github.com/SciML/DifferentialEquations.jl">DifferentialEquations.jl</a>. I even opened a few issues requesting features, and Chris Rackauckas was incredibly helpful&#33; So, I was confident that using <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> and DifferentialEquations.jl was the best approach.</p>
+<p>The callback mechanism in <a href="https://github.com/SciML/DifferentialEquations.jl">DifferentialEquations.jl</a> was a game-changer for me. It enabled me to precisely capture the continuous &#40;dynamics&#41; and discrete &#40;embedded software&#41; duality that exists in the satellite AOCS. After a lot of research and tweaking, we built the full simulator, which includes over 40,000 lines of code when you consider the <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> ecosystem.</p>
+<p>This was a major turning point for Julia’s adoption at INPE. The system became so efficient that we could simulate billions of seconds to check for all possible errors and design fail-safes to save the mission if something unexpected happens. I really believe that no other language or ecosystem could have given me such performance and simulation quality with the time and resources I had.</p>
+<p>The closure of this history occurred during the launch of Amazonia-1. After the separation, I used the satellite state vector as input to the simulator. My goal was to predict the satellite states during its first few orbits so I could design some tasks related to the AOCS &#40;like sensor calibration&#41;. The results were super accurate&#33; This allowed us to perform those tasks way faster and with much more confidence.</p>
+<p>The following figure shows the predicted satellite angular momentum compared to the actual angular momentum during some orbits. It’s amazing how well the simulator matched reality&#33; This result is only possible if the algorithms in <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> are super accurate&#33;</p>
+<p><img src="/previews/PR2489/assets/blog/2024-SatelliteToolbox/aocs_simulator_result-reduced.png" alt="AOCS simulator predicted vs actual satellite angular momentum" /></p>
+<h2 id="the_current_state_of_the_satellitetoolboxjl_ecosystem"><a href="#the_current_state_of_the_satellitetoolboxjl_ecosystem" class="header-anchor">The Current State of the SatelliteToolbox.jl Ecosystem</a></h2>
+<p>In 2023, I finally closed <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl/issues/1">the very first issue</a> opened in the <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> repository. I split that massive package into several smaller ones. This had two main effects. The system is now much more organized, but the maintenance burden is much higher. However, after so many years and with all the great tools we have for testing and registering packages, it was worth it.</p>
+<p>We’ve made all the internal packages and analysis algorithms at INPE work with the new versions. We use the <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> ecosystem every day for tasks like:</p>
+<ol>
+<li><p>Evaluating the performance of the Amazonia-1 AOCS.</p>
+</li>
+<li><p>Examining the test results we gathered during the development of our next satellite, Amazonia-1B.</p>
+</li>
+<li><p>Designing orbits for various studies, including those conducted at the Integrated Design Center for Space Missions &#40;CPRIME&#41; of INPE.</p>
+</li>
+</ol>
+<p>Up until now, the <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> has been actively used in five different space missions at INPE, and over eleven preliminary &#40;Pre-Phase A&#41; studies. I also got some great feedback at JuliaCon 2024. It was awesome to see that big players in the space industry, both public and private, are using <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> in some really cool ways.</p>
+<p>After reviewing the opened issues, we haven’t had many complaints about the API or the algorithms in the past five years. And all the studies we’ve done with this ecosystem haven’t found any major problems with the algorithms. So, I decided to start updating all the packages to version 1.0 at the beginning of 2025. That way, we can officially declare the API stable.</p>
+<p><a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> v1.0 provides the following features to the Julia ecosystem:</p>
+<ol>
+<li><p>Convert between Keplerian elements and orbit state vectors.</p>
+</li>
+<li><p>Convert between different types of anomalies when describing an orbit using Keplerian elements.</p>
+</li>
+<li><p>Obtain several space indices automatically from online sources.</p>
+</li>
+<li><p>Compute the atmospheric density using multiple models &#40;exponential, Jacchia-Roberts 1971, Jacchia-Bowman 2008, and NRLMSISE-00&#41;. The required indices in each model can be automatically fetched.</p>
+</li>
+<li><p>Obtain the position vectors of the Sun and Moon, allowing us to perform several space mission analysis tasks. For example, we need this information to check if our star trackers will be blocked by those celestial bodies during the mission’s operational lifetime.</p>
+</li>
+<li><p>Compute the geomagnetic field using the IGRF model.</p>
+</li>
+<li><p>Obtain the gravity field derivative, gravitational acceleration, and the gravity acceleration using models obtained from <a href="https://icgem.gfz-potsdam.de/home">ICGEM</a> files. This information is crucial to develop numerical orbit propagators.</p>
+</li>
+<li><p>Read, parse, and generate two-line elements &#40;TLE&#41;.</p>
+</li>
+<li><p>Fetch TLEs of any catalogued satellite from online sources.</p>
+</li>
+<li><p>Propagate satellite orbits using several types of analytical algorithms &#40;J2, J2  osculating, J4, J4 osculating, SGP4/SDP4, and two-body&#41;.</p>
+</li>
+<li><p>Fit mean elements for any supported algorithms given a set of state vectors.</p>
+</li>
+<li><p>Perform transformations between any reference system defined by the conventions  IAU-76/FK5 and IAU-2006/2010A.</p>
+</li>
+<li><p>Perform transformations between geocentric and geodetic coordinates.</p>
+</li>
+<li><p>Transform vectors from an Earth-Centered, Earth-Fixed reference frame to local reference  frames.</p>
+</li>
+<li><p>Fetch and parse the Earth Orientation Parameters &#40;EOP&#41; from online sources, which can be  used to improve the accuracy of the coordinate transformations.</p>
+</li>
+<li><p>Convert time between the required time epochs &#40;UTC, UT1, TT&#41;.</p>
+</li>
+</ol>
+<p>All those algorithms are written entirely in Julia and don’t need any external libraries. Hence, they run super fast&#33; All the functions are also well-documented.</p>
+<p>Wow, what a journey it’s been&#33; I want to give a big shoutout to everyone in the Julia community and contributors who helped make <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> what it is today. This tool has become a game-changer for our workflow at INPE, and it’s made Julia and its ecosystem a part of the Brazilian Space Program 🇧🇷&#33;</p>
+<h2 id="the_future"><a href="#the_future" class="header-anchor">The Future</a></h2>
+<p>With our solid base and extensive testing, I will be implementing a range of analysis algorithms in the <a href="https://github.com/JuliaSpace/SatelliteAnalysis.jl">SatelliteAnalysis.jl</a> package. This will empower Julia users to perform various space mission tasks. For instance, we already have a function that lists all the access windows between a satellite and a ground station. This crucial information is vital for mission design for example.</p>
+<p>I’m curious about integrating <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> with tools like <a href="https://github.com/FluxML/Flux.jl">Flux.jl</a>. This could help us develop neural networks that reduce the computational burden of some algorithms. I want to thank <a href="https://github.com/jmurphy6895">Jordan Murphy</a> for the amazing work he is doing on adding automatic differentiation support for many functions in the <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a>.</p>
+<p>I will be also targeting the development of a very accurate, numerical orbit propagator.</p>
+<p>Finally, I really hope to bring more contributors to the <a href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a>&#33; We have the opportunity here to make Julia an important technology in the space community.</p>
+<hr />
+<table class="fndef" id="fndef:1">
+    <tr>
+        <td class="fndef-backref"><a href="#fnref:1">[1]</a></td>
+        <td class="fndef-content">The attitude and orbit control subsystem is responsible for maintaining the satellite’s attitude, or “pointing,” ensuring that the payload &#40;in our case, a camera&#41; faces the Earth steadily to obtain a good image. Additionally, this subsystem is tasked with maintaining the operational orbit within the designated limits.</td>
+    </tr>
+</table>
+
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2489/project">About</a></li>
+        <li><a href="/previews/PR2489/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2489/governance/">Governance</a></li>
+        <li><a href="/previews/PR2489/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2489/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2489/downloads">Install</a></li>
+        <li><a href="/previews/PR2489/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2489/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2489/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2489/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2489/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2489/community/">Community</a></li>
+        <li><a href="/previews/PR2489/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2489/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2489/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2489/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2489/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2489/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2489/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

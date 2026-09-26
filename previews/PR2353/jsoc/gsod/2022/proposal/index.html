@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2353/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2353/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2353/css/app.css">
+<link rel="stylesheet" href="/previews/PR2353/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2353/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2353/libs/buttons.js"></script>
+<script src="/previews/PR2353/libs/clipboard.min.js"></script>
+<script src="/previews/PR2353/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Google Season of Docs 2022 Proposal</title>   
+
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Google Season of Docs 2022 Proposal">
+<meta property="og:description" content="">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2353/">
+          <img src="/previews/PR2353/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2353/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2353/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2353/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2353/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2353/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2353/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsod/2022/proposal.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="google_season_of_docs_2022_proposal"><a href="#google_season_of_docs_2022_proposal" class="header-anchor">Google Season of Docs 2022 Proposal</a></h1>
+<h2 id="proposal_title_-_documenting_machine_learning_models_in_mljjl"><a href="#proposal_title_-_documenting_machine_learning_models_in_mljjl" class="header-anchor">PROPOSAL TITLE - Documenting Machine Learning Models in MLJ.jl</a></h2>
+<h3 id="about_your_organization"><a href="#about_your_organization" class="header-anchor">About your organization</a></h3>
+<blockquote>
+<p>In this section, tell us about your organization or project in a few short paragraphs. What problem does your project solve? Who are your users and contributors? How long has your organization or project been in existence? Give some context to help us understand why funding your proposal would create a positive impact in open source and the world.</p>
+</blockquote>
+<p>The Julia Programming Language &#40;current version 1.7.3, first released in 2012&#41; is an MIT-licensed High-performance programming language designed for speed, usability, and reproducibility. Given Julia’s speed, it is considered by many to be the best-in-class tool for scientific computing. Since 2012, the domain in which Julia is being used to solve complex computation problems has expanded along with our user base. We currently have over 7,000 registered Julia packages, 35 Million &#43; downloads of Julia, and thousands of contributors worldwide. Julia is also one of the fastest-growing &#40;IEEE Programming Language rankings 2019&#41; and most loved &#40;2019 Stack Overflow Developer Survey&#41; programming languages due in large part to the dedicated community of users and developers alike. The Machine Learning Julia &#40;MLJ&#41; project was originally created at the Alan Turing Institute in 2019 and continues to be the most robust machine learning package in the Julia ecosystem. People are using Julia to solve some of the most complicated and difficult problems in the world, but there are also lots of new users on-boarding into the ecosystem so having high quality documentation is paramount.</p>
+<h3 id="your_projects_problem"><a href="#your_projects_problem" class="header-anchor">Your project’s problem</a></h3>
+<blockquote>
+<p>Tell us about the problem your project will help solve. Why is it important to your organization or project to solve this problem?</p>
+</blockquote>
+<p>Right now, when a user wants to understand what various models do in the content of MLJ, there is little to no detail on the model itself nor how it can be used. This makes it really difficult for someone without extensive experience and comfort with machine learning to use MLJ. On top of that, there is no single place in the docs to see and look at the information about all of the available models. This is a feature that is critical to usability and something the project needs to have in order for potential users of all backgrounds to leverage MLJ.</p>
+<h3 id="your_projects_scope"><a href="#your_projects_scope" class="header-anchor">Your project’s scope</a></h3>
+<blockquote>
+<p>Tell us about what documentation your organization will create, update, or improve. If some work is deliberately not being done, include that information as well. Include a time estimate, and whether you have already identified organization volunteers and a technical writer to work with your project.</p>
+</blockquote>
+<p>The project to document machine learning models in MLJ will:</p>
+<ul>
+<li><p>Audit the few existing model documentation examples to get content for what is being asked</p>
+</li>
+<li><p>Ensure the less than 5 existing model docs fulfill the usability requirements</p>
+</li>
+<li><p>Create model examples, hyper-parameters, and supporting literature for ~20 models which don’t yet have docs</p>
+</li>
+<li><p>Integrate those docs into a single page where users can search through and find a model they fits their needs</p>
+</li>
+<li><p>Work with community members to make sure there is enough content for expert users but also that new users are not overwhelmed </p>
+</li>
+</ul>
+<p><strong>Work that is out-of-scope for this project</strong>:</p>
+<ul>
+<li><p>Unless the model documentation goes much faster than anticipated, we don’t expect the writer to cover any models not mentioned here: https://github.com/alan-turing-institute/MLJ.jl/issues/913</p>
+</li>
+<li><p>We do not expect the technical writer to create any new visuals around the architecture of the models. Many of those images exist and we hope to use and cite them appropriately.</p>
+</li>
+</ul>
+<h3 id="measuring_your_projects_success"><a href="#measuring_your_projects_success" class="header-anchor">Measuring your project’s success</a></h3>
+<blockquote>
+<p>How will you know that your new documentation has helped solve your problem? What metrics will you use, and how will you track them?</p>
+</blockquote>
+<p>Right now, the documentation we are proposing to create does not exist. Users would already have to know what the model they want to use does and how to use it which means very few people can leverage these models. Users could also go externally and try to research the models which increases the turnover of the documentation. By having a unified model documentation section we hope to empower users with all of the information they could want in one single place. </p>
+<p>We would consider the project successful if, after the new guide goes live:</p>
+<ul>
+<li><p>25&#37; increase in documentation traffic &#40;measured from site analytics page&#41;</p>
+</li>
+<li><p>Use of MLJ increases by &#43;10&#37; &#40;measured by package downloads&#41;</p>
+</li>
+<li><p>&lt; 90&#37; of new models added have detailed documentation to begin with &#40;this project would be the forcing factor&#41;</p>
+</li>
+</ul>
+<h3 id="timeline"><a href="#timeline" class="header-anchor">Timeline</a></h3>
+<blockquote>
+<p>How long do you estimate this work will take? Are you able to breakdown the tech writer tasks by month/week?</p>
+</blockquote>
+<p>We estimate that a technical writer would spend approximately 1 week per model documented. This gives them time to read appropriate literature, find resources, and construct the relevant background info necessary to write the doc for the model. The detailed tentative timeline would be:</p>
+<ul>
+<li><p>Week 1: Onboarding &#43; Container page creation for models</p>
+</li>
+<li><p>Week 2: MLJGLMInterface</p>
+</li>
+<li><p>Week 3: MLJMultivariateStatsInterface</p>
+</li>
+<li><p>Week 4: EvoTrees</p>
+</li>
+<li><p>Week 5: MLJClusteringInterface</p>
+</li>
+<li><p>Week 6: MLJFlux</p>
+</li>
+<li><p>Week 7: MLJModels</p>
+</li>
+<li><p>Week 8: MLJNaiveBayesInterface</p>
+</li>
+<li><p>Week 9: MLJTSVDInterface</p>
+</li>
+<li><p>Week 10: MLJText</p>
+</li>
+<li><p>Week 11: MLJXGBoostInterface</p>
+</li>
+<li><p>Week 12: OutlierDetectionNeighbors</p>
+</li>
+<li><p>Week 13: OutlierDetectionNetworks</p>
+</li>
+<li><p>Week 14: OutlierDetectionPython</p>
+</li>
+<li><p>Week 15: ParallelKMeans</p>
+</li>
+<li><p>Week 16: PartialLeastSquaresRegressor</p>
+</li>
+<li><p>Week 17: BetaML</p>
+</li>
+<li><p>Week 18: LightGBM</p>
+</li>
+<li><p>Week 19: MLJScikitLearnInterface</p>
+</li>
+<li><p>Week 20: Wrap up / touch up of overall model docs page</p>
+</li>
+</ul>
+<p>This timeline is tentative and we expect that different models will be slightly more challenging than others but this breakdown gives us the opportunity to have a way to stay accountable to the overall goal of the project.</p>
+<h3 id="project_budget"><a href="#project_budget" class="header-anchor">Project budget</a></h3>
+<p>General guidelines</p>
+<blockquote>
+<p>You can include your budget in your proposal or as a separate link. If your budget is fewer than ten items, we recommend including it in your proposal.</p>
+</blockquote>
+<table><tr><th align="left">Budget item</th><th align="left">Amount</th><th align="left">Running Total</th><th align="left">Notes/justifications</th></tr><tr><td align="left">Technical writer</td><td align="left">7000.00</td><td align="left">7000.00</td><td align="left"></td></tr><tr><td align="left">Volunteer Mentor stipends</td><td align="left">400.00</td><td align="left">7800.00</td><td align="left">2 volunteer stipends x 400 each</td></tr><tr><td align="left">T-shirts for writer and those involved</td><td align="left">150</td><td align="left">7950.00</td><td align="left">5 shirts x 30 each</td></tr></table>
+<p>We expect the two technical writer mentors to be critical to this process since last year, due to covid, our main writer was out sick so having multiple people familiar with the project helped to ensure the ultimate success of it.</p>
+<p><strong>TOTAL: 7950.00 USD</strong></p>
+<h3 id="additional_information"><a href="#additional_information" class="header-anchor">Additional information</a></h3>
+<blockquote>
+<p>Previous experience with technical writers or documentation: If you or any of your mentors have worked with technical writers before, or have developed documentation, mention this in your application. Describe the documentation that you produced and the ways in which you worked with the technical writer. For example, describe any review processes that you used, or how the technical writer&#39;s skills were useful to your project. Explain how this previous experience may help you to work with a technical writer in Season of Docs.</p>
+</blockquote>
+<p>Previous experience with technical writers or documentation: In 2020, the Julia Language was a mentoring organization and successfully mentored 3 projects through GSoD. In 2020, we also paid our own technical writers to work on various projects following the same timeline as GSoD. These projects proved to be extremely valuable, and we are hoping to build off their success. In 2021, we had one project under the Julia umbrella which despite delays due to COVID and family emergencies ultimately ended up being successful. The MLJ project specifically has not had a technical writer before but the core Julia team and our technical writers from previous years will be supporting as mentors / admins for the project to make sure it is successful. We do all our reviews publicly on GitHub which was very helpful in getting outside feedback from core project members who were not directly involved in the project.</p>
+<blockquote>
+<p>Previous participation in Season of Docs, Google Summer of Code or others: If you or any of your mentors have taken part in Google Summer of Code or a similar program, mention this in your application. Describe your achievements in that program. Explain how this experience may influence the way you work in Season of Docs.</p>
+</blockquote>
+<p>The Julia project has been part of GSoC for many years now. We routinely mentor &lt; 20 students and for the last few years have supplemented GSoC and GSoD by paying contributors and writers directly. We generally only have 1 or max 2 project which fail GSoC and it tends to be because of some extenuating circumstance. Our mentoring team is robust and has many years of GSoC under its belt. Our contributors also tend to stick around in the community after GSoC. In the case of GSoD, some of our 2020 writers ended up mentoring for 2021 and are still involved writing on various projects in the community. GSoD has given us the ability to recruit and retain these writers which has helped us a ton in the last few years.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2353/project">About</a></li>
+        <li><a href="/previews/PR2353/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2353/governance/">Governance</a></li>
+        <li><a href="/previews/PR2353/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2353/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2353/install/">Install</a></li>
+        <li><a href="/previews/PR2353/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2353/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2353/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2353/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2353/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2353/community/">Community</a></li>
+        <li><a href="/previews/PR2353/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2353/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2353/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2353/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2353/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2353/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2353/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2353/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2353/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/previews/PR2353/libs/groups.js"></script>
+    <script src="/previews/PR2353/libs/map.js"></script>
+  </body>
+</html>

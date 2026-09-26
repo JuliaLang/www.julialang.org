@@ -1,0 +1,16 @@
+/* JuliaMono font for code blocks - loaded lazily via media="print" trick to avoid blocking render */
+@font-face {
+    font-family: "JuliaMono";
+    src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono-webfonts/JuliaMono-Regular.woff2") format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "JuliaMono";
+    src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono-webfonts/JuliaMono-Bold.woff2") format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
