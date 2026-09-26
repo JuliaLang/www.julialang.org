@@ -14,9 +14,9 @@ ignore = ["visual-tests/"]
 # Templating of the Downloads
 # NOTE: When updating for a new release, make sure to also rerun
 # `downloads/oldreleases.jl`
-stable_release = "1.13.0"
+stable_release = "1.13.1"
 stable_release_short = "1.13"
-stable_release_date = "September 9, 2026"
+stable_release_date = "September 25, 2026"
 lts_release = "1.10.12"
 lts_release_short = "1.10"
 lts_release_date = "August 16, 2026"
