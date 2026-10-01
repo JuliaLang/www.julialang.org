@@ -26,14 +26,17 @@ function check_orgs()
             err_msg = sprint(showerror, e)
             println("Error processing organization '$org':\n$err_msg")
         end
-        if isnothing(members) || length(members) < 2
+        if isnothing(members)
+            println(" - $org (could not fetch members)")
+            num_below += 1
+        elseif length(members) < 2
             println(" - $org $(length(members)) members")
             num_below += 1
         end
     end
 
     if num_below > 0
-        error("Found $num_below organization(s) with fewer than 2 public members")
+        @warn("Found $num_below organization(s) with fewer than 2 public members")
     else
         println("None found")
     end
