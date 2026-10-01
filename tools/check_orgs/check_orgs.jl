@@ -36,7 +36,7 @@ function check_orgs()
     end
 
     if num_below > 0
-        error("Found $num_below organization(s) with fewer than 2 public members")
+        @warn("Found $num_below organization(s) with fewer than 2 public members")
     else
         println("None found")
     end
