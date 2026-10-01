@@ -24,8 +24,6 @@
 ~~~
 @@ @@
 
-**JSON release feed** — A machine-readable index of all Julia releases, with the binaries available for each platform, is published as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)). It may take up to two hours after the release of a new version for it to be included in the JSON file.
-
 ## Supported platforms
 
 Julia supports all the major operating systems. Different OSes and architectures have varying [tiers of support](/downloads/support#support_tiers).
@@ -95,7 +93,7 @@ Julia supports all the major operating systems. Different OSes and architectures
     </tr>
     <tr>
       <td> PowerPC LE (64-bit) </td>
-      <td> <span style="color: crimson;">Tier 3</span> </td>
+      <td> <span style="color: black;">Tier 4</span> </td>
     </tr>
     <tr>
       <td> 6.4+ </td>
@@ -190,5 +188,7 @@ Julia also supports a variety of hardware accelerators, by means of external pac
 </ul>
 ~~~
 @@ @@
+
+**JSON release feed** — A machine-readable index of all Julia releases, with the binaries available for each platform, is published as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)). It may take up to two hours after the release of a new version for it to be included in the JSON file.
 
 ---
