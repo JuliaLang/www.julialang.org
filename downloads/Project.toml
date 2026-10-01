@@ -1,8 +1,9 @@
 [deps]
 Downloads = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
 GitHub = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
-JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 
 [compat]
-JSON3 = "1"
-julia = "1"
+GitHub = "5.9"
+JSON = "1"
+julia = "1.13"
