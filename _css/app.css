@@ -1493,11 +1493,11 @@ pre .bash-block::before {
 .tier-1 { color: #1a7f37; }
 .tier-2 { color: #b35900; }
 .tier-3 { color: #cf222e; }
-.tier-4 { color: #666; }
+.tier-4 { color: #64748b; }
 [data-theme="dark"] .tier-1 { color: #3fb950; }
 [data-theme="dark"] .tier-2 { color: #f0a030; }
 [data-theme="dark"] .tier-3 { color: #ff6b6b; }
-[data-theme="dark"] .tier-4 { color: var(--dm-text-muted); }
+[data-theme="dark"] .tier-4 { color: #8b9bb4; }
 [data-theme="dark"] a {
   color: var(--dm-link);
 }
