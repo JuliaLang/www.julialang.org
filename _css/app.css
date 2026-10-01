@@ -1488,6 +1488,14 @@ pre .bash-block::before {
   background-color: var(--dm-bg);
   color: var(--dm-text);
 }
+
+/* Tier 4 label on the support tiers page */
+.tier-4 {
+  color: #666;
+}
+[data-theme="dark"] .tier-4 {
+  color: var(--dm-text-muted);
+}
 [data-theme="dark"] a {
   color: var(--dm-link);
 }

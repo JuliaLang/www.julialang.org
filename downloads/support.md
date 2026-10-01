@@ -89,11 +89,11 @@ Julia supports all the major operating systems. Different OSes and architectures
     </tr>
     <tr>
       <td> ARMv7 (32-bit) </td>
-      <td> <span style="color: black;">Tier 4</span> </td>
+      <td> <span class="tier-4">Tier 4</span> </td>
     </tr>
     <tr>
       <td> PowerPC LE (64-bit) </td>
-      <td> <span style="color: black;">Tier 4</span> </td>
+      <td> <span class="tier-4">Tier 4</span> </td>
     </tr>
     <tr>
       <td> 6.4+ </td>
@@ -104,7 +104,7 @@ Julia supports all the major operating systems. Different OSes and architectures
       <td rowspan="1"> Linux (Musl) </td>
       <td rowspan="1"> 2.6.39+ </td>
       <td> x86-64 (64-bit) </td>
-      <td> <span style="color: black;">Tier 4</span> </td>
+      <td> <span class="tier-4">Tier 4</span> </td>
     </tr>
     <tr>
       <td rowspan="2"> FreeBSD </td>
@@ -184,7 +184,7 @@ Julia also supports a variety of hardware accelerators, by means of external pac
 <li> <span style="color: green;">Tier 1</span>: Julia is guaranteed to build from source and pass all tests on these platforms when built with the default options. Official binaries are always available and CI is run on every commit to ensure support is actively maintained.
 <li> <span style="color: orange;">Tier 2</span>: Julia is guaranteed to build from source using the default build options, but may or may not pass all tests. Official binaries are available on a case-by-case basis.
 <li> <span style="color: crimson;">Tier 3</span>: Julia may or may not build. If it does, it is unlikely to pass tests. Binaries may be available in some cases. When they are, they should be considered experimental. Ongoing support is dependent on community efforts.
-<li> Tier 4: Julia built at some point in the past, but is known not to build currently.
+<li> <span class="tier-4">Tier 4</span>: Julia built at some point in the past, but is known not to build currently.
 </ul>
 ~~~
 @@ @@
