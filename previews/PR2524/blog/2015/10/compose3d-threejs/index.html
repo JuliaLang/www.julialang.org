@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme'),d=t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');var l=document.createElement('link');l.rel='preload';l.as='image';l.setAttribute('fetchpriority','high');l.href='/previews/PR2524/assets/infra/'+(d?'logo-dark':'logo')+'.svg';document.head.appendChild(l);})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2524/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2524/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background; navbar logo preloaded dynamically in head.html to pick the correct theme variant) -->
+<link rel="preload" href="/previews/PR2524/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2524/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2524/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2524/css/app.css">
+<link rel="stylesheet" href="/previews/PR2524/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2524/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2524/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2524/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2524/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2524/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D">
+<meta property="og:description" content=" JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D | Over the last three months, I've been working on Compose3D (https://github.com/rohitvarkey/Compose3D.jl),... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2524/blog/2015/10/compose3d-threejs/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D",
+  "description": "JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D | Over the last three months, I've been working on Compose3D (https://github.com/rohitvarkey/Compose3D.jl),...",
+  "image": "https://julialang.netlify.app/previews/PR2524/assets/images/julia-open-graph.png",
+  "datePublished": "2015-10-20T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "Rohit Varkey Thankachan", "url": "https://github.com/rohitvarkey"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2524/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2524/blog/2015/10/compose3d-threejs/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2524/">
+          <img alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <script>document.querySelector('.navbarjulialogo').src='/previews/PR2524/assets/infra/'+(document.documentElement.getAttribute('data-theme')==='dark'?'logo-dark':'logo')+'.svg'</script>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2524/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2524/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2524/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2524/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2524/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2524/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="gh-nav-btn" href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener" aria-label="Star JuliaLang/julia on GitHub">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg>
+              Star
+            </a>
+            <a class="gh-nav-btn" href="https://github.com/sponsors/JuliaLang" target="_blank" rel="noopener" aria-label="Sponsor @JuliaLang on GitHub">
+              <svg class="gh-nav-heart" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"/></svg>
+              Sponsor
+            </a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p>
+          
+            <span class="blog-meta-date">20 October 2015</span> |
+          
+          
+            <span class="blog-meta-author"></span>
+          
+          
+            <span class="blog-meta-author"><a href="https://github.com/rohitvarkey">Rohit Varkey Thankachan</a></span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2015/10/compose3d-threejs.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Over the last three months, I&#39;ve been working on <a href="https://github.com/rohitvarkey/Compose3D.jl">Compose3D</a>, which is an extension of the amazing <a href="https://github.com/dcjones/Compose.jl">Compose</a> package to 3D. My work on Compose3D began as a project for my Computer Graphics course along with <a href="https://github.com/pranavtbhat">Pranav T Bhat</a>, and by the end of the course, we had a working prototype for Compose3D with support for contexts and geometries and a very basic WebGL backend.</p>
+<p>It has been my pleasure to have been able to continue this work under the guidance of <a href="https://github.com/shashi">Shashi Gowda</a> and <a href="https://github.com/SimonDanisch">Simon Danisch</a> as a part of the first ever Julia Summer of Code, generously sponsored by the <a href="https://www.moore.org/">Gordon and Betty Moore Foundation</a>. While I&#39;ve been able to add quite a lot of functionality to Compose3D, it isn&#39;t totally ready for release yet. Hopefully, in some time it will be ready. But as a happy side effect, I have been able to abstract out the WebGL rendering functionality provided by the original prototype &#40;and a lot more&#33;&#41; to a separate package called <a href="https://github.com/rohitvarkey/ThreeJS.jl">ThreeJS.jl</a>, which can now be used to render 3D graphics in browsers using Julia, opening up possibilities of displaying such scenes in <a href="https://github.com/JuliaLang/IJulia.jl">IJulia</a> notebooks and <a href="https://github.com/shashi/Escher.jl">Escher</a>.</p>
+<h2 id="threejsjl"><a href="#threejsjl" class="header-anchor">ThreeJS.jl</a></h2>
+<p>ThreeJS is now responsible for all the WebGL rendering done by Compose3D. It can also be used as a standalone package for other graphics packages to use as a backend.</p>
+<p>Initially, my approach to render scenes in Compose3D was to just emit out the corresponding JavaScript code, into the IJulia notebook, which would then run it&#33; This worked pretty well in IJulia notebooks, but it was soon apparent that there were several flaws with this approach.</p>
+<ul>
+<li><p>It was hard to extend.</p>
+</li>
+<li><p>Did not play well with Escher.</p>
+</li>
+<li><p>Nor did it work with Interact to provide interactivity.</p>
+</li>
+</ul>
+<p>So Shashi suggested implementing a <a href="https://www.polymer-project.org/1.0/">Polymer</a> wrapper around the excellent <a href="https://threejs.org/">three.js</a> library, to create threejs web components. The Polymer team had done some work on creating threejs components and had a basic implementation of the same ready, which I promptly <a href="https://github.com/rohitvarkey/three-js">forked</a> and tweaked to add functionality I needed. It&#39;s quite safe to say that I&#39;ve spent more time writing JavaScript than Julia during JSoC&#33;</p>
+<p>Switching over to using web components suddenly opened up 2 major avenues. Compose3D could now work with Escher and also provided interactivity. ThreeJS outputs <a href="https://github.com/shashi/Patchwork.jl">Patchwork</a> elements, which lets it use Patchwork&#39;s clever diffing capabilities, thereby updating only the required DOM elements and helping performance.</p>
+<p>On the other hand, web components introduced issues with IJulia notebooks regarding serving the files required by ThreeJS. I&#39;m still working on finding a good solution for this problem, but for now, a hack gets ThreeJS working in IJulia, albeit with some limitations.</p>
+<h3 id="drawing_stuff"><a href="#drawing_stuff" class="header-anchor">Drawing stuff&#33;</a></h3>
+<p>Anyway, now we were all set to draw 3D scenes in browsers&#33; The below code snippet, for example, would draw a red cube illuminated from a corner. The camera in the scenes drawn by ThreeJS can be rotated, zoomed and panned using your mouse or trackpad, allowing you to explore the scene.</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">import</span> ThreeJS
+ThreeJS.outerdiv() &lt;&lt; (ThreeJS.initscene() &lt;&lt;
+    [
+        ThreeJS.mesh(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>) &lt;&lt;
+        [
+            ThreeJS.box(<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>),
+            ThreeJS.material(<span class="hljs-built_in">Dict</span>(:kind=&gt;<span class="hljs-string">&quot;lambert&quot;</span>,:color=&gt;<span class="hljs-string">&quot;red&quot;</span>))
+        ],
+        ThreeJS.pointlight(<span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>),
+        ThreeJS.camera(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>)
+    ])</code></pre>
+<h3 id="making_them_interactive"><a href="#making_them_interactive" class="header-anchor">Making them interactive</a></h3>
+<p>Currently, interactivity is broken in IJulia &#40;a side effect of the switch to Polymer 1.0, and the new sneaky DOM&#41;, so Escher is the way to go if you want to interact with your 3D scene. So an example for this can be the same scene as before, but after adding a slider and make it such that the size of the cube is controlled by the slider.</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">import</span> ThreeJS
+<span class="hljs-keyword">function</span> main(window)
+  push!(window.assets, <span class="hljs-string">&quot;widgets&quot;</span>)
+  push!(window.assets, (<span class="hljs-string">&quot;ThreeJS&quot;</span>, <span class="hljs-string">&quot;threejs&quot;</span>))
+  side = Input(<span class="hljs-number">1.0</span>)
+  vbox(
+    slider(<span class="hljs-number">1.0</span>:<span class="hljs-number">5.0</span>) &gt;&gt;&gt; side,
+    lift(side) <span class="hljs-keyword">do</span> val
+      ThreeJS.outerdiv() &lt;&lt; (ThreeJS.initscene() &lt;&lt;
+      [
+          ThreeJS.mesh(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>) &lt;&lt;
+          [
+              ThreeJS.box(val, val, val),
+              ThreeJS.material(<span class="hljs-built_in">Dict</span>(:kind=&gt;<span class="hljs-string">&quot;lambert&quot;</span>,:color=&gt;<span class="hljs-string">&quot;red&quot;</span>))
+          ],
+          ThreeJS.pointlight(<span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>),
+          ThreeJS.camera(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>)
+      ])
+    <span class="hljs-keyword">end</span>
+  )
+<span class="hljs-keyword">end</span></code></pre>
+<h3 id="you_can_also_do_animations"><a href="#you_can_also_do_animations" class="header-anchor">You can also do animations&#33;</a></h3>
+<p>Small scale animations can also be created using Escher. Instead of using sliders to update the elements, we just update it at certain intervals using the <code>every</code> function or the <code>fpswhen</code> functions. A scene with a rotating cube can be drawn using just a couple of modifications of the above code.</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">import</span> ThreeJS
+<span class="hljs-keyword">function</span> main(window)
+  push!(window.assets, <span class="hljs-string">&quot;widgets&quot;</span>)
+  push!(window.assets, (<span class="hljs-string">&quot;ThreeJS&quot;</span>, <span class="hljs-string">&quot;threejs&quot;</span>))
+  rx = <span class="hljs-number">0.0</span>
+  ry = <span class="hljs-number">0.0</span>
+  rz = <span class="hljs-number">0.0</span>
+  delta = fpswhen(window.alive, <span class="hljs-number">60</span>) <span class="hljs-comment">#Update at 60 FPS</span>
+  lift(delta) <span class="hljs-keyword">do</span> _
+      rx += <span class="hljs-number">0.5</span>
+      ry += <span class="hljs-number">0.5</span>
+      rz += <span class="hljs-number">0.5</span>
+      ThreeJS.outerdiv() &lt;&lt; (ThreeJS.initscene() &lt;&lt;
+      [
+          ThreeJS.mesh(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>) &lt;&lt;
+          [
+              ThreeJS.box(<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, rx = rx, ry = ry, rz = rz),
+              ThreeJS.material(<span class="hljs-built_in">Dict</span>(:kind=&gt;<span class="hljs-string">&quot;lambert&quot;</span>,:color=&gt;<span class="hljs-string">&quot;red&quot;</span>))
+          ],
+          ThreeJS.pointlight(<span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>),
+          ThreeJS.camera(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>)
+      ])
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+<p><img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/b7dc41f2b3f869c103dcbcb79632f92397767b01/rotating_cube.gif" alt="Rotating Cube" /></p>
+<h3 id="surf_and_mesh_plots_sort_of"><a href="#surf_and_mesh_plots_sort_of" class="header-anchor">Surf and mesh plots&#33; &#40;Sort of&#41;</a></h3>
+<p>ThreeJS has support to render parametric surfaces, which are basically the kind of surfaces drawn by a typical <code>surf</code> plot. It also has support for drawing lines like a typical <code>mesh</code> plot. Colormaps can be applied to these surfaces by passing in an array of colors to be used. Colors to be applied are calculated and chosen by ThreeJS. These come into effect when put together with materials using the <code>colorkind</code> property of <code>vertex</code>. Screenshots of such surfaces drawn by ThreeJS are shown below.</p>
+<p><img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/d1d8e389dd5baf5420cb24c1dfdf784bc61bf217/parametric.png" alt="Parametric surface" /> <img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/d1d8e389dd5baf5420cb24c1dfdf784bc61bf217/meshlines.png" alt="Mesh lines" /></p>
+<h2 id="compose3d"><a href="#compose3d" class="header-anchor">Compose3D</a></h2>
+<p>Compose3D provides an abstraction over the rendering library and lets you compose together primitives to build scenes just like the inspiration for it, the Compose library. This lets you create very interesting structures, with very less code&#33; Compose3D has similar features to Compose, with users being able to create 3D contexts, and then use relative and absolute measures inside them and compose other primitives together.</p>
+<p>My favorite example to showcase Compose3D would be the Sierpinski pyramid example. Here, we split the parent context into the sections that we want and then just draw the pyramid in them&#33; So the bottom half of the 3D space is split into 4, and then, a pyramid is arranged on top of them.</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Compose3D
+
+<span class="hljs-keyword">function</span> sierpinski(n)
+    <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>
+        compose(Context(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,<span class="hljs-number">1</span>w,<span class="hljs-number">1</span>h,<span class="hljs-number">1</span>d),pyramid(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,<span class="hljs-number">1</span>w,<span class="hljs-number">1</span>h)) <span class="hljs-comment">#The basic unit</span>
+    <span class="hljs-keyword">else</span>
+        t = sierpinski(n - <span class="hljs-number">1</span>)
+        compose(Context(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,<span class="hljs-number">1</span>w,<span class="hljs-number">1</span>h,<span class="hljs-number">1</span>d),
+        (Context(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t),
+        (Context(<span class="hljs-number">0</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0.5</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t),
+        (Context(<span class="hljs-number">0.5</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0.5</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t),
+        (Context(<span class="hljs-number">0.5</span>w,<span class="hljs-number">0</span>h,<span class="hljs-number">0</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t),
+        (Context(<span class="hljs-number">0.25</span>w,<span class="hljs-number">0.5</span>h,<span class="hljs-number">0.25</span>d,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)w,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)h,(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)d), t)) <span class="hljs-comment">#The top one</span>
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+compose(Context(-<span class="hljs-number">5</span>mm,-<span class="hljs-number">5</span>mm,-<span class="hljs-number">5</span>mm,<span class="hljs-number">10</span>mm,<span class="hljs-number">10</span>mm,<span class="hljs-number">10</span>mm),sierpinski(<span class="hljs-number">3</span>))</code></pre>
+<p>And voila&#33; You have a Sierpinski pyramid of level 3 like in the figure below.</p>
+<p><img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/d1d8e389dd5baf5420cb24c1dfdf784bc61bf217/sierpinski.png" alt="Sierpinski" /></p>
+<p>The switch to ThreeJS allows Compose3D all the advantages that comes with ThreeJS. This includes interactivity and animations&#33;</p>
+<p>For example, the same Sierpinski example can be have some interactive elements, say a slider defining the number of levels of recursion and maybe some controlling the colors of the pyramid. This can be done easily in Escher just like it was done with ThreeJS. After defining the <code>sierpinski</code> function given below, just creating a slider and hooking it up to the <code>sierpinski</code> function will set this up&#33;</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> main(window)
+    push!(window.assets, (<span class="hljs-string">&quot;ThreeJS&quot;</span>, <span class="hljs-string">&quot;threejs&quot;</span>)) <span class="hljs-comment">#Push the threejs static assets</span>
+    push!(window.assets, <span class="hljs-string">&quot;widgets&quot;</span>)
+    n = Input(<span class="hljs-number">0.0</span>)
+
+    vbox(
+        slider(<span class="hljs-number">0.0</span>:<span class="hljs-number">3.0</span>) &gt;&gt;&gt; n, <span class="hljs-comment">#Set up the slider</span>
+        lift(n) <span class="hljs-keyword">do</span> i
+            <span class="hljs-comment">#Draw the composed figure!</span>
+            draw(
+                Patchable3D(<span class="hljs-number">100</span>,<span class="hljs-number">100</span>),
+                compose(
+                    Context(-<span class="hljs-number">5</span>mm,-<span class="hljs-number">5</span>mm,-<span class="hljs-number">5</span>mm,<span class="hljs-number">10</span>mm,<span class="hljs-number">10</span>mm,<span class="hljs-number">10</span>mm), sierpinski(i)
+                )
+            )
+        <span class="hljs-keyword">end</span>
+    )
+<span class="hljs-keyword">end</span></code></pre>
+<p><img src="https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/78fefb17032a0bd9861e8497133cb6ce3876a4d4/interactive_sierpinski.gif" alt="Interactive Sierpinski" /></p>
+<p>An an example for animations, I ported the Escher boids example by Ian Dunning from 2D to 3D and a screencast of the same can be found below.</p>
+
+<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/Yul3iBkAVHs" style="border:none;" allowfullscreen></iframe></div>
+
+<h2 id="future_directions"><a href="#future_directions" class="header-anchor">Future directions</a></h2>
+<ul>
+<li><p>Several new primitives have been added in ThreeJS which don&#39;t yet have corresponding primitives in Compose3D.</p>
+</li>
+<li><p>Add support for text in ThreeJS allowing use of labels in plots.</p>
+</li>
+<li><p>Being able to use <code>surf</code> and <code>mesh</code> that will automatically draw scaled surface plots in browsers and a WebGL based plotting library around ThreeJS.</p>
+</li>
+<li><p>Actually get Compose3D ready for public use&#33;</p>
+</li>
+</ul>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script defer src="/previews/PR2524/libs/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){hljs.configure({tabReplace:'    '});hljs.highlightAll();});</script>
+
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2524/project">About</a></li>
+        <li><a href="/previews/PR2524/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2524/governance/">Governance</a></li>
+        <li><a href="/previews/PR2524/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2524/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2524/downloads">Install</a></li>
+        <li><a href="/previews/PR2524/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2524/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2524/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2524/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2524/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2524/community/">Community</a></li>
+        <li><a href="/previews/PR2524/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2524/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2524/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2524/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2524/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2524/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2524/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

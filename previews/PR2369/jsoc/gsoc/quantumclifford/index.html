@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2369/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2369/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2369/css/app.css">
+<link rel="stylesheet" href="/previews/PR2369/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2369/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2369/libs/buttons.js"></script>
+<script src="/previews/PR2369/libs/clipboard.min.js"></script>
+<script src="/previews/PR2369/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Tools for simulation of Quantum Clifford Circuits - Summer of Code</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Tools for simulation of Quantum Clifford Circuits - Summer of Code">
+<meta property="og:description" content="">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2369/">
+          <img src="/previews/PR2369/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item  ">
+                  <a class="nav-link" href="/previews/PR2369/install/">Install</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2369/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2369/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2369/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2369/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2369/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsoc/quantumclifford.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="tools_for_simulation_of_quantum_clifford_circuits_-_summer_of_code"><a href="#tools_for_simulation_of_quantum_clifford_circuits_-_summer_of_code" class="header-anchor">Tools for simulation of Quantum Clifford Circuits - Summer of Code</a></h1>
+<p>Clifford circuits are a class of quantum circuits that can be simulated efficiently on a classical computer. As such, they do not provide the computational advantage expected of universal quantum computers. Nonetheless, they are extremely important, as they underpin most techniques for quantum error correction and quantum networking. Software that efficiently simulates such circuits, at the scale of thousands or more qubits, is essential to the design of quantum hardware. The <a href="https://github.com/Krastanov/QuantumClifford.jl">QuantumClifford.jl</a> Julia project enables such simulations.</p>
+<h2 id="gpu_accelerated_simulator_of_clifford_circuits"><a href="#gpu_accelerated_simulator_of_clifford_circuits" class="header-anchor">GPU accelerated simulator of Clifford Circuits.</a></h2>
+<p>Simulation of Clifford circuits involves significant amounts of linear algebra with boolean matrices. This enables the use of many standard computation accelerators like GPUs, as long as these accelerators support bit-wise operations. The main complications is that the elements of the matrices under consideration are usually packed in order to increase performance and lower memory usage, i.e. a vector of 64 elements would be stored as a single 64 bit integer instead of as an array of 64 bools. A Summer of Code project could consist of implement the aforementioned linear algebra operations in GPU kernels, and then seamlessly integrating them in the rest of the QuantumClifford library. At a minimum that would include <a href="https://github.com/Krastanov/QuantumClifford.jl/blob/v0.4.0/src/QuantumClifford.jl#L725">Pauli-Pauli products</a> and certain <a href="https://github.com/Krastanov/QuantumClifford.jl/blob/v0.4.0/src/symbolic_cliffords.jl">small Clifford operators</a>, but could extend to general <a href="https://github.com/Krastanov/QuantumClifford.jl/blob/v0.4.0/src/QuantumClifford.jl#L1385">stabilizer tableau multiplication</a> and even <a href="https://github.com/Krastanov/QuantumClifford.jl/blob/v0.4.0/src/QuantumClifford.jl#L985">tableau diagonalization</a>. Some of these features are already implemented, but significant polish and further improvements and implementation of missing features is needed.</p>
+<p><strong>Recommended skills:</strong> Basic knowledge of the <a href="https://krastanov.github.io/QuantumClifford.jl/dev/references/">stabilizer formalism</a> used for simulating Clifford circuits. Familiarity with performance profiling tools in Julia and Julia&#39;s GPU stack, including <a href="https://github.com/JuliaGPU/KernelAbstractions.jl">KernelAbstractions</a> and <a href="https://github.com/mcabbott/Tullio.jl">Tullio</a>.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/Krastanov">Stefan Krastanov</a> <a href="mailto:stefan@krastanov.org">&lt;stefan@krastanov.org&gt;</a> and QuantumClifford.jl team members</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it to a longer project by including work on GPU-accelerated Gaussian elimination used in the canonicalization routines&#41;</p>
+<p><strong>Difficulty:</strong> Medium if the applicant is familiar with Julia, even without understanding of Quantum Information Science &#40;but applicants can scope it to &quot;hard&quot; by including the aforementioned additional topics&#41;</p>
+<h2 id="a_zoo_of_quantum_error_correcting_codes_andor_decoders"><a href="#a_zoo_of_quantum_error_correcting_codes_andor_decoders" class="header-anchor">A Zoo of Quantum Error Correcting codes and/or decoders</a></h2>
+<p>Quantum Error Correcting codes are typically represented in a form similar to the parity check matrix of a classical code. This form is referred to as a Stabilizer tableaux. This project would involve creating a comprehensive library of frequently used quantum error correcting codes and/or implementing syndrome-decoding algorithms for such codes. The library already includes some simple codes and interfaces to a few decoders – adding another small code or providing a small documentation pull request could be a good way to prove competence when applying for this project. The project can be extended to a much longer one if work on decoders is included. A large part of this project would involve literature surveys. Some suggestions for codes to include: color codes, higher-dimensional topological codes, hyper graph product codes, twists in codes, newer LDPC codes, honeycomb codes, Floquet codes. Some suggestions for decoders to work on: iterative, small-set flip, ordered statistical decoding, belief propagation, neural belief propagation.</p>
+<p><strong>Recommended skills:</strong> Knowledge of the <a href="https://krastanov.github.io/QuantumClifford.jl/dev/references/">stabilizer formalism</a> used for simulating Clifford circuits. Familiarity with tools like python&#39;s <code>ldpc</code>, <code>pymatching</code>, and <code>stim</code> can help. Consider checking out the <code>PyQDecoders.jl</code> julia wrapper package as well.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/Krastanov">Stefan Krastanov</a> <a href="mailto:stefan@krastanov.org">&lt;stefan@krastanov.org&gt;</a> and QuantumClifford.jl team members</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer, depending on the list of functionality they plan to implement&#41;</p>
+<p><strong>Difficulty:</strong> Medium. Easy with some basic knowledge of quantum error correction</p>
+<h2 id="leftright_multiplications_with_small_gates"><a href="#leftright_multiplications_with_small_gates" class="header-anchor">Left/Right multiplications with small gates.</a></h2>
+<p>Applying an n-qubit Clifford gate to an n-qubit state &#40;tableaux&#41; is an operation similar to matrix multiplication, requiring O&#40;n^3&#41; steps. However, applying a single-qubit or two-qubit gate to an n-qubit tableaux is much faster as it needs to address only one or two columns of the tableaux. This project would focus on extending the left-multiplication special cases already started in <a href="https://github.com/Krastanov/QuantumClifford.jl/blob/master/src/symbolic_cliffords.jl">symbolic_cliffords.jl</a> and creating additional right-multiplication special cases &#40;for which <a href="https://github.com/Krastanov/QuantumClifford.jl/commit/d3e84c16b7b08ef6f1bc24e2bcf98641c2fff1ab#r67183201">the Stim library is a good reference</a>&#41;.</p>
+<p><strong>Recommended skills:</strong> Knowledge of the <a href="https://krastanov.github.io/QuantumClifford.jl/dev/references/">stabilizer formalism</a> used for simulating Clifford circuits. Familiarity with performance profiling tools in Julia. Understanding of C/C&#43;&#43; if you plan to use the Stim library as a reference.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/Krastanov">Stefan Krastanov</a> <a href="mailto:stefan@krastanov.org">&lt;stefan@krastanov.org&gt;</a> and QuantumClifford.jl team members</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan for other significant optimization and API design work&#41;</p>
+<p><strong>Difficulty:</strong> Easy</p>
+<h2 id="generation_of_fault_tolerant_ecc_circuits_flag_qubit_circuits_and_more"><a href="#generation_of_fault_tolerant_ecc_circuits_flag_qubit_circuits_and_more" class="header-anchor">Generation of Fault Tolerant ECC Circuits, Flag Qubit Circuits and more</a></h2>
+<p>The QuantumClifford library already has some <a href="https://github.com/QuantumSavory/QuantumClifford.jl/blob/v0.8.19/src/ecc/circuits.jl">support for generating different types of circuits related to error correction</a> &#40;mostly in terms of syndrome measurement circuits like Shor&#39;s&#41; and for evaluating the quality of error correcting codes and decoders. Significant improvement can be made by implementing more modern compilation schemes, especially ones relying on flag qubits.</p>
+<p><strong>Recommended skills:</strong> Knowledge of the variety of flag qubit methods. Some useful references could be <a href="https://link.aps.org/accepted/10.1103/PhysRevLett.121.050502">a</a>, <a href="https://www.nature.com/articles/s41534-018-0085-z">b</a>, <a href="https://journals.aps.org/prxquantum/pdf/10.1103/PRXQuantum.1.010302">c</a>, and this <a href="https://www.youtube.com/watch?v&#61;etA9l2NUCXI">video lecture</a>.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/Krastanov">Stefan Krastanov</a> <a href="mailto:stefan@krastanov.org">&lt;stefan@krastanov.org&gt;</a> and QuantumClifford.jl team members</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan more extensive work&#41;</p>
+<p><strong>Difficulty:</strong> Hard</p>
+<h2 id="measurement-based_quantum_computing_mbqc_compiler"><a href="#measurement-based_quantum_computing_mbqc_compiler" class="header-anchor">Measurement-Based Quantum Computing &#40;MBQC&#41; compiler</a></h2>
+<p>The MBQC model of quantum computation has a lot of overlap with the study of Stabilizer states. This project would be about the creation of an MBQC compiler and potentially simulator in Julia. E.g. if one is given an arbitrary graph state and a circuit, how is this circuit to be compiled in an MBQC model.</p>
+<p><strong>Recommended skills:</strong> Knowledge of the MBQC model of quantum computation. This <a href="https://arxiv.org/pdf/2212.11975.pdf">paper and the related python library</a> can be a useful reference. Consider also <a href="https://quantum-journal.org/papers/q-2021-03-25-421/">this reference</a>.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/Krastanov">Stefan Krastanov</a> <a href="mailto:stefan@krastanov.org">&lt;stefan@krastanov.org&gt;</a> and QuantumClifford.jl team members</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan more extensive work&#41;</p>
+<p><strong>Difficulty:</strong> Hard</p>
+<h2 id="implementing_a_graph_state_simulator"><a href="#implementing_a_graph_state_simulator" class="header-anchor">Implementing a Graph State Simulator</a></h2>
+<p>The graph states formalism is a way to work more efficiently with stabilizer states that have a sparse tableaux. This project would involve creation of the necessary gate simulation algorithms and conversions tools between graph formalism and stabilizer formalism &#40;some of which are <a href="https://github.com/QuantumSavory/QuantumClifford.jl/blob/master/src/graphs.jl">already available in the library</a>&#41;.</p>
+<p><strong>Recommended skills:</strong> Understanding of the graph formalism. This <a href="https://arxiv.org/abs/quant-ph/0504117">paper can be a useful reference</a>.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/Krastanov">Stefan Krastanov</a> <a href="mailto:stefan@krastanov.org">&lt;stefan@krastanov.org&gt;</a> and QuantumClifford.jl team members</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan more extensive work&#41;</p>
+<p><strong>Difficulty:</strong> Medium</p>
+<h2 id="simulation_of_slightly_non-clifford_circuits_and_states"><a href="#simulation_of_slightly_non-clifford_circuits_and_states" class="header-anchor">Simulation of Slightly Non-Clifford Circuits and States</a></h2>
+<p>There are various techniques used to augment Clifford circuit simulators to model circuits that are only &quot;mostly&quot; Clifford. Particularly famous are the Clifford&#43;T gate simulators. This project is about implementing such extensions.</p>
+<p><strong>Recommended skills:</strong> In-depth understanding of the Stabilizer formalism, and understanding of some of the extensions to that method. We have some <a href="https://github.com/QuantumSavory/QuantumClifford.jl/blob/master/src/nonclifford.jl">initial implementations</a>. This <a href="https://arxiv.org/pdf/1808.00128.pdf">IBM paper</a> can also be a useful reference for other methods.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/Krastanov">Stefan Krastanov</a> <a href="mailto:stefan@krastanov.org">&lt;stefan@krastanov.org&gt;</a> and QuantumClifford.jl team members</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan more extensive work&#41;</p>
+<p><strong>Difficulty:</strong> Hard</p>
+<h2 id="magic_state_modeling_-_distillation_injection_etc"><a href="#magic_state_modeling_-_distillation_injection_etc" class="header-anchor">Magic State Modeling - Distillation, Injection, Etc</a></h2>
+<p>Magic states are important non-stabilizer states that can be used for inducing non-Clifford gates in otherwise Clifford circuits. They are crucial for the creation of error-corrected universal circuits. This project would involve contributing tools for the analysis of such states and for the evaluation of distillation circuits and ECC circuits involving such states.</p>
+<p><strong>Recommended skills:</strong> In-depth understanding of the theory of magic states and their use in fault tolerance.</p>
+<p><strong>Mentors:</strong> <a href="https://github.com/Krastanov">Stefan Krastanov</a> <a href="mailto:stefan@krastanov.org">&lt;stefan@krastanov.org&gt;</a> and QuantumClifford.jl team members</p>
+<p><strong>Expected duration:</strong> 175 hours &#40;but applicants can scope it as longer if they plan more extensive work&#41;</p>
+<p><strong>Difficulty:</strong> Hard</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2369/project">About</a></li>
+        <li><a href="/previews/PR2369/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2369/governance/">Governance</a></li>
+        <li><a href="/previews/PR2369/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2369/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2369/install/">Install</a></li>
+        <li><a href="/previews/PR2369/downloads/">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2369/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2369/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2369/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2369/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2369/community/">Community</a></li>
+        <li><a href="/previews/PR2369/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2369/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2369/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2369/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2369/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2369/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2024 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2369/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2369/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2369/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/previews/PR2369/libs/groups.js"></script>
+    <script src="/previews/PR2369/libs/map.js"></script>
+  </body>
+</html>

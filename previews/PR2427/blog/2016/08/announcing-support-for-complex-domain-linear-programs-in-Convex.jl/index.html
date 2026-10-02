@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2427/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2427/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2427/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2427/css/app.css">
+<link rel="stylesheet" href="/previews/PR2427/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2427/css/fonts.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2427/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2427/css/juliamono.css"></noscript>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2427/libs/buttons.js"></script>
+<script src="/previews/PR2427/libs/clipboard.min.js"></script>
+<script src="/previews/PR2427/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>Announcing support for complex-domain linear programs in Convex.jl</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Announcing support for complex-domain linear programs in Convex.jl">
+<meta property="og:description" content=" Announcing support for complex-domain linear programs in Convex.jl | I am pleased to announce the support for complex-domain linear programs (LPs) in Convex.jl. As one of the *Google Summer of Code* students under *The Julia Language*, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2427/">
+          <img src="/previews/PR2427/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2427/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2427/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2427/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2427/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2427/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2427/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>Announcing support for complex-domain linear programs in Convex.jl</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <h3>
+          
+            <span style="font-weight: lighter;">17 August 2016</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;">Ayush Pandey</span>
+          
+        </h3>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a type="application/rss+xml"
+         href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>I am pleased to announce the support for complex-domain linear programs &#40;LPs&#41; in Convex.jl. As one of the <em>Google Summer of Code</em> students under <em>The Julia Language</em>, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the problem of complex-domain LPs where in first subphase, I had announced the support for complex coefficients during <a href="https://www.youtube.com/watch?v&#61;fHG4uEOlMbY">JuliaCon&#39;16</a> and now I take this opportunity to announce the support for complex variables in LPs.</p>
+<p>Complex-domain LPs consist of a real linear objective function, real linear inequality constraints, and real and complex linear equality constraints.</p>
+<p>In order to enable complex-domain LPs, we came up with these ideas:</p>
+<ol>
+<li><p>We redefined the <strong>conic_form&#33;</strong> of every affine atom to accept complex arguments.</p>
+</li>
+<li><p>Every complex variable z was internally represented as <code>z &#61; z1 &#43; i*z2</code>, where z1 and z2 are real.</p>
+</li>
+<li><p>We introduced two new affine atoms <strong>real</strong> and <strong>imag</strong> which return the real and the imaginary parts of the complex variable respectively.</p>
+</li>
+<li><p>transpose and ctranspose perform differently on complex variables so a new atom <strong>CTransposeAtom</strong> was created.</p>
+</li>
+<li><p>A complex-equality constraint <em>RHS &#61; LHS</em> can be decomposed into two corresponding real equalities constraint <em>real&#40;RHS&#41; &#61; real&#40;LHS&#41;</em> and <em>imag&#40;RHS&#41; &#61; imag&#40;LHS&#41;</em></p>
+</li>
+</ol>
+<p>After above changes were made to the codebase, we wrote two use cases to demonstrate the usability and the correctness of our idea which I am presenting below:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Importing Packages</span>
+Pkg.clone(<span class="hljs-string">&quot;https://github.com/Ayush-iitkgp/Convex.jl/tree/gsoc2&quot;</span>)
+<span class="hljs-keyword">using</span> Convex
+
+<span class="hljs-comment"># Complex LP with real variable</span>
+n = <span class="hljs-number">10</span> <span class="hljs-comment"># variable dimension (parameter)</span>
+m = <span class="hljs-number">5</span> <span class="hljs-comment"># number of constraints (parameter)</span>
+xo = rand(n)
+A = randn(m,n) + <span class="hljs-literal">im</span>*randn(m,n)
+b = A * xo
+<span class="hljs-comment"># Declare a real variable</span>
+x = Variable(n)
+p1 = minimize(sum(x), A*x == b, x&gt;=<span class="hljs-number">0</span>)
+<span class="hljs-comment"># Notice A*x==b is complex equality constraint</span>
+solve!(p1)
+x1 = x.value
+
+<span class="hljs-comment"># Let&#x27;s now solve by decomposing complex equality constraint into the corresponding real and imaginary part.</span>
+p2 = minimize(sum(x), real(A)*x == real(b), imag(A)*x==imag(b), x&gt;=<span class="hljs-number">0</span>)
+solve!(p2)
+x2 = x.value
+x1==x2 <span class="hljs-comment"># should return true</span>
+
+
+<span class="hljs-comment"># Let&#x27;s now consider an example using a complex variable</span>
+<span class="hljs-comment"># Complex LP with complex variable</span>
+n = <span class="hljs-number">10</span> <span class="hljs-comment"># variable dimension (parameter)</span>
+m = <span class="hljs-number">5</span> <span class="hljs-comment"># number of constraints (parameter)</span>
+xo = rand(n)+<span class="hljs-literal">im</span>*rand(n)
+A = randn(m,n) + <span class="hljs-literal">im</span>*randn(m,n)
+b = A * xo
+
+<span class="hljs-comment"># Declare a complex variable</span>
+x = ComplexVariable(n)
+p1 = minimize(real(sum(x)), A*x == b, real(x)&gt;=<span class="hljs-number">0</span>, imag(x)&gt;=<span class="hljs-number">0</span>)
+solve!(p1)
+x1 = x.value
+
+xr = Variable(n)
+xi = Variable(n)
+p2 = minimize(sum(xr), real(A)*xr-imag(A)*xi == real(b), imag(A)*xr+real(A)*xi == imag(b), xr&gt;=<span class="hljs-number">0</span>, xi&gt;=<span class="hljs-number">0</span>)
+solve!(p2)
+x1== xr.value + <span class="hljs-literal">im</span>*xi.value <span class="hljs-comment"># should return true</span></code></pre>
+<p>List of all the affine atoms are as follows:</p>
+<ol>
+<li><p>addition, subtraction, multiplication, division</p>
+</li>
+<li><p>indexing and slicing</p>
+</li>
+<li><p>k-th diagonal of a matrix</p>
+</li>
+<li><p>construct diagonal matrix</p>
+</li>
+<li><p>transpose and ctranspose</p>
+</li>
+<li><p>stacking</p>
+</li>
+<li><p>sum</p>
+</li>
+<li><p>trace</p>
+</li>
+<li><p>conv</p>
+</li>
+<li><p>real and imag</p>
+</li>
+</ol>
+<p>Now, I am working towards implementing complex-domain second order conic programming. Meanwhile, I invite the Julia community to play around with the complex-domain LPs. The link to the development branch is <a href="https://github.com/Ayush-iitkgp/Convex.jl/tree/gsoc2">here</a>.</p>
+<p>Looking forward to your suggestions&#33;</p>
+<p>Special thanks to my mentors Madeleine Udell and Dvijotham Krishnamurthy&#33;</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/previews/PR2427/libs/highlight/highlight.min.js"></script>
+
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2427/project">About</a></li>
+        <li><a href="/previews/PR2427/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2427/governance/">Governance</a></li>
+        <li><a href="/previews/PR2427/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2427/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2427/downloads">Install</a></li>
+        <li><a href="/previews/PR2427/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2427/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2427/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2427/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2427/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2427/community/">Community</a></li>
+        <li><a href="/previews/PR2427/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2427/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2427/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2427/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2427/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2427/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2025 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2427/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2427/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2427/libs/highlight/highlight.min.js"></script> -->
+<!--  -->
+
+    <script src="/previews/PR2427/libs/groups.js"></script>
+    <script src="/previews/PR2427/libs/map.js"></script>
+  </body>
+</html>
