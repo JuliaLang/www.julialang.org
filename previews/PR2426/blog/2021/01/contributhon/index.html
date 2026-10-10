@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2426/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/previews/PR2426/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2426/css/app.css">
+<link rel="stylesheet" href="/previews/PR2426/css/franklin.css">
+<link rel="stylesheet" href="/previews/PR2426/css/fonts.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2426/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2426/css/juliamono.css"></noscript>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/previews/PR2426/libs/buttons.js"></script>
+<script src="/previews/PR2426/libs/clipboard.min.js"></script>
+<script src="/previews/PR2426/libs/detectdark.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+<!-- scripts for map rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+<!-- https://github.com/Leaflet/Leaflet.markercluster -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.min.js"></script>
+
+<script src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>The 2020 Industry Julia Users Contributhon</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="The 2020 Industry Julia Users Contributhon">
+<meta property="og:description" content="A Look Back At The 2020 Industry Julia Users Contributhon">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2426/">
+          <img src="/previews/PR2426/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2426/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2426/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2426/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2426/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2426/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2426/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>The 2020 Industry Julia Users Contributhon</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <h3>
+          
+            <span style="font-weight: lighter;">20 January 2021</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;">Jarrett Revels</span>
+          
+        </h3>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a type="application/rss+xml"
+         href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2021/01/contributhon.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>A few months ago, I wrote <a href="https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/">a blog post</a> reflecting on an interesting JuliaCon 2020 discussion between a group of industry-focused Julia users that focused on the interplay between closed-source proprietary software development and Julia&#39;s open source software &#40;OSS&#41; ecosystem. The blog post summarized a few key issues that our discussion group felt served as real hurdles to meaningful OSS contribution from within private organizations. The post concluded by announcing our attempt to jump these hurdles: the Julia Industry Users Contributhon, a hackathon where participating industry organizations could come together to contribute back to the Julia ecosystem.</p>
+<p>This event&#39;s goals were to...</p>
+<blockquote>
+<ul>
+<li><p>...foster/strengthen collaboration across organizational boundaries, and reduce potentially duplicated efforts.</p>
+</li>
+<li><p>...both push forward and prove the Julia ecosystem’s readiness for “production” use.</p>
+</li>
+<li><p>...provide a nice promotional incentive for the involved organizations to dedicate time to and participate in OSS efforts.</p>
+</li>
+<li><p>...provide promotional and technical benefits to the Julia community as whole.</p>
+</li>
+<li><p>...and have a huge amount of fun&#33;</p>
+</li>
+</ul>
+</blockquote>
+<p>Now, in 2021, I&#39;m happy to report on all of the great contributions made as part of the event last month by the wonderful folks at <a href="https://beacon.bio/">Beacon Biosignals</a>, <a href="https://www.invenia.ca/">Invenia</a>, <a href="https://www.triscale-innov.com/">TriScale innov</a>, <a href="https://relational.ai/">RelationalAI</a>, and <a href="https://pumas.ai/">PumasAI</a>. All shapes and sizes of contribution were welcome at the event: we released whole packages, made PRs, caught bugs, started new projects, and planned out our OSS roadmaps/backlogs for future work.</p>
+<p>Here is a sampling of the standouts:</p>
+<ul>
+<li><p><a href="https://github.com/beacon-biosignals/Lighthouse.jl">Lighthouse.jl</a>, which provides a minimal framework-agnostic interface to standardize/automate performance evaluation for multiclass, multirater classification models &#40;Beacon Biosignals&#41;</p>
+</li>
+<li><p><a href="https://github.com/beacon-biosignals/SerializationCaches.jl">SerializationCaches.jl</a>, which provides a simple, composable mechanism for caching objects that take significantly longer to compute from scratch than to &#40;de&#41;serialize from disk &#40;Beacon Biosignals&#41;</p>
+</li>
+<li><p><a href="https://github.com/beacon-biosignals/K8sClusterManagers.jl">K8sClusterManagers.jl</a>, which provides mechanisms to dynamically provision Julia workers overtop a K8s cluster &#40;Beacon Biosignals&#41;</p>
+</li>
+<li><p><a href="https://github.com/beacon-biosignals/KeywordSearch.jl">KeywordSearch.jl</a>, which leverages <a href="https://github.com/matthieugomez/StringDistances.jl">StringDistances.jl</a> to provide a nice interface for fuzzy document searches &#40;Beacon Biosignals&#41;</p>
+</li>
+<li><p><a href="https://github.com/beacon-biosignals/PyMNE.jl">PyMNE.jl</a>, an interface to <a href="https://mne.tools/stable/index.html">MNE</a> built on top of <a href="https://github.com/JuliaPy/PyCall.jl">PyCall</a> &#40;Beacon Biosignals&#41;</p>
+</li>
+<li><p>myriad JuliaPlots contributions &#40;Beacon Biosignals&#41;: <a href="https://github.com/JuliaPlots/AbstractPlotting.jl/pull/569">AbstractPlotting.jl#569</a>, <a href="https://github.com/JuliaPlots/AbstractPlotting.jl/pull/570">AbstractPlotting.jl#570</a>, <a href="https://github.com/JuliaPlots/WGLMakie.jl/pull/71">WGLMakie.jl#71</a>, <a href="https://github.com/SimonDanisch/JSServe.jl/pull/76">JSServe.jl#76</a></p>
+</li>
+<li><p>improved <a href="https://github.com/JuliaRegistries/RegistryCI.jl/pull/306">RegistryCI.jl support for private package registries</a> &#40;Beacon Biosignals&#41;</p>
+</li>
+<li><p>myriad AWS-related contributions &#40;Invenia, Beacon Biosignals&#41;:, <a href="https://github.com/JuliaCloud/AWSS3.jl/pull/118">AWSS3.jl#118</a>, <a href="https://github.com/JuliaCloud/AWSS3.jl/pull/119">AWSS3.jl#119</a>, <a href="https://github.com/JuliaCloud/AWSS3.jl/pull/120">AWSS3.jl#120</a>, <a href="https://github.com/JuliaCloud/AWSS3.jl/pull/121">AWSS3.jl#121</a>, <a href="https://github.com/JuliaCloud/AWSS3.jl/pull/124">AWSS3.jl#124</a>, <a href="https://github.com/JuliaCloud/AWS.jl/pull/257">AWS.jl#257</a>, <a href="https://github.com/JuliaCloud/AWS.jl/pull/260">AWS.jl#260</a>, <a href="https://github.com/JuliaCloud/AWS.jl/pull/262">AWS.jl#262</a>, <a href="https://github.com/JuliaCloud/AWS.jl/pull/265">AWS.jl#265</a></p>
+</li>
+<li><p><a href="https://github.com/JuliaCloud/AWSTools.jl">AWSTools.jl</a>, assortment of AWS utility functions &#40;Invenia&#41;</p>
+</li>
+<li><p><a href="https://github.com/invenia/DateSelectors.jl">DateSelectors.jl</a>, which provides utilities for partitioning dates into test/train/validation/etc. sets for time-series machine learning &#40;Invenia&#41;</p>
+</li>
+<li><p><a href="https://github.com/invenia/Cliquing.jl">Cliquing.jl</a>, which implements various algorithms for finding a non-overlapping set of cliques in a graph &#40;Invenia&#41;</p>
+</li>
+<li><p><a href="https://github.com/invenia/Checkpoints.jl">Checkpoints.jl</a>, which provides mechanisms for dynamically checkpointing Julia program state &#40;Invenia&#41;</p>
+</li>
+<li><p><a href="https://github.com/invenia/PDMatsExtras.jl">PDMatsExtras.jl</a>, which extends <a href="https://github.com/JuliaStats/PDMats.jl">PDMats.jl</a> with a couple different positive &#40;semi-&#41;definite matrix types that <a href="https://github.com/JuliaStats/Distributions.jl/issues/1219">nicely interopate with Distributions.jl</a> &#40;Invenia&#41;</p>
+</li>
+<li><p><a href="https://github.com/triscale-innov/RegistryCLI.jl">RegistryCLI.jl</a>, a tool for easily managing private package registries directly from the command line &#40;TriScale innov&#41;</p>
+</li>
+<li><p><a href="https://github.com/RelationalAI-oss/XUnit.jl">XUnit.jl</a>, a unit test framework with nice parallelization capabilities &#40;RelationalAI&#41;</p>
+</li>
+<li><p>Compiler support for compilation profiling during inference/LLVM optimization, <a href="https://timholy.github.io/SnoopCompile.jl/stable/snoopi_deep/">enabling cool new SnoopCompile.jl features</a> &#40;RelationalAI&#41;</p>
+</li>
+<li><p>Various quality-of-life improvements to <a href="https://github.com/JuliaPerf/PProf.jl">PProf.jl</a>, including interoperability with <a href="https://github.com/timholy/FlameGraphs.jl">FlameGraphs.jl</a> and <a href="https://github.com/timholy/SnoopCompile.jl">SnoopCompile.jl</a>. &#40;RelationalAI&#41;</p>
+</li>
+</ul>
+<p>...and so many more issues/PRs/etc. that I couldn&#39;t fit here - especially the important work that went into <a href="https://docs.google.com/document/d/16Rwkr5u8WdPh-AHVJHs2D2e-0SrUHQS_ZTB0fiepsmU/edit">public OSS backlog creation</a>.</p>
+<p>On top of the contributions themselves, this event taught us about &#40;or in some cases, reminded us of&#41; a few valuable points:</p>
+<ul>
+<li><p>Julia&#39;s package manager works seamlessly even when a single package&#39;s registered versions are split across private and public registries. In a lot of cases, this made it super easy to upgrade downstream internal packages to the now-open versions of their upstream dependencies - it just required a version bump&#33;</p>
+</li>
+<li><p>Having a well-documented, battle-tested internal process for safely open-sourcing private code drastically lowers the barrier to actually doing so. Creating an explicit &#40;and if possible, public&#41; &quot;OSS backlog&quot; is a great way to kickstart the development of an internal process.</p>
+</li>
+<li><p><a href="https://gather.town/">Gather</a> is actually a pretty useful platform for collaboration&#33; Just like at JuliaCon, it was fun to meet and hang out with the actual people behind the GitHub handles you come across day-to-day in the online Julia community. Also, adding a spacial component to video chat really goes a long way towards recreating the vibe of a shared workspace. After having a great experience using it to host the event, we at Beacon Biosignals created our own internal Gather space that we hang out in daily.</p>
+</li>
+<li><p>Cross-org collaboration has always been a huge development driver in the Julia community, and this event was no different&#33; It was fun to discover the various points of intersection between our orgs&#39; tech stacks, and start working together directly on these tools. The JuliaCloud ecosystem &#40;especially <a href="https://github.com/JuliaCloud/AWS.jl">AWS.jl</a>&#41; turned out to be of particular interest across participants.</p>
+</li>
+<li><p>There are a lot of amazing engineers out there who, before joining an OSS-friendly company, never had an opportunity to contribute to OSS as part of their day-job. This event served as a great OSS onboarding ramp by enabling these individuals to translate pre-existing internal work into impactful external contributions.</p>
+</li>
+</ul>
+<p>All in all, I&#39;d say the Contributhon was a success, and established some key points of collaboration between industry Julia users that I suspect will carry on for quite some time. More importantly, it was a whole lot of fun. Thanks to everybody that attended, everybody that facilitated, and all the wonderful folks in OSS community whose projects support Julia&#39;s continued rise in industry&#33;</p>
+<p>Have thoughts/questions about this blog post and/or the use of Julia in industry? Come join the discussion in <a href="https://julialang.slack.com/join/shared_invite/zt-ggsythg2-qYjdCBzGPeXceYCnCfpKsQ#/">the Julia Slack&#39;s</a> <code>#industry-users</code> channel&#33;</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2426/project">About</a></li>
+        <li><a href="/previews/PR2426/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2426/governance/">Governance</a></li>
+        <li><a href="/previews/PR2426/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2426/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2426/downloads">Install</a></li>
+        <li><a href="/previews/PR2426/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2426/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2426/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2426/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2426/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2426/community/">Community</a></li>
+        <li><a href="/previews/PR2426/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2426/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2426/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2426/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2426/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2426/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2025 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2426/libs/jquery/jquery.min.js"></script>
+<script src="/previews/PR2426/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/previews/PR2426/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+    <script src="/previews/PR2426/libs/groups.js"></script>
+    <script src="/previews/PR2426/libs/map.js"></script>
+  </body>
+</html>

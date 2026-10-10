@@ -1,0 +1,216 @@
+/* correction to the artifacts created via franklin */
+
+.container h1 > a,
+.container h2 > a,
+.container h3 > a,
+.container h4 > a,
+.container h5 > a,
+.container h6 > a {
+    color: black;
+}
+
+.container h1 > a:hover,
+.container h2 > a:hover,
+.container h3 > a:hover,
+.container h4 > a:hover,
+.container h5 > a:hover,
+.container h6 > a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container .tight-list p {
+    margin-bottom: 0;
+}
+
+.container.blog-title .blog-title-wrapper {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.container.blog-title .blog-title-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.container.blog-title .blog-title-right {
+  flex: 0 0 auto;
+  display: flex;
+  margin-left: 1rem;
+}
+
+.container.blog-title .rss-link {
+  margin-top: 18px;
+  margin-right: 15px;
+  font-size: 1.5em;
+}
+
+.container.blog-title h1 {
+  font-size: 3em;
+}
+
+.container.blog-title h3 {
+  margin-top: 0.3em;
+  margin-bottom: 1em;
+  font-size: 18px;
+}
+
+.author-info {
+    text-align: center;
+    background-color: #F0F0F0;
+    padding: 20px;
+    padding-top: 30px;
+    margin-top: 2em;
+    border-radius: 5px;
+}
+
+.author-img {
+    border-radius: 50%;
+}
+.author-social {
+    margin-top: 1em;
+}
+.author-social ul {
+    list-style: none;
+}
+.author-social-icons {
+    margin: 0;
+    padding: 0;
+}
+
+.announcement {
+  padding: 8px 14px 8px 14px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background-color: #ddf0d9;
+  border-color: #404040;
+}
+
+.note,
+.exercise,
+.answer {
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    border-radius: 4px;
+    border-color: #404040;
+}
+
+.note {
+    background-color: #d0d0d0;
+}
+
+.exercise {
+    background-color: #ffd8d8;
+}
+
+.answer {
+    background-color: #d8ffd8;
+}
+
+/* Specific colours for code highlighting */
+
+.hljs-metaj, .hljs-metas, .hljs-metap { font-weight: bold; }
+
+.hljs-meta  { color: #b14e8f; } /* @... */
+.hljs-metaj { color: rgb(25, 179, 51); }  /* julia> */
+.hljs-metas { color: red; }               /* shell> */
+.hljs-metap { color: rgb(51, 131, 231); } /* pkg> */
+
+.hljs-string {color: #ca4418;}
+.hljs-subst { color: inherit;}
+
+.admonition {
+    background-color: #b5b5b5;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #363636;
+    border-radius: 4px;
+    font-size: 1rem; }
+    .admonition-note {
+      margin: 1em 0;
+      background-color: #c5deff;
+      border-color: #209cee; }
+      .admonition-note > .admonition-title {
+        background-color: #209cee;
+        color: #fff; }
+      .admonition-note > .admonition-body {
+        color: rgba(0, 0, 0, 0.7); }
+    .admonition-warn {
+      margin: 1em 0;
+      background-color: #fff3c5;
+      border-color: #ffdd57; }
+      .admonition-warn > .admonition-title {
+        background-color: #ffdd57;
+        color: rgba(0, 0, 0, 0.7); }
+      .admonition-warn > .admonition-body {
+        color: rgba(0, 0, 0, 0.7); }
+  
+  .admonition-title {
+    color: #fff;
+    background-color: #363636;
+    align-items: center;
+    font-weight: 700;
+    justify-content: space-between;
+    line-height: 1.25;
+    padding: 0.75em;
+    position: relative; }
+  
+  .admonition-body {
+    color: #222222;
+    padding: 1em 1.25em; }
+    .admonition-body pre {
+      background-color: whitesmoke; }
+    .admonition-body code {
+      background-color: rgba(0, 0, 0, 0.05); }
+
+/* Map formatting */
+
+/* Blog index grid */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 1rem;
+}
+
+.grid > h2, .grid > p {
+  background: #f2f2f2;
+  padding: 0.5rem 0.5rem 1rem 0.5rem;
+  font-size: 0.9em;
+  line-height: 1.1rem;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.grid > p a {
+  display: block;
+  padding-bottom: 0.5em;
+}
+
+/* Map formatting */
+
+#map { height: 512px;}
+
+.cluster {
+  background-color: rgba(220, 51, 255, 0.2);
+  background-clip: padding-box;
+  border-radius: 20px;
+}
+
+.cluster div {
+  background-color: rgba(220, 51, 255, 0.4);
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  margin-top: 5px;
+  color: white;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.cluster span {
+  line-height: 30px;
+}
