@@ -5,8 +5,19 @@
     ":enableVulnerabilityAlerts"
   ],
   "rebaseWhen": "conflicted",
+
+  // Only run from Friday 7pm to Saturday 7am Eastern Time, outside working hours.
+  // Security updates ignore this schedule.
+  "timezone": "America/New_York",
+  "schedule": ["* 19-23 * * 5", "* 0-6 * * 6"],
+  // Also don't rebase/update existing PRs outside the schedule.
+  "updateNotScheduled": false,
+
   "lockFileMaintenance": {
-    "enabled": true
+    "enabled": true,
+    // lockFileMaintenance doesn't inherit the top-level schedule above
+    // So we set it explicitly
+    "schedule": ["* 19-23 * * 5", "* 0-6 * * 6"]
   },
 
   // Note: the 7-day cooldown does not apply to security updates.
