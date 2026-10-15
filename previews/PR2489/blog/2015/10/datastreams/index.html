@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t=localStorage.getItem('julia-theme');if(t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2489/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2489/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2489/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2489/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2489/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2489/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2489/css/app.css">
+<link rel="stylesheet" href="/previews/PR2489/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2489/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2489/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2489/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>JSoC 2015 project: DataStreams.jl</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2489/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2489/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="JSoC 2015 project: DataStreams.jl">
+<meta property="og:description" content=" JSoC 2015 project: DataStreams.jl | Data processing got ya down? Good news! The DataStreams.jl (https://github.com/JuliaDB/DataStreams.jl) package, er, framework, has arrived!... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2489/blog/2015/10/datastreams/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "JSoC 2015 project: DataStreams.jl",
+  "description": "JSoC 2015 project: DataStreams.jl | Data processing got ya down? Good news! The DataStreams.jl (https://github.com/JuliaDB/DataStreams.jl) package, er, framework, has arrived!...",
+  "image": "https://julialang.netlify.app/previews/PR2489/assets/images/julia-open-graph.png",
+  "datePublished": "2015-10-25T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "Jacob Quinn", "url": "https://github.com/quinnj"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2489/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2489/blog/2015/10/datastreams/"
+  }
+}
+</script>
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2489/">
+          <img src="/previews/PR2489/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2489/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2489/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2489/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2489/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2489/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2489/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>JSoC 2015 project: DataStreams.jl</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p style="font-size: 1.17em; margin-top: 0;">
+          
+            <span style="font-weight: lighter;">25 October 2015</span> |
+          
+          
+            <span style="font-weight: bold;"></span>
+          
+          
+            <span style="font-weight: bold;"> <a href="https://github.com/quinnj">Jacob Quinn</a></span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link">
+        <i class="fa fa-rss-square rss-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2015/10/datastreams.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Data processing got ya down? Good news&#33; The <a href="https://github.com/JuliaDB/DataStreams.jl">DataStreams.jl</a> package, er, framework, has arrived&#33;</p>
+<p>The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually every step in-between. It&#39;s really about putting forth an interface &#40;specific types and methods&#41; to go about ingesting and transferring data sources that hopefully makes for a consistent experience for users, no matter what kind of data they&#39;re working with.</p>
+<h3 id="how_does_it_work"><a href="#how_does_it_work" class="header-anchor">How does it work?</a></h3>
+<p>DataStreams is all about creating &quot;sources&quot; &#40;Julia types that represent true data sources; e.g. csv files, database backends, etc.&#41;, &quot;sinks&quot; or data destinations, and defining the appropriate <code>Data.stream&#33;&#40;source, sink&#41;</code> methods to actually transfer data from source to sink. Let&#39;s look at a quick example.</p>
+<p>Say I have a table of data in a CSV file on my local machine and need to do a little cleaning and aggregation on the data before building a model with the <a href="https://github.com/JuliaStats/GLM.jl">GLM.jl</a> package. Let&#39;s see some code in action:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> CSV, SQLite, DataStreams, DataFrames
+
+<span class="hljs-comment"># let&#x27;s create a Julia type that understands our data file</span>
+csv_source = CSV.Source(<span class="hljs-string">&quot;datafile.csv&quot;</span>)
+
+<span class="hljs-comment"># let&#x27;s also create an SQLite destination for our data</span>
+<span class="hljs-comment"># according to its structure</span>
+db = SQLite.DB() <span class="hljs-comment"># create an in-memory SQLite database</span>
+
+<span class="hljs-comment"># creates an SQLite table</span>
+sqlite_sink = SQLite.Sink(Data.schema(csv_source), db, <span class="hljs-string">&quot;mydata&quot;</span>)
+
+<span class="hljs-comment"># parse the CSV data directly into our SQLite table</span>
+Data.stream!(csv_source, sqlite_sink)
+
+<span class="hljs-comment"># now I can do some data cleansing/aggregation</span>
+<span class="hljs-comment"># ...various SQL statements on the &quot;mydata&quot; SQLite table...</span>
+
+<span class="hljs-comment"># now I&#x27;m ready to get my data out and ready for model fitting</span>
+sqlite_source = SQLite.Source(sqlite_sink)
+
+<span class="hljs-comment"># stream our data into a Julia structure (Data.Table)</span>
+dt = Data.stream!(sqlite_source, Data.Table)
+
+<span class="hljs-comment"># convert to DataFrame (non-copying)</span>
+df = DataFrame(dt)
+
+<span class="hljs-comment"># do model-fitting</span>
+OLS = glm(Y~X,df,Normal(),IdentityLink())</code></pre>
+<p>Here we see it&#39;s quite simple to create a <code>Source</code> type by wrapping a true datasource &#40;our CSV file&#41;, a destination for that data &#40;an SQLite table&#41;, and to transfer the data. We can then turn our <code>SQLite.Sink</code> into an <code>SQLite.Source</code> for getting the data back out again.</p>
+<h3 id="so_what_have_you_really_been_working_on"><a href="#so_what_have_you_really_been_working_on" class="header-anchor">So What Have You Really Been Working On?</a></h3>
+<p>Well, a lot actually. Even though the DataStreams framework is currently simple and minimalistic, it took a lot of back and forth on the design, including several discussions at this year&#39;s JuliaCon at MIT. Even with a tidy little framework, however, the bulk of the work still lies in actually implementing the interface in various packages. The two that are ready for release today are <a href="https://github.com/JuliaDB/CSV.jl">CSV.jl</a> and <a href="https://github.com/JuliaDB/SQLite.jl">SQLite.jl</a>. They are currently available for julia 0.4&#43; only.</p>
+<p>Quick rundown of each package:</p>
+<ul>
+<li><p>CSV: provides types and methods for working with CSV and other delimited files. Aims to be &#40;and currently is&#41; the fastest and most flexible CSV reader in Julia.</p>
+</li>
+<li><p>SQLite: an interface to the popular <a href="https://sqlite.org/">SQLite</a> local-machine database. Provides methods for creating/managing database files, along with executing SQL statements and viewing the results of such.</p>
+</li>
+</ul>
+<h3 id="so_whats_next"><a href="#so_whats_next" class="header-anchor">So What&#39;s Next?</a></h3>
+<ul>
+<li><p><a href="https://github.com/JuliaDB/ODBC.jl">ODBC.jl</a>: the next package to get the DataStreams makeover is ODBC. I&#39;ve already started work on this and hopefully should be ready soon.</p>
+</li>
+<li><p>Other packages: I&#39;m always on the hunt for new ways to spread the framework; if you&#39;d be interested in implementing DataStreams for your own package or want to collaborate, just <a href="https://github.com/quinnj">ping</a> me and I&#39;m happy to discuss&#33;</p>
+</li>
+<li><p>transforms: an important part of data processing tasks is not just connecting to and moving the data to somewhere else: often you need to clean/transform/aggregate the data in some way in-between. Right now, that&#39;s up to users, but I have some ideas around creating DataStreams-friendly ways to easily incorporate transform steps as data is streamed from one place to another.</p>
+</li>
+<li><p>DataStreams for chaining pipelines &#43; transforms: I&#39;m also excited about the idea of creating entire <code>DataStreams</code>, which would define entire data processing tasks end-to-end. Setting up a pipeline that could consistently move and process data gets even more powerful as we start looking into automatic-parallelism and extensibility.</p>
+</li>
+<li><p>DataStream scheduling/management: I&#39;m also interested in developing capabilities around scheduling and managing DataStreams.</p>
+</li>
+</ul>
+<p><em>The work on DataStreams.jl was carried out as part of the Julia Summer of Code program, made possible thanks to the generous support of the <a href="https://www.moore.org">Gordon and Betty Moore Foundation</a>, and MIT.</em></p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script defer src="/previews/PR2489/libs/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){hljs.configure({tabReplace:'    '});hljs.highlightAll();});</script>
+
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2489/project">About</a></li>
+        <li><a href="/previews/PR2489/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2489/governance/">Governance</a></li>
+        <li><a href="/previews/PR2489/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2489/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2489/downloads">Install</a></li>
+        <li><a href="/previews/PR2489/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2489/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2489/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2489/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2489/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2489/community/">Community</a></li>
+        <li><a href="/previews/PR2489/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2489/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2489/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2489/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2489/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2489/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2489/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

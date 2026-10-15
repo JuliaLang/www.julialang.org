@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+  <!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2520/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2520/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2520/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2520/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2520/css/app.css">
+<link rel="stylesheet" href="/previews/PR2520/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2520/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2520/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2520/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+  <title>The Julia Programming Language</title>
+  <!-- OGP Metadata -->
+  <meta property="og:title" content="The Julia Language">
+<meta property="og:description" content="Official website for the Julia programming language">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2520/index.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "The Julia Programming Language",
+    "url": "https://julialang.org",
+    "logo": "https://julialang.org/assets/infra/logo.svg",
+    "sameAs": [
+      "https://github.com/JuliaLang/julia",
+      "https://twitter.com/JuliaLanguage",
+      "https://www.youtube.com/user/JuliaLanguage",
+      "https://www.linkedin.com/company/the-julia-language"
+    ],
+    "description": "Julia is a high-level, high-performance, dynamic programming language for technical computing."
+  }
+  </script>
+  <meta name="p:domain_verify" content="6a650661a1683e503c6331daf1155d17"/>
+  <link rel="icon" href="/previews/PR2520/assets/infra/julia.ico">
+</head>
+
+<body>
+  <!-- Don't delete this alert when hiding it. Comment it out so it can be re-enabled easily. -->
+  <div class="container-fluid" id="top-alert">
+    <div class="alert alert-dark alert-dismissible mb-0" role="alert">
+      <img src="/previews/PR2520/assets/infra/world_map.webp" alt="" class="world-map-bg" aria-hidden="true">
+
+      <p class="text-center">
+        <img src="/previews/PR2520/assets/infra/juliacon_logo.svg" alt="JuliaCon" class="juliacon-logo">
+        <span class="alert-text">
+          <a href="https://juliacon.org/2026">JuliaCon Global 2026</a> is happening this year — visit <a href="https://juliacon.org/2026">juliacon.org/2026</a> for details.
+          <a href="#juliacon-videos" class="watch-videos-link">Watch JuliaCon 2025 <span class="arrow-down">↓</span></a>
+        </span>
+      </p>
+
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  <script>
+  // Hide previously-dismissed alert immediately to prevent flash (runs before paint)
+  (function() {
+    var p = document.querySelector('#top-alert p');
+    if (!p) return;
+    var key = p.innerHTML.trim();
+    var ts = localStorage.getItem(key);
+    if (ts && (Date.now() - parseInt(ts)) < 3600000) {
+      document.getElementById('top-alert').style.display = 'none';
+    }
+  })();
+  </script>
+
+  <nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2520/">
+          <img src="/previews/PR2520/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2520/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2520/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2520/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2520/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2520/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2520/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/sponsors/JuliaLang" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @JuliaLang on GitHub">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+  <!--
+       Splash: THE JULIA PROGRAMMING LANGUAGE
+  -->
+  <div class="container">
+    <div class="page-heading">
+      <h1 class="main-heading">
+        The Julia Programming Language
+      </h1>
+      <p>
+      <a class="btn btn-success btn-lg" href="/previews/PR2520/install/" role="button">Install v1.12.5</a>
+      &nbsp;
+      <a class="btn btn-primary btn-lg" href="https://docs.julialang.org" role="button">Docs</a>
+      &nbsp;
+      <a class="btn btn-primary btn-lg" href="/previews/PR2520/community/" role="button">Community</a>
+      <span class="btn float-md-end">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+      </span>
+      </p>
+    </div>
+  </div>
+
+  <!--
+       Containers: JULIA IN A NUTSHELL
+  -->
+  <div class="container pt-sm-4">
+    <div class="row">
+      <!-- 1 -->
+      <div class="col-lg-4 col-md-6 feature">
+        <h3>Fast</h3>
+        <p>Julia was designed for <a href="/previews/PR2520/benchmarks/">high performance</a>.
+        Julia programs automatically compile to efficient native code via LLVM, and support <a href="/previews/PR2520/downloads/support">multiple platforms</a>.</p>
+      </div>
+      <!-- 2 -->
+      <div class="col-lg-4 col-md-6 feature">
+        <h3>Dynamic</h3>
+        <p>Julia is <a href="https://docs.julialang.org/en/v1/manual/types/">dynamically typed</a>, feels like a scripting language, and has good support for <a href="https://docs.julialang.org/en/v1/stdlib/REPL/">interactive</a> use, but can also optionally be separately compiled.</p>
+      </div>
+      <!-- 3 -->
+      <div class="col-lg-4 col-md-6 feature">
+        <h3>Reproducible</h3>
+        <p><a href="https://julialang.github.io/Pkg.jl/v1/environments/">Reproducible environments</a> make it possible to recreate the same Julia environment every time, across platforms, with <a href="https://binarybuilder.org">pre-built binaries</a>.</p>
+      </div>
+      <!-- 4 -->
+      <div class="col-lg-4 col-md-6 feature">
+        <h3>Composable</h3>
+        <p>Julia uses <a href="https://docs.julialang.org/en/v1/manual/methods/">multiple dispatch</a> as a paradigm, making it easy to express many object-oriented and <a href="https://docs.julialang.org/en/v1/manual/functions/">functional</a> programming patterns. The talk on the <a href="https://www.youtube.com/watch?v=kc9HwsxE1OY">Unreasonable Effectiveness of Multiple Dispatch</a> explains why it works so well.</p>
+      </div>
+      <!-- 5 -->
+      <div class="col-lg-4 col-md-6 feature">
+        <h3>General</h3>
+        <p>Julia provides <a href="https://docs.julialang.org/en/v1/manual/networking-and-streams/">asynchronous I/O</a>, <a href="https://docs.julialang.org/en/v1/manual/metaprogramming/">metaprogramming</a>, <a href="https://github.com/JuliaDebug/Debugger.jl">debugging</a>, <a href="https://docs.julialang.org/en/v1/stdlib/Logging/">logging</a>, <a href="https://docs.julialang.org/en/v1/manual/profile/">profiling</a>, a <a href="https://docs.julialang.org/en/v1/stdlib/Pkg/index.html">package manager</a>, and the ability to <a href="https://github.com/JuliaLang/JuliaC.jl">build binaries</a>.</p>
+      </div>
+      <!-- 6 -->
+      <div class="col-lg-4 col-md-6 feature">
+        <h3>Open source</h3>
+        <p>Julia is an open source project with over 1,000 contributors. It is made available under the <a href="https://github.com/JuliaLang/julia/blob/master/LICENSE.md">MIT license</a>. The <a href="https://github.com/JuliaLang/julia">source code</a> is available on GitHub. Julia has a <a href="/previews/PR2520/community/">welcoming community</a> accessible to all backgrounds.</p>
+      </div>
+    </div>
+
+<!-- Code Carousel -->
+<div class="code-carousel-container">
+  <button class="carousel-arrow carousel-arrow-left" aria-label="Previous slide">&#8249;</button>
+  <div class="code-carousel">
+      <!-- Slide 1: Multiple Dispatch -->
+      <div class="carousel-slide active">
+        <div class="code-showcase julia-blue">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Multiple Dispatch</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> Dog <span class="hljs-keyword">end</span>; <span class="hljs-keyword">struct</span> Cat <span class="hljs-keyword">end</span>
+
+<span class="repl-prompt">julia> </span>meet(a::Dog, b::Dog) = <span class="hljs-string">"The dogs play together"</span>
+       meet(a::Dog, b::Cat) = <span class="hljs-string">"The dog chases the cat"</span>
+       meet(a::Cat, b::Dog) = <span class="hljs-string">"The cat hisses at the dog"</span>
+       meet(a::Cat, b::Cat) = <span class="hljs-string">"The cats ignore each other"</span>
+
+<span class="repl-prompt">julia> </span>meet(Dog(), Cat())
+<span class="hljs-string">"The dog chases the cat"</span>
+
+<span class="repl-prompt">julia> </span>meet(Cat(), Dog())
+<span class="hljs-string">"The cat hisses at the dog"</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 2: Display Customization -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-red">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Display Customization</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span><span class="hljs-keyword">struct</span> Nutshell{T}
+           contents::T
+       <span class="hljs-keyword">end</span>
+
+<span class="repl-prompt">julia> </span>Base.show(io::IO, n::Nutshell) = print(io, <span class="hljs-string">"🥜 "</span>, n.contents, <span class="hljs-string">" 🥜"</span>)
+
+<span class="repl-prompt">julia> </span>Nutshell(<span class="hljs-string">"Julia"</span>)
+🥜 Julia 🥜</code></pre>
+        </div>
+      </div>
+      <!-- Slide 3: Unicode Support -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-green">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Unicode & Math</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>α, β = <span class="hljs-number">0.5</span>, <span class="hljs-number">0.3</span>
+
+<span class="repl-prompt">julia> </span>f(x) = α*x + β
+
+<span class="repl-prompt">julia> </span>∑(v) = reduce(+, v)
+
+<span class="repl-prompt">julia> </span>∑(f.(1:5))
+<span class="hljs-number">9.0</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 4: Comprehensions -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-purple">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Comprehensions</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>[x^<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">5</span>]
+<span class="hljs-number">5</span>-element Vector{<span class="hljs-built_in">Int64</span>}:
+  <span class="hljs-number">1</span>
+  <span class="hljs-number">4</span>
+  <span class="hljs-number">9</span>
+ <span class="hljs-number">16</span>
+ <span class="hljs-number">25</span>
+
+<span class="repl-prompt">julia> </span>Dict(c => i <span class="hljs-keyword">for</span> (i,c) <span class="hljs-keyword">in</span> enumerate(<span class="hljs-string">"julia"</span>))
+Dict{<span class="hljs-built_in">Char</span>, <span class="hljs-built_in">Int64</span>} with <span class="hljs-number">5</span> entries:
+  <span class="hljs-string">'u'</span> => <span class="hljs-number">2</span>
+  <span class="hljs-string">'a'</span> => <span class="hljs-number">5</span>
+  <span class="hljs-string">'i'</span> => <span class="hljs-number">4</span>
+  <span class="hljs-string">'j'</span> => <span class="hljs-number">1</span>
+  <span class="hljs-string">'l'</span> => <span class="hljs-number">3</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 5: Broadcasting -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-red">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Broadcasting</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>A = [<span class="hljs-number">1</span> <span class="hljs-number">2</span>; <span class="hljs-number">3</span> <span class="hljs-number">4</span>]
+<span class="hljs-number">2</span>×<span class="hljs-number">2</span> Matrix{<span class="hljs-built_in">Int64</span>}:
+ <span class="hljs-number">1</span>  <span class="hljs-number">2</span>
+ <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
+
+<span class="repl-prompt">julia> </span>sin.(A) .+ <span class="hljs-number">1</span>
+<span class="hljs-number">2</span>×<span class="hljs-number">2</span> Matrix{<span class="hljs-built_in">Float64</span>}:
+ <span class="hljs-number">1.84147</span>  <span class="hljs-number">1.9093</span>
+ <span class="hljs-number">1.14112</span>  <span class="hljs-number">0.243198</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 6: Piping & Composition -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-blue">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Piping & Composition</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-number">1</span>:<span class="hljs-number">5</span> |&gt; sum |&gt; sqrt
+<span class="hljs-number">3.872983346207417</span>
+
+<span class="repl-prompt">julia&gt; </span>(sqrt ∘ sum)(<span class="hljs-number">1</span>:<span class="hljs-number">5</span>)
+<span class="hljs-number">3.872983346207417</span>
+
+<span class="repl-prompt">julia&gt; </span>map(exp ∘ abs, [<span class="hljs-number">-1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">-3</span>])
+[<span class="hljs-number">2.718</span>, <span class="hljs-number">7.389</span>, <span class="hljs-number">20.086</span>]</code></pre>
+        </div>
+      </div>
+      <!-- Slide 7: Destructuring -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-green">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Destructuring</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>(a, b, c) = <span class="hljs-number">1</span>:<span class="hljs-number">3</span>
+
+<span class="repl-prompt">julia> </span>a, c
+(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
+
+<span class="repl-prompt">julia> </span>head, tail... = [<span class="hljs-string">"first"</span>, <span class="hljs-string">"second"</span>, <span class="hljs-string">"third"</span>]
+
+<span class="repl-prompt">julia> </span>head, tail
+(<span class="hljs-string">"first"</span>, [<span class="hljs-string">"second"</span>, <span class="hljs-string">"third"</span>])</code></pre>
+        </div>
+      </div>
+      <!-- Slide 8: Macros -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-purple">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Metaprogramming</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span>ex = :(<span class="hljs-number">1</span> + <span class="hljs-number">2</span> * <span class="hljs-number">3</span>)
+:(1 + 2 * 3)
+
+<span class="repl-prompt">julia> </span><span class="hljs-keyword">typeof</span>(ex)
+Expr
+
+<span class="repl-prompt">julia> </span>eval(ex)
+<span class="hljs-number">7</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 9: Package Installation -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-blue">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Easy Package Install</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia> </span><span class="hljs-keyword">using</span> DataFrames
+ │ Package DataFrames not found, but a package named DataFrames is available from a registry.
+ │ Install package?
+ │   <span class="repl-pkg">(myproject) pkg></span> add DataFrames
+ └ (y/n/o) [y]: y
+
+<span class="repl-prompt">julia> </span>df = DataFrame(name=[<span class="hljs-string">"Alice"</span>, <span class="hljs-string">"Bob"</span>], age=[<span class="hljs-number">25</span>, <span class="hljs-number">30</span>])
+<span class="hljs-number">2</span>×<span class="hljs-number">2</span> DataFrame
+ Row │ name    age
+     │ String  Int64
+─────┼───────────────
+   1 │ Alice      25
+   2 │ Bob        30</code></pre>
+        </div>
+      </div>
+      <!-- Slide 10: Function Arguments -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-purple">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Defaults & Keyword Args</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-keyword">function</span> greet(name, greeting=<span class="hljs-string">"Hello"</span>; punctuation=<span class="hljs-string">"!"</span>)
+           <span class="hljs-string">"$greeting, $name$punctuation"</span>
+       <span class="hljs-keyword">end</span>
+
+<span class="repl-prompt">julia&gt; </span>greet(<span class="hljs-string">"Julia"</span>)
+<span class="hljs-string">"Hello, Julia!"</span>
+
+<span class="repl-prompt">julia&gt; </span>greet(<span class="hljs-string">"world"</span>, <span class="hljs-string">"Hi"</span>; punctuation=<span class="hljs-string">"."</span>)
+<span class="hljs-string">"Hi, world."</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 11: Threading -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-red">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Multi-threading</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-keyword">function</span> fib(n)
+           n &lt; <span class="hljs-number">2</span> &amp;&amp; <span class="hljs-keyword">return</span> n
+           t = Threads.@spawn fib(n - <span class="hljs-number">2</span>)
+           <span class="hljs-keyword">return</span> fib(n - <span class="hljs-number">1</span>) + fetch(t)
+       <span class="hljs-keyword">end</span>
+
+<span class="repl-prompt">julia&gt; </span>fib(<span class="hljs-number">10</span>)
+<span class="hljs-number">55</span>
+
+<span class="repl-prompt">julia&gt; </span>Threads.nthreads()
+<span class="hljs-number">8</span></code></pre>
+        </div>
+      </div>
+      <!-- Slide 12: REPL Modes -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-green">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Built-in REPL Modes</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span><span class="hljs-comment"># Press ] for package mode</span>
+<span class="repl-pkg">(@v1.12) pkg&gt; </span>status
+Status `~/.julia/environments/v1.12/Project.toml`
+  [6e4b80f9] BenchmarkTools v1.5.0
+
+<span class="repl-prompt">julia&gt; </span><span class="hljs-comment"># Press ; for shell mode</span>
+<span class="repl-shell">shell&gt; </span>ls *.jl
+main.jl  test.jl  utils.jl
+
+<span class="repl-prompt">julia&gt; </span><span class="hljs-comment"># Press ? for help mode</span>
+<span class="repl-help">help?&gt; </span>sum
+  sum(f, itr) – Sum the results of calling f on each element of itr.</code></pre>
+        </div>
+      </div>
+      <!-- Slide 13: Introspection -->
+      <div class="carousel-slide">
+        <div class="code-showcase julia-purple">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Code Introspection (simplified)</span>
+          </div>
+          <pre class="code-content"><code class="language-julia"><span class="repl-prompt">julia&gt; </span>f(x, y) = x + y
+
+<span class="repl-prompt">julia&gt; </span>@code_warntype f(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+MethodInstance <span class="hljs-keyword">for</span> f(::<span class="hljs-built_in">Int64</span>, ::<span class="hljs-built_in">Int64</span>)
+Arguments
+  x::<span class="hljs-built_in">Int64</span>
+  y::<span class="hljs-built_in">Int64</span>
+Body::<span class="hljs-built_in">Int64</span>
+│   %1 = (x + y)::<span class="hljs-built_in">Int64</span>
+└──      <span class="hljs-keyword">return</span> %1
+
+<span class="repl-prompt">julia&gt; </span>@code_llvm f(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+define i64 @julia_f(...) {
+   %0 = add i64 %"y::Int64", %"x::Int64"
+   ret i64 %0
+}
+
+<span class="repl-prompt">julia&gt; </span>@code_native f(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+   add   x0, x1, x0
+   ret</code></pre>
+        </div>
+      </div>
+  </div>
+  <button class="carousel-arrow carousel-arrow-right" aria-label="Next slide">&#8250;</button>
+</div>
+<div class="carousel-dots"></div>
+
+
+  <br>
+
+  </div> <!-- END OF JULIA IN A NUTSHELL -->
+
+  <!--
+       Containers: ECOSYSTEM
+  -->
+<div class="container-fluid alt-color" style="padding-top:1.5rem;padding-bottom:1.5rem;">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
+        <div class="col-lg-4 col-md-6 ecosystem section-heading">
+          <h2 class="lead secondary-heading">Ecosystem</h2>
+        </div>
+        <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <ul class="nav nav-tabs nav-justified" id="ecosystem-tab" role="tablist">
+          <!-- Tab 1 -->
+          <li class="nav-item">
+            <a class="nav-link active" id="viz-tab" data-bs-toggle="tab" href="#tab-viz" role="tab" aria-controls="tab-viz" aria-selected="true">Visualization</a>
+          </li>
+          <!-- Tab 2 -->
+          <li class="nav-item">
+            <a class="nav-link" id="general-tab" data-bs-toggle="tab" href="#tab-general" role="tab" aria-controls="tab-general" aria-selected="false">General Purpose</a>
+          </li>
+          <!-- Tab 3 -->
+          <li class="nav-item">
+            <a class="nav-link" id="ds-tab" data-bs-toggle="tab" href="#tab-ds" role="tab" aria-controls="tab-ds" aria-selected="false">Data Science</a>
+          </li>
+          <!-- Tab 4 -->
+          <li class="nav-item">
+            <a class="nav-link" id="math-tab" data-bs-toggle="tab" href="#tab-math" role="tab" aria-controls="tab-math" aria-selected="false">Machine Learning</a>
+          </li>
+          <!-- Tab 5 -->
+          <li class="nav-item">
+            <a class="nav-link" id="sci-tab" data-bs-toggle="tab" href="#tab-sci" role="tab" aria-controls="tab-sci" aria-selected="false">Scientific Domains</a>
+          </li>
+          <!-- Tab 6 -->
+          <li class="nav-item">
+            <a class="nav-link" id="computing-tab" data-bs-toggle="tab" href="#tab-computing" role="tab" aria-controls="tab-computing" aria-selected="false">Parallel Computing</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- TAB DETAILS - GENERAL -->
+      <div class="tab-content" id="ecosystem-tab-content">
+        <div class="tab-pane" id="tab-general" role="tabpanel" aria-labelledby="general-tab">
+          <h3 class="tab-title">General Computing</h3>
+          <img src="/previews/PR2520/assets/infra/minesweeper.webp" class="pb-2 ecosystem-image-tall" alt="minesweeper gameover" loading="lazy">
+          <div class="container-fluid">
+            <h4>Build, Deploy or Embed Your Code</h4>
+            <p>
+              Julia makes it possible to build complete applications. Write web UIs with <a href="https://github.com/plotly/Dash.jl">Dash.jl</a> and <a href="https://github.com/GenieFramework/Genie.jl">Genie.jl</a> or native UIs with <a href="https://github.com/JuliaGtk/Gtk4.jl">Gtk4.jl</a>. Pull data from <a href="https://juliadatabases.org">a variety of databases</a>. Build shared libraries and executables with <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler</a>. Deploy on a webserver with <a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a> or embedded devices. Powerful shell integration makes it easy to <a href="https://docs.julialang.org/en/v1/manual/running-external-programs/">manage other processes</a>.
+            </p>
+            <p>
+              Julia has foreign function interfaces for
+                <a href = "https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/">C, Fortran</a>,
+                <a href = "https://github.com/JuliaInterop/CxxWrap.jl">C++</a>,
+                <a href = "https://github.com/JuliaPy/PythonCall.jl">Python</a>,
+                <a href = "https://github.com/JuliaInterop/RCall.jl">R</a>,
+                <a href = "https://github.com/JuliaInterop/JavaCall.jl">Java</a>,
+                <a href = "https://github.com/JuliaInterop/MathLink.jl">Mathematica</a>,
+                <a href = "https://github.com/JuliaInterop/MATLAB.jl">Matlab</a>,
+                and many other languages. Julia can also be embedded in other programs through its <a href="https://docs.julialang.org/en/v1/manual/embedding/">embedding API</a>. Julia's <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler</a> makes it possible to build binaries from Julia programs that can be integrated into larger projects. Python programs can call Julia using <a href="https://github.com/JuliaPy/PythonCall.jl">juliacall</a>. R programs can do the same with <a href="https://cran.r-project.org/web/packages/JuliaCall/index.html">R's JuliaCall</a>, which is demonstrated by <a href="https://rpubs.com/dmbates/377897">calling MixedModels.jl from R</a>. Mathematica supports <a href="https://reference.wolfram.com/language/ref/externalevaluationsystem/Julia.html">calling Julia through its External Evaluation System</a>.
+            </p>
+          </div>
+        </div>
+
+      <!-- TAB DETAILS - PARALLEL -->
+        <div class="tab-pane" id="tab-computing" role="tabpanel" aria-labelledby="computing-tab">
+          <h3 class="tab-title">Parallel Computing</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="/previews/PR2520/assets/infra/parallel-prefix.webp" class="pb-2 ecosystem-image-tall" alt="parallel prefix graphical result" loading="lazy">
+              <div class="container-fluid">
+                <h4>
+                  Parallel and Heterogeneous Computing
+                </h4>
+                <p>
+                Julia is designed for parallelism, and provides built-in primitives for parallel computing at every level:
+                <a href = "https://github.com/JuliaSIMD/LoopVectorization.jl"> instruction level parallelism</a>,
+                <a href = "https://docs.julialang.org/en/v1/manual/multi-threading/">multi-threading</a>,
+		<a href = "https://juliagpu.org">GPU computing</a>, and
+                <a href = "https://docs.julialang.org/en/v1/manual/distributed-computing/">distributed computing</a>.
+                <a href="https://github.com/CliMA/Oceananigans.jl">Oceananigans.jl</a> <a href="https://arxiv.org/abs/2309.06662">achieved breakthrough resolution and energy efficiency in global ocean simulations</a> running on 768 A100 GPUs.
+                </p>
+                <p>
+                The Julia compiler can also generate native code for <a href="https://juliagpu.org">GPUs</a>. Packages such as <a href="https://github.com/JuliaParallel/DistributedArrays.jl">DistributedArrays.jl</a> and <a href="https://github.com/JuliaParallel/Dagger.jl">Dagger.jl</a> provide higher levels of abstraction for parallelism. MPI style parallelism is also available through <a href="https://github.com/JuliaParallel/MPI.jl">MPI.jl</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- TAB DETAILS - MACHINE LEARNING -->
+        <div class="tab-pane" id="tab-math" role="tabpanel" aria-labelledby="math-tab">
+          <h3 class="tab-title">Machine Learning</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="/previews/PR2520/assets/infra/cartpole.webp" class="pb-2 ecosystem-image" alt="cartpole reinforcement learning problem visualization" loading="lazy">
+              <div class="container">
+                <h4>
+                  Scalable Machine Learning
+                </h4>
+                <p>
+		  The <a href="https://github.com/JuliaAI/MLJ.jl">MLJ.jl</a> package provides a unified interface to common machine learning algorithms, which include
+                  <a href = "https://github.com/JuliaStats/GLM.jl">generalized linear models</a>, <a href = "https://github.com/dmlc/XGBoost.jl">decision trees</a>, and <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>.
+                  <a href = "https://github.com/FluxML/Flux.jl">Flux.jl</a> and <a href = "https://github.com/LuxDL/Lux.jl">Lux.jl</a> are powerful packages for Deep Learning.
+		  Packages such as <a href="https://github.com/FluxML/Metalhead.jl">Metalhead.jl</a> and <a href="https://github.com/JuliaText/TextAnalysis.jl">TextAnalysis.jl</a> provide ready to use pre-trained models for common tasks.
+       		  <a href="https://github.com/jonathan-laurent/AlphaZero.jl">AlphaZero.jl</a> provides a high performance implementation of the reinforcement learning algorithms from AlphaZero. <a href="https://turinglang.org">Turing.jl</a> is a best in class package for probabilistic programming.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- TAB DETAILS - SCICOMP -->
+        <div class="tab-pane" id="tab-sci" role="tabpanel" aria-labelledby="sci-tab">
+          <h3 class="tab-title">Scientific Computing</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="/previews/PR2520/assets/infra/lorenz.gif" class="pb-2 ecosystem-image" alt="Lorenz Attractor visualization" loading="lazy" />
+              <div class="container">
+                <h4>
+                  Rich Ecosystem for Scientific Computing
+                </h4>
+                <p>Julia is designed from the ground up to be very good at numerical and scientific computing.
+                This can be seen in the abundance of scientific tooling written in Julia, such as the state-of-the-art differential equations ecosystem <a href = "https://github.com/SciML/DifferentialEquations.jl">(DifferentialEquations.jl)</a>, optimization tools (<a href = "https://github.com/jump-dev/JuMP.jl">JuMP.jl</a> and <a href = "https://github.com/SciML/Optimization.jl">Optimization.jl</a>), iterative linear solvers (<a href = "https://github.com/JuliaSmoothOptimizers/Krylov.jl">Krylov.jl</a>, <a href = "https://github.com/SciML/LinearSolve.jl">LinearSolve.jl</a>), Fast Fourier transforms <a href = "https://github.com/JuliaMath/AbstractFFTs.jl">(AbstractFFTs.jl)</a>, and much more. General purpose simulation frameworks are available for <a href="https://sciml.ai">Scientific Machine Learning</a>, <a href = "https://github.com/QuantumBFS/Yao.jl">Quantum computing</a> and much more.</p>
+                <p>Julia also offers a number of domain-specific ecosystems, such as in biology <a href = "https://github.com/BioJulia"> (BioJulia)</a>, operations research <a href = "https://jump.dev"> (JuMP Dev)</a>, image processing <a href = "https://juliaimages.github.io/latest/">(JuliaImages)</a>, quantum physics <a href = "https://github.com/QuantumBFS">(QuantumBFS)</a>, nonlinear dynamics <a href = "https://github.com/JuliaDynamics"> (JuliaDynamics)</a>, quantitative economics <a href = "https://github.com/QuantEcon">(QuantEcon)</a>, astronomy <a href = "https://juliaastro.github.io"> (JuliaAstro)</a> and ecology <a href = "https://github.com/EcoJulia">(EcoJulia)</a>. With a set of highly enthusiastic developers and maintainers, the scientific ecosystem in Julia continues to grow rapidly. </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB DETAILS - DATA SCIENCE -->
+        <div class="tab-pane" id="tab-ds" role="tabpanel" aria-labelledby="ds-tab">
+          <h3 class="tab-title">Data Science</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="/previews/PR2520/assets/infra/onlinestats.webp" class="pb-2 ecosystem-image" alt="Visualization of weighted data changing as more data is plotted" loading="lazy">
+              <div class="container">
+                <h4>Interact with your Data</h4>
+                <p>The Julia data ecosystem provides <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> to work with datasets, and perform common data manipulations. <a href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> is a fast multi-threaded package to read CSV files and integration with the Arrow ecosystem is in the works with <a href="https://github.com/apache/arrow-julia">Arrow.jl</a>. Online computations on streaming data can be performed with <a href = "https://github.com/joshday/OnlineStats.jl">OnlineStats.jl</a>.
+                The <a href = "https://www.queryverse.org/">Queryverse</a> provides query, file IO and visualization functionality. In addition to working with tabular data, the <a href = "https://juliagraphs.org/">JuliaGraphs</a> packages make it easy to work with combinatorial data.</p>
+                <p>Julia can work with almost all databases using <a href = "https://github.com/JuliaDatabases/ODBC.jl">ODBC.jl</a> drivers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB DETAILS - VISUALIZATION -->
+        <div class="tab-pane active" id="tab-viz" role="tabpanel" aria-labelledby="viz-tab">
+          <h3 class="tab-title">Visualization</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="container">
+                <img src="/previews/PR2520/assets/infra/waves.webp" class="pb-2 ecosystem-image" alt="Visualization of waves in 3D, as a heatmap, and on the x y axis" loading="lazy">
+                <h4>Data Visualization and Plotting</h4>
+                <p>Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static and dynamic interface. Some packages make a display and never change it, while others make updates in real-time.</p>
+                <p><a href="https://github.com/MakieOrg/Makie.jl">Makie.jl</a> is a sophisticated package for complex graphics and animations. <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="https://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a> and <a href="https://github.com/JuliaPlots/PlotlyJS.jl">PlotlyJS.jl</a>. Users who are used to "grammar of graphics" plotting APIs should take a look at <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a>. For those who do not wish to leave the comfort of the terminal, there is also <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div> <!-- END OF ECOSYSTEM -->
+
+<!--
+       Containers: JULIA CON 2025
+  -->
+  <div class="container juliacon-section" id="juliacon-videos">
+    <picture class="juliacon-world-map">
+      <source srcset="/assets/infra/world_map.webp" type="image/webp">
+      <img src="/previews/PR2520/assets/infra/world_map.png" alt="" aria-hidden="true" loading="lazy">
+    </picture>
+    <div class="row">
+      <div class="col-lg-4 col-md-3 language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 language-features section-heading">
+        <h2 class="lead secondary-heading">JuliaCon 2025</h2>
+      </div>
+      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    </div>
+
+    <div class="row justify-content-center">
+       <div class="col-lg-8 col-md-10 video">
+        <p class="text-center juliacon-description">Watch talks from JuliaCon 2025, featuring the latest developments, optimizations, and innovations from the Julia community.</p>
+        <div class="ratio ratio-16x9 video-container"><div id="player"></div></div>
+        <script defer src="/previews/PR2520/libs/youtube-player.js"></script>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center section-links">
+        <a class="btn btn-primary" href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SZOq4EH_nE_BFulBAKXkf1">JuliaCon 2025 Playlist</a>
+        <a class="btn btn-primary" href="https://www.youtube.com/playlist?list=PLP8iPy9hna6TJMLEiZZiWAXlyGtOyJSL7">JuliaCon Local Paris</a>
+        <a class="btn btn-primary" href="https://www.youtube.com/user/JuliaLanguage">All Julia Videos</a>
+      </div>
+    </div>
+    <br>
+  </div>
+
+  <!--
+       Containers: PACKAGES
+  -->
+  <div class="container-fluid alt-color packages">
+    <br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
+        <div class="col-lg-4 col-md-6 ecosystem section-heading">
+          <h2 class="lead secondary-heading"><a href="/previews/PR2520/packages/">Packages</a></h2>
+        </div>
+        <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
+      </div>
+
+      <br>
+
+      <p>Julia has been downloaded over 100 million times and the Julia community has registered <a href="https://juliahub.com/ui/Packages">over 12,000 Julia packages</a> for community use.
+      These include various mathematical libraries, data manipulation tools, and packages for general purpose computing. In addition to these, you can easily use libraries from <a href="https://github.com/JuliaPy/PythonCall.jl">Python</a>, <a href="https://github.com/JuliaInterop/RCall.jl">R</a>, <a href="https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Calling-C-and-Fortran-Code-1">C/Fortran</a>, and <a href="https://github.com/JuliaInterop/CxxWrap.jl">C++</a>, and <a href="https://github.com/JuliaInterop/JavaCall.jl">Java</a>.
+      If you do not find what you are looking for, ask on <a href="https://discourse.julialang.org">Discourse</a>, or even better, <a href="https://julialang.github.io/Pkg.jl/v1/">contribute one</a>!</p>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col-12 text-center section-links">
+          <a class="btn btn-primary" href="https://juliahub.com/ui/Packages">JuliaHub: Package Search</a>
+          <a class="btn btn-primary" href="https://status.julialang.org/">PkgServer Status</a>
+          <a class="btn btn-primary" href="https://julialang.zulipchat.com/#narrow/stream/299184-new-packages-feed">Feed of new Julia packages</a>
+        </div>
+      </div>
+
+      <br>
+
+    </div>
+  </div>
+
+  <!--
+       Containers: RECENT BLOG POSTS
+  -->
+  <div class="container">
+    <br><br>
+    <div class="row">
+      <div class="col-lg-4 col-md-3 language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 language-features section-heading">
+        <h2 class="lead secondary-heading"><a href="/previews/PR2520/blog">Recent Blog Posts</a></h2>
+      </div>
+      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    </div>
+
+    <br>
+
+    <!-- NOTE: here could use an insert statement
+    where the inserted element would be a generated file-->
+
+    <div class="row">
+        <div class="col-lg-4 col-md-12 blog">
+  <h3><a href="/previews/PR2520/blog/2026/03/this-month-in-julia-world/" class="title" data-proofer-ignore>This Month in Julia World (February 2026)</a>
+  </h3><span class="article-date">1 March 2026</span>
+  <p>Community Newsletter for February 2026</p>
+</div>
+<div class="col-lg-4 col-md-12 blog">
+  <h3><a href="/previews/PR2520/blog/2026/02/this-month-in-julia-world/" class="title" data-proofer-ignore>This Month in Julia World (January 2026)</a>
+  </h3><span class="article-date">1 February 2026</span>
+  <p>Community Newsletter for January 2026</p>
+</div>
+<div class="col-lg-4 col-md-12 blog">
+  <h3><a href="/previews/PR2520/blog/2026/01/this-month-in-julia-world/" class="title" data-proofer-ignore>This Month in Julia World (December 2025)</a>
+  </h3><span class="article-date">1 January 2026</span>
+  <p>Community Newsletter for December 2025</p>
+</div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-12 text-center section-links">
+        <a class="btn btn-primary" href="/previews/PR2520/blog/">Visit Blog</a>
+      </div>
+    </div>
+
+    <br>
+
+  </div>
+
+  <!--
+       Containers: TALK TO US
+  -->
+  <div class="container-fluid alt-color">
+
+    <br><br>
+
+    <!-- Talk to us -->
+    <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
+        <div class="col-lg-4 col-md-6 ecosystem section-heading">
+          <h2 class="lead secondary-heading">Talk to us</h2>
+        </div>
+      <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
+    </div>
+
+
+    <br>
+
+    <!-- Row Discourse-Github-Slack-Zulip -->
+    <div class="row">
+      <div class="col-lg-3 col-md-6 text-center">
+        <h3>Discourse</h3>
+		    <a href="https://discourse.julialang.org/" target="_blank" rel="noopener noreferrer">
+        <img src="/previews/PR2520/assets/infra/discourse.svg" height="85" width="85" alt="Discourse Logo" loading="lazy" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://discourse.julialang.org/" target="_blank">Discourse</a>
+        </h4>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <h3>GitHub</h3>
+	    	<a href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener noreferrer">
+        <img src="/previews/PR2520/assets/infra/github.svg" height="85" width="85" alt="GitHub Logo" loading="lazy" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://github.com/JuliaLang/julia" target="_blank">Source code</a>
+        </h4>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <h3>Zulip</h3>
+	    	<a href="https://julialang.zulipchat.com/" target="_blank" rel="noopener noreferrer">
+        <img src="/previews/PR2520/assets/infra/zulip.svg" height="85" width="85" alt="Zulip Logo" loading="lazy" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://julialang.zulipchat.com/" target="_blank">Zulip</a>
+        </h4>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <h3>Slack</h3>
+		    <a href="/previews/PR2520/slack/" target="_blank" rel="noopener noreferrer">
+        <img src="/previews/PR2520/assets/infra/slack.png" height="85" width="85" alt="Slack Logo" loading="lazy" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="/previews/PR2520/slack/" target="_blank">Slack</a>
+        </h4>
+      </div>
+    </div>
+
+    <!-- Row -Twitter-Videos-LinkedIn-Twitch -->
+    <div class="row">
+      <div class="col-lg-3 col-md-6 text-center">
+        <h3>Twitter</h3>
+		    <a href="https://twitter.com/JuliaLanguage" target="_blank" rel="noopener noreferrer">
+        <img src="/previews/PR2520/assets/infra/twitter.svg" height="85" width="85" alt="Twitter Logo" loading="lazy" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://twitter.com/JuliaLanguage" target="_blank">#JuliaLang</a>
+        </h4>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <h3>Videos</h3>
+		    <a href="https://www.youtube.com/user/JuliaLanguage" target="_blank" rel="noopener noreferrer">
+        <img src="/previews/PR2520/assets/infra/youtube.svg" height="85" width="85" alt="YouTube Logo" loading="lazy" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://www.youtube.com/user/JuliaLanguage" target="_blank">YouTube</a>
+        </h4>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <h3>LinkedIn</h3>
+		    <a href="https://www.linkedin.com/company/the-julia-language" target="_blank" rel="noopener noreferrer">
+        <img src="/previews/PR2520/assets/infra/linkedin.png" height="85" width="85" alt="LinkedIn Logo" loading="lazy" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://www.linkedin.com/company/the-julia-language" target="_blank">LinkedIn</a>
+        </h4>
+      </div>
+    </div>
+
+
+    <br><br>
+	</div>
+  </div> <!-- end of talk to us container -->
+
+  <!--
+       Containers: EDITORS AND IDES
+  -->
+  <div class="container">
+      <br><br>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-2 language-features"><hr/></div>
+        <div class="col-lg-6 col-md-8 language-features section-heading">
+          <h2 class="lead secondary-heading"><a href="/previews/PR2520/#editors">Editors and IDEs</a></h2>
+        </div>
+        <div class="col-lg-3 col-md-2 language-features"><hr/></div>
+      </div>
+
+      <br>
+
+      <div class="row ides">
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>VS Code</h3>
+		  	<a href="https://www.julia-vscode.org/" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/vscode.png" height="85" width="85" alt="VSCode Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://www.julia-vscode.org/" target="_blank">VS Code Extension</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Jupyter</h3>
+		  	<a href="https://github.com/JuliaLang/IJulia.jl" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/jupyter.svg" height="85" width="85" alt="Jupyter Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaLang/IJulia.jl" target="_blank">Jupyter kernel</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Pluto.jl</h3>
+		  	<a href="https://plutojl.org/" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/pluto_jl.svg" height="85" width="85" alt="Pluto.jl Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://plutojl.org/" target="_blank">Simple reactive notebooks</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Vim</h3>
+		  	<a href="https://github.com/JuliaEditorSupport/julia-vim" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/vim.png" height="85" width="85" alt="Vim Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-vim" target="_blank">Vim plugin</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Emacs</h3>
+		  	<a href="https://github.com/JuliaEditorSupport/julia-emacs" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/emacs.png" height="85" width="85" alt="Emacs Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-emacs" target="_blank">Emacs plugin</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Zed</h3>
+        <a href="https://github.com/JuliaEditorSupport/zed-julia" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/zed.png" height="85" width="85" alt="Zed Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/zed-julia" target="_blank">Zed Extension</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>JetBrains</h3>
+        <a href="https://plugins.jetbrains.com/plugin/29356-flexible-julia" target="_blank" title="PAID">
+            <img src="/previews/PR2520/assets/infra/flexibleJulia.svg" height="85" width="85" alt="Flexible Julia Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://plugins.jetbrains.com/plugin/29356-flexible-julia" target="_blank" title="PAID">Flexible Julia</a>
+          </h4>
+        </div>
+      </div>
+    </div>
+
+  <!--
+       Containers: ESSENTIAL TOOLS
+  -->
+  <div class="container">
+      <br><br>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-2 ecosystem"><hr/></div>
+        <div class="col-lg-6 col-md-8 ecosystem section-heading">
+          <h2 class="lead secondary-heading"><a href="/previews/PR2520/#tools">Essential Tools</a></h2>
+        </div>
+        <div class="col-lg-3 col-md-2 ecosystem"><hr/></div>
+      </div>
+
+      <br>
+
+      <div class="row ides">
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Debugger</h3>
+		  	<a href="https://github.com/JuliaDebug/Debugger.jl" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/Debug.png" height="85" width="85" alt="Debugger" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaDebug/Debugger.jl" target="_blank">Debugger.jl</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Profiler</h3>
+		  	<a href="https://docs.julialang.org/en/v1/manual/profile/" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/profile.png" height="85" width="85" alt="Profiler Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://docs.julialang.org/en/v1/manual/profile/" target="_blank">Profile (Stdlib)</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Benchmarking</h3>
+		  	<a href="https://github.com/JuliaCI/BenchmarkTools.jl" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/benchmarktools.png" height="85" width="85" alt="BenchmarkTools Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaCI/BenchmarkTools.jl" target="_blank">BenchmarkTools.jl</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Revise</h3>
+		  	<a href="https://github.com/timholy/Revise.jl" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/revise.png" height="85" width="85" alt="Revise Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/timholy/Revise.jl" target="_blank">Revise.jl</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>GPUs</h3>
+		  	<a href="https://juliagpu.org/" target="_blank" rel="noopener noreferrer">
+            <img src="/previews/PR2520/assets/infra/gpu.png" height="85" width="85" alt="Julia GPU Logo" loading="lazy" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://juliagpu.org/" target="_blank">JuliaGPU</a>
+          </h4>
+        </div>
+      </div>
+    </div>
+
+  <br>
+
+<!-- FOOT -->
+
+<footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2520/project">About</a></li>
+        <li><a href="/previews/PR2520/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2520/governance/">Governance</a></li>
+        <li><a href="/previews/PR2520/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2520/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2520/downloads">Install</a></li>
+        <li><a href="/previews/PR2520/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2520/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2520/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2520/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2520/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2520/community/">Community</a></li>
+        <li><a href="/previews/PR2520/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2520/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2520/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2520/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2520/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2520/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2520/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="/previews/PR2520/libs/highlight/github.min.css">
+<script defer src="/previews/PR2520/libs/highlight/highlight.min.js"></script>
+<script>
+  // Remember when user dismisses the alert (complements the early-hide script above)
+  const topAlert = document.querySelector('#top-alert .alert');
+  topAlert.addEventListener('close.bs.alert', function () {
+    const alertText = document.querySelector('#top-alert p').innerHTML.trim();
+    localStorage.setItem(alertText, Date.now().toString());
+  });
+</script>
+<script defer src="/previews/PR2520/libs/carousel.js"></script>
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2484/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+<link rel="dns-prefetch" href="https://kit.fontawesome.com">
+<link rel="dns-prefetch" href="https://ka-f.fontawesome.com">
+
+<!-- Preload LCP-critical resources (hero background, navbar logo) -->
+<link rel="preload" href="/previews/PR2484/assets/infra/logo.svg" as="image">
+<link rel="preload" href="/previews/PR2484/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<link rel="stylesheet" href="/previews/PR2484/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2484/css/app.css">
+<link rel="stylesheet" href="/previews/PR2484/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2484/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2484/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2484/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+<script defer src="https://kit.fontawesome.com/f030d443fe.js" crossorigin="anonymous"></script>
+
+
+   <title>JuliaHealth Projects – Summer of Code</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="JuliaHealth Projects – Summer of Code">
+<meta property="og:description" content="Official website for the Julia programming language">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2484/jsoc/gsoc/juliahealth/">
+
+
+  <!-- Article structured data for blog posts -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2484/">
+          <img src="/previews/PR2484/assets/infra/logo.svg" alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2484/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2484/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2484/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2484/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2484/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2484/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-4">
+              <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="false" aria-label="Star JuliaLang/julia on GitHub" rel="noopener noreferrer">Star</a>
+              <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/jsoc/gsoc/juliahealth.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="juliahealth_projects_summer_of_code"><a href="#juliahealth_projects_summer_of_code" class="header-anchor">JuliaHealth Projects – Summer of Code</a></h1>
+<p>JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. We believe that by working together and sharing our knowledge and expertise, we can create powerful tools and solutions that have the potential to transform healthcare.</p>
+<h2 id="general_ecosystem"><a href="#general_ecosystem" class="header-anchor">General Ecosystem</a></h2>
+<h3 id="a_generalized_rag_llm-workflow_support_tool_for_juliahealth"><a href="#a_generalized_rag_llm-workflow_support_tool_for_juliahealth" class="header-anchor">A Generalized RAG LLM-Workflow Support Tool for JuliaHealth</a></h3>
+<p><strong>Description:</strong> HealthLLM.jl is a Retrieval-Augmented Generation &#40;RAG&#41; framework that provides a foundation for domain-specific LLM workflows across JuliaHealth.  The long-term vision for HealthLLM.jl is to enable workflows across JuliaHealth that lower the barrier to health data analysis while maintaining the reproducibility and auditability that health research demands. Validation efforts will focus on FunSQL.jl queries for a testing harness, while the architecture is designed to generalize to broader JuliaGenAI LLM tooling for JuliaHealth.</p>
+<ul>
+<li><p><strong>Mentor:</strong> Jacob S. Zelko &#40;aka TheCedarPrince&#41; &#91;email: jacobszelko@gmail.com&#93;</p>
+</li>
+<li><p><strong>Difficulty:</strong> Medium</p>
+</li>
+<li><p><strong>Duration:</strong> 175 hours</p>
+</li>
+<li><p><strong>Suggested Skills and Background:</strong></p>
+<ul>
+<li><p>Experience with Julia</p>
+</li>
+<li><p>Strong expertise with LLM and RAG pipelines</p>
+</li>
+<li><p>Experience with the following is necessary:</p>
+<ul>
+<li><p>FunSQL.jl</p>
+</li>
+<li><p>PromptingTools.jl or other Julia-native GenAI tooling</p>
+</li>
+<li><p>Vector database technologies &#40;e.g. PgVector, FAISS, Qdrant&#41;</p>
+</li>
+</ul>
+</li>
+<li><p>Comfort with the OMOP CDM or health informatics concepts </p>
+</li>
+</ul>
+</li>
+<li><p><strong>Outcomes:</strong></p>
+<ul>
+<li><p>Refactor the RAG pipeline into modular components &#40;retrieval, generation, post-processing, evaluation&#41; with improved prompt templates, error handling, and logging</p>
+</li>
+<li><p>Survey and evaluate multiple LLMs on FunSQL-based query generation tasks using standardized metrics &#40;accuracy, latency, cost&#41;</p>
+</li>
+<li><p>Provide comprehensive documentation, reproducible evaluation scripts, and final experimental results</p>
+</li>
+<li><p>Design and implement an abstract interface supporting multiple vector database backends, with benchmarking across backends &#40;stretch goal&#41;</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="observational_health_subecosystem_projects"><a href="#observational_health_subecosystem_projects" class="header-anchor">Observational Health Subecosystem Projects</a></h2>
+<blockquote>
+<p>No projects this year&#33;</p>
+</blockquote>
+<h2 id="medical_imaging_subecosystem_projects"><a href="#medical_imaging_subecosystem_projects" class="header-anchor">Medical Imaging Subecosystem Projects</a></h2>
+<h3 id="julia_radiomics"><a href="#julia_radiomics" class="header-anchor">Julia Radiomics</a></h3>
+<p><strong>Project Title:</strong> Julia Radiomics   <strong>Difficulty:</strong> Medium   <strong>Duration:</strong> 375 hours &#40;22 Weeks&#41;   <strong>Mentor:</strong> Jakub Mitura  </p>
+<h4 id="description"><a href="#description" class="header-anchor">Description</a></h4>
+<p>Radiomic features are quantitative metrics extracted from medical images using data-characterization algorithms. These features capture tissue and lesion characteristics, such as heterogeneity and shape, which may provide valuable insights beyond what the naked eye can perceive.</p>
+<p>This project aims to implement algorithms for extracting radiomic features from 2D and 3D medical images, similar to PyRadiomics, using Julia. The implementation will include Gray Level Co-occurrence Matrix &#40;GLCM&#41;, Gray Level Size Zone Matrix &#40;GLSZM&#41;, Gray Level Run Length Matrix &#40;GLRM&#41;, Neighborhood Gray Tone Difference Matrix &#40;NGTDM&#41;, and Gray Level Dependence Matrix &#40;GLDM&#41;. The extracted features will be validated against PyRadiomics and applied to medical imaging data, such as the AutoPET dataset, to demonstrate the methodology. </p>
+<h4 id="deliverables"><a href="#deliverables" class="header-anchor">Deliverables</a></h4>
+<h5 id="implementation_of_radiomic_feature_extraction_algorithms"><a href="#implementation_of_radiomic_feature_extraction_algorithms" class="header-anchor">Implementation of Radiomic Feature Extraction Algorithms</a></h5>
+<ul>
+<li><p><strong>First Group:</strong> GLCM, GLSZM, GLRM</p>
+</li>
+<li><p><strong>Second Group:</strong> NGTDM, GLDM</p>
+</li>
+</ul>
+<h5 id="feature_extraction_pipeline"><a href="#feature_extraction_pipeline" class="header-anchor">Feature Extraction Pipeline</a></h5>
+<ul>
+<li><p>Extract all features from segmented lesions in PET and CT modalities.</p>
+</li>
+<li><p>Use MedImages.jl for image handling.</p>
+</li>
+<li><p>Leverage KernelAbstractions.jl for performance optimization where possible.</p>
+</li>
+</ul>
+<h5 id="validation"><a href="#validation" class="header-anchor">Validation</a></h5>
+<ul>
+<li><p>Compare extracted features against PyRadiomics outputs.</p>
+</li>
+<li><p>Ensure statistical equivalence in extracted features.</p>
+</li>
+</ul>
+<h5 id="final_report_code_repository"><a href="#final_report_code_repository" class="header-anchor">Final Report &amp; Code Repository</a></h5>
+<ul>
+<li><p>Methodology, results, benchmarking.</p>
+</li>
+<li><p>Public GitHub repository under an MIT license.</p>
+</li>
+</ul>
+<h4 id="success_criteria_and_timeline"><a href="#success_criteria_and_timeline" class="header-anchor">Success Criteria and Timeline</a></h4>
+<h5 id="phase_1_literature_review_and_setup_3_weeks"><a href="#phase_1_literature_review_and_setup_3_weeks" class="header-anchor">Phase 1: Literature Review and Setup &#40;3 Weeks&#41;</a></h5>
+<ul>
+<li><p>Review PyRadiomics documentation, MedImages.jl, KernelAbstractions.jl APIs, and AutoPET dataset structure.</p>
+</li>
+<li><p><strong>Success Criteria:</strong> Understanding of feature definitions, dataset access, and GPU kernel design.</p>
+</li>
+</ul>
+<h5 id="phase_2_feature_implementation_6_weeks"><a href="#phase_2_feature_implementation_6_weeks" class="header-anchor">Phase 2: Feature Implementation &#40;6 Weeks&#41;</a></h5>
+<ul>
+<li><p>Implement GLCM, GLSZM, GLRM, NGTDM, and GLDM matrices.</p>
+</li>
+<li><p>Validate outputs against PyRadiomics &#40;&gt;90&#37; similarity in unit tests&#41;.</p>
+</li>
+<li><p><strong>Success Criteria:</strong> GPU-accelerated implementation for 3D volumes.</p>
+</li>
+</ul>
+<h5 id="phase_3_feature_extraction_pipeline_4_weeks"><a href="#phase_3_feature_extraction_pipeline_4_weeks" class="header-anchor">Phase 3: Feature Extraction Pipeline &#40;4 Weeks&#41;</a></h5>
+<ul>
+<li><p>Build a pipeline to process AutoPET lesions using MedImages.jl.</p>
+</li>
+<li><p><strong>Success Criteria:</strong> Extraction of 100&#43; features per lesion, support for batch processing.</p>
+</li>
+</ul>
+<h5 id="phase_4_validation_3_weeks"><a href="#phase_4_validation_3_weeks" class="header-anchor">Phase 4: Validation &#40;3 Weeks&#41;</a></h5>
+<ul>
+<li><p>Compare Julia feature extraction results with PyRadiomics.</p>
+</li>
+<li><p><strong>Success Criteria:</strong> Statistical equivalence &#40;e.g., t-test p &gt; 0.05&#41;, with documented discrepancies &lt;5&#37;.</p>
+</li>
+</ul>
+<h5 id="phase_5_documentation_and_packaging_4_weeks"><a href="#phase_5_documentation_and_packaging_4_weeks" class="header-anchor">Phase 5: Documentation and Packaging &#40;4 Weeks&#41;</a></h5>
+<ul>
+<li><p>Write documentation for the Julia-based radiomics library.</p>
+</li>
+<li><p>Write automated tests for the proper functioning of the library.</p>
+</li>
+<li><p>Register the package in the Julia package registry.</p>
+</li>
+<li><p><strong>Success Criteria:</strong> The final working library is successfully available in the Julia ecosystem.</p>
+</li>
+</ul>
+<h5 id="phase_6_reporting_2_weeks"><a href="#phase_6_reporting_2_weeks" class="header-anchor">Phase 6: Reporting &#40;2 Weeks&#41;</a></h5>
+<ul>
+<li><p>Document methodology, results, and benchmarking.</p>
+</li>
+<li><p><strong>Success Criteria:</strong> Reproducible code, Jupyter notebooks, open-source repository.</p>
+</li>
+</ul>
+<h4 id="stretch_goals"><a href="#stretch_goals" class="header-anchor">Stretch Goals</a></h4>
+<ul>
+<li><p>Implementation of additional radiomic features such as:</p>
+<ul>
+<li><p>Wavelet Features &#40;Transform-based texture analysis&#41;</p>
+</li>
+<li><p>Fractal Analysis &#40;Estimating complexity in medical images&#41;</p>
+</li>
+<li><p>Laplacian of Gaussian &#40;LoG&#41; Features &#40;Edge detection-based feature extraction&#41;</p>
+</li>
+</ul>
+</li>
+<li><p>Optimized parallel computation using GPU acceleration in KernelAbstractions.jl.</p>
+</li>
+<li><p>Implementation of an interactive Julia-based visualization tool for extracted radiomic features.</p>
+</li>
+</ul>
+<h4 id="clarification"><a href="#clarification" class="header-anchor">Clarification</a></h4>
+<p>This implementation will be done entirely in Julia, and Python will not be used in any part of the implementation.   Any cross-validation with PyRadiomics is purely for benchmarking purposes.</p>
+<h4 id="importance_and_impact"><a href="#importance_and_impact" class="header-anchor">Importance and Impact</a></h4>
+<h5 id="technical_impact"><a href="#technical_impact" class="header-anchor">Technical Impact</a></h5>
+<ul>
+<li><p><strong>Julia Ecosystem Growth:</strong> First native Radiomics toolkit in Julia.</p>
+</li>
+<li><p><strong>GPU Acceleration:</strong> Utilizes KernelAbstractions.jl for efficient 3D feature extraction.</p>
+</li>
+<li><p><strong>Reproducibility:</strong> Open-source implementation ensures transparency in radiomics research.</p>
+</li>
+</ul>
+<h5 id="clinical_impact"><a href="#clinical_impact" class="header-anchor">Clinical Impact</a></h5>
+<ul>
+<li><p><strong>Cancer Differentiation:</strong> Model insights may aid in non-invasive cancer subtyping.</p>
+</li>
+<li><p><strong>Standardization:</strong> Cross-tool validation enhances study comparability across different platforms.</p>
+</li>
+</ul>
+<h5 id="community_impact"><a href="#community_impact" class="header-anchor">Community Impact</a></h5>
+<ul>
+<li><p><strong>Foundation for Future Work:</strong> Enables Julia-based radiomics pipelines for projects like TCIA.</p>
+</li>
+<li><p><strong>Educational Value:</strong> Demonstrates GPU-accelerated medical image processing in Julia for researchers and students.</p>
+</li>
+</ul>
+<h4 id="references"><a href="#references" class="header-anchor">References</a></h4>
+<ul>
+<li><p><a href="https://pyradiomics.readthedocs.io">PyRadiomics Documentation</a></p>
+</li>
+<li><p><a href="https://autopet.grand-challenge.org/">AutoPET Dataset</a></p>
+</li>
+<li><p><a href="https://github.com/JuliaHealth/MedImages.jl">MedImages.jl</a></p>
+</li>
+<li><p><a href="https://github.com/JuliaGPU/KernelAbstractions.jl">KernelAbstractions.jl</a></p>
+</li>
+<li><p>Radiomics Research: Various studies on the clinical relevance of radiomics in medical imaging.</p>
+</li>
+<li><p>Kumar, V., et al. &quot;Radiomics: the process and the challenges.&quot; Magnetic Resonance Imaging, 2012.</p>
+</li>
+<li><p>Gillies, R.J., et al. &quot;Radiomics: images are more than pictures, they are data.&quot; Nature Reviews Cancer, 2016.</p>
+</li>
+<li><p>Lambin, P., et al. &quot;Radiomics: extracting more information from medical images using advanced feature analysis.&quot; European Journal of Cancer, 2012.</p>
+</li>
+</ul>
+<h3 id="klay-core_high-performance_neurosymbolic_constraint_layers_for_trustworthy_medical_ai"><a href="#klay-core_high-performance_neurosymbolic_constraint_layers_for_trustworthy_medical_ai" class="header-anchor">KLAY-Core: High-Performance Neurosymbolic Constraint Layers for Trustworthy Medical AI</a></h3>
+<p><strong>Difficulty:</strong> Hard / Ambitious   <strong>Duration:</strong> 350 hours &#40;22 weeks&#41;   <strong>Mentor:</strong> Jakub Mitura   <strong>Technology Stack:</strong> Julia, Lux.jl, NNlib.jl, ChainRules.jl, LogExpFunctions.jl</p>
+<h4 id="description__2"><a href="#description__2" class="header-anchor">Description</a></h4>
+<p>Deep learning in medical diagnostics suffers from a well-known trust gap. Models often behave as black boxes and may produce physiologically implausible predictions — for example simultaneously predicting cachexia and obesity. This lack of interpretability and clinical consistency limits adoption of AI systems in healthcare environments.</p>
+<p>Neurosymbolic artificial intelligence &#40;NeSy&#41; addresses this limitation by integrating structured logical knowledge directly into neural models. However, many existing approaches struggle with numerical stability, scalability, and GPU efficiency when deployed in realistic clinical settings.</p>
+<p>KLAY-Core is a high-performance logical constraint layer designed for Lux.jl. It enables domain experts and developers to encode clinical knowledge as differentiable logical constraints integrated directly into neural network architectures.</p>
+<p>Using the Knowledge Layers &#40;KLAY&#41; architecture, the project introduces static linearization of logical circuits &#40;d-DNNF&#41; into optimized tensor buffers. Circuit evaluation is reduced to sequences of NNlib.scatter operations and tensor indexing, significantly improving GPU parallel efficiency while ensuring physiologically consistent predictions.</p>
+<h4 id="main_goals_and_implementation"><a href="#main_goals_and_implementation" class="header-anchor">Main Goals and Implementation</a></h4>
+<h5 id="medical_logic_compiler_and_d-dnnf_bridge_julia-native"><a href="#medical_logic_compiler_and_d-dnnf_bridge_julia-native" class="header-anchor">Medical Logic Compiler and d-DNNF Bridge &#40;Julia-Native&#41;</a></h5>
+<p>The project follows a &quot;compile once, evaluate often&quot; paradigm for efficient integration of symbolic knowledge into neural models.</p>
+<p><strong>Yggdrasil and JLL Integration</strong></p>
+<p>High-performance symbolic compilers &#40;e.g., d4, SDD&#41; will be distributed as precompiled binaries via Yggdrasil and JLL packages. This guarantees a fully Julia-native workflow without requiring Python environments or local C&#43;&#43; toolchain configuration.</p>
+<p><strong>Level-Order Flattening</strong></p>
+<p>A dedicated algorithm groups logical graph nodes into layers based on structural height. This converts hierarchical logical circuits into flat GPU-friendly buffers, eliminating recursion and enabling efficient parallel execution.</p>
+<p><strong>Solving the Derivative Bottleneck</strong></p>
+<p>Custom adjoints &#40;rrule&#41; implemented using ChainRules.jl ensure backward-pass efficiency comparable to standard neural layers while avoiding excessive memory overhead typical of recursive automatic differentiation.</p>
+<h5 id="user_interface_the_clinical_rule_macro"><a href="#user_interface_the_clinical_rule_macro" class="header-anchor">User Interface – The @clinical_rule Macro</a></h5>
+<p>To reduce usability barriers for clinicians and developers, the package introduces a domain-specific DSL macro supporting full Boolean logic and weighted relationships where w ∈ &#91;0,1&#93;.</p>
+<p>Unlike Python-based frameworks such as Dolphin, which rely on object-oriented logic definitions, KLAY-Core offers a declarative macro interface integrated directly with the Julia compiler. This improves readability, auditability, and interdisciplinary collaboration between clinicians and AI engineers.</p>
+<p><strong>Supported Logical Operators:</strong></p>
+<ul>
+<li><p>AND &#40;<code>&amp;</code>&#41; — logical conjunction</p>
+</li>
+<li><p>OR &#40;<code>|</code>&#41; — logical alternative</p>
+</li>
+<li><p>NOT &#40;<code>&#33;</code>&#41; — logical negation</p>
+</li>
+<li><p>Implication &#40;<code>-&gt;</code>&#41; — logical implication</p>
+</li>
+</ul>
+<p><strong>Constraint Types:</strong></p>
+<p><em>Hard Constraints &#40;w &#61; 1.0&#41;:</em> Strict logical rules ensuring physiological consistency.</p>
+<p><em>Soft Constraints &#40;w &lt; 1.0&#41;:</em> Probabilistic correlations or clinical risk relationships.</p>
+<h5 id="klay-core_engine_for_luxjl"><a href="#klay-core_engine_for_luxjl" class="header-anchor">KLAY-Core Engine for Lux.jl</a></h5>
+<p><strong>Explicit Layer Design</strong></p>
+<p>Implementation of an AbstractExplicitLayer where circuit structure is stored in the layer state while constraint strengths remain trainable parameters. This supports determinism, transparency, and reproducibility required in medical AI systems.</p>
+<p><strong>Log-Space Numerical Stability</strong></p>
+<p>Logical gates are evaluated in logarithmic space using logsumexp &#40;OR&#41; and summation &#40;AND&#41;, preventing numerical instability and vanishing-gradient effects.</p>
+<h4 id="comparison_with_existing_solutions"><a href="#comparison_with_existing_solutions" class="header-anchor">Comparison with Existing Solutions</a></h4>
+<table><tr><th align="right">Feature</th><th align="right">KLAY-Core &#40;Julia&#41;</th><th align="right">Dolphin &#40;Python/PyTorch&#41;</th><th align="right">DeepProbLog / LTN</th><th align="right">Juice.jl &#40;Julia&#41;</th></tr><tr><td align="right">GPU Parallelism</td><td align="right">Native scatter-reduce</td><td align="right">Standard PyTorch ops</td><td align="right">Mostly sequential</td><td align="right">Limited optimized kernels</td></tr><tr><td align="right">Integration</td><td align="right">Native Lux.jl</td><td align="right">Wrapper-style integration</td><td align="right">Python–C&#43;&#43; bridges</td><td align="right">Independent library</td></tr><tr><td align="right">Ecosystem</td><td align="right">JLL / Yggdrasil</td><td align="right">Pip / Conda environments</td><td align="right">Mixed dependencies</td><td align="right">Native Julia ecosystem</td></tr><tr><td align="right">Interface</td><td align="right">High-level DSL macro</td><td align="right">Python API definitions</td><td align="right">Logic-heavy syntax</td><td align="right">Low-level graph APIs</td></tr><tr><td align="right">Gradient Stability</td><td align="right">Custom rrule</td><td align="right">Standard AD</td><td align="right">Potential instability</td><td align="right">Variable stability</td></tr></table>
+<p><strong>Competitive Edge:</strong> KLAY-Core combines Julia&#39;s performance, macro system, and binary artifact ecosystem with a modern explicit deep learning framework &#40;Lux.jl&#41;. Rather than functioning as an external wrapper, it becomes an integral neural network component, simplifying deployment, improving reproducibility, and reducing operational complexity in clinical AI environments.</p>
+<h4 id="project_timeline_22_weeks"><a href="#project_timeline_22_weeks" class="header-anchor">Project Timeline &#40;22 Weeks&#41;</a></h4>
+<ul>
+<li><p><strong>Phase 1 &#40;Weeks 1–4&#41;:</strong> Development of the @clinical_rule DSL and Yggdrasil/JLL integration.</p>
+</li>
+<li><p><strong>Phase 2 &#40;Weeks 5–9&#41;:</strong> Flattening logical circuits into recursion-free GPU buffers.</p>
+</li>
+<li><p><strong>Phase 3 &#40;Weeks 10–13&#41;:</strong> Custom rrule differentiation and log-space stability optimization.</p>
+</li>
+<li><p><strong>Phase 4 &#40;Weeks 14–17&#41;:</strong> Validation using the Heart Failure Prediction Dataset with focus on: Accuracy, Brier Score, Expected Calibration Error &#40;ECE&#41;, AUROC, and Constraint violation rates.</p>
+</li>
+<li><p><strong>Phase 5 &#40;Weeks 18–20&#41;:</strong> Performance benchmarking against Dolphin, DeepProbLog, and Juice.jl.</p>
+</li>
+<li><p><strong>Phase 6 &#40;Weeks 21–22&#41;:</strong> Final documentation, testing, and publication in the Julia General Registry.</p>
+</li>
+</ul>
+<h4 id="references__2"><a href="#references__2" class="header-anchor">References</a></h4>
+<ul>
+<li><p>Alam, S., et al. &#40;2026&#41;. Constraint-aware neurosymbolic uncertainty quantification with Bayesian deep learning for scientific discovery. arXiv preprint &#40;arXiv:2601.12442&#41;.</p>
+</li>
+<li><p>Chicco, D., &amp; Jurman, G. &#40;2020&#41;. Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making, 20, 16.</p>
+</li>
+<li><p>Dang, M., et al. &#40;2021&#41;. JUICE: A Julia package for logic and probabilistic circuits. In Proceedings of the AAAI Conference on Artificial Intelligence, 35&#40;14&#41;.</p>
+</li>
+<li><p>Fedesoriano. &#40;2021&#41;. Heart failure prediction dataset &#91;Dataset&#93;. Kaggle.</p>
+</li>
+<li><p>Lagniez, J.-M., &amp; Marquis, P. &#40;2017&#41;. An improved decision-DNNF compiler &#40;d4&#41;. In Proceedings of the 26th International Joint Conference on Artificial Intelligence &#40;IJCAI 2017&#41;.</p>
+</li>
+<li><p>Maene, J., &amp; Derkinderen, V. &#40;2024&#41;. KLAY: Accelerating arithmetic circuits for neurosymbolic AI. arXiv preprint &#40;arXiv:2410.11415&#41;.</p>
+</li>
+<li><p>Manhaeve, R., Demeester, T., Rocktäschel, T., &amp; De Raedt, L. &#40;2018&#41;. DeepProbLog: Neural probabilistic logic programming. In Advances in Neural Information Processing Systems &#40;NeurIPS 2018&#41;.</p>
+</li>
+<li><p>Pal, A. &#40;2023&#41;. Lux: Explicit parameterization of deep neural networks in Julia &#91;Software&#93;. Zenodo.</p>
+</li>
+</ul>
+<h4 id="capsule_networks_for_3d_medical_imaging_segmentation_in_julia"><a href="#capsule_networks_for_3d_medical_imaging_segmentation_in_julia" class="header-anchor">Capsule Networks for 3D Medical Imaging Segmentation in Julia</a></h4>
+<p><strong>Difficulty:</strong> Hard   <strong>Duration:</strong> 350 hours   <strong>Mentor:</strong> Jakub Mitura   <strong>Technology Stack:</strong> Julia, Lux.jl, MedPipe3D.jl, KernelAbstractions.jl, CUDA.jl, MLUtils.jl, MoonCake.jl</p>
+<h4 id="deliverables__2"><a href="#deliverables__2" class="header-anchor">Deliverables</a></h4>
+<ul>
+<li><p>3D Capsule Network layer primitives &#40;dynamic routing, locally-constrained routing&#41; as reusable Lux.jl modules</p>
+</li>
+<li><p>Two full architectures: 3D SegCaps and 3D SegCaps-UNet hybrid</p>
+</li>
+<li><p>Custom GPU-accelerated routing kernels via KernelAbstractions.jl</p>
+</li>
+<li><p>End-to-end training/evaluation pipeline integrated with MedPipe3D.jl</p>
+</li>
+<li><p>Comprehensive benchmarks &#40;Dice, HD95, cross-task transfer&#41; across all 10 Medical Segmentation Decathlon tasks vs. 3D U-Net baseline</p>
+</li>
+<li><p>Documentation, pretrained weights, and reproducible experiment scripts contributed to JuliaHealth</p>
+</li>
+</ul>
+<h4 id="success_criteria_and_timeline__2"><a href="#success_criteria_and_timeline__2" class="header-anchor">Success Criteria and Timeline</a></h4>
+<p>This project is scoped for a 350-hour GSoC timeframe &#40;approximately 12–13 weeks&#41;. The following milestones and success criteria outline the expected progression.</p>
+<p><strong>Community Bonding &#40;pre-coding period&#41;</strong></p>
+<ul>
+<li><p>Finalize detailed project plan and milestones with mentors.</p>
+</li>
+<li><p>Familiarize with Lux.jl, MedPipe3D.jl, KernelAbstractions.jl, and existing MedPipe3D pipelines.</p>
+</li>
+<li><p>Set up development environment, GPU access, and reproduction of a baseline 3D U-Net on a subset of the Medical Segmentation Decathlon.</p>
+</li>
+</ul>
+<p><strong>Weeks 1–3: Core Capsule Primitives and 3D Extensions</strong></p>
+<ul>
+<li><p>Implement and test core capsule network building blocks in Lux.jl:</p>
+<ul>
+<li><p>Squash nonlinearity, routing coefficients, and routing-by-agreement loops.</p>
+</li>
+<li><p>Pose and activation representations suitable for 3D convolutional capsules.</p>
+</li>
+</ul>
+</li>
+<li><p>Extend these primitives to 3D convolution capsules &#40;pose matrices, shared transformation matrices&#41;.</p>
+</li>
+<li><p>Unit tests validating tensor shapes, numerical stability, and differentiability.</p>
+</li>
+<li><p>Success criterion: Stable forward and backward passes for 3D capsule layers on synthetic 3D data.</p>
+</li>
+</ul>
+<p><strong>Weeks 4–6: SegCaps Architectures and Integration</strong></p>
+<ul>
+<li><p>Design and implement:</p>
+<ul>
+<li><p>A 3D SegCaps encoder–decoder architecture.</p>
+</li>
+<li><p>A 3D SegCaps–UNet hybrid that replaces CNN blocks with capsule blocks while retaining skip connections.</p>
+</li>
+</ul>
+</li>
+<li><p>Integrate architectures with MedPipe3D.jl data loading and preprocessing &#40;NIFTI/DICOM I/O, patching/tiling&#41;.</p>
+</li>
+<li><p>Implement basic training scripts &#40;single-task training on 1–2 Decathlon tasks&#41;.</p>
+</li>
+<li><p>Success criterion: End-to-end training runs to convergence on at least one Decathlon task, with validation metrics logged.</p>
+</li>
+</ul>
+<p><strong>Weeks 7–9: Efficient Routing and GPU Optimization</strong></p>
+<ul>
+<li><p>Implement locally-constrained routing strategies to reduce computational cost and memory usage for volumetric data.</p>
+</li>
+<li><p>Prototype and benchmark custom GPU-accelerated routing kernels using KernelAbstractions.jl.</p>
+</li>
+<li><p>Profile training to identify and remove performance bottlenecks &#40;e.g., memory layout, batching strategy&#41;.</p>
+</li>
+<li><p>Success criterion: Capsule models train with acceptable throughput &#40;within 2–3× of 3D U-Net&#41; on a modern GPU and fit into GPU memory for standard Decathlon volumes.</p>
+</li>
+</ul>
+<p><strong>Weeks 10–11: Benchmarking and Cross-Task Transfer</strong></p>
+<ul>
+<li><p>Train and evaluate 3D SegCaps and SegCaps–UNet models across all 10 Medical Segmentation Decathlon tasks.</p>
+</li>
+<li><p>Implement cross-task transfer experiments &#40;pretrain on one organ/modality, fine-tune on another&#41;.</p>
+</li>
+<li><p>Compare performance against a strong 3D U-Net baseline using Dice, HD95, and cross-task transfer performance.</p>
+</li>
+<li><p>Success criterion: Complete benchmark tables/plots and clear analysis of where capsule models help or hurt relative to U-Net.</p>
+</li>
+</ul>
+<p><strong>Week 12&#43;: Documentation, Polish, and Upstreaming</strong></p>
+<ul>
+<li><p>Clean and document code, ensuring idiomatic Julia and Lux.jl usage.</p>
+</li>
+<li><p>Write user-facing documentation and examples &#40;e.g., minimal training script, configuration templates&#41;.</p>
+</li>
+<li><p>Prepare pretrained weights, experiment configuration files, and reproducibility instructions &#40;including random seeds and environment description&#41;.</p>
+</li>
+<li><p>Submit pull requests to relevant JuliaHealth repositories and iterate based on maintainer feedback.</p>
+</li>
+<li><p>Success criterion: Merged contributions into JuliaHealth repositories plus a project report summarizing methods, experiments, and lessons learned.</p>
+</li>
+</ul>
+<h4 id="description__3"><a href="#description__3" class="header-anchor">Description</a></h4>
+<p>This project implements 3D Capsule Network &#40;CapsNet&#41; architectures within the Julia ecosystem using Lux.jl and MedPipe3D.jl for volumetric medical image segmentation. The core work involves building a SegCaps &#40;Segmentation Capsules&#41; layer abstraction supporting dynamic routing-by-agreement, extending it to 3D convolution capsules with equivariance-preserving pose matrices. We will implement two key variants: &#40;1&#41; a 3D SegCaps U-Net hybrid that replaces encoder/decoder conv blocks with capsule layers while retaining skip connections, and &#40;2&#41; an efficient locally-constrained routing variant to manage the quadratic computational cost of full capsule coupling in volumetric data. Custom CUDA kernels via KernelAbstractions.jl will accelerate the routing procedure, and the full pipeline—preprocessing, training, and evaluation—will integrate with MedPipe3D.jl&#39;s NIFTI/DICOM I/O and metric infrastructure.</p>
+<p>The central hypothesis is that capsule networks&#39; explicit encoding of part-whole spatial hierarchies and viewpoint-equivariant pose vectors yields superior cross-domain generalization compared to standard CNNs, which rely on max-pooling and thus discard spatial relationships. We will rigorously benchmark 3D SegCaps against a 3D U-Net baseline across all 10 tasks of the Medical Segmentation Decathlon &#40;covering CT and MRI across brain, liver, lung, pancreas, etc.&#41;, measuring not only per-task Dice/HD95 but critically cross-task transfer: models pretrained on one organ/modality and fine-tuned on another. We expect capsule routing to better preserve geometric structure across domains, improving few-shot adaptation. All code, pretrained weights, and reproducible experiment scripts will be contributed to the JuliaHealth ecosystem under MIT license.</p>
+<h4 id="references__3"><a href="#references__3" class="header-anchor">References</a></h4>
+<ul>
+<li><p>Sabour, S., Frosst, N., &amp; Hinton, G. E. &#40;2017&#41;. <em>Dynamic Routing Between Capsules</em>. Advances in Neural Information Processing Systems &#40;NeurIPS&#41;. <a href="https://arxiv.org/abs/1710.09829">https://arxiv.org/abs/1710.09829</a></p>
+</li>
+<li><p>Hinton, G. E., Sabour, S., &amp; Frosst, N. &#40;2018&#41;. <em>Matrix Capsules with EM Routing</em>. International Conference on Learning Representations &#40;ICLR&#41;. <a href="https://openreview.net/forum?id&#61;HJWLfGWRb">https://openreview.net/forum?id&#61;HJWLfGWRb</a></p>
+</li>
+<li><p>LaLonde, R., &amp; Bagci, U. &#40;2018&#41;. <em>Capsules for Object Segmentation</em>. &#40;SegCaps&#41;. <a href="https://arxiv.org/abs/1804.04241">https://arxiv.org/abs/1804.04241</a></p>
+</li>
+<li><p>Simpson, A. L., Antonelli, M., Bakas, S., et al. &#40;2019&#41;. <em>A Large Annotated Medical Image Dataset for the Development and Evaluation of Segmentation Algorithms</em>. &#40;Medical Segmentation Decathlon&#41;. <a href="http://medicaldecathlon.com/">http://medicaldecathlon.com/</a> / <a href="https://arxiv.org/abs/1902.09063">https://arxiv.org/abs/1902.09063</a></p>
+</li>
+<li><p>Çiçek, Ö., Abdulkadir, A., Lienkamp, S. S., Brox, T., &amp; Ronneberger, O. &#40;2016&#41;. <em>3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation</em>. Medical Image Computing and Computer-Assisted Intervention &#40;MICCAI&#41;. <a href="https://arxiv.org/abs/1606.06650">https://arxiv.org/abs/1606.06650</a></p>
+</li>
+<li><p>Lux.jl: A deep learning library for Julia. <a href="https://github.com/JuliaAI/Lux.jl">https://github.com/JuliaAI/Lux.jl</a></p>
+</li>
+<li><p>MedPipe3D.jl: A modular 3D medical imaging pipeline in Julia. <a href="https://github.com/JuliaHealth/MedPipe3D.jl">https://github.com/JuliaHealth/MedPipe3D.jl</a></p>
+</li>
+<li><p>KernelAbstractions.jl: A vendor-neutral GPU programming model for Julia. <a href="https://github.com/JuliaGPU/KernelAbstractions.jl">https://github.com/JuliaGPU/KernelAbstractions.jl</a></p>
+</li>
+</ul>
+<h3 id="enhancing_medpipe3d_building_a_comprehensive_medical_imaging_pipeline_in_julia"><a href="#enhancing_medpipe3d_building_a_comprehensive_medical_imaging_pipeline_in_julia" class="header-anchor">Enhancing MedPipe3D: Building a Comprehensive Medical Imaging Pipeline in Julia</a></h3>
+<h4 id="description__4"><a href="#description__4" class="header-anchor">Description</a></h4>
+<p>MedPipe3D was created to improve integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. Currently, it needs to be expanded and adapted to serve as the basis for a fully functional medical imaging pipeline.</p>
+<p><strong>Mentor:</strong> Jakub Mitura &#91;email: jakub.mitura14@gmail.com&#93;</p>
+<h4 id="project_difficulty_and_timeline"><a href="#project_difficulty_and_timeline" class="header-anchor">Project Difficulty and Timeline</a></h4>
+<p><strong>Difficulty:</strong> Hard   <strong>Duration:</strong> 12 weeks</p>
+<h4 id="required_skills_and_background"><a href="#required_skills_and_background" class="header-anchor">Required Skills and Background</a></h4>
+<ul>
+<li><p>Strong knowledge of the Julia programming language is required.</p>
+</li>
+<li><p>Experience with the following Julia packages is highly desirable:</p>
+<ul>
+<li><p>MedPipe3D.jl</p>
+</li>
+<li><p>MedEye3D.jl</p>
+</li>
+<li><p>MedEval3D.jl</p>
+</li>
+<li><p>MedImage.jl</p>
+</li>
+</ul>
+</li>
+<li><p>Familiarity with the following packages would be a valuable asset:</p>
+<ul>
+<li><p>Lux.jl</p>
+</li>
+<li><p>TensorBoard</p>
+</li>
+<li><p>Logging.jl</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="potential_outcomes"><a href="#potential_outcomes" class="header-anchor">Potential Outcomes</a></h4>
+<ul>
+<li><p>Implement comprehensive logging with TensorBoard Integration and Error and Warning Logs with Logging.jl for better tracking and debugging.</p>
+</li>
+<li><p>Improve the performance of augmentations.</p>
+</li>
+<li><p>Enable per-layer memory usage inspection of Lux models.</p>
+</li>
+<li><p>Enable gradient checkpointing of chosen layers to save memory.</p>
+</li>
+<li><p>Support loading tabular data &#40;e.g., clinical data&#41; together with the image into the supplied model.</p>
+</li>
+<li><p>Enhance documentation with in-depth tutorial, code examples, and a refined README for easy onboarding.</p>
+</li>
+</ul>
+<p>This set of changes, although time-consuming to implement, should not pose a significant issue to anyone with experience with the Julia programming language. Each feature will be implemented using existing Julia libraries and frameworks where possible. However, implementing these changes will be a huge step in making the Julia language a good alternative to Python for developing end-to-end medical imaging segmentation algorithms.</p>
+<h4 id="success_criteria_and_time_needed"><a href="#success_criteria_and_time_needed" class="header-anchor">Success Criteria and Time Needed</a></h4>
+<ol>
+<li><p><strong>Logging:</strong> Implement logging to track the progress and debug issues - 2 weeks.</p>
+</li>
+<li><p><strong>Performance Improvements:</strong> Optimize the performance of augmentations to ensure efficient processing - 2 weeks.</p>
+</li>
+<li><p><strong>Memory Usage Inspection:</strong> Enable per-layer memory usage inspection of Lux models to monitor and optimize memory consumption - 2 weeks.</p>
+</li>
+<li><p><strong>Gradient Checkpointing:</strong> Enable gradient checkpointing of chosen layers to save memory during training - 4 weeks.</p>
+</li>
+<li><p><strong>Tabular Data Support:</strong> Support loading tabular data &#40;e.g., clinical data&#41; together with the image into the supplied model - 1 week.</p>
+</li>
+<li><p><strong>Documentation:</strong> Improve documentation to provide clear instructions and examples for users - 1 week.</p>
+</li>
+</ol>
+<p><strong>Total estimated time:</strong> 12 weeks.</p>
+<h4 id="why_implementation_of_these_features_is_important"><a href="#why_implementation_of_these_features_is_important" class="header-anchor">Why Implementation of These Features is Important</a></h4>
+<p>Implementing these features is crucial for advancing medical imaging technology. Enhanced logging with TensorBoard integration will allow for better insight into model training. Performance improvements ensure reliable and efficient processing of large datasets. Improved documentation and memory management make the tools more accessible and usable for medical professionals, facilitating better integration into clinical workflows. Supporting tabular data alongside imaging allows for comprehensive analysis, combining clinical and imaging data to improve diagnostic accuracy and patient outcomes.</p>
+<p>For each point, the mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it &#40;that just need to be integrated&#41;.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2484/project">About</a></li>
+        <li><a href="/previews/PR2484/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2484/governance/">Governance</a></li>
+        <li><a href="/previews/PR2484/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2484/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2484/downloads">Install</a></li>
+        <li><a href="/previews/PR2484/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2484/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2484/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2484/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2484/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2484/community/">Community</a></li>
+        <li><a href="/previews/PR2484/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2484/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2484/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2484/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2484/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2484/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2484/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>
