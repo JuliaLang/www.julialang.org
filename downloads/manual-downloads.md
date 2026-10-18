@@ -280,6 +280,13 @@ We're currently testing a prerelease for Julia v{{upcoming_release_short}}, an u
                                        (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
       </td>
     </tr>
+    <tr>
+      <td> Generic Linux on RISC-V <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/riscv64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-riscv64.tar.gz">RV64GC</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/riscv64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-riscv64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> </td>
+    </tr>
     <!--
     <tr>
       <td> Generic Linux on PowerPC <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
