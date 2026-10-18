@@ -44,6 +44,11 @@ Nightly builds are also available through the `nightly` channel on `juliaup`.
       <td> </td>
   </tr>
   <tr>
+      <td> Generic Linux on RISC-V </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/riscv64/julia-latest-linux-riscv64.tar.gz">.tar.gz</a> </td>
+      <td> </td>
+  </tr>
+  <tr>
       <td> Generic FreeBSD on x86 </td>
       <td> <a href="https://julialangnightlies-s3.julialang.org/bin/freebsd/x86_64/julia-latest-freebsd-x86_64.tar.gz">.tar.gz</a> </td>
       <td> </td>
