@@ -26,14 +26,14 @@ running:
 - [Fastly](https://www.fastly.com/) provides the Julia project with free CDN services
 - [Discourse](https://discourse.org/) is providing a 50% discount on the hosting fees for https://discourse.julialang.org/
 - [MacStadium](https://www.macstadium.com/) is hosting a free M1 Mac mini for CI
-- [ARM](https://www.arm.com/markets/computing-infrastructure/works-on-arm)/[Equinix](https://deploy.equinix.com/) are providing free access to Aarch64 machines for CI
-- [IBM](www.ibm.com) and [OSU OSL](https://osuosl.org/) are providing free access to IBM POWER systems for CI
+- [ARM](https://www.arm.com/markets/computing-infrastructure/works-on-arm)/Equinix are providing free access to Aarch64 machines for CI
+- [IBM](https://www.ibm.com) and [OSU OSL](https://osuosl.org/) are providing free access to IBM POWER systems for CI
 - [Microsoft Azure](https://azure.microsoft.com/) is providing free credits improving package server latency to Microsoft Azure customer, most notable GitHub Actions
 - [JuliaHub](https://juliahub.com/) is maintaining data center space for the project and providing a significant number of CI machines
 - [MIT's Julia Lab](https://julia.mit.edu/) is maintaining data center for the project space and providing a significant number of CI machines
-- [NVIDIA](nvidia.com) has provided both JuliaHub and the Julia Lab with a significant number of free GPUs across various generations of NVIDIA products
+- [NVIDIA](https://www.nvidia.com) has provided both JuliaHub and the Julia Lab with a significant number of free GPUs across various generations of NVIDIA products
 - [Buildkite](https://buildkite.com) provides a free Buildkite account for use in Base Julia CI
-- [Cloudflare](https://buildkite.com) provides the Julia package servers with free CDN services
+- [Cloudflare](https://www.cloudflare.com) provides the Julia package servers with free CDN services
 
 ## Direct Funding
 

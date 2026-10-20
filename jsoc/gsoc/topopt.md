@@ -3,7 +3,7 @@
 
 [TopOpt.jl](https://github.com/JuliaTopOpt/TopOpt.jl) is a [topology optimization](https://en.wikipedia.org/wiki/Topology_optimization) package written in pure Julia. Topology optimization is an exciting field at the intersection of shape representation, physics simulations and mathematical optimization, and the Julia language is a great fit for this field. To learn more about `TopOpt.jl`, check the following [JuliaCon talk](https://www.youtube.com/watch?v=sBqdkxPXluU).
 
-The following is a tentative list of projects in topology optimization that you could be working on in the coming Julia Season of Contributions or Google Summer of Code. If you are interested in exploring any of these topics or if you have other interests related to topology optimization, please reach out to the main mentor [Mohamed Tarek](https://github.com/mohamed82008) via email.
+The following is a tentative list of projects in topology optimization that you could be working on in the coming Julia Season of Contributions or Google Summer of Code. If you are interested in exploring any of these topics or if you have other interests related to topology optimization, please reach out to the main mentor [Mohamed Tarek](https://github.com/mohdibntarek) via email.
 
 ## Testing and benchmarking of TopOpt.jl
 

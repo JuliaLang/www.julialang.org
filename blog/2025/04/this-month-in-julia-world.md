@@ -34,7 +34,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
 * [Julia is now officially supported in Google Colab!!!](https://discourse.julialang.org/t/julia-in-colab/126600) This includes running [Lux & Reactant on TPUs](https://discourse.julialang.org/t/lux-reactant-on-colab-tpus/126926).
 * Documenter 1.9 now [properly filters by the `public` keyword](https://discourse.julialang.org/t/ann-documenter-1-9-public-keyword-support/127021), potentially breaking in some edge cases.
-* AlgebraOfGraphics.jl has had a lot of recent improvements, including the [release of v0.10](https://discourse.julialang.org/t/ann-algebraofgraphics-v0-10-and-v0-9-v0-8/127511) as well as a new comprehensive [introductory tutorial series](https://aog.makie.org/v0.10.2/tutorials/intro-i).
+* AlgebraOfGraphics.jl has had a lot of recent improvements, including the [release of v0.10](https://discourse.julialang.org/t/ann-algebraofgraphics-v0-10-and-v0-9-v0-8/127511) as well as a new comprehensive [introductory tutorial series](https://aog.makie.org/stable/tutorials/intro-i).
 * BeforeIT.jl - [High-Performance Agent-Based Macroeconomics in Julia](https://discourse.julialang.org/t/beforeit-jl-high-performance-agent-based-macroeconomics-in-julia/126984)
 * SmithChart.jl - [Visualize Smith charts with Makie.jl](https://discourse.julialang.org/t/ann-smithchart-jl-visualize-smith-charts-with-makie-jl/127391)
 * DeviceLayout.jl - [CAD for quantum integrated circuits](https://discourse.julialang.org/t/ann-devicelayout-jl-cad-for-quantum-integrated-circuits-and-more/126502)

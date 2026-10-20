@@ -71,7 +71,7 @@ MXNet 的 [Gluon](https://mxnet.incubator.apache.org/api/python/gluon.html) 正�
 
 和编程语言圈子一样，机器学习工程师们也应密切关注传统的自动微分（AD）领域。机器学习语言可以从[真正内置支持微分的语言设计](https://arxiv.org/pdf/1611.03416.pdf)等先驱性的工作中得到启发。这类语言中，混合运用符号化与运行时技巧（便于权衡之前提到的因素），混合使用正向和反向自动微分（可以改进速度和内存占用），以及[对 GPU 核心微分](https://mikeinnes.github.io/2017/08/24/cudanative.html)都不费吹灰之力，而且不以损失性能为代价。
 
-机器学习研究日趋依赖更强大的类型系统、用户自定义类型和更多的扩展方法。硬编码就能支持 NVIDIA GPU 上的跨数组的美好时光已一去不返；像[稀疏机器学习](https://people.eecs.berkeley.edu/~elghaoui/Pubs/cidu2011_final.pdf)这样的前沿技术，[TPU](https://cloud.google.com/tpu/)、[Nervana](https://www.intelnervana.com/) 和 [FPGAs](https://www.forbes.com/sites/moorinsights/2017/08/28/microsoft-fpga-wins-versus-google-tpus-for-ai/#118733643904) 这样的全新硬件，[ARM 芯片](https://www.wired.co.uk/article/google-raspberry-pi-ai) 和 [iPhone 的 CoreML](https://developer.apple.com/documentation/coreml) 这样形形色色的部署目标，都要求灵活性能更上一层楼。每次新发展都[对核心 C++ 代码进行大规模重构](https://github.com/tensorflow/tensorflow/pull/5267/files)不是一个可持续的策略。
+机器学习研究日趋依赖更强大的类型系统、用户自定义类型和更多的扩展方法。硬编码就能支持 NVIDIA GPU 上的跨数组的美好时光已一去不返；像[稀疏机器学习](https://people.eecs.berkeley.edu/~elghaoui/Pubs/cidu2011_final.pdf)这样的前沿技术，[TPU](https://cloud.google.com/tpu/)、[Nervana](https://www.intelnervana.com/) 和 [FPGAs](https://www.forbes.com/sites/moorinsights/2017/08/28/microsoft-fpga-wins-versus-google-tpus-for-ai/#118733643904) 这样的全新硬件，[ARM 芯片](https://www.wired.com/story/google-raspberry-pi-ai/) 和 [iPhone 的 CoreML](https://developer.apple.com/documentation/coreml) 这样形形色色的部署目标，都要求灵活性能更上一层楼。每次新发展都[对核心 C++ 代码进行大规模重构](https://github.com/tensorflow/tensorflow/pull/5267/files)不是一个可持续的策略。
 
 让我们想象这样一个世界：增加一个新的硬件支持或数据表示可以用高层代码轻松解决，而不必对原有系统做任何更改。当前数值计算语言[已经能轻松处理这些任务](https://arxiv.org/pdf/1604.03410.pdf)，我们期望机器学习系统能从中汲取灵感。
 
