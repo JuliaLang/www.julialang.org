@@ -54,8 +54,6 @@ For example, Symbolics.jl allows you to define a function $q(t)$ and then to com
 
 The goal of this project is to first analyze the sources of the incompatibilities between the two systems and then to modify FastDifferentiation.jl, and perhaps Symbolics.jl, so that they interoperate.
 
-See [this](https://github.com/brianguenter/Proposals) page for a more detailed description of tasks.
-
 **Medium difficulty, 175 hours.**
 
 **Recommended Skills:** Julia programming experience, previous work with graph algorithms helpful but not required.

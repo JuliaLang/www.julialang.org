@@ -7,7 +7,7 @@ Have a Julia tutorial you want added to this list? Please [submit a pull request
 
 * [ThinkJulia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html). A comprehensive introduction to programming using Julia.
 * [From zero to Julia!](https://techytok.com/from-zero-to-julia/) by [Aurelio Amerio](https://github.com/aurelio-amerio). An expanding series of short tutorials about Julia, starting from the beginner level and going up to deal with the more advanced topics.
-* [The Julia Express](https://github.com/bkamins/The-Julia-Express) by [Bogumił Kamiński](https://bogumilkaminski.pl). A concise Julia cheatsheet for experienced programmers.
+* [The Julia Express](https://github.com/bkamins/The-Julia-Express) by [Bogumił Kamiński](http://bogumilkaminski.pl). A concise Julia cheatsheet for experienced programmers.
 * [Introducing Julia wikibook](https://en.wikibooks.org/wiki/Introducing_Julia). A community-maintained wikibook covering the language.
 * [Julia language: a concise tutorial](https://syl1.gitbook.io/julia-language-a-concise-tutorial/) by Antonello Lobianco. A basic introduction that includes the main packages.
 * [Julia Programming Tutorial For Beginners](https://www.datacamp.com/tutorial/julia-programming-tutorial-for-beginners) by Bekhruz Tuychiev (DataCamp).
