@@ -1,3 +1,4 @@
+@def description = "Julia tutorials for getting started, science and engineering, data science and economics, plus tutorials in languages other than English."
 ## Tutorials
 
 Have a Julia tutorial you want added to this list? Please [submit a pull request](https://github.com/JuliaLang/www.julialang.org/edit/main/learning/tutorials.md).

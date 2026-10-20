@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for the Ferrite.jl finite element toolbox: arbitrary order 3D interpolations, adaptive mesh refinement and distributed subdomains."
 # Ferrite.jl - Finite Element Toolbox - Summer of Code
 
 [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl) is a Julia package providing the basic building blocks to develop finite element simulations of partial differential equations.

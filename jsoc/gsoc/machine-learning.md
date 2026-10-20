@@ -1,3 +1,4 @@
+@def description = "Julia GSoC machine learning project ideas, including pure Julia reinforcement learning environments, with a pointer to the FluxML GSoC ideas page."
 # Machine Learning Projects - Summer of Code
 
 **Note: FluxML participates as a NumFOCUS sub-organization. Head to [the FluxML GSoC page](http://fluxml.ai/gsoc/) for their idea list.**

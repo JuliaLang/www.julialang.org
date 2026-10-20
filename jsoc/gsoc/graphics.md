@@ -1,3 +1,4 @@
+@def description = "Julia GSoC project to improve VegaLite.jl, the Julia wrapper for vega-lite and vega: API coverage, large datasets, documentation and tests."
 
 <!---
 Removed reference to this file on the main projects page for summer 2021 since they weren't updated.

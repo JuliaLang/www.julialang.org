@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects in high performance and parallel computing with Dagger.jl: out-of-core computing, scheduling, observability, GPUs and distributed training."
 # High Performance and Parallel Computing Projects – Summer of Code
 
 Julia is emerging as a serious tool for technical computing and is ideally suited for the ever-growing needs of big data analytics. This set of proposed projects addresses specific areas for improvement in analytics algorithms and distributed data management.

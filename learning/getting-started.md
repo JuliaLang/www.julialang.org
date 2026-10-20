@@ -1,3 +1,4 @@
+@def description = "What Julia is and why it was created, plus how to install Julia, get packages, come from other languages, develop packages and find help."
 
 # Getting Started with Julia
 

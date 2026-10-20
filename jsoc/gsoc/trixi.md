@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for Trixi.jl computational fluid dynamics: in-situ visualization with ParaView, asynchronous MPI and multi-GPU, and GPU mesh refinement."
 # Modern computational fluid dynamics with Trixi.jl - Summer of Code
 
 [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) is a Julia package for adaptive

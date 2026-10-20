@@ -1,3 +1,4 @@
+@def description = "Julia GSoC project ideas from JuliaGPU, which supports AMD, NVIDIA and Intel GPUs, including improving the portability of the Julia GPU stack."
 # GPU Projects - Summer of Code
 
 [JuliaGPU](https://github.com/JuliaGPU) provides a suite of packages for programming GPUs in Julia. We have support for AMD, NVIDIA and Intel GPUs through various backends, unified by high-level array abstractions and a common programming model based on kernel programming.

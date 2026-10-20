@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for FastDifferentiation.jl: add conditionals and higher order derivatives, and integrate it into Symbolics.jl."
 # FastDifferentiation.jl – Summer of Code
 
 [FastDifferentiation.jl](https://github.com/brianguenter/FastDifferentiation.jl) is a Julia package for computing very efficient symbolic derivatives of Julia functions and for compiling the derivatives into  efficient executables. It can differentiate much larger expressions than other symbolic systems, such as Symbolics.jl, and the resulting derivatives are also much more efficient, rivaling hand computed derivatives in some cases (see the website for benchmark examples).

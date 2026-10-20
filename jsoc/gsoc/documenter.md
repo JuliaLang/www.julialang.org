@@ -1,3 +1,4 @@
+@def description = "Julia GSoC project ideas for Documenter.jl, the documentation generator for Julia and its ecosystem, combining Julia with web development."
 # Documentation tooling – Summer of Code
 
 ## Documenter.jl

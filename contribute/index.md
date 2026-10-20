@@ -1,3 +1,4 @@
+@def description = "The Julia Ecosystem Contributor's Guide: why to contribute, the tools you need, technical and non-technical contribution pathways, and where to get help."
 
 \fig{open_source_contribute.png}
 

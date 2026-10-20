@@ -1,3 +1,4 @@
+@def description = "Online Julia communities beyond Discourse: Slack, Zulip, GitHub, Bluesky, Reddit, Stack Overflow, Discord, YouTube, Forem, LinkedIn, Meetup and more."
 # Various online Julia communities
 
 The most active Julia communities:

@@ -1,3 +1,4 @@
+@def description = "How the Julia project is governed: the JuliaLang GitHub organization and committers, the Julia Stewards, NumFOCUS fiscal sponsorship and related organizations."
 # Julia Governance
 
 The Julia project is a large collaborative open source endeavor founded by [Jeff Bezanson](https://github.com/JeffBezanson) ([Github](https://github.com/JeffBezanson), [Twitter](https://twitter.com/JeffBezanson)), [Alan Edelman](https://en.wikipedia.org/wiki/Alan_Edelman) ([MIT](https://math.mit.edu/~edelman/)), [Stefan Karpinski](https://en.wikipedia.org/wiki/Stefan_Karpinski) ([Github](https://github.com/StefanKarpinski), [Twitter](https://twitter.com/StefanKarpinski)), and [Viral B. Shah](https://en.wikipedia.org/wiki/Viral_B._Shah) ([Github](https://github.com/ViralBShah), [Twitter](https://twitter.com/Viral_B_Shah)) with the initial release of the Julia programming language.

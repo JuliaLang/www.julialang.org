@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for QuantumOptics.jl state vector modeling: GPU accelerated operators and ODE solvers, autodiff and closer SciML integration."
 # Quantum Optics and State Vector Modeling Tools - Summer of Code
 
 The most common way to represent and model quantum states is the state vector formalism (underlying Schroedinger's and Heisenberg's equations as well as many other master equations). The [QuantumOptics.jl](https://github.com/qojulia/QuantumOptics.jl) Julia project enables such simulations, utilizing much of the uniquely powerful DiffEq infrastructure in Julia.

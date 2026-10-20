@@ -1,3 +1,4 @@
+@def description = "The Julia Community Standards: be respectful and inclusive, give credit, be collaborative and constructive. They apply in every Julia community forum."
 # Julia Community - Standards
 
 The Julia community is committed to maintaining a welcoming, civil and constructive environment. We expect the following standards to be observed and upheld by all participants in any community forum (mailing lists, GitHub, IRC, etc.).

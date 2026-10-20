@@ -1,3 +1,4 @@
+@def description = "Julia micro-benchmarks comparing Julia with C, Fortran, Python, R, MATLAB, Java, JavaScript, Go, Rust, Lua and Octave on common code patterns."
 # Julia Micro-Benchmarks
 
 These micro-benchmarks, while not comprehensive, do test compiler performance on a range of common code patterns, such as function calls, string parsing, sorting, numerical loops, random number generation, recursion, and array operations.

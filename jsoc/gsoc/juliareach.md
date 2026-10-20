@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for JuliaReach, set-based reachability for dynamical systems: ecosystem integration, symbolic-numeric sets and hybrid systems APIs."
 # JuliaReach - Summer of Code
 
 [JuliaReach](https://github.com/JuliaReach) is the Julia ecosystem for reachability computations of dynamical systems.

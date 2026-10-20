@@ -1,3 +1,4 @@
+@def description = "Julia working groups on topics such as astronomy, Dagger, documentation tooling, GPUs, molecular simulation and Pkg, with Slack channels and open meetings."
 ## Working Groups
 
 A working group is a group of people that are interested in working on a common

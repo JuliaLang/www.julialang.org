@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for GraphNeuralNetworks.jl: new models and examples, graph datasets, sparse linear algebra performance and AMD/Apple GPU support."
 # Graph Neural Networks - Summer of Code
 
 Graph Neural Networks (GNN) are deep learning models that are well adapted to data in the form of graphs with feature vectors associated with nodes and edges.

@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for the Julia VS Code extension: work on open issues and significant features, and build a package installation UI."
 # VS Code projects - Summer of Code
 
 ## VS Code extension

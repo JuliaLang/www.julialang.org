@@ -1,3 +1,5 @@
+@def rss_pubdate = Date(2018, 3, 14)
+@def rss_description = "The history of the symbol π, how it is rendered in fonts and Unicode, and a survey of π designs drawn with Julia using Fontconfig.jl and Luxor.jl."
 @def title = "Some π-ography"
 @def author = "Cormullion"
 @def published = "14 March 2018"

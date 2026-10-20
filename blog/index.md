@@ -1,3 +1,4 @@
+@def description = "The Julia Language Blog: posts on numerical, technical, distributed and parallel computing, language design, releases and the Julia community."
 @def title = "The Julia Language Blog"
 @def author = ""
 

@@ -1,3 +1,4 @@
+@def description = "Platform-specific instructions for installing official Julia binaries on Windows, macOS, Linux and FreeBSD, including juliaup and adding Julia to PATH."
 # Platform Specific Instructions for Official Binaries
 
 All official Julia binaries produce portable installations.

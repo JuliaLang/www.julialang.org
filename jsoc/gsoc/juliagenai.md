@@ -1,3 +1,4 @@
+@def description = "JuliaGenAI's Google Summer of Code page: Generative AI in Julia, related machine learning projects to explore, and how to contact the community."
 # JuliaGenAI Projects – Summer of Code
 
 ![JuliaGenAI Logo](https://github.com/JuliaGenAI/juliagenai.org/blob/main/assets/logos/logo-256.png?raw=true)
