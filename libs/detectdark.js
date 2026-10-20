@@ -2,8 +2,18 @@
   var STORAGE_KEY = 'julia-theme';
   var root = document.documentElement;
 
+  // localStorage access throws when site data is blocked; treat that as
+  // "no stored preference" so the rest of the script still runs.
+  function getStored() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+  }
+
+  function setStored(theme) {
+    try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+  }
+
   function getPreferredTheme() {
-    var stored = localStorage.getItem(STORAGE_KEY);
+    var stored = getStored();
     if (stored === 'dark' || stored === 'light') return stored;
     // Fall back to OS preference
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -43,7 +53,7 @@
       toggle.addEventListener('click', function () {
         var current = root.getAttribute('data-theme');
         var next = current === 'dark' ? 'light' : 'dark';
-        localStorage.setItem(STORAGE_KEY, next);
+        setStored(next);
         toggle.classList.remove('spin');
         void toggle.offsetWidth;
         toggle.classList.add('spin');
@@ -55,7 +65,7 @@
     // Listen for OS preference changes (only applies if no stored preference)
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
-        if (!localStorage.getItem(STORAGE_KEY)) {
+        if (!getStored()) {
           applyTheme(getPreferredTheme());
         }
       });
@@ -65,7 +75,7 @@
     var observer = new MutationObserver(function (mutations) {
       for (var i = 0; i < mutations.length; i++) {
         if (mutations[i].attributeName === 'data-darkreader-scheme') {
-          if (!localStorage.getItem(STORAGE_KEY)) {
+          if (!getStored()) {
             var isDarkReader = root.getAttribute('data-darkreader-scheme') === 'dark';
             applyTheme(isDarkReader ? 'dark' : getPreferredTheme());
           }
