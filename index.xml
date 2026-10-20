@@ -1427,6 +1427,25 @@
 
 <item>
   <title>
+    <![CDATA[  Some π-ography  ]]>
+  </title>
+  <link> https://julialang.org/blog/2018/03/pifonts/index.html </link>
+  <guid> https://julialang.org/blog/2018/03/pifonts/index.html </guid>
+  <description>
+    <![CDATA[  The history of the symbol π, how it is rendered in fonts and Unicode, and a survey of π designs drawn with Julia using Fontconfig.jl and Luxor.jl.  ]]>
+  </description>  
+    
+  <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Cormullion</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  Julia joins NumFOCUS in Google Summer of Code 2018  ]]>
   </title>
   <link> https://julialang.org/blog/2018/02/gsoc2018-numfocus/index.html </link>
@@ -1856,6 +1875,21 @@
   </description>  
     
   <pubDate>Sat, 10 Sep 2016 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Graft.jl - General purpose graph analytics for Julia  ]]>
+  </title>
+  <link> https://julialang.org/blog/2016/08/GSoC2016-Graft/index.html </link>
+  <guid> https://julialang.org/blog/2016/08/GSoC2016-Graft/index.html </guid>
+  <description>
+    <![CDATA[  Graft.jl - General purpose graph analytics for Julia | This blog post describes my work on Graft.jl &#40;https://github.com/pranavtbhat/Graft.jl&#41;, a general purpose graph analysis package for Julia. For those unfamiliar with graph algorithms, a quick introduction &#40;https://www.cl.cam.ac.uk/teaching/1011/PrincComm/slides/graph<em>theory</em>1-11.pdf&#41; might help....   ]]>
+  </description>  
+    
+  <pubDate>Mon, 22 Aug 2016 00:00:00 +0000</pubDate>  
   
         
 </item>

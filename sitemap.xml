@@ -15,25 +15,25 @@
 </url>
 <url>
     <loc>https://julialang.org/community/otherchannels/index.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsod/projects/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/juliageo/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/downloads/manual-downloads/index.html</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -69,7 +69,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/graphics/index.html</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -81,7 +81,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/numerics/index.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -93,13 +93,13 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/gabs/index.html</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/juliamusic/index.html</loc>
-    <lastmod>2022-06-23</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -111,7 +111,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/vscode/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -129,7 +129,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/gnn/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -153,7 +153,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/ferrite-fem/index.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -171,7 +171,7 @@
 </url>
 <url>
     <loc>https://julialang.org/learning/getting-started/index.html</loc>
-    <lastmod>2025-04-15</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -183,7 +183,7 @@
 </url>
 <url>
     <loc>https://julialang.org/project/index.html</loc>
-    <lastmod>2020-04-15</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -195,13 +195,13 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/hpc/index.html</loc>
-    <lastmod>2026-02-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/contribute/opportunities/index.html</loc>
-    <lastmod>2021-10-19</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -213,7 +213,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/allprojects/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -225,7 +225,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/molly/index.html</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -237,19 +237,19 @@
 </url>
 <url>
     <loc>https://julialang.org/community/organizations/index.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/juliagenai/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/juliareach/index.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -339,7 +339,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/guidelines/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -411,7 +411,7 @@
 </url>
 <url>
     <loc>https://julialang.org/community/standards/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -435,13 +435,13 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/quantumoptics/index.html</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/learning/tutorials/index.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -465,13 +465,13 @@
 </url>
 <url>
     <loc>https://julialang.org/learning/books/index.html</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/wasm/index.html</loc>
-    <lastmod>2022-06-23</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -495,13 +495,13 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/turing/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/learning/index.html</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -549,7 +549,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/freebird/index.html</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -591,7 +591,7 @@
 </url>
 <url>
     <loc>https://julialang.org/research/index.html</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -603,13 +603,13 @@
 </url>
 <url>
     <loc>https://julialang.org/community/sponsors/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/shop/index.html</loc>
-    <lastmod>2025-11-24</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -621,13 +621,13 @@
 </url>
 <url>
     <loc>https://julialang.org/contribute/developing_package/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/community/discourse/index.html</loc>
-    <lastmod>2021-07-12</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -651,13 +651,13 @@
 </url>
 <url>
     <loc>https://julialang.org/community/packages/index.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/privacy/index.html</loc>
-    <lastmod>2022-06-23</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -669,7 +669,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsod/2021/proposal/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -681,7 +681,7 @@
 </url>
 <url>
     <loc>https://julialang.org/benchmarks/index.html</loc>
-    <lastmod>2026-03-21</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -699,19 +699,19 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/clima/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/community/stewards/index.html</loc>
-    <lastmod>2021-07-12</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/fast_differentiation/index.html</loc>
-    <lastmod>2025-02-27</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -765,7 +765,7 @@
 </url>
 <url>
     <loc>https://julialang.org/community/working-groups/index.html</loc>
-    <lastmod>2026-04-03</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -777,7 +777,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/admins/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -849,7 +849,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/pluto/index.html</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -867,7 +867,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/archive/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -903,13 +903,13 @@
 </url>
 <url>
     <loc>https://julialang.org/community/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/governance/index.html</loc>
-    <lastmod>2024-05-29</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -957,13 +957,13 @@
 </url>
 <url>
     <loc>https://julialang.org/learning/classes/index.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/contribute/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -981,7 +981,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/topopt/index.html</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -999,7 +999,7 @@
 </url>
 <url>
     <loc>https://julialang.org/diversity/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1071,7 +1071,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/tooling/index.html</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1089,7 +1089,7 @@
 </url>
 <url>
     <loc>https://julialang.org/about/help/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1101,7 +1101,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsod/2022/proposal/index.html</loc>
-    <lastmod>2022-03-25</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1119,7 +1119,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/herb/index.html</loc>
-    <lastmod>2025-03-03</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1131,13 +1131,13 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/projects/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/juliadynamics/index.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1191,13 +1191,13 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/documenter/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/contractionorder/index.html</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1233,19 +1233,19 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsod/2023/proposal/index.html</loc>
-    <lastmod>2023-03-24</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/satisfiability/index.html</loc>
-    <lastmod>2025-04-08</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/downloads/oldreleases/index.html</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1263,25 +1263,25 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/machine-learning/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/slack/index.html</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/trixi/index.html</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/pythia/index.html</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1335,13 +1335,13 @@
 </url>
 <url>
     <loc>https://julialang.org/downloads/platform/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/quantumclifford/index.html</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1353,13 +1353,13 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/gpu/index.html</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/rimu/index.html</loc>
-    <lastmod>2025-03-04</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1377,13 +1377,13 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/mentors/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/juliahealth/index.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1401,7 +1401,7 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
