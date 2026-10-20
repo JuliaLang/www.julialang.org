@@ -31,7 +31,7 @@ rss_description = """
 rss_pubdate = Date(2021, 8, 12)
 
 meta = [
-    ("property", "og:image", "{{base}}slenderfish.jpg"),
+    ("property", "og:image", "{{base}}slenderfish.png"),
     ("name", "twitter:creator:id", "194427250"),
     ("name", "twitter:card", "summary_large_image")
     ]
