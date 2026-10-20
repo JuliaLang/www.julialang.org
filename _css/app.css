@@ -228,6 +228,20 @@ body {
   outline: 10px solid #faefec;
 }
 
+/* Inline SVG icons (see _layout/head.html, utils.jl, _libs/map.js) */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+.icon-lg {
+  width: 1.33em;
+  height: 1.33em;
+  vertical-align: -0.2em;
+}
+
 .rss-icon {
   color: #e2802f;
   float: right;
