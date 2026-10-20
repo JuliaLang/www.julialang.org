@@ -191,6 +191,6 @@ Julia also supports a variety of hardware accelerators, by means of external pac
 
 ## Release Feed
 
-A machine-readable index of all Julia releases, with the binaries available for each platform, is published as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)).
+A machine-readable index of all Julia releases, with the binaries available for each platform, is published as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)). The documentation for `versions.json` may be found here: https://github.com/JuliaLang/VersionsJSONUtil.jl/blob/main/README.md
 
 ---
