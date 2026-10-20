@@ -17,7 +17,16 @@ jobs:
         uses: actions/checkout@v7
         with:
           persist-credentials: false
-          fetch-depth: 1
+          # Full history, but only commits and trees (no old file contents),
+          # so the next step can date each file by its last commit.
+          fetch-depth: 0
+          filter: blob:none
+
+      # Franklin takes the sitemap's <lastmod> from each source file's mtime,
+      # which a fresh checkout sets to the checkout time. Use the date of the
+      # file's last commit instead.
+      - name: Set file mtimes from git history
+        run: python3 .github/scripts/set_mtimes_from_git.py
 
       - name: Install SSH Client
         if: github.event_name != 'pull_request'
