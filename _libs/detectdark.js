@@ -42,14 +42,16 @@
     }
   }
 
-  // Images with a data-src-dark attribute (e.g. the Ecosystem carousel) get
-  // that file in dark mode and their original src otherwise.
+  // Images with a data-dark-variant attribute (e.g. the Ecosystem carousel)
+  // have a "-dark" twin next to them: foo.webp -> foo-dark.webp. The path is
+  // derived from the light src so it also works under a prepath (PR previews).
   function updateThemedImages(isDark) {
-    var imgElements = document.querySelectorAll('img[data-src-dark]');
+    var imgElements = document.querySelectorAll('img[data-dark-variant]');
     for (var i = 0; i < imgElements.length; i++) {
       var img = imgElements[i];
       if (!img.dataset.srcLight) img.dataset.srcLight = img.getAttribute('src');
-      var wanted = isDark ? img.dataset.srcDark : img.dataset.srcLight;
+      var light = img.dataset.srcLight;
+      var wanted = isDark ? light.replace(/(\.[a-z0-9]+)$/i, '-dark$1') : light;
       if (img.getAttribute('src') !== wanted) img.setAttribute('src', wanted);
     }
   }

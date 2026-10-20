@@ -1282,6 +1282,10 @@ pre .bash-block::before {
 .eco-more a:hover {
   text-decoration: underline;
 }
+.eco-more .icon {
+  margin-right: 0.3em;
+  vertical-align: -0.15em;
+}
 .eco-blue { --eco-accent: #4063D8; }
 .eco-red { --eco-accent: #CB3C33; }
 .eco-green { --eco-accent: #389826; }

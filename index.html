@@ -144,6 +144,11 @@
 
       <p class="eco-intro">Julia's package ecosystem is strongest where performance and expressiveness both matter. These are the areas where it leads, with the packages people build on.</p>
 
+      <!-- Icons for the card footer links (from the site's inline icon set) -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="eco-icon-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+        <symbol id="eco-icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></symbol>
+      </svg>
       <div class="carousel-root" id="ecosystem">
         <div class="eco-carousel-container">
           <button class="carousel-arrow carousel-arrow-left" aria-label="Previous area">&#8249;</button>
@@ -151,7 +156,7 @@
         <!-- Scientific machine learning -->
         <div class="carousel-slide eco-blue" data-label="SciML">
           <div class="eco-showcase">
-            <div class="eco-img"><img src="/assets/infra/ecosystem/sciml.webp" data-src-dark="/assets/infra/ecosystem/sciml-dark.webp" alt="The Lorenz attractor, solved with OrdinaryDiffEq.jl" loading="lazy"></div>
+            <div class="eco-img"><img src="/assets/infra/ecosystem/sciml.webp" data-dark-variant alt="The Lorenz attractor, solved with OrdinaryDiffEq.jl" loading="lazy"></div>
             <div class="eco-text">
               <h3>Scientific machine learning</h3>
               <p>Differential equations, acausal modeling and symbolic-numeric computing in one stack, used from systems biology to control and climate science.</p>
@@ -162,14 +167,14 @@
                 <li><a href="https://github.com/SciML/Catalyst.jl">Catalyst.jl</a></li>
                 <li><a href="https://github.com/JuliaDynamics/DynamicalSystems.jl">DynamicalSystems.jl</a></li>
               </ul>
-              <div class="eco-more"><a href="https://sciml.ai">sciml.ai &rarr;</a></div>
+              <div class="eco-more"><a href="https://github.com/SciML"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-github"/></svg>SciML on GitHub</a> &middot; <a href="https://sciml.ai"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-globe"/></svg>sciml.ai &rarr;</a></div>
             </div>
           </div>
         </div>
         <!-- Optimization -->
         <div class="carousel-slide eco-red" data-label="Optimization">
           <div class="eco-showcase">
-            <div class="eco-img"><img src="/assets/infra/ecosystem/optimization.webp" data-src-dark="/assets/infra/ecosystem/optimization-dark.webp" alt="A linear program solved with JuMP: the feasible region, level lines of the objective, and the optimum" loading="lazy"></div>
+            <div class="eco-img"><img src="/assets/infra/ecosystem/optimization.webp" data-dark-variant alt="A linear program solved with JuMP: the feasible region, level lines of the objective, and the optimum" loading="lazy"></div>
             <div class="eco-text">
               <h3>Optimization</h3>
               <p>Model linear, mixed-integer, conic and nonlinear problems in one language and solve them with open-source or commercial solvers.</p>
@@ -180,7 +185,7 @@
                 <li><a href="https://github.com/jump-dev/Convex.jl">Convex.jl</a></li>
                 <li><a href="https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a></li>
               </ul>
-              <div class="eco-more"><a href="https://jump.dev">jump.dev &rarr;</a></div>
+              <div class="eco-more"><a href="https://github.com/jump-dev"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-github"/></svg>jump-dev on GitHub</a> &middot; <a href="https://jump.dev"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-globe"/></svg>jump.dev &rarr;</a></div>
             </div>
           </div>
         </div>
@@ -198,7 +203,7 @@
                 <li><a href="https://github.com/JuliaDiff/DifferentiationInterface.jl">DifferentiationInterface.jl</a></li>
                 <li><a href="https://github.com/chalk-lab/Mooncake.jl">Mooncake.jl</a></li>
               </ul>
-              <div class="eco-more"><a href="https://juliadiff.org">juliadiff.org &rarr;</a></div>
+              <div class="eco-more"><a href="https://github.com/JuliaDiff"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-github"/></svg>JuliaDiff on GitHub</a> &middot; <a href="https://juliadiff.org"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-globe"/></svg>juliadiff.org &rarr;</a></div>
             </div>
           </div>
         </div>
@@ -216,7 +221,7 @@
                 <li><a href="https://github.com/JuliaParallel/MPI.jl">MPI.jl</a></li>
                 <li><a href="https://github.com/CliMA/Oceananigans.jl">Oceananigans.jl</a></li>
               </ul>
-              <div class="eco-more"><a href="https://juliagpu.org">juliagpu.org &rarr;</a></div>
+              <div class="eco-more"><a href="https://github.com/JuliaGPU"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-github"/></svg>JuliaGPU on GitHub</a> &middot; <a href="https://juliagpu.org"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-globe"/></svg>juliagpu.org &rarr;</a></div>
             </div>
           </div>
         </div>
@@ -234,14 +239,14 @@
                 <li><a href="https://github.com/apache/arrow-julia">Arrow.jl</a></li>
                 <li><a href="https://github.com/TidierOrg/Tidier.jl">Tidier.jl</a></li>
               </ul>
-              <div class="eco-more"><a href="https://juliadata.org">juliadata.org &rarr;</a></div>
+              <div class="eco-more"><a href="https://github.com/JuliaData"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-github"/></svg>JuliaData on GitHub</a> &middot; <a href="https://juliadata.org"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-globe"/></svg>juliadata.org &rarr;</a></div>
             </div>
           </div>
         </div>
         <!-- Visualization & notebooks -->
         <div class="carousel-slide eco-green" data-label="Visualization">
           <div class="eco-showcase">
-            <div class="eco-img"><img src="/assets/infra/ecosystem/viz.webp" data-src-dark="/assets/infra/ecosystem/viz-dark.webp" alt="A 3D surface plot rendered with Makie.jl" loading="lazy"></div>
+            <div class="eco-img"><img src="/assets/infra/ecosystem/viz.webp" data-dark-variant alt="A 3D surface plot rendered with Makie.jl" loading="lazy"></div>
             <div class="eco-text">
               <h3>Visualization &amp; notebooks</h3>
               <p>GPU-accelerated interactive 2D and 3D graphics, a grammar of graphics, and reactive notebooks.</p>
@@ -251,14 +256,14 @@
                 <li><a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a></li>
                 <li><a href="https://github.com/fonsp/Pluto.jl">Pluto.jl</a></li>
               </ul>
-              <div class="eco-more"><a href="https://makie.org">makie.org &rarr;</a></div>
+              <div class="eco-more"><a href="https://github.com/MakieOrg"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-github"/></svg>MakieOrg on GitHub</a> &middot; <a href="https://makie.org"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-globe"/></svg>makie.org &rarr;</a></div>
             </div>
           </div>
         </div>
         <!-- Machine learning & probabilistic programming -->
         <div class="carousel-slide eco-purple" data-label="Machine learning">
           <div class="eco-showcase">
-            <div class="eco-img"><img src="/assets/infra/ecosystem/ml.webp" data-src-dark="/assets/infra/ecosystem/ml-dark.webp" alt="Decision boundary of a small neural network trained with Lux.jl on two interleaved half-moons" loading="lazy"></div>
+            <div class="eco-img"><img src="/assets/infra/ecosystem/ml.webp" data-dark-variant alt="Decision boundary of a small neural network trained with Lux.jl on two interleaved half-moons" loading="lazy"></div>
             <div class="eco-text">
               <h3>Machine learning &amp; probabilistic programming</h3>
               <p>Bayesian inference engines, deep learning frameworks and a unified toolbox for classical machine learning.</p>
@@ -269,7 +274,7 @@
                 <li><a href="https://github.com/JuliaAI/MLJ.jl">MLJ.jl</a></li>
                 <li><a href="https://github.com/ReactiveBayes/RxInfer.jl">RxInfer.jl</a></li>
               </ul>
-              <div class="eco-more"><a href="https://turinglang.org">turinglang.org &rarr;</a></div>
+              <div class="eco-more"><a href="https://github.com/TuringLang"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-github"/></svg>TuringLang on GitHub</a> &middot; <a href="https://turinglang.org"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-globe"/></svg>turinglang.org &rarr;</a></div>
             </div>
           </div>
         </div>
@@ -287,7 +292,7 @@
                 <li><a href="https://github.com/GenieFramework/Genie.jl">Genie.jl</a></li>
                 <li><a href="https://github.com/OxygenFramework/Oxygen.jl">Oxygen.jl</a></li>
               </ul>
-              <div class="eco-more"><a href="https://github.com/JuliaInterop">JuliaInterop &rarr;</a></div>
+              <div class="eco-more"><a href="https://github.com/JuliaInterop"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-github"/></svg>JuliaInterop on GitHub</a> &middot; <a href="https://github.com/JuliaLang/PackageCompiler.jl"><svg class="icon" aria-hidden="true" focusable="false"><use href="#eco-icon-globe"/></svg>PackageCompiler &rarr;</a></div>
             </div>
           </div>
         </div>
