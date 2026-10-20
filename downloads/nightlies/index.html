@@ -210,19 +210,28 @@ document.addEventListener("DOMContentLoaded", function () {
       var href = link.getAttribute("href");
 
       if (href.startsWith("https://julialangnightlies-s3.julialang.org/")) {
-        // Fetch the last-modified header of the link
-        fetch(href, { method: "HEAD" })
-          .then(function (response) {
-            // Check if the last-modified header is present
-            if (response.headers.has("last-modified")) {
-              // Set the hint text to the last-modified value
-              var lastModified = response.headers.get("last-modified");
-              link.setAttribute("title", "Last Modified: " + lastModified);
-            }
-          })
-          .catch(function (error) {
-            console.error("Error fetching last-modified header for " + href + " :", error);
-          });
+        var fetched = false;
+
+        // Fetch the last-modified header only when the link is first hovered or focused
+        function fetchLastModified() {
+          if (fetched) return;
+          fetched = true;
+          fetch(href, { method: "HEAD" })
+            .then(function (response) {
+              // Check if the last-modified header is present
+              if (response.headers.has("last-modified")) {
+                // Set the hint text to the last-modified value
+                var lastModified = response.headers.get("last-modified");
+                link.setAttribute("title", "Last Modified: " + lastModified);
+              }
+            })
+            .catch(function (error) {
+              console.error("Error fetching last-modified header for " + href + " :", error);
+            });
+        }
+
+        link.addEventListener("mouseenter", fetchLastModified);
+        link.addEventListener("focus", fetchLastModified);
       }
     });
   }
