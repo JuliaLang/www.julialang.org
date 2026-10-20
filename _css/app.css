@@ -1686,6 +1686,14 @@ pre .bash-block::before {
 [data-theme="dark"] .eco-showcase .eco-img-contain {
   background: #e9ecf0;
 }
+/* Logos drawn for white backgrounds are inverted in dark mode (hue-rotate keeps
+   their colours), and sit on the dark box like the plots. */
+[data-theme="dark"] .eco-showcase .eco-img-invert {
+  background: #232338;
+}
+[data-theme="dark"] .eco-showcase .eco-img-invert img {
+  filter: invert(1) hue-rotate(180deg);
+}
 [data-theme="dark"] .eco-text h3 {
   color: var(--dm-text);
 }
