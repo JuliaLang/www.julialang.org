@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2017, 3, 14)
-@def rss_description = """ Some fun with &pi; in Julia | !pi (/assets/blog/2017-03-14-piday/pi.png) ^credit ... """
+@def rss_description = "A Pi Day tour of π in Julia: how Julia represents π, computing it with inline assembly and Taylor series (Madhava and Machin), and finding guaranteed bounds with interval arithmetic."
 @def published = "14 March 2017"
 @def title = "Some fun with &#928; in Julia"
 @def authors = "Simon Byrne, Luis Benet and David Sanders"

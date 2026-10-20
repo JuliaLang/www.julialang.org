@@ -70,11 +70,57 @@ function hfun_meta()
         isnothing(base) || (content = replace(content, "{{base}}" => base))
         # og:image must be an absolute URL
         m[2] == "og:image" && startswith(content, "/") && (content = "$website_url$content")
+        # Link previews show plain text, so drop Markdown/HTML from titles and
+        # descriptions. Many older posts also start their description with
+        # "<title> | ", which repeats the title shown just above it.
+        if m[2] in ("og:title", "og:description")
+            content = preview_text(content)
+            if m[2] == "og:description"
+                content = drop_title_prefix(content, preview_text(title))
+            end
+        end
         # HTML-escape double quotes and newlines in content to produce valid attributes
         escaped = replace(content, "&" => "&amp;", "\"" => "&quot;", "\n" => " ")
         write(io, "<meta $(m[1])=\"$(m[2])\" content=\"$(escaped)\">\n")
     end
     return String(take!(io))
+end
+
+const HTML_ENTITIES = Dict(
+    "amp" => "&", "lt" => "<", "gt" => ">", "quot" => "\"", "apos" => "'",
+    "nbsp" => " ", "pi" => "π", "mdash" => "—", "ndash" => "–", "hellip" => "…",
+)
+
+"""
+    preview_text(s)
+
+Plain text for a link preview: Markdown links/images become their text,
+emphasis and code markers and HTML tags are dropped, HTML entities decoded
+(e.g. `&#928;`, `&pi;`), and whitespace collapsed.
+"""
+function preview_text(s)
+    s = replace(string(s), r"!?\[([^\]]*)\]\([^)]*\)" => s"\1")
+    s = replace(s, r"<[^>]*>" => "")
+    s = replace(s, r"(\*\*|__)(.+?)\1" => s"\2")
+    s = replace(s, r"(?<![\w*])\*(?!\s)([^*\n]+?)\*(?![\w*])" => s"\1")
+    s = replace(s, r"`([^`]*)`" => s"\1")
+    s = replace(s, r"&#(\d+);" => m -> string(Char(parse(Int, m[3:end-1]))))
+    s = replace(s, r"&#[xX]([0-9a-fA-F]+);" => m -> string(Char(parse(Int, m[4:end-1]; base=16))))
+    s = replace(s, r"&([a-z]+);" => m -> get(HTML_ENTITIES, m[2:end-1], m))
+    return strip(replace(s, r"\s+" => " "))
+end
+
+"""
+    drop_title_prefix(descr, title)
+
+Remove a leading "`title` | " from a description (ignoring case), as many
+older blog posts' `rss_description`s start with it.
+"""
+function drop_title_prefix(descr, title)
+    parts = split(descr, " | "; limit=2)
+    length(parts) == 2 || return descr
+    head, rest = strip(parts[1]), strip(parts[2])
+    return lowercase(head) == lowercase(strip(title)) && !isempty(rest) ? rest : descr
 end
 
 
