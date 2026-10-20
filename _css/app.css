@@ -138,37 +138,6 @@ body {
 .alt-color {
   background-color: #F2F2F2;
 }
-#ecosystem-tab {
-  border: 0;
-  width: 100%;
-}
-#ecosystem-tab .nav-item a {
-  padding: 18px 0;
-  border: 0;
-  font-size: 0.875rem;
-  color: #545454;
-}
-#ecosystem-tab .nav-item a.active {
-  border-top: 4px solid #CA3C32;
-  color: #CA3C32;
-}
-#ecosystem-tab .nav-item a:hover {
-  color: #CA3C32;
-}
-#ecosystem-tab .nav-item a:focus-visible {
-  color: #CA3C32;
-  outline: 2px solid #CA3C32;
-  outline-offset: -2px;
-}
-#ecosystem-tab-content div.tab-pane {
-  background-color: #fff;
-  margin-left: -15px;
-  margin-right: -15px;
-  min-height: 300px;
-  margin-bottom: 20px;
-  padding: 10px;
-  padding-top: 20px;
-}
 .ecosystem hr {
   background-color: #4D64AE;
 }
@@ -493,50 +462,7 @@ h4.card-title {
   font-size: 1rem;
 }
 
-.card-header {
-  padding: 0;
-}
-
-.tab-title {
-  background-color: #CA3C32;
-  font-size: 1rem;
-  padding: 18px 20px;
-  border: 0;
-  font-weight: 400;
-  color: #fff;
-}
-
-.nav-tabs {
-    display: none;
-}
-
-@media (min-width: 768px) {
-  .nav-tabs {
-      display: flex;
-  }
-
-  .card {
-      border: none;
-  }
-
-  .card .card-header {
-      display: none;
-  }
-
-  .card .collapse{
-      display: block;
-  }
-
-  .tab-title {
-    display: none;
-  }
-}
-
 @media (max-width: 767px) {
-  .tab-pane {
-      display: block !important;
-      opacity: 1;
-  }
   .social-network {
     border: 0;
   }
@@ -566,31 +492,6 @@ a.header-anchor {
   color: #4D64AE;
 }
 
-#ecosystem-tab-content div.tab-pane h4 {
-  color: #CA3C32;
-}
-#ecosystem-tab-content div.tab-pane h6 {
-  color: #CA3C32;
-  font-weight: 600;
-}
-
-#ecosystem-tab-content div.tab-pane div.code-sample p {
-  font-size: 0.875rem;
-}
-
-img.ecosystem-image,
-img.ecosystem-image-tall {
-  float: left;
-  margin-right: 20px;
-}
-
-img.ecosystem-image {
-  width: 400px;
-}
-
-img.ecosystem-image-tall {
-  height: 280px;
-}
 
 .page-heading {
   color: #fff;
@@ -1252,6 +1153,192 @@ pre .bash-block::before {
   border-color: rgba(149, 88, 178, 0.3);
   box-shadow: 0 4px 20px rgba(149, 88, 178, 0.1);
 }
+/* Ecosystem carousel (landing page) */
+.eco-intro {
+  max-width: 760px;
+  margin: 0 auto 1.25rem;
+  text-align: center;
+  color: #555;
+}
+.eco-carousel-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  padding: 10px 0 6px;
+}
+.eco-carousel-container::before,
+.eco-carousel-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 3;
+  pointer-events: none;
+}
+.eco-carousel-container::before {
+  left: 0;
+  background: linear-gradient(to right, #F2F2F2 0%, transparent 100%);
+}
+.eco-carousel-container::after {
+  right: 0;
+  background: linear-gradient(to left, #F2F2F2 0%, transparent 100%);
+}
+.eco-carousel {
+  position: relative;
+  width: 900px;
+  max-width: 95vw;
+  height: 340px;
+}
+.eco-showcase {
+  display: flex;
+  height: 320px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: 4px solid var(--eco-accent, #4063D8);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.eco-showcase .eco-img {
+  flex: 0 0 42%;
+  background: #f3f4f7;
+}
+.eco-showcase .eco-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Logos and diagrams are shown whole, with breathing room, instead of cropped */
+.eco-showcase .eco-img-contain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.eco-showcase .eco-img-contain img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.eco-showcase .eco-img-small img {
+  max-width: 220px;
+}
+.eco-showcase .eco-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 1.4rem;
+  text-align: left;
+}
+.eco-text h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}
+.eco-text p {
+  margin: 0 0 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+}
+.eco-pkgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  list-style: none;
+}
+.eco-pkgs a {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid #e6e8ee;
+  border-radius: 999px;
+  background: #f3f4f7;
+  color: #333;
+  font-family: "JuliaMono", ui-monospace, Menlo, monospace;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+.eco-pkgs a:hover {
+  background: #e9ecf5;
+  border-color: var(--eco-accent);
+  color: var(--eco-accent);
+}
+.eco-more {
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+.eco-more a {
+  color: var(--eco-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+.eco-more a:hover {
+  text-decoration: underline;
+}
+.eco-blue { --eco-accent: #4063D8; }
+.eco-red { --eco-accent: #CB3C33; }
+.eco-green { --eco-accent: #389826; }
+.eco-purple { --eco-accent: #9558B2; }
+
+/* Labelled carousel navigation: every area visible at once */
+.carousel-labels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  max-width: 1000px;
+  margin: 0.9rem auto 0;
+}
+.carousel-label {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #d5d8e0;
+  border-radius: 999px;
+  background: #fff;
+  color: #444;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.carousel-label:hover {
+  border-color: #4D64AE;
+  color: #4D64AE;
+}
+.carousel-label.active {
+  background: #4D64AE;
+  border-color: #4D64AE;
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .eco-carousel-container::before,
+  .eco-carousel-container::after {
+    display: none;
+  }
+  .eco-carousel {
+    height: 680px;
+  }
+  .eco-showcase {
+    flex-direction: column;
+    height: 660px;
+  }
+  .eco-showcase .eco-img {
+    flex: 0 0 180px;
+  }
+  .eco-showcase .eco-img-contain {
+    padding: 1.25rem;
+  }
+  /* Keep the arrows over the image, not the text */
+  .eco-carousel-container .carousel-arrow {
+    top: 110px;
+    transform: none;
+  }
+}
+
 .code-showcase.julia-purple .code-header {
   background: linear-gradient(to right, rgba(149, 88, 178, 0.08), #e8e8e8);
 }
@@ -1573,19 +1660,49 @@ pre .bash-block::before {
   border-top-color: var(--dm-border);
 }
 
-/* Dark: Ecosystem tabs */
-[data-theme="dark"] #ecosystem-tab-content div.tab-pane {
-  background-color: var(--dm-bg);
-}
-[data-theme="dark"] #ecosystem-tab .nav-item a {
+/* Dark: Ecosystem carousel */
+[data-theme="dark"] .eco-intro {
   color: var(--dm-text-muted);
 }
-[data-theme="dark"] .tab-title {
-  background-color: #a33029;
+[data-theme="dark"] .eco-carousel-container::before {
+  background: linear-gradient(to right, var(--dm-bg-deep) 0%, transparent 100%);
 }
-[data-theme="dark"] #ecosystem-tab-content div.tab-pane h4 {
-  color: var(--dm-accent-red);
+[data-theme="dark"] .eco-carousel-container::after {
+  background: linear-gradient(to left, var(--dm-bg-deep) 0%, transparent 100%);
 }
+[data-theme="dark"] .eco-showcase {
+  background: var(--dm-bg-surface);
+  border-color: var(--dm-border);
+}
+/* Keep the image box light in dark mode: the artwork is drawn for white backgrounds */
+[data-theme="dark"] .eco-showcase .eco-img {
+  background: #e9ecf0;
+}
+[data-theme="dark"] .eco-text h3 {
+  color: var(--dm-text);
+}
+[data-theme="dark"] .eco-text p {
+  color: var(--dm-text-muted);
+}
+[data-theme="dark"] .eco-pkgs a {
+  background: var(--dm-bg-elevated);
+  color: var(--dm-text);
+  border-color: var(--dm-border);
+}
+[data-theme="dark"] .carousel-label {
+  background: var(--dm-bg-surface);
+  color: var(--dm-text);
+  border-color: var(--dm-border);
+}
+[data-theme="dark"] .carousel-label.active {
+  background: var(--dm-accent-blue);
+  border-color: var(--dm-accent-blue);
+  color: #111;
+}
+[data-theme="dark"] .eco-blue { --eco-accent: #8b9fdb; }
+[data-theme="dark"] .eco-red { --eco-accent: #e06b63; }
+[data-theme="dark"] .eco-green { --eco-accent: #6cc062; }
+[data-theme="dark"] .eco-purple { --eco-accent: #b98ad4; }
 
 /* Dark: Tables */
 [data-theme="dark"] table th,
@@ -1902,13 +2019,6 @@ pre .bash-block::before {
 [data-theme="dark"] .btn-outline-danger:hover {
   background-color: var(--dm-accent-red);
   color: #fff;
-}
-
-/* Dark: Ecosystem tab images */
-[data-theme="dark"] img.ecosystem-image,
-[data-theme="dark"] img.ecosystem-image-tall {
-  border-radius: 6px;
-  opacity: 0.85;
 }
 
 /* Dark: social icons with dark fills */
