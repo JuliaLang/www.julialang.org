@@ -68,7 +68,7 @@ The MBQC model of quantum computation has a lot of overlap with the study of Sta
 
 ## Implementing a Graph State Simulator
 
-The graph states formalism is a way to work more efficiently with stabilizer states that have a sparse tableaux. This project would involve creation of the necessary gate simulation algorithms and conversions tools between graph formalism and stabilizer formalism (some of which are [already available in the library](https://github.com/QuantumSavory/QuantumClifford.jl/blob/master/src/graphs.jl)).
+The graph states formalism is a way to work more efficiently with stabilizer states that have a sparse tableaux. This project would involve creation of the necessary gate simulation algorithms and conversions tools between graph formalism and stabilizer formalism (some of which are [already available in the library](https://github.com/QuantumSavory/QuantumClifford.jl/blob/master/src/graphs/graphs.jl)).
 
 **Recommended skills:** Understanding of the graph formalism. This [paper can be a useful reference](https://arxiv.org/abs/quant-ph/0504117).
 
