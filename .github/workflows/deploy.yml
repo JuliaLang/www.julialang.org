@@ -24,7 +24,7 @@ jobs:
 
       # Franklin takes the sitemap's <lastmod> from each source file's mtime,
       # which a fresh checkout sets to the checkout time. Use the date of the
-      # file's last commit instead.
+      # file's last commit instead (for blog posts, their published/updated date).
       - name: Set file mtimes from git history
         run: python3 .github/scripts/set_mtimes_from_git.py
 
