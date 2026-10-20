@@ -205,7 +205,7 @@ The central hypothesis is that capsule networks' explicit encoding of part-whole
 - LaLonde, R., & Bagci, U. (2018). *Capsules for Object Segmentation*. (SegCaps). [https://arxiv.org/abs/1804.04241](https://arxiv.org/abs/1804.04241)
 - Simpson, A. L., Antonelli, M., Bakas, S., et al. (2019). *A Large Annotated Medical Image Dataset for the Development and Evaluation of Segmentation Algorithms*. (Medical Segmentation Decathlon). [http://medicaldecathlon.com/](http://medicaldecathlon.com/) / [https://arxiv.org/abs/1902.09063](https://arxiv.org/abs/1902.09063)
 - Çiçek, Ö., Abdulkadir, A., Lienkamp, S. S., Brox, T., & Ronneberger, O. (2016). *3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation*. Medical Image Computing and Computer-Assisted Intervention (MICCAI). [https://arxiv.org/abs/1606.06650](https://arxiv.org/abs/1606.06650)
-- Lux.jl: A deep learning library for Julia. [https://github.com/JuliaAI/Lux.jl](https://github.com/JuliaAI/Lux.jl)
+- Lux.jl: A deep learning library for Julia. [https://github.com/LuxDL/Lux.jl](https://github.com/LuxDL/Lux.jl)
 - MedPipe3D.jl: A modular 3D medical imaging pipeline in Julia. [https://github.com/JuliaHealth/MedPipe3D.jl](https://github.com/JuliaHealth/MedPipe3D.jl)
 - KernelAbstractions.jl: A vendor-neutral GPU programming model for Julia. [https://github.com/JuliaGPU/KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl)
 
