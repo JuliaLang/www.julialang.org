@@ -122,11 +122,13 @@ Accepts an expression, that is run over every vertex. Vertex properties can be e
 `v.adj`, `v.indegree` and `v.outdegree`.
 Examples:
 
-    # Check if the user has overridden the default labels
-    julia> @query(g |> eachvertex(v.id == v.label)) |> all
+```julia
+# Check if the user has overridden the default labels
+julia> @query(g |> eachvertex(v.id == v.label)) |> all
 
-    # Kirchoff's law :P
-    julia> @query(g |> eachvertex(v.outdegree - v.indegree)) .== 0
+# Kirchoff's law :P
+julia> @query(g |> eachvertex(v.outdegree - v.indegree)) .== 0
+```
 
 
 ### eachedge
@@ -135,16 +137,18 @@ the source vertex, and `t` is used to denote the target vertex in the edge. The 
 the edge itself. Edge properties can be expressed through the dot notation. Some reserved properties are `e.source`, `e.target`, `e.mutualcount`, and `e.mutual`.
 Examples:
 
-    # Arithmetic expression on edge, source and target properties
-    julia> @query g |> eachedge(e.p1 - s.p1 - t.p1)
+```julia
+# Arithmetic expression on edge, source and target properties
+julia> @query g |> eachedge(e.p1 - s.p1 - t.p1)
 
 
-    # Check if constituent vertices have the same outdegree
-    julia> @query g |> eachedge(s.outdegree == t.outdegree)
+# Check if constituent vertices have the same outdegree
+julia> @query g |> eachedge(s.outdegree == t.outdegree)
 
 
-    # Count the number of "mutual friends" between the source and target vertices in each edge
-    julia> @query g |> eachedge(e.mutualcount)
+# Count the number of "mutual friends" between the source and target vertices in each edge
+julia> @query g |> eachedge(e.mutualcount)
+```
 
 
 ### filter
@@ -152,22 +156,26 @@ Accepts vertex or edge expressions and computes subgraphs with a subset of verti
 subset of edges, or both.
 Examples:
 
-    # Remove vertices where property p1 equals property p2
-    @query g |> filter(v.p1 != v.p2)
+```julia
+# Remove vertices where property p1 equals property p2
+@query g |> filter(v.p1 != v.p2)
 
-    # Remove self loops from the graph
-    @query g |> filter(e.source != e.target)
+# Remove self loops from the graph
+@query g |> filter(e.source != e.target)
+```
 
 
 ### select
 Returns a subgraph with a subset of vertex properties, or a subset of edge properties or both.
 Examples:
 
-    # Preserve vertex properties p1, p2 and nothing else
-    @query g |> select(v.p1, v.p2)
+```julia
+# Preserve vertex properties p1, p2 and nothing else
+@query g |> select(v.p1, v.p2)
 
-    # Preserve vertex property p1 and edge property p2
-    @query g |> select(v.p1, e.p2)
+# Preserve vertex property p1 and edge property p2
+@query g |> select(v.p1, e.p2)
+```
 
 
 # Demonstration
