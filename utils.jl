@@ -493,3 +493,26 @@ function hfun_software_schema()
     </script>
     """
 end
+
+"""
+Base URL of the production site. Canonical links always point here, even in
+Netlify preview builds (where `website_url` is the preview URL), so previews
+and duplicate URLs such as `/foo/index.html` don't compete with production.
+"""
+const CANONICAL_BASE_URL = "https://julialang.org"
+
+"""
+    {{canonical}}
+
+`<link rel="canonical">` pointing at the production URL of the current page.
+Nothing is emitted for the 404 page or when the source path is unknown.
+Redirect pages (`{{redirect ...}}`) are raw HTML without the layout, so they
+never reach this function.
+"""
+function hfun_canonical()
+    rpath = locvar(:fd_rpath)
+    (isnothing(rpath) || isempty(rpath)) && return ""
+    rpath = replace(rpath, '\\' => '/')
+    startswith(rpath, "404.") && return ""
+    return "<link rel=\"canonical\" href=\"$(page_url(CANONICAL_BASE_URL, rpath))\">"
+end
