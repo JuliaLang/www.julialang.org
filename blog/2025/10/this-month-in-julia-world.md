@@ -28,7 +28,7 @@ Julia 1.12 is released. Many of the improvements in it have been discussed in th
 
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
 
-* The [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl) repo features a few bounties on [integrating external graph theory libraries](https://github.com/JuliaGraphs/Graphs.jl/issues?q=is%3Aissue%20state%3Aopen%20label%3Abounty) better with the rest of the Graphs ecosystem.
+* The [Graphs.jl](http://graphs.jl) repo features a few bounties on [integrating external graph theory libraries](https://github.com/JuliaGraphs/Graphs.jl/issues?q=is%3Aissue%20state%3Aopen%20label%3Abounty) better with the rest of the Graphs ecosystem.
 * [JuliaPackageComparisons](https://discourse.julialang.org/t/juliapackagecomparisons-is-looking-for-a-new-maintainer/130667) is a wiki-like resource comparing different julia tools. It is in search of a new maintainer.
 * The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science.
 * [SciML is running a large set of funded small projects](https://sciml.ai/small_grants/) – a great opportunity to contribute to the community and be paid for it.
@@ -42,7 +42,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 * [AccessibleModels.jl](https://discourse.julialang.org/t/accessiblemodels-jl-automatic-ui-and-model-fitting-for-arbitrary-objects/132363): Automatic UI and Model Fitting for Arbitrary Objects
 * [MoleculeHub](https://discourse.julialang.org/t/ann-moleculehub-a-set-of-cheminformatics-tools-in-julia/132415): A set of cheminformatics tools in Julia
 * [Durbyn.jl](https://discourse.julialang.org/t/ann-durbyn-jl-time-series-forecasting-in-julia/132544): Time Series Forecasting in Julia
-* [PlutoBook.jl](https://discourse.julialang.org/t/ann-new-package-plutobook-jl/132641) wraps around the C++ library PlutoBook for lightweight converter between html and pdf. (no relationship to [Pluto.jl](https://github.com/JuliaPluto/Pluto.jl))
+* [PlutoBook.jl](https://discourse.julialang.org/t/ann-new-package-plutobook-jl/132641) wraps around the C++ library PlutoBook for lightweight converter between html and pdf. (no relationship to [Pluto.jl](http://pluto.jl))
 * [NoSleep.jl](https://discourse.julialang.org/t/nosleep-jl-keep-julia-awake-for-long-calculations/132911): Keep Julia awake for long calculations
 * [WebAuthn.jl](https://discourse.julialang.org/t/ann-webauthn-jl/132672): WebAuthn enables passwordless, phishing-resistant login using public-key cryptography.
 

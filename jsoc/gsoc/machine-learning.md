@@ -7,7 +7,7 @@
 
 Time: 175h
 
-Develop a series of reinforcement learning environments, in the spirit of the OpenAI Gym. Although we have wrappers for the gym available, it is hard to install (due to the Python dependency) and, since it's written in Python and C code, we can't do more interesting things with it (such as differentiate through the environments).
+Develop a series of reinforcement learning environments, in the spirit of the [OpenAI Gym](https://gym.openai.com). Although we have wrappers for the gym available, it is hard to install (due to the Python dependency) and, since it's written in Python and C code, we can't do more interesting things with it (such as differentiate through the environments).
 
 ### Expected Outcome
 

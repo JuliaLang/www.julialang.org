@@ -31,8 +31,8 @@ _Courses currently being offered or offered regularly since 2020._
     * [Julia for Optimization and Learning](https://juliateachingctu.github.io/Julia-for-Optimization-and-Learning/stable/)
     * [Scientific Programming in Julia](https://juliateachingctu.github.io/Scientific-Programming-in-Julia/stable)
 * Dartmouth College
-    * EARS 13
-    * EARS 80.03
+    * [EARS 13](https://dartmouth.smartcatalogiq.com/en/current/orc/Departments-Programs-Undergraduate/Earth-Sciences/EARS-Earth-Sciences-Undergraduate/EARS-13)
+    * [EARS 80.03](https://dartmouth.smartcatalogiq.com/en/current/orc/Departments-Programs-Undergraduate/Earth-Sciences/EARS-Earth-Sciences-Undergraduate/EARS-80-03)
 * École Polytechnique Fédérale de Lausanne
     * [MATH 251(b)](https://teaching.matmat.org/numerical-analysis/), Numerical analysis, Spring 2024
     * [MATH 500](https://teaching.matmat.org/error-control/), Error control in scientific modelling, since Fall 2023
@@ -53,8 +53,8 @@ _Courses currently being offered or offered regularly since 2020._
     * [Scientific Programming](https://github.com/rajgoel/course-scientific-programming/) (Prof. [Asvin Goel](https://github.com/rajgoel)), since Fall 2025
     * [Machine Learning and Deep Learning](https://github.com/rajgoel/course-machine-learning/) (Prof. [Asvin Goel](https://github.com/rajgoel)), since Spring 2025
 * [Lund University, Sweden](https://www.lunduniversity.lu.se/), [Department of Automatic Control](http://control.lth.se/)
-    * Julia for Scientific Computing
-    * Optimization for Learning
+    * [Julia for Scientific Computing](http://www.control.lth.se/education/doctorate-program/julia-course/julia-course-2019/)
+    * [Optimization for Learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
 * Massachusetts Institute of Technology (MIT)
     * [18.S097](https://math.mit.edu/academics/iap2023.html#credit) Special Subject in Mathematics: Introduction to Julia for Data Science ([Bogumił Kamiński](http://bogumilkaminski.pl/about/), [Przemysław Szufel](https://szufel.pl/en/), Łukasz Kraiński, Bartosz Witkowski, Sebastian Zając, Mateusz Zawisza), 2023 ([course materials and lecture videos](https://github.com/pszufe/MIT_18.S097_Introduction-to-Julia-for-Data-Science))
     * [12.805](http://student.mit.edu/catalog/m12c.html#12.805), Data Analysis in Physical Oceanography ([Jake Gebbie](https://github.com/ggebbie) and Tom Farrar), Fall 2022
@@ -70,13 +70,13 @@ _Courses currently being offered or offered regularly since 2020._
     * CHE 361, Process Dynamics & Simulation taught by ([Cory Simon](https://simonensemble.github.io/), using [`Controlz.jl`](https://github.com/SimonEnsemble/Controlz.jl))
     * CHE 461, Process Control ([Cory Simon](https://simonensemble.github.io/), using [`Controlz.jl`](https://github.com/SimonEnsemble/Controlz.jl))
 * Pennsylvania State University
-    * [ASTRO 528](https://psuastro528.github.io/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2019 - [github repo](https://github.com/PsuAstro528/Spring2019-website-src) & Fall 2021 - [github repo](https://github.com/PsuAstro528/Fall2021-website-src)
+    * [ASTRO 528](https://psuastro528.github.io/), High-Performance Scientific Computing for Astrophysics (Prof. [Eric B. Ford](https://personal.psu.edu/~ebf11)), Spring 2019 - [github repo](https://github.com/PsuAstro528/Spring2019-website-src) & Fall 2021 - [github repo](https://github.com/PsuAstro528/Fall2021-website-src)
 * [Politecnico di Torino](http://polito.it) (Torino, Italy)
     * [Algorithms for Optimization, Inference and Learning - AOIL](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=01SPOPF&p_a_acc=2021&p_header=S&p_lang=EN), (Prof. A. Braunstein), since Spring 2018
     * [Inference in Biological Systems](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=01TYLPF&p_a_acc=2021&p_header=S&p_lang=EN), (Prof. A. Gamba), since Fall 2018
     * [Stochastic Simulation Methods In Physics](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=01SPNPF&p_a_acc=2021&p_header=S&p_lang=EN), (Prof. A. Pagnani), since Fall 2018
 * [Polytech Nice Sophia](http://polytech-nice-sophia.fr)
-    * Mathematics for the engineer (Prof. J.-B. Caillau), Spring 2020
+    * [Mathematics for the engineer](https://gitlab.polytech.unice.fr/MAM/mi2) (Prof. J.-B. Caillau), Spring 2020
 * Rice University
     * [CEVE 543](https://jdossgollin.github.io/environmental-data-science/), Environmental Data Science (Prof. [James Doss-Gollin](https://jdossgollin.github.io/)), since Spring 2022
 * [Ruhr University Bochum](https://www.ruhr-uni-bochum.de/en), Germany
@@ -170,8 +170,8 @@ _Courses currently being offered or offered regularly since 2020._
     * IN2003 - Operations Research 1: Deterministic models (Prof. Fabien Cornillier), since 2017
 * University of Florida
     * COT 5615, Math for Intelligent Systems (Prof. Kejun Huang), 2021
-    * CIS 4390, Abstraction, Composition, and Computation (Prof. James Fairbanks), Fall 2021
-    * COT 4501, Numerical Analysis: A Computational Approach (Prof. James Fairbanks), Spring 2022
+    * CIS 4390, Abstraction, Composition, and Computation ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Fall 2021
+    * COT 4501, Numerical Analysis: A Computational Approach ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Spring 2022
 * University of Michigan
     * ECE 551 [Matrix Methods for Signal Processing, Data Analysis and Machine Learning](https://ece.engin.umich.edu/academics/course-information/course-descriptions/ece-551), ([Prof. Jeff Fessler](https://web.eecs.umich.edu/~fessler/course/551))
     * ROB 101 [Computational Linear Algebra](https://robotics.umich.edu/academics/courses/course-offerings/rob-101-fall-2022)
@@ -186,7 +186,7 @@ _Courses currently being offered or offered regularly since 2020._
     * [ESI 6491](https://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon), Fall 2015-Fall 2020
     * [EIN 6945](https://www.chkwon.net/teaching/ein-6935/), Nonlinear Optimization and Game Theory (Prof. [Changhyun Kwon](https://www.chkwon.net/)), Spring 2016, 2018, 2020
 * University of Southern California
-    * QBIO 577, Computational Molecular Biology Laboratory, [Systems Biology](https://github.com/adamlmaclean/julia-dynsys-resources/) (Prof. Adam L. MacLean), since Fall 2019
+    * QBIO 577, Computational Molecular Biology Laboratory, [Systems Biology](https://github.com/adamlmaclean/julia-dynsys-resources/) (Prof. [Adam L. MacLean](https://macleanlab.usc.edu/people/adam-maclean/)), since Fall 2019
 * University of Southern Maine
     * [COS 374](https://github.com/jamesquinlan/cos374-numerical), Numerical Analysis ([Prof. James Quinlan](https://cs.usm.maine.edu/~james.quinlan/cos374/index.html)), Spring Semesters
 * University of St. Gallen
@@ -194,7 +194,7 @@ _Courses currently being offered or offered regularly since 2020._
     * [Financial Theory](https://github.com/PaulSoderlind/FinancialTheoryMSc), MSc ([Paul Soderlind](https://github.com/PaulSoderlind))
     * [Empirical Finance](https://github.com/PaulSoderlind/EmpiricalFinancePhD), PhD ([Paul Soderlind](https://github.com/PaulSoderlind))
 * University of Vaasa, Finland
-    * Fuzzy Systems, ([Luca Ferranti](https://github.com/lucaferranti))
+    * [Fuzzy Systems](https://fuzzy.academy), ([Luca Ferranti](https://github.com/lucaferranti))
 * University of Washington
     * [AMATH 586](https://trogdoncourses.github.io/amath-586-2020/), Numerical analysis of time-dependent problems (Prof. [Tom Trogdon](http://faculty.washington.edu/trogdon/)), Spring 2020
 * Vrije Universiteit Amsterdam
@@ -218,7 +218,7 @@ _Courses last offered before 2020. These may still contain useful teaching mater
     * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](https://mth229.github.io) page.
 * Cornell University
     * [CS 5220](https://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel), Spring 2014
-    * ORIE 4741, Machine Learning with Big Messy Data (Prof. Madeleine Udell), Fall 2017
+    * [ORIE 4741](https://people.orie.cornell.edu/mru8/orie4741/), Machine Learning with Big Messy Data (Prof. Madeleine Udell), Fall 2017
 * École Polytechnique Fédérale de Lausanne
     * [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 * [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/)
@@ -234,11 +234,11 @@ _Courses last offered before 2020. These may still contain useful teaching mater
     * [CM103](https://web.archive.org/web/20200905092341/https://abelsiqueira.github.io/cm103-2019s2/), Laboratório de Matemática Aplicada (Prof. Abel Soares Siqueira), 2016, 2017, 2018, 2019
     * CMM014, Cálculo Numérico (Prof. Abel Soares Siqueira), 2019
 * Federal University of Uberlândia, Institute of Physics
-    * GFM050, Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
+    * [GFM050](https://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
 * Hadsel High School, Stokmarknes, Nordland, Norway
-    * [REA3034] Programmering og modellering (Programming and modeling with Julia and Snap), 2018-2019 (High school lecturer Olav A Marschall, M.sc. Computer Science)
+    * [AnsattOversikt](https://www.hadsel.vgs.no/AnsattOversikt.aspx?personid=16964&amp;mid1=15925), [REA3034] Programmering og modellering (Programming and modeling with Julia and Snap), 2018-2019 (High school lecturer Olav A Marschall, M.sc. Computer Science)
 * IIT Indore
-    * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. Ivan Slapnicar), June 2016
+    * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://marjan.fesb.hr/~slap/)), June 2016
 * Imperial College London
     * [M3M6 Methods of Mathematical Physics](https://github.com/dlfivefifty/M3M6MethodsOfMathematicalPhysics) ([Sheehan Olver](https://github.com/dlfivefifty)), 2017-2018
 * Instituto Tecnológico Autónomo de México (ITAM), Mexico City, Mexico
@@ -252,7 +252,7 @@ _Courses last offered before 2020. These may still contain useful teaching mater
     * [18.06](https://web.mit.edu/18.06/www/), Linear Algebra: Fall 2015, Dr. [Alex Townsend](https://github.com/ajt60gaibb); Fall 2014, Prof. Alexander Postnikov; Fall [2013](https://stellar.mit.edu/S/course/18/fa13/18.06), Prof. Alan Edelman
     * [18.303](https://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj)), Fall 2013-2016
     * [18.085 / 0851](https://math.mit.edu/classes/18.085/2015FA/index.html), Computational Science And Engineering I (Prof. Pedro J. Sáenz)
-    * 18.330, Introduction to Numerical Analysis (Dr. Homer Reid), Spring 2013-2015
+    * [18.330](https://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid), Spring 2013-2015
     * [18.335](https://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 2013, Spring 2015
     * [18.338](https://web.mit.edu/18.338/www/), Eigenvalues Of Random Matrices (Prof. Alan Edelman), Spring 2015
     * [18.S096](https://math.mit.edu/classes/18.S096/iap17/), Performance Computing in a High Level Language (Steven G. Johnson, Alan Edelman, David Sanders, Jeff Bezanson), January 2017
@@ -262,13 +262,13 @@ _Courses last offered before 2020. These may still contain useful teaching mater
 * Northeastern University, Fall 2016
     * MTH3300: Applied Probability &amp; Statistics
 * Pennsylvania State University
-    * ASTRO 585, Seminar: High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring) & Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+    * [ASTRO 585](https://www.personal.psu.edu/~ebf11/teach/astro585/), Seminar: High-Performance Scientific Computing for Astrophysics (Prof. [Eric B. Ford](https://personal.psu.edu/~ebf11)), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring) & Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
 * Pontifical Catholic University of Rio de Janeiro (PUC-Rio)
     * Programming in Julia (Prof. [Thuener Silva](https://github.com/Thuener)), Summer 2017
     * Linear Optimization (Prof. [Alexandre Street](https://alexandrestreet.wordpress.com/)), Spring 2017
     * Decision and Risk Analysis (Prof. [Davi Valladão](https://www.ind.puc-rio.br/en/equipe/davi-michel-valladao/)), Fall 2015
 * Purdue University
-    * CS51400, Numerical Analysis (Prof. [David Gleich](https://www.cs.purdue.edu/homes/dgleich/)), Spring 2016
+    * [CS51400](https://www.cs.purdue.edu/homes/dgleich/cs514-2016/), Numerical Analysis (Prof. [David Gleich](https://www.cs.purdue.edu/homes/dgleich/)), Spring 2016
 * Royal Military Academy (Brussels)
     * ES123, Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Spring 2018
     * ES313, Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Fall 2018
@@ -282,7 +282,7 @@ _Courses last offered before 2020. These may still contain useful teaching mater
 * Stanford University
     * [EE103](https://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014, Fall 2015
     * [CME 257](https://github.com/icme/cme257-advanced-julia/), Advanced Topics in Scientific Computing with Julia (Mr. [Brad Nelson](https://github.com/bnels)), Fall 2015
-    * EE266, Stochastic Control (Prof. Sanjay Lall), Spring 2016
+    * [EE266](http://ee266.stanford.edu/), Stochastic Control (Prof. Sanjay Lall), Spring 2016
 * [TU Dortmund / SFB 823](https://www.statistik.tu-dortmund.de/sfb823.html), Germany
     * One week introductory course into Julia with applications in statistics and economics ([Tileman Conring](https://www.statistik.tu-dortmund.de/conring.html)), Spring 2018
 * Universidad Adolfo Ibáñez, Chile

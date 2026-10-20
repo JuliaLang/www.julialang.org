@@ -32,7 +32,7 @@ In particular, large continuous variable quantum systems that contain low entang
 
 Due to the technological maturity of quantum measurement schemes for photons, one-way quantum computation is an attractive approach for photonic quantum processing. In the continuous variable formalism, Gaussian cluster states serve as an important piece of the measurement-based quantum computation model. This project involves the creation of conversion tools between phase space representations of Gaussian bosonic systems and Gaussian cluster states in the graph formalism.
 
-**Recommended skills:** Understanding of the quantum phase space formalism and the measurement-based quantum computation model. [This review article](https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.84.621) and [recent paper](https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.2.030343) is a useful reference.
+**Recommended skills:** Understanding of the quantum phase space formalism and the measurement-based quantum computation model. [This review article](https://journals.aps.org/rmp/pdf/10.1103/RevModPhys.84.621) and [recent paper](https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.2.030343) is a useful reference.
 
 **Mentors:** [Andrew Kille](https://github.com/apkille) and [Stefan Krastanov](https://github.com/Krastanov).
 

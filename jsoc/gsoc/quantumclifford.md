@@ -10,7 +10,7 @@ The main complications is that the elements of the matrices under consideration 
 A Summer of Code project could consist of implement the aforementioned linear algebra operations in GPU kernels, and then seamlessly integrating them in the rest of the QuantumClifford library.
 At a minimum that would include [Pauli-Pauli products](https://github.com/Krastanov/QuantumClifford.jl/blob/v0.4.0/src/QuantumClifford.jl#L725) and certain [small Clifford operators](https://github.com/Krastanov/QuantumClifford.jl/blob/v0.4.0/src/symbolic_cliffords.jl), but could extend to general [stabilizer tableau multiplication](https://github.com/Krastanov/QuantumClifford.jl/blob/v0.4.0/src/QuantumClifford.jl#L1385) and even [tableau diagonalization](https://github.com/Krastanov/QuantumClifford.jl/blob/v0.4.0/src/QuantumClifford.jl#L985). Some of these features are already implemented, but significant polish and further improvements and implementation of missing features is needed.
 
-**Recommended skills:** Basic knowledge of the [stabilizer formalism](https://qc.quantumsavory.org/dev/references/) used for simulating Clifford circuits. Familiarity with performance profiling tools in Julia and Julia's GPU stack, including [KernelAbstractions](https://github.com/JuliaGPU/KernelAbstractions.jl) and [Tullio](https://github.com/mcabbott/Tullio.jl).
+**Recommended skills:** Basic knowledge of the [stabilizer formalism](https://krastanov.github.io/QuantumClifford.jl/dev/references/) used for simulating Clifford circuits. Familiarity with performance profiling tools in Julia and Julia's GPU stack, including [KernelAbstractions](https://github.com/JuliaGPU/KernelAbstractions.jl) and [Tullio](https://github.com/mcabbott/Tullio.jl).
 
 **Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
@@ -22,7 +22,7 @@ At a minimum that would include [Pauli-Pauli products](https://github.com/Krasta
 
 Quantum Error Correcting codes are typically represented in a form similar to the parity check matrix of a classical code. This form is referred to as a Stabilizer tableaux. This project would involve creating a comprehensive library of frequently used quantum error correcting codes and/or implementing syndrome-decoding algorithms for such codes. The library already includes some simple codes and interfaces to a few decoders -- adding another small code or providing a small documentation pull request could be a good way to prove competence when applying for this project. The project can be extended to a much longer one if work on decoders is included. A large part of this project would involve literature surveys. Some suggestions for codes to include: color codes, higher-dimensional topological codes, hyper graph product codes, twists in codes, newer LDPC codes, honeycomb codes, Floquet codes. Some suggestions for decoders to work on: iterative, small-set flip, ordered statistical decoding, belief propagation, neural belief propagation.
 
-**Recommended skills:** Knowledge of the [stabilizer formalism](https://qc.quantumsavory.org/dev/references/) used for simulating Clifford circuits. Familiarity with tools like python's `ldpc`, `pymatching`, and `stim` can help. Consider checking out the `PyQDecoders.jl` julia wrapper package as well.
+**Recommended skills:** Knowledge of the [stabilizer formalism](https://krastanov.github.io/QuantumClifford.jl/dev/references/) used for simulating Clifford circuits. Familiarity with tools like python's `ldpc`, `pymatching`, and `stim` can help. Consider checking out the `PyQDecoders.jl` julia wrapper package as well.
 
 **Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
@@ -34,7 +34,7 @@ Quantum Error Correcting codes are typically represented in a form similar to th
 
 Applying an n-qubit Clifford gate to an n-qubit state (tableaux) is an operation similar to matrix multiplication, requiring O(n^3) steps. However, applying a single-qubit or two-qubit gate to an n-qubit tableaux is much faster as it needs to address only one or two columns of the tableaux. This project would focus on extending the left-multiplication special cases already started in [symbolic_cliffords.jl](https://github.com/Krastanov/QuantumClifford.jl/blob/master/src/symbolic_cliffords.jl) and creating additional right-multiplication special cases (for which [the Stim library is a good reference](https://github.com/Krastanov/QuantumClifford.jl/commit/d3e84c16b7b08ef6f1bc24e2bcf98641c2fff1ab#r67183201)).
 
-**Recommended skills:** Knowledge of the [stabilizer formalism](https://qc.quantumsavory.org/dev/references/) used for simulating Clifford circuits. Familiarity with performance profiling tools in Julia. Understanding of C/C++ if you plan to use the Stim library as a reference.
+**Recommended skills:** Knowledge of the [stabilizer formalism](https://krastanov.github.io/QuantumClifford.jl/dev/references/) used for simulating Clifford circuits. Familiarity with performance profiling tools in Julia. Understanding of C/C++ if you plan to use the Stim library as a reference.
 
 **Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 

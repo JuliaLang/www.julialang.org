@@ -17,5 +17,5 @@ These micro-benchmark results were obtained on a single core (serial execution) 
 
 ## Other Relevant Benchmarks
 
-- Graphs: [https://www.timlrx.com/blog/benchmark-of-popular-graph-network-packages-v2](https://web.archive.org/web/20230603153205/https://www.timlrx.com/blog/benchmark-of-popular-graph-network-packages-v2)
+- Graphs: [https://www.timlrx.com/blog/benchmark-of-popular-graph-network-packages-v2](https://www.timlrx.com/blog/benchmark-of-popular-graph-network-packages-v2)
 - CSV and Pandas: [https://www.queryverse.org/benchmarks/](https://www.queryverse.org/benchmarks/)

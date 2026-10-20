@@ -8,7 +8,7 @@
 
 *To follow along with the examples in this blog post and run them live, you can go to [JuliaBox](https://juliabox.com/), create a free login, and open the "Julia 0.5 Highlights" notebook under "What's New in 0.5". The notebook can also be downloaded from [here](/assets/blog/Julia-0.5-highlights-notebook/Julia%200.5%20Highlights.ipynb).*
 
-[Julia 0.5](/blog/2016/10/julia-0.5-release/) is a pivotal release.
+[Julia 0.5](/blog/2016/01/julia-0.5-release/) is a pivotal release.
 It introduces more transformative features than any release since the first official version.
 Moreover, several of these features set the stage for even more to come in the [lead up to Julia 1.0](https://www.youtube.com/watch?v=5gXMpbY1kJY).
 In this post, we'll go through some of the major changes in 0.5, including improvements to functional programming, comprehensions, generators, arrays, strings, and more.
@@ -586,7 +586,7 @@ After much discussion, experimentation and benchmarking, this set of breaking ch
 
 Although not many breaking changes happened in 0.5, this was a major release for Julia's array infrastructure.
 The code to implement various complex polymorphic indexing operations for generic arrays and array-like structures was majorly refactored, and in the process it shrank by 40% while becoming more complete, more general, and faster.
-You can read more about the very cool things you can now do with array-like types in an excellent pair of blog posts published here earlier in the year: [*Multidimensional algorithms and iteration*](/blog/2016/02/iteration/) and [*Generalizing AbstractArrays*](/blog/2016/03/arrays-iteration/).
+You can read more about the very cool things you can now do with array-like types in an excellent pair of blog posts published here earlier in the year: [*Multidimensional algorithms and iteration*](/blog/2016/02/multidimensional-algorithms-and-iteration/) and [*Generalizing AbstractArrays*](/blog/2016/03/generalizing-abstractarrays-opportunities-and-challenges/).
 In the next two subsections, I'll go over some of the array changes that did happen in 0.5.
 
 ### Dimension sum slices

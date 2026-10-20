@@ -33,7 +33,7 @@ The goal of this project is therefore to make such visualizations easier by intr
 significant improvements:
 
 * Add the capability to write out native
-  [VTKHDF](https://docs.vtk.org/en/latest/vtk_file_formats/vtkhdf_file_format/index.html)
+  [VTKHDF](https://docs.vtk.org/en/latest/design_documents/VTKFileFormats.html#vtkhdf-file-format)
   files directly during a simulation, in serial and parallel.
 * Enable parallel in-situ visualization of the results, i.e., to visualize results by
   connecting ParaView to a currently running, parallel Trixi.jl simulation using the
@@ -73,7 +73,7 @@ The high performance of modern scientific software is built on parallel computin
 The possible subtasks in this project include:
 
 - Explore and implement a simple code for asynchronous algorithms for solving the 1D advection equation or 1D compressible Euler equations using the API of [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/).
-- Taking the simple code as a prototype, explore and implement an asynchronous algorithm starting with the basic [TreeMesh](https://trixi-framework.github.io/TrixiDocumentation/stable/meshes/tree_mesh/) type in [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) and potentially extending up to [P4estMesh](https://trixi-framework.github.io/TrixiDocumentation/stable/meshes/p4est_mesh/).
+- Taking the simple code as a prototype, explore and implement an asynchronous algorithm starting with the basic [TreeMesh](https://trixi-framework.github.io/Trixi.jl/stable/meshes/tree_mesh/) type in [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) and potentially extending up to [P4estMesh](https://trixi-framework.github.io/Trixi.jl/stable/meshes/p4est_mesh/).
 - Explore and implement asynchronous algorithms for a multi-GPU setup, in the 1D prototype and in [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/).
 - Explore and implement asynchronous algorithms using [Remote Memory Access Programming using MPI.jl](https://juliaparallel.org/MPI.jl/dev/reference/onesided/).
 - Optimize and compare the performance of the above implementations across different hardwares.
@@ -94,20 +94,20 @@ This project is good for both software engineers interested in the fields of sci
 
 [Dynamic parallelism](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#cuda-dynamic-parallelism) is designed for applications with either a variation of work across space or a dynamically varying workload over time. It is perfect for tasks like mesh refinement. When a thread discovers that an area needs to be refined, it can launch a new grid to perform computations on the refined area without the overhead of terminating the current grid, reporting to the host, and launching the new grid from the host.
 
-[Adaptive mesh refinement (AMR)](https://trixi-framework.github.io/TrixiDocumentation/stable/tutorials/adaptive_mesh_refinement/) is applied in [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) to dynamically refine the mesh during simulations, ensuring finer resolution in critical regions for improved accuracy. Currently, the mesh refinement process is performed on CPUs using parallelism with [MPI.jl](https://github.com/JuliaParallel/MPI.jl). The goal of this project is to migrate AMR to GPUs using dynamic parallelism for acceleration with [CUDA.jl](https://github.com/JuliaGPU/CUDA.jl).
+[Adaptive mesh refinement (AMR)](https://trixi-framework.github.io/Trixi.jl/stable/tutorials/adaptive_mesh_refinement/) is applied in [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) to dynamically refine the mesh during simulations, ensuring finer resolution in critical regions for improved accuracy. Currently, the mesh refinement process is performed on CPUs using parallelism with [MPI.jl](https://github.com/JuliaParallel/MPI.jl). The goal of this project is to migrate AMR to GPUs using dynamic parallelism for acceleration with [CUDA.jl](https://github.com/JuliaGPU/CUDA.jl).
 
 The possible subtasks in this project include:
 
 - Implementing the abstract tree initialization process on GPUs.
-- Exploring the [`TreeMesh`](https://trixi-framework.github.io/TrixiDocumentation/stable/meshes/tree_mesh/) initialization processes on GPUs based on the implementation of the first task and combining them.
-- Integrating the above into [`AMRCallback`](https://trixi-framework.github.io/TrixiDocumentation/stable/tutorials/adaptive_mesh_refinement/#Callback) in the simulation using [dynamic parallelism](https://cuda.juliagpu.org/stable/api/kernel/#Dynamic-parallelism) (via CUDA.jl).
+- Exploring the [`TreeMesh`](https://trixi-framework.github.io/Trixi.jl/stable/meshes/tree_mesh/) initialization processes on GPUs based on the implementation of the first task and combining them.
+- Integrating the above into [`AMRCallback`](https://trixi-framework.github.io/Trixi.jl/stable/tutorials/adaptive_mesh_refinement/#Callback) in the simulation using [dynamic parallelism](https://cuda.juliagpu.org/stable/api/kernel/#Dynamic-parallelism) (via CUDA.jl).
 - Optimizing the code for data transfer, kernel launch overhead, occupancy, etc.
 - Starting the above work in 1D and then expanding it to 2D and 3D problems.
-- (Optional) Try similar work for [`P4estMesh`](https://trixi-framework.github.io/TrixiDocumentation/stable/meshes/p4est_mesh/) in 2D and 3D.
+- (Optional) Try similar work for [`P4estMesh`](https://trixi-framework.github.io/Trixi.jl/stable/meshes/p4est_mesh/) in 2D and 3D.
 
 This project is good for people who are interested in GPU programming, parallel computing, parallel algorithm optimization, and scientific computing.
 
-**Recommended skills:** GPU programming, knowledge of CUDA dynamic parallelism, and familiarity with mesh refinement. (For beginners or those unfamiliar with dynamic parallelism, it is recommended to start with the [CUDA quadtree example](https://github.com/NVIDIA/cuda-samples/tree/master/cpp/3_CUDA_Features/cdpQuadtree).)
+**Recommended skills:** GPU programming, knowledge of CUDA dynamic parallelism, and familiarity with mesh refinement. (For beginners or those unfamiliar with dynamic parallelism, it is recommended to start with the [CUDA quadtree example](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/3_CUDA_Features/cdpQuadtree).)
 
 **Expected results:** A working example of AMR running on GPUs.
 

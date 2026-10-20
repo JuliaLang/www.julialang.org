@@ -36,7 +36,7 @@ Here is a sampling of the standouts:
 - [PDMatsExtras.jl](https://github.com/invenia/PDMatsExtras.jl), which extends [PDMats.jl](https://github.com/JuliaStats/PDMats.jl) with a couple different positive (semi-)definite matrix types that [nicely interopate with Distributions.jl](https://github.com/JuliaStats/Distributions.jl/issues/1219) (Invenia)
 - [RegistryCLI.jl](https://github.com/triscale-innov/RegistryCLI.jl), a tool for easily managing private package registries directly from the command line (TriScale innov)
 - [XUnit.jl](https://github.com/RelationalAI-oss/XUnit.jl), a unit test framework with nice parallelization capabilities (RelationalAI)
-- Compiler support for compilation profiling during inference/LLVM optimization, [enabling cool new SnoopCompile.jl features](https://juliadebug.github.io/SnoopCompile.jl/stable/tutorials/snoop_inference/) (RelationalAI)
+- Compiler support for compilation profiling during inference/LLVM optimization, [enabling cool new SnoopCompile.jl features](https://timholy.github.io/SnoopCompile.jl/stable/snoopi_deep/) (RelationalAI)
 - Various quality-of-life improvements to [PProf.jl](https://github.com/JuliaPerf/PProf.jl), including interoperability with [FlameGraphs.jl](https://github.com/timholy/FlameGraphs.jl) and [SnoopCompile.jl](https://github.com/timholy/SnoopCompile.jl). (RelationalAI)
 
 ...and so many more issues/PRs/etc. that I couldn't fit here - especially the important work that went into [public OSS backlog creation](https://docs.google.com/document/d/16Rwkr5u8WdPh-AHVJHs2D2e-0SrUHQS_ZTB0fiepsmU/edit).

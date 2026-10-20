@@ -75,7 +75,7 @@ MXNet 的 [Gluon](https://mxnet.incubator.apache.org/api/python/gluon.html) 就�
 
 同樣的在 PL 社群裡， ML 工程師應該要花更多時間注意傳統的自動微分（AD）社群。 ML 語言可以從頂尖的程式語言設計上得到[支援微分為真的第一公民（first-class）](https://arxiv.org/pdf/1611.03416.pdf)的靈感。這樣的語言可以簡單地混合符號和 runtime 技術（這可以幫忙以上提到的取捨）、混合前向及反向模式的 AD （以增進效能及記憶體使用），以及[區別不同的 GPU kernels](https://mikeinnes.github.io/2017/08/24/cudanative.html) ― 以上都沒有任何效能流失。
 
-ML 研究將會不斷地需要更多強大的型別系統，使用者定義型別及更多延伸意義。滿足於 NVIDIA GPUs 上寫死的 strided array 的日子已經過去了；尖端技術相關的[稀疏機器學習](https://people.eecs.berkeley.edu/~elghaoui/Pubs/cidu2011_final.pdf)，新硬體像是 [TPU](https://cloud.google.com/tpu/)、[Nervana](https://www.intelnervana.com/) 和 [FPGA](https://www.forbes.com/sites/moorinsights/2017/08/28/microsoft-fpga-wins-versus-google-tpus-for-ai/#53b33c373904)，以及多樣的部署目標像是 [ARM 晶片](https://www.wired.com/story/google-raspberry-pi-ai/)或是 [iPhone 的 CoreML 晶片](https://developer.apple.com/documentation/coreml)都渴望更高層級的彈性。為每個新的開發項目[大規模重構 C++ 的核心程式碼](https://github.com/tensorflow/tensorflow/pull/5267/files)是不會有幫助的。
+ML 研究將會不斷地需要更多強大的型別系統，使用者定義型別及更多延伸意義。滿足於 NVIDIA GPUs 上寫死的 strided array 的日子已經過去了；尖端技術相關的[稀疏機器學習](https://people.eecs.berkeley.edu/~elghaoui/Pubs/cidu2011_final.pdf)，新硬體像是 [TPU](https://cloud.google.com/tpu/)、[Nervana](https://www.intelnervana.com/) 和 [FPGA](https://www.forbes.com/sites/moorinsights/2017/08/28/microsoft-fpga-wins-versus-google-tpus-for-ai/#53b33c373904)，以及多樣的部署目標像是 [ARM 晶片](https://www.wired.co.uk/article/google-raspberry-pi-ai)或是 [iPhone 的 CoreML 晶片](https://developer.apple.com/documentation/coreml)都渴望更高層級的彈性。為每個新的開發項目[大規模重構 C++ 的核心程式碼](https://github.com/tensorflow/tensorflow/pull/5267/files)是不會有幫助的。
 
 想像一個世界，在一個加入新硬體資源(或是新的資料表示法)可以簡單地被使用者透過高階語言達成，不需要改變原本的系統。這邊我們期望 ML 系統可以從現存已經可以輕鬆[處理這些問題](https://arxiv.org/pdf/1604.03410.pdf)的數值計算語言借鏡。
 

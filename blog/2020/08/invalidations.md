@@ -330,7 +330,7 @@ It's worth noting that the task of improving code is never finished, and this is
 ## Tools for analyzing and fixing invalidations
 
 Recently, the [SnoopCompile] package gained the ability to analyze invalidations and help developers fix them.
-Because these tools will likely change over time, this blog post will only scratch the surface; people who want to help fix invalidations are encouraged to read [SnoopCompile's documentation](https://juliadebug.github.io/SnoopCompile.jl/dev/) for further detail.
+Because these tools will likely change over time, this blog post will only scratch the surface; people who want to help fix invalidations are encouraged to read [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/dev/) for further detail.
 There is also a [video](https://www.youtube.com/watch?v=7VbXbI6OmYo) available with a live-session fixing a real-world invalidation, which might serve as a useful example.
 
 But to give you a taste of what this looks like, here are a couple of screenshots.
@@ -355,7 +355,7 @@ with `ascend`:
 
 ![snoopr_simd_ascend](/assets/blog/2020-invalidations/SIMD_ascend.png)
 
-The [SnoopCompile documentation](https://juliadebug.github.io/SnoopCompile.jl/stable/tutorials/invalidations/) has information about how to navigate this interactive menu,
+The [SnoopCompile documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) has information about how to navigate this interactive menu,
 and how to interpret the results to identify a fix, but in very rough terms
 what's happening is that `deserialize_msg` is creating a [`Distributed.CallWaitMsg`](https://github.com/JuliaLang/julia/blob/5be3a544250a3c13de8d8ef2b434953005aee5c3/stdlib/Distributed/src/messages.jl#L26-L30) with very poor *a priori* type information (all arguments are inferred to be of type `Any`);
 since the `args` field of a `CallWaitMsg` must be a `Tuple`, and because inference doesn't know that the supplied argument is already a `Tuple`, it calls `convert(Tuple, args)` so as to ensure it can construct the `CallWaitMsg` object.
@@ -363,7 +363,7 @@ But SIMD defines a new `convert(Tuple, v::Vec)` method which has greater specifi
 and so loading the SIMD package triggers invalidation of everything that depends on the less-specific method `convert(Tuple, ::Any)`.
 
 As is usually the case, there are several ways to fix this: we could drop the `::Tuple` in the definition of `struct CallWaitMsg`, because there's no need to call `convert` if the object is already known to have the correct type (which would be `Any` if we dropped the field type-specification, and `Any` is not restrictive).  Alternatively, we could keep the `::Tuple` in the type-specification, and use external knowledge that we have and assert that `args` is *already* a `Tuple` in `deserialize_msg` where it calls `CallWaitMsg`, thus informing Julia that it can afford to skip the call to `convert`.
-This is intended only as a taste of what's involved in fixing invalidations; more extensive descriptions are available in [SnoopCompile's documentation](https://juliadebug.github.io/SnoopCompile.jl/stable/tutorials/invalidations/) and the [video](https://www.youtube.com/watch?v=7VbXbI6OmYo).
+This is intended only as a taste of what's involved in fixing invalidations; more extensive descriptions are available in [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) and the [video](https://www.youtube.com/watch?v=7VbXbI6OmYo).
 
 But it also conveys an important point: most invalidations come from poorly-inferred code, so by fixing invalidations you're often improving quality in other ways.  Julia's [performance tips] page has a wealth of good advice about avoiding non-inferable code, and in particular cases (where you might know more about the types than inference is able to determine on its own) you can help inference by adding type-assertions.
 Again, some of the recently-merged "latency" pull requests to Julia might serve as instructive examples.
