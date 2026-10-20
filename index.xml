@@ -1766,7 +1766,7 @@
   <link> https://julialang.org/blog/2017/03/piday/index.html </link>
   <guid> https://julialang.org/blog/2017/03/piday/index.html </guid>
   <description>
-    <![CDATA[  Some fun with &pi; in Julia | &#33;pi &#40;/assets/blog/2017-03-14-piday/pi.png&#41; ^credit ...   ]]>
+    <![CDATA[  A Pi Day tour of π in Julia: how Julia represents π, computing it with inline assembly and Taylor series &#40;Madhava and Machin&#41;, and finding guaranteed bounds with interval arithmetic.  ]]>
   </description>  
     
   <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>  
