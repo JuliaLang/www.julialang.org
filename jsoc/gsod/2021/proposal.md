@@ -1,3 +1,4 @@
+@def description = "Julia's Google Season of Docs 2021 proposal: create a comprehensive contributing guide for the Julia ecosystem."
 # Google Season of Docs 2021 Proposal
 
 ## PROPOSAL TITLE - Create a Comprehensive Julia Contributing Guide

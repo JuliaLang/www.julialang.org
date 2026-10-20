@@ -1,3 +1,4 @@
+@def description = "Julia GSoC project ideas for CliMA, a new open-source climate model built in Julia for GPUs, including ClimaExplorer, an interactive visualizer of model output."
 # CliMA: A New Open-Source Climate Model Running on GPUs
 
 Climate models are complex codes that simulate Earth's climate system

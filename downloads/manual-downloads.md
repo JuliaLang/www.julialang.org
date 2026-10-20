@@ -1,3 +1,4 @@
+@def description = "Download official Julia binaries for Windows, macOS, Linux and FreeBSD, plus source tarballs, checksums and the long-term support (LTS) release."
 @def title = "Manual Downloads"
 
 ~~~

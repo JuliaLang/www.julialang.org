@@ -1,3 +1,4 @@
+@def description = "How to find Julia packages among the 12,000+ in the General registry, plus the package manager, download statistics and binary build infrastructure."
 ## Julia Packages
 
 The Julia ecosystem contains over 12,000 packages that are registered in the [General registry](https://github.com/JuliaRegistries/General), which means that finding the right package can be a challenge. Usually, searching with a package name with a `.jl` extension on a search engine helps find the right page quickly. For example, to search for the Julia dataframes package, [search for dataframes.jl](https://www.google.com/search?q=dataframes.jl&oq=dataframes.jl).

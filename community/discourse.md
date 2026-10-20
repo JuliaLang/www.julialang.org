@@ -1,3 +1,4 @@
+@def description = "Discourse is the main online discussion forum for Julia: ask questions, follow announcements, share new packages and advertise Julia jobs and events."
 # Discourse
 
 The primary online discussion venue for Julia is the [Discourse forum](https://discourse.julialang.org/). Discourse is the right place to do any of the following:

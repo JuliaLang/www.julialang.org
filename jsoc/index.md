@@ -1,5 +1,5 @@
 @def title = "Julia Seasons of Contributions"
-@def description = "Julia Seasons of Contributions (JSoC) — seasonal programs for funding and mentoring developers to contribute to the Julia open source ecosystem, including Google Summer of Code (GSoC) and NumFOCUS Small Development Grants."
+@def description = "Julia Seasons of Contributions (JSoC): programs that fund and mentor developers to contribute to Julia, including Google Summer of Code (GSoC)."
 
 ~~~
 <!--

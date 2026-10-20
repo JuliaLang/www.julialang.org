@@ -1,3 +1,4 @@
+@def description = "Julia GSoC project from JuliaMusic on music data analysis: MIDIfication of music from wave files to study timing and intensity of performances."
 # Music data analysis - Summer of Code
 
 [JuliaMusic](https://github.com/JuliaMusic) is an organization providing packages and functionalities that allow analyzing the properties of music performances. 

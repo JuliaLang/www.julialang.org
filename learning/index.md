@@ -1,3 +1,4 @@
+@def description = "Get started learning Julia with free video courses, the Exercism Julia track, the manual, tutorials, books and university classes that use Julia."
 @def title="Get started with Julia"
 @def hasmap = true
 

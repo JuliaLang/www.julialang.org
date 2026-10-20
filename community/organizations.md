@@ -1,3 +1,4 @@
+@def description = "A list of the GitHub organizations in the Julia ecosystem, grouped by domain, from general tooling to data science, machine learning, science and engineering."
 ## Julia Organizations
 
 Something unique about the Julia Language is the way [the community self organizes into GitHub Organizations](https://youtu.be/cLFfTE2KWrk?t=644). This allows for a higher degree of collaboration and structure that ultimately enables each of these communities to be self sustaining.

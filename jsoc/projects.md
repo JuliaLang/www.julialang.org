@@ -1,3 +1,4 @@
+@def description = "Julia Google Summer of Code project ideas organized by domain: scientific computing, machine learning, HPC, quantum, tooling and more."
 @def title = "GSoC Projects"
 
 # Projects

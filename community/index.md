@@ -1,3 +1,4 @@
+@def description = "The Julia community: community standards, Discourse, GitHub and chat channels, local meetups, events, the annual user survey and GitHub organizations."
 @def title="Community"
 @def hasmap = true
 

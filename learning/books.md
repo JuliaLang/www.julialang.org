@@ -1,3 +1,4 @@
+@def description = "Books on Julia programming, from general introductions to data science, machine learning, statistics, scientific computing, optimization and more."
 ## Books
 
 Have a Julia book you want added to this list? Please [submit a pull request](https://github.com/JuliaLang/www.julialang.org/blob/main/learning/books.md).

@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects from JuliaGeo on geospatial processing: spherical visualization of geographic data with GeoMakie.jl and new GeometryOps.jl algorithms."
 # JuliaGeo: Geospatial processing in Julia
 
 The [JuliaGeo](https://github.com/JuliaGeo) collaboration 

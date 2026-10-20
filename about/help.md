@@ -1,3 +1,4 @@
+@def description = "Where to get help with Julia: getting started guides, the FAQ, Discourse, chat channels, bug and security reports, finding packages and contributing."
 ## New to Julia?
  - Read the [Getting Started tutorial](https://docs.julialang.org/en/v1/manual/getting-started/).
  - Do you learn best via programming books? Check out the [full list of Julia Books](/learning/#books).

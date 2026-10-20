@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for TopOpt.jl topology optimization: testing and benchmarks, machine learning, rectilinear grids, adaptive meshes and heat transfer."
 # TopOpt Projects – Summer of Code
 
 [TopOpt.jl](https://github.com/JuliaTopOpt/TopOpt.jl) is a [topology optimization](https://en.wikipedia.org/wiki/Topology_optimization) package written in pure Julia. Topology optimization is an exciting field at the intersection of shape representation, physics simulations and mathematical optimization, and the Julia language is a great fit for this field. To learn more about `TopOpt.jl`, check the following [JuliaCon talk](https://www.youtube.com/watch?v=sBqdkxPXluU).

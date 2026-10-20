@@ -1,3 +1,4 @@
+@def description = "Julia's commitment to diversity and inclusion, following the NumFOCUS Code of Conduct and Diversity Statement, and our efforts to build an inclusive community."
 # Diversity
 
 As a [NumFocus supported project](https://numfocus.org), we abide by their [Code of Conduct and Diversity Statement](https://numfocus.org/code-of-conduct):

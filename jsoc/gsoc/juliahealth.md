@@ -1,3 +1,4 @@
+@def description = "JuliaHealth GSoC projects on open-source healthcare tools: RAG LLM workflows, medical imaging, neurosymbolic medical AI and MRI simulation with KomaMRI."
 # JuliaHealth Projects – Summer of Code
 
 JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards.

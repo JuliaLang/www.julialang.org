@@ -1,3 +1,4 @@
+@def description = "The Julia Stewards and how to report and resolve conflicts or violations of the Julia Community Standards, including how to contact them."
 # Julia Community - Stewards
 
 The spirit of community is crucial to free/open-source development. In the large majority of cases, interactions are naturally constructive, but in rare cases conflict can arise. This document explains the mechanisms for conflict reporting and resolution within the Julia community, to handle violations of the [Julia Community Standards](/community/standards/).

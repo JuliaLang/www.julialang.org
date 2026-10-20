@@ -1,3 +1,4 @@
+@def description = "Archive of Julia's Google Summer of Code and Google Season of Docs projects since 2014, with links to each year's contributors and projects."
 @def title = "JSoC Archives"
 
 # Julia Seasons of Contributions Archives

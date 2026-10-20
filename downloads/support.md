@@ -1,3 +1,4 @@
+@def description = "Supported Julia versions (stable and LTS), operating systems, architectures and GPU accelerators, with the support tier for each platform."
 ## Supported Julia versions
 
 @@row @@col-8

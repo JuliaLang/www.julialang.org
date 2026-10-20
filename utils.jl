@@ -39,8 +39,13 @@ A full example can be found in `blog/2020/05/rr.md`.
 function hfun_meta()
     title = locvar(:title)
     isnothing(title) && (title = "The Julia Language")
+    # Page description: blog posts set `rss_description` (which also feeds the RSS
+    # feed), other pages set `description` so they stay out of the feed.
+    isblank(d) = isnothing(d) || isempty(strip(d))
     descr = locvar(:rss_description)
-    (isnothing(descr) || isempty(strip(descr))) && (descr = "Official website for the Julia programming language")
+    isblank(descr) && (descr = locvar(:description))
+    isblank(descr) && (descr = "Julia is a fast, dynamic, open-source programming language for scientific computing, data science, machine learning and more.")
+    descr = strip(descr)
     p = "property"
     # Build page URL for og:url
     website_url = strip(globvar(:website_url), '/')
@@ -62,6 +67,10 @@ function hfun_meta()
     else
         meta = values(ogdflt)
     end
+    # <meta name="description"> mirrors og:description (including a user-provided one)
+    meta = collect(meta)
+    ogdescr = meta[findfirst(m -> m[2] == "og:description", meta)][3]
+    pushfirst!(meta, ("name", "description", ogdescr))
     base = locvar(:base)
     io = IOBuffer()
     for m in meta

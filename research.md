@@ -1,3 +1,4 @@
+@def description = "Research on and with Julia: how to cite Julia, prizes and awards received by Julia contributors, papers citing Julia and making packages citable."
 # Research
 
 Research on Julia is carried out at the [Julia Lab at MIT](https://julia.mit.edu) and at many universities worldwide. If you use Julia in your research, we request citing the following paper:

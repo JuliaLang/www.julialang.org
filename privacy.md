@@ -1,3 +1,4 @@
+@def description = "The Julia Language privacy policy: we follow the NumFOCUS Privacy Policy, and this page describes what data Julia collects and which services may retain it."
 The Julia Language is a fiscally sponsored project of [NumFOCUS](https://numfocus.org/privacy-policy), a nonprofit dedicated to supporting the open source scientific computing
 community. Like NumFOCUS, we value the privacy of our users. **We comply with the [NumFOCUS Privacy Policy](https://numfocus.org/privacy-policy)**, which can be found at
 [https://numfocus.org/privacy-policy](https://numfocus.org/privacy-policy).

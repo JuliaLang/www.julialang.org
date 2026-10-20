@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for Herb.jl, a library for program synthesis that generates programs from specifications: optimizations and HerbLearn integration."
 # Herb.jl Projects
 
 ![Herb Logo](https://raw.githubusercontent.com/Herb-AI/Herb.jl/refs/heads/documentation/docs/src/assets/herb.png)

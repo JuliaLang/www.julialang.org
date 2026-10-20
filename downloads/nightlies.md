@@ -1,3 +1,4 @@
+@def description = "Nightly Julia builds: bleeding-edge developer preview binaries for Windows, macOS, Linux and FreeBSD, not intended for normal use."
 
 @def title = "Julia Downloads (nightly binaries)"
 

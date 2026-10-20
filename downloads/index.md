@@ -1,3 +1,4 @@
+@def description = "Install Julia with juliaup on Windows, macOS and Linux, then see next steps, platform support tiers and the official domains used by Julia infrastructure."
 @def title = "Installing Julia"
 
 ~~~

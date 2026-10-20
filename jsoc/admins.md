@@ -1,3 +1,4 @@
+@def description = "The Julia Seasons of Contributions (JSoC) program admins, who run Google Summer of Code and Season of Docs for Julia, and how to join them."
 @def title = "JSoC Program Admins"
 
 # Julia Season of Contributions Program Admins

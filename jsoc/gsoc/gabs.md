@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for Gabs.jl on simulating Gaussian quantum information: non-Gaussian state simulation, matrix product states and cluster states."
 # Simulations of Gaussian quantum information - Summer of Code
 
 Quantum harmonic oscillators are important modalities for quantum computation and quantum networking. A class of them, known as Gaussian bosonic systems, are efficient to simulate on a classical computer. Although such systems do not provide quantum computational advantage, they are present in most protocols and algorithms in continuous variable quantum information. [Gabs.jl](https://github.com/apkille/Gabs.jl) is a Julia library designed to enable fast simulations of Gaussian bosonic circuits and serve as a sandbox for quantum hardware and protocol design.

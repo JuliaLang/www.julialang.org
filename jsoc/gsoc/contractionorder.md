@@ -1,3 +1,4 @@
+@def description = "Julia GSoC project on tensor network contraction order optimization and hyper-graph visualization with OMEinsum.jl and TensorOperations.jl."
 # Tensor network contraction order optimization and visualization – Summer of Code
 
 [OMEinsum.jl](https://github.com/under-Peter/OMEinsum.jl) is a pure Julia package for tensor network computation,

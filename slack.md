@@ -1,3 +1,4 @@
+@def description = "Join the Julia Language Slack, an active community of over 15,000 members for informal conversation, plus how to log in and contact the Slack admins."
 # The Julia Language Slack
 
 The Julia Language has an active Slack workspace/community with over 15,000 members and over 3 million messages sent. Slack is a space to have quick and informal correspondence with others in the community. We ask that if you have Julia usage questions, you post them on [Discourse](https://discourse.julialang.org) so others can benefit from them. You could also use Stack Overflow but the Discourse community is much more welcoming (in our opinion).

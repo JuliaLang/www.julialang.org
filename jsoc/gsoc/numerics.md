@@ -1,3 +1,4 @@
+@def description = "Julia GSoC numerical projects: matrix functions, interval arithmetic, guaranteed root finding and ODE solving, bignums, special functions and optimization."
 @def mintoclevel = 2
 
 # Numerical Projects – Summer of Code

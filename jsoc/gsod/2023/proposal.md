@@ -1,3 +1,4 @@
+@def description = "Julia's Google Season of Docs 2023 proposal: build usage guides and core documentation for Tidier.jl."
 # Google Season of Docs 2023 Proposal
 
 ## PROPOSAL TITLE - Build Tidier.jl Usage Guides and Core Documentation

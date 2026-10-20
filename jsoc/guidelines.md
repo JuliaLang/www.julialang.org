@@ -1,3 +1,4 @@
+@def description = "How to apply to Google Summer of Code and Season of Docs with Julia: connecting with mentors, where to submit, and what to put in your application."
 @def title = "Application Guidelines"
 
 # Application Guidelines

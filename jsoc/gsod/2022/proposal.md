@@ -1,3 +1,4 @@
+@def description = "Julia's Google Season of Docs 2022 proposal: document the machine learning models available in MLJ.jl."
 # Google Season of Docs 2022 Proposal
 
 ## PROPOSAL TITLE - Documenting Machine Learning Models in MLJ.jl

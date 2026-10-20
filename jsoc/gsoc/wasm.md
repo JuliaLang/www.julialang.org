@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for the web platform: WebAssembly code generation, threading, JavaScript and DOM integration, native dependencies and deployment."
 
 # Web Platform Projects – Summer of Code
 

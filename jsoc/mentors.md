@@ -1,3 +1,4 @@
+@def description = "Information for Julia GSoC/JSoC mentors: how to become a mentor, propose a project, mentor expectations and the contributor selection process."
 @def title = "GSoC/JSoC Mentors"
 
 # GSoC/JSoC Mentors

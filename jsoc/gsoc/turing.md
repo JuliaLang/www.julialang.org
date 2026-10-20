@@ -1,3 +1,4 @@
+@def description = "Julia GSoC 2026 projects for Turing.jl probabilistic programming: a new Gibbs sampler, Mooncake.jl rules and threads, and Pigeons.jl integration."
 # Turing Projects - Google Summer of Code 2026
 
 [Turing.jl](https://turinglang.org/) is a universal probabilistic programming language embedded in Julia.

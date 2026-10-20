@@ -1,3 +1,4 @@
+@def description = "Julia organizations and packages with contributor guides offering ways to get started, from the General registry to Flux.jl and JuliaImages."
 
 # Organizations and Packages
 

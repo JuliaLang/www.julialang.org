@@ -1,3 +1,4 @@
+@def description = "Julia GSoC project for FreeBird.jl, an enhanced sampling toolbox for materials discovery: molecular dynamics nested sampling with Molly.jl."
 # FreeBird.jl - Summer of Code
 
 [FreeBird.jl](https://github.com/wexlergroup/FreeBird.jl) is a Julia package of enhanced sampling methods, such as nested sampling, Wang-Landau sampling, Metropolis Monte Carlo, for accelerating materials discovery through statistical mechanics. It is designed to be an extensible platform for computationally studying phase equilibria across a diverse range of atomistic and molecular systems, with easy extension to other phenomena.

@@ -1,3 +1,4 @@
+@def description = "Google Season of Docs project ideas for documentation work on Julia and its packages, with mentors and how to get in touch."
 @def title = "Google Season of Docs Projects"
 
 # Julia's Google Season of Docs Projects

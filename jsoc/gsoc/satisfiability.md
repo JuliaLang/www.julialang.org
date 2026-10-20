@@ -1,3 +1,4 @@
+@def description = "Julia GSoC project extending Satisfiability.jl, a native Julia interface for SMT solvers, with more SMT-LIB theories and expanded capabilities."
 # An Idiomatic, Native Julia Interface for SMT - Summer of Code 2025
 
 Extending Satisfiability.jl with more SMT-LIB theories and expanded capabilities.

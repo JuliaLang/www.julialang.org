@@ -1,3 +1,4 @@
+@def description = "Julia GSoC tooling project: help develop JETLS, a new language server for Julia with type-sensitive diagnostics powered by JET.jl."
 # Tooling - Summer of Code
 
 ## Development of a new language server for Julia (350 hours)

@@ -1,3 +1,4 @@
+@def description = "Step-by-step tutorial on developing a Julia package with PkgTemplates.jl: create, test with GitHub Actions, and register it in the General registry."
 # How to develop a Julia package
 
 A package contains modules, tests, and documentation. It extends core Julia functionality. You can share your code with the community by developing a package. In this tutorial, you’ll learn how to develop a Julia package and register it to the [Julia General Registry](https://github.com/JuliaRegistries/General).  

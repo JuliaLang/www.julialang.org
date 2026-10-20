@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects in dynamical systems, complex systems and nonlinear dynamics with JuliaDynamics packages Agents.jl and DynamicalSystems.jl."
 # Dynamical systems, complex systems & nonlinear dynamics – Summer of Code
 
 

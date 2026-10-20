@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for Pythia, scalable machine learning time series regression for nowcasting and forecasting in economics and at scale."
 # Pythia – Summer of Code
 
 ## Machine Learning Time Series Regression

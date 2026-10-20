@@ -1,3 +1,4 @@
+@def description = "Universities and online courses that teach with Julia, including MOOCs such as MIT's Introduction to Computational Thinking and active university courses."
 @def hasmap = true
 
 # Julia in the classroom

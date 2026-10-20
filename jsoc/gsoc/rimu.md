@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for Rimu.jl, projector quantum Monte Carlo for quantum many-body problems: ab-initio quantum chemistry and multi-node load balancing."
 # Rimu.jl - Projector Quantum Monte Carlo - Summer of Code
 
 [Rimu.jl](https://github.com/RimuQMC/Rimu.jl) is a Julia package for finding ground states (and low-lying excited states) of quantum many-body problems with projector quantum Monte Carlo (using a flavour called full configuration interaction quantum Monte Carlo, FCIQMC) and with exact diagonalisation.

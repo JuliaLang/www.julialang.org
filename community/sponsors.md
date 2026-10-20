@@ -1,3 +1,4 @@
+@def description = "Organizations that support Julia by employing core developers, providing infrastructure and compute, funding development and sponsoring JuliaCon."
 # Sponsors
 
 In addition to the thousands of individuals who contribute to the Julia project in their personal capacities, we are grateful to a large number of companies and organizations that are supporting the continued growth of the Julia project and ecosystem.

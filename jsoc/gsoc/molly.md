@@ -1,3 +1,4 @@
+@def description = "Julia GSoC projects for Molly.jl, molecular dynamics in pure Julia: machine learning potentials, alchemical free energy simulations and Reactant support."
 # Molecular Simulation - Summer of Code
 
 Much of science can be explained by the movement and interaction of molecules. Molecular dynamics (MD) is a computational technique used to explore these phenomena, from noble gases to biological macromolecules. [Molly.jl](https://github.com/JuliaMolSim/Molly.jl) is a pure Julia package for MD, and for the simulation of physical systems more broadly. The package is currently under development with a focus on proteins and differentiable molecular simulation. There are a number of ways that the package could be improved:
