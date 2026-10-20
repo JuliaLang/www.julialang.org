@@ -1,6 +1,31 @@
 using Dates
 
 """
+    page_url(website_url, rpath)
+
+Public URL of the page built from source `rpath`, e.g. `blog/2024/05/post.md`
+gives `\$website_url/blog/2024/05/post/` and `downloads/index.md` gives
+`\$website_url/downloads/`.
+"""
+function page_url(website_url, rpath)
+    path = replace(rpath, r"(^|/)index\.(md|html)$" => s"\1")
+    path = replace(path, r"\.(md|html)$" => "/")
+    return "$website_url/$path"
+end
+
+"""
+    parse_pubdate(s)
+
+Parse a `published` page variable like "12 August 2021", returning `nothing`
+(with a warning) if it is not in that format.
+"""
+function parse_pubdate(s)
+    date = tryparse(Date, s, dateformat"d U Y")
+    isnothing(date) && @warn "Could not parse published date \"$s\" (expected e.g. \"12 August 2021\")"
+    return date
+end
+
+"""
     {{meta}}
 
 Plug in specific meta information for a blog page. The `meta` local page
@@ -20,13 +45,13 @@ function hfun_meta()
     # Build page URL for og:url
     website_url = strip(globvar(:website_url), '/')
     page_rpath = locvar(:fd_rpath)
-    page_url = isnothing(page_rpath) ? website_url : "$website_url/$(replace(page_rpath, r"\.md$" => "/"))"
+    url = isnothing(page_rpath) ? website_url : page_url(website_url, page_rpath)
     # default og properties, can be overwritten by the user
     ogdflt = (
         title = (p, "og:title", title),
         descr = (p, "og:description", descr),
         image = (p, "og:image", "/assets/images/julia-open-graph.png"),
-        url   = (p, "og:url", page_url),
+        url   = (p, "og:url", url),
         )
     # check what the user has provided (if anything) use defaults otherwise
     meta = locvar(:meta)
@@ -37,10 +62,16 @@ function hfun_meta()
     else
         meta = values(ogdflt)
     end
+    base = locvar(:base)
     io = IOBuffer()
     for m in meta
+        content = string(m[3])
+        # Resolve {{base}} (some posts use a `base` page variable in meta values)
+        isnothing(base) || (content = replace(content, "{{base}}" => base))
+        # og:image must be an absolute URL
+        m[2] == "og:image" && startswith(content, "/") && (content = "$website_url$content")
         # HTML-escape double quotes and newlines in content to produce valid attributes
-        escaped = replace(string(m[3]), "&" => "&amp;", "\"" => "&quot;", "\n" => " ")
+        escaped = replace(content, "&" => "&amp;", "\"" => "&quot;", "\n" => " ")
         write(io, "<meta $(m[1])=\"$(m[2])\" content=\"$(escaped)\">\n")
     end
     return String(take!(io))
@@ -77,11 +108,11 @@ function hfun_blogposts()
                 title = pagevar(surl, :title; default="Untitled")
                 Franklin.PAGEVAR_DEPTH[] = 0
                 pubdate = pagevar(surl, :published)
-                if isnothing(pubdate)
+                date = isnothing(pubdate) ? nothing : parse_pubdate(pubdate)
+                if isnothing(date)
                     date    = "$ys-$ms-01"
                     days[i] = 1
                 else
-                    date    = Date(pubdate, dateformat"d U Y")
                     days[i] = day(date)
                 end
                 lines[i] = "<a href=\"$url\">$title</a> $date"
@@ -135,8 +166,8 @@ function hfun_recentblogposts()
                 surls[i] = surl
                 Franklin.PAGEVAR_DEPTH[] = 0
                 pubdate  = pagevar(surl, :published)
-                days[i]  = isnothing(pubdate) ?
-                                1 : day(Date(pubdate, dateformat"d U Y"))
+                date     = isnothing(pubdate) ? nothing : parse_pubdate(pubdate)
+                days[i]  = isnothing(date) ? 1 : day(date)
             end
             # go over month post in antichronological orders
             sp = sortperm(days, rev=true)
@@ -151,7 +182,7 @@ function hfun_recentblogposts()
     end
     #
     io = IOBuffer()
-    for (surl, date) in recent
+    for (surl, date) in recent[1:nfound]
         url   = "/$surl/"
         Franklin.PAGEVAR_DEPTH[] = 0
         title = pagevar(surl, :title)
@@ -266,11 +297,9 @@ function hfun_article_schema()
     # Parse the published date into ISO 8601
     pubdate_str = locvar(:published)
     isnothing(pubdate_str) && return ""
-    date_iso = try
-        Dates.format(Date(pubdate_str, dateformat"d U Y"), "yyyy-mm-dd") * "T00:00:00+00:00"
-    catch
-        return ""
-    end
+    pubdate = parse_pubdate(pubdate_str)
+    isnothing(pubdate) && return ""
+    date_iso = Dates.format(pubdate, "yyyy-mm-dd") * "T00:00:00+00:00"
 
     # Get image URL from meta or use default
     image_url = "/assets/images/julia-open-graph.png"
@@ -296,8 +325,8 @@ function hfun_article_schema()
     # Returns a vector of (name, url_or_nothing) tuples.
     function parse_authors(raw)
         entries = Tuple{String,Union{String,Nothing}}[]
-        # Split on comma or " and " (but not inside tags)
-        for part in split(raw, r"\s*,\s*|\s+and\s+")
+        # Split on comma, " and " or ", and " (but not inside tags)
+        for part in split(raw, r"\s*,\s*(?:and\s+)?|\s+and\s+")
             part = strip(part)
             isempty(part) && continue
             # Try to extract href and link text from <a> tag
@@ -324,12 +353,21 @@ function hfun_article_schema()
     end
     author_entries = parse_authors(raw_authors)
 
+    # Escape strings for JSON (also strip any HTML tags and newlines)
+    function esc(s)
+        s = striptags(s)
+        s = replace(s, "\\" => "\\\\")
+        s = replace(s, "\"" => "\\\"")
+        s = replace(s, r"\s+" => " ")
+        strip(s)
+    end
+
     # Build the author JSON entries
     function author_obj((name, url))
         if url !== nothing
-            """{"@type": "Person", "name": "$name", "url": "$url"}"""
+            """{"@type": "Person", "name": "$(esc(name))", "url": "$(esc(url))"}"""
         else
-            """{"@type": "Person", "name": "$name"}"""
+            """{"@type": "Person", "name": "$(esc(name))"}"""
         end
     end
     author_json = if length(author_entries) == 1
@@ -342,23 +380,12 @@ function hfun_article_schema()
 
     website_url = strip(globvar(:website_url), '/')
 
-    # Get the page URL
-    page_url = "$website_url/$(Franklin.locvar(:fd_rpath))"
-    # Normalize: /blog/2024/05/post.md -> /blog/2024/05/post/
-    page_url = replace(page_url, r"\.md$" => "/")
+    # Get the page URL, e.g. /blog/2024/05/post.md -> /blog/2024/05/post/
+    url = page_url(website_url, Franklin.locvar(:fd_rpath))
 
     # Ensure image URL is absolute
     if startswith(image_url, "/")
         image_url = "$website_url$image_url"
-    end
-
-    # Escape strings for JSON (also strip any HTML tags and newlines)
-    function esc(s)
-        s = striptags(s)
-        s = replace(s, "\\" => "\\\\")
-        s = replace(s, "\"" => "\\\"")
-        s = replace(s, r"\s+" => " ")
-        strip(s)
     end
 
     return """
@@ -381,7 +408,7 @@ function hfun_article_schema()
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "$(esc(page_url))"
+        "@id": "$(esc(url))"
       }
     }
     </script>
