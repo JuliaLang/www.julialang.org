@@ -1,6 +1,7 @@
 [default]
 extend-ignore-words-re = ["^[a-zA-Z]?[a-zA-Z]?[a-zA-Z]?$"]
 
-[files]
-# Lockfiles list package names (e.g. Missings.jl), not prose
-extend-exclude = ["**/Manifest.toml"]
+[default.extend-words]
+# Package and identifier names in tools/ecosystem-images/Manifest.toml
+Missings = "Missings"
+ALPH = "ALPH"
