@@ -204,7 +204,7 @@ adopters have used these tools to eliminate anywhere from a few percent to the
 large majority of first-use latency.
 
 - Related blog post: [Tutorial on precompilation](/blog/2021/01/precompile_tutorial/)
-- [SnoopCompile.jl documentation](https://timholy.github.io/SnoopCompile.jl/stable/)
+- [SnoopCompile.jl documentation](https://juliadebug.github.io/SnoopCompile.jl/stable/)
 
 ## Binary loading speedups
 
