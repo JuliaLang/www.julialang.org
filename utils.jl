@@ -446,3 +446,50 @@ function hfun_all_gsoc_projects()
 	allmd = String(take!(md))
 	return fd2html(allmd, internal=true)
 end
+
+"""
+    {{software_schema}}
+
+schema.org `SoftwareApplication` JSON-LD describing Julia, used on the home
+page and `/downloads/`. Version and release date come from `config.md`.
+"""
+function hfun_software_schema()
+    esc(s) = strip(replace(string(s), "\\" => "\\\\", "\"" => "\\\"", r"\s+" => " "))
+    website_url = strip(globvar(:website_url), '/')
+    version = esc(globvar(:stable_release))
+    date = tryparse(Date, strip(globvar(:stable_release_date)), dateformat"U d, Y")
+    isnothing(date) && @warn "Could not parse stable_release_date \"$(globvar(:stable_release_date))\" (expected e.g. \"October 14, 2026\")"
+    date_line = isnothing(date) ? "" : "\n  \"datePublished\": \"$(Dates.format(date, "yyyy-mm-dd"))\","
+    return """
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "@id": "$website_url/#software",
+      "name": "Julia",
+      "alternateName": "The Julia Programming Language",
+      "description": "Julia is a high-level, high-performance, dynamic programming language for technical computing.",
+      "url": "$website_url/",
+      "softwareVersion": "$version",$date_line
+      "operatingSystem": "Linux, macOS, Windows, FreeBSD",
+      "applicationCategory": "DeveloperApplication",
+      "license": "https://github.com/JuliaLang/julia/blob/master/LICENSE.md",
+      "downloadUrl": "$website_url/downloads/",
+      "releaseNotes": "https://github.com/JuliaLang/julia/blob/v$version/NEWS.md",
+      "image": "$website_url/assets/images/julia-open-graph.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "$website_url/#organization",
+        "name": "The Julia Programming Language",
+        "url": "$website_url/"
+      },
+      "sameAs": "https://github.com/JuliaLang/julia"
+    }
+    </script>
+    """
+end

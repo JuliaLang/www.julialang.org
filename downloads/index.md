@@ -11,6 +11,8 @@
   </div>
   <br>
 
+  <p>The current stable release is Julia {{stable_release}} ({{stable_release_date}}). The long-term support (LTS) release is Julia {{lts_release}}.</p>
+
   <div id="windows-instructions" style="display: none;">
     It appears that you are using Windows. Install Julia using the <a href="https://install.julialang.org/Julia.appinstaller">MSIX App Installer</a>. Alternatively, if you have access to the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>, you can install Julia by running the following in the command prompt. In case you are not using Windows, please follow the <a href="#" onclick="showUNIX(); return false;">Linux and macOS instructions</a>.<br><br>
     <pre><code class="language-plaintext cmdprompt-block">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code></pre>
