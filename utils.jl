@@ -464,5 +464,10 @@ function hfun_llms_txt()
         return string(val)
     end)
     write(joinpath(Franklin.path(:site), "llms.txt"), content)
+    # Keep the helper /llms/ page out of the sitemap. For .html pages the
+    # `sitemap_exclude` page variable is read before the page is converted, and
+    # `{{sitemap_opts exclude}}` throws in this Franklin version, so remove the
+    # entry directly.
+    delete!(Franklin.SITEMAP_DICT, Franklin.url_curpage())
     return hfun_redirect(["/llms.txt"])
 end
