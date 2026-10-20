@@ -3,13 +3,13 @@
 
 <url>
     <loc>https://julialang.org/blog/2018/04/tetris-and-you/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2018-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/05/juliacon-invitation/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2016-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -39,31 +39,31 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/07/multithreading-zh-cn/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2019-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2026/09/julia-1.13-highlights/index.html</loc>
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/01/moredots/index.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2017-01-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/08/2020-julia-user-and-developer-survey/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2020-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/03/parallelaccelerator/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2016-03-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -75,7 +75,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/10/compose3d-threejs/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2015-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -87,7 +87,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/11/julia-1.7-highlights/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -105,7 +105,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/11/launching-security-wg/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -117,13 +117,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2012-02-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/12/ml-language-compiler/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2018-12-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -135,19 +135,19 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2012/03/lang-next-talk-announcement/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2012-03-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/01/atom-work/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2016-01-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2014/08/julia-0.3-release/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2014-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -159,13 +159,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2014/08/juliacon-opt-session/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2014-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/04/biojulia2016/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2016-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -177,7 +177,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/06/diffeqbot/index.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2019-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -189,7 +189,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -207,7 +207,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2024/10/julia-1.11-highlights/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2024-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -219,7 +219,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2014/08/juliacon-opening-session/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2014-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -231,7 +231,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/05/jsoc19/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2019-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -255,85 +255,85 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/08/general-survey/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2021-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/09/juliacon2018/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2018-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2012-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/09/gsoc-derivative_operators/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-09-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2019-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/06/julia-0.6-release/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2023/07/PSA-dont-use-threadid/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2023-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/02/julia-entities/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2019-02-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2019-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/01/the-satellite-toolbox-ecosystem/index.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/11/artifacts/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2019-11-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/05/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/11/gsoc-ode/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2017-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/07/juliacon2021/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2021-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -345,67 +345,67 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2019-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2024/12/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2024-12-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2012/08/design-and-implementation-of-julia/index.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2012-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/07/gsoc-projects-announcement/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/10/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/10/auto-diff-in-julia/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2015-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2013/05/callback/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2013-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/08/juliacon-2020-wrapup/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2020-08-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/01/fluxdiffeq/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2019-01-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2013/03/julia-tutorial-MIT/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2013-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/08/one-point-zero/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2018-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -417,19 +417,19 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/05/jsoc-cfp/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2015-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/12/ml-pl-zh_tw/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2017-12-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/02/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -447,19 +447,19 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2012/03/shelling-out-sucks/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2012-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2013/04/put-this-in-your-pipe/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2013-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/05/extensible-broadcast-fusion/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2018-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -477,19 +477,19 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/08/sharks/index.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2021-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/08/one-point-zero-zh_cn/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2018-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/10/datastreams/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2015-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -507,31 +507,31 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/09/bio-parallel/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/09/julia-community-prizes/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2018-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/06/missing/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2018-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/05/rr/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2020-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/10/julia-1.12-highlights/index.html</loc>
-    <lastmod>2025-10-09</lastmod>
+    <lastmod>2025-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -543,7 +543,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/08/2019-julia-survey/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2019-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -555,37 +555,37 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/03/pifonts/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2018-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/09/GSOC-MCMC-with-flexible-numbers-of-parameters/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/07/iterators-in-julia-0.7/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2018-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/10/StructuredQueries/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2016-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/10/julia-0.5-highlights/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2016-10-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/01/contributhon/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2021-01-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -597,7 +597,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/06/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -615,7 +615,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/09/rr-memory-magic/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -633,7 +633,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2024/10/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2024-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -645,7 +645,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/02/iteration/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2016-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -663,7 +663,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/08/one-point-zero-zh_tw/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2018-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -675,7 +675,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/05/jsoc-gsoc2020/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2020-05-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -687,13 +687,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/02/gci-summary/index.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2020-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2024/11/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2024-11-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -717,49 +717,49 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2026/02/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/01/arrow/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2021-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2022/08/juliacon-highlights-2022/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2022-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/10/biojulia-sequence-analysis/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2015-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/04/gsod-2020-wrapup/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2021-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2022/02/10years/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2022-02-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/07/multithreading/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2019-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/10/julia-0.4-release/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2015-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -771,7 +771,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/12/dtable-performance-assessment/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2021-12-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -783,67 +783,67 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/12/artifacts-zh_cn/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2019-12-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/03/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-03-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/10/command-interpolation-for-dummies/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/03/julia-1.6-highlights/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/09/Pkgtutorial/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2018-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/11/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2026/03/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-21</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/08/gsoc-docs-in-juno/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2012/02/why-we-created-julia/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2012-02-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/08/GSoC2018-speech-recognition/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2018-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/12/ml-pl-cn/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2017-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -855,13 +855,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/08/invalidations/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2020-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2023/04/julia-1.9-highlights/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2023-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -873,31 +873,31 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/08/juliacon/index.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2017-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/12/ml-pl/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2017-12-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/08/one-point-zero-es/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2018-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2026/01/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2016-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -915,43 +915,43 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/09/biojulia2016-mid/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2016-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/09/Hamiltonian-Indirect-Inference/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/08/GSoC-Final-Summary/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2018-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/09/gsoc-2020-wrapup/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2020-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/02/gsoc2018-numfocus/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2018-02-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/04/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/08/union-splitting/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2018-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -969,7 +969,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/02/starting-workgroups/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -987,13 +987,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/08/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2024/09/juliacon-2025-announcement/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2024-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1005,67 +1005,67 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/09/gsoc-fenics/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2022/08/julia-1.8-highlights/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2022-08-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/08/juliacon-highlights/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2021-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/09/release-process-zh-cn/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2019-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/09/juliacon2016/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2016-09-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/09/profilers/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2019-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/03/julia-fresh-paper/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/08/GSoC2016-Graft/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2016-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2019-12-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2013-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/03/piday/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2017-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1077,13 +1077,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/08/julia-1.5-highlights/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2020-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2022/04/simple-chains/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2022-04-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1095,7 +1095,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/08/release-process/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2019-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1107,13 +1107,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2013/03/efficient-aggregates/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2013-03-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/10/julia-0.5-release/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2016-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1125,7 +1125,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/03/arrays-iteration/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2016-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1143,25 +1143,25 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/10/nullablearrays/index.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2015-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/01/snoopi_deep/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2021-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2024/05/gsoc-2024-fellows/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2024-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/03/debuggers/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2019-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1173,19 +1173,19 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/04/offset-arrays/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/02/light-graphs/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2019-02-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/03/cudanative/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2017-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1203,31 +1203,31 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/01/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2019-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2013-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/12/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2012/02/talk-announcement/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2012-02-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1251,13 +1251,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2025/09/this-month-in-julia-world/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2025-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/04/repl-0.6-highlights/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1287,49 +1287,49 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/10/DEQ/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2021-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2023/12/julia-1.10-highlights/index.html</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2023-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/05/raspberry-pi-julia/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/08/julia-user-developer-survey/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2013/04/distributed-numerical-optimization/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2013-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/08/dsl/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/05/juliacon-preview/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2015-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/10/gsoc-NeuralNetDiffEq/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2017-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1347,7 +1347,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2018-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1365,13 +1365,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2020-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/10/glvisualize/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2015-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1389,13 +1389,13 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/04/gsoc/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2016-04-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2021/01/precompile_tutorial/index.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1407,7 +1407,7 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2013/09/fast-numeric/index.html</loc>
-    <lastmod>2024-10-05</lastmod>
+    <lastmod>2013-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
