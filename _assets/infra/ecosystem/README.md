@@ -11,7 +11,7 @@ The four logos come from the projects' own repositories, under their licences:
 | File | Source | Licence |
 |---|---|---|
 | `autodiff.svg` | [Enzyme.jl `docs/src/assets/logo.svg`](https://github.com/EnzymeAD/Enzyme.jl/blob/main/docs/src/assets/logo.svg) | MIT |
-| `gpu.webp` | [juliagpu.org `_assets/logo_crop.png`](https://github.com/JuliaGPU/juliagpu.org/blob/master/_assets/logo_crop.png) | JuliaGPU site asset |
+| `gpu.webp` | [juliagpu.org `_assets/logo_crop.png`](https://github.com/JuliaGPU/juliagpu.org/blob/master/_assets/logo_crop.png) | MIT |
 | `data.webp` | [DataFrames.jl `docs/src/assets/logo.png`](https://github.com/JuliaData/DataFrames.jl/blob/main/docs/src/assets/logo.png) | MIT |
 | `apps.svg` | [PythonCall.jl `docs/src/assets/logo.svg`](https://github.com/JuliaPy/PythonCall.jl/blob/main/docs/src/assets/logo.svg) | MIT |
 
