@@ -139,6 +139,7 @@ jobs:
         working-directory: visual-tests
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
+          PLAYWRIGHT_OUTCOME: ${{ steps.playwright.outputs.outcome }}
         run: node report-diffs.js
 
       - name: Save result metadata

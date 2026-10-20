@@ -12,7 +12,8 @@ concurrency:
 jobs:
   doc-preview-cleanup:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true # don't do this if PR is closed/reopened, b/c this is common way of re-triggering CI
+    # Also clean up PRs closed without merging. If a PR is reopened (a common
+    # way of re-triggering CI), its build redeploys the preview.
     permissions:
       contents: write # Needed to be able to push to `gh-preview` branch
     steps:
