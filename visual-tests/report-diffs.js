@@ -36,7 +36,21 @@ function displayName(name) {
 }
 
 function generateComment(diffs) {
-  if (diffs.length === 0) return "";
+  if (diffs.length === 0) {
+    // Playwright also exits with code 1 for failures other than screenshot
+    // mismatches (e.g. a navigation timeout); report those rather than
+    // posting an empty comment.
+    if (process.env.PLAYWRIGHT_OUTCOME !== "failure") return "";
+    const repo = process.env.GITHUB_REPOSITORY || "";
+    const runId = process.env.GITHUB_RUN_ID || "";
+    const logs = repo && runId
+      ? `the [workflow logs](https://github.com/${repo}/actions/runs/${runId})`
+      : "the workflow logs";
+    return [
+      "## Visual Regression Check",
+      `:warning: The visual tests failed without producing screenshot diffs. See ${logs} for details.`,
+    ].join("\n");
+  }
 
   const pages = [...new Set(diffs.map(({ name }) => {
     const m = name.match(/^pages-(.+)-visual-snapshot/);
