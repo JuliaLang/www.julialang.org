@@ -564,18 +564,12 @@ a.header-anchor {
   font-size: 0.875rem;
 }
 
-img.ecosystem-image,
-img.ecosystem-image-tall {
+img.ecosystem-image {
   float: left;
   margin-right: 20px;
-}
-
-img.ecosystem-image {
   width: 400px;
-}
-
-img.ecosystem-image-tall {
-  height: 280px;
+  max-width: 100%;
+  height: auto;
 }
 
 .page-heading {
@@ -1891,8 +1885,7 @@ pre .bash-block::before {
 }
 
 /* Dark: Ecosystem tab images */
-[data-theme="dark"] img.ecosystem-image,
-[data-theme="dark"] img.ecosystem-image-tall {
+[data-theme="dark"] img.ecosystem-image {
   border-radius: 6px;
   opacity: 0.85;
 }
