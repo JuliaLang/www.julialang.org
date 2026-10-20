@@ -36,7 +36,7 @@ For recent news on Julia and interesting conversations with community members, c
 
 In search of contributors and new maintainers (specify novice/moderate/expert and internals/domain background necessary):
 
-* The [Graphs.jl](http://graphs.jl) repo features a few bounties on [integrating external graph theory libraries](https://github.com/JuliaGraphs/Graphs.jl/issues?q=is%3Aissue%20state%3Aopen%20label%3Abounty) better with the rest of the Graphs ecosystem.
+* The [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl) repo features a few bounties on [integrating external graph theory libraries](https://github.com/JuliaGraphs/Graphs.jl/issues?q=is%3Aissue%20state%3Aopen%20label%3Abounty) better with the rest of the Graphs ecosystem.
 * [JuliaPackageComparisons](https://discourse.julialang.org/t/juliapackagecomparisons-is-looking-for-a-new-maintainer/130667) is a wiki-like resource comparing different julia tools. It is in search of a new maintainer.
 * The Center for Quantum Networks is running [many bounties and minigrants](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md) on a variety of support packages for quantum information science.
 * [SciML is running a large set of funded small projects](https://sciml.ai/small_grants/) – a great opportunity to contribute to the community and be paid for it.

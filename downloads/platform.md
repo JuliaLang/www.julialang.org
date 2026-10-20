@@ -30,7 +30,7 @@ To add Julia's `bin` folder (with full path) to `PATH` environment variable, you
 export PATH="$PATH:/path/to/<Julia directory>/bin"
 ```
 
-Apart from this, there are several ways through which you can change environment variable. You can follow [this guide](https://help.ubuntu.com/community/EnvironmentVariables) to find out a way convenient for you.
+Apart from this, there are several ways through which you can change environment variable. You can follow [this guide](https://web.archive.org/web/20250109070707/https://help.ubuntu.com/community/EnvironmentVariables) to find out a way convenient for you.
 
 ### Uninstallation
 
