@@ -1674,8 +1674,12 @@ pre .bash-block::before {
   background: var(--dm-bg-surface);
   border-color: var(--dm-border);
 }
-/* Keep the image box light in dark mode: the artwork is drawn for white backgrounds */
+/* Plot images have dark versions (swapped by detectdark.js); the box matches their
+   background. Logos are drawn for white, so their box stays light. */
 [data-theme="dark"] .eco-showcase .eco-img {
+  background: #232338;
+}
+[data-theme="dark"] .eco-showcase .eco-img-contain {
   background: #e9ecf0;
 }
 [data-theme="dark"] .eco-text h3 {

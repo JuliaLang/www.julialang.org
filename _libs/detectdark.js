@@ -25,6 +25,7 @@
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
     updateLogo(theme === 'dark');
+    updateThemedImages(theme === 'dark');
   }
 
   function changeFilePath(originalPath, newFileName) {
@@ -38,6 +39,18 @@
     var imgElements = document.getElementsByClassName('navbarjulialogo');
     for (var i = 0; i < imgElements.length; i++) {
       imgElements[i].src = changeFilePath(imgElements[i].src, julialogo);
+    }
+  }
+
+  // Images with a data-src-dark attribute (e.g. the Ecosystem carousel) get
+  // that file in dark mode and their original src otherwise.
+  function updateThemedImages(isDark) {
+    var imgElements = document.querySelectorAll('img[data-src-dark]');
+    for (var i = 0; i < imgElements.length; i++) {
+      var img = imgElements[i];
+      if (!img.dataset.srcLight) img.dataset.srcLight = img.getAttribute('src');
+      var wanted = isDark ? img.dataset.srcDark : img.dataset.srcLight;
+      if (img.getAttribute('src') !== wanted) img.setAttribute('src', wanted);
     }
   }
 

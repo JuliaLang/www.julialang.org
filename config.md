@@ -9,7 +9,7 @@ prepath = get(ENV, "JULIA_FRANKLIN_PREPATH", "")
 # NOTE: don't change what's below
 div_content = "container main"  # instead of franklin-content
 author = ""
-ignore = ["visual-tests/"]
+ignore = ["visual-tests/", "tools/ecosystem-images/"]
 
 # Templating of the Downloads
 # NOTE: When updating for a new release, make sure to also rerun
