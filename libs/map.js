@@ -50,9 +50,11 @@ function addMarker(markers, group) {
 if (document.getElementById('map')) {
     const map = L.map('map').setView([20, 15], 2);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        noWrap: true
+        noWrap: true,
+        // Don't request tiles past the edge of the world, which OSM rejects (HTTP 400)
+        bounds: [[-90, -180], [90, 180]]
     }).addTo(map);
 
     const markers = L.markerClusterGroup({
