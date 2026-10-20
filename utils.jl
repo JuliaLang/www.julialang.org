@@ -446,3 +446,23 @@ function hfun_all_gsoc_projects()
 	allmd = String(take!(md))
 	return fd2html(allmd, internal=true)
 end
+
+"""
+    {{llms_txt}}
+
+Writes `__site/llms.txt` (see https://llmstxt.org) from the template
+`_layout/llms.txt`, replacing `{{var}}` with the global variable `var` from
+`config.md` (e.g. `{{stable_release}}`), so that the release information stays
+current. Called from `llms.html`, whose own output is a redirect to `/llms.txt`.
+"""
+function hfun_llms_txt()
+    template = read(joinpath(Franklin.path(:layout), "llms.txt"), String)
+    content = replace(template, r"\{\{\s*([A-Za-z_][A-Za-z0-9_]*)\s*\}\}" => function (m)
+        name = String(match(r"[A-Za-z_][A-Za-z0-9_]*", m).match)
+        val = globvar(name)
+        val === nothing && error("llms.txt: unknown global variable `$name`")
+        return string(val)
+    end)
+    write(joinpath(Franklin.path(:site), "llms.txt"), content)
+    return hfun_redirect(["/llms.txt"])
+end

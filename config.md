@@ -13,7 +13,8 @@ ignore = ["visual-tests/"]
 
 # Templating of the Downloads
 # NOTE: When updating for a new release, make sure to also rerun
-# `downloads/oldreleases.jl`
+# `downloads/oldreleases.jl`. These variables are also used to generate
+# `/llms.txt` (see `_layout/llms.txt`).
 stable_release = "1.13.2"
 stable_release_short = "1.13"
 stable_release_date = "October 14, 2026"
