@@ -320,6 +320,8 @@ We're currently testing a prerelease for Julia v{{upcoming_release_short}}, an u
 
 From Julia 1.14, releases also come in build variants of the same sources: an **optimized** build (profile-guided and link-time optimized, plus BOLT where supported) and, on Linux x86_64, an **assertion** build (with internal assertions enabled, for debugging Julia itself). With Juliaup, install them with e.g. ~~~<code>juliaup add {{upcoming_release_short}}+opt</code>~~~ or ~~~<code>juliaup add {{upcoming_release_short}}+assert</code>~~~. These variants are experimental: their names and availability may change.
 
+Installing the variants needs Juliaup 1.23 or newer, which is currently only a preview release. To switch a Juliaup installed with the official installer to the preview releases, run ~~~<code>juliaup self channel releasepreview</code>~~~ followed by ~~~<code>juliaup self update</code>~~~.
+
 @@row @@col-12
 ~~~
 <table class="downloads table table-hover table-bordered">
