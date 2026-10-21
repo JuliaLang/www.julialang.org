@@ -12,7 +12,8 @@ to `_assets/infra/ecosystem/`:
 | `ml.webp`, `ml-dark.webp` | Machine learning | Decision boundary of a small Lux classifier |
 
 The page swaps the dark versions in with the theme (`data-src-dark`, handled in
-`_libs/detectdark.js`). The other four slides use the projects' logos, listed in
+`_libs/detectdark.js`). `gears.py` draws `apps.svg`, the interlocking gears on the Apps slide (after the
+JuliaInterop logo). The other three slides use the projects' logos, listed in
 `_assets/infra/ecosystem/README.md`.
 
 To regenerate (requires `cwebp`, e.g. `brew install webp`):

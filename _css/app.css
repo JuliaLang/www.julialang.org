@@ -1268,6 +1268,9 @@ pre .bash-block::before {
   color: var(--eco-accent);
 }
 .eco-more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
   margin-top: auto;
   font-size: 0.9rem;
 }
