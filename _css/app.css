@@ -1220,12 +1220,9 @@ pre .bash-block::before {
 .eco-showcase .eco-img-contain img {
   width: auto;
   height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: min(200px, 100%);
+  max-height: min(200px, 100%);
   object-fit: contain;
-}
-.eco-showcase .eco-img-small img {
-  max-width: 220px;
 }
 .eco-showcase .eco-text {
   flex: 1;
