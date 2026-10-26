@@ -281,6 +281,13 @@ We're currently testing a prerelease for Julia v{{upcoming_release_short}}, an u
                                        (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
       </td>
     </tr>
+    <tr>
+      <td> Generic Linux on RISC-V <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linux/riscv64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-riscv64.tar.gz">RV64</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/riscv64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-riscv64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> </td>
+    </tr>
     <!--
     <tr>
       <td> Generic Linux on PowerPC <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
@@ -311,6 +318,64 @@ We're currently testing a prerelease for Julia v{{upcoming_release_short}}, an u
         (<a href="https://github.com/JuliaLang/julia/releases/download/v{{upcoming_release}}/julia-{{upcoming_release}}-full.tar.gz.asc">GPG</a>)
       </td>
       <td> <a href="https://github.com/JuliaLang/julia/tree/v{{upcoming_release}}">GitHub</a> </td>
+    </tr>
+  </tbody>
+</table>
+~~~
+@@ @@
+
+#### Optimized and assertion builds (experimental)
+
+From Julia 1.14, releases also come in build variants of the same sources: an **optimized** build (profile-guided and link-time optimized, plus BOLT where supported) and, on Linux x86_64, an **assertion** build (with internal assertions enabled, for debugging Julia itself). With Juliaup, install them with e.g. ~~~<code>juliaup add {{upcoming_release_short}}+opt</code>~~~ or ~~~<code>juliaup add {{upcoming_release_short}}+assert</code>~~~. These variants are experimental: their names and availability may change.
+
+Installing the variants needs Juliaup 1.23 or newer, which is currently only a preview release. To switch a Juliaup installed with the official installer to the preview releases, run ~~~<code>juliaup self channel releasepreview</code>~~~ followed by ~~~<code>juliaup self update</code>~~~.
+
+@@row @@col-12
+~~~
+<table class="downloads table table-hover table-bordered">
+  <tbody>
+    <tr>
+      <th> </th>
+      <th> Optimized </th>
+      <th> Assertions </th>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/windowsopt/x86_64/{{upcoming_release_short}}/julia-{{upcoming_release}}-windowsopt-x86_64.exe">installer</a>, <a href="https://julialang-s3.julialang.org/bin/windowsopt/x86_64/{{upcoming_release_short}}/julia-{{upcoming_release}}-windowsopt-x86_64.zip">portable</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> macOS (Intel x86) </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/macosopt/x86_64/{{upcoming_release_short}}/julia-{{upcoming_release}}-macosopt-x86_64.dmg">.dmg</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> macOS (Apple Silicon) </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/macosopt/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-macosopt-aarch64.dmg">.dmg</a> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> Linux x86_64 </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linuxopt/x86_64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linuxopt-x86_64.tar.gz">glibc</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linuxopt/x86_64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linuxopt-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linuxassert/x86_64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linuxassert-x86_64.tar.gz">glibc</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linuxassert/x86_64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linuxassert-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+    </tr>
+    <tr>
+      <td> Linux i686 </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linuxopt/i686/{{upcoming_release_short}}/julia-{{upcoming_release}}-linuxopt-i686.tar.gz">glibc</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linuxopt/i686/{{upcoming_release_short}}/julia-{{upcoming_release}}-linuxopt-i686.tar.gz.asc">GPG</a>)
+      </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> Linux AArch64 </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/linuxopt/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linuxopt-aarch64.tar.gz">glibc</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linuxopt/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linuxopt-aarch64.tar.gz.asc">GPG</a>)
+      </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
