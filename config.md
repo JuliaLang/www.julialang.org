@@ -29,9 +29,9 @@ hasmap = false
 
 # If the following lines are commented, the "upcoming release" section
 # in `downloads/index.md` will not be shown.
-upcoming_release = "1.14.0-alpha1"
+upcoming_release = "1.14.0-alpha2"
 upcoming_release_short = "1.14"
-upcoming_release_date = "October 20, 2026"
+upcoming_release_date = "October 26, 2026"
 +++
 
 <!--
