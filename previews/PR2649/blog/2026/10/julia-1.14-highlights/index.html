@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t;try{t=localStorage.getItem('julia-theme')}catch(e){}var d=t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');var l=document.createElement('link');l.rel='preload';l.as='image';l.setAttribute('fetchpriority','high');l.href='/previews/PR2649/assets/infra/'+(d?'logo-dark':'logo')+'.svg';document.head.appendChild(l);})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2649/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2649/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+
+<!-- Preload LCP-critical resources (hero background; navbar logo preloaded dynamically in head.html to pick the correct theme variant) -->
+<link rel="preload" href="/previews/PR2649/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2649/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2649/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2649/css/app.css">
+<link rel="stylesheet" href="/previews/PR2649/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2649/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2649/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2649/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+
+   <title>Julia 1.14 Highlights</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2649/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2649/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Julia 1.14 Highlights">
+<meta property="og:description" content="Highlights of the Julia 1.14 release.">
+<meta property="og:image" content="https://julialang.netlify.app/previews/PR2649/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2649/blog/2026/10/julia-1.14-highlights/">
+
+	<link rel="canonical" href="https://julialang.org/blog/2026/10/julia-1.14-highlights/">
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Julia 1.14 Highlights",
+  "description": "Highlights of the Julia 1.14 release.",
+  "image": "https://julialang.netlify.app/previews/PR2649/assets/images/julia-open-graph.png",
+  "datePublished": "2026-10-17T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "The Julia contributors"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2649/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2649/blog/2026/10/julia-1.14-highlights/"
+  }
+}
+</script>
+
+  
+
+  <!-- SoftwareApplication structured data (the home page adds it in index.html) -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2649/">
+          <img alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <script>document.querySelector('.navbarjulialogo').src='/previews/PR2649/assets/infra/'+(document.documentElement.getAttribute('data-theme')==='dark'?'logo-dark':'logo')+'.svg'</script>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2649/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2649/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2649/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2649/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2649/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2649/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="gh-nav-btn" href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener" aria-label="Star JuliaLang/julia on GitHub">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg>
+              Star
+            </a>
+            <a class="gh-nav-btn" href="https://github.com/sponsors/JuliaLang" target="_blank" rel="noopener" aria-label="Sponsor @JuliaLang on GitHub">
+              <svg class="gh-nav-heart" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"/></svg>
+              Sponsor
+            </a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>Julia 1.14 Highlights</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p>
+          
+            <span class="blog-meta-date">17 October 2026</span> |
+          
+          
+            <span class="blog-meta-author"></span>
+          
+          
+            <span class="blog-meta-author">The Julia contributors</span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link" aria-label="RSS feed">
+        <svg class="icon rss-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2026/10/julia-1.14-highlights.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<p>Julia version 1.14 has been released. We want to thank all the contributors to this release and all the testers who helped find regressions and issues in the pre-releases. Without you, this release would not have been possible.</p>
+<p>The full list of changes can be found in the <a href="https://github.com/JuliaLang/julia/blob/release-1.14/NEWS.md">NEWS file</a>, but here we&#39;ll give a more in-depth overview of some of the release highlights.</p>
+<div class="franklin-toc"><ol><li><a href="#latency_improvements">Latency improvements</a><ol><li><a href="#native_code_cache">Native code cache</a></li></ol></li><li><a href="#new_syntax_features">New syntax features</a><ol><li><a href="#labeled_blocks_and_break_with_a_value">Labeled blocks and <code>break</code> with a value</a></li><li><a href="#typegroup_for_mutually_recursive_types"><code>typegroup</code> for mutually recursive types</a></li><li><a href="#explicitly_wrapping_arithmetic_operators">Explicitly wrapping arithmetic operators</a></li></ol></li><li><a href="#inference_refines_field_types">Inference refines field types</a></li><li><a href="#precompilation_improvements">Precompilation improvements</a></li><li><a href="#faster_code_coverage">Faster code coverage</a></li><li><a href="#multi-threading">Multi-threading</a></li><li><a href="#better_stack_traces">Better stack traces</a></li><li><a href="#new_library_features">New library features</a></li><li><a href="#repl">REPL</a></li><li><a href="#julialowering">JuliaLowering</a></li><li><a href="#juliactrim">JuliaC/trim</a></li><li><a href="#build">Build</a><ol><li><a href="#llvm_23">LLVM 23</a></li><li><a href="#build_variants">Build variants</a></li><li><a href="#risc-v_builds">RISC-V builds</a></li><li><a href="#smaller_julia_installation_and_package_images">Smaller Julia installation and package images</a></li></ol></li><li><a href="#pkg">Pkg</a><ol><li><a href="#faster_first_pkg_operation">Faster first Pkg operation</a></li><li><a href="#sat-based_resolver">SAT-based resolver</a></li><li><a href="#compat-overrides"><code>&#91;compat-overrides&#93;</code></a></li><li><a href="#pkg_add_--from"><code>pkg&gt; add --from</code></a></li><li><a href="#lazy_addupdate">Lazy add/update</a></li><li><a href="#pkgwhy_prints_a_tree"><code>Pkg.why</code> prints a tree</a></li><li><a href="#environment_ids_in_manifests">Environment IDs in manifests</a></li><li><a href="#other_changes">Other changes</a></li></ol></li></ol></div>
+<h2 id="latency_improvements"><a href="#latency_improvements" class="header-anchor">Latency improvements</a></h2>
+<h3></h3>
+<p>TODO: General latency numbers for 1.14</p>
+<p><strong>Note: the numbers in the chart below are placeholders, not real measurements.</strong></p>
+<p>The chart below shows the time per task for precompiling the packages, loading them, and the first call in a fresh process with an empty &#40;<em>cold</em>&#41; and populated &#40;<em>warm</em>&#41; native code cache, as a geometric mean over the tasks of the <a href="https://github.com/tecosaur/Julia-TTFX-Snippets">TTFX suite</a> that work on all versions. The numbers were measured with <a href="/previews/PR2649/assets/blog/2026-1.14-highlights/ttfx_latency.jl">this script</a>. <em>1.14&#43;opt</em> is the <a href="#build_variants">optimized build</a> of 1.14. Use the buttons to pick a platform.</p>
+
+<figure class="jllat" aria-label="Latency of Julia 1.10, 1.13 and 1.14 on the TTFX suite">
+<style>
+.jllat{--s1:#2a78d6;--tx:#0b0b0b;--tx2:#52514e;--bd:#d6d5d0;--sel:#f0efec;margin:1.5em 0;font-size:0.9rem;position:relative}
+[data-theme="dark"] .jllat{--s1:#3987e5;--tx:#f0efec;--tx2:#c3c2b7;--bd:#555;--sel:#2a2a3e}
+.jllat .ctl{margin-bottom:12px}
+.jllat .grp{display:flex;flex-wrap:wrap;gap:6px}
+.jllat .ctl button{font:inherit;font-size:0.85rem;color:var(--tx2);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:3px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.jllat .ctl button[aria-pressed="true"]{color:var(--tx);background:var(--sel);border-color:var(--tx2)}
+.jllat .panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:4px 28px}
+.jllat h4{font-size:0.95rem;font-weight:600;margin:14px 0 6px;color:var(--tx)}
+.jllat .row{display:grid;grid-template-columns:4.2em 1fr;align-items:center;gap:8px;margin:6px 0}
+.jllat .v{color:var(--tx2);font-variant-numeric:tabular-nums;text-align:left;white-space:nowrap}
+.jllat .track{display:flex;align-items:center;gap:8px;min-width:0}
+.jllat .bar{display:block;height:20px;border-radius:0 4px 4px 0;transition:width .3s}
+.jllat .tot{color:var(--tx);font-variant-numeric:tabular-nums;white-space:nowrap}
+.jllat .tot small{color:var(--tx2);font-size:0.8rem;margin-left:4px}
+.jllat figcaption{color:var(--tx2);font-size:0.85rem;margin-top:10px}
+</style>
+<div class="ctl"><div class="grp os" role="group" aria-label="Platform"></div></div>
+<div class="panels"></div>
+<figcaption></figcaption>
+<script src="/previews/PR2649/assets/blog/2026-1.14-highlights/ttfx-latency-linux-x86_64.js"></script>
+<script src="/previews/PR2649/assets/blog/2026-1.14-highlights/ttfx-latency-macos-aarch64.js"></script>
+<script src="/previews/PR2649/assets/blog/2026-1.14-highlights/ttfx-latency-windows-x86_64.js"></script>
+<script>
+(function(){
+var f=document.currentScript.parentNode;
+var D=window.TTFX_LATENCY||{};
+var M=["Precompile","Load","First call, cold cache","First call, warm cache"];
+var os=Object.keys(D)[0],P=f.querySelector(".panels"),cap=f.querySelector("figcaption");
+function btn(g,k,html,set){var b=document.createElement("button");b.type="button";b.innerHTML=html;b.dataset.k=k;b.onclick=function(){set(k);draw()};f.querySelector(g).appendChild(b)}
+Object.keys(D).forEach(function(o){btn(".os",o,o,function(k){os=k})});
+function fmt(x){return x>=10?x.toFixed(1)+" s":x.toFixed(2)+" s"}
+function draw(){
+  f.querySelectorAll(".os button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.k==os)});
+  // Rows: [label, values]; optimized builds get their own "+opt" row.
+  var R=[];
+  for(var v in D[os].std){R.push([v,D[os].std[v]]);if(D[os].opt[v])R.push([v+"+opt",D[os].opt[v]])}
+  var h="";
+  M.forEach(function(m,i){
+    // Scale each metric over all platforms and builds so switching does not rescale.
+    var max=0;for(var o in D)["std","opt"].forEach(function(b){for(var v in D[o][b])max=Math.max(max,D[o][b][v][i])});
+    var base=D[os].std["1.13"][i];
+    h+="<div><h4>"+m+"</h4>";
+    R.forEach(function(r){var val=r[1][i];
+      var rel=r[0].indexOf("1.14")!=0?"":"<small>"+(val>=base?"+":"\u2212")+Math.abs(Math.round(100*(val/base-1)))+"% vs 1.13</small>";
+      h+='<div class="row"><span class="v">'+r[0]+'</span><div class="track"><b class="bar" style="width:calc((100% - 8.5em) * '+(val/max).toFixed(4)+');background:var(--s1)"></b><span class="tot">'+fmt(val)+rel+'</span></div></div>'});
+    h+="</div>"});
+  P.innerHTML=h;
+  cap.innerHTML="Geometric mean over the "+D[os].tasks+" TTFX tasks that work on all versions, on "+os+" ("+D[os].cpu+"), for Julia 1.10.12, 1.13.2 and 1.14.0-alpha1.";
+}
+draw();
+})();
+</script>
+</figure>
+
+<h3 id="native_code_cache"><a href="#native_code_cache" class="header-anchor">Native code cache</a></h3>
+<p><em>Sam Schweigel</em></p>
+<p>Package images let precompiled code be reused across sessions, but anything not covered by precompilation &#40;methods specialized on your own types, code in your scripts, combinations of packages that no package precompiles&#41; is compiled by the JIT, and until now, compiled again in every new session. Restarting Julia and running the same script meant paying the same compilation cost every time. For most workflows it matters at least as much as the first run, since the same code is run over and over in new sessions.</p>
+<p>Julia 1.14 adds a persistent cache for JIT-compiled native code &#40;<a href="https://github.com/JuliaLang/julia/pull/61527">#61527</a>&#41;. When the JIT compiles some code, the resulting object code is stored in an on-disk database in the depot &#40;<code>~/.julia/cache/v1.14/</code>&#41;, keyed on a hash of the LLVM module and everything else that affects code generation. In a later session, compiling the same code loads the object code from the cache instead of running the LLVM optimizer and code generator. Type inference still runs, so a cache hit is not free, but LLVM is typically the larger part of compilation. The cache is shared between all environments and processes using the same depot, holds 512 MiB by default &#40;<code>JULIA_OBJCACHE_CAPACITY</code>&#41;, and evicts the least recently used entries when it fills up. It can be disabled with <code>JULIA_OBJCACHE&#61;0</code>.</p>
+<p>To see the effect, we ran the tasks from <a href="https://github.com/tecosaur/Julia-TTFX-Snippets">Julia-TTFX-Snippets</a>, the suite that Julia&#39;s CI uses to track latency, on Julia 1.14 &#40;Apple M4 Pro&#41;. Each task loads some packages &#40;<em>load</em>&#41; and then runs a small workload &#40;<em>first call</em>&#41;, in a fresh process after the packages are precompiled. Below, the first call is measured with the cache disabled, on the first run with an empty cache, and on the second run with the cache populated by the first:</p>
+<div class="center-table"><table><tr><th align="right">Task</th><th align="right">Load</th><th align="right">First call, no cache</th><th align="right">First call, 1st run</th><th align="right">First call, 2nd run</th></tr><tr><td align="right">Ferrite: heat equation</td><td align="right">0.61 s</td><td align="right">6.89 s</td><td align="right">7.27 s</td><td align="right">2.29 s</td></tr><tr><td align="right">Flux: model gradient</td><td align="right">1.10 s</td><td align="right">4.43 s</td><td align="right">4.22 s</td><td align="right">1.42 s</td></tr><tr><td align="right">Mendeleev: element properties</td><td align="right">0.09 s</td><td align="right">1.32 s</td><td align="right">1.37 s</td><td align="right">0.59 s</td></tr><tr><td align="right">Optimization: Rosenbrock with BFGS</td><td align="right">0.54 s</td><td align="right">1.26 s</td><td align="right">1.34 s</td><td align="right">0.53 s</td></tr><tr><td align="right">Attractors: multistability</td><td align="right">1.96 s</td><td align="right">1.05 s</td><td align="right">1.07 s</td><td align="right">0.37 s</td></tr><tr><td align="right">HiddenMarkovModels: Baum-Welch</td><td align="right">0.43 s</td><td align="right">1.04 s</td><td align="right">1.07 s</td><td align="right">0.47 s</td></tr><tr><td align="right">Optim: Rosenbrock with BFGS</td><td align="right">0.23 s</td><td align="right">0.71 s</td><td align="right">0.75 s</td><td align="right">0.26 s</td></tr><tr><td align="right">Krylov: conjugate gradient</td><td align="right">0.16 s</td><td align="right">0.59 s</td><td align="right">0.60 s</td><td align="right">0.16 s</td></tr><tr><td align="right">CairoMakie: plot a sine wave</td><td align="right">3.24 s</td><td align="right">0.45 s</td><td align="right">0.45 s</td><td align="right">0.15 s</td></tr><tr><td align="right">ComponentArrays: basic manipulations</td><td align="right">0.11 s</td><td align="right">0.41 s</td><td align="right">0.40 s</td><td align="right">0.13 s</td></tr><tr><td align="right">LoopVectorization: dot product</td><td align="right">0.12 s</td><td align="right">0.35 s</td><td align="right">0.35 s</td><td align="right">0.07 s</td></tr></table></div>
+<p>Over the 25 tasks whose first call takes at least 0.1 s, the first call on the second run takes on average &#40;geometric mean&#41; 35&#37; of the time it takes without the cache, while populating the cache on the first run costs about 3&#37;. Load times are unchanged, since package loading mostly does not go through the JIT. After running the whole suite of 38 tasks, the cache takes up 25 MiB.</p>
+<h2 id="new_syntax_features"><a href="#new_syntax_features" class="header-anchor">New syntax features</a></h2>
+<h3 id="labeled_blocks_and_break_with_a_value"><a href="#labeled_blocks_and_break_with_a_value" class="header-anchor">Labeled blocks and <code>break</code> with a value</a></h3>
+<p><em>Keno Fischer</em></p>
+<p><code>@label</code> can now create blocks that can be exited early with <code>break name &#91;value&#93;</code>, and <code>continue name</code> continues a labeled loop &#40;<a href="https://github.com/JuliaLang/julia/pull/60481">#60481</a>&#41;. Breaking out of nested loops no longer needs a flag variable or a helper function:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> find_index(A, target)
+    <span class="hljs-meta">@label</span> search <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> axes(A, <span class="hljs-number">1</span>), j <span class="hljs-keyword">in</span> axes(A, <span class="hljs-number">2</span>)
+        A[i, j] == target &amp;&amp; <span class="hljs-keyword">break</span> search (i, j)
+    <span class="hljs-keyword">end</span>  <span class="hljs-comment"># evaluates to `nothing` if we never break</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">function</span> first_row_without_negatives(A)
+    <span class="hljs-meta">@label</span> rows <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> axes(A, <span class="hljs-number">1</span>)
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> axes(A, <span class="hljs-number">2</span>)
+            A[i, j] &lt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">continue</span> rows  <span class="hljs-comment"># skip to the next row</span>
+        <span class="hljs-keyword">end</span>
+        <span class="hljs-keyword">return</span> i
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nothing</span>
+<span class="hljs-keyword">end</span></code></pre>
+<p>A labeled <code>begin</code> block works like an expression that can return early:</p>
+<pre><code class="julia hljs">port = <span class="hljs-meta">@label</span> check <span class="hljs-keyword">begin</span>
+    n = tryparse(<span class="hljs-built_in">Int</span>, s)
+    n === <span class="hljs-literal">nothing</span> &amp;&amp; <span class="hljs-keyword">break</span> check <span class="hljs-number">8080</span>
+    <span class="hljs-number">1</span> &lt;= n &lt;= <span class="hljs-number">65535</span> || <span class="hljs-keyword">break</span> check <span class="hljs-number">8080</span>
+    n
+<span class="hljs-keyword">end</span></code></pre>
+<h3 id="typegroup_for_mutually_recursive_types"><a href="#typegroup_for_mutually_recursive_types" class="header-anchor"><code>typegroup</code> for mutually recursive types</a></h3>
+<p><em>Keno Fischer</em></p>
+<p><code>typegroup</code> blocks allow defining structs whose field types reference each other &#40;<a href="https://github.com/JuliaLang/julia/pull/60569">#60569</a>&#41;. Previously, a struct could only refer to types that were already defined, so mutually recursive types had to be broken up with an abstract supertype or a type parameter. Now they can be written directly:</p>
+<pre><code class="julia hljs">typegroup
+    <span class="hljs-keyword">struct</span> Person
+        name::<span class="hljs-built_in">String</span>
+        employer::<span class="hljs-built_in">Union</span>{Company, <span class="hljs-built_in">Nothing</span>}
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">struct</span> Company
+        name::<span class="hljs-built_in">String</span>
+        employees::<span class="hljs-built_in">Vector</span>{Person}
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> c = Company(<span class="hljs-string">&quot;Acme&quot;</span>, Person[]);
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> push!(c.employees, Person(<span class="hljs-string">&quot;Alice&quot;</span>, c));
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> fieldtype(Person, :employer)
+</span>Union{Nothing, Company}
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> c.employees[<span class="hljs-number">1</span>].employer.name
+</span>&quot;Acme&quot;</code></pre>
+<p>Only <code>struct</code> and <code>mutable struct</code> definitions are allowed inside a <code>typegroup</code>. All the types are defined together at the end of the block.</p>
+<h3 id="explicitly_wrapping_arithmetic_operators"><a href="#explicitly_wrapping_arithmetic_operators" class="header-anchor">Explicitly wrapping arithmetic operators</a></h3>
+<p><em>Keno Fischer</em></p>
+<p>The new <code>&#43;&#37;</code>, <code>-&#37;</code> and <code>*&#37;</code> operators mark integer arithmetic that is intended to wrap on overflow &#40;<a href="https://github.com/JuliaLang/julia/pull/50790">#50790</a>&#41;. By default they behave exactly like <code>&#43;</code>, <code>-</code> and <code>*</code>, so the point is to document intent, for example in hash functions:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">function</span> fnv1a(data)
+    h = <span class="hljs-number">0xcbf29ce484222325</span>
+    <span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> codeunits(data)
+        h = (h ⊻ b) *% <span class="hljs-number">0x00000100000001b3</span>  <span class="hljs-comment"># overflow is expected here</span>
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> h
+<span class="hljs-keyword">end</span></code></pre>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> typemax(<span class="hljs-built_in">Int</span>) +% <span class="hljs-number">1</span>
+</span>-9223372036854775808
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-number">0x00</span> -% <span class="hljs-number">0x01</span>
+</span>0xff</code></pre>
+<p>This means overflow checking can catch the overflows that were not intended while leaving the deliberate ones alone. The experimental <code>Base.Experimental.@make_all_arithmetic_checked</code> macro makes the plain operators check for overflow &#40;it redefines them globally, so it is intended for testing and debugging&#41;:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> Base.Experimental.<span class="hljs-meta">@make_all_arithmetic_checked</span>
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> typemax(<span class="hljs-built_in">Int</span>) + <span class="hljs-number">1</span>
+</span>ERROR: OverflowError: 9223372036854775807 + 1 overflowed for type Int64
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> typemax(<span class="hljs-built_in">Int</span>) +% <span class="hljs-number">1</span>
+</span>-9223372036854775808</code></pre>
+<h2 id="inference_refines_field_types"><a href="#inference_refines_field_types" class="header-anchor">Inference refines field types</a></h2>
+<p><em>Shuhei Kadowaki</em></p>
+<p>After a check like <code>if &#33;isnothing&#40;x.field&#41;</code>, inference now knows the type of <code>x.field</code> inside the branch &#40;for immutable structs and <code>const</code> fields&#41;, so the field no longer has to be copied to a local variable first &#40;<a href="https://github.com/JuliaLang/julia/pull/47574">#47574</a>&#41;.</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">struct</span> Config
+    timeout::<span class="hljs-built_in">Union</span>{<span class="hljs-built_in">Int</span>, <span class="hljs-built_in">Nothing</span>}
+<span class="hljs-keyword">end</span>
+
+timeout_or_default(c::Config) = !isnothing(c.timeout) ? c.timeout : <span class="hljs-number">30</span></code></pre>
+<pre><code class="julia-repl hljs"># Julia 1.13
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> Base.infer_return_type(timeout_or_default, (Config,))
+</span>Union{Nothing, Int64}
+
+# Julia 1.14
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> Base.infer_return_type(timeout_or_default, (Config,))
+</span>Int64</code></pre>
+<p>The same applies after a call that can only succeed for a certain type. If <code>only_int&#40;::Int&#41;</code> is the only matching method, then after <code>only_int&#40;c.timeout&#41;</code> inference knows that <code>c.timeout</code> is an <code>Int</code>. For non-<code>const</code> fields of mutable structs, the field could change between the check and the use, so copying the field to a local variable first is still the way to go there.</p>
+<h2 id="precompilation_improvements"><a href="#precompilation_improvements" class="header-anchor">Precompilation improvements</a></h2>
+<p><em>Ian Butterworth</em></p>
+<ul>
+<li><p>Precompile workers and their LLVM threads now share one thread budget, which keeps cores busy without oversubscribing the machine &#40;<a href="https://github.com/JuliaLang/julia/pull/61958">#61958</a>&#41;.</p>
+</li>
+<li><p>Packages whose dependencies failed to precompile are skipped instead of being attempted &#40;<a href="https://github.com/JuliaLang/julia/pull/63122">#63122</a>&#41;.</p>
+</li>
+<li><p>Precompilation can run in a background task, with keyboard controls to cancel, detach or show progress details &#40;<a href="https://github.com/JuliaLang/julia/pull/60943">#60943</a>&#41;.</p>
+</li>
+<li><p>When loading triggers precompilation, Julia now says why, and how to avoid it.</p>
+</li>
+</ul>
+<h2 id="faster_code_coverage"><a href="#faster_code_coverage" class="header-anchor">Faster code coverage</a></h2>
+<p><em>Tim Besard</em></p>
+<p>Coverage now records only whether a line ran by default, which lowers the runtime overhead. Instrumented package images can be reused across processes, and <code>--code-coverage&#61;@path</code> restricts tracking to a directory tree &#40;<a href="https://github.com/JuliaLang/julia/pull/62724">#62724</a>, <a href="https://github.com/JuliaLang/julia/pull/62514">#62514</a>&#41;.</p>
+<p>As an example, here is a 2D stencil kernel, a simple summation loop, and a script that loads DataFrames.jl and runs a <code>groupby</code>, each run with and without <code>--code-coverage&#61;user</code> &#40;Apple M4 Pro&#41;:</p>
+<table><tr><th align="right"></th><th align="right">1.13</th><th align="right">1.13, coverage</th><th align="right">1.14</th><th align="right">1.14, coverage</th></tr><tr><td align="right">Stencil kernel</td><td align="right">0.08 ms</td><td align="right">0.71 ms</td><td align="right">0.08 ms</td><td align="right">0.10 ms</td></tr><tr><td align="right">Summation loop</td><td align="right">0.48 ms</td><td align="right">1.56 ms</td><td align="right">0.49 ms</td><td align="right">0.47 ms</td></tr><tr><td align="right">DataFrames script &#40;total process time&#41;</td><td align="right">0.8 s</td><td align="right">2.4 s</td><td align="right">0.7 s</td><td align="right">0.6 s</td></tr></table>
+<p>In 1.13 every coverage run recompiles the package code it calls. In 1.14 the first coverage run builds instrumented package images &#40;about a minute for DataFrames and its dependencies&#41; and later runs reuse them.</p>
+<h2 id="multi-threading"><a href="#multi-threading" class="header-anchor">Multi-threading</a></h2>
+<p><em>Ian Butterworth</em>, <em>Jameson Nash</em></p>
+<ul>
+<li><p><code>Threads.@threads</code> works on array comprehensions like <code>@threads &#91;f&#40;i&#41; for i in 1:n&#93;</code> &#40;<a href="https://github.com/JuliaLang/julia/pull/59019">#59019</a>&#41;.</p>
+</li>
+<li><p>The return type of <code>fetch&#40;Threads.@spawn f&#40;x&#41;&#41;</code> is now inferred &#40;<a href="https://github.com/JuliaLang/julia/pull/59221">#59221</a>&#41;.</p>
+</li>
+<li><p><code>Threads.Atomic</code> supports <code>@atomic a&#91;&#93; &#43;&#61; 1</code>, and plain <code>a&#91;&#93; &#61; v</code> is deprecated &#40;<a href="https://github.com/JuliaLang/julia/pull/62382">#62382</a>&#41;.</p>
+</li>
+</ul>
+<h2 id="better_stack_traces"><a href="#better_stack_traces" class="header-anchor">Better stack traces</a></h2>
+<p><em>Shuhei Kadowaki</em>, <em>Ian Butterworth</em></p>
+<p>Inlined frames now show full method signatures &#40;<a href="https://github.com/JuliaLang/julia/pull/53925">#53925</a>&#41;:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@inline</span> inner(x, y) = x[y]
+outer(v) = inner(v, <span class="hljs-number">10</span>)
+outer([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])</code></pre>
+<pre><code class="julia hljs"><span class="hljs-comment"># Julia 1.13</span>
+ [<span class="hljs-number">2</span>] checkbounds
+   @ ./essentials.jl:<span class="hljs-number">389</span> [inlined]
+ [<span class="hljs-number">3</span>] getindex
+   @ ./essentials.jl:<span class="hljs-number">974</span> [inlined]
+ [<span class="hljs-number">4</span>] inner
+   @ ./script.jl:<span class="hljs-number">1</span> [inlined]
+
+<span class="hljs-comment"># Julia 1.14</span>
+ [<span class="hljs-number">2</span>] checkbounds(A::<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Int64</span>}, I::<span class="hljs-built_in">Int64</span>)
+   @ Base essentials.jl:<span class="hljs-number">391</span> [inlined]
+ [<span class="hljs-number">3</span>] getindex(A::<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Int64</span>}, i::<span class="hljs-built_in">Int64</span>)
+   @ Base essentials.jl:<span class="hljs-number">1065</span> [inlined]
+ [<span class="hljs-number">4</span>] inner(x::<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Int64</span>}, y::<span class="hljs-built_in">Int64</span>)
+   @ Main script.jl:<span class="hljs-number">1</span> [inlined]</code></pre>
+<p>Errors raised during package loading no longer show the internals of the code loading machinery &#40;<a href="https://github.com/JuliaLang/julia/pull/52988">#52988</a>&#41;.</p>
+<h2 id="new_library_features"><a href="#new_library_features" class="header-anchor">New library features</a></h2>
+<ul>
+<li><p><code>StringView</code> &#40;ported from StringViews.jl&#41; wraps a byte vector as a UTF-8 string &#40;<a href="https://github.com/JuliaLang/julia/pull/60526">#60526</a>&#41;.</p>
+</li>
+<li><p><code>readdir&#40;path, DirEntry&#41;</code> and the lazy <code>eachentry&#40;dir&#41;</code> return entries together with their file type &#40;<a href="https://github.com/JuliaLang/julia/pull/55358">#55358</a>, <a href="https://github.com/JuliaLang/julia/pull/62164">#62164</a>&#41;.</p>
+</li>
+<li><p><code>tap&#40;f&#41;</code> and <code>unsplat&#40;f&#41;</code> function helpers &#40;<a href="https://github.com/JuliaLang/julia/pull/61340">#61340</a>, <a href="https://github.com/JuliaLang/julia/pull/62714">#62714</a>&#41;.</p>
+</li>
+<li><p>Dates: nanosecond-precision <code>Dates.Timestamp</code> and the <code>n</code> format code for fractional seconds &#40;<a href="https://github.com/JuliaLang/julia/pull/62994">#62994</a>&#41;.</p>
+</li>
+<li><p>TOML: comments can be preserved when parsing and printing a file &#40;<a href="https://github.com/JuliaLang/julia/pull/62672">#62672</a>&#41;.</p>
+</li>
+<li><p>Test: <code>@test</code> accepts a <code>context</code> keyword that is shown on failure &#40;<a href="https://github.com/JuliaLang/julia/pull/60501">#60501</a>&#41;.</p>
+</li>
+<li><p>InteractiveUtils: <code>@methods f&#40;args...&#41;</code> lists all methods applicable to a call &#40;<a href="https://github.com/JuliaLang/julia/pull/62311">#62311</a>&#41;.</p>
+</li>
+<li><p>Markdown: behavior is much closer to CommonMark, including raw HTML and strikethrough.</p>
+</li>
+</ul>
+<h2 id="repl"><a href="#repl" class="header-anchor">REPL</a></h2>
+<ul>
+<li><p>Tab completion of <code>Module.&lt;TAB&gt;</code> lists public names first &#40;<a href="https://github.com/JuliaLang/julia/pull/63601">#63601</a>&#41;.</p>
+</li>
+<li><p><code>using A, B, C</code> precompiles all packages in one parallel session.</p>
+</li>
+<li><p>The REPL emits OSC 133 &quot;semantic prompt&quot; markers &#40;<a href="https://github.com/JuliaLang/julia/pull/63112">#63112</a>&#41;. These invisible escape sequences tell the terminal where each prompt, input and output begins, the same way shells like zsh and fish do. In terminals that support them &#40;e.g. VS Code, iTerm2, kitty, WezTerm, Ghostty and Windows Terminal&#41;, you can jump between previous prompts in a long REPL session instead of scrolling, select or copy the output of a single command, and in VS Code, copy a command together with its output. Terminals without support ignore the markers, and they can be turned off with <code>repl.options.semantic_prompts &#61; false</code> in an <code>atreplinit</code> hook in <code>startup.jl</code>.</p>
+</li>
+<li><p><code>-P</code> is a shorthand for <code>--project</code> &#40;<a href="https://github.com/JuliaLang/julia/pull/59867">#59867</a>&#41;.</p>
+</li>
+</ul>
+<h2 id="julialowering"><a href="#julialowering" class="header-anchor">JuliaLowering</a></h2>
+<p><em>Em Chu</em>, <em>Claire Foster</em></p>
+<p>THE DEFAULT MIGHT CHANGE</p>
+<p>JuliaLowering, the new lowering pass written in Julia, now ships compiled into Julia. The old flisp lowering is still the default; JuliaLowering can be enabled with <code>JULIA_USE_FLISP_LOWERING&#61;false</code> &#40;<a href="https://github.com/JuliaLang/julia/pull/63614">#63614</a>&#41;.</p>
+<h2 id="juliactrim"><a href="#juliactrim" class="header-anchor">JuliaC/trim</a></h2>
+<p><em>Gabriel Baraldi</em>, <em>Cody Tapscott</em></p>
+<p>Julia now installs a static <code>libjulia-internal.a</code>, so JuliaC.jl can link a trimmed program into a single executable &#40;<a href="https://github.com/JuliaLang/julia/pull/63618">#63618</a>&#41;. <code>Libdl.LazyLibraryCallback</code> makes lazy library callbacks work under <code>--trim</code>.</p>
+<h2 id="build"><a href="#build" class="header-anchor">Build</a></h2>
+<h3 id="llvm_23"><a href="#llvm_23" class="header-anchor">LLVM 23</a></h3>
+<p><em>Tim Besard</em></p>
+<p>Julia has been upgraded to LLVM 23 &#40;<a href="https://github.com/JuliaLang/julia/pull/63626">#63626</a>&#41;. Besides the usual improvements to code generation, LLVM 23 is also faster at compiling code itself, which directly reduces latency in Julia. On the TTFX benchmark suite, precompilation got about 4&#37; faster and the first call into freshly loaded packages about 3.5&#37; faster &#40;geometric mean over 38 workloads&#41;.</p>
+<p>Julia is not the only one seeing this. The Rust compiler also saw an <a href="https://yoyo-code.com/2026-is-exciting-year-for-rust-compiler-and-me/#llvm-is-getting-faster">unexpectedly large improvement from LLVM 23</a>. Thanks to the LLVM developers who have spent so much effort on making LLVM itself faster over the past releases&#33;</p>
+<h3 id="build_variants"><a href="#build_variants" class="header-anchor">Build variants</a></h3>
+<p><em>TODO: authors</em></p>
+<p>Besides the standard binaries, Julia 1.14 is released in two variants that previously only existed as nightlies or had to be built from source:</p>
+<div class="center-table"><table><tr><th align="right">Variant</th><th align="right">What is different</th><th align="right">Platforms</th><th align="right">juliaup channel</th></tr><tr><td align="right">Optimized &#40;<code>&#43;opt</code>&#41;</td><td align="right">Built with PGO and ThinLTO, plus BOLT on Linux</td><td align="right">Linux &#40;x86-64, i686, aarch64&#41;, macOS &#40;x86-64, Apple silicon&#41;, Windows &#40;x86-64&#41;</td><td align="right"><code>1.14&#43;opt</code>, <code>release&#43;opt</code></td></tr><tr><td align="right">Assertions &#40;<code>&#43;assert</code>&#41;</td><td align="right">Assertions enabled in the runtime and in LLVM</td><td align="right">Linux &#40;x86-64&#41;</td><td align="right"><code>1.14&#43;assert</code>, <code>release&#43;assert</code></td></tr></table></div>
+<p>The <strong>optimized build</strong> is built with <code>make -C contrib/optimized</code> &#40;<a href="https://github.com/JuliaLang/julia/pull/63179">#63179</a>&#41;, which builds Julia and LLVM in two stages. The first stage is instrumented and is used to build the system image and the stdlib package images, which records a profile of where the compiler spends its time. The second stage is built with profile-guided optimization &#40;PGO&#41; using that profile and with ThinLTO. Since LLVM is built from source in both stages, libLLVM gets PGO and LTO too, which matters for latency since a large part of compilation time is spent in LLVM. On Linux x86-64 and aarch64, <code>libLLVM</code>, <code>libjulia-internal</code> and <code>libjulia-codegen</code> are then additionally optimized with <a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a>, which reorders the machine code based on a profile from the same workload &#40;<a href="https://github.com/JuliaLang/julia/pull/62725">#62725</a>, <a href="https://github.com/JuliaLang/julia/pull/63162">#63162</a>, <a href="https://github.com/JuliaLang/julia/pull/63214">#63214</a>, <a href="https://github.com/JuliaLang/julia/pull/63312">#63312</a>&#41;. The optimized build makes compilation faster across the board. The <em>1.14&#43;opt</em> rows in the <a href="#latency_improvements">latency chart</a> above show how much.</p>
+<p>The <strong>assertion build</strong> has the C/C&#43;&#43; assertions in Julia&#39;s runtime and LLVM&#39;s assertions enabled, and verifies the LLVM IR after Julia&#39;s own LLVM passes. It is slower than the standard build, but when Julia crashes or miscompiles something it often turns the problem into a failed assertion close to the actual bug. If you hit a segfault or an internal error, checking whether it reproduces on the assertion build and including the result in the bug report is very helpful.</p>
+<p>The easiest way to install a variant is with <a href="https://github.com/JuliaLang/juliaup">juliaup</a>, where it installs next to the standard build:</p>
+<pre><code class="julia hljs">juliaup add <span class="hljs-number">1.14</span>+opt
+julia +<span class="hljs-number">1.14</span>+opt</code></pre>
+<p>The binaries can also be downloaded directly, e.g. <code>https://julialang-s3.julialang.org/bin/linuxopt/x86_64/1.14/julia-1.14.0-linuxopt-x86_64.tar.gz</code> &#40;<code>macosopt</code> and <code>windowsopt</code> for the other platforms&#41;. TODO: link from the downloads page. The macOS app and the Windows installer of a variant are named e.g. <code>Julia-1.14-opt</code>, so they also install next to the standard build. The REPL banner and <code>versioninfo&#40;&#41;</code> show which variant is running, e.g. <code>Version 1.14.0&#43;opt</code> &#40;<a href="https://github.com/JuliaLang/julia/pull/64024">#64024</a>&#41;.</p>
+<p>Optimized and assertion builds are also available as nightlies &#40;<code>juliaup add nightly&#43;opt</code>&#41;.</p>
+<p>TODO: check that the #64024 and #64005 &#40;cross-compiled opt builds, for RISC-V&#41; backports have landed on release-1.14.</p>
+<h3 id="risc-v_builds"><a href="#risc-v_builds" class="header-anchor">RISC-V builds</a></h3>
+<p><em>Tim Besard</em></p>
+<p>Julia 1.14 comes with prebuilt binaries for 64-bit RISC-V Linux &#40;<code>rv64gc</code>&#41;, for both releases and nightlies. TODO: download link. The binaries are cross-compiled on x86-64 machines, with the parts of the build that run Julia &#40;system image, package images and docs&#41; running under QEMU.</p>
+<p>1.14 also fixes a range of RISC-V issues &#40;<a href="https://github.com/JuliaLang/julia/pull/62951">#62951</a>, <a href="https://github.com/JuliaLang/julia/pull/62995">#62995</a>&#41;: <code>ccall</code> now passes and returns structs correctly according to the native ABI, hardware <code>fma</code> is detected and used, and <code>@code_native</code> highlights RISC-V assembly and shows branch targets as labels.</p>
+<p>Since CI has no RISC-V hardware, the builds are not tested and RISC-V remains a <a href="/previews/PR2649/downloads/support/">Tier 3</a> platform. Bug reports from people running Julia on RISC-V are very welcome.</p>
+<h3 id="smaller_julia_installation_and_package_images"><a href="#smaller_julia_installation_and_package_images" class="header-anchor">Smaller Julia installation and package images</a></h3>
+<p><em>Kristoffer Carlsson</em></p>
+<p>A Julia installation takes up considerably less disk space in 1.14, as do the package images of the packages you install. Most of the savings come from shrinking debug info while keeping Julia stack traces unchanged:</p>
+<ul>
+<li><p>The C/C&#43;&#43; runtime is built with line tables only &#40;<a href="https://github.com/JuliaLang/julia/pull/63641">#63641</a>&#41;. Together with the compression below, <code>libjulia-codegen</code> shrinks from 84 MiB in 1.13 to 6 MiB on Linux, and from 122 MiB to 15 MiB on Windows.</p>
+</li>
+<li><p>Code in the system image and in package images gets only line tables as well &#40;<a href="https://github.com/JuliaLang/julia/pull/63937">#63937</a>&#41;. Julia already rebuilds inlined frames in stack traces from its own debug info, so the inlining information in DWARF was mostly unused. On Linux, the debug info in the system image goes from 73 MiB to 20 MiB. As a bonus, the first stack trace in a session is printed about twice as fast and uses about 40 MiB less memory. External tools like <code>gdb</code> and <code>perf</code> no longer see inlined frames in precompiled code.</p>
+</li>
+<li><p>Julia emits DWARF 5, which has more compact debug info than DWARF 4 &#40;<a href="https://github.com/JuliaLang/julia/pull/63639">#63639</a>&#41;.</p>
+</li>
+<li><p>On Linux and FreeBSD, debug sections of package images, Julia&#39;s own libraries and bundled libraries are compressed &#40;<a href="https://github.com/JuliaLang/julia/pull/63642">#63642</a>, <a href="https://github.com/JuliaLang/julia/pull/63640">#63640</a>, <a href="https://github.com/JuliaLang/julia/pull/63687">#63687</a>, <a href="https://github.com/JuliaLang/julia/pull/63810">#63810</a>&#41;. Combined with the line tables above, the debug info in the bundled stdlib package images drops from 54 MiB to 5 MiB.</p>
+</li>
+<li><p>The stdlib package images compiled with <code>--check-bounds&#61;yes</code> are no longer bundled. Since <code>Pkg.test</code> no longer forces bounds checking &#40;as of 1.13&#41;, these are rarely needed, and they are now distributed as a separate archive &#40;<a href="https://github.com/JuliaLang/julia/pull/60054">#60054</a>&#41;.</p>
+</li>
+</ul>
+<p>The chart below shows the size of an unpacked Julia installation, split by component. Use the buttons to look at the download size or at a single component, and hover over a bar for its size. The installation is about a third smaller than 1.13 on all three platforms and close to the size of 1.10 again.</p>
+
+<figure class="jlsize" aria-label="Size of Julia 1.10, 1.13 and 1.14 by component">
+<style>
+.jlsize{--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s0:#8a8984;--tx:#0b0b0b;--tx2:#52514e;--bd:#d6d5d0;--sel:#f0efec;--tip:#fff;margin:1.5em 0;font-size:0.9rem;position:relative}
+[data-theme="dark"] .jlsize{--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s0:#8a8984;--tx:#f0efec;--tx2:#c3c2b7;--bd:#555;--sel:#2a2a3e;--tip:#2a2a3e}
+.jlsize .ctl{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.jlsize .ctl button{font:inherit;font-size:0.85rem;color:var(--tx2);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:3px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.jlsize .ctl button[aria-pressed="true"]{color:var(--tx);background:var(--sel);border-color:var(--tx2)}
+.jlsize .ctl i,.jlsize .lg i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.jlsize .lg{display:flex;flex-wrap:wrap;gap:4px 16px;margin-bottom:8px;color:var(--tx2);min-height:1.4em}
+.jlsize .lg span{display:inline-flex;align-items:center;gap:6px}
+.jlsize h4{font-size:0.95rem;font-weight:600;margin:14px 0 6px;color:var(--tx)}
+.jlsize .row{display:grid;grid-template-columns:3.2em 1fr;align-items:center;gap:8px;margin:5px 0}
+.jlsize .v{color:var(--tx2);font-variant-numeric:tabular-nums;text-align:right}
+.jlsize .track{display:flex;align-items:center;gap:8px;min-width:0}
+.jlsize .bar{display:flex;gap:2px;height:20px;transition:width .3s}
+.jlsize .bar b{display:block;height:100%;min-width:2px}
+.jlsize .bar b:first-child{border-top-left-radius:4px;border-bottom-left-radius:4px}
+.jlsize .bar b:last-child{border-top-right-radius:4px;border-bottom-right-radius:4px}
+.jlsize .bar b:hover{opacity:0.8}
+.jlsize .tot{color:var(--tx);font-variant-numeric:tabular-nums;white-space:nowrap}
+.jlsize .tot small{color:var(--tx2);font-size:0.8rem;margin-left:4px}
+.jlsize .tt{position:absolute;pointer-events:none;background:var(--tip);color:var(--tx);border:1px solid var(--bd);border-radius:6px;padding:6px 8px;font-size:0.8rem;box-shadow:0 2px 8px rgba(0,0,0,.15);display:none;white-space:nowrap;z-index:5}
+.jlsize figcaption{color:var(--tx2);font-size:0.85rem;margin-top:10px}
+</style>
+<div class="ctl" role="group" aria-label="Metric"></div>
+<div class="lg"></div>
+<div class="panels"></div>
+<div class="tt"></div>
+<figcaption></figcaption>
+<script>
+(function(){
+var f=document.currentScript.parentNode;
+var D={"Linux (x86-64)":{"1.10":{"sys":253.0,"pkg":50.3,"rt":76.9,"libs":169.9,"other":50.7,"total":601.0,"dl":167.2},"1.13":{"sys":272.9,"pkg":374.3,"rt":98.9,"libs":219.3,"other":60.1,"total":1025.4,"dl":287.9},"1.14":{"sys":241.5,"pkg":145.0,"rt":19.3,"libs":205.7,"other":71.1,"total":682.6,"dl":217.9}},"macOS (Apple silicon)":{"1.10":{"sys":219.6,"pkg":49.8,"rt":46.1,"libs":91.6,"other":58.8,"total":465.9,"dl":124.0},"1.13":{"sys":230.4,"pkg":308.6,"rt":52.0,"libs":110.1,"other":63.9,"total":765.0,"dl":213.1},"1.14":{"sys":200.7,"pkg":128.6,"rt":20.3,"libs":105.6,"other":69.9,"total":525.2,"dl":162.7}},"Windows (x86-64)":{"1.10":{"sys":251.8,"pkg":52.5,"rt":119.5,"libs":243.8,"other":51.7,"total":719.4,"dl":180.4},"1.13":{"sys":261.8,"pkg":366.8,"rt":139.3,"libs":264.8,"other":59.7,"total":1092.4,"dl":288.6},"1.14":{"sys":231.1,"pkg":156.3,"rt":31.1,"libs":242.0,"other":71.0,"total":731.4,"dl":213.4}}};
+var C=[["sys","System image","--s1"],["pkg","Stdlib package images","--s2"],["rt","libjulia","--s3"],["libs","LLVM and other libraries","--s4"],["other","Sources, docs, other","--s5"]];
+var M=[["total","Installed size",null,"Size on disk of the unpacked official binaries, split by component."],["dl","Download",null,"Size of the <code>.tar.gz</code> archive."]].concat(C.slice(0,3).map(function(c){return [c[0],c[1],c[2],"Size on disk of this component in the unpacked official binaries."]}));
+var cur="total",ctl=f.querySelector(".ctl"),lg=f.querySelector(".lg"),P=f.querySelector(".panels"),tt=f.querySelector(".tt"),cap=f.querySelector("figcaption");
+function sw(v){return '<i style="background:var('+v+')"></i>'}
+M.forEach(function(m){var b=document.createElement("button");b.type="button";b.innerHTML=(m[2]?sw(m[2]):"")+m[1];b.onclick=function(){cur=m[0];draw()};b.dataset.k=m[0];ctl.appendChild(b)});
+function draw(){
+  var m=M.filter(function(x){return x[0]==cur})[0],max=0;
+  ctl.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.k==cur)});
+  lg.style.display=cur=="total"?"":"none";lg.innerHTML=cur=="total"?C.map(function(c){return "<span>"+sw(c[2])+c[1]+"</span>"}).join(""):"";
+  for(var o in D)for(var v in D[o])max=Math.max(max,D[o][v][cur]);
+  var h="";
+  for(var o in D){h+="<h4>"+o+"</h4>";var base=D[o]["1.13"][cur];
+    for(var v in D[o]){var d=D[o][v],val=d[cur],segs;
+      if(cur=="total")segs=C.map(function(c){return '<b style="flex:'+d[c[0]]+' 0 0;background:var('+c[2]+')" data-t="'+c[1]+': '+Math.round(d[c[0]])+' MiB"></b>'}).join("");
+      else segs='<b style="flex:1 0 0;background:var('+(m[2]||"--s0")+')" data-t="'+m[1]+': '+val.toFixed(1)+' MiB"></b>';
+      var rel=v!="1.14"?"":"<small>"+(val>=base?"+":"\u2212")+Math.abs(Math.round(100*(val/base-1)))+"% vs 1.13</small>";
+      h+='<div class="row"><span class="v">'+v+'</span><div class="track"><div class="bar" style="width:calc((100% - 9.5em) * '+(val/max).toFixed(4)+')">'+segs+'</div><span class="tot">'+Math.round(val)+' MiB'+rel+'</span></div></div>'}}
+  P.innerHTML=h;
+  cap.innerHTML=m[3]+" Julia 1.10.12, 1.13.2 and 1.14.0-alpha1, in MiB.";
+}
+f.addEventListener("mousemove",function(e){var b=e.target.closest(".bar b");if(!b){tt.style.display="none";return}var r=f.getBoundingClientRect();tt.textContent=b.dataset.t;tt.style.display="block";var x=e.clientX-r.left+12;if(x+tt.offsetWidth>r.width)x=e.clientX-r.left-tt.offsetWidth-12;tt.style.left=x+"px";tt.style.top=(e.clientY-r.top-34)+"px"});
+f.addEventListener("mouseleave",function(){tt.style.display="none"});
+draw();
+})();
+</script>
+</figure>
+
+<p>The savings also apply to the package images of packages you install. For example, on Linux an environment with DataFrames, CSV, Plots, OrdinaryDiffEq and JuMP &#40;329 package images&#41; takes up 659 MiB of precompile cache, compared with 859 MiB on 1.13. The debug info in those package images drops from 106 MiB to 8 MiB.</p>
+<h2 id="pkg"><a href="#pkg" class="header-anchor">Pkg</a></h2>
+<p><em>Kristoffer Carlsson</em>, <em>Ian Butterworth</em>, <em>Stefan Karpinski</em>, <em>others</em></p>
+<h3 id="faster_first_pkg_operation"><a href="#faster_first_pkg_operation" class="header-anchor">Faster first Pkg operation</a></h3>
+<p>Previously, the first time a session used the registry, Pkg had to decompress the whole registry tarball and walk its ~75k entries with Tar, creating a string for every file in it, even though only a few packages were needed. The registry is now cached on disk in a binary format with a per-package index, and memory-mapped so that a session only reads the packages it uses. This makes the first Pkg operation in a session noticeably faster &#40;<a href="https://github.com/JuliaLang/Pkg.jl/pull/4797">Pkg#4797</a>&#41;. For example, the first <code>Pkg.status&#40;&#41;</code> in a fresh session for a project with a single dependency, on Julia 1.13:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-keyword">using</span> Pkg
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> Pkg.status()
+</span>Status `~/ex/Project.toml`
+  [7876af07] Example v0.5.5
+  0.150727 seconds (1.27 M allocations: 93.000 MiB, 32.88% gc time, 8.05% compilation time)</code></pre>
+<p>and on Julia 1.14:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-keyword">using</span> Pkg
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-meta">@time</span> Pkg.status()
+</span>Status `~/ex/Project.toml`
+  [7876af07] Example v0.5.5
+  0.045183 seconds (223.04 k allocations: 13.359 MiB, 39.54% gc time, 5.67% compilation time)</code></pre>
+<h3 id="sat-based_resolver"><a href="#sat-based_resolver" class="header-anchor">SAT-based resolver</a></h3>
+<p>Pkg now uses the SAT-based resolver from <a href="https://github.com/JuliaLang/Resolver.jl">Resolver.jl</a>. It is typically faster, and when resolution fails it explains each conflict and suggests changes that would fix it &#40;<a href="https://github.com/JuliaLang/Pkg.jl/pull/4738">Pkg#4738</a>&#41;.</p>
+<p>As an example, here is the error from asking for two incompatible versions with <code>pkg&gt; add DataFrames@1.7 PrettyTables@1</code>. With the old resolver:</p>
+<pre><code class="julia hljs">Unsatisfiable requirements detected <span class="hljs-keyword">for</span> package DataFrames [a93c6f00]:
+ DataFrames [a93c6f00] log:
+ ├─possible versions are: <span class="hljs-number">0.11</span><span class="hljs-number">.7</span> - <span class="hljs-number">1.8</span><span class="hljs-number">.2</span> or uninstalled
+ ├─restricted to versions * by project [c0971505], leaving only versions: <span class="hljs-number">0.11</span><span class="hljs-number">.7</span> - <span class="hljs-number">1.8</span><span class="hljs-number">.2</span>
+ │ └─project [c0971505] log:
+ │   ├─possible versions are: <span class="hljs-number">0.0</span><span class="hljs-number">.0</span> or uninstalled
+ │   └─project [c0971505] is fixed to version <span class="hljs-number">0.0</span><span class="hljs-number">.0</span>
+ ├─restricted to versions <span class="hljs-number">1.7</span> by an explicit requirement, leaving only versions: <span class="hljs-number">1.7</span><span class="hljs-number">.0</span> - <span class="hljs-number">1.7</span><span class="hljs-number">.1</span>
+ └─restricted by compatibility requirements with PrettyTables [<span class="hljs-number">08</span>abe8d2] to versions: [<span class="hljs-number">0.11</span><span class="hljs-number">.7</span> - <span class="hljs-number">0.21</span><span class="hljs-number">.8</span>, <span class="hljs-number">1.0</span><span class="hljs-number">.0</span> - <span class="hljs-number">1.3</span><span class="hljs-number">.6</span>] or uninstalled — no versions left
+   └─PrettyTables [<span class="hljs-number">08</span>abe8d2] log:
+     ├─possible versions are: <span class="hljs-number">0.1</span><span class="hljs-number">.0</span> - <span class="hljs-number">3.5</span><span class="hljs-number">.0</span> or uninstalled
+     ├─restricted to versions * by project [c0971505], leaving only versions: <span class="hljs-number">0.1</span><span class="hljs-number">.0</span> - <span class="hljs-number">3.5</span><span class="hljs-number">.0</span>
+     │ └─project [c0971505] log: see above
+     └─restricted to versions <span class="hljs-number">1</span> by an explicit requirement, leaving only versions: <span class="hljs-number">1.0</span><span class="hljs-number">.0</span> - <span class="hljs-number">1.3</span><span class="hljs-number">.1</span></code></pre>
+<p>With the new resolver:</p>
+<pre><code class="julia hljs">Unsatisfiable requirements detected — <span class="hljs-number">1</span> conflict:
+
+Conflict <span class="hljs-number">1</span>: DataFrames
+  • your compat restricts DataFrames to <span class="hljs-number">1.7</span><span class="hljs-number">.0</span>–<span class="hljs-number">1.7</span><span class="hljs-number">.1</span>
+  • DataFrames <span class="hljs-number">1.7</span><span class="hljs-number">.0</span>–<span class="hljs-number">1.7</span><span class="hljs-number">.1</span> requires PrettyTables <span class="hljs-number">2.1</span><span class="hljs-number">.0</span>–<span class="hljs-number">2.4</span><span class="hljs-number">.0</span>
+  • your compat restricts PrettyTables to <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>–<span class="hljs-number">1.3</span><span class="hljs-number">.1</span>
+  Fix it by any one of:
+    <span class="hljs-number">1.</span> relax your compat on DataFrames
+       → allows: DataFrames <span class="hljs-number">1.3</span><span class="hljs-number">.6</span>, PrettyTables <span class="hljs-number">1.3</span><span class="hljs-number">.1</span>
+    <span class="hljs-number">2.</span> relax your compat on PrettyTables
+       → allows: DataFrames <span class="hljs-number">1.7</span><span class="hljs-number">.1</span>, PrettyTables <span class="hljs-number">2.4</span><span class="hljs-number">.0</span>
+    <span class="hljs-number">3.</span> drop dependency DataFrames
+       → allows: PrettyTables <span class="hljs-number">1.3</span><span class="hljs-number">.1</span>
+  Note: dropping dependency PrettyTables does not help.</code></pre>
+<p>The new resolver is also faster. The table below shows the time for the resolve step of <code>Pkg.add</code> against the General registry &#40;warm process, best of 3&#41;. The resulting manifests are identical in all cases.</p>
+<div class="center-table"><table><tr><th align="right">Packages added</th><th align="right">Old resolver</th><th align="right">New resolver</th></tr><tr><td align="right">JSON</td><td align="right">0.37 s</td><td align="right">0.01 s</td></tr><tr><td align="right">Plots</td><td align="right">0.35 s</td><td align="right">0.06 s</td></tr><tr><td align="right">Makie</td><td align="right">0.34 s</td><td align="right">0.10 s</td></tr><tr><td align="right">DifferentialEquations</td><td align="right">0.42 s</td><td align="right">0.31 s</td></tr><tr><td align="right">Symbolics</td><td align="right">1.36 s</td><td align="right">0.13 s</td></tr><tr><td align="right">DataFrames &#43; CSV</td><td align="right">0.34 s</td><td align="right">0.02 s</td></tr><tr><td align="right">Plots &#43; DiffEq &#43; Makie &#43; Symbolics &#43; DataFrames &#43; Flux</td><td align="right">2.13 s</td><td align="right">0.33 s</td></tr></table></div>
+<p>The old resolver can still be selected with <code>JULIA_PKG_RESOLVER&#61;maxsum</code>.</p>
+<h3 id="compat-overrides"><a href="#compat-overrides" class="header-anchor"><code>&#91;compat-overrides&#93;</code></a></h3>
+<p>A new project file section replaces all compat constraints on a package, for example to try a new version that a dependency does not allow yet &#40;<a href="https://github.com/JuliaLang/Pkg.jl/pull/4841">Pkg#4841</a>&#41;.</p>
+<h3 id="pkg_add_--from"><a href="#pkg_add_--from" class="header-anchor"><code>pkg&gt; add --from</code></a></h3>
+<p>Adds the direct dependencies of another environment, e.g. to populate <code>@v1.14</code> from <code>@v1.13</code> &#40;<a href="https://github.com/JuliaLang/Pkg.jl/pull/4777">Pkg#4777</a>&#41;.</p>
+<h3 id="lazy_addupdate"><a href="#lazy_addupdate" class="header-anchor">Lazy add/update</a></h3>
+<p><code>Pkg.add</code>, <code>Pkg.update</code> and <code>Pkg.resolve</code> accept <code>lazy&#61;true</code> to update the project and manifest without installing anything.</p>
+<h3 id="pkgwhy_prints_a_tree"><a href="#pkgwhy_prints_a_tree" class="header-anchor"><code>Pkg.why</code> prints a tree</a></h3>
+<p><code>Pkg.why</code> now prints a dependency tree instead of listing every path, which could run to thousands of lines &#40;<a href="https://github.com/JuliaLang/Pkg.jl/pull/4839">Pkg#4839</a>&#41;. Here is why PrecompileTools ends up in an environment with CSV and DataFrames:</p>
+<pre><code class="julia hljs">(whyenv) pkg&gt; why PrecompileTools
+  PrecompileTools
+  ├─← CSV
+  ├─← DataFrames
+  ├─← Parsers
+  │   └─← CSV
+  ├─← PrettyTables
+  │   └─← DataFrames
+  └─← StringManipulation
+      └─← PrettyTables (*)</code></pre>
+<p>Each package&#39;s dependents are listed only once, and later occurrences are marked with <code>&#40;*&#41;</code>, which keeps the output small even when there are many paths. With <code>--forward</code> the same information is printed starting from the project&#39;s direct dependencies instead:</p>
+<pre><code class="julia hljs">(whyenv) pkg&gt; why --forward PrecompileTools
+  CSV
+  ├─→ Parsers
+  │   └─→ PrecompileTools
+  └─→ PrecompileTools
+  DataFrames
+  ├─→ PrecompileTools
+  └─→ PrettyTables
+      ├─→ PrecompileTools
+      └─→ StringManipulation
+          └─→ PrecompileTools</code></pre>
+<h3 id="environment_ids_in_manifests"><a href="#environment_ids_in_manifests" class="header-anchor">Environment IDs in manifests</a></h3>
+<p>Manifests now record an <code>environment_id</code>, which Julia uses in precompile cache file names so that environments at the same path &#40;e.g. in containers sharing a depot&#41; no longer overwrite each other&#39;s caches &#40;<a href="https://github.com/JuliaLang/Pkg.jl/pull/4824">Pkg#4824</a>&#41;.</p>
+<h3 id="other_changes"><a href="#other_changes" class="header-anchor">Other changes</a></h3>
+<ul>
+<li><p><code>Pkg.instantiate&#40;; update_on_mismatch&#61;true&#41;</code> falls back to updating when the manifest is stale &#40;<a href="https://github.com/JuliaLang/Pkg.jl/pull/4678">Pkg#4678</a>&#41;.</p>
+</li>
+<li><p><code>Pkg.activate</code> warns when loaded packages differ from those in the new environment &#40;<a href="https://github.com/JuliaLang/Pkg.jl/pull/4679">Pkg#4679</a>&#41;.</p>
+</li>
+<li><p>Artifact selection hooks can load their package&#39;s dependencies &#40;<a href="https://github.com/JuliaLang/Pkg.jl/pull/4747">Pkg#4747</a>&#41;.</p>
+</li>
+</ul>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script defer src="/previews/PR2649/libs/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){hljs.configure({tabReplace:'    '});hljs.highlightAll();});</script>
+
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2649/project">About</a></li>
+        <li><a href="/previews/PR2649/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2649/governance/">Governance</a></li>
+        <li><a href="/previews/PR2649/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2649/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2649/downloads">Install</a></li>
+        <li><a href="/previews/PR2649/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2649/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2649/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2649/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2649/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2649/community/">Community</a></li>
+        <li><a href="/previews/PR2649/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2649/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2649/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2649/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2649/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2649/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2649/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+    <script src="/previews/PR2649/libs/blog-sections.js"></script>
+    
+    
+  </body>
+</html>

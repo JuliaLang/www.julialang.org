@@ -1,0 +1,70 @@
+# Julia
+
+> Julia is a high-level, high-performance, dynamic programming language for technical computing. It is open source (MIT license), compiles to efficient native code via LLVM, uses multiple dispatch as its core paradigm, and is widely used for scientific computing, numerical analysis, data science, machine learning, and simulation.
+
+Key facts:
+
+- Current stable release: Julia 1.13.2 (released October 14, 2026). Download: https://julialang.org/downloads/
+- Current long-term support (LTS) release: Julia 1.10.12 (released August 16, 2026).
+- Recommended installation is via Juliaup, the official Julia version manager. On macOS and Linux: `curl -fsSL https://install.julialang.org | sh`. On Windows: `winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore`. Then run `julia` to start, and `juliaup --help` to manage installed versions.
+- License: MIT. Source code: https://github.com/JuliaLang/julia
+- Official documentation: https://docs.julialang.org
+- Packages are installed with the built-in package manager (`using Pkg; Pkg.add("Name")`, or `]add Name` in the REPL) from the General registry. Discover packages at https://juliahub.com/ui/Packages
+- Community: Discourse (https://discourse.julialang.org) for questions, plus Slack, Zulip and Discord for chat.
+
+## Docs
+
+- [Julia Documentation](https://docs.julialang.org/en/v1/): The official manual, Base and standard library reference for the current stable release
+- [Getting Started](https://docs.julialang.org/en/v1/manual/getting-started/): First steps with the Julia REPL
+- [Performance Tips](https://docs.julialang.org/en/v1/manual/performance-tips/): How to write fast Julia code
+- [Noteworthy Differences from other Languages](https://docs.julialang.org/en/v1/manual/noteworthy-differences/): Differences from MATLAB, R, Python, C/C++ and Common Lisp
+- [Frequently Asked Questions](https://docs.julialang.org/en/v1/manual/faq/): Common questions about the language
+- [Pkg documentation](https://pkgdocs.julialang.org/v1/): The Julia package manager
+
+## Download & install
+
+- [Install Julia](https://julialang.org/downloads/): Recommended installation with Juliaup
+- [Manual downloads](https://julialang.org/downloads/manual-downloads/): Installers and binaries for the current stable and LTS releases on all platforms
+- [Platform-specific instructions](https://julialang.org/downloads/platform/): Notes for Windows, macOS, Linux and FreeBSD
+- [Supported platforms](https://julialang.org/downloads/support/): Platform support tiers and release support status
+- [Juliaup](https://github.com/JuliaLang/juliaup): The Julia version manager
+
+## Learning
+
+- [Learning Julia](https://julialang.org/learning/): Overview of learning resources
+- [Getting started](https://julialang.org/learning/getting-started/): Where to start for new users
+- [Tutorials](https://julialang.org/learning/tutorials/): Written and video tutorials
+- [Books](https://julialang.org/learning/books/): Books about Julia
+- [Classes](https://julialang.org/learning/classes/): University courses that use Julia
+
+## Community
+
+- [Community](https://julialang.org/community/): Overview of community channels, events and organizations
+- [Discourse](https://discourse.julialang.org/): The main forum for questions and discussion
+- [Slack](https://julialang.org/slack/): How to join the Julia Slack workspace
+- [Zulip](https://julialang.zulipchat.com/register/): Julia Zulip chat
+- [Packages](https://julialang.org/community/packages/): How to find, use and develop Julia packages
+- [Community Standards](https://julialang.org/community/standards/): Code of conduct for Julia community spaces
+
+## Blog
+
+- [Julia Blog](https://julialang.org/blog/): Release announcements and project news
+- [RSS feed](https://julialang.org/feed.xml): Blog feed
+
+## Governance & project
+
+- [Governance](https://julialang.org/governance/): How the Julia project is organized and governed
+- [The Julia Project](https://julialang.org/project/): Goals of the Julia project
+- [Contribute](https://julialang.org/contribute/): How to contribute to Julia
+- [GitHub: JuliaLang/julia](https://github.com/JuliaLang/julia): Source code, issues and pull requests
+- [License](https://github.com/JuliaLang/julia/blob/master/LICENSE.md): The MIT license
+
+## Optional
+
+- [Research](https://julialang.org/research/): How to cite Julia
+- [Benchmarks](https://julialang.org/benchmarks/): Micro-benchmarks comparing Julia with other languages
+- [Older releases](https://julialang.org/downloads/oldreleases/): Archive of previous Julia releases
+- [Nightly builds](https://julialang.org/downloads/nightlies/): Development builds
+- [Julia Seasons of Contributions](https://julialang.org/jsoc/): Mentored contributor programs
+- [Diversity and inclusion](https://julialang.org/diversity/): Diversity efforts in the Julia community
+- [Sponsor Julia](https://github.com/sponsors/JuliaLang): Support the project financially
