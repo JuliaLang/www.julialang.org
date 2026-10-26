@@ -33,7 +33,7 @@
 </url>
 <url>
     <loc>https://julialang.netlify.app/previews/PR2647/downloads/manual-downloads/index.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -975,7 +975,7 @@
 </url>
 <url>
     <loc>https://julialang.netlify.app/previews/PR2647/blog/index.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1245,7 +1245,7 @@
 </url>
 <url>
     <loc>https://julialang.netlify.app/previews/PR2647/downloads/oldreleases/index.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
@@ -1491,7 +1491,7 @@
 </url>
 <url>
     <loc>https://julialang.netlify.app/previews/PR2647/index/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
