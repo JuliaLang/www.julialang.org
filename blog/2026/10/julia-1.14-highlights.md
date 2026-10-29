@@ -16,9 +16,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 ## Latency improvements
 
-###
-
-TODO: General latency numbers for 1.14
+### Latency numbers
 
 **Note: the numbers in the chart below are placeholders, not real measurements.**
 
@@ -613,3 +611,22 @@ Manifests now record an `environment_id`, which Julia uses in precompile cache f
 - `Pkg.instantiate(; update_on_mismatch=true)` falls back to updating when the manifest is stale ([Pkg#4678](https://github.com/JuliaLang/Pkg.jl/pull/4678)).
 - `Pkg.activate` warns when loaded packages differ from those in the new environment ([Pkg#4679](https://github.com/JuliaLang/Pkg.jl/pull/4679)).
 - Artifact selection hooks can load their package's dependencies ([Pkg#4747](https://github.com/JuliaLang/Pkg.jl/pull/4747)).
+
+## Bugs found by formalizing Base in Lean
+*Miles Cranmer*
+
+During the 1.14 release cycle, Miles Cranmer [modelled parts of Base in Lean 4](https://discourse.julialang.org/t/formalizing-julia-in-lean-and-finding-400-bugs-in-base/140243) with the help of AI agents. Each Julia function gets a Lean definition that follows the source line by line, including integer wraparound and which exceptions get thrown. Properties taken from docstrings and the manual are then stated as theorems for the agents to prove. When a proof fails, the counterexample usually points to a bug, which only counts once a plain Julia script reproduces it. The models, the properties and all bugs found are in the [julia-in-lean](https://github.com/MilesCranmer/julia-in-lean) repository.
+
+So far this has found around 400 bugs. Many of them are edge cases at `typemin`, empty collections or unsigned types. For example, `reverse` negates the step of a range, and negating `typemin(Int8)` wraps back to itself:
+
+```julia-repl
+julia> r = Int8(0):typemin(Int8):typemin(Int8)
+0:-128:-128
+
+julia> length(r), length(reverse(r))
+(2, 0)
+```
+
+The ones that seemed worth a maintainer's time were filtered by hand, checked for duplicates and filed as [issues by @MilesCranmerBot](https://github.com/JuliaLang/julia/issues?q=author%3AMilesCranmerBot). Fixes for many of them, also from @MilesCranmerBot, were [merged](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+author%3AMilesCranmerBot+is%3Amerged), most of them marked for backport to 1.14. They cover things like `deleteat!`, `partialsort`, `LinearIndices`, `maximum` with `dims` on all-`missing` arrays, `circshift!` on an empty `BitVector`, BigFloat parsing, and the TOML parser. The approach also found a [miscompilation](https://github.com/JuliaLang/julia/issues/64183) that was introduced during 1.14 development, where inference reused an `isa` check from an earlier loop iteration.
+
+We are excited about combining formal methods with AI to find bugs, and we hope this effort continues and catches more severe bugs in the future.
