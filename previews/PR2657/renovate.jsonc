@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":enableVulnerabilityAlerts"
+  ],
+  "rebaseWhen": "conflicted",
+
+  // Only run from Friday 7pm to Saturday 7am Eastern Time, outside working hours.
+  // Security updates ignore this schedule.
+  "timezone": "America/New_York",
+  "schedule": ["* 19-23 * * 5", "* 0-6 * * 6"],
+  // Also don't rebase/update existing PRs outside the schedule.
+  "updateNotScheduled": false,
+
+  "lockFileMaintenance": {
+    "enabled": true,
+    // lockFileMaintenance doesn't inherit the top-level schedule above
+    // So we set it explicitly
+    "schedule": ["* 19-23 * * 5", "* 0-6 * * 6"]
+  },
+
+  // Note: the 7-day cooldown does not apply to security updates.
+  //
+  // > What happens to security updates?
+  // > Security updates bypass any minimumReleaseAge checks, and so will be raised as soon as Renovate detects them.
+  // Source: https://docs.renovatebot.com/key-concepts/minimum-release-age/#what-happens-to-security-updates
+  "minimumReleaseAge": "7 days",
+}
