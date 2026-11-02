@@ -1,2 +1,7 @@
 [default]
 extend-ignore-words-re = ["^[a-zA-Z]?[a-zA-Z]?[a-zA-Z]?$"]
+
+[default.extend-words]
+# Package and identifier names in tools/ecosystem-images/Manifest.toml
+Missings = "Missings"
+ALPH = "ALPH"
