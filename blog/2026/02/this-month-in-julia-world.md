@@ -1,23 +1,27 @@
 @def title = "This Month in Julia World (January 2026)"
 @def authors = "Stefan Krastanov"
-@def published = "1 February 2026"
-@def rss_pubdate = Date(2026, 2, 1)
+@def published = "10 February 2026"
+@def rss_pubdate = Date(2026, 2, 10)
 @def rss = """Community Newsletter for January 2026"""
+@def mintoclevel = 2
+@def maxtoclevel = 2
+@def div_content = "container main newsletter"
 
-A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.
-
-If you want to receive the newsletter as an email, subscribe to the [Community--Newsletter category on Discourse](https://discourse.julialang.org/c/community/news/66).
+_A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. [Subscribe by email on Discourse](https://discourse.julialang.org/c/community/news/66)._
 
 For recent news on Julia and interesting conversations with community members, check out the [JuliaDispatch](https://juliadispatch.fm/) podcast (on many platforms, including [youtube](https://www.youtube.com/@JuliaDispatch/) and [spotify](https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws)). Highlights from the newsletter get discussed (with more context) during some episodes.
 
 Current status: Julia release is 1.12.4, Julia LTS is 1.10.10. The feature freeze for 1.13 has passed and we are already at 1.13-beta2. The dev branch is at 1.14-dev
 
-JuliaCon Global 2026:
+\toc
+
+## JuliaCon Global 2026
 
 - The [Call for Proposals](https://juliacon.org/2026/cfp) is out—submit your talks until February 28th!
+
 - Follow JuliaCon on [Bluesky](https://bsky.app/profile/juliacon.org) for news and updates about JuliaCon.
 
-"Internals" Fora and Core Repos (Slack/Zulip/Discourse/Github):
+## Core repos
 
 - Max Horn has made more than 30 PRs improving the Markdown stdlib, bringing it closer to CommonMark compliance. Recent changes include support for [strikethrough](https://github.com/JuliaLang/julia/pull/60537), [HTML entities](https://github.com/JuliaLang/julia/pull/60629), [email autolinks](https://github.com/JuliaLang/julia/pull/60570), [non-breaking space preservation](https://github.com/JuliaLang/julia/pull/60759), [HTML blocks](https://github.com/JuliaLang/julia/pull/60632), [Windows line endings](https://github.com/JuliaLang/julia/pull/60708), and [proper list marker handling](https://github.com/JuliaLang/julia/pull/60707) among many others. CommonMark is the widely-adopted specification for Markdown syntax, and these improvements mean Julia's built-in Markdown rendered will be closer to other platforms and editors.
 
@@ -47,7 +51,7 @@ JuliaCon Global 2026:
 
 - A [discussion on juliac and packages](https://discourse.julialang.org/t/juliac-using-packages/135103) explores the challenges of using common packages (TOML, CSV, DataFrames) with Julia's new ahead-of-time compiler. The core issue is type stability—juliac requires types to be known at compile time, which conflicts with how many data-handling packages construct tables and parse formats at runtime. Type-stable alternatives like TypedTables and StructArrays work better, but the discussion highlights fundamental tradeoffs between dynamic convenience and static compilation.
 
-Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
+## Ecosystem
 
 - **GitHub Dependabot now supports Julia** ([Previously announced, but now with a detailed PSA](https://discourse.julialang.org/t/psa-github-dependabot-now-supports-julia/134997)). This enables automatic dependency updates with several advantages over CompatHelper: CI runs automatically without manual intervention, checked-in manifests are updated (with resolver errors shown in the PR body if updates fail), and Julia 1.12+ workspace support coordinates updates across multiple environments. Integration with GitHub's CVE management is also on the roadmap.
 
@@ -69,7 +73,7 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
 - A book, [Modern Financial Modeling](https://modernfinancialmodeling.com), focused on bringing programming and Julia to actuaries and other financial professionals is nearing the end of its pre-release phase. Feedback is welcome!
 
-Numerical Math ecosystem:
+## Numerical math and science
 
 - [MultiFloats.jl v3.0](https://github.com/dzhang314/MultiFloats.jl) is released with significant improvements to extended-precision floating-point arithmetic (128–256 bits). The new version introduces faster and more accurate algorithms, round-trip-safe string conversion, new GPU-friendly types (`Float32x2`, `Float32x3`, `Float32x4`), and stricter commutativity for multiplication. The library claims to be the fastest in this precision range—30x faster than BigFloat and 2x faster than DoubleFloats.jl.
 
