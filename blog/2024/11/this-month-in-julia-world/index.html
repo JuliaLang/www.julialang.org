@@ -199,8 +199,9 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.</p>
-<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#compiler_internals">Compiler internals</a></li><li><a href="#garbage_collector_internals">Garbage collector internals</a></li><li><a href="#dustbin_of_history">Dustbin of history</a></li><li><a href="#in_search_of_contributors">In search of contributors</a></li><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#autodiff">Autodiff</a></li><li><a href="#other_ecosystems">Other ecosystems</a></li><li><a href="#blogs_and_talks">Blogs and talks</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p>With the introduced of the new <code>Memory</code> low-level type, a lot of new compiler optimizations became possible. Particularly exciting is <a href="https://github.com/JuliaLang/julia/pull/55913">turning <code>memorynew</code> into an intrinsic</a>, bringing up the possibility to stack-allocate small arrays. This would be an amazing improvement, especially for newbies frustrated by the fact that they have to use temporary tuples instead of temporary arrays in tight inner loops.</p>
 </li>
@@ -225,7 +226,7 @@
 <li><p>Now that Julia has version-specific Manifest.toml files, juliaup will be set up to take advantage of that and <a href="https://github.com/JuliaLang/juliaup/pull/1059">launch the appropriate version</a>.</p>
 </li>
 </ul>
-<p>Compiler Internals:</p>
+<h2 id="compiler_internals"><a href="#compiler_internals" class="header-anchor">Compiler internals</a></h2>
 <ul>
 <li><p>“<a href="https://www.youtube.com/watch?v&#61;hUxnLunOU4w">Julia as a Statically Compiled Language</a>” by Jeff, discussing the upcoming ahead-of-time compiler mode for Julia. Related to that, check out the new <code>--trim</code> option for smaller binaries and some <a href="https://discourse.julialang.org/t/pushing-the-limits-of-small-binary-creation/120989">fun experiments community members have been doing with small binaries</a>. Are we one step closer to Julia being a backend to other languages?</p>
 </li>
@@ -236,19 +237,19 @@
 <li><p>The optimizer might be able to <a href="https://github.com/JuliaLang/julia/pull/55990">call finalizers much earlier</a> soon enough.</p>
 </li>
 </ul>
-<p>Garbage Collector Internals:</p>
+<h2 id="garbage_collector_internals"><a href="#garbage_collector_internals" class="header-anchor">Garbage collector internals</a></h2>
 <ul>
 <li><p><a href="https://github.com/JuliaLang/julia/pull/55956"><code>threadcall</code> might become gc safe soon</a></p>
 </li>
 <li><p>We are getting closer to having <a href="https://github.com/JuliaLang/julia/pull/56288">MMTk as an optional alternative garbage collection toolkit</a> in julia.</p>
 </li>
 </ul>
-<p>Dustbin of History:</p>
+<h2 id="dustbin_of_history"><a href="#dustbin_of_history" class="header-anchor">Dustbin of history</a></h2>
 <ul>
-<li><p>For those interested in archeology, this is not the <a href="http://thisweekinjulia.github.io/">first attempt</a> to run a julia newsletter.</p>
+<li><p>For those interested in archeology, this is not the <a href="https://thisweekinjulia.github.io/">first attempt</a> to run a julia newsletter.</p>
 </li>
 </ul>
-<p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
+<h2 id="in_search_of_contributors"><a href="#in_search_of_contributors" class="header-anchor">In search of contributors</a></h2>
 <ul>
 <li><p>@avik and @thecedarprince &#40;the Co-Admins for Julia’s Participation in Google Summer of Code&#41; are looking for new Google Summer of Code admin volunteers – low-effort and low-time commitment with a big impact on the Julia community&#33;</p>
 </li>
@@ -257,7 +258,7 @@
 <li><p>ChainRules, a foundational package to the Julia autodiff effort is looking for a <a href="https://discourse.julialang.org/t/chainrules-project-looking-for-a-new-primary-maintainer/115636">new primary maintainer</a>.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/ann-tensorial-jl-statically-sized-tensors-and-related-operations-for-julia/121588">Tensorial</a> is a great new package for tensor math. Also <a href="https://julialang.slack.com/archives/C6FGJ8REC/p1729174454227819">discussed on slack</a>, including in terms of how it compares to other Julia tools.</p>
 </li>
@@ -274,7 +275,7 @@
 <li><p>Another magic trick from Lilith: having your Julia session lazily autoload commonly used packages <a href="https://github.com/LilithHafner/BasicAutoloads.jl">BasicAutoloads.jl</a></p>
 </li>
 </ul>
-<p>Julia Autodiff ecosystem &#40;enough topics for its own category this month&#41;:</p>
+<h2 id="autodiff"><a href="#autodiff" class="header-anchor">Autodiff</a></h2>
 <ul>
 <li><p>The DifferentiationInterface.jl &#40;DI.jl&#41; repository has been transferred to the <a href="https://github.com/JuliaDiff/DifferentiationInterface.jl">JuliaDiff</a> organization to ensure continued maintenance.</p>
 </li>
@@ -289,7 +290,7 @@
 <li><p>What does <code>compile</code> in <code>ReverseDiff</code> <a href="https://github.com/SciML/ADTypes.jl/issues/91">mean</a>?</p>
 </li>
 </ul>
-<p>Notes from other ecosystems:</p>
+<h2 id="other_ecosystems"><a href="#other_ecosystems" class="header-anchor">Other ecosystems</a></h2>
 <ul>
 <li><p>NumPy now supports a <a href="https://quansight.com/post/my-numpy-year-creating-a-dtype-for-the-next-generation-of-scientific-computing/">much more general data type</a> for its arrays.</p>
 </li>
@@ -300,7 +301,7 @@
 <li><p>A julia slack discussion on how <a href="https://julialang.slack.com/archives/C688QKS7Q/p1728398666009809">C# implements elegant abstractions for SIMD-accelerated arrays</a>. Brings up related <a href="https://github.com/JuliaLang/julia/pull/55118">Julia work on implementing similar capabilities</a>.</p>
 </li>
 </ul>
-<p>Soapboxes &#40;blogs/talks&#41;:</p>
+<h2 id="blogs_and_talks"><a href="#blogs_and_talks" class="header-anchor">Blogs and talks</a></h2>
 <ul>
 <li><p><a href="https://bsky.app/profile/thecedarprince.bsky.social/post/3l7lmnjewv52e">Looking to build more of a Julia presence on BlueSky</a></p>
 </li>

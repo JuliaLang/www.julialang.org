@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (February 2026)",
   "description": "Community Newsletter for February 2026",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2026-03-01T00:00:00+00:00",
+  "datePublished": "2026-03-10T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 March 2026</span> |
+            <span class="blog-meta-date">10 March 2026</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,10 +199,10 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.</p>
-<p>If you want to receive the newsletter as an email, subscribe to the <a href="https://discourse.julialang.org/c/community/news/66">Community–Newsletter category on Discourse</a>.</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
 <p>Current status: Julia release is 1.12.5, Julia LTS is 1.10.10. The feature freeze for 1.13 has passed and we are already at 1.13-alpha2. The dev branch is at 1.14-dev</p>
-<p>&quot;Internals&quot; Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#in_search_of_contributors">In search of contributors</a></li><li><a href="#ecosystem">Ecosystem</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p>Julia now supports mutually recursive types. Mutually recursive types occur when two or more types reference each other, which is common in data structures like trees and graphs but has been challenging to express cleanly in Julia. The creation of <a href="https://github.com/JuliaLang/julia/pull/60569">the PR implementing it</a> was mentioned in the December issue of this newsletter. That PR has been merged now.</p>
 </li>
@@ -227,12 +227,12 @@
 <li><p>Documentation for control flow statements <code>break</code>, <code>@label</code>, and <code>continue</code> has been <a href="https://github.com/JuliaLang/julia/pull/60818">significantly expanded</a>.</p>
 </li>
 </ul>
-<p>In search of contributors and new maintainers:</p>
+<h2 id="in_search_of_contributors"><a href="#in_search_of_contributors" class="header-anchor">In search of contributors</a></h2>
 <ul>
 <li><p><a href="https://juliadynamics.github.io/Agents.jl/stable/">Agents.jl</a> is a mature and well-established library for Agent Based Modelling. It is currently <a href="https://discourse.julialang.org/t/agents-jl-v6-releases-announcement-post/111678/13?u&#61;datseris">searching for maintainers</a>.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/you-should-try-jetls-it-is-awesome/135844">JETLS</a>, a new language server for Julia built on top of the compiler&#39;s own type inference, is generating significant excitement in the community. Unlike the existing LanguageServer.jl, JETLS provides compiler-powered diagnostics with real-time error detection. A core team member indicated it will become integrated by default in IDEs such as VS Code before JuliaCon. It currently requires Julia 1.12&#43; and has some false positives, but represents a major step forward for Julia&#39;s developer tooling.</p>
 </li>
@@ -263,7 +263,7 @@
 <li><p><a href="https://discourse.julialang.org/t/ann-hadaptiveintegration-jl-v1-0-0-adaptive-numerical-integration-over-simplices-and-orthotopes/135309">HAdaptiveIntegration.jl v1.0.0</a> provides adaptive numerical integration over multidimensional domains including simplices &#40;triangles, tetrahedra&#41; and orthotopes &#40;rectangles, cuboids&#41; in any dimension. It improves upon HCubature.jl by supporting simplices of any dimension and using more efficient tabulated cubature rules for low-dimensional cases, while supporting arbitrary precision arithmetic.</p>
 </li>
 </ul>
-<p>See also: <a href="https://juliahub.com/blog">JuliaHub corporate blog</a>, <a href="https://pnavaro.github.io/NouvellesJulia/">French community newsletter</a>, <a href="https://julialang.org/community/#events">community calendar</a>, <a href="https://github.com/TuringLang/Turing.jl/issues/2498">Turing.jl newsletter</a></p>
+<p>See also: <a href="https://juliahub.com/blog">JuliaHub corporate blog</a>, <a href="https://pnavaro.github.io/NouvellesJulia/">French community newsletter</a>, <a href="/community/#events">community calendar</a>, <a href="https://github.com/TuringLang/Turing.jl/issues/2498">Turing.jl newsletter</a></p>
 <p>You can engage in the discussion of this newsletter on <a href="https://discourse.julialang.org/c/community/news/66">Discourse</a></p>
 <p>Disclaimer: An LLM was used to convert the initial human-curated list of interesting links into narrative bullet points. I &#40;the human editor&#41; then used these first bullet point drafts to flesh them out into their current state, occasionally with significant rewriting, occasionally verbatim reusing them. Please be aware of the <a href="https://discourse.julialang.org/t/updates-to-the-site-guidelines-especially-regarding-gen-ai/134315">Julia Discourse policy on Generative AI content</a>.</p>
 </div><br><br>

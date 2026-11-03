@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (January 2025)",
   "description": "Community Newsletter for January 2025",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2025-02-01T00:00:00+00:00",
+  "datePublished": "2025-02-05T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 February 2025</span> |
+            <span class="blog-meta-date">5 February 2025</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,9 +199,10 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
 <p>The deadline for <a href="https://juliacon.org/2025/cfp/">submitting a proposal to JuliaCon 2025 is extended to Feb 14th</a>.</p>
-<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#in_search_of_contributors">In search of contributors</a></li><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#abstract_math">Abstract math</a></li><li><a href="#numerical_math_and_science">Numerical math and science</a></li><li><a href="#mathematical_optimization">Mathematical optimization</a></li><li><a href="#autodiff">Autodiff</a></li><li><a href="#other_ecosystems">Other ecosystems</a></li><li><a href="#blogs_and_talks">Blogs and talks</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p>Pkg now supports &#39;apps&#39; for running programs directly from the terminal without invoking Julia, using isolated environments for each app; more details are available in the<a href="https://github.com/JuliaLang/Pkg.jl/pull/3772"> PR</a> and<a href="https://julialang.slack.com/archives/C6FGJ8REC/p1737732202321509"> slack discussion</a>.</p>
 </li>
@@ -216,7 +217,7 @@
 <li><p><a href="https://github.com/JuliaLang/julia/pull/56925">Unicode v16 is now supported</a> in Julia source files. We get access to the new &quot;face with bags under eyes&quot; emoji but Unicode still doesn&#39;t have superscript “q”.</p>
 </li>
 </ul>
-<p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
+<h2 id="in_search_of_contributors"><a href="#in_search_of_contributors" class="header-anchor">In search of contributors</a></h2>
 <ul>
 <li><p>The Center for Quantum Networks is running <a href="https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md">many bounties and minigrants</a> on a variety of support packages for quantum information science.</p>
 </li>
@@ -225,7 +226,7 @@
 <li><p>ChainRules, a foundational package to the Julia autodiff effort, is looking for a <a href="https://discourse.julialang.org/t/chainrules-project-looking-for-a-new-primary-maintainer/115636">new primary maintainer</a>.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p>Speculator.jl is a <a href="https://discourse.julialang.org/t/speculator-jl-reduce-latency-through-speculative-compilation/124344">fun new tool to speculative precompile functions</a> &#40;in the background&#41; to reduce latency &#40;also in interactive dev use&#41;.</p>
 </li>
@@ -242,14 +243,14 @@
 <li><p><a href="https://github.com/nicolasloizeau/QuantumCircuitDraw.jl">QuantumCircuitDraw.jl</a> is a new package for visualizing quantum circuits in the style of Qiskit.</p>
 </li>
 </ul>
-<p>Abstract Math ecosystem:</p>
+<h2 id="abstract_math"><a href="#abstract_math" class="header-anchor">Abstract math</a></h2>
 <ul>
 <li><p>The newly published book <a href="https://link.springer.com/book/10.1007/978-3-031-62127-7">The Computer Algebra System OSCAR: Algorithms and Examples &#40;2025&#41;</a> delves into <a href="https://github.com/oscar-system/Oscar.jl">OSCAR</a>’s role in algebra, geometry, and number theory, featuring expert-written code and interdisciplinary applications.</p>
 </li>
 <li><p>The <a href="https://github.com/oscar-system/Oscar.jl/pull/4370">experimental PR</a> for <a href="https://github.com/oscar-system/Oscar.jl">Oscar.jl</a> introducing Clifford algebras, orders, quadratic spaces, and lattices has been merged&#33;</p>
 </li>
 </ul>
-<p>Numerical Math ecosystem:</p>
+<h2 id="numerical_math_and_science"><a href="#numerical_math_and_science" class="header-anchor">Numerical math and science</a></h2>
 <ul>
 <li><p>A new version of the book <a href="https://fncbook.com/">“Fundamentals of Numerical Computation” is out</a>, with julia/python/matlab snippets for each algorithm.</p>
 </li>
@@ -258,14 +259,14 @@
 <li><p>PeriodicMatrices.jl was recently released to handle <a href="https://discourse.julialang.org/t/ann-periodicmatrices-jl-handling-of-periodic-time-varying-matrices/124425">periodic time-varying matrices</a>.</p>
 </li>
 </ul>
-<p>Mathematical Optimization ecosystem:</p>
+<h2 id="mathematical_optimization"><a href="#mathematical_optimization" class="header-anchor">Mathematical optimization</a></h2>
 <ul>
 <li><p>The JuMP Steering Committee announced a <a href="https://jump.dev/announcements/open-energy-modeling/2024/09/16/oem/">major grant</a> from the Breakthrough Energy Foundation, through NumFOCUS, to enhance the performance of JuMP and HiGHS on open energy models.</p>
 </li>
 <li><p><a href="https://github.com/jump-dev/JuMP.jl">JuMP</a> and its <a href="https://github.com/scipopt/SCIP.jl">SCIP</a> solver enabled <a href="https://julialang.slack.com/archives/C6FGJ8REC/p1734870518787189">recent work</a> on automated branching rule generation, solving a weighted minimum set covering problem with 15,782 sets in seconds&#33;</p>
 </li>
 </ul>
-<p>Julia Autodiff ecosystem:</p>
+<h2 id="autodiff"><a href="#autodiff" class="header-anchor">Autodiff</a></h2>
 <ul>
 <li><p><a href="https://github.com/FluxML/Zygote.jl/pull/966">ChainRules Thunks</a> are now fully integrated into <a href="https://github.com/FluxML/Zygote.jl">Zygote.jl</a>, following a challenging but rewarding implementation process.</p>
 </li>
@@ -274,14 +275,14 @@
 <li><p>This type of discussions come up every so often and occasionally have new insight: <a href="https://discourse.julialang.org/t/automatic-differentiation-ad-in-julia-vs-python-or-pytorch/124553">Autodiff in the Julia multiple-dispatch staged-compilation model vs the Python reimplement-the-universe model</a>.</p>
 </li>
 </ul>
-<p>Notes from other ecosystems:</p>
+<h2 id="other_ecosystems"><a href="#other_ecosystems" class="header-anchor">Other ecosystems</a></h2>
 <ul>
 <li><p>Clang gets LLVM-based tooling that <a href="https://discourse.julialang.org/t/can-we-get-realtimesanitizer-in-julia/119330">checks at runtime and compile-time for realtime violations</a>.</p>
 </li>
 <li><p><a href="https://braid-technologies.notion.site/JAX-Under-the-Hood-Optimization-Tricks-and-Profiling-Tips-105efeeba2dd4e939432cb982084ae8d">JAX Under the Hood</a> explores how understanding JAX’s architecture enhances performance optimization, efficient coding, and profiling in scientific computing.</p>
 </li>
 </ul>
-<p>Soapboxes &#40;blogs/talks&#41;:</p>
+<h2 id="blogs_and_talks"><a href="#blogs_and_talks" class="header-anchor">Blogs and talks</a></h2>
 <ul>
 <li><p>Chris Rackauckas discusses building products for open-source sustainability, highlighting the work of MIT Julia Lab, PumasAI, and JuliaHub, in a recent <a href="https://www.youtube.com/watch?v&#61;kuzwUFuIyk4">non-technical talk with OpenTeams</a>.</p>
 </li>

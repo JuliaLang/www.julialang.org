@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (December 2024)",
   "description": "Community Newsletter for December 2024",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2025-01-01T00:00:00+00:00",
+  "datePublished": "2024-12-31T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 January 2025</span> |
+            <span class="blog-meta-date">31 December 2024</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,8 +199,9 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.</p>
-<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#in_search_of_contributors">In search of contributors</a></li><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#autodiff">Autodiff</a></li><li><a href="#other_ecosystems">Other ecosystems</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p>Julia’s compiler has long had the ability to detect if memory allocations escape local scopes, and optimize them away in some cases when it can be proven they don’t escape. However, this existing ‘escape analysis’ in Julia has been limited and hasn’t actually enabled much optimisation. A new <a href="https://github.com/JuliaLang/julia/pull/56849">overhaul of escape analysis</a> aims to be more accurate and open the door for implementing further memory optimisations in the future.</p>
 </li>
@@ -211,7 +212,7 @@
 <li><p>A small helpful discussion on <a href="https://discourse.julialang.org/t/when-does-inbounds-increase-performance/123827">when does <code>@inbounds</code> increase performance</a>?</p>
 </li>
 </ul>
-<p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
+<h2 id="in_search_of_contributors"><a href="#in_search_of_contributors" class="header-anchor">In search of contributors</a></h2>
 <ul>
 <li><p>The Center for Quantum Networks is running <a href="https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md">many bounties and minigrants</a> on a variety of support packages for quantum information science.</p>
 </li>
@@ -220,7 +221,7 @@
 <li><p>ChainRules, a foundational package to the Julia autodiff effort is looking for a <a href="https://discourse.julialang.org/t/chainrules-project-looking-for-a-new-primary-maintainer/115636">new primary maintainer</a>.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p>The general package registry now <a href="https://discourse.julialang.org/t/new-automerge-requirement-release-notes-required-for-breaking-package-releases/123955">requires release notes on breaking releases</a>.</p>
 </li>
@@ -233,14 +234,14 @@
 <li><p>Julia is proving to be <a href="https://discourse.julialang.org/t/julia-and-the-gps-payload-onboard-waratah-seed-1-satellite/123795">really interesting for signal processing</a> and real time control of space satellites.</p>
 </li>
 </ul>
-<p>Julia Autodiff ecosystem:</p>
+<h2 id="autodiff"><a href="#autodiff" class="header-anchor">Autodiff</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/ann-dynamicdiff-jl-fast-symbolic-differentiation-for-runtime-generated-expressions/123907">DynamicDiff.jl</a>, integrated with the larger SymbolicRegression.jl ecosystem, provides for blazingly fast differentiation of dynamically generated expressions without compilation overhead.</p>
 </li>
 <li><p><a href="https://juliadiff.org/DifferentiationInterface.jl/DifferentiationInterface/dev/faq/differentiability/">DifferentiationInterface.jl has great documentation</a> with a useful overview of the ecosystem.</p>
 </li>
 </ul>
-<p>Notes from other ecosystems:</p>
+<h2 id="other_ecosystems"><a href="#other_ecosystems" class="header-anchor">Other ecosystems</a></h2>
 <ul>
 <li><p><a href="https://emacsconf.org/2024/talks/julia/">EmacsConf talk</a>: “Exploring shared philosophies in Julia and Emacs” &#40;<a href="https://www.youtube.com/watch?v&#61;RTVXaDR697k">YouTube</a>&#41;</p>
 </li>

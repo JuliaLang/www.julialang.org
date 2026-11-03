@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (August 2025)",
   "description": "Community Newsletter for August 2025",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2025-09-01T00:00:00+00:00",
+  "datePublished": "2025-09-15T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 September 2025</span> |
+            <span class="blog-meta-date">15 September 2025</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,10 +199,11 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
 <p>For recent news on Julia and interesting conversations with community members, check out the <a href="https://juliadispatch.fm/">JuliaDispatch</a> podcast &#40;on many platforms, including <a href="https://www.youtube.com/@JuliaDispatch/">youtube</a> and <a href="https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws">spotify</a>&#41;. Highlights from the newsletter get discussed &#40;with more context&#41; during some episodes.</p>
 <p><a href="https://discourse.julialang.org/t/juliacon-2026-save-the-date/132172">JuliaCon 2026 will happen from August 10th to August 15th 2026 in Germany</a>.</p>
-<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#in_search_of_contributors">In search of contributors</a></li><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#numerical_math_and_science">Numerical math and science</a></li><li><a href="#mathematical_optimization">Mathematical optimization</a></li><li><a href="#autodiff">Autodiff</a></li><li><a href="#other_ecosystems">Other ecosystems</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p>A fun little example of how to properly “cast” from one type to another type in Julia. Calling <code>Int&#40;x&#41;</code> is not guaranteed to convert the instance x of some arbitrary type into an <code>Int</code>. Of course, only a sociopath would create a method <code>Int&#40;::MyEvilType&#41;</code> that does not return an <code>Int</code>, but nonetheless, the trick to protect yourself from such evil is to add a type assert like <code>Int&#40;x&#41;::Int</code> – now instead of being at risk of bad behavior and stack overflows due to poorly written user code, you get an early type assertion error. See this being recently suggested as a guardrail in some low level Julia code in <a href="https://github.com/JuliaLang/julia/pull/59506/files">#59506</a>.</p>
 </li>
@@ -236,7 +237,7 @@
 </li>
 <li><p>Now you can send a signal to the Julia runtime to <a href="https://github.com/JuliaLang/julia/pull/59424">trigger <code>--trace-compile</code> at an arbitrary time</a> without having requested it at the start of the process. Just send <code>SIGUSR1/SIGINFO1</code> &#40;<code>ctrl&#43;T</code> on many systems&#41;.</p>
 </li>
-<li><p><code>&#91;Iterators.findeach&#93;&#40;https://github.com/JuliaLang/julia/pull/54124&#41;</code> is a lazy version of <code>findall</code> that avoids allocating an array.</p>
+<li><p><a href="https://github.com/JuliaLang/julia/pull/54124"><code>Iterators.findeach</code></a> is a lazy version of <code>findall</code> that avoids allocating an array.</p>
 </li>
 <li><p>Another one of Lilith’s surprising drive-by performance optimization – an order of magnitude faster <code>prod&#40;::AbstractArray&#123;BigInt&#125;&#41;</code> by more intelligently pre-allocating buffers for <code>BigInt</code> instances and traversing the array in a more efficient order. In <a href="https://github.com/JuliaLang/julia/pull/59456">#59456</a>.</p>
 </li>
@@ -247,7 +248,7 @@
 <li><p>A fun question on <a href="https://discourse.julialang.org/t/determining-if-unionall-corresponds-to-a-single-type-union/132088">weird type queries with UnionAll</a>.</p>
 </li>
 </ul>
-<p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
+<h2 id="in_search_of_contributors"><a href="#in_search_of_contributors" class="header-anchor">In search of contributors</a></h2>
 <ul>
 <li><p>The <a href="https://github.com/JuliaGraphs/Graphs.jl">Graphs.jl</a> repo features a few bounties on <a href="https://github.com/JuliaGraphs/Graphs.jl/issues?q&#61;is&#37;3Aissue&#37;20state&#37;3Aopen&#37;20label&#37;3Abounty">integrating external graph theory libraries</a> better with the rest of the Graphs ecosystem.</p>
 </li>
@@ -258,7 +259,7 @@
 <li><p><a href="https://sciml.ai/small_grants/">SciML is running a large set of funded small projects</a> – a great opportunity to contribute to the community and be paid for it.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/julia-for-research-software-engineering/131528">Julia for Research Software Engineering</a> is a recent talk by Mosè and Valentin in a larger series on scientific software.</p>
 </li>
@@ -281,24 +282,24 @@
 <li><p>PrettyTables releases version 3 with significant new features &#40;see <a href="https://discourse.julialang.org/t/current-state-and-the-future-of-prettytables-jl/118455/143">discourse</a>, <a href="https://github.com/ronisbr/PrettyTables.jl/pull/259">github</a>&#41;</p>
 </li>
 </ul>
-<p>Numerical Math ecosystem:</p>
+<h2 id="numerical_math_and_science"><a href="#numerical_math_and_science" class="header-anchor">Numerical math and science</a></h2>
 <ul>
 <li><p><a href="https://www.stochasticlifestyle.com/implicit-ode-solvers-are-not-universally-more-robust-than-explicit-ode-solvers-or-why-no-ode-solver-is-best/">Implicit ODE Solvers Are Not Universally More Robust than Explicit ODE Solvers</a></p>
 </li>
 </ul>
-<p>Mathematical Optimization ecosystem:</p>
+<h2 id="mathematical_optimization"><a href="#mathematical_optimization" class="header-anchor">Mathematical optimization</a></h2>
 <ul>
 <li><p>A series of <a href="https://algorithmsbook.com/">textbooks on algorithms for optimization, decision making, and more</a>, with heavy use of Julia, by Stanford’s Prof. Mykel J. Kochenderfer.</p>
 </li>
 <li><p>Disciplined Convex Programming is a family of techniques for propagating convexity information about the functions you are optimizing over. A few past and future <a href="https://discourse.julialang.org/t/state-of-dcp-disciplined-convex-programming/131743">developments related to DCP in julia are discussed here</a>.</p>
 </li>
 </ul>
-<p>Autodiff ecosystem:</p>
+<h2 id="autodiff"><a href="#autodiff" class="header-anchor">Autodiff</a></h2>
 <ul>
 <li><p>A question about <a href="https://discourse.julialang.org/t/which-direction-differentiatoninterface-enzyme-zygote-with-cuda-and-ffts/132225">autodiff of FFTs in the julia ecosystem</a> led to an informative discussion of a few of the autodiff frameworks we have.</p>
 </li>
 </ul>
-<p>Notes from other ecosystems:</p>
+<h2 id="other_ecosystems"><a href="#other_ecosystems" class="header-anchor">Other ecosystems</a></h2>
 <ul>
 <li><p>A discussion about monomorphisation &#40;the process of creating brand new specialized compiled function behind the scenes for each concrete type your runtime might face, i.e. one of the main features that makes julia fast&#41;, its relationship to boxed types, and its great compilation time cost, if it was to be added to <a href="https://discourse.julialang.org/t/why-can-julia-be-better-about-boxing-types-than-ocaml/131628">OCaml</a>.</p>
 </li>

@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (March 2025)",
   "description": "Community Newsletter for March 2025",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2025-04-01T00:00:00+00:00",
+  "datePublished": "2025-04-07T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 April 2025</span> |
+            <span class="blog-meta-date">7 April 2025</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,10 +199,11 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
 <p>Call for proposals now open for <a href="https://pretalx.com/juliacon-local-paris-2025/">JuliaCon Local Paris</a>.</p>
 <p><a href="https://discourse.julialang.org/t/juliacon-2025-tickets-are-now-available/127765">Tickets are now available</a> for JuliaCon Global 2025 in Pittsburgh.</p>
-<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#autodiff">Autodiff</a></li><li><a href="#mathematical_optimization">Mathematical optimization</a></li><li><a href="#other_ecosystems">Other ecosystems</a></li><li><a href="#events">Events</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p>Julia 1.12-beta1 is out, check out the <a href="https://github.com/JuliaLang/julia/blob/v1.12.0-beta1/NEWS.md">release notes</a>.</p>
 </li>
@@ -239,7 +240,7 @@
 <li><p>There have been some significant TTFX/precompilation/invalidation <a href="https://github.com/JuliaLang/julia/issues/57998">issues with the recently added StyleStrings</a> – otherwise a very impressive tool, enabling much richer text output in julia. A very informative discussion on the difficulties with structuring standard libraries and avoiding piracies and invalidations.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/julia-in-colab/126600">Julia is now officially supported in Google Colab&#33;&#33;&#33;</a> This includes running <a href="https://discourse.julialang.org/t/lux-reactant-on-colab-tpus/126926">Lux &amp; Reactant on TPUs</a>.</p>
 </li>
@@ -254,19 +255,19 @@
 <li><p>DeviceLayout.jl - <a href="https://discourse.julialang.org/t/ann-devicelayout-jl-cad-for-quantum-integrated-circuits-and-more/126502">CAD for quantum integrated circuits</a></p>
 </li>
 </ul>
-<p>Julia Autodiff ecosystem:</p>
+<h2 id="autodiff"><a href="#autodiff" class="header-anchor">Autodiff</a></h2>
 <ul>
-<li><p>DifferentialInterface.jl had a breaking release related to significant improvements in allocation-free sophisticated gradient computations. &#40;<a href="https://julialang.slack.com/archives/C6G240ENA/p1742029987644709">slack discussion</a>&#41;</p>
+<li><p>DifferentiationInterface.jl had a breaking release related to significant improvements in allocation-free sophisticated gradient computations. &#40;<a href="https://julialang.slack.com/archives/C6G240ENA/p1742029987644709">slack discussion</a>&#41;</p>
 </li>
 <li><p>A slightly-breaking ForwardDiff v1 is now released &#40;<a href="https://julialang.slack.com/archives/C6G240ENA/p1743003851115789">slack discussion</a>&#41; thanks to finishing a <a href="https://github.com/JuliaDiff/ForwardDiff.jl/pull/481">PR on properly dealing with zero-measure edge cases</a> &#40;see <a href="https://github.com/JuliaDiff/ForwardDiff.jl/issues/480">related issue</a>&#41;</p>
 </li>
 </ul>
-<p>Mathematica Optimization ecosystem:</p>
+<h2 id="mathematical_optimization"><a href="#mathematical_optimization" class="header-anchor">Mathematical optimization</a></h2>
 <ul>
 <li><p>Optim.jl has had some very significant <a href="https://discourse.julialang.org/t/ann-optim-jl-updates/109340/18">updates and improvements</a>, including now support for DifferentiationInterface.jl.</p>
 </li>
 </ul>
-<p>Notes from other ecosystems:</p>
+<h2 id="other_ecosystems"><a href="#other_ecosystems" class="header-anchor">Other ecosystems</a></h2>
 <ul>
 <li><p><a href="https://seb-v.github.io/optimization/update/2025/01/20/Fast-GPU-Matrix-multiplication.html">Low-level matrix optimization on AMD GPUs</a></p>
 </li>
@@ -275,7 +276,7 @@
 <li><p>“<a href="https://www.sciencedirect.com/book/9780323912310/programming-massively-parallel-processors">Programming Massively Parallel Processors</a>” - a neat book on structuring algorithms for devices like GPUs from first principles</p>
 </li>
 </ul>
-<p>Events:</p>
+<h2 id="events"><a href="#events" class="header-anchor">Events</a></h2>
 <ul>
 <li><p>The QNumerics summer school on numerical methods in quantum information science is <a href="https://qnumerics.org/">open for registration</a>.</p>
 </li>

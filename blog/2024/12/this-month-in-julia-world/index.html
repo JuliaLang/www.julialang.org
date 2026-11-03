@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (November 2024)",
   "description": "Community Newsletter for November 2024",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2024-12-12T00:00:00+00:00",
+  "datePublished": "2024-12-14T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">12 December 2024</span> |
+            <span class="blog-meta-date">14 December 2024</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,8 +199,9 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what I found interesting this month, with contributions from the community.</p>
-<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#in_search_of_contributors">In search of contributors</a></li><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#autodiff">Autodiff</a></li><li><a href="#other_ecosystems">Other ecosystems</a></li><li><a href="#blogs_and_talks">Blogs and talks</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p>Making the creation of <code>Memory</code> an “intrinsic” – a special-cased lower-level operation for which the compiler can know more, thus providing better optimisation. Maybe soon enough small arrays will be allocated on the stack and StaticArrays.jl will be needed less. <a href="https://github.com/JuliaLang/julia/pull/55913">Original PR</a> and the PR being split in more digestible <a href="https://github.com/JuliaLang/julia/pull/56803">pieces</a>.</p>
 </li>
@@ -239,7 +240,7 @@
 <li><p>Yet another insightful discussion on Julia’s type system: <a href="https://discourse.julialang.org/t/why-did-julia-choose-nominal-typing-over-structural-typing-traits/122517">nominal typing vs structural typing/traits</a>.</p>
 </li>
 </ul>
-<p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
+<h2 id="in_search_of_contributors"><a href="#in_search_of_contributors" class="header-anchor">In search of contributors</a></h2>
 <ul>
 <li><p>The Center for Quantum Networks is running <a href="https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md">many bounties and minigrants</a> on a variety of support packages for quantum information science.</p>
 </li>
@@ -248,7 +249,7 @@
 <li><p>ChainRules, a foundational package to the Julia autodiff effort is looking for a <a href="https://discourse.julialang.org/t/chainrules-project-looking-for-a-new-primary-maintainer/115636">new primary maintainer</a>.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/ann-finch-jl-sparse-and-structured-array-fusion/123178">Finch.jl v1</a> is out&#33; Only the best compiler for sparse and structured array fusion</p>
 </li>
@@ -285,7 +286,7 @@
 <li><p>A <a href="https://broce.xyz/posts/julia-synth-percussion">full synthesizer built on Julia</a> with several mp3 tracks to highlight it.</p>
 </li>
 </ul>
-<p>Julia Autodiff ecosystem &#40;enough topics for its own category this month&#41;:</p>
+<h2 id="autodiff"><a href="#autodiff" class="header-anchor">Autodiff</a></h2>
 <ul>
 <li><p>For floats <code>0.0 &#33;&#61;&#61; -0.0</code>. The various types of equality checks have come up often on various community forums, but this time it is about an exciting interaction between this surprising float inequality and autodiff. Discussed on <a href="https://julialang.slack.com/archives/C67910KEH/p1733134512456069">slack</a> with a reference to this informative <a href="https://arxiv.org/pdf/2006.02080">manuscript</a>.</p>
 </li>
@@ -294,14 +295,14 @@
 <li><p>How about finite-differences mode in Enzyme, discussed on <a href="https://julialang.slack.com/archives/C01J3R4FHB3/p1731439512764739">slack</a></p>
 </li>
 </ul>
-<p>Notes from other ecosystems:</p>
+<h2 id="other_ecosystems"><a href="#other_ecosystems" class="header-anchor">Other ecosystems</a></h2>
 <ul>
 <li><p><a href="https://news.ycombinator.com/item?id&#61;42120090">Unusual Raku features</a> – does anyone feel inspired</p>
 </li>
 <li><p>A <a href="https://www.youtube.com/watch?v&#61;sSNAGFXNXYU">talk on Float semantics in LLVM</a> &#40;the low-level compiler at the bottom of Julia&#41; and when they deviate from standards and how hardware can be pretty unhelpful.</p>
 </li>
 </ul>
-<p>Soapboxes:</p>
+<h2 id="blogs_and_talks"><a href="#blogs_and_talks" class="header-anchor">Blogs and talks</a></h2>
 <ul>
 <li><p>A new official Julia Bluesky account is now set up at <a href="https://bsky.app/profile/julialang.org">bsky.app/profile/julialang.org</a> &#40;discussed on <a href="https://julialang.slack.com/archives/C67910KEH/p1732552556407119">slack</a>&#41;</p>
 </li>

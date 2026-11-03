@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (September 2025)",
   "description": "Community Newsletter for September 2025",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2025-10-01T00:00:00+00:00",
+  "datePublished": "2025-10-13T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 October 2025</span> |
+            <span class="blog-meta-date">13 October 2025</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,20 +199,21 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
 <p>For recent news on Julia and interesting conversations with community members, check out the <a href="https://juliadispatch.fm/">JuliaDispatch</a> podcast &#40;on many platforms, including <a href="https://www.youtube.com/@JuliaDispatch/">youtube</a> and <a href="https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws">spotify</a>&#41;. Highlights from the newsletter get discussed &#40;with more context&#41; during some episodes.</p>
 <p>Julia 1.12 is released. Many of the improvements in it have been discussed in the past on this newsletter. <a href="/blog/2025/10/julia-1.12-highlights/">Check out the blogpost for a good summary</a>. </p>
 <p><a href="https://discourse.julialang.org/t/juliacon-global-2025-videos-will-start-releasing-today/132454">Properly cut JuliaCon 2025 videos are being released on youtube.</a></p>
 <p><a href="https://discourse.julialang.org/t/juliacon-2026-save-the-date/132172">JuliaCon 2026 will happen from August 10th to August 15th 2026 in Germany</a>.</p>
-<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#in_search_of_contributors">In search of contributors</a></li><li><a href="#ecosystem">Ecosystem</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
-<li><p><a href="http://github.com/c42f/JuliaLowering.jl/pull/93">JuliaLowering.jl</a> has been seeing a flurry of activity in the last couple of months. Julia has a syntactic pass that parses text into an abstract syntax tree and a lowering pass that takes care of macros and desugaring. Historically this was done in lisp, leading to difficulty with introspection and tooling like Revise.jl, also making macros harder to debug. JuliaSyntax.jl reimplemented the parser in pure Julia and JuliaLowering.jl is the final piece of the puzzle, implementing all of the “lowering” in Julia itself. The link above is to one of many improvements from the last few weeks, this one in particular focusing on simplifying and more neatly organizing the lowering logic.</p>
+<li><p><a href="https://github.com/c42f/JuliaLowering.jl/pull/93">JuliaLowering.jl</a> has been seeing a flurry of activity in the last couple of months. Julia has a syntactic pass that parses text into an abstract syntax tree and a lowering pass that takes care of macros and desugaring. Historically this was done in lisp, leading to difficulty with introspection and tooling like Revise.jl, also making macros harder to debug. JuliaSyntax.jl reimplemented the parser in pure Julia and JuliaLowering.jl is the final piece of the puzzle, implementing all of the “lowering” in Julia itself. The link above is to one of many improvements from the last few weeks, this one in particular focusing on simplifying and more neatly organizing the lowering logic.</p>
 </li>
 <li><p>Julia is on track to have the fanciest REPL history search in the land with <a href="https://github.com/JuliaLang/julia/pull/59819">recent proposed changes</a>.</p>
 </li>
 <li><p>TypedCallable, is a <a href="https://github.com/JuliaLang/julia/issues/59774">proposal</a> for better supporting optimized calls to runtime-known functions with compile-time known arguments. The underlying goal is to better support closures, especially with ahead-of-time compilation to binaries.</p>
 </li>
-<li><p>Julia supports <a href="https://github.com/JuliaLang/julia/pull/59534">Unicode 17 now</a>. Julia programmers have long lamented that Unicode does not support proper latin alphabet superscripts for all letters. <a href="http://github.com/JuliaLang/julia/pull/59544">Small superscript q is supported now though</a>. See <a href="https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts#Latin,_Greek,_Cyrillic,_and_IPA_tables">this wiki page</a> for a full list of unicode sub/super script characters.</p>
+<li><p>Julia supports <a href="https://github.com/JuliaLang/julia/pull/59534">Unicode 17 now</a>. Julia programmers have long lamented that Unicode does not support proper latin alphabet superscripts for all letters. <a href="https://github.com/JuliaLang/julia/pull/59544">Small superscript q is supported now though</a>. See <a href="https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts#Latin,_Greek,_Cyrillic,_and_IPA_tables">this wiki page</a> for a full list of unicode sub/super script characters.</p>
 </li>
 <li><p><code>Base.Cartesian</code> is now a <a href="https://github.com/JuliaLang/julia/pull/59459">public part of the Julia API</a>.</p>
 </li>
@@ -225,7 +226,7 @@
 <li><p>Cleaning up some &#40;unsafe&#41; <a href="https://github.com/JuliaLang/julia/pull/59663">constructor functions</a> for strings and substrings.</p>
 </li>
 </ul>
-<p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
+<h2 id="in_search_of_contributors"><a href="#in_search_of_contributors" class="header-anchor">In search of contributors</a></h2>
 <ul>
 <li><p>The <a href="https://github.com/JuliaGraphs/Graphs.jl">Graphs.jl</a> repo features a few bounties on <a href="https://github.com/JuliaGraphs/Graphs.jl/issues?q&#61;is&#37;3Aissue&#37;20state&#37;3Aopen&#37;20label&#37;3Abounty">integrating external graph theory libraries</a> better with the rest of the Graphs ecosystem.</p>
 </li>
@@ -236,7 +237,7 @@
 <li><p><a href="https://sciml.ai/small_grants/">SciML is running a large set of funded small projects</a> – a great opportunity to contribute to the community and be paid for it.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/pythoncall-ecosystem-updates/132500">Many improvements to the PythonCall ecosystem</a> for integration &#40;in both directions&#41; between Julia and Python.</p>
 </li>

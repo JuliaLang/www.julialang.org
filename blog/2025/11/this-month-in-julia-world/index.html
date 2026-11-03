@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (October 2025)",
   "description": "Community Newsletter for October 2025",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2025-11-01T00:00:00+00:00",
+  "datePublished": "2025-11-08T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 November 2025</span> |
+            <span class="blog-meta-date">8 November 2025</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,11 +199,14 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
 <p>For recent news on Julia and interesting conversations with community members, check out the <a href="https://juliadispatch.fm/">JuliaDispatch</a> podcast &#40;on many platforms, including <a href="https://www.youtube.com/@JuliaDispatch/">youtube</a> and <a href="https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws">spotify</a>&#41;. Highlights from the newsletter get discussed &#40;with more context&#41; during some episodes.</p>
 <p>JuliaCon Global 2025 and JuliaCon Paris 2025 videos are continuously being released on the <a href="https://www.youtube.com/@TheJuliaLanguage/playlists">Julia youtube channel</a>.</p>
-<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#in_search_of_contributors">In search of contributors</a></li><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#other_ecosystems">Other ecosystems</a></li><li><a href="#events">Events</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
+<li><p>The GitHub bot dependabot which automates updates to compat bounds in many ecosystems now has beta support for Julia, providing a much more standard alternative to the current CompatHelper custom julia bot. Benefits over CompatHelper include: showing release notes/changelogs for the new version in the PR, updating checked-in manifests and warning when it cannot be updated, CI running automatically &#40;without close-open&#41;, not having to worry about workflows being silently turned off after a few months of repo inactivity. It’s aligned with a push to integrate better with github’s CVE management systems. See <a href="https://github.com/IanButterworth/CSV.jl/pull/6">examples of PRs</a> and <a href="https://github.com/IanButterworth/CSV.jl/blob/master/.github/dependabot.yml">example setups</a>. It is in a testing period and feedback would be much appreciated.</p>
+</li>
 <li><p><a href="https://discourse.julialang.org/t/ann-jet-v0-11/133366">JET 0.11 is now released</a> – the main static analysis/testing tool in Julia. A lot of small niceties in the user facing API related to filtering analysis steps and reports, but also substantial internal work and simplification, providing momentum for future work.</p>
 </li>
 <li><p>A mechanism for introducing <a href="https://github.com/JuliaLang/julia/pull/60018">breaking changes to Julia syntax without breaking old packages</a> is being discussed, not too dissimilar to Rust Editions.</p>
@@ -223,7 +226,7 @@
 <li><p>An incredibly powerful REPL history explorer was recently merged. Further work on <a href="https://github.com/JuliaLang/julia/pull/59953">showing more metadata</a> is underway.</p>
 </li>
 </ul>
-<p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
+<h2 id="in_search_of_contributors"><a href="#in_search_of_contributors" class="header-anchor">In search of contributors</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/help-wanted-help-contribute-test-cases-to-improve-llm-performance-on-julia-code/132991/">Contribute test cases to improve LLM performance on Julia code</a></p>
 </li>
@@ -232,7 +235,7 @@
 <li><p><a href="https://github.com/cortner/PyAMG.jl">PyAMG.jl</a> is looking for a new organisation or maintainer.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/swirl-jl-interactive-julia-learning-in-the-repl/133705">Swirl.jl</a> is a fantastic “interactive lessons in the Julia REPL” package, inspired by the swirl package in R.</p>
 </li>
@@ -255,12 +258,12 @@
 <li><p>A helpful “blog style” post on <a href="https://discourse.julialang.org/t/clearing-up-common-beginner-misconceptions/133404">common beginner misconceptions in Julia</a>.</p>
 </li>
 </ul>
-<p>Notes from other ecosystems:</p>
+<h2 id="other_ecosystems"><a href="#other_ecosystems" class="header-anchor">Other ecosystems</a></h2>
 <ul>
 <li><p>Rust has been working tirelessly on providing good <a href="https://shnatsel.medium.com/the-state-of-simd-in-rust-in-2025-32c263e5f53d">SIMD abstractions</a> in the language.</p>
 </li>
 </ul>
-<p>Events:</p>
+<h2 id="events"><a href="#events" class="header-anchor">Events</a></h2>
 <ul>
 <li><p>An independent <a href="https://discourse.julialang.org/t/julialang-japan-2025-sat-dec-13-2025-tokyo/133259">Julia conference is happening in Japan in December</a>.</p>
 </li>

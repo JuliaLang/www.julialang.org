@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (January 2026)",
   "description": "Community Newsletter for January 2026",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2026-02-01T00:00:00+00:00",
+  "datePublished": "2026-02-10T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 February 2026</span> |
+            <span class="blog-meta-date">10 February 2026</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,18 +199,18 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.</p>
-<p>If you want to receive the newsletter as an email, subscribe to the <a href="https://discourse.julialang.org/c/community/news/66">Community–Newsletter category on Discourse</a>.</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
 <p>For recent news on Julia and interesting conversations with community members, check out the <a href="https://juliadispatch.fm/">JuliaDispatch</a> podcast &#40;on many platforms, including <a href="https://www.youtube.com/@JuliaDispatch/">youtube</a> and <a href="https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws">spotify</a>&#41;. Highlights from the newsletter get discussed &#40;with more context&#41; during some episodes.</p>
 <p>Current status: Julia release is 1.12.4, Julia LTS is 1.10.10. The feature freeze for 1.13 has passed and we are already at 1.13-beta2. The dev branch is at 1.14-dev</p>
-<p>JuliaCon Global 2026:</p>
+<div class="franklin-toc"><ol><li><a href="#juliacon_global_2026">JuliaCon Global 2026</a></li><li><a href="#core_repos">Core repos</a></li><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#numerical_math_and_science">Numerical math and science</a></li></ol></div>
+<h2 id="juliacon_global_2026"><a href="#juliacon_global_2026" class="header-anchor">JuliaCon Global 2026</a></h2>
 <ul>
 <li><p>The <a href="https://juliacon.org/2026/cfp">Call for Proposals</a> is out—submit your talks until February 28th&#33;</p>
 </li>
 <li><p>Follow JuliaCon on <a href="https://bsky.app/profile/juliacon.org">Bluesky</a> for news and updates about JuliaCon.</p>
 </li>
 </ul>
-<p>&quot;Internals&quot; Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p>Max Horn has made more than 30 PRs improving the Markdown stdlib, bringing it closer to CommonMark compliance. Recent changes include support for <a href="https://github.com/JuliaLang/julia/pull/60537">strikethrough</a>, <a href="https://github.com/JuliaLang/julia/pull/60629">HTML entities</a>, <a href="https://github.com/JuliaLang/julia/pull/60570">email autolinks</a>, <a href="https://github.com/JuliaLang/julia/pull/60759">non-breaking space preservation</a>, <a href="https://github.com/JuliaLang/julia/pull/60632">HTML blocks</a>, <a href="https://github.com/JuliaLang/julia/pull/60708">Windows line endings</a>, and <a href="https://github.com/JuliaLang/julia/pull/60707">proper list marker handling</a> among many others. CommonMark is the widely-adopted specification for Markdown syntax, and these improvements mean Julia&#39;s built-in Markdown rendered will be closer to other platforms and editors.</p>
 </li>
@@ -241,7 +241,7 @@
 <li><p>A <a href="https://discourse.julialang.org/t/juliac-using-packages/135103">discussion on juliac and packages</a> explores the challenges of using common packages &#40;TOML, CSV, DataFrames&#41; with Julia&#39;s new ahead-of-time compiler. The core issue is type stability—juliac requires types to be known at compile time, which conflicts with how many data-handling packages construct tables and parse formats at runtime. Type-stable alternatives like TypedTables and StructArrays work better, but the discussion highlights fundamental tradeoffs between dynamic convenience and static compilation.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p><strong>GitHub Dependabot now supports Julia</strong> &#40;<a href="https://discourse.julialang.org/t/psa-github-dependabot-now-supports-julia/134997">Previously announced, but now with a detailed PSA</a>&#41;. This enables automatic dependency updates with several advantages over CompatHelper: CI runs automatically without manual intervention, checked-in manifests are updated &#40;with resolver errors shown in the PR body if updates fail&#41;, and Julia 1.12&#43; workspace support coordinates updates across multiple environments. Integration with GitHub&#39;s CVE management is also on the roadmap.</p>
 </li>
@@ -264,7 +264,7 @@
 <li><p>A book, <a href="https://modernfinancialmodeling.com">Modern Financial Modeling</a>, focused on bringing programming and Julia to actuaries and other financial professionals is nearing the end of its pre-release phase. Feedback is welcome&#33;</p>
 </li>
 </ul>
-<p>Numerical Math ecosystem:</p>
+<h2 id="numerical_math_and_science"><a href="#numerical_math_and_science" class="header-anchor">Numerical math and science</a></h2>
 <ul>
 <li><p><a href="https://github.com/dzhang314/MultiFloats.jl">MultiFloats.jl v3.0</a> is released with significant improvements to extended-precision floating-point arithmetic &#40;128–256 bits&#41;. The new version introduces faster and more accurate algorithms, round-trip-safe string conversion, new GPU-friendly types &#40;<code>Float32x2</code>, <code>Float32x3</code>, <code>Float32x4</code>&#41;, and stricter commutativity for multiplication. The library claims to be the fastest in this precision range—30x faster than BigFloat and 2x faster than DoubleFloats.jl.</p>
 </li>

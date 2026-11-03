@@ -23,6 +23,36 @@
 
 <item>
   <title>
+    <![CDATA[  This Month in Julia World &#40;October 2026&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2026/11/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2026/11/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for October 2026  ]]>
+  </description>  
+    
+  <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;September 2026&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2026/10/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2026/10/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for September 2026  ]]>
+  </description>  
+    
+  <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  Julia 1.13 Highlights  ]]>
   </title>
   <link> https://julialang.org/blog/2026/09/julia-1.13-highlights/index.html </link>
@@ -38,6 +68,66 @@
 
 <item>
   <title>
+    <![CDATA[  This Month in Julia World &#40;August 2026&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2026/09/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2026/09/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for August 2026  ]]>
+  </description>  
+    
+  <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;July 2026&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2026/08/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2026/08/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for July 2026  ]]>
+  </description>  
+    
+  <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;May and June 2026&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2026/07/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2026/07/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for May and June 2026  ]]>
+  </description>  
+    
+  <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;March and April 2026&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2026/05/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2026/05/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for March and April 2026  ]]>
+  </description>  
+    
+  <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  This Month in Julia World &#40;February 2026&#41;  ]]>
   </title>
   <link> https://julialang.org/blog/2026/03/this-month-in-julia-world/index.html </link>
@@ -46,7 +136,7 @@
     <![CDATA[  Community Newsletter for February 2026  ]]>
   </description>  
     
-  <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>  
+  <pubDate>Tue, 10 Mar 2026 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -61,7 +151,7 @@
     <![CDATA[  Community Newsletter for January 2026  ]]>
   </description>  
     
-  <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>  
+  <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -76,7 +166,7 @@
     <![CDATA[  Community Newsletter for December 2025  ]]>
   </description>  
     
-  <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>  
+  <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -91,7 +181,7 @@
     <![CDATA[  Community Newsletter for November 2025  ]]>
   </description>  
     
-  <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Mon, 08 Dec 2025 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -121,7 +211,22 @@
     <![CDATA[  Community Newsletter for October 2025  ]]>
   </description>  
     
-  <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;September 2025&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2025/10/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2025/10/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for September 2025  ]]>
+  </description>  
+    
+  <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -143,21 +248,6 @@
 
 <item>
   <title>
-    <![CDATA[  This Month in Julia World &#40;September 2025&#41;  ]]>
-  </title>
-  <link> https://julialang.org/blog/2025/10/this-month-in-julia-world/index.html </link>
-  <guid> https://julialang.org/blog/2025/10/this-month-in-julia-world/index.html </guid>
-  <description>
-    <![CDATA[  Community Newsletter for September 2025  ]]>
-  </description>  
-    
-  <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>  
-  
-        
-</item>
-
-<item>
-  <title>
     <![CDATA[  This Month in Julia World &#40;August 2025&#41;  ]]>
   </title>
   <link> https://julialang.org/blog/2025/09/this-month-in-julia-world/index.html </link>
@@ -166,7 +256,7 @@
     <![CDATA[  Community Newsletter for August 2025  ]]>
   </description>  
     
-  <pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -181,7 +271,7 @@
     <![CDATA[  Community Newsletter for June and July 2025  ]]>
   </description>  
     
-  <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Wed, 06 Aug 2025 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -211,7 +301,7 @@
     <![CDATA[  Community Newsletter for May 2025  ]]>
   </description>  
     
-  <pubDate>Sun, 01 Jun 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Tue, 03 Jun 2025 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -226,7 +316,7 @@
     <![CDATA[  Community Newsletter for April 2025  ]]>
   </description>  
     
-  <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Fri, 09 May 2025 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -241,7 +331,7 @@
     <![CDATA[  Community Newsletter for March 2025  ]]>
   </description>  
     
-  <pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -256,7 +346,7 @@
     <![CDATA[  Community Newsletter for February 2025  ]]>
   </description>  
     
-  <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -286,7 +376,7 @@
     <![CDATA[  Community Newsletter for January 2025  ]]>
   </description>  
     
-  <pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Wed, 05 Feb 2025 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -316,7 +406,7 @@
     <![CDATA[  Community Newsletter for December 2024  ]]>
   </description>  
     
-  <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>  
+  <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -331,7 +421,22 @@
     <![CDATA[  Community Newsletter for November 2024  ]]>
   </description>  
     
-  <pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate>  
+  <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;October 2024&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/11/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/11/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for October 2024  ]]>
+  </description>  
+    
+  <pubDate>Thu, 07 Nov 2024 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -353,21 +458,6 @@
 
 <item>
   <title>
-    <![CDATA[  This Month in Julia World &#40;October 2024&#41;  ]]>
-  </title>
-  <link> https://julialang.org/blog/2024/11/this-month-in-julia-world/index.html </link>
-  <guid> https://julialang.org/blog/2024/11/this-month-in-julia-world/index.html </guid>
-  <description>
-    <![CDATA[  Community Newsletter for October 2024  ]]>
-  </description>  
-    
-  <pubDate>Mon, 07 Oct 2024 00:00:00 +0000</pubDate>  
-  
-        
-</item>
-
-<item>
-  <title>
     <![CDATA[  This Month in Julia World &#40;September 2024&#41;  ]]>
   </title>
   <link> https://julialang.org/blog/2024/10/this-month-in-julia-world/index.html </link>
@@ -376,7 +466,7 @@
     <![CDATA[  Community Newsletter for September 2024  ]]>
   </description>  
     
-  <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>  
+  <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -398,6 +488,66 @@
 
 <item>
   <title>
+    <![CDATA[  This Month in Julia World &#40;August 2024&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/09/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/09/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for August 2024  ]]>
+  </description>  
+    
+  <pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;July 2024&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/08/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/08/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for July 2024  ]]>
+  </description>  
+    
+  <pubDate>Mon, 05 Aug 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;June 2024&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/07/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/07/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for June 2024  ]]>
+  </description>  
+    
+  <pubDate>Sat, 06 Jul 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;May 2024&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/06/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/06/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for May 2024  ]]>
+  </description>  
+    
+  <pubDate>Thu, 06 Jun 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  2024 GSoC and JSoC Fellows Announced  ]]>
   </title>
   <link> https://julialang.org/blog/2024/05/gsoc-2024-fellows/index.html </link>
@@ -407,6 +557,66 @@
   </description>  
     
   <pubDate>Fri, 03 May 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;April 2024&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/05/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/05/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for April 2024  ]]>
+  </description>  
+    
+  <pubDate>Tue, 30 Apr 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;March 2024&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/04/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/04/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for March 2024  ]]>
+  </description>  
+    
+  <pubDate>Tue, 02 Apr 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;February 2024&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/03/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/03/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for February 2024  ]]>
+  </description>  
+    
+  <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;January 2024&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/02/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/02/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for January 2024  ]]>
+  </description>  
+    
+  <pubDate>Thu, 01 Feb 2024 00:00:00 +0000</pubDate>  
   
         
 </item>
@@ -428,6 +638,96 @@
 
 <item>
   <title>
+    <![CDATA[  This Month in Julia World &#40;December 2023&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2024/01/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2024/01/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for December 2023  ]]>
+  </description>  
+    
+  <pubDate>Sun, 24 Dec 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;November 2023&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/12/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2023/12/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for November 2023  ]]>
+  </description>  
+    
+  <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;October 2023&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/11/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2023/11/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for October 2023  ]]>
+  </description>  
+    
+  <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;September 2023&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/10/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2023/10/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for September 2023  ]]>
+  </description>  
+    
+  <pubDate>Fri, 29 Sep 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;August 2023&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/09/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2023/09/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for August 2023  ]]>
+  </description>  
+    
+  <pubDate>Sun, 27 Aug 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;July 2023&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/08/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2023/08/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for July 2023  ]]>
+  </description>  
+    
+  <pubDate>Sun, 30 Jul 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  PSA: Thread-local state is no longer recommended  ]]>
   </title>
   <link> https://julialang.org/blog/2023/07/PSA-dont-use-threadid/index.html </link>
@@ -437,6 +737,36 @@
   </description>  
     
   <pubDate>Thu, 06 Jul 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;June 2023&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/07/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2023/07/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for June 2023  ]]>
+  </description>  
+    
+  <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>  
+  
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  This Month in Julia World &#40;May 2023&#41;  ]]>
+  </title>
+  <link> https://julialang.org/blog/2023/06/this-month-in-julia-world/index.html </link>
+  <guid> https://julialang.org/blog/2023/06/this-month-in-julia-world/index.html </guid>
+  <description>
+    <![CDATA[  Community Newsletter for May 2023  ]]>
+  </description>  
+    
+  <pubDate>Tue, 30 May 2023 00:00:00 +0000</pubDate>  
   
         
 </item>

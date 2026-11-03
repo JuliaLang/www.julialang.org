@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (December 2025)",
   "description": "Community Newsletter for December 2025",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2026-01-01T00:00:00+00:00",
+  "datePublished": "2026-01-10T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 January 2026</span> |
+            <span class="blog-meta-date">10 January 2026</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,11 +199,11 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.</p>
-<p>If you want to receive the newsletter as an email, subscribe to the <a href="https://discourse.julialang.org/c/community/news/66">Community–Newsletter category on Discourse</a>.</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
 <p>For recent news on Julia and interesting conversations with community members, check out the <a href="https://juliadispatch.fm/">JuliaDispatch</a> podcast &#40;on many platforms, including <a href="https://www.youtube.com/@JuliaDispatch/">youtube</a> and <a href="https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws">spotify</a>&#41;. Highlights from the newsletter get discussed &#40;with more context&#41; during some episodes.</p>
 <p>Current status: Julia release is 1.12.4, Julia LTS is 1.10.10. The feature freeze for 1.13 has passed and we are already at 1.13-alpha2. The dev branch is at 1.14-dev</p>
-<p>&quot;Internals&quot; Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#ecosystem">Ecosystem</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/ann-revise-jl-v3-13-struct-revision-support/134818">Revise.jl 3.13 has been released</a>, finally allowing automatic struct- and constant redefinition. This has been one of the most requested features for Revise, as it eliminates the need to restart Julia when changing type definitions during interactive development. It follows up on recent work &#40;discussed in previous newsletters&#41; that made redefinition of structs possible &#40;by tracking and invalidating them similarly to how method invalidation happens&#41;. Now Revise.jl makes sure that the redefinition happens on the fly in the background &#40;without requiring the user to manually trigger a re-evaluation&#41;, which is particularly useful if you are modifying an already loaded library.</p>
 </li>
@@ -242,7 +242,7 @@
 <li><p><a href="https://github.com/JuliaLang/julia/pull/60403">JuliaSyntax received a performance optimization</a> by forcing specialization on a key parsing function. This particular change is fairly in the weeds, but it is very small and well-explained, so pedagogically it is a good example from which to learn about Julia compiler specialization heuristics.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/ann-symbolicintegration-jl-indefinite-integration-with-symbolics-jl-symbols/134777">SymbolicIntegration.jl</a> enables symbolic integration using Symbolics.jl, implementing both the Risch algorithm and a rule-based method with over 3,000 integration rules translated from Mathematica&#39;s Rubi collection. The developer substantially improved pattern matching performance in SymbolicUtils, reducing compilation time from 14 minutes to approximately 12 seconds. This package represents a significant achievement in bringing comprehensive symbolic integration capabilities to Julia.</p>
 </li>

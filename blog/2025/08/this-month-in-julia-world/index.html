@@ -79,7 +79,7 @@
   "headline": "This Month in Julia World (June and July 2025)",
   "description": "Community Newsletter for June and July 2025",
   "image": "https://julialang.org/assets/images/julia-open-graph.png",
-  "datePublished": "2025-08-01T00:00:00+00:00",
+  "datePublished": "2025-08-06T00:00:00+00:00",
   "author": {"@type": "Person", "name": "Stefan Krastanov"},
   "publisher": {
     "@type": "Organization",
@@ -171,7 +171,7 @@
       <div class="blog-title-meta">
         <p>
           
-            <span class="blog-meta-date">1 August 2025</span> |
+            <span class="blog-meta-date">6 August 2025</span> |
           
           
             <span class="blog-meta-author"></span>
@@ -199,7 +199,7 @@
 
 
 <!-- Content appended here -->
-<div class="container main"><p>A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.</p>
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
 <p>For recent news on Julia and interesting conversations with community members, check out the <a href="https://juliadispatch.fm/">JuliaDispatch</a> podcast &#40;on many platforms, including <a href="https://www.youtube.com/@JuliaDispatch/">youtube</a> and <a href="https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws">spotify</a>&#41;. Highlights from the newsletter get discussed &#40;with more context&#41; during some episodes.</p>
 <p>JuliaCon happened two weeks ago. <a href="https://pretalx.com/juliacon-2025/schedule/">Here is the full list of talks</a>, well worth perusing. Here are some of my favorite highlights &#40;well-formatted recordings will be uploaded to the Julia youtube channel over the next few weeks, but you can already immediately access the <a href="https://www.youtube.com/@TheJuliaLanguage/streams">raw recordings of live streams</a> and find the timestamp of each talk yourself&#41;:</p>
 <ul>
@@ -213,7 +213,7 @@
 </li>
 <li><p><a href="https://pretalx.com/juliacon-2025/talk/B7WRLT/">Parting ways with our Julia simulation after 100 million miles</a> – a great success story of Julia in industry now ending as they transition to other tools. A discussion of why Julia was great for early prototyping but became difficult to scale for this particular team. Many lessons to be learnt for the ecosystem as a whole.</p>
 </li>
-<li><p><a href="https://pretalx.com/juliacon-2025/talk/SHCKEL/">State of Continuous Integration in the SciML ecosystem</a> – great talk on how to structure a large Github org more efficiently and reliably.</p>
+<li><p><a href="https://pretalx.com/juliacon-2025/talk/SHCKEL/">State of Continuous Integration in the SciML ecosystem</a> – great talk on how to structure a large GitHub org more efficiently and reliably.</p>
 </li>
 <li><p><a href="https://pretalx.com/juliacon-2025/talk/YVU9E3/">State of <code>--trim</code></a> – progress in static ahead-of-time compilation of julia code.</p>
 </li>
@@ -240,8 +240,9 @@
 <li><p><a href="https://pretalx.com/juliacon-2025/talk/Y7NPFM/">Pkg’s new SAT-based version resolver</a> – soon-to-come improvements to how version resolving works in Pkg, permitting much more flexible configurations and goals &#40;e.g. oldest possible package version that fulfills compat bounds&#41;</p>
 </li>
 </ul>
-<p>And if JuliaCon Global left you wanting more, don’t forget to book your tickets for JuliaCon Local Paris &#40;October 2nd &amp; 3rd, right after PyData Paris&#41;. The early bird pricing expires in 10 days and they are starting to announce some very cool plenary speakers, including familiar faces. Ticket link: https://pretix.eu/pydata/juliaconparis25/</p>
-<p>“Internals” Fora and Core Repos &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<p>And if JuliaCon Global left you wanting more, don’t forget to book your tickets for JuliaCon Local Paris &#40;October 2nd &amp; 3rd, right after PyData Paris&#41;. The early bird pricing expires in 10 days and they are starting to announce some very cool plenary speakers, including familiar faces. Ticket link: <a href="https://pretix.eu/pydata/juliaconparis25/">https://pretix.eu/pydata/juliaconparis25/</a></p>
+<div class="franklin-toc"><ol><li><a href="#core_repos">Core repos</a></li><li><a href="#in_search_of_contributors">In search of contributors</a></li><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#numerical_math_and_science">Numerical math and science</a></li><li><a href="#autodiff">Autodiff</a></li><li><a href="#events">Events</a></li></ol></div>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
 <ul>
 <li><p>Just as <code>@__MODULE__</code> refers to the enclosing module object, the internal variable <code>var&quot;#self#&quot;</code> can be used to refer to the enclosing function object. <a href="https://github.com/JuliaLang/julia/pull/58940">This PR</a> creates an alias <code>@__FUNCTION__</code> for this variable to match the naming conventions of existing reflection macros &#40;<code>@__MODULE__</code>, <code>@__FILE__</code>, etc.&#41;. It had to deal with an interesting amount of edge cases as discussed in linked PRs and Issues.</p>
 </li>
@@ -256,7 +257,7 @@
 <li><p>A <a href="https://github.com/JuliaLang/julia/pull/56580">new function</a> has been added to get the n’th element of an iterable.</p>
 </li>
 </ul>
-<p>In search of contributors and new maintainers &#40;specify novice/moderate/expert and internals/domain background necessary&#41;:</p>
+<h2 id="in_search_of_contributors"><a href="#in_search_of_contributors" class="header-anchor">In search of contributors</a></h2>
 <ul>
 <li><p>The <a href="https://github.com/JuliaGraphs/Graphs.jl">Graphs.jl</a> repo features a few bounties on <a href="https://github.com/JuliaGraphs/Graphs.jl/issues?q&#61;is&#37;3Aissue&#37;20state&#37;3Aopen&#37;20label&#37;3Abounty">integrating external graph theory libraries</a> better with the rest of the Graphs ecosystem.</p>
 </li>
@@ -267,7 +268,7 @@
 <li><p><a href="https://sciml.ai/small_grants/">SciML is running a large set of funded small projects</a> – a great opportunity to contribute to the community and be paid for it.</p>
 </li>
 </ul>
-<p>Ecosystem Fora, Maintenance, and Colab Promises &#40;Slack/Zulip/Discourse/Github&#41;:</p>
+<h2 id="ecosystem"><a href="#ecosystem" class="header-anchor">Ecosystem</a></h2>
 <ul>
 <li><p>The foundational package DataStructures.jl had a <a href="https://github.com/JuliaCollections/DataStructures.jl/blob/master/CHANGELOG.md">breaking release</a>, bringing in many new features from the last few years.</p>
 </li>
@@ -304,12 +305,12 @@
 <li><p><a href="https://discourse.julialang.org/t/ann-fixedsizearrays-jl-what-array-probably-should-have-been/129724/37">FixedSizeArrays: What Arrays should have been</a> – providing the compiler with more size information and promising to not change size of an array, enables more optimizations.</p>
 </li>
 </ul>
-<p>Numerical Math ecosystem:</p>
+<h2 id="numerical_math_and_science"><a href="#numerical_math_and_science" class="header-anchor">Numerical math and science</a></h2>
 <ul>
 <li><p><a href="https://discourse.julialang.org/t/is-there-a-ruff-like-linter/130871">DataInterpolationsND.jl</a>, under the SciML umbrella, now provides the equivalent of DataInterpolations.jl for arbitrary dimensions.</p>
 </li>
 </ul>
-<p>Autodiff ecosystem:</p>
+<h2 id="autodiff"><a href="#autodiff" class="header-anchor">Autodiff</a></h2>
 <ul>
 <li><p>Bringing the <a href="https://github.com/gdalle/sparsediffax">advanced sparse autodiff available in Julia to jax</a>.</p>
 </li>
@@ -320,7 +321,7 @@
 <li><p>An informative <a href="https://julialang.slack.com/archives/C6FGJ8REC/p1751978854180429">slack thread on the Mooncake autodiff toolkit</a>.</p>
 </li>
 </ul>
-<p>Events:</p>
+<h2 id="events"><a href="#events" class="header-anchor">Events</a></h2>
 <ul>
 <li><p><a href="https://ferrite-fem.github.io/FerriteCon/2025/">FerriteCon 2025</a> is happening in Copenhagen, Denmark on August 28th and is currently open for registration.</p>
 </li>
