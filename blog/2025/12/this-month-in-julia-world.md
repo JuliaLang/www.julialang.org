@@ -1,18 +1,21 @@
 @def title = "This Month in Julia World (November 2025)"
 @def authors = "Stefan Krastanov"
-@def published = "1 December 2025"
-@def rss_pubdate = Date(2025, 12, 1)
+@def published = "8 December 2025"
+@def rss_pubdate = Date(2025, 12, 8)
 @def rss = """Community Newsletter for November 2025"""
+@def mintoclevel = 2
+@def maxtoclevel = 2
+@def div_content = "container main newsletter"
 
-A monthly newsletter, mostly on julia internals, digestible for casual observers. A biased, incomplete, editorialized list of what a clique of us found interesting this month, with contributions from the community.
-
-If you want to receive the newsletter as an email, subscribe to the [Community--Newsletter category on Discourse](https://discourse.julialang.org/c/community/news/66).
+_A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. [Subscribe by email on Discourse](https://discourse.julialang.org/c/community/news/66)._
 
 For recent news on Julia and interesting conversations with community members, check out the [JuliaDispatch](https://juliadispatch.fm/) podcast (on many platforms, including [youtube](https://www.youtube.com/@JuliaDispatch/) and [spotify](https://open.spotify.com/show/6Y1zWtFhjqPLsFQWRvZmws)). Highlights from the newsletter get discussed (with more context) during some episodes.
 
 Current status: Julia release is 1.12.2, Julia LTS is 1.10.10. The feature freeze for 1.13 has passed and we are already at 1.13-alpha2. The dev branch is at 1.14-dev
 
-“Internals” Fora and Core Repos (Slack/Zulip/Discourse/Github):
+\toc
+
+## Core repos
 
 * Pkg’s resolver might start *preferring* versions of dependencies that are already loaded in the current session when you `Pkg.add` them, to avoid unnecessary re-precompilation and keep the active environment and new projects in sync. This is implemented as a weighted preference, not a hard constraint, so it should not introduce new resolver failures. ([GitHub](https://github.com/JuliaLang/Pkg.jl/pull/4507))
 
@@ -34,13 +37,13 @@ Current status: Julia release is 1.12.2, Julia LTS is 1.10.10. The feature freez
 
 * User-facing messages from the precompilation diagnostics for the native-code cache have been rewritten to be clearer to avoid user confusion. ([GitHub](https://github.com/JuliaLang/julia/pull/60012))
 
-In search of contributors and new maintainers:
+## In search of contributors
 
 * **LLM test cases for Julia (novice–moderate, no internals required):** there is an open call to contribute small Julia snippets (and expected behavior) where LLMs currently struggle, to build a better test suite for Julia-aware models. You don’t need compiler knowledge—just the ability to write idiomatic Julia and articulate what the model should do. ([Discourse](https://discourse.julialang.org/t/help-wanted-help-contribute-test-cases-to-improve-llm-performance-on-julia-code/132991/))
 
 * **Documenter.jl version-switch UX (moderate, JavaScript/Web tooling):** Documenter 1.16 introduced a feature where the version selector keeps you on the same *page* when switching manual versions, but not yet the same anchor/section. There is an issue + PR to preserve anchors when switching versions (including the “outdated version” banner link back to “latest stable”), and help is wanted from someone comfortable with front-end JS in a static-docs setting. ([GitHub](https://github.com/JuliaDocs/Documenter.jl/issues/2799))
 
-Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
+## Ecosystem
 
 * **Dependabot gains Julia support:** a large PR against `dependabot-core` adds first-class handling for Julia projects, teaching Dependabot how to understand `Project.toml`/`Manifest.toml` and propose version bumps for Julia packages, similarly to other ecosystems. ([GitHub](https://github.com/dependabot/dependabot-core/pull/12316/files))
 
@@ -80,21 +83,21 @@ Ecosystem Fora, Maintenance, and Colab Promises (Slack/Zulip/Discourse/Github):
 
 * The Discourse **site guidelines** have been updated, especially around gen-AI usage: the top section is now explicitly anchored in the Julia Community Standards as the hard rules, with the rest framed as guidelines to support human judgment. There is also clearer guidance about AI-generated content and expectations on how it is used. ([Discourse](https://discourse.julialang.org/t/updates-to-the-site-guidelines-especially-regarding-gen-ai/134315))
 
-Numerical Math ecosystem:
+## Numerical math and science
 
 * **FluxOptics.jl** provides differentiable scalar wave propagation for optical systems, with full AD support for gradient-based optimization. Optical components are modeled as composable, differentiable layers (inspired by Flux.jl), enabling tasks like tomography, field retrieval, and inverse design of multi-element, multi-wavelength optical systems. ([Discourse](https://discourse.julialang.org/t/ann-fluxoptics-jl-inverse-optical-design-with-automatic-differentiation/134285))
 
 * **ChenSignatures.jl** implements *path signatures* and log-signatures—iterated integrals of paths that uniquely characterize them up to tree-like equivalence—with applications in rough path theory, time-series ML, and mathematical finance. The package focuses on efficient computation of signatures/log-signatures at various truncation levels in Julia. ([Discourse](https://discourse.julialang.org/t/ann-chensignatures-jl-path-signatures-in-julia/134361))
 
-Mathematical Optimization ecosystem:
+## Mathematical optimization
 
 * The [**JuMP-dev 2025** videos](https://www.youtube.com/playlist?list=PLP8iPy9hna6RLvzHeEVCwkUkZV3aChElQ) are now online, including the “State of JuMP” talk and other sessions in the playlist, covering new features, ecosystem directions, and case studies around JuMP and related optimization tooling. 
 
-Autodiff ecosystem:
+## Autodiff
 
 * **DifferentiationInterface.jl** received a French national “Open Science – Free Research Software” prize in the “Promising community” category, recognizing its role as a unified interface layer over multiple AD backends and its rapid adoption (roughly a thousand Julia packages depending on it directly or indirectly). ([Ouvrir la Science](https://www.ouvrirlascience.fr/remise-des-prix-science-ouverte-du-logiciel-libre-de-recherche-edition-2025/))
 
-Notes from other ecosystems:
+## Other ecosystems
 
 * **Racket v9.0** was released. Given that Racket is **the** language for macro hackers that love creating domain specific languages, it seems like it would be of interest to the Julia crowd. ([Hacker News](https://news.ycombinator.com/item?id=46023460))
 
@@ -104,7 +107,7 @@ Notes from other ecosystems:
 
 * The **“Advent of Compiler Optimisations 2025”** series (with an HN thread attached) runs a daily article on a compiler optimization throughout December, aimed at explaining real optimizations rather than toy examples—relevant inspiration for people interested in Julia’s compiler pipeline. ([Hacker News](https://news.ycombinator.com/item?id=46119500))
 
-Events:
+## Events
 
 * [**Advent of Code 2025** is live](https://adventofcode.com/).
 
