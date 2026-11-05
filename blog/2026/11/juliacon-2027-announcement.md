@@ -1,11 +1,13 @@
-@def title = "JuliaCon Global 2027 Tallinn and JuliaCon Global 2026 Mainz Wrap-Up"
+@def title = "JuliaCon Global 2027 Tallinn Announced and JuliaCon Global 2026 Mainz Wrap-Up"
 @def authors = "JuliaCon Global Organizing Committee"
 @def published = "15 November 2026"
 @def rss_pubdate = Date(2026, 11, 15)
-@def rss_description = """JuliaCon Global 2027 Tallinn and JuliaCon Global 2026 Mainz Wrap-Up Blogpost."""
+@def rss_description = """JuliaCon Global 2027 Tallinn Announced and JuliaCon Global 2026 Mainz Wrap-Up Blogpost."""
 
 
-## We’re happy to announce that JuliaCon Global 2027 will be held in Tallinn, Estonia, August 9-14, 2027!
+## JuliaCon Global 2027 in Tallinn announced
+
+We’re happy to announce that **JuliaCon Global 2027** will be held at [Tallinn University of Technology (TalTech)](https://taltech.ee/en/) in **Tallinn, Estonia, August 9-14, 2027**! This is the first time JuliaCon ventures into the Baltic-Nordic region. Follow the up-to-date news about on the [JuliaCon Global 2027 official website](https://juliacon.org/2027/).
 
 ![Tallinn Old Town](/assets/blog/2027-JuliaCon/Tallinn-Old-Town.jpeg)
 
@@ -23,15 +25,15 @@ We look forward to seeing you in Tallinn, and please keep an eye out for future 
 
 ![JuliaCon Crowd](/assets/blog/2026-JuliaCon/2026-group-photo.jpg)
 
-JuliaCon Global 2026 in Mainz was a wonderful, record breaking event for our community: 461 attendees from 30 countries, with 19 minisymposia, 280 sessions, and 90 posters hosted! We have 22 sponsors from industry, academia, public, and non-profit sectors, many of whom have been supporting JuliaCon and JuliaLang for years. 
+JuliaCon Global 2026 in Mainz was a wonderful, record breaking event for our community: **461 attendees from 30 countries, with 19 minisymposia, 280 sessions, and 90 posters hosted!** We have 22 sponsors from industry, academia, public, and non-profit sectors, many of whom have been supporting JuliaCon and JuliaLang for years. 
 
 We sincerely thank all the sponsors who made JuliaCon Global 2026 not only successful but also accessible for our passionate communities around the world. With their support, we were able to fund more than 20 scholarships, empowering recipients to travel across continents from countries like Argentina, Brazil, Australia, India, Japan, China, and the United States.
 
 Special thanks to the local members of the Johannes Gutenberg-Universität Mainz, especially **Brigitte Burkert** and **Mariana Cosarinsky**. They have been working incredibly hard for months to ensure the smooth operation of all aspects of this year's JuliaCon. We also thank the catering and AV teams for their attentive service. This event also could not have been successful without the help of all our amazing volunteers. Thank you!
 
-### Julia Community Prizes
+### Julia Community Prizes 2026
 
-We want to be sure you didn’t miss the Julia Community Prizes. These prizes were announced at the closing session of JuliaCon 2024 on July 12th, but if you missed it, the awardees this year were:
+We want to be sure you didn’t miss the Julia Community Prizes. These prizes were announced at the closing ceremony. The awardees this year were:
 
 #### **Penelope Yong**
 For her contributions to Turing.jl and JuliaFormatter.
@@ -41,9 +43,9 @@ For their efforts maintaining the Julia Linear Algebra library.
 
 Awardees are nominated by the Julia community, and then winners are selected by a committee of senior community members based on their holistic contributions across the ecosystem.
 
-### Proceedings
+## JuliaCon Global 2026 Proceedings
 
-The Editorial Board of the [Proceedings of the JuliaCon Conferences](https://proceedings.juliacon.org) is happy to announce that **submissions for 2026 contributions are now open**!
+The [Editorial Board](https://proceedings.juliacon.org/about#editorial_board) of the [Proceedings of the JuliaCon Conferences](https://proceedings.juliacon.org) is happy to announce that **submissions for 2026 contributions are now open**!
 
 If you presented a talk, poster or workshop at **JuliaCon Global 2026 in Mainz**, you are welcome to submit a paper about your work. The submission form and all details are on [proceedings.juliacon.org](https://proceedings.juliacon.org). The [author guide](https://juliacon.github.io/proceedings-guide/) explains how to prepare your paper with the JuliaCon template and what to expect during review.
 
@@ -51,9 +53,7 @@ If you presented a talk, poster or workshop at **JuliaCon Global 2026 in Mainz**
 
 Reviews happen openly on GitHub. You can speed up the process by suggesting reviewers who could review your work when you submit.
 
-**We are also looking for reviewers!** If you'd like to help, please leave your GitHub handle and areas of expertise in [this form](https://forms.gle/SXDiZ2PZFW16aZAN8). Reviewing is a great way to contribute to the community and to see how others use Julia.
-
-The [Editorial Team](https://proceedings.juliacon.org/about#editorial_board)
+**The Editorial Board is also looking for reviewers!** If you'd like to help, please leave your GitHub handle and areas of expertise in [this form](https://forms.gle/SXDiZ2PZFW16aZAN8). Reviewing is a great way to contribute to the community and to see how others use Julia.
 
 
 ![JuliaCon Construction Edition](/assets/blog/2024-JuliaCon/tractors.png)
