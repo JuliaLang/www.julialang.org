@@ -7,7 +7,7 @@
 
 ## JuliaCon Global 2027 in Tallinn announced
 
-We’re happy to announce that **JuliaCon Global 2027** will be held at [Tallinn University of Technology (TalTech)](https://taltech.ee/en/) in **Tallinn, Estonia, August 9-14, 2027**! This is the first time JuliaCon ventures into the Baltic-Nordic region. Follow the up-to-date news about on the [JuliaCon Global 2027 official website](https://juliacon.org/2027/).
+We’re happy to announce that **JuliaCon Global 2027** will be held at [Tallinn University of Technology (TalTech)](https://taltech.ee/en/) in **Tallinn, Estonia, August 9-14, 2027**! This is the first time JuliaCon ventures into the Baltic-Nordic region. Follow the up-to-date news on the [JuliaCon Global 2027 official website](https://juliacon.org/2027/).
 
 ![Tallinn Old Town](/assets/blog/2027-JuliaCon/Tallinn-Old-Town.jpeg)
 
