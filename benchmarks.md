@@ -15,9 +15,9 @@ For the exact timings and the versions of each language, see the [Microbenchmark
 
 Note that the Julia results depicted above do not include compile time.
 
-The vertical axis shows each benchmark time normalized against the C implementation (log scale, lower is better), with one dot per benchmark and language. The languages compared are C, Julia, Rust, Go, Fortran, Numba, LuaJIT, Scala, Java, Swift, JavaScript, Python, R and Octave. For the methodology and limitations, see the [Microbenchmarks methodology](https://julialang.github.io/Microbenchmarks/dev/#Methodology).
+The vertical axis shows each benchmark time normalized against the C implementation (log scale, lower is better), with one dot per benchmark and language. The languages compared are C, Julia, Rust, C#, Go, Fortran, Swift, LuaJIT, Scala, Numba, Java, JavaScript, Python, R and Octave. For the methodology and limitations, see the [Microbenchmarks methodology](https://julialang.github.io/Microbenchmarks/dev/#Methodology).
 
-All languages were run on the same machine: AMD EPYC 7763 64-Core Processor, in single-threaded mode. Each benchmark is run 5 times in-process and the minimum time is kept; the whole suite is run 3 times and the best of the up to 15 measurements is reported. Julia and Numba perform a warm-up pass first so that compilation time is excluded.
+All languages were run on the same GitHub Actions runner (the CPU is named in the chart), in single-threaded mode. Each benchmark is run 5 times in-process and the minimum time is kept; the whole suite is run 3 times and the best of the up to 15 measurements is reported. Julia and Numba perform a warm-up pass first so that compilation time is excluded.
 
 ## Other Relevant Benchmarks
 
