@@ -1,7 +1,7 @@
 @def title = "JuliaCon Global 2027 Tallinn Announced and JuliaCon Global 2026 Mainz Wrap-Up"
 @def authors = "JuliaCon Global Organizing Committee"
-@def published = "15 November 2026"
-@def rss_pubdate = Date(2026, 11, 15)
+@def published = "9 November 2026"
+@def rss_pubdate = Date(2026, 11, 9)
 @def rss_description = """JuliaCon Global 2027 Tallinn Announced and JuliaCon Global 2026 Mainz Wrap-Up Blogpost."""
 
 
@@ -30,6 +30,8 @@ JuliaCon Global 2026 in Mainz was a wonderful, record breaking event for our com
 We sincerely thank all the sponsors who made JuliaCon Global 2026 not only successful but also accessible for our passionate communities around the world. With their support, we were able to fund more than 20 scholarships, empowering recipients to travel across continents from countries like Argentina, Brazil, Australia, India, Japan, China, and the United States.
 
 Special thanks to the local members of the Johannes Gutenberg-Universität Mainz, especially **Brigitte Burkert** and **Mariana Cosarinsky**. They have been working incredibly hard for months to ensure the smooth operation of all aspects of this year's JuliaCon. We also thank the catering and AV teams for their attentive service. This event also could not have been successful without the help of all our amazing volunteers. Thank you!
+
+JuliaCon Global 2026 Mainz Videos are now available on [the Julia Programming Language YouTube chanel](https://youtube.com/playlist?list=PLPHnI5tK4C10&si=_-UwcpU3K6xwTunx).
 
 ### Julia Community Prizes 2026
 
