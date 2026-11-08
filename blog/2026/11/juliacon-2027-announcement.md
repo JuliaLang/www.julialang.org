@@ -31,7 +31,7 @@ We sincerely thank all the sponsors who made JuliaCon Global 2026 not only succe
 
 Special thanks to the local members of the Johannes Gutenberg-Universität Mainz, especially **Brigitte Burkert** and **Mariana Cosarinsky**. They have been working incredibly hard for months to ensure the smooth operation of all aspects of this year's JuliaCon. We also thank the catering and AV teams for their attentive service. This event also could not have been successful without the help of all our amazing volunteers. Thank you!
 
-JuliaCon Global 2026 Mainz Videos are now available on [the Julia Programming Language YouTube chanel](https://youtube.com/playlist?list=PLPHnI5tK4C10&si=_-UwcpU3K6xwTunx).
+JuliaCon Global 2026 Mainz Videos are now available on [the Julia Programming Language YouTube channel](https://youtube.com/playlist?list=PLPHnI5tK4C10&si=_-UwcpU3K6xwTunx).
 
 ### Julia Community Prizes 2026
 
