@@ -31,7 +31,8 @@
 # Running the whole suite takes a few hours. Results are appended to `<workdir>/results.csv` as
 # they come in, and a rerun with the same workdir skips the tasks that are done, so it can be
 # interrupted and resumed. At the end it prints the geometric mean over the tasks that succeeded
-# on every build, and writes the chart's data for this platform to `<workdir>/ttfx-latency-<platform>.js`.
+# on every build, and writes the chart's data for this platform (the geometric mean and the numbers
+# of each task) to `<workdir>/ttfx-latency-<platform>.js`.
 # Copy that file next to this script, and add it to the blog post if the platform is new.
 
 using Printf
@@ -235,19 +236,25 @@ function summary(results, labels, workdir)
 
     # The chart's data. Builds whose label ends in "+opt" are the optimized builds.
     jsstr(s) = "\"" * escape_string(s, "\"") * "\""
-    entry(ls) = "{" * join((jsstr(replace(l, r"\+opt$" => "")) * ":[" * join((@sprintf("%.3g", x) for x in gm[l]), ",") * "]"
-                            for l in ls), ",") * "}"
+    entry(ls, vals) = "{" * join((jsstr(replace(l, r"\+opt$" => "")) * ":[" * join((@sprintf("%.3g", x) for x in vals[l]), ",") * "]"
+                                  for l in ls), ",") * "}"
     std = filter(l -> !endswith(l, "+opt"), labels)
     opt = filter(l -> endswith(l, "+opt"), labels)
+    per = map(common) do t
+        vals = Dict(label => [minimum(results[(label, t)][m]) for m in METRICS] for label in labels)
+        jsstr(t) * ":{\"std\":" * entry(std, vals) * ",\"opt\":" * entry(opt, vals) * "}"
+    end
     file = joinpath(workdir, "ttfx-latency-$(platform_slug()).js")
     write(file, """
         // Data for the latency chart in the Julia 1.14 highlights post, written by ttfx_latency.jl.
-        // Per build: [precompile, load, first call (cold), first call (warm)] in seconds, the geometric
-        // mean over the TTFX tasks that work on all builds.
+        // Per build: [precompile, load, first call (cold), first call (warm)] in seconds. "std" and "opt"
+        // are the geometric mean over the TTFX tasks that work on all builds, "per" has each of those tasks.
         (window.TTFX_LATENCY = window.TTFX_LATENCY || {})[$(jsstr(platform_name()))] = {
         "tasks":$(length(common)),"cpu":$(jsstr(strip(Sys.cpu_info()[1].model))),
-        "std":$(entry(std)),
-        "opt":$(entry(opt))};
+        "std":$(entry(std, gm)),
+        "opt":$(entry(opt, gm)),
+        "per":{
+        $(join(per, ",\n"))}};
         """)
     println("\nChart data written to $file")
 end
