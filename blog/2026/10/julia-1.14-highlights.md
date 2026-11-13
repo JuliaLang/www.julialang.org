@@ -680,17 +680,23 @@ Manifests now record an `environment_id`, which Julia uses in precompile cache f
 ## Continuous integration
 *Tim Besard*, *Ian Butterworth*, *Keno Fischer*, *Kristoffer Carlsson* TODO: check authors
 
-Julia's CI runs on [Buildkite](https://buildkite.com/julialang). Every commit to master and every pull request builds Julia for all supported platforms and runs the test suite on each, which adds up to a lot of machine time, especially with the number of PRs and merges now being significantly higher than what it has recently been. In order for the CI process to not be development bottleneck, a significant amount of work went into optimizing the CI infrastructure this release cycle (as well as getting some extra computing power in terms of new hardware)
+Julia's CI runs on [Buildkite](https://buildkite.com/julialang). Every commit to master and every pull request builds Julia for all supported platforms and runs the test suite on each, which adds up to a lot of machine time. And there are many more pull requests than before: 752 were opened in October, against 200 to 280 a month in the first half of 2026. To keep CI from becoming the bottleneck, we changed how jobs share the CI machines, made test runs and pull requests use less machine time, and added hardware.
 
 ### A scheduler for the CI machines
 
-Each CI machine used to be split up in advance into fixed slots, some for building Julia and some for running tests, and a job got a whole slot no matter how much of it it used. For example, building the PDF manual runs on a single CPU, but it took up a 12-CPU test slot for as long as it ran, while the next test suite in the queue, which could have used the 11 idle CPUs, waited for a slot to free up. Such single-threaded jobs took up about a quarter of all the time in the Linux test slots. In October, the large Linux machines were only about 60% busy on average, while Linux test jobs waited a median of 36 minutes to start.
+Each CI machine used to be split up in advance into fixed slots, some for building Julia and some for running tests, and a job got a whole slot no matter how much of it it used. For example, building the PDF manual runs on a single CPU, but it took up a 12-CPU test slot for as long as it ran. Such single-threaded jobs took up about a quarter of all the time in the Linux test slots. In October, the large Linux machines were only about 60% busy on average, while Linux test jobs waited a median of 36 minutes to start.
 
-Now a scheduler on each machine treats it as one pool of CPUs and memory. Each job states how much it needs, so the PDF manual asks for one CPU and the test suite for eight, and the scheduler starts any waiting job that fits. The 11 CPUs that the PDF manual used to leave idle now go to the next job in the queue. Jobs also have priorities now, so release builds and backports no longer wait behind regular pull requests.
+Now a scheduler on each machine treats it as one pool of CPUs and memory. Each job states how much it needs (the PDF manual asks for one CPU, the test suite for eight), and the scheduler starts the next job in line as soon as that much is free. Jobs also have priorities, so release builds and backports go ahead of master and other pull requests in the queue. We also added a large Linux server and three Apple M6 Mac minis, and added back five M1 Macs that were taken out of rotation due to memory constraints. From November 1 to 12, half of all Linux x86-64 test jobs started within a minute.
 
 ### Faster test runs
 
-The test suite runs tests in parallel on worker processes, but some long tests ran alone at the end while the other workers sat idle. These now run in parallel too, and the longest tests start first. Between July and November, the median time of a test job went from 68 to 27 minutes on Linux, from 73 to 33 minutes on Windows and from 43 to 20 minutes on macOS, while CI ran about two and a half times as many test jobs per week. Pull requests also skip jobs that their changes cannot (or at least are very unlikely to) affect, which saves about 20% of their machine time.
+The test suite runs tests in parallel on worker processes, but some long tests ran alone at the end while the other workers sat idle. These now run in parallel too, and the longest tests start first. Between July and November, the median time of a test job on master went from 65 to 27 minutes on Linux (x86-64), from 72 to 35 minutes on Windows (x86-64) and from 43 to 18 minutes on macOS (Apple silicon), while CI ran more than twice as many test jobs per week.
+
+Pull requests also skip jobs that are unrelated to the files they change: the sanitizers only run for changes to C and C++ code, the PDF manual only for changes to `doc/`, and so on. A few slow jobs, such as the `rr` tests, no longer run on pull requests at all. Together this saves about a quarter of the machine time that pull requests would otherwise use. Master still runs every job, and the `needs full CI` label turns off the file-based skipping for a pull request.
+
+### Performance tracking
+
+Every master build now runs the TTFX suite behind the latency charts above and about 200 runtime benchmarks. Pull requests that change the compiler or the runtime run them too, and compare the results against the master commit they branch from. The results for master are on [perf.julialang.org](https://perf.julialang.org), along with CI job times, Nanosoldier and PkgEval reports, the size of the Julia distribution, etc.
 
 ## Bugs found by formalizing Base in Lean
 *Miles Cranmer*
