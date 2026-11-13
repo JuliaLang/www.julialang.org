@@ -296,38 +296,6 @@
 <p><strong>Expected outcome</strong>: Graph convolution speedup for AMD GPU and Apple hardware, performance roughly on par with CUDA.</p>
 <h3 id="mentors"><a href="#mentors" class="header-anchor">Mentors </a></h3>
 <p><a href="https://github.com/CarloLucibello">Carlo Lucibello</a> &#40;author of <a href="https://github.com/JuliaGraphs/GraphNeuralNetworks.jl">GraphNeuralNetworks.jl</a>&#41;. Feel free to contact me on the <a href="https://Julialang.slack.com/">Julia Slack Workspace</a> or by opening an issue in the GitHub repo.</p>
-<h2 id="gpu_projects"><a href="#gpu_projects" class="header-anchor">GPU Projects</a></h2>
-<p><a href="https://github.com/JuliaGPU">JuliaGPU</a> provides a suite of packages for programming GPUs in Julia. We have support for AMD, NVIDIA and Intel GPUs through various backends, unified by high-level array abstractions and a common programming model based on kernel programming.</p>
-<h3 id="improving_gpu_stack_portability"><a href="#improving_gpu_stack_portability" class="header-anchor">Improving GPU Stack Portability</a></h3>
-<p><strong>Difficulty:</strong> Medium</p>
-<p><strong>Duration:</strong> 175 or 350 hours &#40;the scope of functionality to port can be adjusted accordingly&#41;</p>
-<p><strong>Description:</strong> The Julia GPU stack consists of several layers, from low-level vendor-specific packages like CUDA.jl to high-level abstractions like GPUArrays.jl. While the high-level packages aim to be vendor-agnostic, many optimized operations are still implemented in vendor-specific ways. This project aims to improve portability by moving these implementations to GPUArrays.jl using KernelAbstractions.jl.</p>
-<p>The project will involve:</p>
-<ul>
-<li><p>Identifying vendor-specific kernel implementations in packages like CUDA.jl</p>
-</li>
-<li><p>Porting these kernels to KernelAbstractions.jl in GPUArrays.jl</p>
-</li>
-<li><p>Improving KernelAbstractions.jl where needed to support these kernels</p>
-</li>
-<li><p>Ensuring performance remains competitive with vendor-specific implementations</p>
-</li>
-<li><p>Adding tests to verify correctness across different GPU backends</p>
-</li>
-</ul>
-<p><strong>Required Skills:</strong></p>
-<ul>
-<li><p>Experience with Julia programming</p>
-</li>
-<li><p>Familiarity with GPU programming concepts</p>
-</li>
-<li><p>Experience with GPU programming in Julia is a plus</p>
-</li>
-<li><p>Understanding of performance optimization</p>
-</li>
-</ul>
-<p><strong>Expected Results:</strong> A set of optimized GPU kernels in GPUArrays.jl that are vendor-agnostic and performant across different GPU backends. This will improve the portability of the Julia GPU stack and make it easier to support new GPU architectures.</p>
-<p><strong>Mentors:</strong> <a href="https://github.com/maleadt">Tim Besard</a>, <a href="https://github.com/vchuravy">Valentin Churavy</a></p>
 <h2 id="herbjl_projects"><a href="#herbjl_projects" class="header-anchor">Herb.jl Projects</a></h2>
 <p><img src="https://raw.githubusercontent.com/Herb-AI/Herb.jl/refs/heads/documentation/docs/src/assets/herb.png" alt="Herb Logo" /></p>
 <p>Wouldn’t it be great if Julia would program itself? Tell it what you want, Julia magic happens, and you get your program directly. We introduce Herb.jl, a library written in Julia that gets us a step closer to our big goal. <a href="https://herb-ai.github.io/">Herb.jl</a> is a library for program synthesis: The task of automatically generating programs from a given specification. Here, “a program” could be anything, from an actual Python program over moves in chess to the synthesis of biochemical molecules. There are numerous works on program synthesis, all speaking a different language in code and terminology. We want to make developing, comparing, and applying ideas in program synthesis easier.</p>
