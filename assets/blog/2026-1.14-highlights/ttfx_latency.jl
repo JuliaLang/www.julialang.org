@@ -1,13 +1,19 @@
 # Measures the latency numbers in the TTFX chart of the Julia 1.14 highlights blog post
 # (https://julialang.org/blog/2026/10/julia-1.14-highlights/).
 #
-# For every task of the Julia-TTFX-Snippets suite and every Julia build it measures:
+# For every Julia build it measures:
+#
+#   startup     time of `julia --startup-file=no -e ''`, not tied to any task
+#
+# and for every task of the Julia-TTFX-Snippets suite and every Julia build:
 #
 #   precompile  time to precompile the task's packages, from an empty compile cache
 #   load        time of the task's `using` statements
 #   cold        first call in a fresh process, with an empty native code cache
 #   warm        first call in a fresh process, with the native code cache populated by the cold run
 #
+# Startup runs the build's julia binary directly (see `Base.julia_cmd()`), not through a launcher
+# like juliaup, whose own overhead would otherwise be included.
 # The native code cache only exists from Julia 1.14, so on older versions cold and warm are the same.
 # Each build gets its own depot for compiled code (packages and artifacts are shared), and its
 # own native code cache, so nothing in ~/.julia is used or modified.
@@ -24,6 +30,7 @@
 #
 #     --workdir DIR     where the snippets, depots, logs and results go (default: ./ttfx-work)
 #     --samples N       cold/warm samples per task and build, the minimum is used (default: 3)
+#     --startup-samples N  startup samples per build, the minimum is used (default: 20)
 #     --tasks REGEX     only run the tasks whose `Package/Task` name matches
 #     --timeout MIN     timeout of each process in minutes (default: 30)
 #     --summary         only print the summary of the results in the workdir
@@ -49,11 +56,12 @@ struct Build
     label::String
     cmd::Cmd
     bundled_depots::Vector{String}  # where the build's stdlib package images are
+    exe::Cmd                        # the julia binary itself, bypassing any launcher such as juliaup
 end
 
 function parse_args(args)
     opts = Dict{String,Any}("workdir" => "ttfx-work", "samples" => 3, "tasks" => nothing,
-                            "timeout" => 30, "summary" => false)
+                            "timeout" => 30, "summary" => false, "startup-samples" => 20)
     builds = String[]
     i = 1
     while i <= length(args)
@@ -64,7 +72,7 @@ function parse_args(args)
             k = a[3:end]
             haskey(opts, k) || error("unknown option $a")
             v = args[i+=1]
-            opts[k] = k in ("samples", "timeout") ? parse(Int, v) : v
+            opts[k] = k in ("samples", "timeout", "startup-samples") ? parse(Int, v) : v
         else
             occursin('=', a) || error("expected `label=command`, got `$a`")
             push!(builds, a)
@@ -90,7 +98,9 @@ function make_build(spec)
     cmd = Cmd(Base.shell_split(cmdstr))
     script = """print(join(filter(d -> endswith(d, joinpath("share", "julia")), DEPOT_PATH), "\\n"))"""
     out = read(setenv(`$cmd --startup-file=no -e $script`, julia_env()), String)
-    return Build(label, cmd, split(out, '\n'; keepempty=false))
+    script = """print(join(Base.julia_cmd().exec, "\\0"))"""
+    exe = read(setenv(`$cmd --startup-file=no -e $script`, julia_env()), String)
+    return Build(label, cmd, split(out, '\n'; keepempty=false), Cmd(split(exe, '\0')))
 end
 
 function build_info(b::Build)
@@ -205,6 +215,22 @@ function measure(io, b::Build, task, src, opts)
     return true
 end
 
+# Startup time of the bare julia binary. The minimum over the samples is recorded.
+const STARTUP = "_startup"  # the task name the startup time is recorded under
+function measure_startup(io, b::Build, opts)
+    depot = joinpath(opts["workdir"], "depot-" * sanitize(b.label))
+    env = julia_env(JULIA_DEPOT_PATH=join([depot; b.bundled_depots], DEPOT_SEP))
+    cmd = setenv(`$(b.exe) --startup-file=no -e ""`, env)
+    run(cmd)  # warm the OS file cache
+    ts = map(1:opts["startup-samples"]) do _
+        t = time_ns()
+        run(cmd)
+        (time_ns() - t) / 1e9
+    end
+    record(io, b.label, STARTUP, "startup", minimum(ts))
+    @printf("  %-10s startup %.3f s\n", b.label, minimum(ts))
+end
+
 geomean(xs) = exp(sum(log, xs) / length(xs))
 
 function platform_name()
@@ -219,6 +245,7 @@ function summary(results, labels, workdir)
     # results[(label, task)][metric] = values; a task counts if it is done on every build.
     tasks = Dict{String,Int}()
     for ((label, task), r) in results
+        task == STARTUP && continue
         label in labels && haskey(r, "done") && (tasks[task] = get(tasks, task, 0) + 1)
     end
     common = sort([t for (t, n) in tasks if n == length(labels)])
@@ -227,10 +254,12 @@ function summary(results, labels, workdir)
 
     gm = Dict(label => [geomean([minimum(results[(label, t)][m]) for t in common]) for m in METRICS]
               for label in labels)
+    startup = Dict(label => minimum(results[(label, STARTUP)]["startup"]) for label in labels
+                   if haskey(results, (label, STARTUP)))
     println("\nGeometric mean over $(length(common)) tasks, in seconds, on $(platform_name()):\n")
-    @printf("%-12s %11s %8s %8s %8s\n", "build", METRICS...)
+    @printf("%-12s %8s %11s %8s %8s %8s\n", "build", "startup", METRICS...)
     for label in labels
-        @printf("%-12s %11.2f %8.3f %8.3f %8.3f\n", label, gm[label]...)
+        @printf("%-12s %8.3f %11.2f %8.3f %8.3f %8.3f\n", label, get(startup, label, NaN), gm[label]...)
     end
     isempty(failed) || println("\nLeft out, as they failed on some build: ", join(failed, ", "))
 
@@ -238,20 +267,24 @@ function summary(results, labels, workdir)
     jsstr(s) = "\"" * escape_string(s, "\"") * "\""
     entry(ls, vals) = "{" * join((jsstr(replace(l, r"\+opt$" => "")) * ":[" * join((@sprintf("%.3g", x) for x in vals[l]), ",") * "]"
                                   for l in ls), ",") * "}"
+    sentry(ls) = "{" * join((jsstr(replace(l, r"\+opt$" => "")) * ":" * @sprintf("%.3g", startup[l]) for l in ls), ",") * "}"
     std = filter(l -> !endswith(l, "+opt"), labels)
     opt = filter(l -> endswith(l, "+opt"), labels)
     per = map(common) do t
         vals = Dict(label => [minimum(results[(label, t)][m]) for m in METRICS] for label in labels)
         jsstr(t) * ":{\"std\":" * entry(std, vals) * ",\"opt\":" * entry(opt, vals) * "}"
     end
+    startup_js = all(l -> haskey(startup, l), labels) ?
+        "\"startup\":{\"std\":" * sentry(std) * ",\"opt\":" * sentry(opt) * "},\n" : ""
     file = joinpath(workdir, "ttfx-latency-$(platform_slug()).js")
     write(file, """
         // Data for the latency chart in the Julia 1.14 highlights post, written by ttfx_latency.jl.
         // Per build: [precompile, load, first call (cold), first call (warm)] in seconds. "std" and "opt"
         // are the geometric mean over the TTFX tasks that work on all builds, "per" has each of those tasks.
+        // "startup" is the time of `julia --startup-file=no -e ''` per build, in seconds.
         (window.TTFX_LATENCY = window.TTFX_LATENCY || {})[$(jsstr(platform_name()))] = {
         "tasks":$(length(common)),"cpu":$(jsstr(strip(Sys.cpu_info()[1].model))),
-        "std":$(entry(std, gm)),
+        $(startup_js)"std":$(entry(std, gm)),
         "opt":$(entry(opt, gm)),
         "per":{
         $(join(per, ",\n"))}};
@@ -291,6 +324,11 @@ function main(args)
     println("$(length(tasks)) tasks, results in $file\n")
 
     open(file, "a") do io
+        println("Startup time")
+        for b in builds
+            haskey(done, (b.label, STARTUP)) || measure_startup(io, b, opts)
+        end
+        println()
         for (i, (task, src)) in enumerate(tasks)
             println("[$i/$(length(tasks))] $task")
             # The builds are interleaved per task, so slow drift of the machine affects all of them alike.

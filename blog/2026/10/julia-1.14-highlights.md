@@ -20,7 +20,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 **Note: the numbers in the chart below are placeholders, not real measurements.**
 
-The chart below shows the time per task for precompiling the packages, loading them, and the first call in a fresh process with an empty (*cold*) and populated (*warm*) native code cache, as a geometric mean over the tasks of the [TTFX suite](https://github.com/tecosaur/Julia-TTFX-Snippets) that work on all versions. The numbers were measured with [this script](/assets/blog/2026-1.14-highlights/ttfx_latency.jl). *1.14+opt* is the [optimized build](#build_variants) of 1.14. Use the buttons to pick a platform, and switch from the geometric mean to every task to see the numbers of each task.
+The chart below shows the time to start Julia, and the time per task for precompiling the packages, loading them, and the first call in a fresh process with an empty (*cold*) and populated (*warm*) native code cache, as a geometric mean over the tasks of the [TTFX suite](https://github.com/tecosaur/Julia-TTFX-Snippets) that work on all versions. The numbers were measured with [this script](/assets/blog/2026-1.14-highlights/ttfx_latency.jl). *1.14+opt* is the [optimized build](#build_variants) of 1.14. Use the buttons to pick a platform, and switch from the geometric mean to every task to see the numbers of each task.
 
 ~~~
 <figure class="jllat" aria-label="Latency of Julia 1.10, 1.13 and 1.14 on the TTFX suite">
@@ -93,17 +93,22 @@ function draw(){
   P.classList.toggle("all",all);
   lg.style.display=all?"":"none";
   if(all)return drawAll();
-  var d=D[os],R=rows(d),h="";
-  M.forEach(function(m,i){
+  var d=D[os],h="";
+  // One panel per metric; get(x) picks the metric out of a platform's data (shaped like d.std/d.opt per build).
+  function panel(m,get){
+    var x=get(d);if(!x)return;
     // Scale each metric over all platforms and builds so switching does not rescale.
-    var max=0;for(var o in D)["std","opt"].forEach(function(b){for(var v in D[o][b])max=Math.max(max,D[o][b][v][i])});
-    var base=d.std["1.13"][i];
+    var max=0;for(var o in D){var y=get(D[o]);if(y)["std","opt"].forEach(function(b){for(var v in y[b])max=Math.max(max,y[b][v])})}
+    var base=x.std["1.13"];
     h+="<div><h4>"+m+"</h4>";
-    R.forEach(function(r){var val=r[1][i];
+    rows(x).forEach(function(r){var val=r[1];
       h+='<div class="row"><span class="v">'+r[0]+'</span><div class="track"><b class="bar" style="width:calc((100% - 8.5em) * '+(val/max).toFixed(4)+');background:var(--s1)"></b><span class="tot">'+fmt(val)+rel(r[0],val,base)+'</span></div></div>'});
-    h+="</div>"});
+    h+="</div>"}
+  function pick(i){return function(e){var r={std:{},opt:{}};["std","opt"].forEach(function(b){for(var v in e[b])r[b][v]=e[b][v][i]});return r}}
+  panel("Startup",function(e){return e.startup});
+  M.forEach(function(m,i){panel(m,pick(i))});
   P.innerHTML=h;
-  cap.innerHTML="Geometric mean over the "+D[os].tasks+" TTFX tasks that work on all versions, on "+os+" ("+D[os].cpu+"), "+ver;
+  cap.innerHTML="Geometric mean over the "+D[os].tasks+" TTFX tasks that work on all versions, on "+os+" ("+D[os].cpu+"), "+ver+(d.startup?" Startup is the time of <code>julia -e ''</code>, the same for every task.":"");
 }
 // Every task: one row per task with a dot per build, on a log scale.
 function drawAll(){

@@ -1,9 +1,11 @@
 // Data for the latency chart in the Julia 1.14 highlights post, written by ttfx_latency.jl.
 // Per build: [precompile, load, first call (cold), first call (warm)] in seconds. "std" and "opt"
 // are the geometric mean over the TTFX tasks that work on all builds, "per" has each of those tasks.
+// "startup" is the time of `julia --startup-file=no -e ''` per build, in seconds.
 // TODO: placeholder numbers.
 (window.TTFX_LATENCY = window.TTFX_LATENCY || {})["macOS (Apple silicon)"] = {
 "tasks":39,"cpu":"TODO",
+"startup":{"std":{"1.10":0.11,"1.13":0.07,"1.14":0.065},"opt":{"1.14":0.06}},
 "std":{"1.10":[6.66,0.3,0.6,0.58],"1.13":[5.85,0.24,0.5,0.47],"1.14":[5.17,0.22,0.46,0.16]},
 "opt":{"1.14":[4.44,0.2,0.39,0.13]},
 "per":{
