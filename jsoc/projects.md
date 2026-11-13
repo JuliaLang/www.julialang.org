@@ -40,7 +40,6 @@ We have our project ideas organized below by domain. You can also see a [single 
 ## Infrastructure & Tooling
 
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
-* [GPU Programming](/jsoc/gsoc/gpu/) – projects that involve the Julia GPU stack.
 * [Tooling](/jsoc/gsoc/tooling/) – development of developer tools and development environments for Julia.
 * [Documentation tooling](/jsoc/gsoc/documenter/) – tooling related to documentation generation, docstrings etc.
 
