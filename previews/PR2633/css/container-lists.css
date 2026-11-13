@@ -1,0 +1,6 @@
+.container ul li p { margin-bottom: 0; }
+.container ol li p { margin-bottom: 0; }
+.container ul ul { margin: .4em 0 .4em 0; }
+.container ul ol { margin: .4em 0 .4em 0; }
+.container ol ul { margin: .4em 0 .4em 0; }
+.container ol ol { margin: .4em 0 .4em 0; }
