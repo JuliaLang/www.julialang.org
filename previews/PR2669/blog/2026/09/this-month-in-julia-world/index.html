@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t;try{t=localStorage.getItem('julia-theme')}catch(e){}var d=t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');var l=document.createElement('link');l.rel='preload';l.as='image';l.setAttribute('fetchpriority','high');l.href='/previews/PR2669/assets/infra/'+(d?'logo-dark':'logo')+'.svg';document.head.appendChild(l);})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2669/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+
+<!-- Preload LCP-critical resources (hero background; navbar logo preloaded dynamically in head.html to pick the correct theme variant) -->
+<link rel="preload" href="/previews/PR2669/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2669/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2669/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2669/css/app.css">
+<link rel="stylesheet" href="/previews/PR2669/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2669/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2669/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2669/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+
+   <title>This Month in Julia World (August 2026)</title>   
+
+  
+  <link rel="stylesheet" href="/previews/PR2669/css/container-lists.css">
+  
+
+  
+  <link rel="stylesheet" href="/previews/PR2669/css/blog-post.css">
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="This Month in Julia World (August 2026)">
+<meta property="og:description" content="Community Newsletter for August 2026">
+<meta property="og:image" content="https://julialang.netlify.app/previews/PR2669/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2669/blog/2026/09/this-month-in-julia-world/">
+
+	<link rel="canonical" href="https://julialang.org/blog/2026/09/this-month-in-julia-world/">
+
+  <!-- Article structured data for blog posts -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "This Month in Julia World (August 2026)",
+  "description": "Community Newsletter for August 2026",
+  "image": "https://julialang.netlify.app/previews/PR2669/assets/images/julia-open-graph.png",
+  "datePublished": "2026-09-02T00:00:00+00:00",
+  "author": {"@type": "Person", "name": "Jakob Nybo Andersen"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Julia Language",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://julialang.netlify.app/previews/PR2669/assets/images/julia-open-graph.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://julialang.netlify.app/previews/PR2669/blog/2026/09/this-month-in-julia-world/"
+  }
+}
+</script>
+
+  
+
+  <!-- SoftwareApplication structured data (the home page adds it in index.html) -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2669/">
+          <img alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <script>document.querySelector('.navbarjulialogo').src='/previews/PR2669/assets/infra/'+(document.documentElement.getAttribute('data-theme')==='dark'?'logo-dark':'logo')+'.svg'</script>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2669/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2669/learning/">Learn</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/previews/PR2669/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2669/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2669/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2669/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="gh-nav-btn" href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener" aria-label="Star JuliaLang/julia on GitHub">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg>
+              Star
+            </a>
+            <a class="gh-nav-btn" href="https://github.com/sponsors/JuliaLang" target="_blank" rel="noopener" aria-label="Sponsor @JuliaLang on GitHub">
+              <svg class="gh-nav-heart" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"/></svg>
+              Sponsor
+            </a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <div class="blog-title-wrapper">
+    <div class="blog-title-left">
+      <div class="blog-title-heading">
+        
+          <h1>This Month in Julia World (August 2026)</h1>
+        
+      </div>
+      <div class="blog-title-meta">
+        <p>
+          
+            <span class="blog-meta-date">2 September 2026</span> |
+          
+          
+            <span class="blog-meta-author"></span>
+          
+          
+            <span class="blog-meta-author">Jakob Nybo Andersen</span>
+          
+        </p>
+      </div>
+    </div>
+
+    <div class="blog-title-right">
+      <a href="https://julialang.org/feed.xml"
+         class="rss-link" aria-label="RSS feed">
+        <svg class="icon rss-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2026/09/this-month-in-julia-world.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main newsletter"><p><em>A monthly newsletter, mostly on Julia internals: a biased, incomplete, editorialized list, with contributions from the community. <a href="https://discourse.julialang.org/c/community/news/66">Subscribe by email on Discourse</a>.</em></p>
+<p>Disclaimer: An LLM was used for copy-editing this post. While I have reviewed its edits, it is possible the LLM has made mistakes. Please be aware of the <a href="https://discourse.julialang.org/t/updates-to-the-site-guidelines-especially-regarding-gen-ai/134315">Julia Discourse policy on Generative AI content</a>.</p>
+<div class="franklin-toc"><ol><li><a href="#general">General</a></li><li><a href="#core_repos">Core repos</a></li><li><a href="#latency">Latency</a></li><li><a href="#other_repos">Other repos</a></li><li><a href="#other_community_news">Other community news</a></li></ol></div>
+<h2 id="general"><a href="#general" class="header-anchor">General</a></h2>
+<ul>
+<li><p>Current status of Julia releases &#40;as of 2026-09-01&#41;: The Julia release is 1.12.7, the Julia LTS release is 1.10.12, and Julia 1.13.0-rc3 is available for testing. The master branch is at 1.14.0-DEV.3081.</p>
+</li>
+<li><p>JuliaCon Global 2026 took place this month in Mainz, Germany. This year&#39;s JuliaCon was hot, both figuratively, as there was lots of exciting Julia activity and many new developments in industry and in the language itself, and literally, as it was 35 degrees out with little air conditioning. Videos from the auditoriums are up <a href="https://www.youtube.com/@TheJuliaLanguage">on the Julia Language YouTube channel</a>, but the individual talks have not yet been cut into videos. There is a huge number of interesting talks to watch, but if I am to recommend a single talk, it would be <a href="https://youtu.be/X6LZ7GeNzlw?t&#61;32193">this year&#39;s State of Julia</a>.</p>
+</li>
+<li><p>Until recently, the release of Julia 1.13 was stuck on rc1 for many months. The reasons for this are a series of unfortunate events described in <a href="https://youtu.be/X6LZ7GeNzlw?t&#61;32268">this year&#39;s State of Julia</a>:</p>
+<ul>
+<li><p>First, security researcher Tsi-Lin Ng and others managed to backdoor the infrastructure behind the package managers for Python, Go, Flutter, and … Julia. He gave a presentation on the exploit at Black Hat 2026, the <a href="https://i.blackhat.com/BH-USA-26/Presentations/US-26-SplitlineNg-BornCorrupted-Thursday.pdf">slides for which are publicly available</a>. Rebuilding the Julia infrastructure to fix the issue took extra time since some software could not be updated as its dependencies were no longer supported, so lots of yaks had to be shaved.</p>
+</li>
+<li><p>Then, the machine that ran PkgEval unexpectedly stopped working, and without PkgEval, Julia version 1.13 could contain accidental breaking changes. So, the PkgEval runner had to be rewritten.</p>
+</li>
+<li><p>Finally, before releasing the AI model <a href="https://www.anthropic.com/claude/mythos">Claude Mythos</a>, Anthropic launched <a href="https://www.anthropic.com/glasswing">Project Glasswing</a>, which provided free security audits to various pieces of software infrastructure in anticipation of upcoming AI models being able to automate security-vulnerability discovery upon release. Anthropic found 155 possible security vulnerabilities in Julia&#39;s infrastructure, which eventually <a href="https://github.com/JuliaLang/SecurityAdvisories.jl/pull/544">led to 16 confirmed disclosures</a>. Knowing that models that could automatically find these vulnerabilities would soon hit the market, these issues needed to be fixed immediately.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>All these issues have now been resolved, and the Julia developers can make new releases again.</p>
+<h2 id="core_repos"><a href="#core_repos" class="header-anchor">Core repos</a></h2>
+<ul>
+<li><p>It&#39;s always been awkward that Julia&#39;s documentation had a package for <a href="https://docs.julialang.org/en/v1/">the latest stable version</a> and <a href="https://docs.julialang.org/en/v1.14-dev/">for nightly</a>, but not for alpha, beta, or release candidates. Thanks to <a href="https://github.com/JuliaLang/julia/pull/62611">a PR by Lars Göttgens</a>, we finally have <a href="https://docs.julialang.org/en/v1.13.0-rc3/">such a page</a>.</p>
+</li>
+<li><p><a href="https://github.com/JuliaLang/julia/pull/62566">A PR</a> shows an interesting example of how a series of supposedly zero- or low-cost abstractions conspired to give SHA-256 hashing of <code>String</code>s an accidentally quadratic time complexity: Strings were hashed one chunk at a time, with each chunk copied into a buffer. The generic implementation of copying needed to check for aliasing between the source and destination to avoid data corruption; this was done with <code>Base.dataids</code>, which fell back to <code>objectid</code>, which hashed the entire string. The underlying issue here may be Julia&#39;s argument aliasing policy, which is still somewhat ad hoc and therefore the code paths involved with unaliasing can&#39;t be reasoned about systematically.</p>
+</li>
+<li><p>In <a href="https://github.com/JuliaLang/julia/pull/62715">yet another of Keno&#39;s amazing AI-generated prototypes</a>, Keno tests out semantics for computed field types. Computed field types are useful when some type parameters are not free but derived from other type parameters. Consider StaticArray&#39;s <code>SMatrix&#123;N, M, T, L&#125;</code>—its size is <code>N * M</code>, and it&#39;s backed by an <code>NTuple&#123;L, T&#125;</code>. <code>L</code> is always <code>N * M</code>, so it is redundant, but it cannot be removed because there is no way to specify the tuple&#39;s type as <code>NTuple&#123;N * M, T&#125;</code>. The extra parameter not only hurts legibility, it also causes headaches for package developers because invalid types such as <code>SMatrix&#123;1, 1, Int, 5&#125;</code> &#40;where <code>L &#33;&#61; N * M</code>&#41; can be constructed even if instantiation is disallowed. With Keno&#39;s prototype, it would be possible to specify the tuple as exactly <code>NTuple&#123;N * M, T&#125;</code>, and the <code>L</code> parameter could be dropped. This feature has been requested for years and years.</p>
+</li>
+<li><p>The above feature quickly turns into a can of worms: What if a user defines a <code>foo&#40;&#41; &#61; 2</code>, uses <code>foo</code> to compute a field type, and then redefines <code>foo</code>? What if users compute fields from mutable global state, or from a <code>@ccall</code>, or use side-effectful code to compute type parameters? In <a href="https://github.com/JuliaLang/julia/pull/62840">another of Keno&#39;s ambitious prototypes</a>, Keno implemented RCJulia, a subset of Julia that can be shown, by construction, to be side-effect-free and terminating. This subset is <em>extremely</em> restrictive and doesn&#39;t allow things like loops or some forms of recursion. So, it is intended as a Julian version of <a href="https://en.cppreference.com/cpp/language/constexpr">C&#43;&#43;&#39;s <code>constexpr</code></a>, precisely for expressions like computed field types, when you only want deterministic, cacheable, and terminating code.</p>
+</li>
+<li><p>The <a href="https://docs.julialang.org/en/v1/manual/worldage/#The-World-Age-mechanism">world age mechanism</a> is a crucial part of Julia&#39;s compiler internals and is the mechanism by which Julia is able <a href="/previews/PR2669/blog/2020/08/invalidations/#method_invalidation_what_is_it_and_when_does_it_happen">to invalidate code</a>. By design, it is an increasing integer, modeling the monotonically increasing lifetime of available compiled code within a single Julia process. However, with system and package images, code is not compiled in a single process but across many histories. In <a href="https://github.com/JuliaLang/julia/pull/62834">another one of Keno&#39;s PRs</a>, he prototypes turning the world age into a directed acyclic graph such that the world age of cached Julia processes can still be referred to. This is useful for unambiguously referring to code that existed in previous processes, e.g. which was used to compute derived field types. However, the change is really a deeper precision of the world age semantics, and so it sounds like it should be useful for all kinds of things in the future, though it&#39;s above my paygrade to speculate on what, exactly.</p>
+</li>
+<li><p>When you write <code>f&#40;::Type&#123;&lt;:MyType&#125;&#41;</code>, the method also applies to <code>f&#40;Union&#123;&#125;&#41;</code>, as <code>Union&#123;&#125;</code> &#40;a.k.a. <code>Bottom</code>&#41; is a subtype of all types. This is semantically correct but practically very annoying—suppose you define <code>element_type&#40;::Type&#123;&lt;:AbstractSet&#123;T&#125;&#125;&#41; &#61; T</code>; now, the method also covers <code>element_type&#40;Union&#123;&#125;&#41;</code> even though it makes no sense, and <code>T</code> is undefined &#40;an unbound type var&#41;. In cases such as this—in most cases, in fact—you don&#39;t want such methods to apply to <code>Bottom</code>. You want a way to specify &quot;all subtypes of <code>MyType</code><em>except</em> for <code>Bottom</code>.&quot; However, Julia doesn&#39;t have that functionality, despite it being on many a wishlist for years. Thanks to <a href="https://github.com/JuliaLang/julia/pull/62265">a PR by Keno</a>, this may change with the introduction of <code>Core.Epsilon</code>: A marker which, when specified as the lower bound of a <code>TypeVar</code>, includes every subtype except <code>Bottom</code>. If this gets merged, we could now write <code>element_type&#40;::Type&#123;S&#125;&#41; where &#123;Core.Epsilon &lt;: S &lt;: AbstractSet&#123;T&#125;&#125; &#61; T</code>. The compiler team is also discussing making <code>X&#123;&lt;:T&#125;</code> desugar to <code>X&#123;Y&#125; where &#123;Core.Epsilon &lt;: Y &lt;: T&#125;</code>, which would solve this problem automatically in existing codebases, but whether that will happen depends on how breaking it is in practice.</p>
+</li>
+<li><p>In a similar set of events, <code>element_type&#40;::Type&#123;&lt;:AbstractSet&#123;T&#125;&#125;&#41; &#61; T</code> <a href="https://github.com/JuliaLang/julia/pull/62405">now correctly reports <code>T</code> as possibly unbound</a> &#40;due to the aforementioned case <code>element_type&#40;::Type&#123;Union&#123;&#125;&#125;&#41;</code>&#41;. This causes <code>Test.detect_unbound_args</code> to fire much more frequently, which is leading to package test failures on nightly. In <a href="https://github.com/JuliaLang/julia/pull/62913">a mitigating PR by Kristoffer Carlsson</a>, <code>Test.detect_unbound_args</code> now defaults to ignoring the case when the unbound arg is caused by <code>Bottom</code>, with the option of re-enabling it.</p>
+</li>
+<li><p><a href="https://docs.julialang.org/en/v1/base/scopedvalues/">ScopedValues</a> were <a href="https://github.com/JuliaLang/julia/pull/50958">added in Julia 1.11</a>. While <a href="https://discourse.julialang.org/t/task-local-storage-and-scoped-values-what-they-are-used-for/132045?u&#61;jakobnissen">they&#39;re useful</a>, they have struggled with poor performance for several years: Until recently, they used to <a href="https://github.com/JuliaLang/julia/issues/53584">allocate when accessed</a>—fixing that required <a href="https://github.com/JuliaLang/julia/pull/55045">beefing up Julia&#39;s Union return type ABI</a>. <a href="https://github.com/JuliaLang/julia/pull/62762">A new PR by Andy Dienes</a> allows constant <code>ScopedValue</code> writes to be constant-folded into the <code>with</code> body. <a href="https://github.com/JuliaLang/julia/pull/62730">A related PR by Jacob Quinn</a> makes <code>ScopedValue</code> updates type-stable by applying long-overdue and completely standard type-stabilizing practices to the <code>ScopedValues</code> implementation. As far as I&#39;m aware, these PRs fix all outstanding issues with <code>ScopedValue</code> performance.</p>
+</li>
+<li><p>Heap images used to live in the <code>.so</code> &#40;or <code>.dll</code>&#41; files produced by precompilation. Thanks to <a href="https://github.com/JuliaLang/julia/pull/61649">work by Sam Schweigel</a>, they now live in the <code>.ji</code> files. This inconspicuous change reduces peak memory usage during compilation, may improve relocatability of precompiled code, and makes the created shared-object files much smaller. The latter is especially a relief for people making huge <code>PackageCompiler</code> binaries, which would otherwise run into the 4-GB file-size limit.</p>
+</li>
+<li><p>The long journey of <a href="https://www.mmtk.io/">MMTk integration</a> into Julia continues. A new <a href="https://github.com/JuliaLang/julia/pull/62875">work-in-progress PR by Yin Li</a> enables the LXR garbage collector &#40;GC&#41; in Julia. This is an advanced low-latency GC. At this point, Julia can be built with some of MMTk&#39;s GCs by opting in; these currently provide lower latency but also lower throughput than Julia&#39;s existing GC. This may be useful for specialized applications that require lower GC latency. Optimization continues, and perhaps not too far into the future, one of MMTk&#39;s GCs will surpass Julia&#39;s own GC on balance, and Julia will default to an MMTk GC.</p>
+</li>
+<li><p>Tuple operations like <code>Base.front</code>, <code>Base.tail</code>, and splatting are classic compiler-performance traps for new users. Improvements to the heuristics for some cases are in the pipeline: <a href="https://github.com/JuliaLang/julia/pull/62786">Hossein Ostolagh made <code>tail</code> iterative instead of recursive</a> for massive speedups. <a href="https://github.com/JuliaLang/julia/pull/62746">A similar work-in-progress PR by Kristoffer</a> switches long splats from unrolling them into a huge amount of LLVM code to a normal iterative approach, avoiding the codegen explosion.</p>
+</li>
+<li><p><code>Threads.@threads :static</code> cannot currently be used concurrently or in a nested context. <a href="https://github.com/JuliaLang/julia/pull/62751">An unmerged PR by Ian Butterworth</a> allows concurrent use by having each task consult a lock.</p>
+</li>
+<li><p>Some downstream code generators like Enzyme or GPUCompiler need to query the ABI of Julia functions. Currently, they attempt to derive the ABI themselves, but <a href="https://github.com/JuliaLang/julia/pull/62610">a new PR by Gabriel Baraldi</a> allows querying this from the compiler directly.</p>
+</li>
+<li><p>Julia allows reinterpreting between bitstypes, but not when padding differs. Nathan Zimmerberg has <a href="https://github.com/JuliaLang/julia/pull/62771">added a fix</a> to <a href="https://github.com/JuliaLang/julia/issues/62815">a bug</a> in this padding check. Relatedly, he has covered <a href="https://github.com/JuliaLang/julia/issues/62398">issues with <code>elsize</code> and alignment of the new odd-sized primitive types</a>. It appears to still be a little up in the air exactly <a href="https://github.com/JuliaLang/julia/issues/61361">how odd-sized primitives should be sized</a>, with <a href="https://github.com/JuliaLang/julia/pull/62852">a potential implementation in the works</a> by Max Horn.</p>
+</li>
+<li><p>The Trixi.jl devs logged <a href="https://github.com/JuliaLang/julia/issues/62798">a Julia 1.11 performance regression</a>, which appears to be caused by the Julia 1.11 Memory PR degrading the compiler&#39;s aliasing information. Jameson <a href="https://github.com/JuliaLang/julia/pull/62802">merged a PR which restored the aliasing information</a>, which surprisingly <a href="https://github.com/JuliaLang/julia/pull/62802#issuecomment-5404644758">made the regression worse</a>. The problem now is that LLVM seems to produce <em>worse code</em> given <em>better information</em> from the Julia front end. This is an interesting dilemma: Should Julia intentionally provide worse information to LLVM to work around LLVM making poor use of that information? Possibly yes; Jameson has <a href="https://github.com/JuliaLang/julia/pull/62904">opened another PR</a> which does exactly that, which empirically leads to better codegen. It seems a little crazy, but practicality beats purity.</p>
+</li>
+</ul>
+<h2 id="latency"><a href="#latency" class="header-anchor">Latency</a></h2>
+<p>It seems Fable, Opus, and Sol are enabling people outside the compiler team to do substantial work to improve Julia&#39;s latency:</p>
+<ul>
+<li><p>James Wrigley has put up <a href="https://github.com/JuliaLang/julia/pull/62658">a still-open PR that refines backedges</a>. Previously, if <code>f</code> called <code>g</code>, there would be a backedge from <code>g</code> to <code>f</code>. Theoretically, new definitions of <code>g</code> could refine the inference of <code>f</code>, but that happened rarely, and recompilation usually occurred when new code required <code>f</code> to relax its precision. In the PR, the compiler won&#39;t put a backedge if <code>f</code> already has no useful information about <code>g</code> and therefore can&#39;t relax its information further. Amazingly, this eliminates a huge amount of invalidation and so ought to have a noticeable positive effect on latency if it gets merged.</p>
+</li>
+<li><p>Even in the deepest, darkest corners of the compiler, the teachings from Introduction to Algorithms and Data Structures still apply. When <a href="https://github.com/JuliaLang/julia/issues/62723">looking into a compiler regression</a>, Ian Butterworth noticed that inserting missing-method backedges &#40;the kind that causes world-splitting invalidations&#41; takes a substantial amount of time because it had to check whether a <code>&#40;signature, caller&#41;</code> pair was present in an array by looping over that array. By <a href="https://github.com/JuliaLang/julia/pull/62733">switching part of this lookup to use a dict</a>, invalidation bookkeeping is sped up significantly.</p>
+</li>
+<li><p>Sam Schweigel &#40;and <a href="https://github.com/JuliaLang/julia/pull/62934">independently, Ian Butterworth</a>&#41; noticed that compiled code in package images was needlessly re-inferred. Sam <a href="https://github.com/JuliaLang/julia/pull/61479">submitted a fix in a PR</a>, which improved precompilation speed by roughly 10&#37; and also reduced the size of package images.</p>
+</li>
+<li><p>Kristoffer Carlsson has been on a roll improving load times. In <a href="https://github.com/JuliaLang/julia/pull/62578">a recent PR of his</a>, he cut down on redundant work during loading by caching <code>compilecache_freshest_path</code> and cutting down on needless hashing. This knocked about half a second off the load time in a large environment. In another PR, he has been <a href="https://github.com/JuliaLang/julia/pull/62586">working on caching the validation of cache files between workers during precompilation</a>. Benchmarking suggests it may cut <code>stat</code> calls by 75&#37; when combined with <a href="https://github.com/JuliaLang/julia/pull/62404">another of his loading-related PRs</a>, which we mentioned last month.</p>
+</li>
+</ul>
+<p>At this point, precompilation and script execution <a href="https://github.com/JuliaLang/julia/pull/61479#issuecomment-5482502155">now have lower latency on master</a> than v1.10. However, package loading remains slower.</p>
+<h2 id="other_repos"><a href="#other_repos" class="header-anchor">Other repos</a></h2>
+<ul>
+<li><p><a href="https://github.com/timholy/Revise.jl/releases">Revise 3.17 is out</a>. Its main feature <a href="https://discourse.julialang.org/t/revise-3-16-fast-type-revision-frozen-worlds-and-complete-language-support/138211/7?u&#61;jakobnissen">is automatic revision of structs by default</a>. With this release, the long-desired feature of automatic struct redefinition has finally arrived.</p>
+</li>
+<li><p>The new-ish <a href="https://github.com/JuliaInterop/JuliaLibWrapping.jl">JuliaLibWrapping.jl package</a> allows the creation of C header files for static Julia libraries compiled with JuliaC. It also automates the creation of Python packages calling into this C-compatible Julia library&#33; This package was registered back in June but somehow flew under my radar.</p>
+</li>
+</ul>
+<h2 id="other_community_news"><a href="#other_community_news" class="header-anchor">Other community news</a></h2>
+<ul>
+<li><p>Andy Dienes &#40;and Claude&#41; made <a href="https://claude.ai/code/artifact/cc2fa16e-e491-4717-afc8-4b7d41c4fb79">a cool website</a> that gathers statistics from the JuliaLang/julia repo. Besides actually useful information, it also includes a list of achievements. For example, Cody Tapscott leads in issue opening, with 65 issues opened over the past 13 months.</p>
+</li>
+<li><p>There has been <a href="https://julialang.slack.com/archives/C6FGJ8REC/p1786795139624069">a very long and lively discussion on Slack</a> about the use of AI for developing Julia and the Julia ecosystem, and its impact on the community. This Slack thread spun off <a href="https://discourse.julialang.org/t/getting-the-best-out-of-ai-without-endangering-the-community/138834/1">a similar Discourse thread</a>.</p>
+</li>
+</ul>
+<p>You can engage in the discussion of this newsletter on <a href="https://discourse.julialang.org/c/community/news/66">Discourse</a></p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2669/project">About</a></li>
+        <li><a href="/previews/PR2669/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2669/governance/">Governance</a></li>
+        <li><a href="/previews/PR2669/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2669/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2669/downloads">Install</a></li>
+        <li><a href="/previews/PR2669/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2669/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2669/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2669/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2669/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2669/community/">Community</a></li>
+        <li><a href="/previews/PR2669/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2669/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2669/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2669/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2669/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2669/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2669/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+    <script src="/previews/PR2669/libs/blog-sections.js"></script>
+    
+    
+  </body>
+</html>
