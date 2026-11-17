@@ -165,8 +165,8 @@ Julia also supports a variety of hardware accelerators, by means of external pac
     <tr>
       <td rowspan="2"> <a href="https://juliagpu.org/backends/rocm">AMD GPUs using ROCm</a> </td>
       <td> Linux (64-bit) </td>
-      <td rowspan="2"> ROCM 5.3+ </td>
-      <td> <span class="tier-3">Tier 3</span> </td>
+      <td rowspan="2"> AMD GPU driver (typically shipped with the Linux kernel) </td>
+      <td> <span class="tier-2">Tier 2</span> </td>
     </tr>
     <tr>
       <td> Windows (64-bit) </td>
