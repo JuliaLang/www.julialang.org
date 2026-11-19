@@ -107,6 +107,7 @@ end</code></pre>
     <button type="button" class="gs-chip" data-filter="analyst" aria-pressed="false">I analyze data</button>
     <button type="button" class="gs-chip" data-filter="ml" aria-pressed="false">I train models</button>
     <button type="button" class="gs-chip" data-filter="dev" aria-pressed="false">I build software</button>
+    <button type="button" class="gs-chip" data-filter="agent" aria-pressed="false">I just program through AI agents</button>
     <button type="button" class="gs-chip" data-filter="curious" aria-pressed="false">I'm just curious</button>
   </div>
 
@@ -344,7 +345,30 @@ save("cat-gray.png", small)</code></pre>
       </details>
     </article>
 
-    <article class="gs-kit" id="kit-package" data-tags="dev" style="--kit: var(--gs-blue)">
+    <article class="gs-kit" id="kit-agents" data-tags="agent dev" style="--kit: var(--gs-purple)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🤖</span>
+        <div><h3>Code with an agent</h3><p class="gs-when">You describe, an AI agent types. Give it a Julia that answers in milliseconds.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/KristofferC/JuliaDaemon.jl">JuliaDaemon.jl</a> One warm, Revise-enabled session per project. Your agent runs <code>jld eval</code> instead of paying startup on every <code>julia -e</code>, and you can <code>jld connect</code> to the same session.</li>
+        <li><a href="https://github.com/aviatesk/JET.jl">JET.jl</a> Finds type errors and typos without running the code, so mistakes surface before the agent says "done".</li>
+        <li><a href="https://github.com/JuliaTesting/ExplicitImports.jl">ExplicitImports.jl</a> Makes every name's origin explicit, which keeps agent-written code easy to review.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> app add https://github.com/KristofferC/JuliaDaemon.jl</code><button type="button" class="gs-copy" data-copy="app add https://github.com/KristofferC/JuliaDaemon.jl">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/aplavin/julia-mcp">julia-mcp</a> (persistent sessions over MCP) · <a href="https://github.com/fredrikekre/Runic.jl">Runic.jl</a> (one formatting style, no options) · <a href="https://github.com/julia-testitems/TestItemRunner.jl">TestItemRunner.jl</a> (run one test at a time)</p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="language-bash"># teach your agent to use jld
+jld install
+
+# the first call starts a session
+cd MyPkg
+jld eval 'using MyPkg; MyPkg.foo()'
+
+# later calls are warm, edits live
+jld run test/runtests.jl</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-package" data-tags="dev agent" style="--kit: var(--gs-blue)">
       <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">📦</span>
         <div><h3>Write a package</h3><p class="gs-when">Your scripts deserve tests, docs and a version number.</p></div></div>
       <ul class="gs-pkgs">
@@ -363,7 +387,7 @@ t("MyPackage")</code></pre>
       </details>
     </article>
 
-    <article class="gs-kit" id="kit-ship" data-tags="dev" style="--kit: var(--gs-green)">
+    <article class="gs-kit" id="kit-ship" data-tags="dev agent" style="--kit: var(--gs-green)">
       <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🛳️</span>
         <div><h3>Ship it</h3><p class="gs-when">Other people need to run your code without installing Julia.</p></div></div>
       <ul class="gs-pkgs">
