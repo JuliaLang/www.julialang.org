@@ -427,6 +427,7 @@
   color: var(--gs-term-fg);
   padding: 0;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .gs-copy {
