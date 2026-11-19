@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script>(function(){var t;try{t=localStorage.getItem('julia-theme')}catch(e){}var d=t==='dark'||(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.setAttribute('data-theme','dark');var l=document.createElement('link');l.rel='preload';l.as='image';l.setAttribute('fetchpriority','high');l.href='/previews/PR2673/assets/infra/'+(d?'logo-dark':'logo')+'.svg';document.head.appendChild(l);})()</script>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Julia Programming Language">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JuliaLanguage">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="theme-color" content="#CA3C32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/previews/PR2673/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/previews/PR2673/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<!-- Resource hints for external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://plausible.io">
+
+<!-- Preload LCP-critical resources (hero background; navbar logo preloaded dynamically in head.html to pick the correct theme variant) -->
+<link rel="preload" href="/previews/PR2673/assets/infra/backsplash-min-0.5.svg" as="image" fetchpriority="high">
+
+<script src="/previews/PR2673/libs/detectdark.js"></script>
+<link rel="stylesheet" href="/previews/PR2673/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/previews/PR2673/css/app.css">
+<link rel="stylesheet" href="/previews/PR2673/css/franklin.css">
+<!-- Load JuliaMono lazily to avoid blocking page render (code blocks use fallback monospace until loaded) -->
+<link rel="stylesheet" href="/previews/PR2673/css/juliamono.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/previews/PR2673/css/juliamono.css"></noscript>
+<!-- Load Google Fonts without blocking render -->
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600&display=swap" rel="stylesheet"></noscript>
+<script async src="/previews/PR2673/libs/buttons.js"></script>
+
+
+<script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
+
+
+
+
+   <title>Getting started: pick a starter kit</title>   
+
+  
+
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Getting started: pick a starter kit">
+<meta property="og:description" content="The Julia packages people reach for first, grouped by what you want to do: data, plots, notebooks, simulation, machine learning, speed, web apps and more.">
+<meta property="og:image" content="https://julialang.netlify.app/previews/PR2673/assets/images/julia-open-graph.png">
+<meta property="og:url" content="https://julialang.netlify.app/previews/PR2673/getting-started/">
+
+	<link rel="canonical" href="https://julialang.org/getting-started/">
+
+  <!-- Article structured data for blog posts -->
+  
+
+  <!-- SoftwareApplication structured data (the home page adds it in index.html) -->
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="main-menu">
+  <div class="container">
+      <a class="navbar-brand" href="/previews/PR2673/">
+          <img alt="JuliaLang Logo" class="navbarjulialogo" width="133" height="50" fetchpriority="high">
+      </a>
+      <script>document.querySelector('.navbarjulialogo').src='/previews/PR2673/assets/infra/'+(document.documentElement.getAttribute('data-theme')==='dark'?'logo-dark':'logo')+'.svg'</script>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/previews/PR2673/downloads/">Download</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.julialang.org">Docs</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2673/learning/">Learn</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2673/blog/">Blog</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2673/community/">Community</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2673/contribute/">Contribute</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="/previews/PR2673/jsoc/">JSoC</a>
+              </li>
+          </ul>
+          <div class="navbar-action-buttons d-flex gap-3 align-items-center">
+            <a class="gh-nav-btn" href="https://github.com/JuliaLang/julia" target="_blank" rel="noopener" aria-label="Star JuliaLang/julia on GitHub">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg>
+              Star
+            </a>
+            <a class="gh-nav-btn" href="https://github.com/sponsors/JuliaLang" target="_blank" rel="noopener" aria-label="Sponsor @JuliaLang on GitHub">
+              <svg class="gh-nav-heart" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"/></svg>
+              Sponsor
+            </a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/getting-started.md" title="Edit this page on GitHub" class="edit-float" aria-label="Edit this page on GitHub">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<link rel="stylesheet" href="/previews/PR2673/css/getting-started.css">
+
+<div class="gs">
+
+<!-- Hero -->
+<header class="gs-hero">
+  <div class="gs-hero-text">
+    <p class="gs-kicker"><span class="gs-dots" aria-hidden="true"><i></i><i></i><i></i></span> Getting started</p>
+    <h1>Pick a starter kit</h1>
+    <p class="gs-lede">The General registry holds over 12,000 packages. To begin, you need about five.
+    Below are the ones people reach for first, grouped by what you're here to do.
+    Every kit is one line to install.</p>
+    <p class="gs-prereq">No Julia yet? <a href="/previews/PR2673/install/">Install it</a> first; it takes a minute.
+    New to the language? Read <a href="/previews/PR2673/learning/getting-started/">what Julia is</a>, or start with
+    <a href="https://docs.julialang.org/en/v1/manual/getting-started/">the manual</a>.</p>
+  </div>
+  <div class="gs-term gs-hero-term" aria-hidden="true">
+    <div class="gs-term-bar"><i></i><i></i><i></i></div>
+    <pre class="gs-term-body"><span class="gs-p-julia">julia&gt;</span> <span class="gs-dim">]</span>
+<span class="gs-p-pkg">(@v1.13) pkg&gt;</span> <span id="gs-typer">add CSV DataFrames DataFramesMeta</span><span class="gs-caret"></span></pre>
+  </div>
+</header>
+
+<!-- How a kit works -->
+<ol class="gs-steps">
+  <li><span class="gs-step-n">1</span><div><strong>Press <kbd>]</kbd></strong> at the <code>julia&gt;</code> prompt. It turns blue: you're in package mode.</div></li>
+  <li><span class="gs-step-n">2</span><div><strong>Paste a kit's <code>add</code> line.</strong> Julia fetches the packages and precompiles them.</div></li>
+  <li><span class="gs-step-n">3</span><div><strong>Press <kbd>Backspace</kbd></strong> to leave, then <code>using</code> them. If you forget step 2, <code>using</code> offers to install for you.</div></li>
+</ol>
+
+<!-- Toolbelt -->
+<section class="gs-section" id="toolbelt">
+  <h2 class="gs-h2">Pack these first: the toolbelt</h2>
+  <p class="gs-sub">Whatever you end up doing, these make every session better. Choose the ones you want,
+  and we'll write your <code>startup.jl</code> so they load each time you start Julia.</p>
+
+  <div class="gs-belt">
+    <div class="gs-tools" role="group" aria-label="Toolbelt packages">
+
+      <label class="gs-tool gs-tool-wide" style="--kit: var(--gs-purple)">
+        <input type="checkbox" value="DocBrowser" checked>
+        <span class="gs-tool-top"><a href="https://github.com/IanButterworth/DocBrowser.jl">DocBrowser.jl</a><span class="gs-badge">New</span><span class="gs-check" aria-hidden="true"></span></span>
+        <span class="gs-tool-desc">Every manual and docstring, browsable without leaving the REPL. Press <kbd>Enter</kbd> at an empty <code>help?&gt;</code> prompt.</span>
+        <span class="gs-mini-browser" aria-hidden="true">
+          <span class="gs-mb-pane"><b>Contents</b>Julia<br>&nbsp;Manual<br>&nbsp;<u>Base</u><br>Packages<br>&nbsp;DataFrames<br>&nbsp;Makie<br>Main</span>
+          <span class="gs-mb-pane"><b>Names</b><em>●</em> filter<br><em>●</em> findall<br><u><em>●</em> first</u><br><em>●</em> foldl<br><em>○</em> fieldtypes<br><em>·</em> _fl</span>
+          <span class="gs-mb-pane gs-mb-doc"><b>Documentation</b><strong>first(coll)</strong><br>Get the first element of an iterable collection.<br><br><span class="gs-dim">julia&gt; first(2:2:10)<br>2</span></span>
+        </span>
+      </label>
+
+      <label class="gs-tool" style="--kit: var(--gs-green)">
+        <input type="checkbox" value="Revise" checked>
+        <span class="gs-tool-top"><a href="https://github.com/timholy/Revise.jl">Revise.jl</a><span class="gs-check" aria-hidden="true"></span></span>
+        <span class="gs-tool-desc">Edit your code, keep your session. Changes to files and packages apply instantly, with no restart.</span>
+      </label>
+
+      <label class="gs-tool" style="--kit: var(--gs-red)">
+        <input type="checkbox" value="OhMyREPL" checked>
+        <span class="gs-tool-top"><a href="https://github.com/KristofferC/OhMyREPL.jl">OhMyREPL.jl</a><span class="gs-check" aria-hidden="true"></span></span>
+        <span class="gs-tool-desc">Syntax highlighting and bracket matching as you type at the prompt.</span>
+      </label>
+
+      <label class="gs-tool" style="--kit: var(--gs-blue)">
+        <input type="checkbox" value="BenchmarkTools">
+        <span class="gs-tool-top"><a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a><span class="gs-check" aria-hidden="true"></span></span>
+        <span class="gs-tool-desc"><code>@btime</code> and <code>@benchmark</code>: trustworthy timings, so you know what's fast.</span>
+      </label>
+
+      <label class="gs-tool" style="--kit: var(--gs-purple)">
+        <input type="checkbox" value="Infiltrator">
+        <span class="gs-tool-top"><a href="https://github.com/JuliaDebug/Infiltrator.jl">Infiltrator.jl</a><span class="gs-check" aria-hidden="true"></span></span>
+        <span class="gs-tool-desc">Drop <code>@infiltrate</code> into any function to pause there and poke at its variables.</span>
+      </label>
+
+    </div>
+
+    <div class="gs-belt-out">
+      <p class="gs-out-label">1. Install them into your default environment</p>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> <span id="gs-belt-add">add DocBrowser Revise OhMyREPL</span></code><button type="button" class="gs-copy" data-copy-from="gs-belt-add">Copy</button></div>
+      <p class="gs-out-label">2. Save this as <code>~/.julia/config/startup.jl</code></p>
+<div id="gs-startup">
+<pre><code class="julia hljs"><span class="hljs-keyword">if</span> isinteractive()
+    <span class="hljs-keyword">using</span> Revise
+    <span class="hljs-keyword">using</span> DocBrowser
+    <span class="hljs-keyword">using</span> OhMyREPL
+<span class="hljs-keyword">end</span></code></pre>
+</div>
+      <p class="gs-out-note">On Windows the file lives at <code>%USERPROFILE%\.julia\config\startup.jl</code>. Revise always goes first, so it can track everything loaded after it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Kits -->
+<section class="gs-section" id="kits">
+  <h2 class="gs-h2">What are you here to do?</h2>
+  <p class="gs-sub">Pick the one that sounds most like you, or browse everything. Each kit lists the packages to start with, and a few to try next.</p>
+
+  <div class="gs-chips" role="group" aria-label="Filter kits">
+    <button type="button" class="gs-chip" data-filter="all" aria-pressed="true">Show me everything</button>
+    <button type="button" class="gs-chip" data-filter="student" aria-pressed="false">I'm learning</button>
+    <button type="button" class="gs-chip" data-filter="science" aria-pressed="false">I do science &amp; engineering</button>
+    <button type="button" class="gs-chip" data-filter="analyst" aria-pressed="false">I analyze data</button>
+    <button type="button" class="gs-chip" data-filter="ml" aria-pressed="false">I train models</button>
+    <button type="button" class="gs-chip" data-filter="dev" aria-pressed="false">I build software</button>
+    <button type="button" class="gs-chip" data-filter="agent" aria-pressed="false">I just program through AI agents</button>
+    <button type="button" class="gs-chip" data-filter="curious" aria-pressed="false">I'm just curious</button>
+  </div>
+
+  <div class="gs-kits">
+
+    <article class="gs-kit" id="kit-data" data-tags="analyst science student" style="--kit: var(--gs-green)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🧮</span>
+        <div><h3>Wrangle data</h3><p class="gs-when">You have a CSV and some questions.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> Fast, forgiving reader and writer for delimited files.</li>
+        <li><a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> Tables you can filter, join, group and reshape.</li>
+        <li><a href="https://github.com/JuliaData/DataFramesMeta.jl">DataFramesMeta.jl</a> Readable pipelines with <code>@chain</code>, <code>@subset</code> and <code>@combine</code>.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add CSV DataFrames DataFramesMeta</code><button type="button" class="gs-copy" data-copy="add CSV DataFrames DataFramesMeta">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/TidierOrg/TidierData.jl">TidierData.jl</a> (for dplyr fans) · <a href="https://github.com/JuliaData/XLSX.jl">XLSX.jl</a> · <a href="https://github.com/apache/arrow-julia">Arrow.jl</a> · <a href="https://duckdb.org/docs/stable/clients/julia">DuckDB.jl</a> · <a href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> CSV, DataFrames, DataFramesMeta, Statistics
+
+df = CSV.read(<span class="hljs-string">&quot;penguins.csv&quot;</span>, DataFrame)
+
+<span class="hljs-meta">@chain</span> df <span class="hljs-keyword">begin</span>
+    dropmissing(:body_mass_g)
+    groupby(:species)
+    <span class="hljs-meta">@combine</span>(:mean_mass = mean(:body_mass_g))
+<span class="hljs-keyword">end</span></code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-plots" data-tags="analyst science student ml curious" style="--kit: var(--gs-red)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">📈</span>
+        <div><h3>Make a picture</h3><p class="gs-when">Numbers are fine, but you want to see them.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/MakieOrg/Makie.jl">CairoMakie.jl</a> Publication-quality 2D and 3D plots, from the Makie family.</li>
+        <li><a href="https://github.com/MakieOrg/AlgebraOfGraphics.jl">AlgebraOfGraphics.jl</a> Grammar-of-graphics plotting straight from a table.</li>
+        <li><a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> The other big family: one quick syntax, many backends.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add CairoMakie AlgebraOfGraphics Plots</code><button type="button" class="gs-copy" data-copy="add CairoMakie AlgebraOfGraphics Plots">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://docs.makie.org/stable/explanations/backends/glmakie">GLMakie.jl</a> (interactive windows) · <a href="https://docs.makie.org/stable/explanations/backends/wglmakie">WGLMakie.jl</a> (in the browser) · <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a> (in the terminal!)</p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> CairoMakie
+
+x = range(<span class="hljs-number">0</span>, <span class="hljs-number">4</span><span class="hljs-literal">π</span>, length = <span class="hljs-number">200</span>)
+fig, ax, _ = lines(x, sin.(x); label = <span class="hljs-string">&quot;sin&quot;</span>)
+lines!(ax, x, cos.(x); label = <span class="hljs-string">&quot;cos&quot;</span>)
+axislegend(ax)
+save(<span class="hljs-string">&quot;waves.png&quot;</span>, fig)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-notebooks" data-tags="student science analyst curious" style="--kit: var(--gs-purple)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">📓</span>
+        <div><h3>Think in notebooks</h3><p class="gs-when">You want code, prose and plots on one page.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaPluto/Pluto.jl">Pluto.jl</a> Reactive notebooks: change one cell and everything that depends on it updates.</li>
+        <li><a href="https://github.com/JuliaPluto/PlutoUI.jl">PlutoUI.jl</a> Sliders, buttons and pickers wired straight into your variables.</li>
+        <li><a href="https://github.com/JuliaLang/IJulia.jl">IJulia.jl</a> The Julia kernel for Jupyter and JupyterLab.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add Pluto PlutoUI IJulia</code><button type="button" class="gs-copy" data-copy="add Pluto PlutoUI IJulia">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://quarto.org/docs/computations/julia.html">Quarto</a> (reports and slides) · <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a> (scripts that become docs)</p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Pluto
+Pluto.run()   <span class="hljs-comment"># opens a notebook in your browser</span>
+
+<span class="hljs-comment"># then, in a cell:</span>
+<span class="hljs-keyword">using</span> PlutoUI
+<span class="hljs-meta">@bind</span> n Slider(<span class="hljs-number">1</span>:<span class="hljs-number">100</span>)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-simulate" data-tags="science" style="--kit: var(--gs-blue)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🌀</span>
+        <div><h3>Simulate the world</h3><p class="gs-when">Differential equations, physical models, things that change over time.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/SciML/DifferentialEquations.jl">DifferentialEquations.jl</a> Hundreds of solvers for ODEs, SDEs, DAEs and more.</li>
+        <li><a href="https://github.com/SciML/ModelingToolkit.jl">ModelingToolkit.jl</a> Write models symbolically; it simplifies and generates fast code.</li>
+        <li><a href="https://github.com/JuliaPhysics/Unitful.jl">Unitful.jl</a> Physical units that check your dimensions and cost nothing at run time.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add DifferentialEquations ModelingToolkit Unitful</code><button type="button" class="gs-copy" data-copy="add DifferentialEquations ModelingToolkit Unitful">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/JuliaPhysics/Measurements.jl">Measurements.jl</a> (error propagation) · <a href="https://github.com/JuliaDynamics/Agents.jl">Agents.jl</a> (agent-based models) · <a href="https://sciml.ai">all of SciML</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> DifferentialEquations, Plots
+
+decay(u, p, t) = -p * u
+prob = ODEProblem(decay, <span class="hljs-number">1.0</span>, (<span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span>), <span class="hljs-number">0.8</span>)
+sol = solve(prob)
+plot(sol)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-optimize" data-tags="science analyst" style="--kit: var(--gs-green)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🎯</span>
+        <div><h3>Find the best answer</h3><p class="gs-when">Schedules, portfolios, fits, designs: anything with a "minimize" in it.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/jump-dev/JuMP.jl">JuMP.jl</a> Write optimization models the way they look on paper.</li>
+        <li><a href="https://github.com/jump-dev/HiGHS.jl">HiGHS.jl</a> A fast open-source solver for linear and mixed-integer problems.</li>
+        <li><a href="https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a> Minimize any Julia function, with or without gradients.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add JuMP HiGHS Optim</code><button type="button" class="gs-copy" data-copy="add JuMP HiGHS Optim">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/jump-dev/Ipopt.jl">Ipopt.jl</a> (nonlinear) · <a href="https://github.com/SciML/Optimization.jl">Optimization.jl</a> · <a href="https://github.com/JuliaMath/Roots.jl">Roots.jl</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> JuMP, HiGHS
+
+model = Model(HiGHS.Optimizer)
+<span class="hljs-meta">@variable</span>(model, x &gt;= <span class="hljs-number">0</span>)
+<span class="hljs-meta">@variable</span>(model, <span class="hljs-number">0</span> &lt;= y &lt;= <span class="hljs-number">3</span>)
+<span class="hljs-meta">@objective</span>(model, Max, <span class="hljs-number">12</span>x + <span class="hljs-number">20</span>y)
+<span class="hljs-meta">@constraint</span>(model, <span class="hljs-number">6</span>x + <span class="hljs-number">8</span>y &lt;= <span class="hljs-number">100</span>)
+<span class="hljs-meta">@constraint</span>(model, <span class="hljs-number">7</span>x + <span class="hljs-number">12</span>y &lt;= <span class="hljs-number">120</span>)
+optimize!(model)
+value(x), value(y)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-ml" data-tags="ml analyst" style="--kit: var(--gs-purple)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🧠</span>
+        <div><h3>Teach a machine</h3><p class="gs-when">Neural networks, classic models, and gradients of anything.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/FluxML/Flux.jl">Flux.jl</a> Deep learning that is plain Julia all the way down.</li>
+        <li><a href="https://github.com/JuliaAI/MLJ.jl">MLJ.jl</a> One interface to 200+ models: trees, boosting, clustering, tuning.</li>
+        <li><a href="https://github.com/EnzymeAD/Enzyme.jl">Enzyme.jl</a> Automatic differentiation at the compiler level.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add Flux MLJ Enzyme</code><button type="button" class="gs-copy" data-copy="add Flux MLJ Enzyme">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/LuxDL/Lux.jl">Lux.jl</a> (explicit-parameter networks) · <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a> · <a href="https://github.com/JuliaML/MLDatasets.jl">MLDatasets.jl</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Flux
+
+model = Chain(Dense(<span class="hljs-number">4</span> =&gt; <span class="hljs-number">16</span>, relu), Dense(<span class="hljs-number">16</span> =&gt; <span class="hljs-number">3</span>), softmax)
+opt = Flux.setup(Adam(), model)
+loss(m, x, y) = Flux.crossentropy(m(x), y)
+
+<span class="hljs-comment"># x: 4×N features, y: 3×N one-hot labels</span>
+Flux.train!(loss, model, [(x, y)], opt)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-stats" data-tags="analyst science student" style="--kit: var(--gs-red)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🎲</span>
+        <div><h3>Do the statistics</h3><p class="gs-when">Distributions, regressions, tests, and Bayesian models.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaStats/Distributions.jl">Distributions.jl</a> Sample, fit and evaluate nearly every probability distribution.</li>
+        <li><a href="https://github.com/JuliaStats/GLM.jl">GLM.jl</a> Linear and generalized linear models with R-style <code>@formula</code>s.</li>
+        <li><a href="https://github.com/TuringLang/Turing.jl">Turing.jl</a> Probabilistic programming: write the model, get the posterior.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add Distributions GLM Turing</code><button type="button" class="gs-copy" data-copy="add Distributions GLM Turing">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/JuliaStats/StatsBase.jl">StatsBase.jl</a> · <a href="https://github.com/JuliaStats/HypothesisTests.jl">HypothesisTests.jl</a> · <a href="https://github.com/JuliaStats/MixedModels.jl">MixedModels.jl</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Turing
+
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> coin(flips)
+    p ~ Beta(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(flips)
+        flips[i] ~ Bernoulli(p)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+chain = sample(coin([<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]), NUTS(), <span class="hljs-number">1000</span>)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-speed" data-tags="science ml dev" style="--kit: var(--gs-blue)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🚀</span>
+        <div><h3>Go faster</h3><p class="gs-when">Your code works. Now you want all the cores, or a GPU.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaFolds2/OhMyThreads.jl">OhMyThreads.jl</a> Multithreaded <code>map</code>, <code>reduce</code> and loops without the footguns.</li>
+        <li><a href="https://github.com/JuliaArrays/StaticArrays.jl">StaticArrays.jl</a> Small fixed-size arrays that live on the stack.</li>
+        <li><a href="https://github.com/JuliaGPU/CUDA.jl">CUDA.jl</a> Run arrays and your own kernels on NVIDIA GPUs.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add OhMyThreads StaticArrays CUDA</code><button type="button" class="gs-copy" data-copy="add OhMyThreads StaticArrays CUDA">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/JuliaGPU/AMDGPU.jl">AMDGPU.jl</a> · <a href="https://github.com/JuliaGPU/Metal.jl">Metal.jl</a> · <a href="https://github.com/JuliaGPU/KernelAbstractions.jl">KernelAbstractions.jl</a> · <a href="https://github.com/aviatesk/JET.jl">JET.jl</a> · <a href="https://github.com/JuliaDebug/Cthulhu.jl">Cthulhu.jl</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-comment"># start Julia with: julia -t auto</span>
+<span class="hljs-keyword">using</span> OhMyThreads, BenchmarkTools
+
+<span class="hljs-meta">@btime</span> sum(x -&gt; sin(x)^<span class="hljs-number">2</span>, <span class="hljs-number">1</span>:<span class="hljs-number">10</span>^<span class="hljs-number">7</span>)
+<span class="hljs-meta">@btime</span> tmapreduce(x -&gt; sin(x)^<span class="hljs-number">2</span>, +, <span class="hljs-number">1</span>:<span class="hljs-number">10</span>^<span class="hljs-number">7</span>)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-interop" data-tags="analyst ml dev" style="--kit: var(--gs-green)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🤝</span>
+        <div><h3>Bring your old friends</h3><p class="gs-when">You have Python, R or C++ code you're not ready to leave behind.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaPy/PythonCall.jl">PythonCall.jl</a> Call any Python library from Julia, and Julia from Python.</li>
+        <li><a href="https://github.com/JuliaInterop/RCall.jl">RCall.jl</a> Use R and its packages, with an R prompt inside the REPL.</li>
+        <li><a href="https://github.com/JuliaInterop/CxxWrap.jl">CxxWrap.jl</a> Wrap C++ libraries. (C and Fortran need nothing: just <code>@ccall</code>.)</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add PythonCall RCall CxxWrap</code><button type="button" class="gs-copy" data-copy="add PythonCall RCall CxxWrap">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/JuliaPy/CondaPkg.jl">CondaPkg.jl</a> (Python dependencies) · <a href="https://github.com/JuliaInterop/MATLAB.jl">MATLAB.jl</a> · <a href="https://docs.julialang.org/en/v1/manual/noteworthy-differences/">Noteworthy differences</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> PythonCall, CondaPkg
+CondaPkg.add(<span class="hljs-string">&quot;numpy&quot;</span>)
+
+np = pyimport(<span class="hljs-string">&quot;numpy&quot;</span>)
+np.linspace(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-web" data-tags="dev" style="--kit: var(--gs-red)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🌐</span>
+        <div><h3>Build for the web</h3><p class="gs-when">APIs, dashboards, and talking to other services.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a> HTTP clients and servers, plus WebSockets.</li>
+        <li><a href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a> Read and write JSON, straight into your own types.</li>
+        <li><a href="https://github.com/Refactorful/Oxygen.jl">Oxygen.jl</a> A small web framework: routes in a few lines.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add HTTP JSON Oxygen</code><button type="button" class="gs-copy" data-copy="add HTTP JSON Oxygen">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/GenieFramework/Genie.jl">Genie.jl</a> (full-stack apps) · <a href="https://github.com/SimonDanisch/Bonito.jl">Bonito.jl</a> (interactive dashboards)</p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Oxygen
+
+<span class="hljs-meta">@get</span> <span class="hljs-string">&quot;/hello/{name}&quot;</span> <span class="hljs-keyword">function</span> (req, name)
+    <span class="hljs-string">&quot;Hello, <span class="hljs-variable">$name</span>!&quot;</span>
+<span class="hljs-keyword">end</span>
+
+serve(port = <span class="hljs-number">8080</span>)   <span class="hljs-comment"># visit localhost:8080/hello/julia</span></code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-images" data-tags="science ml curious" style="--kit: var(--gs-purple)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🔭</span>
+        <div><h3>Look at pixels and signals</h3><p class="gs-when">Photos, microscopy, audio, sensor data.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaImages/Images.jl">Images.jl</a> Filter, segment, resize and measure images as plain arrays.</li>
+        <li><a href="https://github.com/JuliaIO/FileIO.jl">FileIO.jl</a> One <code>load</code> and <code>save</code> for images, audio, meshes and more.</li>
+        <li><a href="https://github.com/JuliaMath/FFTW.jl">FFTW.jl</a> Fast Fourier transforms, from the library everyone uses.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add Images FileIO FFTW</code><button type="button" class="gs-copy" data-copy="add Images FileIO FFTW">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/JuliaDSP/DSP.jl">DSP.jl</a> (filters, spectrograms) · <a href="https://github.com/JuliaGraphics/Colors.jl">Colors.jl</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Images, FileIO
+
+img = load(<span class="hljs-string">&quot;cat.png&quot;</span>)
+small = imresize(Gray.(img); ratio = <span class="hljs-number">0.5</span>)
+save(<span class="hljs-string">&quot;cat-gray.png&quot;</span>, small)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-agents" data-tags="agent dev" style="--kit: var(--gs-purple)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🤖</span>
+        <div><h3>Code with an agent</h3><p class="gs-when">You describe, an AI agent types. Give it a Julia that answers in milliseconds.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/KristofferC/JuliaDaemon.jl">JuliaDaemon.jl</a> One warm, Revise-enabled session per project. Your agent runs <code>jld eval</code> instead of paying startup on every <code>julia -e</code>, and you can <code>jld connect</code> to the same session.</li>
+        <li><a href="https://github.com/aviatesk/JET.jl">JET.jl</a> Finds type errors and typos without running the code, so mistakes surface before the agent says "done".</li>
+        <li><a href="https://github.com/JuliaTesting/ExplicitImports.jl">ExplicitImports.jl</a> Makes every name's origin explicit, which keeps agent-written code easy to review.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> app add https://github.com/KristofferC/JuliaDaemon.jl</code><button type="button" class="gs-copy" data-copy="app add https://github.com/KristofferC/JuliaDaemon.jl">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/aplavin/julia-mcp">julia-mcp</a> (persistent sessions over MCP) · <a href="https://github.com/fredrikekre/Runic.jl">Runic.jl</a> (one formatting style, no options) · <a href="https://github.com/julia-testitems/TestItemRunner.jl">TestItemRunner.jl</a> (run one test at a time)</p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="bash hljs"><span class="hljs-comment"># teach your agent to use jld</span>
+jld install
+
+<span class="hljs-comment"># the first call starts a session</span>
+<span class="hljs-built_in">cd</span> MyPkg
+jld <span class="hljs-built_in">eval</span> <span class="hljs-string">&#x27;using MyPkg; MyPkg.foo()&#x27;</span>
+
+<span class="hljs-comment"># later calls are warm, edits live</span>
+jld run <span class="hljs-built_in">test</span>/runtests.jl</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-package" data-tags="dev agent" style="--kit: var(--gs-blue)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">📦</span>
+        <div><h3>Write a package</h3><p class="gs-when">Your scripts deserve tests, docs and a version number.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaCI/PkgTemplates.jl">PkgTemplates.jl</a> A new package with CI, docs and tests in one call.</li>
+        <li><a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> Docs sites from your docstrings and Markdown.</li>
+        <li><a href="https://github.com/JuliaTesting/Aqua.jl">Aqua.jl</a> Automatic checks for the mistakes package authors make.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add PkgTemplates Documenter Aqua</code><button type="button" class="gs-copy" data-copy="add PkgTemplates Documenter Aqua">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/aviatesk/JET.jl">JET.jl</a> (find bugs before running) · <a href="https://github.com/fredrikekre/Runic.jl">Runic.jl</a> (formatter) · <a href="https://github.com/JuliaLang/PrecompileTools.jl">PrecompileTools.jl</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> PkgTemplates
+
+t = Template(; user = <span class="hljs-string">&quot;your-github-name&quot;</span>,
+               plugins = [GitHubActions(), Documenter{GitHubActions}()])
+t(<span class="hljs-string">&quot;MyPackage&quot;</span>)</code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-ship" data-tags="dev agent" style="--kit: var(--gs-green)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🛳️</span>
+        <div><h3>Ship it</h3><p class="gs-when">Other people need to run your code without installing Julia.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaLang/JuliaC.jl">JuliaC.jl</a> Compile a program into a small native executable or library.</li>
+        <li><a href="https://pkgdocs.julialang.org/v1/apps/">Pkg apps</a> Install command-line tools written in Julia, with <code>app add</code>.</li>
+        <li><a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler.jl</a> Custom system images and relocatable apps.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> app add JuliaC</code><button type="button" class="gs-copy" data-copy="app add JuliaC">Copy</button></div>
+      <p class="gs-also"><span>Note:</span> JuliaC installs as an app, so <code>juliac</code> lands in <code>~/.julia/bin</code>. Add that to your <code>PATH</code>.</p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-comment"># hello.jl</span>
+<span class="hljs-keyword">function</span> (<span class="hljs-meta">@main</span>)(args)
+    println(Core.<span class="hljs-literal">stdout</span>, <span class="hljs-string">&quot;Hello from a native binary!&quot;</span>)
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># then, in your shell:</span>
+<span class="hljs-comment">#   juliac --output-exe hello --bundle build --trim=safe --experimental hello.jl</span></code></pre>
+      </details>
+    </article>
+
+    <article class="gs-kit" id="kit-fun" data-tags="curious student" style="--kit: var(--gs-red)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🎨</span>
+        <div><h3>Just play</h3><p class="gs-when">No deadline. Draw something, decorate your terminal, make a game.</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://github.com/JuliaGraphics/Luxor.jl">Luxor.jl</a> Friendly 2D vector drawing: posters, diagrams, generative art.</li>
+        <li><a href="https://github.com/FedeClaudi/Term.jl">Term.jl</a> Colourful panels, trees and tracebacks in the terminal.</li>
+        <li><a href="https://github.com/timholy/ProgressMeter.jl">ProgressMeter.jl</a> Put <code>@showprogress</code> on a loop and watch it go.</li>
+      </ul>
+      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> add Luxor Term ProgressMeter</code><button type="button" class="gs-copy" data-copy="add Luxor Term ProgressMeter">Copy</button></div>
+      <p class="gs-also"><span>Next:</span> <a href="https://github.com/aviks/GameZero.jl">GameZero.jl</a> (2D games) · <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a> · <a href="https://github.com/JuliaGraphics/Colors.jl">Colors.jl</a></p>
+      <details class="gs-taste"><summary>Taste it</summary>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Luxor
+
+<span class="hljs-meta">@draw</span> <span class="hljs-keyword">begin</span>
+    julialogo(centered = <span class="hljs-literal">true</span>)
+<span class="hljs-keyword">end</span> <span class="hljs-number">400</span> <span class="hljs-number">300</span></code></pre>
+      </details>
+    </article>
+
+    <aside class="gs-kit gs-kit-more" id="kit-more" data-tags="all" style="--kit: var(--gs-blue)">
+      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🧭</span>
+        <div><h3>Didn't find yours?</h3><p class="gs-when">There are over 12,000 more. Some places to look:</p></div></div>
+      <ul class="gs-pkgs">
+        <li><a href="https://juliahub.com/ui/Packages">JuliaHub</a> Search every registered package and its docs.</li>
+        <li><a href="https://juliapackagecomparisons.github.io">Package comparisons</a> Help choosing between similar packages.</li>
+        <li><a href="https://discourse.julialang.org/c/new-to-julia/14">Ask on Discourse</a> The "New to Julia" category is friendly and quick.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- Composability -->
+<section class="gs-section" id="mix">
+  <h2 class="gs-h2">Then mix them</h2>
+  <p class="gs-sub">Julia packages work together even when their authors never planned it.
+  That's <a href="https://www.youtube.com/watch?v=kc9HwsxE1OY">multiple dispatch</a> at work, and it's why a small kit goes a long way.</p>
+
+  <div class="gs-mix">
+    <div class="gs-mix-card">
+      <h3>Write a function once&hellip;</h3>
+<pre><code class="julia hljs"><span class="hljs-comment"># Newton&#x27;s method, for plain numbers</span>
+<span class="hljs-keyword">function</span> mysqrt(x)
+    t = x
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">10</span>
+        t = (t + x / t) / <span class="hljs-number">2</span>
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> t
+<span class="hljs-keyword">end</span></code></pre>
+    </div>
+    <div class="gs-mix-card">
+      <h3>&hellip;and every package can use it</h3>
+<pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-keyword">using</span> Measurements, ForwardDiff
+</span>
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> mysqrt(<span class="hljs-number">2.0</span> ± <span class="hljs-number">0.1</span>)     <span class="hljs-comment"># error bars, propagated</span>
+</span>1.414 ± 0.035
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> mysqrt(<span class="hljs-string">big&quot;2.0&quot;</span>)      <span class="hljs-comment"># as many digits as you like</span>
+</span>1.414213562373095048801688724209698078569671875376948073176679737990732478462119
+
+<span class="hljs-meta">julia&gt;</span><span class="language-julia"> ForwardDiff.derivative(mysqrt, <span class="hljs-number">2.0</span>)   <span class="hljs-comment"># an exact derivative</span>
+</span>0.35355339059327373</code></pre>
+      <p class="gs-mix-note">Measurements.jl and ForwardDiff.jl know nothing about <code>mysqrt</code>, and <code>mysqrt</code> knows nothing about them. With CUDA.jl, <code>mysqrt.(CUDA.rand(10^6))</code> runs it on a GPU too.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script src="/previews/PR2673/libs/getting-started.js"></script>
+
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script defer src="/previews/PR2673/libs/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){hljs.configure({tabReplace:'    '});hljs.highlightAll();});</script>
+
+    
+
+    <!-- Copy-to-clipboard for code blocks -->
+
+<script>
+(function(){
+
+	const pre = document.getElementsByTagName('pre');
+
+	for (let i = 0; i < pre.length; i++) {
+		const tag_name = pre[i].children[0].className;
+		const isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			const button = document.createElement('button');
+			button.className = 'copy-button';
+			button.textContent = 'Copy';
+			pre[i].appendChild(button);
+		}
+	}
+
+	// Use modern clipboard API
+	document.addEventListener('click', function(e) {
+		if (!e.target.classList.contains('copy-button')) return;
+		const code = e.target.previousElementSibling;
+		if (!code) return;
+
+		const text = code.textContent;
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(function() {
+				e.target.textContent = 'Copied';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 2000);
+			}, function() {
+				e.target.textContent = 'Press "Ctrl + C" to copy';
+				setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+			});
+		} else {
+			e.target.textContent = 'Press "Ctrl + C" to copy';
+			setTimeout(function() { e.target.textContent = 'Copy'; }, 5000);
+		}
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+    <div class="row footrow">
+      <ul>
+        <li><a href="/previews/PR2673/project">About</a></li>
+        <li><a href="/previews/PR2673/about/help">Get Help</a></li>
+        <li><a href="/previews/PR2673/governance/">Governance</a></li>
+        <li><a href="/previews/PR2673/research/#publications">Publications</a></li>
+        <li><a href="/previews/PR2673/community/sponsors/">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2673/downloads">Install</a></li>
+        <li><a href="/previews/PR2673/downloads/manual-downloads">Manual Downloads</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/previews/PR2673/downloads/manual-downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/previews/PR2673/downloads/manual-downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/previews/PR2673/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/previews/PR2673/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/previews/PR2673/community/">Community</a></li>
+        <li><a href="/previews/PR2673/community/standards/">Code of Conduct</a></li>
+        <li><a href="/previews/PR2673/community/stewards/">Stewards</a></li>
+        <li><a href="/previews/PR2673/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/previews/PR2673/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/previews/PR2673/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/previews/PR2673/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>.</p>
+        <p>©2026 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/LICENSE.md">MIT license</a>.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-end">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub" rel="noopener noreferrer">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/previews/PR2673/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+    
+  </body>
+</html>
