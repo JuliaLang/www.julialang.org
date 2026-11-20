@@ -72,17 +72,22 @@
 }
 
 .gs-dots {
-  display: inline-flex;
-  gap: 4px;
+  position: relative;
+  flex: none;
+  width: 23px;
+  height: 21px;
 }
 .gs-dots i {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--gs-red);
 }
-.gs-dots i:nth-child(2) { background: var(--gs-green); }
-.gs-dots i:nth-child(3) { background: var(--gs-purple); }
+.gs-dots i:nth-child(2) { top: 0; bottom: auto; left: 6.5px; background: var(--gs-green); }
+.gs-dots i:nth-child(3) { left: auto; right: 0; background: var(--gs-purple); }
 
 .gs-hero h1 {
   font-size: clamp(2.25rem, 5vw, 3.5rem);
@@ -165,7 +170,7 @@
 .gs-steps {
   list-style: none;
   padding: 0;
-  margin: 0 0 3rem;
+  margin: 0 0 0.85rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
@@ -195,6 +200,11 @@
 .gs-steps li:nth-child(2) .gs-step-n { background: var(--gs-green); }
 .gs-steps li:nth-child(3) .gs-step-n { background: var(--gs-purple); }
 [data-theme="dark"] .gs-step-n { color: #12122a; }
+
+.gs-shortcut {
+  margin: 0 0 3rem;
+  color: var(--gs-muted);
+}
 
 /* Sections */
 
@@ -228,7 +238,7 @@
 
 .gs-tools {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.85rem;
 }
 
@@ -444,38 +454,11 @@
 .gs-copy:hover { background: rgba(255, 255, 255, 0.26); }
 .gs-copy.is-done { background: var(--gs-green); }
 
-/* Filter chips */
-
-.gs-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.gs-chip {
-  padding: 0.45rem 1rem;
-  font-size: 0.95rem;
-  border: 2px solid var(--gs-border);
-  border-radius: 999px;
-  background: var(--gs-surface);
-  color: var(--gs-ink);
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
-}
-.gs-chip:hover { border-color: var(--gs-blue); }
-.gs-chip[aria-pressed="true"] {
-  background: var(--gs-blue);
-  border-color: var(--gs-blue);
-  color: #fff;
-}
-[data-theme="dark"] .gs-chip[aria-pressed="true"] { color: #12122a; }
-
 /* Kit cards */
 
 .gs-kits {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr));
   gap: 1.25rem;
 }
 
@@ -497,9 +480,8 @@
   box-shadow: 0 14px 30px -18px color-mix(in srgb, var(--kit) 70%, transparent);
 }
 
-.gs-kit[hidden] { display: none; }
-
 .gs-kit-more {
+  align-self: start;
   border: 2px dashed var(--gs-border);
   background: transparent;
 }
@@ -558,16 +540,136 @@
 }
 .gs-pkgs a:hover { color: var(--kit); text-decoration: underline; }
 
-.gs-also {
+.gs-rows {
+  list-style: none;
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.6;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.gs-rows li {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  column-gap: 0.75rem;
+  row-gap: 0.4rem;
   color: var(--gs-muted);
 }
-.gs-also > span:first-child {
+
+.gs-rows li > div,
+.gs-rows li > .gs-pill { grid-column: 2; }
+.gs-rows li > .gs-pill { justify-self: start; }
+
+.gs-verb {
+  grid-row: span 2;
+  padding-top: 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kit);
+}
+
+.gs-rows a,
+.gs-from a {
   font-weight: 700;
   color: var(--gs-ink);
+  text-decoration: none;
 }
+.gs-rows a:hover,
+.gs-from a:hover { color: var(--kit, var(--gs-blue)); text-decoration: underline; }
+
+.gs-pill {
+  padding: 0.2rem 0.65rem;
+  font-family: 'JuliaMono', Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--gs-term-bg);
+  color: var(--gs-term-fg);
+  cursor: pointer;
+  text-align: left;
+}
+.gs-pill::before {
+  content: "pkg> ";
+  color: #7b93ff;
+  font-weight: 700;
+}
+.gs-pill:hover { box-shadow: 0 0 0 2px var(--kit, var(--gs-blue)); }
+.gs-pill.is-done { background: var(--gs-green); color: #fff; }
+.gs-pill.is-done::before { content: ""; }
+
+.gs-next {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  column-gap: 0.75rem;
+  row-gap: 0.25rem;
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--gs-border);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--gs-muted);
+}
+.gs-next dt {
+  font-weight: 600;
+  color: var(--gs-ink);
+}
+.gs-next dd { margin: 0; }
+
+/* Editors and notebooks under the toolbelt */
+
+.gs-where {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  align-items: stretch;
+  margin-top: 1.25rem;
+}
+
+.gs-where-label {
+  margin: 0;
+  align-self: center;
+  font-weight: 700;
+}
+
+.gs-where-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--gs-border);
+  border-radius: var(--gs-radius);
+  color: var(--gs-ink);
+  text-decoration: none;
+}
+.gs-where-link:hover {
+  border-color: var(--gs-blue);
+  color: var(--gs-ink);
+}
+.gs-where-link strong { color: var(--gs-blue); }
+.gs-where-link span {
+  font-size: 0.875rem;
+  color: var(--gs-muted);
+}
+
+/* Coming from another language */
+
+.gs-from {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 1.25rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--gs-soft);
+  border-radius: var(--gs-radius);
+  color: var(--gs-muted);
+}
+.gs-from strong { color: var(--gs-ink); }
+.gs-from span { flex: 1 1 24rem; }
 
 .gs-taste {
   margin-top: auto;
@@ -647,7 +749,8 @@
 @media (max-width: 991px) {
   .gs-hero,
   .gs-belt,
-  .gs-mix {
+  .gs-mix,
+  .gs-where {
     grid-template-columns: minmax(0, 1fr);
   }
   .gs-belt-out { position: static; }
@@ -660,7 +763,11 @@
   .gs-tools {
     grid-template-columns: minmax(0, 1fr);
   }
-  .gs-kits { grid-template-columns: minmax(0, 1fr); }
+  .gs-rows li,
+  .gs-next { grid-template-columns: minmax(0, 1fr); }
+  .gs-verb { grid-row: auto; }
+  .gs-rows li > div,
+  .gs-rows li > .gs-pill { grid-column: 1; }
   .gs-mini-browser { grid-template-columns: 1fr 1.6fr; }
   .gs-mini-browser .gs-mb-pane:first-child { display: none; }
 }
