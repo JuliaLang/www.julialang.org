@@ -17,9 +17,9 @@ ignore = ["visual-tests/"]
 stable_release = "1.13.4"
 stable_release_short = "1.13"
 stable_release_date = "November 13, 2026"
-lts_release = "1.10.13"
+lts_release = "1.10.14"
 lts_release_short = "1.10"
-lts_release_date = "November 1, 2026"
+lts_release_date = "November 21, 2026"
 
 # plotly
 hasplotly = false
