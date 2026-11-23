@@ -67,7 +67,7 @@ Julia supports all the major operating systems. Different OSes and architectures
     </tr>
     <tr>
       <td> i686 (32-bit) </td>
-      <td> <span class="tier-3">Tier 3</span> </td>
+      <td> <span class="tier-3">Tier 3 (End of Life)</span> </td>
     </tr>
     <tr>
       <td> 11+ </td>
