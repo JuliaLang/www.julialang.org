@@ -72,17 +72,22 @@
 }
 
 .gs-dots {
-  display: inline-flex;
-  gap: 4px;
+  position: relative;
+  flex: none;
+  width: 23px;
+  height: 21px;
 }
 .gs-dots i {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--gs-red);
 }
-.gs-dots i:nth-child(2) { background: var(--gs-green); }
-.gs-dots i:nth-child(3) { background: var(--gs-purple); }
+.gs-dots i:nth-child(2) { top: 0; bottom: auto; left: 6.5px; background: var(--gs-green); }
+.gs-dots i:nth-child(3) { left: auto; right: 0; background: var(--gs-purple); }
 
 .gs-hero h1 {
   font-size: clamp(2.25rem, 5vw, 3.5rem);
@@ -165,7 +170,7 @@
 .gs-steps {
   list-style: none;
   padding: 0;
-  margin: 0 0 3rem;
+  margin: 0 0 0.85rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
@@ -195,6 +200,11 @@
 .gs-steps li:nth-child(2) .gs-step-n { background: var(--gs-green); }
 .gs-steps li:nth-child(3) .gs-step-n { background: var(--gs-purple); }
 [data-theme="dark"] .gs-step-n { color: #12122a; }
+
+.gs-shortcut {
+  margin: 0 0 3rem;
+  color: var(--gs-muted);
+}
 
 /* Sections */
 
