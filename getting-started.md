@@ -1,5 +1,5 @@
-@def title = "Getting started: pick a starter kit"
-@def description = "The Julia packages people reach for first, grouped by how you work: exploring data, modelling and solving, making code fast, building and shipping, and working through an AI agent."
+@def title = "Getting started: pick a few packages"
+@def description = "The Julia packages people reach for first, grouped by kind of work: exploring data, modelling and solving, making code fast, building and shipping, and working through an AI agent."
 @def hascode = true
 
 ~~~
@@ -11,9 +11,9 @@
 <header class="gs-hero">
   <div class="gs-hero-text">
     <p class="gs-kicker"><span class="gs-dots" aria-hidden="true"><i></i><i></i><i></i></span> Getting started</p>
-    <h1>Pick a starter kit</h1>
-    <p class="gs-lede">The General registry holds over 12,000 packages. To begin, you need a handful.
-    Below are the ones people actually use most, grouped by how you'll work rather than by field.</p>
+    <h1>Pick a few packages</h1>
+    <p class="gs-lede">The General registry holds over 12,000 packages. To begin, a handful is often enough.
+    Below are the ones people actually use most, grouped by the kind of work you might do.</p>
     <p class="gs-prereq">No Julia yet? <a href="/install/">Install it</a> first; it takes a minute.
     New to the language? Read <a href="/learning/getting-started/">what Julia is</a>, or start with
     <a href="https://docs.julialang.org/en/v1/manual/getting-started/">the manual</a>.</p>
@@ -25,7 +25,7 @@
   </div>
 </header>
 
-<!-- How a kit works -->
+<!-- How to add packages -->
 <ol class="gs-steps">
   <li><span class="gs-step-n">1</span><div><strong>Press <kbd>]</kbd></strong> at the <code>julia&gt;</code> prompt. It turns blue: you're in package mode.</div></li>
   <li><span class="gs-step-n">2</span><div><strong>Paste an <code>add</code> line.</strong> For a project, run <code>activate .</code> first so its packages stay with it.</div></li>
@@ -95,10 +95,10 @@ end</code></pre>
   </div>
 </section>
 
-<!-- Kits -->
+<!-- Ways of working -->
 <section class="gs-section" id="kits">
-  <h2 class="gs-h2">Then pick how you'll work</h2>
-  <p class="gs-sub">Each kit starts with one or two packages per step. Where there's a choice, it says "or", and you only need one.</p>
+  <h2 class="gs-h2">Then pick what you'd like to do</h2>
+  <p class="gs-sub">Each card lists one or two packages per step. Where there's a choice, it says "or", and you only need one.</p>
 
   <div class="gs-kits">
 
@@ -252,7 +252,7 @@ jld run test/runtests.jl</code></pre>
 <section class="gs-section" id="mix">
   <h2 class="gs-h2">Then mix them</h2>
   <p class="gs-sub">Julia packages work together even when their authors never planned it.
-  That's <a href="https://www.youtube.com/watch?v=kc9HwsxE1OY">multiple dispatch</a> at work, and it's why a small kit goes a long way.</p>
+  That's <a href="https://www.youtube.com/watch?v=kc9HwsxE1OY">multiple dispatch</a> at work, and it's why a few packages go a long way.</p>
 
   <div class="gs-mix">
     <div class="gs-mix-card">
