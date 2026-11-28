@@ -558,49 +558,6 @@ h4.card-title {
   text-shadow: 1px 1px 2px #0a0a0a;
 }
 
-/* Getting started: a dark button led by the three logo dots */
-.page-heading .btn-starter {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: #fff;
-  background-color: #1d1d2b;
-  border-color: transparent;
-  box-shadow: 0px 0px 0px 2px #0a0a0a;
-  text-shadow: 1px 1px 2px #0a0a0a;
-}
-.page-heading .btn-starter:hover,
-.page-heading .btn-starter:focus-visible {
-  color: #fff;
-  background-color: #2c2c40;
-}
-.btn-starter .starter-dots {
-  position: relative;
-  flex: none;
-  width: 1.15em;
-  height: 1.05em;
-}
-.btn-starter .starter-dots i {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0.5em;
-  height: 0.5em;
-  border-radius: 50%;
-  background: #CB3C33;
-}
-.btn-starter .starter-dots i:nth-child(2) { top: 0; bottom: auto; left: 0.325em; background: #389826; animation-delay: 0.08s; }
-.btn-starter .starter-dots i:nth-child(3) { left: auto; right: 0; background: #9558B2; animation-delay: 0.16s; }
-.btn-starter:hover .starter-dots i {
-  animation: starter-hop 0.45s ease-out;
-}
-@keyframes starter-hop {
-  40% { transform: translateY(-0.25em); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .btn-starter:hover .starter-dots i { animation: none; }
-}
-
 a.header-anchor {
   text-decoration: none;
 }
