@@ -139,122 +139,60 @@
 
 
 <!-- Content appended here -->
-<div class="container main">
-<link rel="stylesheet" href="/previews/PR2673/css/getting-started.css">
-
-<div class="gs">
-
-<!-- Hero -->
-<header class="gs-hero">
-  <div class="gs-hero-text">
-    <p class="gs-kicker"><span class="gs-dots" aria-hidden="true"><i></i><i></i><i></i></span> Getting started</p>
-    <h1>Pick a few packages</h1>
-    <p class="gs-lede">The General registry holds over 12,000 packages. To begin, a handful is often enough.
-    Below are the ones people actually use most, grouped by the kind of work you might do.</p>
-    <p class="gs-prereq">No Julia yet? <a href="/previews/PR2673/install/">Install it</a> first; it takes a minute.
-    New to the language? Read <a href="/previews/PR2673/learning/getting-started/">what Julia is</a>, or start with
-    <a href="https://docs.julialang.org/en/v1/manual/getting-started/">the manual</a>.</p>
-  </div>
-  <div class="gs-term gs-hero-term" aria-hidden="true">
-    <div class="gs-term-bar"><i></i><i></i><i></i></div>
-    <pre class="gs-term-body"><span class="gs-p-julia">julia&gt;</span> <span class="gs-dim">]</span>
-<span class="gs-p-pkg">(@v1.13) pkg&gt;</span> <span id="gs-typer">add CSV DataFrames</span><span class="gs-caret"></span></pre>
-  </div>
-</header>
-
-<!-- How to add packages -->
-<ol class="gs-steps">
-  <li><span class="gs-step-n">1</span><div><strong>Press <kbd>]</kbd></strong> at the <code>julia&gt;</code> prompt. It turns blue: you're in package mode.</div></li>
-  <li><span class="gs-step-n">2</span><div><strong>Paste an <code>add</code> line.</strong> For a project, run <code>activate .</code> first so its packages stay with it.</div></li>
-  <li><span class="gs-step-n">3</span><div><strong>Press <kbd>Backspace</kbd></strong> to leave, then <code>using</code> them.</div></li>
+<div class="container main"><h1 id="pick_a_few_packages"><a href="#pick_a_few_packages" class="header-anchor">Pick a few packages</a></h1>
+<p>The General registry holds over 12,000 packages. To begin, a handful is often enough. Below are the ones people actually use most, grouped by the kind of work you might do.</p>
+<p>No Julia yet? <a href="/previews/PR2673/install/">Install it</a> first; it takes a minute. New to the language? Read <a href="/previews/PR2673/learning/getting-started/">what Julia is</a>, or start with <a href="https://docs.julialang.org/en/v1/manual/getting-started/">the manual</a>.</p>
+<h2 id="adding_packages"><a href="#adding_packages" class="header-anchor">Adding packages</a></h2>
+<ol>
+<li><p>Press <code>&#93;</code> at the <code>julia&gt;</code> prompt. It turns blue: you&#39;re in package mode.</p>
+</li>
+<li><p>Type an <code>add</code> line, such as <code>add CSV DataFrames</code>. For a project, run <code>activate .</code> first so its packages stay with it.</p>
+</li>
+<li><p>Press Backspace to leave, then <code>using</code> them.</p>
+</li>
 </ol>
-<p class="gs-shortcut">Or skip package mode: type <code>using CSV</code> at the <code>julia&gt;</code> prompt, and if CSV isn't installed yet, the REPL asks whether to install it.</p>
-
-<!-- Toolbelt -->
-<section class="gs-section" id="toolbelt">
-  <h2 class="gs-h2">Every session: the toolbelt</h2>
-  <p class="gs-sub">Whatever you end up doing, these make every session better. Choose the ones you want,
-  and we'll write your <code>startup.jl</code> so they load each time you start Julia.</p>
-
-  <div class="gs-belt">
-    <div class="gs-tools" role="group" aria-label="Toolbelt packages">
-
-      <label class="gs-tool gs-tool-wide" style="--kit: var(--gs-purple)">
-        <input type="checkbox" value="DocBrowser" checked>
-        <span class="gs-tool-top"><a href="https://github.com/IanButterworth/DocBrowser.jl">DocBrowser.jl</a><span class="gs-badge">New</span><span class="gs-check" aria-hidden="true"></span></span>
-        <span class="gs-tool-desc">Every manual and docstring, browsable without leaving the REPL. Press <kbd>Enter</kbd> at an empty <code>help?&gt;</code> prompt.</span>
-        <span class="gs-mini-browser" aria-hidden="true">
-          <span class="gs-mb-pane"><b>Contents</b>Julia<br>&nbsp;Manual<br>&nbsp;<u>Base</u><br>Packages<br>&nbsp;DataFrames<br>&nbsp;Makie<br>Main</span>
-          <span class="gs-mb-pane"><b>Names</b><em>●</em> filter<br><em>●</em> findall<br><u><em>●</em> first</u><br><em>●</em> foldl<br><em>○</em> fieldtypes<br><em>·</em> _fl</span>
-          <span class="gs-mb-pane gs-mb-doc"><b>Documentation</b><strong>first(coll)</strong><br>Get the first element of an iterable collection.<br><br><span class="gs-dim">julia&gt; first(2:2:10)<br>2</span></span>
-        </span>
-      </label>
-
-      <label class="gs-tool" style="--kit: var(--gs-green)">
-        <input type="checkbox" value="Revise" checked>
-        <span class="gs-tool-top"><a href="https://timholy.github.io/Revise.jl/stable/">Revise.jl</a><span class="gs-check" aria-hidden="true"></span></span>
-        <span class="gs-tool-desc">Edit your code, keep your session. Changes apply without a restart.</span>
-      </label>
-
-      <label class="gs-tool" style="--kit: var(--gs-blue)">
-        <input type="checkbox" value="BenchmarkTools">
-        <span class="gs-tool-top"><a href="https://juliaci.github.io/BenchmarkTools.jl/stable/">BenchmarkTools.jl</a><span class="gs-check" aria-hidden="true"></span></span>
-        <span class="gs-tool-desc"><code>@btime</code> gives timings you can trust.</span>
-      </label>
-
-      <label class="gs-tool" style="--kit: var(--gs-red)">
-        <input type="checkbox" value="Infiltrator">
-        <span class="gs-tool-top"><a href="https://github.com/JuliaDebug/Infiltrator.jl">Infiltrator.jl</a><span class="gs-check" aria-hidden="true"></span></span>
-        <span class="gs-tool-desc">Put <code>@infiltrate</code> in a function to stop there and inspect it.</span>
-      </label>
-
-    </div>
-
-    <div class="gs-belt-out">
-      <p class="gs-out-label">1. Install them into your default environment</p>
-      <div class="gs-add"><code><span class="gs-p-pkg">pkg&gt;</span> <span id="gs-belt-add">add DocBrowser Revise</span></code><button type="button" class="gs-copy" data-copy-from="gs-belt-add">Copy</button></div>
-      <p class="gs-out-label">2. Save this as <code>~/.julia/config/startup.jl</code></p>
-<div id="gs-startup">
+<p>Or skip package mode: type <code>using CSV</code> at the <code>julia&gt;</code> prompt, and if CSV isn&#39;t installed yet, the REPL asks whether to install it.</p>
+<h2 id="every_session_the_toolbelt"><a href="#every_session_the_toolbelt" class="header-anchor">Every session: the toolbelt</a></h2>
+<p>Whatever you end up doing, these make every session better.</p>
+<ul>
+<li><p><a href="https://timholy.github.io/Revise.jl/stable/">Revise.jl</a>: edit your code, keep your session. Changes apply without a restart.</p>
+</li>
+<li><p><a href="https://github.com/IanButterworth/DocBrowser.jl">DocBrowser.jl</a>: every manual and docstring, browsable without leaving the REPL. Press Enter at an empty <code>help?&gt;</code> prompt.</p>
+</li>
+<li><p><a href="https://juliaci.github.io/BenchmarkTools.jl/stable/">BenchmarkTools.jl</a>: <code>@btime</code> gives timings you can trust.</p>
+</li>
+<li><p><a href="https://github.com/JuliaDebug/Infiltrator.jl">Infiltrator.jl</a>: put <code>@infiltrate</code> in a function to stop there and inspect it.</p>
+</li>
+</ul>
+<p>Install the ones you want into your default environment:</p>
+<pre><code class="julia-repl hljs">pkg&gt; add Revise DocBrowser</code></pre>
+<p>Then load them each time Julia starts, by saving this as <code>~/.julia/config/startup.jl</code> &#40;on Windows, <code>&#37;USERPROFILE&#37;\.julia\config\startup.jl</code>&#41;:</p>
 <pre><code class="julia hljs"><span class="hljs-keyword">if</span> isinteractive()
     <span class="hljs-keyword">using</span> Revise
     <span class="hljs-keyword">using</span> DocBrowser
 <span class="hljs-keyword">end</span></code></pre>
-</div>
-      <p class="gs-out-note">On Windows the file lives at <code>%USERPROFILE%\.julia\config\startup.jl</code>. Revise always goes first, so it can track everything loaded after it.</p>
-    </div>
-  </div>
-
-  <div class="gs-where">
-    <p class="gs-where-label">And somewhere to type:</p>
-    <a class="gs-where-link" href="https://www.julia-vscode.org"><strong>VS Code</strong><span>The Julia extension: editor, REPL, plots, debugger and profiler in one window.</span></a>
-    <a class="gs-where-link" href="https://plutojl.org"><strong>Pluto.jl</strong><span>Reactive notebooks: change a cell and everything that depends on it reruns. Add PlutoUI.jl for sliders and buttons.</span></a>
-    <a class="gs-where-link" href="https://julialang.github.io/IJulia.jl/stable/"><strong>IJulia.jl</strong><span>Julia in Jupyter notebooks, and in Quarto reports.</span></a>
-  </div>
-</section>
-
-<!-- Ways of working -->
-<section class="gs-section" id="kits">
-  <h2 class="gs-h2">Then pick what you'd like to do</h2>
-  <p class="gs-sub">Each card lists one or two packages per step. Where there's a choice, it says "or", and you only need one.</p>
-
-  <div class="gs-kits">
-
-    <article class="gs-kit" id="kit-data" style="--kit: var(--gs-green)">
-      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🧮</span>
-        <div><h3>Explore data</h3><p class="gs-when">You have data and questions: read it, reshape it, plot it, fit it.</p></div></div>
-      <ul class="gs-rows">
-        <li><span class="gs-verb">Read</span><div><a href="https://csv.juliadata.org/stable/">CSV.jl</a> and <a href="https://dataframes.juliadata.org/stable/">DataFrames.jl</a>: load files into tables, then filter, join and group them.</div><button type="button" class="gs-pill" data-copy="add CSV DataFrames">add CSV DataFrames</button></li>
-        <li><span class="gs-verb">Plot</span><div><a href="https://docs.juliaplots.org/stable/">Plots.jl</a>: one quick syntax for line, scatter, histogram and heatmap plots. Or <a href="https://docs.makie.org/stable/">CairoMakie.jl</a> for publication figures.</div><button type="button" class="gs-pill" data-copy="add Plots">add Plots</button></li>
-        <li><span class="gs-verb">Fit</span><div><a href="https://juliastats.org/Distributions.jl/stable/">Distributions.jl</a>: sample, fit and evaluate nearly every probability distribution.</div><button type="button" class="gs-pill" data-copy="add Distributions">add Distributions</button></li>
-      </ul>
-      <dl class="gs-next">
-        <dt>Wrangle</dt><dd><a href="https://juliadata.org/DataFramesMeta.jl/stable/">DataFramesMeta.jl</a> · <a href="https://github.com/jkrumbiegel/Chain.jl">Chain.jl</a></dd>
-        <dt>Files</dt><dd><a href="https://github.com/JuliaData/XLSX.jl">XLSX.jl</a> · <a href="https://github.com/apache/arrow-julia">Arrow.jl</a> · <a href="https://github.com/JuliaIO/JLD2.jl">JLD2.jl</a> · <a href="https://github.com/JuliaDatabases/SQLite.jl">SQLite.jl</a> · <a href="https://duckdb.org/docs/stable/clients/tertiary_clients/julia">DuckDB.jl</a></dd>
-        <dt>Stats</dt><dd><a href="https://juliastats.org/StatsBase.jl/stable/">StatsBase.jl</a> · <a href="https://juliastats.org/GLM.jl/stable/">GLM.jl</a> · <a href="https://github.com/JuliaStats/HypothesisTests.jl">HypothesisTests.jl</a> · <a href="https://github.com/JuliaStats/MixedModels.jl">MixedModels.jl</a> · <a href="https://turinglang.org">Turing.jl</a></dd>
-        <dt>Models</dt><dd><a href="https://juliaai.github.io/MLJ.jl/stable/">MLJ.jl</a> (trees, boosting, clustering, tuning)</dd>
-        <dt>Plots</dt><dd><a href="https://aog.makie.org/stable/">AlgebraOfGraphics.jl</a> · <a href="https://docs.makie.org/stable/explanations/backends/glmakie">GLMakie.jl</a> · <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a></dd>
-      </dl>
-      <details class="gs-taste"><summary>Taste it</summary>
+<p>Revise goes first, so it can track everything loaded after it.</p>
+<p>And somewhere to type:</p>
+<ul>
+<li><p><a href="https://www.julia-vscode.org">VS Code</a> with the Julia extension: editor, REPL, plots, debugger and profiler in one window.</p>
+</li>
+<li><p><a href="https://plutojl.org">Pluto.jl</a>: reactive notebooks. Change a cell and everything that depends on it reruns. Add PlutoUI.jl for sliders and buttons.</p>
+</li>
+<li><p><a href="https://julialang.github.io/IJulia.jl/stable/">IJulia.jl</a>: Julia in Jupyter notebooks, and in Quarto reports.</p>
+</li>
+</ul>
+<h2 id="then_pick_what_youd_like_to_do"><a href="#then_pick_what_youd_like_to_do" class="header-anchor">Then pick what you&#39;d like to do</a></h2>
+<p>Each section lists one or two packages per step. Where there&#39;s a choice, it says &quot;or&quot;, and you only need one.</p>
+<h3 id="explore_data"><a href="#explore_data" class="header-anchor">Explore data</a></h3>
+<p>You have data and questions: read it, reshape it, plot it, fit it.</p>
+<ul>
+<li><p><strong>Read:</strong> <a href="https://csv.juliadata.org/stable/">CSV.jl</a> and <a href="https://dataframes.juliadata.org/stable/">DataFrames.jl</a> load files into tables, then filter, join and group them. <code>add CSV DataFrames</code></p>
+</li>
+<li><p><strong>Plot:</strong> <a href="https://docs.juliaplots.org/stable/">Plots.jl</a> has one quick syntax for line, scatter, histogram and heatmap plots. Or <a href="https://docs.makie.org/stable/">CairoMakie.jl</a> for publication figures. <code>add Plots</code></p>
+</li>
+<li><p><strong>Fit:</strong> <a href="https://juliastats.org/Distributions.jl/stable/">Distributions.jl</a> samples, fits and evaluates nearly every probability distribution. <code>add Distributions</code></p>
+</li>
+</ul>
 <pre><code class="julia hljs"><span class="hljs-keyword">using</span> CSV, DataFrames, Plots, Distributions, Statistics
 
 CSV.write(<span class="hljs-string">&quot;data.csv&quot;</span>, DataFrame(x = randn(<span class="hljs-number">1000</span>), group = rand([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>], <span class="hljs-number">1000</span>)))
@@ -265,93 +203,69 @@ combine(groupby(df, :group), :x =&gt; mean)
 d = fit(Normal, df.x)
 histogram(df.x; normalize = <span class="hljs-literal">true</span>, label = <span class="hljs-string">&quot;data&quot;</span>)
 plot!(x -&gt; pdf(d, x); label = <span class="hljs-string">&quot;fit&quot;</span>, linewidth = <span class="hljs-number">3</span>)</code></pre>
-      </details>
-    </article>
-
-    <article class="gs-kit" id="kit-model" style="--kit: var(--gs-blue)">
-      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🌀</span>
-        <div><h3>Model and solve</h3><p class="gs-when">You can write down the maths. A solver does the rest.</p></div></div>
-      <ul class="gs-rows">
-        <li><span class="gs-verb">Simulate</span><div><a href="https://docs.sciml.ai/DiffEqDocs/stable/">OrdinaryDiffEq.jl</a>: fast, adaptive solvers for ordinary differential equations, from simple to very stiff.</div><button type="button" class="gs-pill" data-copy="add OrdinaryDiffEq">add OrdinaryDiffEq</button></li>
-        <li><span class="gs-verb">Optimize</span><div><a href="https://jump.dev/JuMP.jl/stable/">JuMP.jl</a> with the <a href="https://github.com/jump-dev/HiGHS.jl">HiGHS</a> solver, for constrained problems written as they look on paper. Or <a href="https://julianlsolvers.github.io/Optim.jl/stable/">Optim.jl</a> to minimize a plain function.</div><button type="button" class="gs-pill" data-copy="add JuMP HiGHS">add JuMP HiGHS</button></li>
-        <li><span class="gs-verb">Differentiate</span><div><a href="https://juliadiff.org/ForwardDiff.jl/stable/">ForwardDiff.jl</a>: exact derivatives of ordinary Julia code.</div><button type="button" class="gs-pill" data-copy="add ForwardDiff">add ForwardDiff</button></li>
-        <li><span class="gs-verb">Learn</span><div><a href="https://fluxml.ai/Flux.jl/stable/">Flux.jl</a>: neural networks that are plain Julia all the way down.</div><button type="button" class="gs-pill" data-copy="add Flux">add Flux</button></li>
-      </ul>
-      <dl class="gs-next">
-        <dt>Equations</dt><dd><a href="https://sciml.ai">SciML</a> (SDEs, DAEs, delays) · <a href="https://docs.sciml.ai/ModelingToolkit/stable/">ModelingToolkit.jl</a> · <a href="https://docs.sciml.ai/Symbolics/stable/">Symbolics.jl</a> · <a href="https://docs.sciml.ai/NonlinearSolve/stable/">NonlinearSolve.jl</a> · <a href="https://github.com/JuliaMath/Roots.jl">Roots.jl</a></dd>
-        <dt>Numerics</dt><dd><a href="https://github.com/JuliaMath/Interpolations.jl">Interpolations.jl</a> · <a href="https://github.com/JuliaMath/QuadGK.jl">QuadGK.jl</a> · <a href="https://github.com/JuliaMath/FFTW.jl">FFTW.jl</a> · <a href="https://github.com/JuliaDSP/DSP.jl">DSP.jl</a> · <a href="https://juliagraphs.org/Graphs.jl/stable/">Graphs.jl</a> · <a href="https://juliaimages.org">Images.jl</a></dd>
-        <dt>Units</dt><dd><a href="https://github.com/JuliaPhysics/Unitful.jl">Unitful.jl</a> · <a href="https://juliaphysics.github.io/Measurements.jl/stable/">Measurements.jl</a> (error bars)</dd>
-        <dt>Solvers</dt><dd><a href="https://github.com/jump-dev/Ipopt.jl">Ipopt.jl</a> (nonlinear)</dd>
-        <dt>Learning</dt><dd><a href="https://lux.csail.mit.edu">Lux.jl</a> · <a href="https://enzyme.mit.edu/julia/">Enzyme.jl</a> (gradients of fast, mutating code)</dd>
-      </dl>
-      <details class="gs-taste"><summary>Taste it</summary>
+<p>Next steps: wrangling with <a href="https://juliadata.org/DataFramesMeta.jl/stable/">DataFramesMeta.jl</a> and <a href="https://github.com/jkrumbiegel/Chain.jl">Chain.jl</a>; files with <a href="https://github.com/JuliaData/XLSX.jl">XLSX.jl</a>, <a href="https://github.com/apache/arrow-julia">Arrow.jl</a>, <a href="https://github.com/JuliaIO/JLD2.jl">JLD2.jl</a>, <a href="https://github.com/JuliaDatabases/SQLite.jl">SQLite.jl</a> and <a href="https://duckdb.org/docs/stable/clients/tertiary_clients/julia">DuckDB.jl</a>; statistics with <a href="https://juliastats.org/StatsBase.jl/stable/">StatsBase.jl</a>, <a href="https://juliastats.org/GLM.jl/stable/">GLM.jl</a>, <a href="https://github.com/JuliaStats/HypothesisTests.jl">HypothesisTests.jl</a>, <a href="https://github.com/JuliaStats/MixedModels.jl">MixedModels.jl</a> and <a href="https://turinglang.org">Turing.jl</a>; machine learning with <a href="https://juliaai.github.io/MLJ.jl/stable/">MLJ.jl</a>; more plotting with <a href="https://aog.makie.org/stable/">AlgebraOfGraphics.jl</a>, <a href="https://docs.makie.org/stable/explanations/backends/glmakie">GLMakie.jl</a> and <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
+<h3 id="model_and_solve"><a href="#model_and_solve" class="header-anchor">Model and solve</a></h3>
+<p>You can write down the maths. A solver does the rest.</p>
+<ul>
+<li><p><strong>Simulate:</strong> <a href="https://docs.sciml.ai/DiffEqDocs/stable/">OrdinaryDiffEq.jl</a> has fast, adaptive solvers for ordinary differential equations, from simple to very stiff. <code>add OrdinaryDiffEq</code></p>
+</li>
+<li><p><strong>Optimize:</strong> <a href="https://jump.dev/JuMP.jl/stable/">JuMP.jl</a> with the <a href="https://github.com/jump-dev/HiGHS.jl">HiGHS</a> solver, for constrained problems written as they look on paper. Or <a href="https://julianlsolvers.github.io/Optim.jl/stable/">Optim.jl</a> to minimize a plain function. <code>add JuMP HiGHS</code></p>
+</li>
+<li><p><strong>Differentiate:</strong> <a href="https://juliadiff.org/ForwardDiff.jl/stable/">ForwardDiff.jl</a> gives exact derivatives of ordinary Julia code. <code>add ForwardDiff</code></p>
+</li>
+<li><p><strong>Learn:</strong> <a href="https://fluxml.ai/Flux.jl/stable/">Flux.jl</a> builds neural networks that are plain Julia all the way down. <code>add Flux</code></p>
+</li>
+</ul>
 <pre><code class="julia hljs"><span class="hljs-keyword">using</span> OrdinaryDiffEq
 
 decay(u, p, t) = -p * u
 sol = solve(ODEProblem(decay, <span class="hljs-number">1.0</span>, (<span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span>), <span class="hljs-number">0.8</span>))
 sol(<span class="hljs-number">2.5</span>)   <span class="hljs-comment"># ≈ exp(-2) = 0.135</span></code></pre>
-      </details>
-    </article>
-
-    <article class="gs-kit" id="kit-fast" style="--kit: var(--gs-red)">
-      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🚀</span>
-        <div><h3>Make it fast</h3><p class="gs-when">It works. Now measure it, find the slow part, fix it, and use every core.</p></div></div>
-      <ul class="gs-rows">
-        <li><span class="gs-verb">Measure</span><div><a href="https://juliaci.github.io/BenchmarkTools.jl/stable/">BenchmarkTools.jl</a>, from the toolbelt.</div><button type="button" class="gs-pill" data-copy="add BenchmarkTools">add BenchmarkTools</button></li>
-        <li><span class="gs-verb">Find</span><div>The built-in <a href="https://docs.julialang.org/en/v1/manual/profile/">profiler</a> (<code>@profview</code> in VS Code), and the manual's <a href="https://docs.julialang.org/en/v1/manual/performance-tips/">performance tips</a>.</div></li>
-        <li><span class="gs-verb">Fix</span><div><a href="https://juliaarrays.github.io/StaticArrays.jl/stable/">StaticArrays.jl</a>: small fixed-size arrays with no allocation.</div><button type="button" class="gs-pill" data-copy="add StaticArrays">add StaticArrays</button></li>
-        <li><span class="gs-verb">Threads</span><div><a href="https://juliafolds2.github.io/OhMyThreads.jl/stable/">OhMyThreads.jl</a>: multithreaded <code>map</code>, <code>reduce</code> and loops. Start Julia with <code>-t auto</code>.</div><button type="button" class="gs-pill" data-copy="add OhMyThreads">add OhMyThreads</button></li>
-        <li><span class="gs-verb">GPU</span><div>Pick the one for your hardware: <a href="https://cuda.juliagpu.org/stable/">CUDA.jl</a> (NVIDIA), <a href="https://metal.juliagpu.org/stable/">Metal.jl</a> (Apple) or <a href="https://amdgpu.juliagpu.org/stable/">AMDGPU.jl</a>.</div></li>
-      </ul>
-      <dl class="gs-next">
-        <dt>Dig in</dt><dd><a href="https://aviatesk.github.io/JET.jl/stable/">JET.jl</a> (<code>@report_opt</code>) · <a href="https://github.com/JuliaDebug/Cthulhu.jl">Cthulhu.jl</a></dd>
-        <dt>Portable</dt><dd><a href="https://github.com/JuliaGPU/KernelAbstractions.jl">KernelAbstractions.jl</a> (one kernel, any GPU)</dd>
-        <dt>Startup</dt><dd><a href="https://julialang.github.io/PrecompileTools.jl/stable/">PrecompileTools.jl</a></dd>
-      </dl>
-      <details class="gs-taste"><summary>Taste it</summary>
+<p>Next steps: more equations with <a href="https://sciml.ai">SciML</a> &#40;SDEs, DAEs, delays&#41;, <a href="https://docs.sciml.ai/ModelingToolkit/stable/">ModelingToolkit.jl</a>, <a href="https://docs.sciml.ai/Symbolics/stable/">Symbolics.jl</a>, <a href="https://docs.sciml.ai/NonlinearSolve/stable/">NonlinearSolve.jl</a> and <a href="https://github.com/JuliaMath/Roots.jl">Roots.jl</a>; numerics with <a href="https://github.com/JuliaMath/Interpolations.jl">Interpolations.jl</a>, <a href="https://github.com/JuliaMath/QuadGK.jl">QuadGK.jl</a>, <a href="https://github.com/JuliaMath/FFTW.jl">FFTW.jl</a>, <a href="https://github.com/JuliaDSP/DSP.jl">DSP.jl</a>, <a href="https://juliagraphs.org/Graphs.jl/stable/">Graphs.jl</a> and <a href="https://juliaimages.org">Images.jl</a>; units and error bars with <a href="https://github.com/JuliaPhysics/Unitful.jl">Unitful.jl</a> and <a href="https://juliaphysics.github.io/Measurements.jl/stable/">Measurements.jl</a>; nonlinear optimization with <a href="https://github.com/jump-dev/Ipopt.jl">Ipopt.jl</a>; more machine learning with <a href="https://lux.csail.mit.edu">Lux.jl</a> and <a href="https://enzyme.mit.edu/julia/">Enzyme.jl</a> &#40;gradients of fast, mutating code&#41;.</p>
+<h3 id="make_it_fast"><a href="#make_it_fast" class="header-anchor">Make it fast</a></h3>
+<p>It works. Now measure it, find the slow part, fix it, and use every core.</p>
+<ul>
+<li><p><strong>Measure:</strong> <a href="https://juliaci.github.io/BenchmarkTools.jl/stable/">BenchmarkTools.jl</a>, from the toolbelt. <code>add BenchmarkTools</code></p>
+</li>
+<li><p><strong>Find:</strong> the built-in <a href="https://docs.julialang.org/en/v1/manual/profile/">profiler</a> &#40;<code>@profview</code> in VS Code&#41;, and the manual&#39;s <a href="https://docs.julialang.org/en/v1/manual/performance-tips/">performance tips</a>.</p>
+</li>
+<li><p><strong>Fix:</strong> <a href="https://juliaarrays.github.io/StaticArrays.jl/stable/">StaticArrays.jl</a> gives small fixed-size arrays with no allocation. <code>add StaticArrays</code></p>
+</li>
+<li><p><strong>Threads:</strong> <a href="https://juliafolds2.github.io/OhMyThreads.jl/stable/">OhMyThreads.jl</a> has multithreaded <code>map</code>, <code>reduce</code> and loops. Start Julia with <code>-t auto</code>. <code>add OhMyThreads</code></p>
+</li>
+<li><p><strong>GPU:</strong> pick the one for your hardware: <a href="https://cuda.juliagpu.org/stable/">CUDA.jl</a> &#40;NVIDIA&#41;, <a href="https://metal.juliagpu.org/stable/">Metal.jl</a> &#40;Apple&#41; or <a href="https://amdgpu.juliagpu.org/stable/">AMDGPU.jl</a>.</p>
+</li>
+</ul>
 <pre><code class="julia hljs"><span class="hljs-comment"># start Julia with: julia -t auto</span>
 <span class="hljs-keyword">using</span> BenchmarkTools, OhMyThreads
 
 <span class="hljs-meta">@btime</span> sum(x -&gt; sin(x)^<span class="hljs-number">2</span>, <span class="hljs-number">1</span>:<span class="hljs-number">10</span>^<span class="hljs-number">7</span>)
 <span class="hljs-meta">@btime</span> tmapreduce(x -&gt; sin(x)^<span class="hljs-number">2</span>, +, <span class="hljs-number">1</span>:<span class="hljs-number">10</span>^<span class="hljs-number">7</span>)</code></pre>
-      </details>
-    </article>
-
-    <article class="gs-kit" id="kit-build" style="--kit: var(--gs-purple)">
-      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">📦</span>
-        <div><h3>Build and ship</h3><p class="gs-when">The unit of work is a repo: a package, a command-line tool or a web service.</p></div></div>
-      <ul class="gs-rows">
-        <li><span class="gs-verb">Package</span><div><a href="https://juliaci.github.io/PkgTemplates.jl/stable/">PkgTemplates.jl</a> sets up a package with CI. Write tests with the <a href="https://docs.julialang.org/en/v1/stdlib/Test/">Test</a> stdlib, docs with <a href="https://documenter.juliadocs.org/stable/">Documenter.jl</a>, and catch common mistakes with <a href="https://juliatesting.github.io/Aqua.jl/stable/">Aqua.jl</a>.</div><button type="button" class="gs-pill" data-copy="add PkgTemplates Documenter Aqua">add PkgTemplates Documenter Aqua</button></li>
-        <li><span class="gs-verb">Ship</span><div><a href="https://github.com/JuliaLang/JuliaC.jl">JuliaC.jl</a> compiles a program into a native executable. <a href="https://pkgdocs.julialang.org/v1/apps/">Pkg apps</a> let people install your package as a command-line tool.</div><button type="button" class="gs-pill" data-copy="app add JuliaC">app add JuliaC</button></li>
-        <li><span class="gs-verb">Serve</span><div><a href="https://juliaweb.github.io/HTTP.jl/stable/">HTTP.jl</a> and <a href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a> for clients and servers; <a href="https://refactorful.github.io/Oxygen.jl/stable/">Oxygen.jl</a> for routes in a few lines.</div><button type="button" class="gs-pill" data-copy="add HTTP JSON Oxygen">add HTTP JSON Oxygen</button></li>
-      </ul>
-      <dl class="gs-next">
-        <dt>Style</dt><dd><a href="https://juliaeditorsupport.github.io/JuliaFormatter.jl/stable/">JuliaFormatter.jl</a> · <a href="https://github.com/fredrikekre/Runic.jl">Runic.jl</a></dd>
-        <dt>Tests</dt><dd><a href="https://github.com/JuliaTesting/TestEnv.jl">TestEnv.jl</a> · <a href="https://github.com/julia-testitems/TestItemRunner.jl">TestItemRunner.jl</a></dd>
-        <dt>Tools</dt><dd><a href="https://carlobaldassi.github.io/ArgParse.jl/stable/">ArgParse.jl</a> · <a href="https://github.com/timholy/ProgressMeter.jl">ProgressMeter.jl</a> · <a href="https://julialang.github.io/PackageCompiler.jl/stable/">PackageCompiler.jl</a></dd>
-        <dt>Web apps</dt><dd><a href="https://genieframework.com">Genie.jl</a> · <a href="https://github.com/SimonDanisch/Bonito.jl">Bonito.jl</a></dd>
-      </dl>
-      <details class="gs-taste"><summary>Taste it</summary>
+<p>Next steps: dig into slow code with <a href="https://aviatesk.github.io/JET.jl/stable/">JET.jl</a> &#40;<code>@report_opt</code>&#41; and <a href="https://github.com/JuliaDebug/Cthulhu.jl">Cthulhu.jl</a>; write one kernel for any GPU with <a href="https://github.com/JuliaGPU/KernelAbstractions.jl">KernelAbstractions.jl</a>; cut load times with <a href="https://julialang.github.io/PrecompileTools.jl/stable/">PrecompileTools.jl</a>.</p>
+<h3 id="build_and_ship"><a href="#build_and_ship" class="header-anchor">Build and ship</a></h3>
+<p>The unit of work is a repo: a package, a command-line tool or a web service.</p>
+<ul>
+<li><p><strong>Package:</strong> <a href="https://juliaci.github.io/PkgTemplates.jl/stable/">PkgTemplates.jl</a> sets up a package with CI. Write tests with the <a href="https://docs.julialang.org/en/v1/stdlib/Test/">Test</a> stdlib, docs with <a href="https://documenter.juliadocs.org/stable/">Documenter.jl</a>, and catch common mistakes with <a href="https://juliatesting.github.io/Aqua.jl/stable/">Aqua.jl</a>. <code>add PkgTemplates Documenter Aqua</code></p>
+</li>
+<li><p><strong>Ship:</strong> <a href="https://github.com/JuliaLang/JuliaC.jl">JuliaC.jl</a> compiles a program into a native executable. <a href="https://pkgdocs.julialang.org/v1/apps/">Pkg apps</a> let people install your package as a command-line tool. <code>app add JuliaC</code></p>
+</li>
+<li><p><strong>Serve:</strong> <a href="https://juliaweb.github.io/HTTP.jl/stable/">HTTP.jl</a> and <a href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a> for clients and servers; <a href="https://refactorful.github.io/Oxygen.jl/stable/">Oxygen.jl</a> for routes in a few lines. <code>add HTTP JSON Oxygen</code></p>
+</li>
+</ul>
 <pre><code class="julia hljs"><span class="hljs-keyword">using</span> PkgTemplates
 
 t = Template(; user = <span class="hljs-string">&quot;your-github-name&quot;</span>,
                plugins = [GitHubActions(), Documenter{GitHubActions}()])
 t(<span class="hljs-string">&quot;MyPackage&quot;</span>)</code></pre>
-      </details>
-    </article>
-
-    <article class="gs-kit" id="kit-agents" style="--kit: var(--gs-green)">
-      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🤖</span>
-        <div><h3>Work through an agent</h3><p class="gs-when">You describe, an AI agent types. Give it a Julia that answers in milliseconds.</p></div></div>
-      <ul class="gs-rows">
-        <li><span class="gs-verb">Run</span><div><a href="https://github.com/KristofferC/JuliaDaemon.jl">JuliaDaemon.jl</a>: one warm session per project, with Revise loaded. The agent runs <code>jld eval</code> instead of starting Julia on every call, and you can <code>jld connect</code> to the same session.</div><button type="button" class="gs-pill" data-copy="app add JuliaDaemon">app add JuliaDaemon</button></li>
-        <li><span class="gs-verb">Check</span><div><a href="https://aviatesk.github.io/JET.jl/stable/">JET.jl</a> finds errors without running the code, <a href="https://github.com/fredrikekre/Runic.jl">Runic.jl</a> formats it one fixed way, and <a href="https://github.com/julia-testitems/TestItemRunner.jl">TestItemRunner.jl</a> runs one test at a time.</div><button type="button" class="gs-pill" data-copy="add JET Runic TestItemRunner">add JET Runic TestItemRunner</button></li>
-      </ul>
-      <dl class="gs-next">
-        <dt>Review</dt><dd><a href="https://juliatesting.github.io/ExplicitImports.jl/stable/">ExplicitImports.jl</a> (reports implicit and stale imports)</dd>
-        <dt>MCP</dt><dd><a href="https://github.com/aplavin/julia-mcp">julia-mcp</a> (persistent sessions over MCP; a Python server, not a Julia package)</dd>
-      </dl>
-      <details class="gs-taste"><summary>Taste it</summary>
+<p>Next steps: formatting with <a href="https://juliaeditorsupport.github.io/JuliaFormatter.jl/stable/">JuliaFormatter.jl</a> or <a href="https://github.com/fredrikekre/Runic.jl">Runic.jl</a>; testing with <a href="https://github.com/JuliaTesting/TestEnv.jl">TestEnv.jl</a> and <a href="https://github.com/julia-testitems/TestItemRunner.jl">TestItemRunner.jl</a>; command-line tools with <a href="https://carlobaldassi.github.io/ArgParse.jl/stable/">ArgParse.jl</a>, <a href="https://github.com/timholy/ProgressMeter.jl">ProgressMeter.jl</a> and <a href="https://julialang.github.io/PackageCompiler.jl/stable/">PackageCompiler.jl</a>; web apps with <a href="https://genieframework.com">Genie.jl</a> and <a href="https://github.com/SimonDanisch/Bonito.jl">Bonito.jl</a>.</p>
+<h3 id="work_through_an_agent"><a href="#work_through_an_agent" class="header-anchor">Work through an agent</a></h3>
+<p>You describe, an AI agent types. Give it a Julia that answers in milliseconds.</p>
+<ul>
+<li><p><strong>Run:</strong> <a href="https://github.com/KristofferC/JuliaDaemon.jl">JuliaDaemon.jl</a> keeps one warm session per project, with Revise loaded. The agent runs <code>jld eval</code> instead of starting Julia on every call, and you can <code>jld connect</code> to the same session. <code>app add JuliaDaemon</code></p>
+</li>
+<li><p><strong>Check:</strong> <a href="https://aviatesk.github.io/JET.jl/stable/">JET.jl</a> finds errors without running the code, <a href="https://github.com/fredrikekre/Runic.jl">Runic.jl</a> formats it one fixed way, and <a href="https://github.com/julia-testitems/TestItemRunner.jl">TestItemRunner.jl</a> runs one test at a time. <code>add JET Runic TestItemRunner</code></p>
+</li>
+</ul>
 <pre><code class="bash hljs"><span class="hljs-comment"># teach your agent to use jld</span>
 jld install
 
@@ -361,39 +275,26 @@ jld <span class="hljs-built_in">eval</span> <span class="hljs-string">&#x27;usin
 
 <span class="hljs-comment"># later calls are warm, edits live</span>
 jld run <span class="hljs-built_in">test</span>/runtests.jl</code></pre>
-      </details>
-    </article>
-
-    <aside class="gs-kit gs-kit-more" id="kit-more" style="--kit: var(--gs-blue)">
-      <div class="gs-kit-head"><span class="gs-kit-icon" aria-hidden="true">🧭</span>
-        <div><h3>Didn't find yours?</h3><p class="gs-when">There are over 12,000 more. Some places to look:</p></div></div>
-      <ul class="gs-pkgs">
-        <li><a href="https://platform.juliahub.com/ui/Packages">JuliaHub</a> Search every registered package and its docs.</li>
-        <li><a href="https://juliapackagecomparisons.github.io">Package comparisons</a> Help choosing between similar packages.</li>
-        <li><a href="https://discourse.julialang.org/c/first-steps/8">Ask on Discourse</a> The "First steps" category is friendly and quick.</li>
-        <li><a href="/previews/PR2673/community/otherchannels/">Or chat</a> Zulip, Slack, Discord and more, if you'd rather talk in real time.</li>
-        <li><a href="https://www.youtube.com/@TheJuliaLanguage">JuliaCon talks</a> Years of package demos and workshops, free on YouTube.</li>
-      </ul>
-    </aside>
-
-  </div>
-
-  <div class="gs-from">
-    <strong>Coming from Python, R or MATLAB?</strong>
-    <span><a href="https://juliapy.github.io/PythonCall.jl/stable/">PythonCall.jl</a> calls any Python library (with <a href="https://github.com/JuliaPy/CondaPkg.jl">CondaPkg.jl</a> for its dependencies), <a href="https://juliainterop.github.io/RCall.jl/stable/">RCall.jl</a> does the same for R, and the manual lists the <a href="https://docs.julialang.org/en/v1/manual/noteworthy-differences/">noteworthy differences</a>.</span>
-    <button type="button" class="gs-pill" data-copy="add PythonCall CondaPkg">add PythonCall CondaPkg</button>
-  </div>
-</section>
-
-<!-- Composability -->
-<section class="gs-section" id="mix">
-  <h2 class="gs-h2">Then mix them</h2>
-  <p class="gs-sub">Julia packages work together even when their authors never planned it.
-  That's <a href="https://www.youtube.com/watch?v=kc9HwsxE1OY">multiple dispatch</a> at work, and it's why a few packages go a long way.</p>
-
-  <div class="gs-mix">
-    <div class="gs-mix-card">
-      <h3>Write a function once&hellip;</h3>
+<p>Next steps: review imports with <a href="https://juliatesting.github.io/ExplicitImports.jl/stable/">ExplicitImports.jl</a>; or use <a href="https://github.com/aplavin/julia-mcp">julia-mcp</a> for persistent sessions over MCP &#40;a Python server, not a Julia package&#41;.</p>
+<h3 id="coming_from_python_r_or_matlab"><a href="#coming_from_python_r_or_matlab" class="header-anchor">Coming from Python, R or MATLAB?</a></h3>
+<p><a href="https://juliapy.github.io/PythonCall.jl/stable/">PythonCall.jl</a> calls any Python library &#40;with <a href="https://github.com/JuliaPy/CondaPkg.jl">CondaPkg.jl</a> for its dependencies&#41;, <a href="https://juliainterop.github.io/RCall.jl/stable/">RCall.jl</a> does the same for R, and the manual lists the <a href="https://docs.julialang.org/en/v1/manual/noteworthy-differences/">noteworthy differences</a>. <code>add PythonCall CondaPkg</code></p>
+<h3 id="didnt_find_yours"><a href="#didnt_find_yours" class="header-anchor">Didn&#39;t find yours?</a></h3>
+<p>There are over 12,000 more. Some places to look:</p>
+<ul>
+<li><p><a href="https://platform.juliahub.com/ui/Packages">JuliaHub</a>: search every registered package and its docs.</p>
+</li>
+<li><p><a href="https://juliapackagecomparisons.github.io">Package comparisons</a>: help choosing between similar packages.</p>
+</li>
+<li><p><a href="https://discourse.julialang.org/c/first-steps/8">Discourse</a>: the &quot;First steps&quot; category is friendly and quick.</p>
+</li>
+<li><p><a href="/previews/PR2673/community/otherchannels/">Chat</a>: Zulip, Slack, Discord and more, if you&#39;d rather talk in real time.</p>
+</li>
+<li><p><a href="https://www.youtube.com/@TheJuliaLanguage">JuliaCon talks</a>: years of package demos and workshops, free on YouTube.</p>
+</li>
+</ul>
+<h2 id="then_mix_them"><a href="#then_mix_them" class="header-anchor">Then mix them</a></h2>
+<p>Julia packages work together even when their authors never planned it. That&#39;s <a href="https://www.youtube.com/watch?v&#61;kc9HwsxE1OY">multiple dispatch</a> at work, and it&#39;s why a few packages go a long way.</p>
+<p>Write a function once:</p>
 <pre><code class="julia hljs"><span class="hljs-comment"># Newton&#x27;s method, for plain numbers</span>
 <span class="hljs-keyword">function</span> mysqrt(x)
     t = x
@@ -402,9 +303,7 @@ jld run <span class="hljs-built_in">test</span>/runtests.jl</code></pre>
     <span class="hljs-keyword">end</span>
     <span class="hljs-keyword">return</span> t
 <span class="hljs-keyword">end</span></code></pre>
-    </div>
-    <div class="gs-mix-card">
-      <h3>&hellip;and every package can use it</h3>
+<p>and every package can use it:</p>
 <pre><code class="julia-repl hljs"><span class="hljs-meta">julia&gt;</span><span class="language-julia"> <span class="hljs-keyword">using</span> Measurements, ForwardDiff
 </span>
 <span class="hljs-meta">julia&gt;</span><span class="language-julia"> mysqrt(<span class="hljs-number">2.0</span> ± <span class="hljs-number">0.1</span>)     <span class="hljs-comment"># error bars, propagated</span>
@@ -415,15 +314,7 @@ jld run <span class="hljs-built_in">test</span>/runtests.jl</code></pre>
 
 <span class="hljs-meta">julia&gt;</span><span class="language-julia"> ForwardDiff.derivative(mysqrt, <span class="hljs-number">2.0</span>)   <span class="hljs-comment"># an exact derivative</span>
 </span>0.35355339059327373</code></pre>
-      <p class="gs-mix-note">Measurements.jl and ForwardDiff.jl know nothing about <code>mysqrt</code>, and <code>mysqrt</code> knows nothing about them. With CUDA.jl, <code>mysqrt.(CUDA.rand(10^6))</code> runs it on a GPU too.</p>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<script src="/previews/PR2673/libs/getting-started.js"></script>
-
+<p>Measurements.jl and ForwardDiff.jl know nothing about <code>mysqrt</code>, and <code>mysqrt</code> knows nothing about them. With CUDA.jl, <code>mysqrt.&#40;CUDA.rand&#40;10^6&#41;&#41;</code> runs it on a GPU too.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
